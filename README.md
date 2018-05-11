@@ -221,14 +221,13 @@ PlatformDialogAction(
 
 The following are a list more platform aware widgets needing to be added.
 
-- Switch  [iOS]() [android]()
-- Progress Indicator  [iOS]() [android]()
-- Simple Dialog  [iOS]() [android]()
-- Routing  [iOS]() [android]()
+- Switch  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) [android](https://docs.flutter.io/flutter/material/Switch-class.html)
+- Progress Indicator  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) [android](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
+- Routing  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) [android](https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
 
 # Changing / Checking Platform
 
-When importing `flutter_platform_widgets` you can check `isMaterial` or `isCuprtino` to determine what style will be used. This is independent to `Platform.isAndroid` or `Platform.isIOS` from `'import 'dart:io'`
+When importing `flutter_platform_widgets` you can check `isMaterial` or `isCupertino` to determine what style will be used. This is independent to `Platform.isAndroid` or `Platform.isIOS` from `'import 'dart:io'`
 
 See the example code for how this is used.
 
