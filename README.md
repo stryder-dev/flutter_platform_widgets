@@ -2,6 +2,21 @@
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
+# Installation
+
+ > Pubspec: https://pub.dartlang.org/packages/flutter_platform_widgets
+
+Add this to your package's pubspec.yaml file:
+```yaml
+dependencies:
+  flutter_platform_widgets: "^0.1.0"
+```
+
+Import:
+```dart
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+```
+
 # Widgets
 
 These set of widgets allow for rendering based on the target platform using a single cross platform set of widget.
