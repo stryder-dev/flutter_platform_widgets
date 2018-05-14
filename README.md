@@ -221,9 +221,9 @@ PlatformDialogAction(
 
 The following are a list more platform aware widgets needing to be added.
 
-- Switch : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) [android], (https://docs.flutter.io/flutter/material/Switch-class.html)
-- Progress Indicator : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) [android], (https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
-- Routing : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) [android], (https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
+- Switch : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) | [android](https://docs.flutter.io/flutter/material/Switch-class.html)
+- Progress Indicator : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) | [android](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
+- Routing : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) | [android](https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
 
 # Changing / Checking Platform
 
