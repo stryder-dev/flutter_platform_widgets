@@ -19,7 +19,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 
 ## PlatformWidget
 
-A widget that will render either the android widget or cupertino widget based on the target platform.
+A widget that will render either the android widget or cupertino widget based on the target platform. The widgets themselves do not need to be specifically Material or Cupertino.
 ```dart
 return PlatformWidget(
   ios: (_) => Icon(CupertinoIcons.flag),
@@ -54,7 +54,7 @@ return PlatformButton(
 ```
 
 ## PlatformIconButton
-A clickable (tappable) button with an icon.
+A clickable (tappable) button with an icon. Uses `IconButton` for android or `CupertinoButton` for ios.
 ```dart
 return PlatformIconButton(
   onPressed: () => print('info pressed'),
@@ -80,7 +80,7 @@ Widget infoIconButton() {
 ```
 
 ## PlatformScaffold
-A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for ios with bottom tabs or `CupertinoPageScaffold` for ios without bottom tabs.
 
 ```dart
 return PlatformScaffold(
@@ -103,7 +103,7 @@ return PlatformScaffold(
 ```
 
 ## PlatformAppBar
-The AppBar is the top Header bar with a title, leftside or rightside buttons.
+The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for ios.
 ```dart
 return PlatformAppBar(
     title: new Text('Platform Widgets'),
@@ -128,7 +128,7 @@ return PlatformAppBar(
 ```
 
 ## PlatformNavBar
-The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`
+The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for ios.
 ```dart
 return PlatformNavBar(
   currentIndex: _selectedTabIndex,
@@ -163,9 +163,9 @@ return PlatformNavBar(
 ```
 
 ## PlatformAlertDialog
-The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform.
+The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for android or `CupertinoAlertDialog` for ios.
 
-> Note that `showDialog` from the material package needs to be used.
+> Note that `showDialog` from the material package needs to be used to make it easy to render.
 
 ![alt text](images/android-dialog.png)
 
@@ -196,7 +196,7 @@ showDialog(
 ```
 
 ## PlatformDialogAction
-The DialogAction widget is used to describe the set of buttons on the AlertDialog
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for android or `CupertinoDialogAction` for ios.
 ```dart
 PlatformDialogAction(
   child: PlatformText('Cancel'),
@@ -216,13 +216,14 @@ PlatformDialogAction(
 
 # TODO
 
-Will be working on UI / Unit Tests.
+- UI / Unit Tests.
+- Code documentation
 
 The following are a list more platform aware widgets needing to be added.
 
-- Switch  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) [android](https://docs.flutter.io/flutter/material/Switch-class.html)
-- Progress Indicator  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) [android](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
-- Routing  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) [android](https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
+- Switch : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) [android], (https://docs.flutter.io/flutter/material/Switch-class.html)
+- Progress Indicator : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) [android], (https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
+- Routing : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) [android], (https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
 
 # Changing / Checking Platform
 
