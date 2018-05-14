@@ -9,7 +9,7 @@ This project is an attempt to see if it is possible to create widgets that are p
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  flutter_platform_widgets: "^0.1.0"
+  flutter_platform_widgets: "^0.1.2"
 ```
 
 Import:
