@@ -140,7 +140,7 @@ class PlatformAppBar
       data = ios(context);
     }
 
-    var trailing = trailingActions == null || trailingActions.isNotEmpty
+    var trailing = trailingActions == null || trailingActions.isEmpty
         ? null
         : new Row(
             mainAxisSize: MainAxisSize.min,
