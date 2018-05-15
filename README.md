@@ -6,17 +6,6 @@ This project is an attempt to see if it is possible to create widgets that are p
 
  > Pubspec: https://pub.dartlang.org/packages/flutter_platform_widgets
 
-Add this to your package's pubspec.yaml file:
-```yaml
-dependencies:
-  flutter_platform_widgets: "^0.1.2"
-```
-
-Import:
-```dart
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-```
-
 # Widgets
 
 These set of widgets allow for rendering based on the target platform using a single cross platform set of widget.
@@ -30,65 +19,57 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 
 ## PlatformWidget
 
-A widget that will render either the android widget or cupertino widget based on the target platform.
-```
-Widget flagIcon() {
-  return PlatformWidget(
-    ios: (_) => Icon(CupertinoIcons.flag),
-    android: (_) => Icon(Icons.flag),
-  );
-}
+A widget that will render either the android widget or cupertino widget based on the target platform. The widgets themselves do not need to be specifically Material or Cupertino.
+```dart
+return PlatformWidget(
+  ios: (_) => Icon(CupertinoIcons.flag),
+  android: (_) => Icon(Icons.flag),
+);
 ```
 
 ## PlatformText
 A widget that will render uppercase for Android. iOS will remain unchanged.
 ```dart
-PlatformText('Cancel');  
+return PlatformText('Cancel');  
 ```
 
 ## PlatformButton
 A button that will render a `RaisedButton` for android or a `CupertinoButton` for iOS.
 ```dart
-Widget sendButton() {
-  return PlatformButton(
-    onPressed: () => print('send'),
-    child: PlatformText('Send'),
-  );
-}
+return PlatformButton(
+  onPressed: () => print('send'),
+  child: PlatformText('Send'),
+);
 ```
 
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS. 
 ```dart
-Widget sendButton() {
-  return PlatformButton(
-    onPressed: () => print('send'),
-    child: PlatformText('Send'),
-    android: (_) => MaterialRaisedButtonData(...),
-    ios: (_) => CupertinoButtonData(...)
-  );
-}
+return PlatformButton(
+  onPressed: () => print('send'),
+  child: PlatformText('Send'),
+  android: (_) => MaterialRaisedButtonData(...),
+  ios: (_) => CupertinoButtonData(...)
+);
 ```
 
 ## PlatformIconButton
-A clickable (tappable) button with an icon.
+A clickable (tappable) button with an icon. Uses `IconButton` for android or `CupertinoButton` for ios.
 ```dart
-Widget infoIconButton() {
-  PlatformIconButton(
-    onPressed: () => print('info pressed'),
-    iosIcon: Icon(
-      CupertinoIcons.info,
-      size: 28.0,
-    ),
-    androidIcon: Icon(Icons.info)
-  );
-}
+return PlatformIconButton(
+  onPressed: () => print('info pressed'),
+  iosIcon: Icon(
+    CupertinoIcons.info,
+    size: 28.0,
+  ),
+  androidIcon: Icon(Icons.info)
+);
 ```
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS. 
 ```dart
 Widget infoIconButton() {
-  PlatformIconButton(
+  return PlatformIconButton(
     onPressed: () => print('info pressed'),
     iosIcon: Icon(CupertinoIcons.info),
     androidIcon: Icon(Icons.info),
@@ -99,7 +80,7 @@ Widget infoIconButton() {
 ```
 
 ## PlatformScaffold
-A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for ios with bottom tabs or `CupertinoPageScaffold` for ios without bottom tabs.
 
 ```dart
 return PlatformScaffold(
@@ -122,15 +103,15 @@ return PlatformScaffold(
 ```
 
 ## PlatformAppBar
-The AppBar is the top Header bar with a title, leftside or rightside buttons.
+The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for ios.
 ```dart
 return PlatformAppBar(
-      title: new Text('Platform Widgets'),
-      leading: PlatformIconButton()),
-      trailingActions: <Widget>[
-        PlatformIconButton(),
-      ],
-    );
+    title: new Text('Platform Widgets'),
+    leading: PlatformIconButton()),
+    trailingActions: <Widget>[
+      PlatformIconButton(),
+    ],
+  );
 ```
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS. 
@@ -147,7 +128,7 @@ return PlatformAppBar(
 ```
 
 ## PlatformNavBar
-The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`
+The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for ios.
 ```dart
 return PlatformNavBar(
   currentIndex: _selectedTabIndex,
@@ -182,9 +163,9 @@ return PlatformNavBar(
 ```
 
 ## PlatformAlertDialog
-The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform.
+The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for android or `CupertinoAlertDialog` for ios.
 
-> Note that `showDialog` from the material package needs to be used.
+> Note that `showDialog` from the material package needs to be used to make it easy to render.
 
 ![alt text](images/android-dialog.png)
 
@@ -194,13 +175,14 @@ The AlertDialog will render a caption/title, body/text and a set of action butto
 showDialog(
   context: context,
   builder: (_) => PlatformAlertDialog(
-        title: Text('Alert'),
-        content: Text('Some content'),
-        actions: <Widget>[
-          PlatformDialogAction(),
-          PlatformDialogAction(),
-        ],
-      ));
+    title: Text('Alert'),
+    content: Text('Some content'),
+    actions: <Widget>[
+      PlatformDialogAction(),
+      PlatformDialogAction(),
+    ],
+  ),
+);
 ```
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS. 
@@ -214,7 +196,7 @@ showDialog(
 ```
 
 ## PlatformDialogAction
-The DialogAction widget is used to describe the set of buttons on the AlertDialog
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for android or `CupertinoDialogAction` for ios.
 ```dart
 PlatformDialogAction(
   child: PlatformText('Cancel'),
@@ -234,11 +216,14 @@ PlatformDialogAction(
 
 # TODO
 
+- UI / Unit Tests.
+- Code documentation
+
 The following are a list more platform aware widgets needing to be added.
 
-- Switch  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) [android](https://docs.flutter.io/flutter/material/Switch-class.html)
-- Progress Indicator  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) [android](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
-- Routing  [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) [android](https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
+- Switch : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) | [android](https://docs.flutter.io/flutter/material/Switch-class.html)
+- Progress Indicator : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html) | [android](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html)
+- Routing : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoPageRoute-class.html) | [android](https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html)
 
 # Changing / Checking Platform
 
@@ -251,15 +236,43 @@ See the example code for how this is used.
 - Setting `BottomNavigationBarType.shifting` will cause the icon and text to render white: https://github.com/flutter/flutter/issues/15280. 
 
 Best to set to fixed if the number of navigation items are 4 or more.
-```
+```dart
 return PlatformNavBar(
-      android: (_) => MaterialNavBarData(
-            type: BottomNavigationBarType.fixed,
-          ),
+   android: (_) => MaterialNavBarData(
+      type: BottomNavigationBarType.fixed,
+    ),
 ```
 
 - Setting `BottomNavigationBar.fixedColor` to anything has no effect.
 
+- If using the Cupertino widgets it may complain that there is no Material parent when using material widgets further doen the widget tree. If this is the case you need to place `Material` as a child widget
+
+```dart
+return PlatformScaffold(
+  body: Material(
+    color: Colors.white,
+    child: _theBodyOfThePageWithMaterialWidgets(),
+  );
+);
+```
+Note: You may fine without setting the color of the Material widget there will be a slight grey color appear as the background. You may need to explicitly set the color to match the rest of the page
+
+- Cupertino widgets do not pick up the Theme in all cases. In particular the Text() widget needs to have a DefaultTheme set otherwise all Text() widgets need to have their style property set. 
+
+```dart
+return DefaultTextStyle(
+  style: Theme.of(context).textTheme.body1,
+  child: Center(
+     child: Column(
+       children: <Widget>[
+         PlatformText('Text 1'),
+         PlatformText('Text 2'),
+         PlatformText('Text 3'),
+       ],
+     ),
+   ),
+ );
+```
 
 # Issues and Feedback
 
