@@ -23,6 +23,7 @@ void changeToAutoDetectPlatform() {
   _forceCupertino = false;
 }
 
-bool get isMaterial => _forceMaterial || Platform.isAndroid;
+bool get isMaterial =>
+    _forceMaterial || (!_forceCupertino && Platform.isAndroid);
 
-bool get isCupertino => _forceCupertino || Platform.isIOS;
+bool get isCupertino => _forceCupertino || (!_forceMaterial && Platform.isIOS);
