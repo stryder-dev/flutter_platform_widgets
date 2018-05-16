@@ -23,3 +23,4 @@ export 'src/platform_widget.dart';
 export 'src/platform_text.dart';
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_dialog_action.dart';
+export 'src/platform_circluar_progress_indicator.dart';

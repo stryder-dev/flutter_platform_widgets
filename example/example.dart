@@ -90,6 +90,12 @@ class _ExamplePageState extends State<ExamplePage> {
                 child: Text('Switch to Cupertino'),
               ),
             ),
+            new Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformCircularProgressIndicator(
+                ios: (_) => CupertinoProgressIndicatorData(radius: 16.0),
+              ),
+            ),
           ],
         ),
       ),
