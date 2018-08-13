@@ -14,11 +14,14 @@ import 'package:flutter/material.dart'
         Colors,
         FloatingActionButton,
         BottomNavigationBarType,
+        MaterialPageRoute,
         Icons;
 
-import 'package:flutter/cupertino.dart' show CupertinoIcons;
+import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
 
 import '../lib/flutter_platform_widgets.dart';
+
+import 'sub_pages.dart';
 
 class ExamplePage extends StatefulWidget {
   ExamplePage({Key key}) : super(key: key);
@@ -29,6 +32,21 @@ class ExamplePage extends StatefulWidget {
 
 class _ExamplePageState extends State<ExamplePage> {
   int _selectedTabIndex = 0;
+
+  void _showSubPage() {
+
+//need for ios different navigation stacks so the bottom tab bar does not hide
+//https://stackoverflow.com/questions/46502751/how-to-use-multiple-navigators
+//https://stackoverflow.com/questions/45511549/permanent-view-with-navigation-bar-in-flutter
+//https://github.com/flutter/flutter/blob/9909e773dc66608a866efa7388f39127509d0e1e/packages/flutter/lib/src/cupertino/tab_view.dart
+//https://stackoverflow.com/questions/46483949/how-to-get-current-route-path-in-flutter
+
+    if (isMaterial) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => SubPage1()));
+    } else {
+      Navigator.push(context, CupertinoPageRoute(builder: (_) => SubPage1()));
+    }
+  }
 
   void showExampleAlertDialog() {
     showDialog(
@@ -88,6 +106,13 @@ class _ExamplePageState extends State<ExamplePage> {
               child: PlatformButton(
                 onPressed: () => setState(() => changeToCupertinoPlatform()),
                 child: Text('Switch to Cupertino'),
+              ),
+            ),
+            new Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformButton(
+                onPressed: () => _showSubPage(),
+                child: Text('Display Sub Page'),
               ),
             ),
             new Padding(
