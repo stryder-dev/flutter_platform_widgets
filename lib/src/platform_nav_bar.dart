@@ -43,7 +43,6 @@ class MaterialNavBarData extends _BaseData {
       Color backgroundColor,
       double iconSize: 24.0,
       this.elevation: 8.0,
-      this.hasNotch: true,
       Color fixedColor,
       this.type})
       : super(
@@ -53,7 +52,6 @@ class MaterialNavBarData extends _BaseData {
             activeColor: fixedColor);
 
   final double elevation;
-  final bool hasNotch;
   final BottomNavigationBarType type;
 }
 
@@ -101,7 +99,6 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       child: bar,
       color: data?.backgroundColor ?? backgroundColor,
       elevation: data?.elevation ?? 8.0,
-      hasNotch: data?.hasNotch ?? true,
       key: widgetKey,
     );
   }
