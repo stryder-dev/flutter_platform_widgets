@@ -5,7 +5,7 @@ author: Lance Johnstone <flutterlance@outlook.com>
 homepage: https://github.com/aqwert/flutter_platform_widgets
 
 environment:
-  sdk: ">=1.23.0 <2.0.0"
+  sdk: ">=1.23.0 <3.0.0"
 
 dependencies:
   flutter:
