@@ -1,3 +1,7 @@
+## [0.3.1] - Aug 24, 2018
+
+* Updated environment to support Dart 2 
+
 ## [0.3.0] - Aug 13, 2018
 
 * Removed hasNotch to be compatible with the flutter develop branch

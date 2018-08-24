@@ -9,7 +9,6 @@ import 'package:flutter/material.dart'
     show FlatButton, Brightness, ButtonTextTheme;
 
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
 import 'widget_base.dart';
 
