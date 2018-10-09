@@ -133,7 +133,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           navigationBar.preferredSize.height + existingMediaQuery.padding.top;
 
       //need to move the content down
-      if (!navigationBar.fullObstruction) {
+      if (navigationBar.fullObstruction) {
         var pad = Padding(
           padding: EdgeInsets.only(top: topPadding),
           child: child,
