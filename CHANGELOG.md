@@ -1,3 +1,7 @@
+## [0.3.2] - Oct 09, 2018
+
+* Fixed issue with AppBar padding
+
 ## [0.3.1] - Aug 24, 2018
 
 * Updated environment to support Dart 2 
