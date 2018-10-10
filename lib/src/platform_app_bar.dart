@@ -22,6 +22,17 @@ const Border _kDefaultNavBarBorder = const Border(
   ),
 );
 
+// There's a single tag for all instances of navigation bars because they can
+// all transition between each other (per Navigator) via Hero transitions.
+const _HeroTag _defaultHeroTag = _HeroTag();
+
+class _HeroTag {
+  const _HeroTag();
+  // Let the Hero tag be described in tree dumps.
+  @override
+  String toString() => 'Default Hero tag for Cupertino navigation bars';
+}
+
 abstract class _BaseData {
   _BaseData({this.title, this.backgroundColor, this.leading});
 
@@ -33,21 +44,21 @@ abstract class _BaseData {
 class MaterialAppBarData extends _BaseData {
   MaterialAppBarData(
       {Widget title,
-      Color backgroundColor,
-      Widget leading,
-      this.actions,
-      this.bottom,
-      this.automaticallyImplyLeading: true,
-      this.bottomOpacity: 1.0,
-      this.brightness,
-      this.centerTitle,
-      this.elevation: 4.0,
-      this.flexibleSpace,
-      this.iconTheme,
-      this.primary: true,
-      this.textTheme,
-      this.titleSpacing: NavigationToolbar.kMiddleSpacing,
-      this.toolbarOpacity: 1.0})
+        Color backgroundColor,
+        Widget leading,
+        this.actions,
+        this.bottom,
+        this.automaticallyImplyLeading: true,
+        this.bottomOpacity: 1.0,
+        this.brightness,
+        this.centerTitle,
+        this.elevation: 4.0,
+        this.flexibleSpace,
+        this.iconTheme,
+        this.primary: true,
+        this.textTheme,
+        this.titleSpacing: NavigationToolbar.kMiddleSpacing,
+        this.toolbarOpacity: 1.0})
       : super(title: title, backgroundColor: backgroundColor, leading: leading);
 
   final List<Widget> actions;
@@ -68,18 +79,22 @@ class MaterialAppBarData extends _BaseData {
 class CupertinoNavigationBarData extends _BaseData {
   CupertinoNavigationBarData(
       {Widget title,
-      Color backgroundColor,
-      Widget leading,
-      this.trailing,
-      this.border,
-      this.automaticallyImplyLeading: true,
-      this.actionsForegroundColor: CupertinoColors.activeBlue})
+        Color backgroundColor,
+        Widget leading,
+        this.trailing,
+        this.border,
+        this.automaticallyImplyLeading: true,
+        this.actionsForegroundColor: CupertinoColors.activeBlue,
+        this.transitionBetweenRoutes,
+        this.heroTag})
       : super(title: title, backgroundColor: backgroundColor, leading: leading);
 
   final Widget trailing;
   final Border border;
   final bool automaticallyImplyLeading;
   final Color actionsForegroundColor;
+  final bool transitionBetweenRoutes;
+  final Object heroTag;
 }
 
 class PlatformAppBar
@@ -96,13 +111,13 @@ class PlatformAppBar
 
   PlatformAppBar(
       {Key key,
-      this.widgetKey,
-      this.title,
-      this.backgroundColor,
-      this.leading,
-      this.trailingActions,
-      this.android,
-      this.ios})
+        this.widgetKey,
+        this.title,
+        this.backgroundColor,
+        this.leading,
+        this.trailingActions,
+        this.android,
+        this.ios})
       : super(key: key);
 
   @override
@@ -143,22 +158,24 @@ class PlatformAppBar
     var trailing = trailingActions == null || trailingActions.isEmpty
         ? null
         : new Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: trailingActions,
-          );
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: trailingActions,
+    );
     return CupertinoNavigationBar(
       middle: data?.title ?? title,
       backgroundColor: data?.backgroundColor ??
           backgroundColor ??
           _kDefaultNavBarBackgroundColor,
       actionsForegroundColor:
-          data?.actionsForegroundColor ?? CupertinoColors.activeBlue,
+      data?.actionsForegroundColor ?? CupertinoColors.activeBlue,
       automaticallyImplyLeading: data?.automaticallyImplyLeading ?? true,
       border: data?.border ?? _kDefaultNavBarBorder,
       key: widgetKey,
       leading: data?.leading ?? leading,
       trailing: data?.trailing ?? trailing,
+      transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
+      heroTag: data?.heroTag ?? _defaultHeroTag,
     );
   }
 }
