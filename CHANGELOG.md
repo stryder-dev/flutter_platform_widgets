@@ -1,4 +1,8 @@
-## [0.3.2] - Oct 11, 2018
+## [0.3.4] - Oct 11, 2018
+
+* Fixed herotag issue when setting transitionBetweenRoutes to true
+
+## [0.3.3] - Oct 11, 2018
 
 * Added transitionBetweenRoutes and heroTag as attributes to CupertinoNavigationBarData
 
