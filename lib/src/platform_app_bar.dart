@@ -22,16 +22,6 @@ const Border _kDefaultNavBarBorder = const Border(
   ),
 );
 
-// There's a single tag for all instances of navigation bars because they can
-// all transition between each other (per Navigator) via Hero transitions.
-const _HeroTag _defaultHeroTag = _HeroTag();
-
-class _HeroTag {
-  const _HeroTag();
-  // Let the Hero tag be described in tree dumps.
-  @override
-  String toString() => 'Default Hero tag for Cupertino navigation bars';
-}
 
 abstract class _BaseData {
   _BaseData({this.title, this.backgroundColor, this.leading});
@@ -162,6 +152,25 @@ class PlatformAppBar
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: trailingActions,
     );
+
+    if(data?.heroTag != null){
+      return CupertinoNavigationBar(
+        middle: data?.title ?? title,
+        backgroundColor: data?.backgroundColor ??
+            backgroundColor ??
+            _kDefaultNavBarBackgroundColor,
+        actionsForegroundColor:
+        data?.actionsForegroundColor ?? CupertinoColors.activeBlue,
+        automaticallyImplyLeading: data?.automaticallyImplyLeading ?? true,
+        border: data?.border ?? _kDefaultNavBarBorder,
+        key: widgetKey,
+        leading: data?.leading ?? leading,
+        trailing: data?.trailing ?? trailing,
+        transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
+        heroTag: data.heroTag,
+      );
+    }
+
     return CupertinoNavigationBar(
       middle: data?.title ?? title,
       backgroundColor: data?.backgroundColor ??
@@ -175,7 +184,6 @@ class PlatformAppBar
       leading: data?.leading ?? leading,
       trailing: data?.trailing ?? trailing,
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
-      heroTag: data?.heroTag ?? _defaultHeroTag,
     );
   }
 }
