@@ -1,3 +1,7 @@
+## [0.3.2] - Oct 11, 2018
+
+* Added transitionBetweenRoutes and heroTag as attributes to CupertinoNavigationBarData
+
 ## [0.3.2] - Oct 09, 2018
 
 * Fixed issue with AppBar padding
