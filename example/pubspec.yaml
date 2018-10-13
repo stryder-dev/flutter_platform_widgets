@@ -1,0 +1,9 @@
+name: flutter_platform_widgets_example
+description: Demonstrates how to use the flutter_platform_widgets plugin.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
