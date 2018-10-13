@@ -4,8 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/widgets.dart';
-
+import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
 import 'package:flutter/material.dart'
     show
         showDialog,
@@ -16,11 +15,9 @@ import 'package:flutter/material.dart'
         BottomNavigationBarType,
         MaterialPageRoute,
         Icons;
-
-import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
+import 'package:flutter/widgets.dart';
 
 import '../lib/flutter_platform_widgets.dart';
-
 import 'sub_pages.dart';
 
 class ExamplePage extends StatefulWidget {
@@ -34,7 +31,6 @@ class _ExamplePageState extends State<ExamplePage> {
   int _selectedTabIndex = 0;
 
   void _showSubPage() {
-
 //need for ios different navigation stacks so the bottom tab bar does not hide
 //https://stackoverflow.com/questions/46502751/how-to-use-multiple-navigators
 //https://stackoverflow.com/questions/45511549/permanent-view-with-navigation-bar-in-flutter

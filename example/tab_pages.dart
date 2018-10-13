@@ -1,11 +1,9 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-
 import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
-
-import 'sub_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../lib/flutter_platform_widgets.dart';
+import 'sub_pages.dart';
 
 class Page1 extends StatelessWidget {
   @override
