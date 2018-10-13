@@ -16,8 +16,8 @@ import 'package:flutter/material.dart'
         MaterialPageRoute,
         Icons;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import '../lib/flutter_platform_widgets.dart';
 import 'sub_pages.dart';
 
 class ExamplePage extends StatefulWidget {

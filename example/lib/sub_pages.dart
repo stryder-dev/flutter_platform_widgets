@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../lib/flutter_platform_widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SubPage1 extends StatelessWidget {
   @override

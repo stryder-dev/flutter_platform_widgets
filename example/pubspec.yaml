@@ -4,6 +4,8 @@ description: Demonstrates how to use the flutter_platform_widgets plugin.
 dependencies:
   flutter:
     sdk: flutter
+  flutter_platform_widgets:
+    path: ../
 
 flutter:
   uses-material-design: true
