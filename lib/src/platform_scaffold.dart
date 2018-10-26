@@ -20,16 +20,18 @@ import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
 
 abstract class _BaseData {
-  _BaseData({this.backgroundColor, this.body});
+  _BaseData({this.widgetKey, this.backgroundColor, this.body});
 
   final Color backgroundColor;
   final Widget body;
+  final Key widgetKey;
 }
 
 class MaterialScaffoldData extends _BaseData {
   MaterialScaffoldData(
       {Color backgroundColor,
       Widget body,
+      Key widgetKey,
       this.appBar,
       this.bottomNavBar,
       this.drawer,
@@ -38,9 +40,11 @@ class MaterialScaffoldData extends _BaseData {
       this.floatingActionButtonAnimator,
       this.floatingActionButtonLocation,
       this.persistentFooterButtons,
-      this.primary: true,
-      this.resizeToAvoidBottomPadding: true})
-      : super(backgroundColor: backgroundColor, body: body);
+      this.primary = true,
+      this.resizeToAvoidBottomPadding = true,
+      this.bottomSheet})
+      : super(
+            widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
   final PreferredSizeWidget appBar;
   final Widget bottomNavBar;
@@ -52,18 +56,23 @@ class MaterialScaffoldData extends _BaseData {
   final List<Widget> persistentFooterButtons;
   final bool primary;
   final bool resizeToAvoidBottomPadding;
+  final Widget bottomSheet;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
   CupertinoPageScaffoldData(
       {Color backgroundColor,
       Widget body,
+      Key widgetKey,
       this.navigationBar,
-      this.bottomTabBar})
-      : super(backgroundColor: backgroundColor, body: body);
+      this.bottomTabBar,
+      this.resizeToAvoidBottomInset = true})
+      : super(
+            widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
   final ObstructingPreferredSizeWidget navigationBar;
   final CupertinoTabBar bottomTabBar;
+  final bool resizeToAvoidBottomInset;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
@@ -96,7 +105,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     }
 
     return Scaffold(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       body: data?.body ?? body,
       appBar: data?.appBar ?? appBar?.createAndroidWidget(context),
@@ -110,6 +119,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       persistentFooterButtons: data?.persistentFooterButtons,
       primary: data?.primary ?? true,
       resizeToAvoidBottomPadding: data?.resizeToAvoidBottomPadding ?? true,
+      bottomSheet: data?.bottomSheet,
     );
   }
 
@@ -145,26 +155,26 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     if (bottomNavBar != null) {
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
       return CupertinoTabScaffold(
-        key: widgetKey,
+        key: data?.widgetKey ?? widgetKey,
         tabBar: data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context),
         tabBuilder: (BuildContext context, int index) {
           return CupertinoPageScaffold(
-            backgroundColor: data?.backgroundColor ??
-                backgroundColor ??
-                CupertinoColors.white,
-            child: child,
-            navigationBar: navigationBar,
-          );
+              backgroundColor: data?.backgroundColor ??
+                  backgroundColor ??
+                  CupertinoColors.white,
+              child: child,
+              navigationBar: navigationBar,
+              resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
         },
       );
     } else {
       return CupertinoPageScaffold(
-        key: widgetKey,
-        backgroundColor:
-            data?.backgroundColor ?? backgroundColor ?? CupertinoColors.white,
-        child: child,
-        navigationBar: navigationBar,
-      );
+          key: data?.widgetKey ?? widgetKey,
+          backgroundColor:
+              data?.backgroundColor ?? backgroundColor ?? CupertinoColors.white,
+          child: child,
+          navigationBar: navigationBar,
+          resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
     }
   }
 }

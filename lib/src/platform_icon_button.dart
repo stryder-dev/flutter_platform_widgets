@@ -11,12 +11,18 @@ import 'package:flutter/widgets.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.icon, this.onPressed, this.padding, this.color});
+  _BaseData(
+      {this.icon,
+      this.onPressed,
+      this.padding,
+      this.color,
+      this.disabledColor});
 
   final Icon icon;
   final VoidCallback onPressed;
   final EdgeInsets padding;
   final Color color;
+  final Color disabledColor;
 }
 
 class CupertinoIconButtonData extends _BaseData {
@@ -25,10 +31,16 @@ class CupertinoIconButtonData extends _BaseData {
       VoidCallback onPressed,
       EdgeInsets padding,
       Color color,
+      Color disabledColor,
       this.borderRadius,
-      this.minSize: 44.0,
-      this.pressedOpacity: 0.1})
-      : super(icon: icon, onPressed: onPressed, padding: padding, color: color);
+      this.minSize = 44.0,
+      this.pressedOpacity = 0.1})
+      : super(
+            icon: icon,
+            onPressed: onPressed,
+            padding: padding,
+            color: color,
+            disabledColor: disabledColor);
 
   final BorderRadius borderRadius;
   final double minSize;
@@ -37,24 +49,30 @@ class CupertinoIconButtonData extends _BaseData {
 
 class MaterialIconButtonData extends _BaseData {
   MaterialIconButtonData(
-      {Icon icon,
+      {this.widgetKey,
+      Icon icon,
       VoidCallback onPressed,
       EdgeInsets padding,
       Color color,
+      Color disabledColor,
       this.alignment,
-      this.disabledColor,
       this.highlightColor,
-      this.iconSize: 24.0,
+      this.iconSize = 24.0,
       this.splashColor,
       this.tooltip})
-      : super(icon: icon, onPressed: onPressed, padding: padding, color: color);
+      : super(
+            icon: icon,
+            onPressed: onPressed,
+            padding: padding,
+            color: color,
+            disabledColor: disabledColor);
 
   final AlignmentGeometry alignment;
-  final Color disabledColor;
   final Color highlightColor;
   final double iconSize;
   final Color splashColor;
   final String tooltip;
+  final Key widgetKey;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -66,6 +84,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final VoidCallback onPressed;
   final Color color;
   final EdgeInsets padding;
+  final Color disabledColor;
 
   final PlatformBuilder<MaterialIconButtonData> android;
   final PlatformBuilder<CupertinoIconButtonData> ios;
@@ -78,6 +97,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       this.androidIcon,
       this.onPressed,
       this.color,
+      this.disabledColor,
       this.padding,
       this.android,
       this.ios})
@@ -91,13 +111,13 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     }
 
     return IconButton(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       icon: data?.icon ?? androidIcon ?? icon,
       onPressed: data?.onPressed ?? onPressed,
       padding: data?.padding ?? padding ?? const EdgeInsets.all(8.0),
       color: data?.color ?? color,
       alignment: data?.alignment ?? Alignment.center,
-      disabledColor: data?.disabledColor,
+      disabledColor: data?.disabledColor ?? disabledColor,
       highlightColor: data?.highlightColor,
       iconSize: data?.iconSize ?? 24.0,
       splashColor: data?.splashColor,
@@ -121,34 +141,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
           const BorderRadius.all(const Radius.circular(8.0)),
       minSize: data?.minSize ?? 44.0,
       pressedOpacity: data?.pressedOpacity ?? 0.1,
+      disabledColor: data?.disabledColor ?? disabledColor,
     );
   }
 }
-
-// PlatformIconButton(
-//   iosIcon: CupertinoIcons.flag, //type IconData
-//   androidIcon: Icons.flag, //type IconData
-//   onPressed: () => {},
-//   ios: (_) => CupertinoIconButtonData(icon: CupertinoIcons.flag),
-//   android: (_) => MaterialIconButtonData(icon: Icons.flag),
-// )
-
-// Widget materialButtonIcon(IconData icon) {
-//   return Material(
-//     child: IconButton(
-//       icon: Icon(icon),
-//       onPressed: () => {},
-//     ),
-//   );
-// }
-
-// Widget cupertinoButtonIcon(IconData icon) {
-//   return CupertinoButton(
-//     padding: EdgeInsets.all(6.0),
-//     child: Icon(
-//       icon,
-//       size: 28.0,
-//     ),
-//     onPressed: () => {},
-//   );
-// }

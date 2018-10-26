@@ -12,8 +12,9 @@ import 'package:flutter/widgets.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.actions, this.content, this.title});
+  _BaseData({this.widgetKey, this.actions, this.content, this.title});
 
+  final Key widgetKey;
   final List<Widget> actions;
   final Widget content;
   final Widget title;
@@ -21,13 +22,18 @@ abstract class _BaseData {
 
 class MaterialAlertDialogData extends _BaseData {
   MaterialAlertDialogData(
-      {List<Widget> actions,
+      {Key widgetKey,
+      List<Widget> actions,
       Widget content,
       Widget title,
       this.contentPadding,
       this.semanticLabel,
       this.titlePadding})
-      : super(actions: actions, content: content, title: title);
+      : super(
+            widgetKey: widgetKey,
+            actions: actions,
+            content: content,
+            title: title);
 
   final EdgeInsetsGeometry contentPadding;
   final String semanticLabel;
@@ -36,13 +42,20 @@ class MaterialAlertDialogData extends _BaseData {
 
 class CupertinoAlertDialogData extends _BaseData {
   CupertinoAlertDialogData(
-      {List<Widget> actions,
+      {Key widgetKey,
+      List<Widget> actions,
       Widget content,
       Widget title,
-      this.scrollController})
-      : super(actions: actions, content: content, title: title);
+      this.scrollController,
+      this.actionScrollController})
+      : super(
+            widgetKey: widgetKey,
+            actions: actions,
+            content: content,
+            title: title);
 
   final ScrollController scrollController;
+  final ScrollController actionScrollController;
 }
 
 class PlatformAlertDialog
@@ -73,7 +86,7 @@ class PlatformAlertDialog
     }
 
     return AlertDialog(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       actions: data?.actions ?? actions,
       content: data?.content ?? content,
       contentPadding: data?.contentPadding ??
@@ -92,10 +105,11 @@ class PlatformAlertDialog
     }
 
     return CupertinoAlertDialog(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       actions: data?.actions ?? actions,
       content: data?.content ?? content,
       scrollController: data?.scrollController,
+      actionScrollController: data?.actionScrollController,
       title: data?.title ?? title,
     );
   }
