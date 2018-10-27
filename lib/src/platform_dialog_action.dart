@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoDialogAction;
 import 'package:flutter/material.dart'
-    show FlatButton, Brightness, ButtonTextTheme;
+    show FlatButton, Brightness, ButtonTextTheme, MaterialTapTargetSize;
 
 import 'package:flutter/widgets.dart';
 
@@ -20,22 +20,26 @@ abstract class _BaseData {
 }
 
 class MaterialDialogActionData extends _BaseData {
-  MaterialDialogActionData(
-      {Widget child,
-      VoidCallback onPressed,
-      this.color,
-      this.colorBrightness,
-      this.disabledColor,
-      this.disabledTextColor,
-      this.highlightColor,
-      this.onHighlightChanged,
-      this.padding,
-      this.shape,
-      this.splashColor,
-      this.textColor,
-      this.textTheme})
-      : super(child: child, onPressed: onPressed);
+  MaterialDialogActionData({
+    Widget child,
+    VoidCallback onPressed,
+    this.widgetKey,
+    this.color,
+    this.colorBrightness,
+    this.disabledColor,
+    this.disabledTextColor,
+    this.highlightColor,
+    this.onHighlightChanged,
+    this.padding,
+    this.shape,
+    this.splashColor,
+    this.textColor,
+    this.textTheme,
+    this.clipBehavior,
+    this.materialTapTargetSize,
+  }) : super(child: child, onPressed: onPressed);
 
+  final Key widgetKey;
   final Color color;
   final Brightness colorBrightness;
   final Color disabledColor;
@@ -47,6 +51,8 @@ class MaterialDialogActionData extends _BaseData {
   final Color splashColor;
   final Color textColor;
   final ButtonTextTheme textTheme;
+  final Clip clipBehavior;
+  final MaterialTapTargetSize materialTapTargetSize;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -54,11 +60,13 @@ class CupertinoDialogActionData extends _BaseData {
       {Widget child,
       VoidCallback onPressed,
       this.isDefaultAction: false,
-      this.isDestructiveAction: false})
+      this.isDestructiveAction: false,
+      this.textStyle})
       : super(child: child, onPressed: onPressed);
 
   final bool isDefaultAction;
   final bool isDestructiveAction;
+  final TextStyle textStyle;
 }
 
 class PlatformDialogAction
@@ -86,7 +94,7 @@ class PlatformDialogAction
     }
 
     return FlatButton(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child,
       onPressed: data?.onPressed ?? onPressed,
       color: data?.color,
@@ -100,6 +108,8 @@ class PlatformDialogAction
       splashColor: data?.splashColor,
       textColor: data?.textColor,
       textTheme: data?.textTheme,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      materialTapTargetSize: data?.materialTapTargetSize,
     );
   }
 
@@ -115,6 +125,7 @@ class PlatformDialogAction
       isDefaultAction: data?.isDefaultAction ?? false,
       isDestructiveAction: data?.isDestructiveAction ?? false,
       onPressed: data?.onPressed ?? onPressed,
+      textStyle: data?.textStyle,
     );
   }
 }

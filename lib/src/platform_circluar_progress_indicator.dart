@@ -17,7 +17,7 @@ class MaterialProgressIndicatorData {
   MaterialProgressIndicatorData({
     this.key,
     this.backgroundColor,
-    this.strokeWidth: 4.0,
+    this.strokeWidth = 4.0,
     this.value,
     this.valueColor,
   });

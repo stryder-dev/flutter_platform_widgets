@@ -13,26 +13,41 @@ import 'widget_base.dart';
 
 abstract class _BaseData {
   _BaseData(
-      {this.items, this.backgroundColor, this.iconSize, this.activeColor});
+      {this.widgetKey,
+      this.items,
+      this.backgroundColor,
+      this.iconSize,
+      this.activeColor,
+      this.currentIndex,
+      this.itemChanged});
 
+  final Key widgetKey;
   final List<BottomNavigationBarItem> items;
   final Color backgroundColor;
   final double iconSize;
   final Color activeColor;
+  final int currentIndex;
+  final ValueChanged<int> itemChanged;
 }
 
 class CupertinoTabBarData extends _BaseData {
-  CupertinoTabBarData(
-      {Color backgroundColor,
-      List<BottomNavigationBarItem> items,
-      Color activeColor,
-      double iconSize: 30.0,
-      this.inactiveColor})
-      : super(
+  CupertinoTabBarData({
+    Color backgroundColor,
+    List<BottomNavigationBarItem> items,
+    Color activeColor,
+    Key widgetKey,
+    ValueChanged<int> itemChanged,
+    double iconSize = 30.0,
+    int currentIndex,
+    this.inactiveColor,
+  }) : super(
+            widgetKey: widgetKey,
             items: items,
             backgroundColor: backgroundColor,
             iconSize: iconSize,
-            activeColor: activeColor);
+            activeColor: activeColor,
+            currentIndex: currentIndex,
+            itemChanged: itemChanged);
 
   final Color inactiveColor;
 }
@@ -41,18 +56,32 @@ class MaterialNavBarData extends _BaseData {
   MaterialNavBarData(
       {List<BottomNavigationBarItem> items,
       Color backgroundColor,
-      double iconSize: 24.0,
-      this.elevation: 8.0,
+      double iconSize = 24.0,
+      this.elevation = 8.0,
       Color fixedColor,
-      this.type})
+      Key widgetKey,
+      ValueChanged<int> itemChanged,
+      int currentIndex,
+      this.type,
+      this.bottomNavigationBarKey,
+      this.shape,
+      this.clipBehavior,
+      this.notchMargin = 4.0})
       : super(
+            widgetKey: widgetKey,
             items: items,
             backgroundColor: backgroundColor,
             iconSize: iconSize,
-            activeColor: fixedColor);
+            activeColor: fixedColor,
+            currentIndex: currentIndex,
+            itemChanged: itemChanged);
 
   final double elevation;
   final BottomNavigationBarType type;
+  final Key bottomNavigationBarKey;
+  final NotchedShape shape;
+  final Clip clipBehavior;
+  final double notchMargin;
 }
 
 const Color _kDefaultTabBarBackgroundColor = const Color(0xCCF8F8F8);
@@ -74,7 +103,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       this.backgroundColor,
       this.items,
       this.itemChanged,
-      this.currentIndex: 0,
+      this.currentIndex = 0,
       this.android,
       this.ios})
       : super(key: key);
@@ -87,19 +116,22 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     }
 
     var bar = BottomNavigationBar(
-      items: data?.items ?? items,
-      currentIndex: currentIndex,
-      onTap: itemChanged,
-      iconSize: data?.iconSize ?? 24.0,
-      fixedColor: data?.activeColor,
-      type: data?.type,
-    );
+        items: data?.items ?? items,
+        currentIndex: data?.currentIndex ?? currentIndex,
+        onTap: data?.itemChanged ?? itemChanged,
+        iconSize: data?.iconSize ?? 24.0,
+        fixedColor: data?.activeColor,
+        type: data?.type,
+        key: data?.bottomNavigationBarKey);
 
     return BottomAppBar(
       child: bar,
       color: data?.backgroundColor ?? backgroundColor,
       elevation: data?.elevation ?? 8.0,
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
+      shape: data?.shape,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      notchMargin: data?.notchMargin ?? 4.0,
     );
   }
 
@@ -116,11 +148,11 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       backgroundColor: data?.backgroundColor ??
           backgroundColor ??
           _kDefaultTabBarBackgroundColor,
-      currentIndex: currentIndex,
+      currentIndex: data?.currentIndex ?? currentIndex ?? 0,
       iconSize: data?.iconSize ?? 30.0,
       inactiveColor: data?.inactiveColor ?? CupertinoColors.inactiveGray,
-      key: widgetKey,
-      onTap: itemChanged,
+      key: data?.widgetKey ?? widgetKey,
+      onTap: data?.itemChanged ?? itemChanged,
     );
   }
 }

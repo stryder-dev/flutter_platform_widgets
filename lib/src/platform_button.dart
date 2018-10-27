@@ -6,45 +6,61 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoButton;
 import 'package:flutter/material.dart'
-    show RaisedButton, Brightness, ButtonTextTheme;
+    show RaisedButton, Brightness, ButtonTextTheme, MaterialTapTargetSize;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.child, this.color, this.onPressed, this.padding});
+  _BaseData(
+      {this.widgetKey,
+      this.child,
+      this.color,
+      this.onPressed,
+      this.padding,
+      this.disabledColor});
 
+  final Key widgetKey;
   final Widget child;
   final Color color;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
+  final Color disabledColor;
 }
 
 class MaterialRaisedButtonData extends _BaseData {
   MaterialRaisedButtonData({
+    Key widgetKey,
     Widget child,
     Color color,
     VoidCallback onPressed,
     EdgeInsetsGeometry padding,
+    Color disabledColor,
     this.animationDuration,
     this.colorBrightness,
-    this.disabledColor,
-    this.disabledElevation: 0.0,
+    this.disabledElevation = 0.0,
     this.disabledTextColor,
-    this.elevation: 2.0,
+    this.elevation = 2.0,
     this.highlightColor,
-    this.highlightElevation: 8.0,
+    this.highlightElevation = 8.0,
     this.onHighlightChanged,
     this.shape,
     this.splashColor,
     this.textColor,
     this.textTheme,
+    this.clipBehavior,
+    this.materialTapTargetSize,
   }) : super(
-            child: child, color: color, onPressed: onPressed, padding: padding);
+            widgetKey: widgetKey,
+            child: child,
+            color: color,
+            onPressed: onPressed,
+            padding: padding,
+            disabledColor: disabledColor);
 
   final Duration animationDuration;
   final Brightness colorBrightness;
-  final Color disabledColor;
+
   final double disabledElevation;
   final Color disabledTextColor;
   final double elevation;
@@ -55,19 +71,28 @@ class MaterialRaisedButtonData extends _BaseData {
   final Color splashColor;
   final Color textColor;
   final ButtonTextTheme textTheme;
+  final Clip clipBehavior;
+  final MaterialTapTargetSize materialTapTargetSize;
 }
 
 class CupertinoButtonData extends _BaseData {
   CupertinoButtonData(
-      {Widget child,
+      {Key widgetKey,
+      Widget child,
       Color color,
       VoidCallback onPressed,
       EdgeInsetsGeometry padding,
+      Color disabledColor,
       this.borderRadius,
-      this.minSize: 44.0,
-      this.pressedOpacity: 0.1})
+      this.minSize = 44.0,
+      this.pressedOpacity = 0.1})
       : super(
-            child: child, color: color, onPressed: onPressed, padding: padding);
+            widgetKey: widgetKey,
+            child: child,
+            color: color,
+            onPressed: onPressed,
+            padding: padding,
+            disabledColor: disabledColor);
 
   final BorderRadius borderRadius;
   final double minSize;
@@ -81,6 +106,7 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
   final Widget child;
   final Color color;
   final EdgeInsetsGeometry padding;
+  final Color disabledColor;
 
   final PlatformBuilder<MaterialRaisedButtonData> android;
   final PlatformBuilder<CupertinoButtonData> ios;
@@ -91,6 +117,7 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
       this.child,
       this.onPressed,
       this.color,
+      this.disabledColor,
       this.padding,
       this.android,
       this.ios})
@@ -104,14 +131,14 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
     }
 
     return RaisedButton(
-      key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child,
       onPressed: data?.onPressed ?? onPressed,
       animationDuration:
           data?.animationDuration ?? const Duration(milliseconds: 200),
       color: data?.color ?? color,
       colorBrightness: data?.colorBrightness,
-      disabledColor: data?.disabledColor,
+      disabledColor: data?.disabledColor ?? disabledColor,
       disabledElevation: data?.disabledElevation ?? 0.0,
       disabledTextColor: data?.disabledTextColor,
       elevation: data?.elevation ?? 2.0,
@@ -123,6 +150,8 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
       splashColor: data?.splashColor,
       textColor: data?.textColor,
       textTheme: data?.textTheme,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      materialTapTargetSize: data?.materialTapTargetSize,
     );
   }
 
@@ -143,6 +172,7 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
       minSize: data?.minSize ?? 44.0,
       padding: data?.padding ?? padding,
       pressedOpacity: data?.pressedOpacity ?? 0.1,
+      disabledColor: data?.disabledColor ?? disabledColor,
     );
   }
 }
