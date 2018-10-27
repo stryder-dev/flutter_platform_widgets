@@ -1,3 +1,7 @@
+## [0.4.0] - Oct 27, 2018
+
+* Caught up with latest flutter verison (0.9.4) adding extra widget properties.
+
 ## [0.3.4] - Oct 11, 2018
 
 * Fixed herotag issue when setting transitionBetweenRoutes to true
