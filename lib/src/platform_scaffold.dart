@@ -86,6 +86,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformBuilder<MaterialScaffoldData> android;
   final PlatformBuilder<CupertinoPageScaffoldData> ios;
 
+  final bool iosContentPadding;
+
   PlatformScaffold({
     Key key,
     this.widgetKey,
@@ -95,6 +97,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.bottomNavBar,
     this.android,
     this.ios,
+    this.iosContentPadding = false,
   }) : super(key: key);
 
   @override
@@ -133,25 +136,6 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     Widget child = body ?? data?.body;
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
-    if (navigationBar != null) {
-      final MediaQueryData existingMediaQuery = MediaQuery.of(context);
-
-      // The following may affect the calculations here
-      // TODO(xster): Use real size after partial layout instead of preferred size.
-      // https://github.com/flutter/flutter/issues/12912
-      final double topPadding =
-          navigationBar.preferredSize.height + existingMediaQuery.padding.top;
-
-      //need to move the content down
-      if (navigationBar.fullObstruction) {
-        var pad = Padding(
-          padding: EdgeInsets.only(top: topPadding),
-          child: child,
-        );
-        child = pad;
-      }
-    }
-
     if (bottomNavBar != null) {
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
       return CupertinoTabScaffold(
@@ -162,7 +146,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
               backgroundColor: data?.backgroundColor ??
                   backgroundColor ??
                   CupertinoColors.white,
-              child: child,
+              child: iosContentPad(context, child, navigationBar),
               navigationBar: navigationBar,
               resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
         },
@@ -172,9 +156,26 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           key: data?.widgetKey ?? widgetKey,
           backgroundColor:
               data?.backgroundColor ?? backgroundColor ?? CupertinoColors.white,
-          child: child,
+          child: iosContentPad(context, child, navigationBar),
           navigationBar: navigationBar,
           resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
+    }
+  }
+
+  Widget iosContentPad(BuildContext context, Widget child,
+      ObstructingPreferredSizeWidget navigationBar) {
+    if (iosContentPadding) {
+      final MediaQueryData existingMediaQuery = MediaQuery.of(context);
+      final double topPadding =
+          navigationBar.preferredSize.height + existingMediaQuery.padding.top;
+
+      return Padding(
+        padding: EdgeInsets.only(
+            top: navigationBar.fullObstruction ? 0.0 : topPadding),
+        child: child,
+      );
+    } else {
+      return child;
     }
   }
 }

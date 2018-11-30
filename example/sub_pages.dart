@@ -39,6 +39,7 @@ class SubPage1 extends StatelessWidget {
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: Text('Sub page 1'),
+        //ios: (_) => CupertinoNavigationBarData(backgroundColor: Colors.red),
       ),
       body: Material(
         child: ListView(

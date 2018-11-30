@@ -87,8 +87,11 @@ return PlatformScaffold(
   appBar: PlatformAppBar()
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
+  iosContentPadding: false
 );
 ```
+
+ > Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar
 
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS. 

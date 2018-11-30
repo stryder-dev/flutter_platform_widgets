@@ -34,7 +34,6 @@ class _ExamplePageState extends State<ExamplePage> {
   int _selectedTabIndex = 0;
 
   void _showSubPage() {
-
 //need for ios different navigation stacks so the bottom tab bar does not hide
 //https://stackoverflow.com/questions/46502751/how-to-use-multiple-navigators
 //https://stackoverflow.com/questions/45511549/permanent-view-with-navigation-bar-in-flutter
@@ -179,6 +178,7 @@ class _ExamplePageState extends State<ExamplePage> {
       title: new Text(
         'Platform Widgets',
       ),
+      ios: (_) => CupertinoNavigationBarData(backgroundColor: Colors.red),
       leading: PlatformIconButton(
         onPressed: () {},
         iosIcon: Icon(
@@ -214,6 +214,7 @@ class _ExamplePageState extends State<ExamplePage> {
       appBar: _buildAppBar(),
       body: _buildContent(),
       bottomNavBar: _buildBottomNavBar(),
+      iosContentPadding: true, //not required if you color the appBar
       android: (_) => MaterialScaffoldData(
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
