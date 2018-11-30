@@ -1,3 +1,8 @@
+## [0.5.0] - Nov 30, 2018
+
+* Redone the way PlaformScaffold renders Cupertino. Requires fluttter version 0.11+
+* Added iosContentPadding to PlatformScaffold for iOS to push content bown past the navigation (app) bar
+
 ## [0.4.0] - Oct 27, 2018
 
 * Caught up with latest flutter verison (0.9.4) adding extra widget properties.
