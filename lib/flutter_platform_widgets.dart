@@ -14,6 +14,7 @@ export 'src/platform.dart'
         changeToAutoDetectPlatform,
         changeToCupertinoPlatform,
         changeToMaterialPlatform;
+export 'src/platform_app.dart';
 export 'src/platform_scaffold.dart';
 export 'src/platform_app_bar.dart';
 export 'src/platform_nav_bar.dart';
