@@ -15,6 +15,9 @@ import 'package:flutter/material.dart'
         FloatingActionButton,
         BottomNavigationBarType,
         MaterialPageRoute,
+        Drawer,
+        Scaffold,
+        ScaffoldState,
         Icons;
 
 import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
@@ -22,6 +25,7 @@ import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
 import '../lib/flutter_platform_widgets.dart';
 
 import 'sub_pages.dart';
+import 'test.dart';
 
 class ExamplePage extends StatefulWidget {
   ExamplePage({Key key}) : super(key: key);
@@ -44,6 +48,14 @@ class _ExamplePageState extends State<ExamplePage> {
       Navigator.push(context, MaterialPageRoute(builder: (_) => SubPage1()));
     } else {
       Navigator.push(context, CupertinoPageRoute(builder: (_) => SubPage1()));
+    }
+  }
+
+  void _showTestPage() {
+    if (isMaterial) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => Test()));
+    } else {
+      Navigator.push(context, CupertinoPageRoute(builder: (_) => Test()));
     }
   }
 
@@ -116,10 +128,31 @@ class _ExamplePageState extends State<ExamplePage> {
             ),
             new Padding(
               padding: const EdgeInsets.all(8.0),
-              child: PlatformCircularProgressIndicator(
-                ios: (_) => CupertinoProgressIndicatorData(radius: 16.0),
+              child: PlatformButton(
+                onPressed: () => _showTestPage(),
+                child: Text('Display Test Page'),
               ),
             ),
+            new PlatformWidget(
+              ios: (_) => Container(),
+              android: (BuildContext context) => PlatformButton(
+                  child: Text('Open Drawer'),
+                  onPressed: () {
+                    ScaffoldState s = Scaffold.of(context, nullOk: true);
+                    if (s == null) {
+                      print('Scaffold state is null');
+                    } else {
+                      print('Scaffold state is NOT null');
+                      s.openDrawer();
+                    }
+                  }),
+            ),
+            // new Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: PlatformCircularProgressIndicator(
+            //     ios: (_) => CupertinoProgressIndicatorData(radius: 16.0),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -173,52 +206,72 @@ class _ExamplePageState extends State<ExamplePage> {
     );
   }
 
-  Widget _buildAppBar() {
+  Widget _buildAppBar(BuildContext context) {
     return PlatformAppBar(
       title: new Text(
         'Platform Widgets',
       ),
       ios: (_) => CupertinoNavigationBarData(backgroundColor: Colors.red),
-      leading: PlatformIconButton(
-        onPressed: () {},
-        iosIcon: Icon(
-          CupertinoIcons.info,
-          size: 28.0,
-          color: Theme.of(context).primaryColor,
-        ),
-        androidIcon: Icon(Icons.info),
-      ),
+
+      // leading: PlatformIconButton(
+      //   onPressed: () {},
+      //   iosIcon: Icon(
+      //     CupertinoIcons.info,
+      //     size: 28.0,
+      //     color: Theme.of(context).primaryColor,
+      //   ),
+      //   //androidIcon: Icon(Icons.info),
+      // ),
       trailingActions: <Widget>[
-        PlatformIconButton(
-          ios: (_) => CupertinoIconButtonData(
+        Builder(
+          builder: (BuildContext context) => PlatformIconButton(
+                ios: (_) => CupertinoIconButtonData(
+                      onPressed: () {
+                        print('ios onpressed');
+                      },
+                    ),
                 onPressed: () {
-                  print('ios onpressed');
+                  print('onpressed');
+                  ScaffoldState s = Scaffold.of(context, nullOk: true);
+                  if (s == null) {
+                    print('Scaffold state is null');
+                  } else {
+                    print('Scaffold state is NOT null');
+                    s.openDrawer();
+                  }
                 },
+                iosIcon: Icon(
+                  CupertinoIcons.share,
+                  size: 28.0,
+                ),
+                androidIcon: Icon(Icons.share),
               ),
-          onPressed: () {
-            print('onpressed');
-          },
-          iosIcon: Icon(
-            CupertinoIcons.share,
-            size: 28.0,
-          ),
-          androidIcon: Icon(Icons.share),
         ),
       ],
     );
   }
 
+  GlobalKey drawerKey = new GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: _buildAppBar(),
-      body: _buildContent(),
+      appBar: _buildAppBar(context),
+      body: Builder(
+        builder: (_) => _buildContent(),
+      ),
       bottomNavBar: _buildBottomNavBar(),
       iosContentPadding: true, //not required if you color the appBar
       android: (_) => MaterialScaffoldData(
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () {},
+            ),
+            drawer: Drawer(
+              key: drawerKey,
+              child: Center(
+                child: Text('Hi there'),
+              ),
             ),
           ),
     );
