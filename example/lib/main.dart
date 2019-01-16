@@ -1,38 +1,61 @@
 import 'package:example/listViewHeaderPage.dart';
 import 'package:example/listViewPage.dart';
 import 'package:example/tabbedPage.dart';
-import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoPageRoute;
+import 'package:flutter/cupertino.dart'
+    show CupertinoIcons, CupertinoPageRoute, showCupertinoDialog;
 import 'package:flutter/material.dart'
-    show
-        MaterialApp,
-        ThemeData,
-        Material,
-        Colors,
-        Icons,
-        showDialog,
-        MaterialPageRoute;
+    show ThemeData, Colors, Icons, showDialog, MaterialPageRoute;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Main());
 
-class MyApp extends StatelessWidget {
+class Main extends StatelessWidget {
   // This widget is the root of your application.
   @override
+  Widget build(BuildContext context) => App();
+}
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Material(
-        child: LandingPage(),
-      ),
+    return PlatformApp(
+      title: 'Flutter Platform Widgets',
+      android: (_) => new MaterialAppData(
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+            ),
+          ),
+      home:
+          //Material(
+          //   child:
+          LandingPage(() => _switchPlatform()),
+      //),
     );
+  }
+
+  /*
+      Need to redraw at the PlatformApp level when switching platforms
+    */
+  _switchPlatform() {
+    if (isMaterial) {
+      setState(() => changeToCupertinoPlatform());
+    } else {
+      setState(() => changeToMaterialPlatform());
+    }
   }
 }
 
 class LandingPage extends StatefulWidget {
+  final VoidCallback switchPlatform;
+
+  LandingPage(this.switchPlatform);
+
   @override
   LandingPageState createState() {
     return LandingPageState();
@@ -45,7 +68,7 @@ class LandingPageState extends State<LandingPage> {
     return PlatformScaffold(
       iosContentPadding: true,
       appBar: PlatformAppBar(
-        title: Text('Platform Widgets'),
+        title: Text('Flutter Platform Widgets'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -66,7 +89,7 @@ class LandingPageState extends State<LandingPage> {
             SectionHeader(title: '1. Change Platform'),
             PlatformButton(
               child: PlatformText('Switch Platform'),
-              onPressed: () => _switchPlatform(),
+              onPressed: () => widget.switchPlatform(),
             ),
             PlatformWidget(
               android: (_) => Text('Currently showing Material'),
@@ -108,9 +131,12 @@ class LandingPageState extends State<LandingPage> {
               child: PlatformText('Page with ListView'),
               onPressed: () => _openPage((_) => new ListViewPage()),
             ),
-            PlatformButton(
-              child: PlatformText('Page with Colored Header'),
-              onPressed: () => _openPage((_) => new ListViewHeaderPage()),
+            PlatformWidget(
+              android: (_) => Container(), //this is for iOS only
+              ios: (_) => PlatformButton(
+                    child: PlatformText('iOS Page with Colored Header'),
+                    onPressed: () => _openPage((_) => new ListViewHeaderPage()),
+                  ),
             ),
           ],
         ),
@@ -120,53 +146,56 @@ class LandingPageState extends State<LandingPage> {
 
   _openPage(WidgetBuilder pageToDisplayBuilder) {
     // TODO this will be replaced with PlatformPageRoute
-    if (isMaterial) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: pageToDisplayBuilder,
-        ),
-      );
-    } else {
-      Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (BuildContext context) => Material(
-                // Added so that Text is rendered properly
-                child: pageToDisplayBuilder(context),
-              ),
-        ),
-      );
-    }
+
+    // Navigator.push(
+    //   context,
+    //   PlatformPageRoute(
+    //     builder: pageToDisplayBuilder,
+    //   ),
+    // );
+
+    PlatformNavigator.push(
+      context,
+      builder: pageToDisplayBuilder,
+    );
+
+    // if (isMaterial) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: pageToDisplayBuilder,
+    //     ),
+    //   );
+    // } else {
+    //   Navigator.push(
+    //     context,
+    //     CupertinoPageRoute(
+    //       builder: pageToDisplayBuilder,
+    //     ),
+    //   );
+    // }
   }
 
   _showExampleDialog() {
-    showDialog(
-        context: context,
-        builder: (_) => PlatformAlertDialog(
-              title: Text('Alert'),
-              content: Text('Some content'),
-              actions: <Widget>[
-                PlatformDialogAction(
-                  android: (_) => MaterialDialogActionData(),
-                  ios: (_) => CupertinoDialogActionData(),
-                  child: PlatformText('Cancel'),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                PlatformDialogAction(
-                  child: PlatformText('OK'),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ));
-  }
-
-  _switchPlatform() {
-    if (isMaterial) {
-      setState(() => changeToCupertinoPlatform());
-    } else {
-      setState(() => changeToMaterialPlatform());
-    }
+    showPlatformDialog(
+      context: context,
+      builder: (_) => PlatformAlertDialog(
+            title: Text('Alert'),
+            content: Text('Some content'),
+            actions: <Widget>[
+              PlatformDialogAction(
+                android: (_) => MaterialDialogActionData(),
+                ios: (_) => CupertinoDialogActionData(),
+                child: PlatformText('Cancel'),
+                onPressed: () => Navigator.pop(context),
+              ),
+              PlatformDialogAction(
+                child: PlatformText('OK'),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+    );
   }
 }
 

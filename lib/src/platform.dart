@@ -6,6 +6,10 @@
 
 import 'dart:io' show Platform;
 
+import 'package:flutter/cupertino.dart' show showCupertinoDialog;
+import 'package:flutter/material.dart' show showDialog;
+import 'package:flutter/widgets.dart';
+
 bool _forceMaterial = false;
 void changeToMaterialPlatform() {
   _forceMaterial = true;
@@ -27,3 +31,18 @@ bool get isMaterial =>
     _forceMaterial || (!_forceCupertino && Platform.isAndroid);
 
 bool get isCupertino => _forceCupertino || (!_forceMaterial && Platform.isIOS);
+
+Future<T> showPlatformDialog<T>({
+  @required BuildContext context,
+  @required WidgetBuilder builder,
+  androidBarrierDismissible = false,
+}) {
+  if (isMaterial) {
+    return showDialog<T>(
+        context: context,
+        builder: builder,
+        barrierDismissible: androidBarrierDismissible);
+  } else {
+    return showCupertinoDialog<T>(context: context, builder: builder);
+  }
+}
