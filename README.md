@@ -37,6 +37,28 @@ A widget that will render uppercase for Android. iOS will remain unchanged.
 return PlatformText('Cancel');
 ```
 
+## PlatformSwitch
+
+A switch widget that will use a `Switch` for android or a `CupertinoSwitch` for iOS.
+
+```dart
+return PlatformSwitch(
+  onChanged: (bool value) {},
+  value: value,
+);
+```
+
+#### Enhance
+
+```dart
+return PlatformSwitch(
+  onChanged: (bool value) {},
+  value: value,
+  android: (_) => MaterialSwitchData(...),
+  ios: (_) => CupertinoSwitchData(...)
+);
+```
+
 ## PlatformButton
 
 A button that will render a `RaisedButton` for android or a `CupertinoButton` for iOS.
@@ -314,7 +336,6 @@ This function can be used within the `Navigator` to push either the `MaterialPag
 
 - UI / Unit Tests.
 - Code documentation
-- PlatformSwitch [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) | [android](https://docs.flutter.io/flutter/material/Switch-class.html)
 - PlatformTextField [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoTextField-class.html) | [android](https://docs.flutter.io/flutter/material/TextField-class.html)
 
 # Changing / Checking Platform

@@ -61,6 +61,8 @@ class LandingPage extends StatefulWidget {
 }
 
 class LandingPageState extends State<LandingPage> {
+  bool switchValue = false;
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -110,7 +112,11 @@ class LandingPageState extends State<LandingPage> {
               iosIcon: Icon(CupertinoIcons.home),
               onPressed: () {},
             ),
-            //PlatformCircularProgressIndicator(),
+            PlatformSwitch(
+              value: switchValue,
+              onChanged: (bool value) => setState(() => switchValue = value),
+            ),
+            PlatformCircularProgressIndicator(),
             Divider(),
             SectionHeader(title: '3. Dialogs'),
             PlatformButton(

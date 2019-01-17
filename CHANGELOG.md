@@ -1,3 +1,9 @@
+## [0.7.0] - Jan 18, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Added PlatformSwitch
+
 ## [0.6.0] - Jan 17, 2019
 
 #### (Flutter version support: v1.0.0)
