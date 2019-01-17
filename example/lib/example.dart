@@ -1,12 +1,11 @@
-import 'package:example/listViewHeaderPage.dart';
-import 'package:example/listViewPage.dart';
-import 'package:example/tabbedPage.dart';
-import 'package:flutter/cupertino.dart'
-    show CupertinoIcons, CupertinoPageRoute, showCupertinoDialog;
-import 'package:flutter/material.dart'
-    show ThemeData, Colors, Icons, showDialog, MaterialPageRoute;
+import 'package:flutter/cupertino.dart' show CupertinoIcons;
+import 'package:flutter/material.dart' show ThemeData, Colors, Icons, Theme;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
+import 'listViewHeaderPage.dart';
+import 'listViewPage.dart';
+import 'tabbedPage.dart';
 
 void main() => runApp(Main());
 
@@ -24,18 +23,17 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return PlatformApp(
-      title: 'Flutter Platform Widgets',
-      android: (_) => new MaterialAppData(
-            theme: ThemeData(
-              primarySwatch: Colors.purple,
-            ),
-          ),
-      home:
-          //Material(
-          //   child:
-          LandingPage(() => _switchPlatform()),
-      //),
+    final themeData = new ThemeData(
+      primarySwatch: Colors.purple,
+    );
+
+    return Theme(
+      data: themeData,
+      child: PlatformApp(
+        title: 'Flutter Platform Widgets',
+        android: (_) => new MaterialAppData(theme: themeData),
+        home: LandingPage(() => _switchPlatform()),
+      ),
     );
   }
 
@@ -145,35 +143,12 @@ class LandingPageState extends State<LandingPage> {
   }
 
   _openPage(WidgetBuilder pageToDisplayBuilder) {
-    // TODO this will be replaced with PlatformPageRoute
-
-    // Navigator.push(
-    //   context,
-    //   PlatformPageRoute(
-    //     builder: pageToDisplayBuilder,
-    //   ),
-    // );
-
-    PlatformNavigator.push(
+    Navigator.push(
       context,
-      builder: pageToDisplayBuilder,
+      platformPageRoute(
+        builder: pageToDisplayBuilder,
+      ),
     );
-
-    // if (isMaterial) {
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: pageToDisplayBuilder,
-    //     ),
-    //   );
-    // } else {
-    //   Navigator.push(
-    //     context,
-    //     CupertinoPageRoute(
-    //       builder: pageToDisplayBuilder,
-    //     ),
-    //   );
-    // }
   }
 
   _showExampleDialog() {
