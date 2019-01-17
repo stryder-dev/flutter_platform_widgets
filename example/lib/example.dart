@@ -1,10 +1,11 @@
-import 'package:example/listViewHeaderPage.dart';
-import 'package:example/listViewPage.dart';
-import 'package:example/tabbedPage.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart' show ThemeData, Colors, Icons, Theme;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
+import 'listViewHeaderPage.dart';
+import 'listViewPage.dart';
+import 'tabbedPage.dart';
 
 void main() => runApp(Main());
 
