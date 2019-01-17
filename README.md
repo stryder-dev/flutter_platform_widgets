@@ -2,6 +2,8 @@
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
+This package only supports at most the Beta release. Dev or Master channels are not supprted.
+
 # Installation
 
 > Pubspec: https://pub.dartlang.org/packages/flutter_platform_widgets
@@ -295,23 +297,25 @@ return PlatformCircularProgressIndicator(
 );
 ```
 
-## PlatformNavigator
+## PlatformPageRoute
 
-A replacement for `Navigator` when you use one of the following:
+This function can be used within the `Navigator` to push either the `MaterialPageRoute` for android or `CupertinoPageRoute` for ios.
 
-- Navigator.push
-
-This will use either the `MaterialPageRoute` for android or `CupertinoPageRoute` for ios.
+```dart
+  Navigator.push(
+    context,
+    platformPageRoute(
+      builder: pageToDisplayBuilder,
+    ),
+  );
+```
 
 # TODO
 
 - UI / Unit Tests.
 - Code documentation
-
-The following are a list more platform aware widgets needing to be added.
-
-- Switch : [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) | [android](https://docs.flutter.io/flutter/material/Switch-class.html)
-- TextBox
+- PlatformSwitch [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoSwitch-class.html) | [android](https://docs.flutter.io/flutter/material/Switch-class.html)
+- PlatformTextField [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoTextField-class.html) | [android](https://docs.flutter.io/flutter/material/TextField-class.html)
 
 # Changing / Checking Platform
 
