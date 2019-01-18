@@ -3,9 +3,9 @@ import 'package:flutter/material.dart' show ThemeData, Colors, Icons, Theme;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import 'listViewHeaderPage.dart';
-import 'listViewPage.dart';
-import 'tabbedPage.dart';
+import 'lib/listViewHeaderPage.dart';
+import 'lib/listViewPage.dart';
+import 'lib/tabbedPage.dart';
 
 void main() => runApp(Main());
 
