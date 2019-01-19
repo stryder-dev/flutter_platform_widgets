@@ -107,16 +107,29 @@ class LandingPageState extends State<LandingPage> {
               child: PlatformText('PlatformButton'),
               onPressed: () {},
             ),
-            PlatformIconButton(
-              androidIcon: Icon(Icons.home),
-              iosIcon: Icon(CupertinoIcons.home),
-              onPressed: () {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformIconButton(
+                androidIcon: Icon(Icons.home),
+                iosIcon: Icon(CupertinoIcons.home),
+                onPressed: () {},
+              ),
             ),
-            PlatformSwitch(
-              value: switchValue,
-              onChanged: (bool value) => setState(() => switchValue = value),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformSwitch(
+                value: switchValue,
+                onChanged: (bool value) => setState(() => switchValue = value),
+              ),
             ),
-            PlatformCircularProgressIndicator(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformTextField(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformCircularProgressIndicator(),
+            ),
             Divider(),
             SectionHeader(title: '3. Dialogs'),
             PlatformButton(

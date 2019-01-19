@@ -1,3 +1,9 @@
+## [0.8.0] - Jan 19, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Added PlatformTextField
+
 ## [0.7.1] - Jan 18, 2019
 
 #### (Flutter version support: v1.0.0)
