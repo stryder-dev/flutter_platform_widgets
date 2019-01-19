@@ -118,5 +118,3 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     );
   }
 }
-
-// REMEMBER to update readme
