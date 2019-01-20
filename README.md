@@ -18,6 +18,21 @@ These set of widgets allow for rendering based on the target platform using a si
 
 Each `PlatformWidget` provides common properties directly as constructor arguments. If required further customization can be achieved by using the platform widget builder. See the **Enhance** section of each widget.
 
+- [PlatformWidget](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformwidget)
+- [PlatformText](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtext)
+- [PlatformSwitch](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformswitch)
+- [PlatformTextField](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtextfield)
+- [PlatformButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformbutton)
+- [PlatformIconButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
+- [PlatformApp](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformapp)
+- [PlatformScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformscaffold)
+- [PlatformAppBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformappbar)
+- [PlatformNavBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformnavbar)
+- [PlatformAlertDialog](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
+- [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
+- [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
+- [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+
 ## PlatformWidget
 
 A widget that will render either the android widget or cupertino widget based on the target platform. The widgets themselves do not need to be specifically Material or Cupertino.
@@ -56,6 +71,23 @@ return PlatformSwitch(
   value: value,
   android: (_) => MaterialSwitchData(...),
   ios: (_) => CupertinoSwitchData(...)
+);
+```
+
+## PlatformTextField
+
+A text field widget that will use a `TextField` for android or a `CupertinoTextField` for iOS.
+
+```dart
+return PlatformTextField();
+```
+
+#### Enhance
+
+```dart
+return PlatformTextField(
+  android: (_) => MaterialTextFieldData(...),
+  ios: (_) => CupertinoTextFieldData(...)
 );
 ```
 
@@ -359,7 +391,7 @@ return PlatformNavBar(
 
 - Setting `BottomNavigationBar.fixedColor` to anything has no effect.
 
-- If using the Cupertino widgets it may complain that there is no Material parent when using material widgets further doen the widget tree and using MaterialApp. If this is the case you need to place `Material` as a child widget
+- If using the Cupertino widgets it may complain that there is no Material parent when using material widgets further doen the widget tree and using MaterialApp. If this is the case you need to place `Material` as a parent widget to the PlatformWidget
 
 ```dart
 return PlatformScaffold(

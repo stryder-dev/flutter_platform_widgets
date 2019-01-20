@@ -1,3 +1,9 @@
+## [0.8.1] - Jan 20, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Updated README
+
 ## [0.8.0] - Jan 19, 2019
 
 #### (Flutter version support: v1.0.0)
