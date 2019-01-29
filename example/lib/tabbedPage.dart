@@ -15,11 +15,9 @@ class TabbedPageState extends State<TabbedPage> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
-    print('Bottom Pad1 ${mediaQuery.padding.top}');
-    print('Bottom Pad2 ${mediaQuery.padding.bottom}');
     return PlatformScaffold(
       iosContentPadding: true,
+      iosContentBottomPadding: true,
       appBar: PlatformAppBar(
         title: Text('Platform Widgets'),
       ),
@@ -103,13 +101,6 @@ class TabbedPageState extends State<TabbedPage> {
               color: Colors.tealAccent,
               alignment: Alignment.center,
               child: Text('Content 9'),
-            ),
-            PlatformWidget(
-              ios: (_) => Container(
-                    padding:
-                        EdgeInsets.only(bottom: 50 + mediaQuery.padding.bottom),
-                  ),
-              android: (_) => Container(),
             ),
           ],
         ),

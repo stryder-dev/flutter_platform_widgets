@@ -1,3 +1,10 @@
+## [0.8.2] - Jan 29, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Added iosContentBottomPadding on PlatformScaffold to prevent the content going behind the navBar
+- Optional android / ios builder for PlatformWidget. No need to specify both if only one if required.
+
 ## [0.8.1] - Jan 20, 2019
 
 #### (Flutter version support: v1.0.0)

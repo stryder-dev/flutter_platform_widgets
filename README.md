@@ -179,11 +179,12 @@ return PlatformScaffold(
   appBar: PlatformAppBar()
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
-  iosContentPadding: false
+  iosContentPadding: false,
+  iosContentBottomPadding: false
 );
 ```
 
-> Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar
+> Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it
 
 #### Enhance
 
@@ -198,6 +199,8 @@ return PlatformScaffold(
   ios: (_) => CupertinoScaffoldData(...);
 );
 ```
+
+> Both the android and ios builders are optional. If not provided the `Container` placeholder widget will be returned.
 
 ## PlatformAppBar
 

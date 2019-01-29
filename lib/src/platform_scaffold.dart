@@ -15,9 +15,9 @@ import 'package:flutter/material.dart'
     show Scaffold, FloatingActionButtonAnimator, FloatingActionButtonLocation;
 import 'package:flutter/widgets.dart';
 
-import 'widget_base.dart';
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
+import 'widget_base.dart';
 
 abstract class _BaseData {
   _BaseData({this.widgetKey, this.backgroundColor, this.body});
@@ -87,6 +87,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformBuilder<CupertinoPageScaffoldData> ios;
 
   final bool iosContentPadding;
+  final bool iosContentBottomPadding;
 
   PlatformScaffold({
     Key key,
@@ -98,6 +99,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.android,
     this.ios,
     this.iosContentPadding = false,
+    this.iosContentBottomPadding = false,
   }) : super(key: key);
 
   @override
@@ -137,16 +139,18 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
     if (bottomNavBar != null) {
+      var tabBar = data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context);
+
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
       return CupertinoTabScaffold(
         key: data?.widgetKey ?? widgetKey,
-        tabBar: data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context),
+        tabBar: tabBar,
         tabBuilder: (BuildContext context, int index) {
           return CupertinoPageScaffold(
               backgroundColor: data?.backgroundColor ??
                   backgroundColor ??
                   CupertinoColors.white,
-              child: iosContentPad(context, child, navigationBar),
+              child: iosContentPad(context, child, navigationBar, tabBar),
               navigationBar: navigationBar,
               resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
         },
@@ -156,26 +160,37 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           key: data?.widgetKey ?? widgetKey,
           backgroundColor:
               data?.backgroundColor ?? backgroundColor ?? CupertinoColors.white,
-          child: iosContentPad(context, child, navigationBar),
+          child: iosContentPad(context, child, navigationBar, null),
           navigationBar: navigationBar,
           resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
     }
   }
 
   Widget iosContentPad(BuildContext context, Widget child,
-      ObstructingPreferredSizeWidget navigationBar) {
-    if (iosContentPadding) {
-      final MediaQueryData existingMediaQuery = MediaQuery.of(context);
+      ObstructingPreferredSizeWidget navigationBar, CupertinoTabBar tabBar) {
+    if (!iosContentPadding && !iosContentBottomPadding) {
+      return child;
+    }
+
+    double top = 0;
+    double bottom = 0;
+
+    final MediaQueryData existingMediaQuery = MediaQuery.of(context);
+
+    if (iosContentPadding && navigationBar != null) {
       final double topPadding =
           navigationBar.preferredSize.height + existingMediaQuery.padding.top;
 
-      return Padding(
-        padding: EdgeInsets.only(
-            top: navigationBar.fullObstruction ? 0.0 : topPadding),
-        child: child,
-      );
-    } else {
-      return child;
+      top = navigationBar.fullObstruction ? 0.0 : topPadding;
     }
+
+    if (iosContentBottomPadding && tabBar != null) {
+      bottom = existingMediaQuery.padding.bottom;
+    }
+
+    return Padding(
+      padding: EdgeInsets.only(top: top, bottom: bottom),
+      child: child,
+    );
   }
 }
