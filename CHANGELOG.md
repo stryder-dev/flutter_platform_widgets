@@ -1,3 +1,9 @@
+## [0.9.0] - Jan 30, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Added PlatformSlider
+
 ## [0.8.3] - Jan 30, 2019
 
 #### (Flutter version support: v1.0.0)
