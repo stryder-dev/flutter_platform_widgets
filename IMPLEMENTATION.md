@@ -2,7 +2,7 @@ The methid for creating the platform widgets is as follows
 
 1.  Generally each platform widget is a wrapper to the underlying Material or Cupertino widget.
 2.  Generally they do not include any specific styles or logic. Except Navbar and Appbar
-3.  Each platorm widget should expose in the constructor as named arguments the same fields each Material and Cupertino underlying widgets share
+3.  Each platform widget should expose in the constructor as named arguments the same fields each Material and Cupertino underlying widgets share
 4.  All constructor arguments will take the same defaults from the underlying widgets and set on the platform widget being created
 5.  Only mark as @required if both underlying widgets also have them marked as @required
 6.  Each platform widget will provide a platform specifc builder to provide extra arguments targeting that platform. The name will match the platform control being created. i.e MaterialTextFieldData and CupertinoTextFieldData for PlatformTextField

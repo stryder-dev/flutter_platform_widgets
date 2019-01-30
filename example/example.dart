@@ -62,6 +62,7 @@ class LandingPage extends StatefulWidget {
 
 class LandingPageState extends State<LandingPage> {
   bool switchValue = false;
+  double sliderValue = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +122,14 @@ class LandingPageState extends State<LandingPage> {
                 value: switchValue,
                 onChanged: (bool value) => setState(() => switchValue = value),
               ),
+            ),
+            PlatformSlider(
+              value: sliderValue,
+              onChanged: (double newValue) {
+                setState(() {
+                  sliderValue = newValue;
+                });
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
