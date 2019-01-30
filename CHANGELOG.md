@@ -1,3 +1,9 @@
+## [0.8.3] - Jan 30, 2019
+
+#### (Flutter version support: v1.0.0)
+
+- Fix for PlatformTextField keyboardType. Thanks furkantektas
+
 ## [0.8.2] - Jan 29, 2019
 
 #### (Flutter version support: v1.0.0)
