@@ -21,6 +21,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformWidget](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformwidget)
 - [PlatformText](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtext)
 - [PlatformSwitch](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformswitch)
+- [PlatformSlider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformslider)
 - [PlatformTextField](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtextfield)
 - [PlatformButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformbutton)
 - [PlatformIconButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
@@ -71,6 +72,28 @@ return PlatformSwitch(
   value: value,
   android: (_) => MaterialSwitchData(...),
   ios: (_) => CupertinoSwitchData(...)
+);
+```
+
+## PlatformSlider
+
+A slider widget that will use a `Slider` for android or a `CupertinoSlider` for iOS
+
+```dart
+return PlatformSlider(
+  onChanged: (bool value) {},
+  value: value,
+);
+```
+
+#### Enhance
+
+```dart
+return PlatformSlider(
+  onChanged: (bool value) {},
+  value: value,
+  android: (_) => MaterialSliderData(...),
+  ios: (_) => CupertinoSliderData(...)
 );
 ```
 
@@ -371,7 +394,6 @@ This function can be used within the `Navigator` to push either the `MaterialPag
 
 - UI / Unit Tests.
 - Code documentation
-- PlatformTextField [iOS](https://docs.flutter.io/flutter/cupertino/CupertinoTextField-class.html) | [android](https://docs.flutter.io/flutter/material/TextField-class.html)
 
 # Changing / Checking Platform
 
