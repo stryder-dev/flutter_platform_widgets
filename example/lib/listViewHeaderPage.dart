@@ -1,7 +1,7 @@
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter/material.dart' show Material, ListTile;
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' show Colors;
+import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ListViewHeaderPage extends StatelessWidget {
   final List<String> _words = [
@@ -37,6 +37,10 @@ class ListViewHeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
+      key: Key('111'),
+
+      /// This should not be seen, but a defect pushes down content
+      backgroundColor: Colors.yellow,
       appBar: PlatformAppBar(
         title: Text('iOS Colored Header'),
         ios: (_) =>

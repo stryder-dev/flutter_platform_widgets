@@ -4,7 +4,6 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart'
     show CupertinoTextField, CupertinoColors, OverlayVisibilityMode;
 import 'package:flutter/material.dart' show InputDecoration, TextField;
@@ -15,6 +14,7 @@ import 'package:flutter/services.dart'
         TextInputType,
         TextInputAction,
         TextCapitalization;
+import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
@@ -47,7 +47,7 @@ class MaterialTextFieldData {
     this.widgetKey,
     this.controller,
     this.focusNode,
-    this.decoration = const InputDecoration(),
+    this.decoration,
     this.keyboardType,
     this.textInputAction,
     this.textCapitalization,
@@ -70,7 +70,7 @@ class MaterialTextFieldData {
     this.cursorColor,
     this.keyboardAppearance,
     this.scrollPadding,
-    this.enableInteractiveSelection = true,
+    this.enableInteractiveSelection,
     this.onTap,
   });
 
@@ -109,14 +109,14 @@ class CupertinoTextFieldData {
     this.widgetKey,
     this.controller,
     this.focusNode,
-    this.decoration = _kDefaultRoundedBorderDecoration,
-    this.padding = const EdgeInsets.all(6.0),
+    this.decoration,
+    this.padding,
     this.placeholder,
     this.prefix,
-    this.prefixMode = OverlayVisibilityMode.always,
+    this.prefixMode,
     this.suffix,
-    this.suffixMode = OverlayVisibilityMode.always,
-    this.clearButtonMode = OverlayVisibilityMode.never,
+    this.suffixMode,
+    this.clearButtonMode,
     this.keyboardType,
     this.textInputAction,
     this.textCapitalization,

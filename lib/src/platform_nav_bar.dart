@@ -11,6 +11,16 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
+const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
+
+const Border _kDefaultNavBarBorder = const Border(
+  top: BorderSide(
+    color: _kDefaultTabBarBorderColor,
+    width: 0.0, // One physical pixel.
+    style: BorderStyle.solid,
+  ),
+);
+
 abstract class _BaseData {
   _BaseData(
       {this.widgetKey,
@@ -37,9 +47,10 @@ class CupertinoTabBarData extends _BaseData {
     Color activeColor,
     Key widgetKey,
     ValueChanged<int> itemChanged,
-    double iconSize = 30.0,
+    double iconSize,
     int currentIndex,
     this.inactiveColor,
+    this.border,
   }) : super(
             widgetKey: widgetKey,
             items: items,
@@ -50,14 +61,15 @@ class CupertinoTabBarData extends _BaseData {
             itemChanged: itemChanged);
 
   final Color inactiveColor;
+  final Border border;
 }
 
 class MaterialNavBarData extends _BaseData {
   MaterialNavBarData(
       {List<BottomNavigationBarItem> items,
       Color backgroundColor,
-      double iconSize = 24.0,
-      this.elevation = 8.0,
+      double iconSize,
+      this.elevation,
       Color fixedColor,
       Key widgetKey,
       ValueChanged<int> itemChanged,
@@ -66,7 +78,7 @@ class MaterialNavBarData extends _BaseData {
       this.bottomNavigationBarKey,
       this.shape,
       this.clipBehavior,
-      this.notchMargin = 4.0})
+      this.notchMargin})
       : super(
             widgetKey: widgetKey,
             items: items,
@@ -83,8 +95,6 @@ class MaterialNavBarData extends _BaseData {
   final Clip clipBehavior;
   final double notchMargin;
 }
-
-const Color _kDefaultTabBarBackgroundColor = const Color(0xCCF8F8F8);
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final Key widgetKey;
@@ -144,15 +154,14 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
 
     return CupertinoTabBar(
       items: data?.items ?? items,
-      activeColor: data?.activeColor ?? CupertinoColors.activeBlue,
-      backgroundColor: data?.backgroundColor ??
-          backgroundColor ??
-          _kDefaultTabBarBackgroundColor,
+      activeColor: data?.activeColor,
+      backgroundColor: data?.backgroundColor ?? backgroundColor,
       currentIndex: data?.currentIndex ?? currentIndex ?? 0,
       iconSize: data?.iconSize ?? 30.0,
       inactiveColor: data?.inactiveColor ?? CupertinoColors.inactiveGray,
       key: data?.widgetKey ?? widgetKey,
       onTap: data?.itemChanged ?? itemChanged,
+      border: data?.border ?? _kDefaultNavBarBorder,
     );
   }
 }

@@ -4,7 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoApp;
+import 'package:flutter/cupertino.dart' show CupertinoApp, CupertinoThemeData;
 import 'package:flutter/material.dart' show MaterialApp, ThemeData;
 import 'package:flutter/widgets.dart';
 
@@ -84,7 +84,7 @@ class MaterialAppData extends _BaseData {
       bool showSemanticsDebugger,
       bool debugShowCheckedModeBanner,
       this.theme,
-      this.debugShowMaterialGrid = false})
+      this.debugShowMaterialGrid})
       : super(
             widgetKey: widgetKey,
             navigatorKey: navigatorKey,
@@ -136,7 +136,8 @@ class CupertinoAppData extends _BaseData {
       bool checkerboardRasterCacheImages,
       bool checkerboardOffscreenLayers,
       bool showSemanticsDebugger,
-      bool debugShowCheckedModeBanner})
+      bool debugShowCheckedModeBanner,
+      this.theme})
       : super(
             widgetKey: widgetKey,
             navigatorKey: navigatorKey,
@@ -160,6 +161,8 @@ class CupertinoAppData extends _BaseData {
             checkerboardOffscreenLayers: checkerboardOffscreenLayers,
             showSemanticsDebugger: showSemanticsDebugger,
             debugShowCheckedModeBanner: debugShowCheckedModeBanner);
+
+  final CupertinoThemeData theme;
 }
 
 class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
@@ -267,35 +270,37 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     }
 
     return CupertinoApp(
-        key: data?.widgetKey ?? widgetKey,
-        navigatorKey: data?.navigatorKey ?? navigatorKey,
-        home: data?.home ?? home,
-        routes: data?.routes ?? routes,
-        initialRoute: data?.initialRoute ?? initialRoute,
-        onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
-        onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-        navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
-        builder: data?.builder ?? builder,
-        title: data?.title ?? title,
-        onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
-        color: data?.color ?? color,
-        locale: data?.locale ?? locale,
-        localizationsDelegates:
-            data?.localizationsDelegates ?? localizationsDelegates,
-        localeListResolutionCallback:
-            data?.localeListResolutionCallback ?? localeListResolutionCallback,
-        localeResolutionCallback:
-            data?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: data?.supportedLocales ?? supportedLocales,
-        showPerformanceOverlay:
-            data?.showPerformanceOverlay ?? showPerformanceOverlay,
-        checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
-            checkerboardRasterCacheImages,
-        checkerboardOffscreenLayers:
-            data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
-        showSemanticsDebugger:
-            data?.showSemanticsDebugger ?? showSemanticsDebugger,
-        debugShowCheckedModeBanner:
-            data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner);
+      key: data?.widgetKey ?? widgetKey,
+      navigatorKey: data?.navigatorKey ?? navigatorKey,
+      home: data?.home ?? home,
+      routes: data?.routes ?? routes,
+      initialRoute: data?.initialRoute ?? initialRoute,
+      onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
+      onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
+      navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
+      builder: data?.builder ?? builder,
+      title: data?.title ?? title,
+      onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
+      color: data?.color ?? color,
+      locale: data?.locale ?? locale,
+      localizationsDelegates:
+          data?.localizationsDelegates ?? localizationsDelegates,
+      localeListResolutionCallback:
+          data?.localeListResolutionCallback ?? localeListResolutionCallback,
+      localeResolutionCallback:
+          data?.localeResolutionCallback ?? localeResolutionCallback,
+      supportedLocales: data?.supportedLocales ?? supportedLocales,
+      showPerformanceOverlay:
+          data?.showPerformanceOverlay ?? showPerformanceOverlay,
+      checkerboardRasterCacheImages:
+          data?.checkerboardRasterCacheImages ?? checkerboardRasterCacheImages,
+      checkerboardOffscreenLayers:
+          data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
+      showSemanticsDebugger:
+          data?.showSemanticsDebugger ?? showSemanticsDebugger,
+      debugShowCheckedModeBanner:
+          data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
+      theme: data?.theme,
+    );
   }
 }

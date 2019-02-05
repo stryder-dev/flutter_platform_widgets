@@ -67,6 +67,7 @@ class LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
+      key: Key('AAA'),
       iosContentPadding: true,
       appBar: PlatformAppBar(
         title: Text('Flutter Platform Widgets'),

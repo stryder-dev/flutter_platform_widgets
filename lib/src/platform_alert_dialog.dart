@@ -6,7 +6,6 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 import 'package:flutter/material.dart' show AlertDialog;
-
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -26,6 +25,10 @@ class MaterialAlertDialogData extends _BaseData {
       List<Widget> actions,
       Widget content,
       Widget title,
+      this.contentTextStyle,
+      this.backgroundColor,
+      this.elevation,
+      this.shape,
       this.contentPadding,
       this.semanticLabel,
       this.titlePadding})
@@ -38,6 +41,10 @@ class MaterialAlertDialogData extends _BaseData {
   final EdgeInsetsGeometry contentPadding;
   final String semanticLabel;
   final EdgeInsetsGeometry titlePadding;
+  final TextStyle contentTextStyle;
+  final Color backgroundColor;
+  final double elevation;
+  final ShapeBorder shape;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -86,15 +93,18 @@ class PlatformAlertDialog
     }
 
     return AlertDialog(
-      key: data?.widgetKey ?? widgetKey,
-      actions: data?.actions ?? actions,
-      content: data?.content ?? content,
-      contentPadding: data?.contentPadding ??
-          const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-      semanticLabel: data?.semanticLabel,
-      title: data?.title ?? title,
-      titlePadding: data?.titlePadding,
-    );
+        key: data?.widgetKey ?? widgetKey,
+        actions: data?.actions ?? actions,
+        content: data?.content ?? content,
+        contentPadding: data?.contentPadding ??
+            const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+        semanticLabel: data?.semanticLabel,
+        title: data?.title ?? title,
+        titlePadding: data?.titlePadding,
+        contentTextStyle: data?.contentTextStyle,
+        backgroundColor: data?.backgroundColor,
+        elevation: data?.elevation,
+        shape: data?.shape);
   }
 
   @override
@@ -106,7 +116,7 @@ class PlatformAlertDialog
 
     return CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,
-      actions: data?.actions ?? actions,
+      actions: data?.actions ?? actions ?? const <Widget>[],
       content: data?.content ?? content,
       scrollController: data?.scrollController,
       actionScrollController: data?.actionScrollController,

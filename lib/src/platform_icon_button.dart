@@ -33,8 +33,8 @@ class CupertinoIconButtonData extends _BaseData {
       Color color,
       Color disabledColor,
       this.borderRadius,
-      this.minSize = 44.0,
-      this.pressedOpacity = 0.1})
+      this.minSize,
+      this.pressedOpacity})
       : super(
             icon: icon,
             onPressed: onPressed,

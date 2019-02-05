@@ -6,7 +6,6 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 import 'package:flutter/material.dart' show CircularProgressIndicator;
-
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -17,21 +16,25 @@ class MaterialProgressIndicatorData {
   MaterialProgressIndicatorData({
     this.key,
     this.backgroundColor,
-    this.strokeWidth = 4.0,
+    this.strokeWidth,
     this.value,
     this.valueColor,
+    this.semanticsLabel,
+    this.semanticsValue,
   });
   final Key key;
   final Color backgroundColor;
   final double strokeWidth;
   final double value;
   final Animation<Color> valueColor;
+  final String semanticsLabel;
+  final String semanticsValue;
 }
 
 class CupertinoProgressIndicatorData {
   CupertinoProgressIndicatorData({
     this.key,
-    this.animating: true,
+    this.animating,
     this.radius: _kDefaultIndicatorRadius,
   });
 
@@ -67,6 +70,8 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       strokeWidth: data?.strokeWidth ?? 4.0,
       value: data?.value,
       valueColor: data?.valueColor,
+      semanticsLabel: data?.semanticsLabel,
+      semanticsValue: data?.semanticsValue,
     );
   }
 

@@ -1,6 +1,6 @@
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:flutter/material.dart' show Material, ListTile;
+import 'package:flutter/material.dart' show Material, ListTile, Colors;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ListViewPage extends StatelessWidget {
   final List<String> _words = [
@@ -36,6 +36,7 @@ class ListViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
+      key: Key('222'),
       appBar: PlatformAppBar(
         title: Text('Page List View'),
       ),

@@ -12,8 +12,8 @@ import 'package:flutter/widgets.dart';
 import 'widget_base.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
-const Color _kDefaultNavBarBackgroundColor = const Color(0xCCF8F8F8);
 const Color _kDefaultNavBarBorderColor = const Color(0x4C000000);
+
 const Border _kDefaultNavBarBorder = const Border(
   bottom: const BorderSide(
     color: _kDefaultNavBarBorderColor,
@@ -43,19 +43,19 @@ class MaterialAppBarData extends _BaseData {
       Color backgroundColor,
       Widget leading,
       Key widgetKey,
-      bool automaticallyImplyLeading: true,
+      bool automaticallyImplyLeading,
       this.actions,
       this.bottom,
-      this.bottomOpacity = 1.0,
+      this.bottomOpacity,
       this.brightness,
       this.centerTitle,
-      this.elevation = 4.0,
+      this.elevation,
       this.flexibleSpace,
       this.iconTheme,
-      this.primary = true,
+      this.primary,
       this.textTheme,
-      this.titleSpacing = NavigationToolbar.kMiddleSpacing,
-      this.toolbarOpacity = 1.0})
+      this.titleSpacing,
+      this.toolbarOpacity})
       : super(
             widgetKey: widgetKey,
             title: title,
@@ -84,13 +84,13 @@ class CupertinoNavigationBarData extends _BaseData {
       Color backgroundColor,
       Widget leading,
       Key widgetKey,
-      bool automaticallyImplyLeading = true,
+      bool automaticallyImplyLeading,
       this.previousPageTitle,
-      this.automaticallyImplyMiddle = true,
+      this.automaticallyImplyMiddle,
       this.padding,
       this.trailing,
       this.border,
-      this.actionsForegroundColor = CupertinoColors.activeBlue,
+      this.actionsForegroundColor,
       this.transitionBetweenRoutes,
       this.heroTag})
       : super(
@@ -118,6 +118,7 @@ class PlatformAppBar
   final Color backgroundColor;
   final Widget leading;
   final List<Widget> trailingActions;
+  final bool automaticallyImplyLeading;
 
   final PlatformBuilder<MaterialAppBarData> android;
   final PlatformBuilder<CupertinoNavigationBarData> ios;
@@ -129,6 +130,7 @@ class PlatformAppBar
       this.backgroundColor,
       this.leading,
       this.trailingActions,
+      this.automaticallyImplyLeading,
       this.android,
       this.ios})
       : super(key: key);
@@ -141,11 +143,13 @@ class PlatformAppBar
     }
 
     return AppBar(
+      key: data?.widgetKey ?? widgetKey,
       title: data?.title ?? title,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       bottom: data?.bottom,
       actions: data?.actions ?? trailingActions,
-      automaticallyImplyLeading: data?.automaticallyImplyLeading ?? true,
+      automaticallyImplyLeading:
+          data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       bottomOpacity: data?.bottomOpacity ?? 1.0,
       brightness: data?.brightness,
       centerTitle: data?.centerTitle,
@@ -153,7 +157,6 @@ class PlatformAppBar
       flexibleSpace: data?.flexibleSpace,
       iconTheme: data?.iconTheme,
       leading: data?.leading ?? leading,
-      key: data?.widgetKey ?? widgetKey,
       primary: data?.primary ?? true,
       textTheme: data?.textTheme,
       titleSpacing: data?.titleSpacing ?? NavigationToolbar.kMiddleSpacing,
@@ -178,18 +181,17 @@ class PlatformAppBar
 
     if (data?.heroTag != null) {
       return CupertinoNavigationBar(
+        key: data?.widgetKey ?? widgetKey,
         middle: data?.title ?? title,
-        backgroundColor: data?.backgroundColor ??
-            backgroundColor ??
-            _kDefaultNavBarBackgroundColor,
-        actionsForegroundColor:
-            data?.actionsForegroundColor ?? CupertinoColors.activeBlue,
-        automaticallyImplyLeading: data?.automaticallyImplyLeading ?? true,
+        backgroundColor: data?.backgroundColor ?? backgroundColor,
+        actionsForegroundColor: data?.actionsForegroundColor,
+        automaticallyImplyLeading: data?.automaticallyImplyLeading ??
+            automaticallyImplyLeading ??
+            true,
         automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        key: data?.widgetKey ?? widgetKey,
         leading: data?.leading ?? leading,
         trailing: data?.trailing ?? trailing,
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
@@ -198,18 +200,16 @@ class PlatformAppBar
     }
 
     return CupertinoNavigationBar(
+      key: data?.widgetKey ?? widgetKey,
       middle: data?.title ?? title,
-      backgroundColor: data?.backgroundColor ??
-          backgroundColor ??
-          _kDefaultNavBarBackgroundColor,
-      actionsForegroundColor:
-          data?.actionsForegroundColor ?? CupertinoColors.activeBlue,
-      automaticallyImplyLeading: data?.automaticallyImplyLeading ?? true,
+      backgroundColor: data?.backgroundColor ?? backgroundColor,
+      actionsForegroundColor: data?.actionsForegroundColor,
+      automaticallyImplyLeading:
+          data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      key: data?.widgetKey ?? widgetKey,
       leading: data?.leading ?? leading,
       trailing: data?.trailing ?? trailing,
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,

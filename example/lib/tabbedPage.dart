@@ -16,6 +16,7 @@ class TabbedPageState extends State<TabbedPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
+      key: Key('333'),
       iosContentPadding: true,
       iosContentBottomPadding: true,
       appBar: PlatformAppBar(
