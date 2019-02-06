@@ -7,7 +7,6 @@
 import 'package:flutter/cupertino.dart' show CupertinoDialogAction;
 import 'package:flutter/material.dart'
     show FlatButton, Brightness, ButtonTextTheme, MaterialTapTargetSize;
-
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -59,8 +58,8 @@ class CupertinoDialogActionData extends _BaseData {
   CupertinoDialogActionData(
       {Widget child,
       VoidCallback onPressed,
-      this.isDefaultAction: false,
-      this.isDestructiveAction: false,
+      this.isDefaultAction,
+      this.isDestructiveAction,
       this.textStyle})
       : super(child: child, onPressed: onPressed);
 

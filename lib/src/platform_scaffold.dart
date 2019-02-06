@@ -7,12 +7,15 @@
 import 'package:flutter/cupertino.dart'
     show
         CupertinoPageScaffold,
-        CupertinoColors,
         CupertinoTabScaffold,
         ObstructingPreferredSizeWidget,
         CupertinoTabBar;
 import 'package:flutter/material.dart'
-    show Scaffold, FloatingActionButtonAnimator, FloatingActionButtonLocation;
+    show
+        Material,
+        Scaffold,
+        FloatingActionButtonAnimator,
+        FloatingActionButtonLocation;
 import 'package:flutter/widgets.dart';
 
 import 'platform_app_bar.dart';
@@ -40,8 +43,8 @@ class MaterialScaffoldData extends _BaseData {
       this.floatingActionButtonAnimator,
       this.floatingActionButtonLocation,
       this.persistentFooterButtons,
-      this.primary = true,
-      this.resizeToAvoidBottomPadding = true,
+      this.primary,
+      this.resizeToAvoidBottomPadding,
       this.bottomSheet})
       : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
@@ -66,13 +69,17 @@ class CupertinoPageScaffoldData extends _BaseData {
       Key widgetKey,
       this.navigationBar,
       this.bottomTabBar,
-      this.resizeToAvoidBottomInset = true})
+      this.resizeToAvoidBottomInset,
+      this.resizeToAvoidBottomInsetTab,
+      this.backgroundColorTab})
       : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
   final ObstructingPreferredSizeWidget navigationBar;
   final CupertinoTabBar bottomTabBar;
   final bool resizeToAvoidBottomInset;
+  final bool resizeToAvoidBottomInsetTab;
+  final Color backgroundColorTab;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
@@ -138,36 +145,51 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     Widget child = body ?? data?.body;
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
+    Widget result;
     if (bottomNavBar != null) {
       var tabBar = data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context);
 
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
-      return CupertinoTabScaffold(
+      result = CupertinoTabScaffold(
         key: data?.widgetKey ?? widgetKey,
+        backgroundColor: data?.backgroundColorTab,
+        resizeToAvoidBottomInset: data?.resizeToAvoidBottomInsetTab ?? true,
         tabBar: tabBar,
         tabBuilder: (BuildContext context, int index) {
           return CupertinoPageScaffold(
-              backgroundColor: data?.backgroundColor ??
-                  backgroundColor ??
-                  CupertinoColors.white,
-              child: iosContentPad(context, child, navigationBar, tabBar),
-              navigationBar: navigationBar,
-              resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
+            backgroundColor: data?.backgroundColor ?? backgroundColor,
+            child: iosContentPad(context, child, navigationBar, tabBar),
+            navigationBar: navigationBar,
+            resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
+          );
         },
       );
     } else {
-      return CupertinoPageScaffold(
-          key: data?.widgetKey ?? widgetKey,
-          backgroundColor:
-              data?.backgroundColor ?? backgroundColor ?? CupertinoColors.white,
-          child: iosContentPad(context, child, navigationBar, null),
-          navigationBar: navigationBar,
-          resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true);
+      result = CupertinoPageScaffold(
+        key: data?.widgetKey ?? widgetKey,
+        backgroundColor: data?.backgroundColor ?? backgroundColor,
+        child: iosContentPad(context, child, navigationBar, null),
+        navigationBar: navigationBar,
+        resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
+      );
     }
+
+    // Ensure that there is Material widget at the root page level
+    // as there will still be Material widgets using on ios (for now)
+    final materialWidget = context.ancestorWidgetOfExactType(Material);
+    if (materialWidget == null) {
+      return Material(
+        elevation: 0.0,
+        child: result,
+      );
+    }
+    return result;
   }
 
   Widget iosContentPad(BuildContext context, Widget child,
       ObstructingPreferredSizeWidget navigationBar, CupertinoTabBar tabBar) {
+    final MediaQueryData existingMediaQuery = MediaQuery.of(context);
+
     if (!iosContentPadding && !iosContentBottomPadding) {
       return child;
     }
@@ -175,13 +197,14 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     double top = 0;
     double bottom = 0;
 
-    final MediaQueryData existingMediaQuery = MediaQuery.of(context);
-
     if (iosContentPadding && navigationBar != null) {
       final double topPadding =
           navigationBar.preferredSize.height + existingMediaQuery.padding.top;
 
-      top = navigationBar.fullObstruction ? 0.0 : topPadding;
+      final obstruct = navigationBar.fullObstruction == null ||
+          navigationBar.fullObstruction;
+
+      top = !obstruct ? 0.0 : topPadding;
     }
 
     if (iosContentBottomPadding && tabBar != null) {
