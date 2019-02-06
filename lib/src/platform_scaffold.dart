@@ -7,12 +7,15 @@
 import 'package:flutter/cupertino.dart'
     show
         CupertinoPageScaffold,
-        CupertinoColors,
         CupertinoTabScaffold,
         ObstructingPreferredSizeWidget,
         CupertinoTabBar;
 import 'package:flutter/material.dart'
-    show Scaffold, FloatingActionButtonAnimator, FloatingActionButtonLocation;
+    show
+        Material,
+        Scaffold,
+        FloatingActionButtonAnimator,
+        FloatingActionButtonLocation;
 import 'package:flutter/widgets.dart';
 
 import 'platform_app_bar.dart';
@@ -142,11 +145,12 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     Widget child = body ?? data?.body;
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
+    Widget result;
     if (bottomNavBar != null) {
       var tabBar = data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context);
 
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
-      return CupertinoTabScaffold(
+      result = CupertinoTabScaffold(
         key: data?.widgetKey ?? widgetKey,
         backgroundColor: data?.backgroundColorTab,
         resizeToAvoidBottomInset: data?.resizeToAvoidBottomInsetTab ?? true,
@@ -161,7 +165,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         },
       );
     } else {
-      return CupertinoPageScaffold(
+      result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
         child: iosContentPad(context, child, navigationBar, null),
@@ -169,6 +173,17 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
       );
     }
+
+    // Ensure that there is Material widget at the root page level
+    // as there will still be Material widgets using on ios (for now)
+    final materialWidget = context.ancestorWidgetOfExactType(Material);
+    if (materialWidget == null) {
+      return Material(
+        elevation: 0.0,
+        child: result,
+      );
+    }
+    return result;
   }
 
   Widget iosContentPad(BuildContext context, Widget child,

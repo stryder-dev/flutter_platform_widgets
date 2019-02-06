@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart' show CupertinoIcons;
+import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoThemeData;
 import 'package:flutter/material.dart' show ThemeData, Colors, Icons, Theme;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -27,13 +27,15 @@ class _AppState extends State<App> {
       primarySwatch: Colors.purple,
     );
 
-    return Theme(
-      data: themeData,
-      child: PlatformApp(
-        title: 'Flutter Platform Widgets',
-        android: (_) => new MaterialAppData(theme: themeData),
-        home: LandingPage(() => _switchPlatform()),
-      ),
+    final cupertinoTheme = new CupertinoThemeData(
+      primaryColor: Colors.purple,
+    );
+
+    return PlatformApp(
+      title: 'Flutter Platform Widgets',
+      android: (_) => new MaterialAppData(theme: themeData),
+      ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
+      home: LandingPage(() => _switchPlatform()),
     );
   }
 
@@ -67,7 +69,6 @@ class LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      key: Key('AAA'),
       iosContentPadding: true,
       appBar: PlatformAppBar(
         title: Text('Flutter Platform Widgets'),

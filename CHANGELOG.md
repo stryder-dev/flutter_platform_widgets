@@ -1,3 +1,11 @@
+## [0.9.5] - Feb 07, 2019
+
+#### (Flutter version support: v1.1.8)
+
+- Updated all widgets compatible with Flutter v 1.1.8
+- Added CupertnoThemeData to PlatformApp to style iOS apps.
+- If using PlatformScaffold on each page, no need to define Material widget when using Material widgets on the page
+
 ## [0.9.0] - Jan 30, 2019
 
 #### (Flutter version support: v1.0.0)

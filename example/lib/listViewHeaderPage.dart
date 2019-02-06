@@ -37,23 +37,19 @@ class ListViewHeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      key: Key('111'),
-
-      /// This should not be seen, but a defect pushes down content
-      backgroundColor: Colors.yellow,
       appBar: PlatformAppBar(
         title: Text('iOS Colored Header'),
-        ios: (_) =>
-            CupertinoNavigationBarData(backgroundColor: Colors.lightGreen),
+        ios: (_) => CupertinoNavigationBarData(
+              // Issue with cupertino where a bar with no transparency
+              // will push the list down. Adding some alpha value fixes it (in a hacky way)
+              backgroundColor: Colors.lightGreen.withAlpha(254),
+            ),
       ),
       body: ListView(
         children: _words
             .map(
-              (w) => Material(
-                    // required since ListTile is from Material library
-                    child: ListTile(
-                      title: Text(w),
-                    ),
+              (w) => ListTile(
+                    title: Text(w),
                   ),
             )
             .toList(),

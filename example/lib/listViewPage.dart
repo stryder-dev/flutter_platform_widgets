@@ -36,18 +36,14 @@ class ListViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      key: Key('222'),
       appBar: PlatformAppBar(
         title: Text('Page List View'),
       ),
       body: ListView(
         children: _words
             .map(
-              (w) => Material(
-                    // required since ListTile is from Material library
-                    child: ListTile(
-                      title: Text(w),
-                    ),
+              (w) => ListTile(
+                    title: Text(w),
                   ),
             )
             .toList(),

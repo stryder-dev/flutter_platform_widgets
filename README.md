@@ -239,6 +239,21 @@ return PlatformAppBar(
   );
 ```
 
+> In iOS if a soliod color header is required and there is a ListView
+> on the page, you would need to add some alpha to the color so that the
+> ListView is not pushed down too far
+
+```
+     appBar: PlatformAppBar(
+       title: Text('iOS Colored Header'),
+       ios: (_) => CupertinoNavigationBarData(
+             // Issue with cupertino where a bar with no transparency
+             // will push the list down. Adding some alpha value fixes it (in a hacky way)
+             backgroundColor: Colors.lightGreen.withAlpha(254),
+           ),
+     ),
+```
+
 #### Enhance
 
 Extend with `WidgetBuilder` for android or iOS.
@@ -415,17 +430,6 @@ return PlatformNavBar(
 ```
 
 - Setting `BottomNavigationBar.fixedColor` to anything has no effect.
-
-- If using the Cupertino widgets it may complain that there is no Material parent when using material widgets further doen the widget tree and using MaterialApp. If this is the case you need to place `Material` as a parent widget to the PlatformWidget
-
-```dart
-return PlatformScaffold(
-  body: Material(
-    color: Colors.white,
-    child: _theBodyOfThePageWithMaterialWidgets(),
-  );
-);
-```
 
 # Issues and Feedback
 
