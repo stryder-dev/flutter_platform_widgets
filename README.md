@@ -1,6 +1,6 @@
 # Flutter Platform Widgets
 
-This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
+This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targed Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
 This package only supports at most the Beta release. Dev or Master channels are not supprted.
 
