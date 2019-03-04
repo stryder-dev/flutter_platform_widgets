@@ -1,6 +1,6 @@
 # Flutter Platform Widgets
 
-This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
+This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
 This package only supports at most the Beta release. Dev or Master channels are not supprted.
 
@@ -140,7 +140,7 @@ return PlatformButton(
 
 ## PlatformIconButton
 
-A clickable (tappable) button with an icon. Uses `IconButton` for android or `CupertinoButton` for ios.
+A clickable (tappable) button with an icon. Uses `IconButton` for android or `CupertinoButton` for iOS.
 
 ```dart
 return PlatformIconButton(
@@ -171,7 +171,7 @@ Widget infoIconButton() {
 
 ## PlatformApp
 
-A top level widget for the applciation that uses `MaterialApp` for android or `CupertinoApp` for ios.
+A top level widget for the applciation that uses `MaterialApp` for android or `CupertinoApp` for iOS.
 
 ```dart
 return PlatformApp(
@@ -179,8 +179,6 @@ return PlatformApp(
   home: ...
 );
 ```
-
-````
 
 #### Enhance
 Extend with `WidgetBuilder` for android or iOS.
@@ -191,11 +189,11 @@ return PlatformApp(
   android: (_) => MaterialAppData(...)
   ios: (_) => CupertinoAppData(...)
 );
-````
+```
 
 ## PlatformScaffold
 
-A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for ios with bottom tabs or `CupertinoPageScaffold` for ios without bottom tabs.
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for iOS with bottom tabs or `CupertinoPageScaffold` for iOS without bottom tabs.
 
 ```dart
 return PlatformScaffold(
@@ -223,11 +221,11 @@ return PlatformScaffold(
 );
 ```
 
-> Both the android and ios builders are optional. If not provided the `Container` placeholder widget will be returned.
+> Both the android and iOS builders are optional. If not provided the `Container` placeholder widget will be returned.
 
 ## PlatformAppBar
 
-The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for ios.
+The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for iOS.
 
 ```dart
 return PlatformAppBar(
@@ -239,7 +237,7 @@ return PlatformAppBar(
   );
 ```
 
-> In iOS if a soliod color header is required and there is a ListView
+> In iOS if a solid color header is required and there is a ListView
 > on the page, you would need to add some alpha to the color so that the
 > ListView is not pushed down too far
 
@@ -274,7 +272,7 @@ return PlatformAppBar(
 
 > Note: hasNotch has been removed to allow for the widget to work with the change on the development branch of flutter. To work around the breaking change either use the Material `BottomAppBar` directly or cast the result from PlatformNavBar to `BottomAppBar` for android builds and set the `hasNotch` property. Otherwise target version 0.2.0
 
-The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for ios.
+The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for iOS.
 
 ```dart
 return PlatformNavBar(
@@ -314,7 +312,7 @@ return PlatformNavBar(
 
 ## PlatformAlertDialog
 
-The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for android or `CupertinoAlertDialog` for ios.
+The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for android or `CupertinoAlertDialog` for iOS.
 
 > Note use `showPlatformDialog` instead of either `showDialog` from the Material library or `showCupertinoDialog` from the Cupertino library.
 
@@ -351,7 +349,7 @@ showDialog(
 
 ## PlatformDialogAction
 
-The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for android or `CupertinoDialogAction` for ios.
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for android or `CupertinoDialogAction` for iOS.
 
 ```dart
 PlatformDialogAction(
@@ -375,7 +373,7 @@ PlatformDialogAction(
 
 ## PlatformCircularProgressIndicator
 
-A circular looking progress indicator. Uses `CircularProgressIndicator` for android or `CupertinoActivityIndicator` for ios.
+A circular looking progress indicator. Uses `CircularProgressIndicator` for android or `CupertinoActivityIndicator` for iOS.
 
 ```dart
 return PlatformCircularProgressIndicator();
@@ -394,7 +392,7 @@ return PlatformCircularProgressIndicator(
 
 ## PlatformPageRoute
 
-This function can be used within the `Navigator` to push either the `MaterialPageRoute` for android or `CupertinoPageRoute` for ios.
+This function can be used within the `Navigator` to push either the `MaterialPageRoute` for android or `CupertinoPageRoute` for iOS.
 
 ```dart
   Navigator.push(
