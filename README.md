@@ -305,7 +305,7 @@ return PlatformNavBar(
     BottomNavigationBarItem(),
     BottomNavigationBarItem(),
   ],
-  android: (_) => MaterialNavBarData(...);
+  android: (_) => MaterialNavBarData(...),
   ios: (_) => CupertinoTabBarData(...),
 );
 ```
@@ -341,7 +341,7 @@ Extend with `WidgetBuilder` for android or iOS.
 ```dart
 showDialog(
   context: context,
-  builder: (_) => PlatformAlertDialog(...);
+  builder: (_) => PlatformAlertDialog(...),
   ios: (_) => CupertinoAlertDialogData(...),
   android: (_) => MaterialAlertDialogData(...),
 )
