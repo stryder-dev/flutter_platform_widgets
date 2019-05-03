@@ -28,9 +28,18 @@ void changeToAutoDetectPlatform() {
 }
 
 bool get isMaterial =>
-    _forceMaterial || (!_forceCupertino && Platform.isAndroid);
+    _forceMaterial || (!_forceCupertino && _isMaterialCompatible);
 
-bool get isCupertino => _forceCupertino || (!_forceMaterial && Platform.isIOS);
+bool get isCupertino =>
+    _forceCupertino || (!_forceMaterial && _isCupertinoCompatible);
+
+bool get _isMaterialCompatible =>
+    Platform.isWindows ||
+    Platform.isAndroid ||
+    Platform.isFuchsia ||
+    Platform.isLinux;
+
+bool get _isCupertinoCompatible => Platform.isIOS || Platform.isMacOS;
 
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,

@@ -1,3 +1,11 @@
+## [0.9.6] - Feb 07, 2019
+
+#### (Flutter version support: v1.1.8)
+
+- Added other checks for platforms. 
+    - Material = Android, Fuchsia, Windows, Linux
+    - Cupertino = iOS, MacOS
+
 ## [0.9.5] - Feb 07, 2019
 
 #### (Flutter version support: v1.1.8)
