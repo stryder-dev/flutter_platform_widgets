@@ -4,8 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart'
-    show CupertinoNavigationBar, CupertinoColors;
+import 'package:flutter/cupertino.dart' show CupertinoNavigationBar;
 import 'package:flutter/material.dart' show AppBar, Brightness, TextTheme;
 import 'package:flutter/widgets.dart';
 
@@ -55,7 +54,9 @@ class MaterialAppBarData extends _BaseData {
       this.primary,
       this.textTheme,
       this.titleSpacing,
-      this.toolbarOpacity})
+      this.toolbarOpacity,
+      this.actionsIconTheme,
+      this.shape})
       : super(
             widgetKey: widgetKey,
             title: title,
@@ -76,6 +77,8 @@ class MaterialAppBarData extends _BaseData {
   final TextTheme textTheme;
   final double titleSpacing;
   final double toolbarOpacity;
+  final IconThemeData actionsIconTheme;
+  final ShapeBorder shape;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -161,6 +164,8 @@ class PlatformAppBar
       textTheme: data?.textTheme,
       titleSpacing: data?.titleSpacing ?? NavigationToolbar.kMiddleSpacing,
       toolbarOpacity: data?.toolbarOpacity ?? 1.0,
+      actionsIconTheme: data?.actionsIconTheme,
+      shape: data?.shape,
     );
   }
 

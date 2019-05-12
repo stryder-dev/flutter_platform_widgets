@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Material, ListTile;
+import 'package:flutter/material.dart' show ListTile;
 import 'package:flutter/material.dart' show Colors;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';

@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart'
         CupertinoTabScaffold,
         ObstructingPreferredSizeWidget,
         CupertinoTabBar;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show
         Material,
@@ -45,7 +46,10 @@ class MaterialScaffoldData extends _BaseData {
       this.persistentFooterButtons,
       this.primary,
       this.resizeToAvoidBottomPadding,
-      this.bottomSheet})
+      this.bottomSheet,
+      this.drawerDragStartBehavior,
+      this.extendBody,
+      this.resizeToAvoidBottomInset})
       : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
@@ -60,6 +64,9 @@ class MaterialScaffoldData extends _BaseData {
   final bool primary;
   final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
+  final DragStartBehavior drawerDragStartBehavior;
+  final bool extendBody;
+  final bool resizeToAvoidBottomInset;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -132,6 +139,10 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       primary: data?.primary ?? true,
       resizeToAvoidBottomPadding: data?.resizeToAvoidBottomPadding ?? true,
       bottomSheet: data?.bottomSheet,
+      drawerDragStartBehavior:
+          data?.drawerDragStartBehavior ?? DragStartBehavior.start,
+      extendBody: data?.extendBody ?? false,
+      resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset,
     );
   }
 
@@ -161,6 +172,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
             child: iosContentPad(context, child, navigationBar, tabBar),
             navigationBar: navigationBar,
             resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
+            // key: widgetKey used for CupertinoTabScaffold
           );
         },
       );

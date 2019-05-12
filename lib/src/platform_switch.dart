@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoSwitch;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' show Switch, MaterialTapTargetSize;
 import 'package:flutter/widgets.dart';
 
@@ -16,6 +17,7 @@ abstract class _BaseData {
     this.value,
     this.onChanged,
     this.activeColor,
+    this.dragStartBehavior,
   });
 
   final Key widgetKey;
@@ -23,6 +25,7 @@ abstract class _BaseData {
   final bool value;
   final Color activeColor;
   final ValueChanged<bool> onChanged;
+  final DragStartBehavior dragStartBehavior;
 }
 
 class MaterialSwitchData extends _BaseData {
@@ -31,6 +34,7 @@ class MaterialSwitchData extends _BaseData {
     bool value,
     ValueChanged<bool> onChanged,
     Color activeColor,
+    DragStartBehavior dragStartBehavior,
     this.activeTrackColor,
     this.inactiveThumbColor,
     this.inactiveTrackColor,
@@ -41,7 +45,8 @@ class MaterialSwitchData extends _BaseData {
             widgetKey: widgetKey,
             value: value,
             onChanged: onChanged,
-            activeColor: activeColor);
+            activeColor: activeColor,
+            dragStartBehavior: dragStartBehavior);
 
   final Color activeTrackColor;
   final Color inactiveThumbColor;
@@ -57,11 +62,13 @@ class CupertinoSwitchData extends _BaseData {
     bool value,
     ValueChanged<bool> onChanged,
     Color activeColor,
+    DragStartBehavior dragStartBehavior,
   }) : super(
             widgetKey: widgetKey,
             value: value,
             onChanged: onChanged,
-            activeColor: activeColor);
+            activeColor: activeColor,
+            dragStartBehavior: dragStartBehavior);
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -70,6 +77,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final bool value;
   final Color activeColor;
   final ValueChanged<bool> onChanged;
+  final DragStartBehavior dragStartBehavior;
 
   final PlatformBuilder<MaterialSwitchData> android;
   final PlatformBuilder<CupertinoSwitchData> ios;
@@ -79,6 +87,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       this.widgetKey,
       @required this.value,
       @required this.onChanged,
+      this.dragStartBehavior,
       this.activeColor,
       this.android,
       this.ios})
@@ -101,6 +110,9 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       inactiveThumbImage: data?.inactiveThumbImage,
       inactiveTrackColor: data?.inactiveTrackColor,
       materialTapTargetSize: data?.materialTapTargetSize,
+      dragStartBehavior: data?.dragStartBehavior ??
+          dragStartBehavior ??
+          DragStartBehavior.start,
     );
   }
 
@@ -115,6 +127,9 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
       activeColor: data?.activeColor ?? activeColor,
+      dragStartBehavior: data?.dragStartBehavior ??
+          dragStartBehavior ??
+          DragStartBehavior.start,
     );
   }
 }

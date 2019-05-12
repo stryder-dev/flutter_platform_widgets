@@ -6,7 +6,9 @@
 
 import 'package:flutter/cupertino.dart'
     show CupertinoTextField, CupertinoColors, OverlayVisibilityMode;
-import 'package:flutter/material.dart' show InputDecoration, TextField;
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart'
+    show InputDecoration, TextField, InputCounterWidgetBuilder;
 import 'package:flutter/services.dart'
     show
         Brightness,
@@ -72,6 +74,12 @@ class MaterialTextFieldData {
     this.scrollPadding,
     this.enableInteractiveSelection,
     this.onTap,
+    this.buildCounter,
+    this.dragStartBehavior,
+    this.expands,
+    this.minLines,
+    this.scrollPhysics,
+    this.strutStyle,
   });
 
   final Key widgetKey;
@@ -102,6 +110,12 @@ class MaterialTextFieldData {
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
   final GestureTapCallback onTap;
+  final InputCounterWidgetBuilder buildCounter;
+  final DragStartBehavior dragStartBehavior;
+  final bool expands;
+  final int minLines;
+  final ScrollPhysics scrollPhysics;
+  final StrutStyle strutStyle;
 }
 
 class CupertinoTextFieldData {
@@ -139,6 +153,11 @@ class CupertinoTextFieldData {
     this.cursorColor,
     this.keyboardAppearance,
     this.scrollPadding,
+    this.dragStartBehavior,
+    this.expands,
+    this.minLines,
+    this.scrollPhysics,
+    this.strutStyle,
   });
 
   final Key widgetKey;
@@ -174,6 +193,11 @@ class CupertinoTextFieldData {
   final Color cursorColor;
   final Brightness keyboardAppearance;
   final EdgeInsets scrollPadding;
+  final DragStartBehavior dragStartBehavior;
+  final bool expands;
+  final int minLines;
+  final ScrollPhysics scrollPhysics;
+  final StrutStyle strutStyle;
 }
 
 class PlatformTextField
@@ -205,6 +229,11 @@ class PlatformTextField
   final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
+  final DragStartBehavior dragStartBehavior;
+  final bool expands;
+  final int minLines;
+  final ScrollPhysics scrollPhysics;
+  final StrutStyle strutStyle;
 
   final Color cursorColor;
   final Brightness keyboardAppearance;
@@ -236,6 +265,11 @@ class PlatformTextField
       Color cursorColor,
       this.keyboardAppearance,
       this.scrollPadding = const EdgeInsets.all(20.0),
+      this.dragStartBehavior,
+      this.minLines,
+      this.expands,
+      this.scrollPhysics,
+      this.strutStyle,
       this.android,
       this.ios})
       : cursorColor =
@@ -281,6 +315,14 @@ class PlatformTextField
       textDirection: data?.textDirection,
       enableInteractiveSelection: data?.enableInteractiveSelection ?? false,
       onTap: data?.onTap,
+      buildCounter: data?.buildCounter,
+      dragStartBehavior: data?.dragStartBehavior ??
+          dragStartBehavior ??
+          DragStartBehavior.start,
+      expands: data?.expands ?? expands ?? false,
+      minLines: data?.minLines ?? minLines,
+      scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
+      strutStyle: data?.strutStyle ?? strutStyle,
     );
   }
 
@@ -325,6 +367,13 @@ class PlatformTextField
       prefixMode: data?.prefixMode ?? OverlayVisibilityMode.always,
       suffix: data?.suffix,
       suffixMode: data?.suffixMode ?? OverlayVisibilityMode.always,
+      dragStartBehavior: data?.dragStartBehavior ??
+          dragStartBehavior ??
+          DragStartBehavior.start,
+      expands: data?.expands ?? expands ?? false,
+      minLines: data?.minLines ?? minLines,
+      scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
+      strutStyle: data?.strutStyle ?? strutStyle,
     );
   }
 }

@@ -12,12 +12,14 @@ import 'widget_base.dart';
 
 abstract class _BaseData {
   _BaseData(
-      {this.icon,
+      {this.widgetKey,
+      this.icon,
       this.onPressed,
       this.padding,
       this.color,
       this.disabledColor});
 
+  final Key widgetKey;
   final Icon icon;
   final VoidCallback onPressed;
   final EdgeInsets padding;
@@ -27,7 +29,8 @@ abstract class _BaseData {
 
 class CupertinoIconButtonData extends _BaseData {
   CupertinoIconButtonData(
-      {Icon icon,
+      {Key widgetKey,
+      Icon icon,
       VoidCallback onPressed,
       EdgeInsets padding,
       Color color,
@@ -36,6 +39,7 @@ class CupertinoIconButtonData extends _BaseData {
       this.minSize,
       this.pressedOpacity})
       : super(
+            widgetKey: widgetKey,
             icon: icon,
             onPressed: onPressed,
             padding: padding,
@@ -49,7 +53,7 @@ class CupertinoIconButtonData extends _BaseData {
 
 class MaterialIconButtonData extends _BaseData {
   MaterialIconButtonData(
-      {this.widgetKey,
+      {Key widgetKey,
       Icon icon,
       VoidCallback onPressed,
       EdgeInsets padding,
@@ -61,6 +65,7 @@ class MaterialIconButtonData extends _BaseData {
       this.splashColor,
       this.tooltip})
       : super(
+            widgetKey: widgetKey,
             icon: icon,
             onPressed: onPressed,
             padding: padding,
@@ -72,7 +77,6 @@ class MaterialIconButtonData extends _BaseData {
   final double iconSize;
   final Color splashColor;
   final String tooltip;
-  final Key widgetKey;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -133,6 +137,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     }
 
     return CupertinoButton(
+      key: data?.widgetKey ?? widgetKey,
       child: data?.icon ?? iosIcon ?? icon,
       onPressed: data?.onPressed ?? onPressed,
       padding: data?.padding ?? padding ?? const EdgeInsets.all(0.0),
