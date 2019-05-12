@@ -112,6 +112,7 @@ class CupertinoTextFieldData {
     this.decoration,
     this.padding,
     this.placeholder,
+    this.placeholderStyle,
     this.prefix,
     this.prefixMode,
     this.suffix,
@@ -146,6 +147,7 @@ class CupertinoTextFieldData {
   final BoxDecoration decoration;
   final EdgeInsetsGeometry padding;
   final String placeholder;
+  final TextStyle placeholderStyle;
   final Widget prefix;
   final OverlayVisibilityMode prefixMode;
   final Widget suffix;
@@ -318,6 +320,7 @@ class PlatformTextField
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
       placeholder: data?.placeholder,
+      placeholderStyle: data?.placeholderStyle,
       prefix: data?.prefix,
       prefixMode: data?.prefixMode ?? OverlayVisibilityMode.always,
       suffix: data?.suffix,
