@@ -84,7 +84,8 @@ class MaterialAppData extends _BaseData {
       bool showSemanticsDebugger,
       bool debugShowCheckedModeBanner,
       this.theme,
-      this.debugShowMaterialGrid})
+      this.debugShowMaterialGrid,
+      this.darkTheme})
       : super(
             widgetKey: widgetKey,
             navigatorKey: navigatorKey,
@@ -111,6 +112,7 @@ class MaterialAppData extends _BaseData {
 
   final ThemeData theme;
   final bool debugShowMaterialGrid;
+  final ThemeData darkTheme;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -228,38 +230,40 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     }
 
     return MaterialApp(
-        key: data?.widgetKey ?? widgetKey,
-        navigatorKey: data?.navigatorKey ?? navigatorKey,
-        home: data?.home ?? home,
-        routes: data?.routes ?? routes,
-        initialRoute: data?.initialRoute ?? initialRoute,
-        onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
-        onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-        navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
-        builder: data?.builder ?? builder,
-        title: data?.title ?? title,
-        onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
-        color: data?.color ?? color,
-        locale: data?.locale ?? locale,
-        localizationsDelegates:
-            data?.localizationsDelegates ?? localizationsDelegates,
-        localeListResolutionCallback:
-            data?.localeListResolutionCallback ?? localeListResolutionCallback,
-        localeResolutionCallback:
-            data?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: data?.supportedLocales ?? supportedLocales,
-        showPerformanceOverlay:
-            data?.showPerformanceOverlay ?? showPerformanceOverlay,
-        checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
-            checkerboardRasterCacheImages,
-        checkerboardOffscreenLayers:
-            data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
-        showSemanticsDebugger:
-            data?.showSemanticsDebugger ?? showSemanticsDebugger,
-        debugShowCheckedModeBanner:
-            data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
-        theme: data?.theme,
-        debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false);
+      key: data?.widgetKey ?? widgetKey,
+      navigatorKey: data?.navigatorKey ?? navigatorKey,
+      home: data?.home ?? home,
+      routes: data?.routes ?? routes,
+      initialRoute: data?.initialRoute ?? initialRoute,
+      onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
+      onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
+      navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
+      builder: data?.builder ?? builder,
+      title: data?.title ?? title,
+      onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
+      color: data?.color ?? color,
+      locale: data?.locale ?? locale,
+      localizationsDelegates:
+          data?.localizationsDelegates ?? localizationsDelegates,
+      localeListResolutionCallback:
+          data?.localeListResolutionCallback ?? localeListResolutionCallback,
+      localeResolutionCallback:
+          data?.localeResolutionCallback ?? localeResolutionCallback,
+      supportedLocales: data?.supportedLocales ?? supportedLocales,
+      showPerformanceOverlay:
+          data?.showPerformanceOverlay ?? showPerformanceOverlay,
+      checkerboardRasterCacheImages:
+          data?.checkerboardRasterCacheImages ?? checkerboardRasterCacheImages,
+      checkerboardOffscreenLayers:
+          data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
+      showSemanticsDebugger:
+          data?.showSemanticsDebugger ?? showSemanticsDebugger,
+      debugShowCheckedModeBanner:
+          data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
+      theme: data?.theme,
+      debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
+      darkTheme: data?.darkTheme,
+    );
   }
 
   @override

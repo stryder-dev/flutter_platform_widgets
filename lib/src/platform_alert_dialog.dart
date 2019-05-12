@@ -31,7 +31,8 @@ class MaterialAlertDialogData extends _BaseData {
       this.shape,
       this.contentPadding,
       this.semanticLabel,
-      this.titlePadding})
+      this.titlePadding,
+      this.titleTextStyle})
       : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -45,6 +46,7 @@ class MaterialAlertDialogData extends _BaseData {
   final Color backgroundColor;
   final double elevation;
   final ShapeBorder shape;
+  final TextStyle titleTextStyle;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -93,18 +95,20 @@ class PlatformAlertDialog
     }
 
     return AlertDialog(
-        key: data?.widgetKey ?? widgetKey,
-        actions: data?.actions ?? actions,
-        content: data?.content ?? content,
-        contentPadding: data?.contentPadding ??
-            const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-        semanticLabel: data?.semanticLabel,
-        title: data?.title ?? title,
-        titlePadding: data?.titlePadding,
-        contentTextStyle: data?.contentTextStyle,
-        backgroundColor: data?.backgroundColor,
-        elevation: data?.elevation,
-        shape: data?.shape);
+      key: data?.widgetKey ?? widgetKey,
+      actions: data?.actions ?? actions,
+      content: data?.content ?? content,
+      contentPadding: data?.contentPadding ??
+          const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+      semanticLabel: data?.semanticLabel,
+      title: data?.title ?? title,
+      titlePadding: data?.titlePadding,
+      contentTextStyle: data?.contentTextStyle,
+      backgroundColor: data?.backgroundColor,
+      elevation: data?.elevation,
+      shape: data?.shape,
+      titleTextStyle: data?.titleTextStyle,
+    );
   }
 
   @override

@@ -78,7 +78,13 @@ class MaterialNavBarData extends _BaseData {
       this.bottomNavigationBarKey,
       this.shape,
       this.clipBehavior,
-      this.notchMargin})
+      this.notchMargin,
+      this.selectedFontSize,
+      this.selectedItemColor,
+      this.showSelectedLabels,
+      this.showUnselectedLabels,
+      this.unselectedFontSize,
+      this.unselectedItemColor})
       : super(
             widgetKey: widgetKey,
             items: items,
@@ -88,12 +94,18 @@ class MaterialNavBarData extends _BaseData {
             currentIndex: currentIndex,
             itemChanged: itemChanged);
 
+  final double selectedFontSize;
   final double elevation;
   final BottomNavigationBarType type;
   final Key bottomNavigationBarKey;
   final NotchedShape shape;
   final Clip clipBehavior;
   final double notchMargin;
+  final Color selectedItemColor;
+  final bool showSelectedLabels;
+  final bool showUnselectedLabels;
+  final bool unselectedFontSize;
+  final Color unselectedItemColor;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -126,13 +138,22 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     }
 
     var bar = BottomNavigationBar(
-        items: data?.items ?? items,
-        currentIndex: data?.currentIndex ?? currentIndex,
-        onTap: data?.itemChanged ?? itemChanged,
-        iconSize: data?.iconSize ?? 24.0,
-        fixedColor: data?.activeColor,
-        type: data?.type,
-        key: data?.bottomNavigationBarKey);
+      items: data?.items ?? items,
+      currentIndex: data?.currentIndex ?? currentIndex,
+      onTap: data?.itemChanged ?? itemChanged,
+      iconSize: data?.iconSize ?? 24.0,
+      fixedColor: data?.activeColor,
+      type: data?.type,
+      key: data?.bottomNavigationBarKey,
+      backgroundColor: data?.backgroundColor ?? backgroundColor,
+      elevation: data?.elevation ?? 8.0,
+      selectedFontSize: data?.selectedFontSize ?? 14.0,
+      selectedItemColor: data?.selectedItemColor,
+      showSelectedLabels: data?.showSelectedLabels ?? true,
+      showUnselectedLabels: data?.showUnselectedLabels,
+      unselectedFontSize: data?.unselectedFontSize ?? 12.0,
+      unselectedItemColor: data?.unselectedItemColor,
+    );
 
     return BottomAppBar(
       child: bar,

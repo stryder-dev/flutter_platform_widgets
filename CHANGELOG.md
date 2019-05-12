@@ -1,4 +1,11 @@
-## [0.9.6] - Feb 07, 2019
+## [0.10.0 - May 12, 2019]
+
+#### (Flutter version support: v1.5.4-hotfix.2)
+
+- Fix for PlatformIconButton and added field. Thanks ericmartineau
+- Updated all widgets compatible with Flutter v1.5.4-hotfix.2
+
+## [0.9.6] - May 03, 2019
 
 #### (Flutter version support: v1.1.8)
 

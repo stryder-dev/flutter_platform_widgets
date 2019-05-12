@@ -162,7 +162,7 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
     }
 
     return new CupertinoButton(
-      //key: widgetKey,
+      key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child,
       onPressed: data?.onPressed ?? onPressed,
       borderRadius: data?.borderRadius ??

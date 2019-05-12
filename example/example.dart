@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoThemeData;
-import 'package:flutter/material.dart' show ThemeData, Colors, Icons, Theme;
+import 'package:flutter/material.dart' show ThemeData, Colors, Icons;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
