@@ -128,7 +128,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   @override
   CupertinoButton createIosWidget(BuildContext context) {
     CupertinoIconButtonData data;
-    if (android != null) {
+    if (ios != null) {
       data = ios(context);
     }
 
