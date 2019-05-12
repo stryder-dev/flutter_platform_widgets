@@ -1,4 +1,4 @@
-## [0.10.0 - May 12, 2019]
+## [0.10.0] - May 12, 2019
 
 #### (Flutter version support: v1.5.4-hotfix.2)
 
