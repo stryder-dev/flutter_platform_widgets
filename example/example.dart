@@ -31,35 +31,20 @@ class _AppState extends State<App> {
       primaryColor: Colors.purple,
     );
 
-    return PlatformApp(
-      title: 'Flutter Platform Widgets',
-      android: (_) => new MaterialAppData(theme: themeData),
-      ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
-      home: LandingPage(() => _switchPlatform()),
+    return PlatformProvider(
+      builder: (BuildContext context) => PlatformApp(
+            title: 'Flutter Platform Widgets',
+            android: (_) => new MaterialAppData(theme: themeData),
+            ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
+            home: LandingPage(),
+          ),
     );
-  }
-
-  /*
-      Need to redraw at the PlatformApp level when switching platforms
-    */
-  _switchPlatform() {
-    if (isMaterial) {
-      setState(() => changeToCupertinoPlatform());
-    } else {
-      setState(() => changeToMaterialPlatform());
-    }
   }
 }
 
 class LandingPage extends StatefulWidget {
-  final VoidCallback switchPlatform;
-
-  LandingPage(this.switchPlatform);
-
   @override
-  LandingPageState createState() {
-    return LandingPageState();
-  }
+  LandingPageState createState() => LandingPageState();
 }
 
 class LandingPageState extends State<LandingPage> {
@@ -74,6 +59,14 @@ class LandingPageState extends State<LandingPage> {
   double sliderValue = 0.5;
 
   TextEditingController textControlller;
+
+  _switchPlatform(BuildContext context) {
+    if (isMaterial) {
+      PlatformProvider.of(context).changeToCupertinoPlatform();
+    } else {
+      PlatformProvider.of(context).changeToMaterialPlatform();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +94,7 @@ class LandingPageState extends State<LandingPage> {
             SectionHeader(title: '1. Change Platform'),
             PlatformButton(
               child: PlatformText('Switch Platform'),
-              onPressed: () => widget.switchPlatform(),
+              onPressed: () => _switchPlatform(context),
             ),
             PlatformWidget(
               android: (_) => Text('Currently showing Material'),

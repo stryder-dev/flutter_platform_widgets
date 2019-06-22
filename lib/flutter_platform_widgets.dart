@@ -22,6 +22,7 @@ export 'src/platform_circluar_progress_indicator.dart';
 export 'src/platform_dialog_action.dart';
 export 'src/platform_icon_button.dart';
 export 'src/platform_nav_bar.dart';
+export 'src/platform_provider.dart';
 export 'src/platform_routing.dart' show platformPageRoute;
 export 'src/platform_scaffold.dart';
 export 'src/platform_slider.dart';

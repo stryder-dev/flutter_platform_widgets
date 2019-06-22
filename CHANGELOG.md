@@ -1,3 +1,9 @@
+## [0.11.5] - June 23, 2019
+
+#### (Flutter version support: v1.6.3)
+
+- Added PlatformProvider so that swicthing platforms can rebuild the tree
+
 ## [0.11.0] - June 22, 2019
 
 #### (Flutter version support: v1.6.3)
