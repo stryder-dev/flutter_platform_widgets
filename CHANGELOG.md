@@ -1,3 +1,11 @@
+## [0.11.0] - June 22, 2019
+
+#### (Flutter version support: v1.6.3)
+
+- Updated all widgets compatible with Flutter v 1.6.3
+- Added Material Flat button option for PlatformButton (see Readme)
+- Fixed example issue
+
 ## [0.10.0] - May 12, 2019
 
 #### (Flutter version support: v1.5.4-hotfix.2)
@@ -9,9 +17,9 @@
 
 #### (Flutter version support: v1.1.8)
 
-- Added other checks for platforms. 
-    - Material = Android, Fuchsia, Windows, Linux
-    - Cupertino = iOS, MacOS
+- Added other checks for platforms.
+  - Material = Android, Fuchsia, Windows, Linux
+  - Cupertino = iOS, MacOS
 
 ## [0.9.5] - Feb 07, 2019
 

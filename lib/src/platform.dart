@@ -52,6 +52,9 @@ Future<T> showPlatformDialog<T>({
         builder: builder,
         barrierDismissible: androidBarrierDismissible);
   } else {
-    return showCupertinoDialog<T>(context: context, builder: builder);
+    return showCupertinoDialog<T>(
+      context: context,
+      builder: builder,
+    );
   }
 }

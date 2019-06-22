@@ -7,6 +7,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart';
+
 import 'platform.dart';
 
 PageRoute<T> platformPageRoute<T>({
@@ -24,11 +25,12 @@ PageRoute<T> platformPageRoute<T>({
       fullscreenDialog: fullscreenDialog,
     );
   } else {
-    return CupertinoPageRoute(
-        builder: builder,
-        settings: settings,
-        maintainState: maintainState,
-        fullscreenDialog: fullscreenDialog,
-        title: iosTitle);
+    return CupertinoPageRoute<T>(
+      builder: builder,
+      settings: settings,
+      maintainState: maintainState,
+      fullscreenDialog: fullscreenDialog,
+      title: iosTitle,
+    );
   }
 }

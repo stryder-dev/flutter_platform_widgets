@@ -20,6 +20,9 @@ class TabbedPageState extends State<TabbedPage> {
       iosContentBottomPadding: true,
       appBar: PlatformAppBar(
         title: Text('Platform Widgets'),
+        ios: (_) => CupertinoNavigationBarData(
+              transitionBetweenRoutes: false,
+            ),
       ),
       bottomNavBar: PlatformNavBar(
         currentIndex: _selectedTabIndex,

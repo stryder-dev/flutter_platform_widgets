@@ -83,8 +83,9 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
     }
 
     return CupertinoActivityIndicator(
-        key: data?.key ?? widgetKey,
-        animating: data?.animating ?? true,
-        radius: data?.radius ?? _kDefaultIndicatorRadius);
+      key: data?.key ?? widgetKey,
+      animating: data?.animating ?? true,
+      radius: data?.radius ?? _kDefaultIndicatorRadius,
+    );
   }
 }
