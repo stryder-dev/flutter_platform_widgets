@@ -151,7 +151,6 @@ class LandingPageState extends State<LandingPage> {
               padding: const EdgeInsets.all(8.0),
               child: PlatformTextField(
                 controller: textControlller,
-                autofocus: true,
               ),
             ),
             Padding(
