@@ -33,6 +33,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
 - [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+- [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
 
 ## PlatformWidget
 
@@ -412,6 +413,30 @@ This function can be used within the `Navigator` to push either the `MaterialPag
       builder: pageToDisplayBuilder,
     ),
   );
+```
+
+## PlatformProvider
+
+A Provider that provides access to the functions of swicthing platforms which can be accessed from any screen.
+
+Requires to be placed at the root (above MaterialApp, CupertinoApp or PlatformApp).
+
+```dart
+  return PlatformProvider(
+    builder: (BuildContext context) MaterialApp(...)
+  );
+```
+
+And to switch platforms...
+
+```
+PlatformProvider.of(context).changeToMaterialPlatform();
+```
+
+or
+
+```
+PlatformProvider.of(context).changeToCupertinoPlatform();
 ```
 
 # TODO
