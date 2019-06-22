@@ -9,7 +9,8 @@ import 'package:flutter/cupertino.dart'
         CupertinoPageScaffold,
         CupertinoTabScaffold,
         ObstructingPreferredSizeWidget,
-        CupertinoTabBar;
+        CupertinoTabBar,
+        CupertinoTabController;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show
@@ -49,7 +50,8 @@ class MaterialScaffoldData extends _BaseData {
       this.bottomSheet,
       this.drawerDragStartBehavior,
       this.extendBody,
-      this.resizeToAvoidBottomInset})
+      this.resizeToAvoidBottomInset,
+      this.drawerScrimColor})
       : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
@@ -67,6 +69,7 @@ class MaterialScaffoldData extends _BaseData {
   final DragStartBehavior drawerDragStartBehavior;
   final bool extendBody;
   final bool resizeToAvoidBottomInset;
+  final Color drawerScrimColor;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -78,7 +81,8 @@ class CupertinoPageScaffoldData extends _BaseData {
       this.bottomTabBar,
       this.resizeToAvoidBottomInset,
       this.resizeToAvoidBottomInsetTab,
-      this.backgroundColorTab})
+      this.backgroundColorTab,
+      this.controller})
       : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
@@ -87,6 +91,7 @@ class CupertinoPageScaffoldData extends _BaseData {
   final bool resizeToAvoidBottomInset;
   final bool resizeToAvoidBottomInsetTab;
   final Color backgroundColorTab;
+  final CupertinoTabController controller;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
@@ -143,6 +148,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           data?.drawerDragStartBehavior ?? DragStartBehavior.start,
       extendBody: data?.extendBody ?? false,
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset,
+      drawerScrimColor: data?.drawerScrimColor,
     );
   }
 
@@ -166,6 +172,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         backgroundColor: data?.backgroundColorTab,
         resizeToAvoidBottomInset: data?.resizeToAvoidBottomInsetTab ?? true,
         tabBar: tabBar,
+        controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
           return CupertinoPageScaffold(
             backgroundColor: data?.backgroundColor ?? backgroundColor,

@@ -52,19 +52,22 @@ class CupertinoIconButtonData extends _BaseData {
 }
 
 class MaterialIconButtonData extends _BaseData {
-  MaterialIconButtonData(
-      {Key widgetKey,
-      Icon icon,
-      VoidCallback onPressed,
-      EdgeInsets padding,
-      Color color,
-      Color disabledColor,
-      this.alignment,
-      this.highlightColor,
-      this.iconSize = 24.0,
-      this.splashColor,
-      this.tooltip})
-      : super(
+  MaterialIconButtonData({
+    Key widgetKey,
+    Icon icon,
+    VoidCallback onPressed,
+    EdgeInsets padding,
+    Color color,
+    Color disabledColor,
+    this.alignment,
+    this.highlightColor,
+    this.iconSize = 24.0,
+    this.splashColor,
+    this.tooltip,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+  }) : super(
             widgetKey: widgetKey,
             icon: icon,
             onPressed: onPressed,
@@ -77,6 +80,9 @@ class MaterialIconButtonData extends _BaseData {
   final double iconSize;
   final Color splashColor;
   final String tooltip;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -126,6 +132,9 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       iconSize: data?.iconSize ?? 24.0,
       splashColor: data?.splashColor,
       tooltip: data?.tooltip,
+      focusColor: data?.focusColor,
+      focusNode: data?.focusNode,
+      hoverColor: data?.hoverColor,
     );
   }
 

@@ -36,6 +36,9 @@ class MaterialDialogActionData extends _BaseData {
     this.textTheme,
     this.clipBehavior,
     this.materialTapTargetSize,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
   }) : super(child: child, onPressed: onPressed);
 
   final Key widgetKey;
@@ -52,6 +55,9 @@ class MaterialDialogActionData extends _BaseData {
   final ButtonTextTheme textTheme;
   final Clip clipBehavior;
   final MaterialTapTargetSize materialTapTargetSize;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -109,6 +115,9 @@ class PlatformDialogAction
       textTheme: data?.textTheme,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       materialTapTargetSize: data?.materialTapTargetSize,
+      focusColor: data?.focusColor,
+      focusNode: data?.focusNode,
+      hoverColor: data?.hoverColor,
     );
   }
 

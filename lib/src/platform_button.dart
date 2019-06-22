@@ -6,7 +6,13 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoButton;
 import 'package:flutter/material.dart'
-    show RaisedButton, Brightness, ButtonTextTheme, MaterialTapTargetSize;
+    show
+        MaterialButton,
+        FlatButton,
+        RaisedButton,
+        Brightness,
+        ButtonTextTheme,
+        MaterialTapTargetSize;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -28,29 +34,34 @@ abstract class _BaseData {
   final Color disabledColor;
 }
 
-class MaterialRaisedButtonData extends _BaseData {
-  MaterialRaisedButtonData({
-    Key widgetKey,
-    Widget child,
-    Color color,
-    VoidCallback onPressed,
-    EdgeInsetsGeometry padding,
-    Color disabledColor,
-    this.animationDuration,
-    this.colorBrightness,
-    this.disabledElevation,
-    this.disabledTextColor,
-    this.elevation,
-    this.highlightColor,
-    this.highlightElevation,
-    this.onHighlightChanged,
-    this.shape,
-    this.splashColor,
-    this.textColor,
-    this.textTheme,
-    this.clipBehavior,
-    this.materialTapTargetSize,
-  }) : super(
+class MaterialFlatButtonData extends _BaseData {
+  MaterialFlatButtonData(
+      {Key widgetKey,
+      Widget child,
+      Color color,
+      VoidCallback onPressed,
+      EdgeInsetsGeometry padding,
+      Color disabledColor,
+      this.animationDuration,
+      this.colorBrightness,
+      this.disabledElevation,
+      this.disabledTextColor,
+      this.elevation,
+      this.highlightColor,
+      this.highlightElevation,
+      this.onHighlightChanged,
+      this.shape,
+      this.splashColor,
+      this.textColor,
+      this.textTheme,
+      this.clipBehavior,
+      this.materialTapTargetSize,
+      this.focusElevation,
+      this.focusColor,
+      this.hoverColor,
+      this.focusNode,
+      this.hoverElevation})
+      : super(
             widgetKey: widgetKey,
             child: child,
             color: color,
@@ -73,6 +84,68 @@ class MaterialRaisedButtonData extends _BaseData {
   final ButtonTextTheme textTheme;
   final Clip clipBehavior;
   final MaterialTapTargetSize materialTapTargetSize;
+  final double focusElevation;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final double hoverElevation;
+}
+
+class MaterialRaisedButtonData extends _BaseData {
+  MaterialRaisedButtonData(
+      {Key widgetKey,
+      Widget child,
+      Color color,
+      VoidCallback onPressed,
+      EdgeInsetsGeometry padding,
+      Color disabledColor,
+      this.animationDuration,
+      this.colorBrightness,
+      this.disabledElevation,
+      this.disabledTextColor,
+      this.elevation,
+      this.highlightColor,
+      this.highlightElevation,
+      this.onHighlightChanged,
+      this.shape,
+      this.splashColor,
+      this.textColor,
+      this.textTheme,
+      this.clipBehavior,
+      this.materialTapTargetSize,
+      this.focusElevation,
+      this.focusColor,
+      this.hoverColor,
+      this.focusNode,
+      this.hoverElevation})
+      : super(
+            widgetKey: widgetKey,
+            child: child,
+            color: color,
+            onPressed: onPressed,
+            padding: padding,
+            disabledColor: disabledColor);
+
+  final Duration animationDuration;
+  final Brightness colorBrightness;
+
+  final double disabledElevation;
+  final Color disabledTextColor;
+  final double elevation;
+  final Color highlightColor;
+  final double highlightElevation;
+  final ValueChanged<bool> onHighlightChanged;
+  final ShapeBorder shape;
+  final Color splashColor;
+  final Color textColor;
+  final ButtonTextTheme textTheme;
+  final Clip clipBehavior;
+  final MaterialTapTargetSize materialTapTargetSize;
+  final double focusElevation;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final double hoverElevation;
 }
 
 class CupertinoButtonData extends _BaseData {
@@ -99,7 +172,8 @@ class CupertinoButtonData extends _BaseData {
   final double pressedOpacity;
 }
 
-class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
+class PlatformButton
+    extends PlatformWidgetBase<CupertinoButton, MaterialButton> {
   final Key widgetKey;
 
   final VoidCallback onPressed;
@@ -109,6 +183,7 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
   final Color disabledColor;
 
   final PlatformBuilder<MaterialRaisedButtonData> android;
+  final PlatformBuilder<MaterialFlatButtonData> androidFlat;
   final PlatformBuilder<CupertinoButtonData> ios;
 
   PlatformButton(
@@ -120,37 +195,70 @@ class PlatformButton extends PlatformWidgetBase<CupertinoButton, RaisedButton> {
       this.disabledColor,
       this.padding,
       this.android,
+      this.androidFlat,
       this.ios})
-      : super(key: key);
+      : assert(androidFlat == null || android == null),
+        super(key: key);
 
   @override
-  RaisedButton createAndroidWidget(BuildContext context) {
-    MaterialRaisedButtonData data;
+  MaterialButton createAndroidWidget(BuildContext context) {
+    if (androidFlat != null) {
+      MaterialFlatButtonData dataFlat = androidFlat(context);
+
+      return FlatButton(
+        key: dataFlat?.widgetKey ?? widgetKey,
+        child: dataFlat?.child ?? child,
+        onPressed: dataFlat?.onPressed ?? onPressed,
+        color: dataFlat?.color,
+        colorBrightness: dataFlat?.colorBrightness,
+        disabledColor: dataFlat?.disabledColor,
+        disabledTextColor: dataFlat?.disabledTextColor,
+        highlightColor: dataFlat?.highlightColor,
+        onHighlightChanged: dataFlat?.onHighlightChanged,
+        padding: dataFlat?.padding,
+        shape: dataFlat?.shape,
+        splashColor: dataFlat?.splashColor,
+        textColor: dataFlat?.textColor,
+        textTheme: dataFlat?.textTheme,
+        clipBehavior: dataFlat?.clipBehavior ?? Clip.none,
+        materialTapTargetSize: dataFlat?.materialTapTargetSize,
+        focusColor: dataFlat?.focusColor,
+        focusNode: dataFlat?.focusNode,
+        hoverColor: dataFlat?.hoverColor,
+      );
+    }
+
+    MaterialRaisedButtonData dataRaised;
     if (android != null) {
-      data = android(context);
+      dataRaised = android(context);
     }
 
     return RaisedButton(
-      key: data?.widgetKey ?? widgetKey,
-      child: data?.child ?? child,
-      onPressed: data?.onPressed ?? onPressed,
-      animationDuration: data?.animationDuration,
-      color: data?.color ?? color,
-      colorBrightness: data?.colorBrightness,
-      disabledColor: data?.disabledColor ?? disabledColor,
-      disabledElevation: data?.disabledElevation,
-      disabledTextColor: data?.disabledTextColor,
-      elevation: data?.elevation,
-      highlightColor: data?.highlightColor,
-      highlightElevation: data?.highlightElevation,
-      onHighlightChanged: data?.onHighlightChanged,
-      padding: data?.padding ?? padding,
-      shape: data?.shape,
-      splashColor: data?.splashColor,
-      textColor: data?.textColor,
-      textTheme: data?.textTheme,
-      clipBehavior: data?.clipBehavior ?? Clip.none,
-      materialTapTargetSize: data?.materialTapTargetSize,
+      key: dataRaised?.widgetKey ?? widgetKey,
+      child: dataRaised?.child ?? child,
+      onPressed: dataRaised?.onPressed ?? onPressed,
+      animationDuration: dataRaised?.animationDuration,
+      color: dataRaised?.color ?? color,
+      colorBrightness: dataRaised?.colorBrightness,
+      disabledColor: dataRaised?.disabledColor ?? disabledColor,
+      disabledElevation: dataRaised?.disabledElevation,
+      disabledTextColor: dataRaised?.disabledTextColor,
+      elevation: dataRaised?.elevation,
+      highlightColor: dataRaised?.highlightColor,
+      highlightElevation: dataRaised?.highlightElevation,
+      onHighlightChanged: dataRaised?.onHighlightChanged,
+      padding: dataRaised?.padding ?? padding,
+      shape: dataRaised?.shape,
+      splashColor: dataRaised?.splashColor,
+      textColor: dataRaised?.textColor,
+      textTheme: dataRaised?.textTheme,
+      clipBehavior: dataRaised?.clipBehavior ?? Clip.none,
+      materialTapTargetSize: dataRaised?.materialTapTargetSize,
+      focusElevation: dataRaised?.focusElevation,
+      focusColor: dataRaised?.focusColor,
+      hoverColor: dataRaised?.hoverColor,
+      focusNode: dataRaised?.focusNode,
+      hoverElevation: dataRaised?.hoverElevation,
     );
   }
 

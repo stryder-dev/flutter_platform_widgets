@@ -18,20 +18,20 @@ String formatData(String data) {
 class PlatformText extends StatelessWidget {
   final Text _text;
 
-  PlatformText(
-    String data, {
-    Key key,
-    TextStyle style,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    Locale locale,
-    String semanticsLabel,
-    StrutStyle strutStyle,
-  })  : _text = Text(
+  PlatformText(String data,
+      {Key key,
+      TextStyle style,
+      TextAlign textAlign,
+      TextDirection textDirection,
+      bool softWrap,
+      TextOverflow overflow,
+      double textScaleFactor,
+      int maxLines,
+      Locale locale,
+      String semanticsLabel,
+      StrutStyle strutStyle,
+      TextWidthBasis textWidthBasis})
+      : _text = Text(
           formatData(data),
           key: key,
           style: style,
@@ -44,6 +44,7 @@ class PlatformText extends StatelessWidget {
           locale: locale,
           semanticsLabel: semanticsLabel,
           strutStyle: strutStyle,
+          textWidthBasis: textWidthBasis,
         ),
         super(key: key);
 

@@ -84,7 +84,11 @@ class MaterialNavBarData extends _BaseData {
       this.showSelectedLabels,
       this.showUnselectedLabels,
       this.unselectedFontSize,
-      this.unselectedItemColor})
+      this.unselectedItemColor,
+      this.selectedIconTheme,
+      this.selectedLabelStyle,
+      this.unselectedIconTheme,
+      this.unselectedLabelStyle})
       : super(
             widgetKey: widgetKey,
             items: items,
@@ -106,6 +110,10 @@ class MaterialNavBarData extends _BaseData {
   final bool showUnselectedLabels;
   final bool unselectedFontSize;
   final Color unselectedItemColor;
+  final IconThemeData selectedIconTheme;
+  final TextStyle selectedLabelStyle;
+  final IconThemeData unselectedIconTheme;
+  final TextStyle unselectedLabelStyle;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -153,6 +161,10 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       showUnselectedLabels: data?.showUnselectedLabels,
       unselectedFontSize: data?.unselectedFontSize ?? 12.0,
       unselectedItemColor: data?.unselectedItemColor,
+      selectedIconTheme: data?.selectedIconTheme ?? const IconThemeData(),
+      selectedLabelStyle: data?.selectedLabelStyle,
+      unselectedIconTheme: data?.unselectedIconTheme ?? const IconThemeData(),
+      unselectedLabelStyle: data?.unselectedLabelStyle,
     );
 
     return BottomAppBar(

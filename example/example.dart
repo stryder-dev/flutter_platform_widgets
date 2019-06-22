@@ -63,8 +63,17 @@ class LandingPage extends StatefulWidget {
 }
 
 class LandingPageState extends State<LandingPage> {
+  @override
+  initState() {
+    super.initState();
+
+    textControlller = TextEditingController(text: 'text');
+  }
+
   bool switchValue = false;
   double sliderValue = 0.5;
+
+  TextEditingController textControlller;
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +119,11 @@ class LandingPageState extends State<LandingPage> {
               child: PlatformText('PlatformButton'),
               onPressed: () {},
             ),
+            PlatformButton(
+              child: PlatformText('Platform Flat Button'),
+              onPressed: () {},
+              androidFlat: (_) => MaterialFlatButtonData(),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformIconButton(
@@ -135,7 +149,9 @@ class LandingPageState extends State<LandingPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: PlatformTextField(),
+              child: PlatformTextField(
+                controller: textControlller,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
