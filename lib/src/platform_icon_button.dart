@@ -64,9 +64,9 @@ class MaterialIconButtonData extends _BaseData {
     this.iconSize = 24.0,
     this.splashColor,
     this.tooltip,
-    this.focusColor,
-    this.hoverColor,
-    this.focusNode,
+    // 1.6.3 this.focusColor,
+    // 1.6.3 this.hoverColor,
+    // 1.6.3 this.focusNode,
   }) : super(
             widgetKey: widgetKey,
             icon: icon,
@@ -80,9 +80,9 @@ class MaterialIconButtonData extends _BaseData {
   final double iconSize;
   final Color splashColor;
   final String tooltip;
-  final Color focusColor;
-  final Color hoverColor;
-  final FocusNode focusNode;
+  // 1.6.3 final Color focusColor;
+  // 1.6.3 final Color hoverColor;
+  // 1.6.3 final FocusNode focusNode;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -132,9 +132,9 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       iconSize: data?.iconSize ?? 24.0,
       splashColor: data?.splashColor,
       tooltip: data?.tooltip,
-      focusColor: data?.focusColor,
-      focusNode: data?.focusNode,
-      hoverColor: data?.hoverColor,
+      // 1.6.3 focusColor: data?.focusColor,
+      // 1.6.3 focusNode: data?.focusNode,
+      // 1.6.3 hoverColor: data?.hoverColor,
     );
   }
 

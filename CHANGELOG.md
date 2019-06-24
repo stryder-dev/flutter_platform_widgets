@@ -1,16 +1,26 @@
-## [0.11.5] - June 23, 2019
+## [0.12.0] - June 24, 2019
+
+#### (Flutter version support: v1.5.4-hotfix.2)
+
+- Added PlatformProvider so that swicthing platforms can rebuild the tree
+- Added Material Flat button option for PlatformButton (see Readme)
+- Fixed example issue
+
+## [0.11.5] - June 23, 2019 (Do not use)
 
 #### (Flutter version support: v1.6.3)
 
 - Added PlatformProvider so that swicthing platforms can rebuild the tree
+- Due to pub.dev supporting only Stable channel, version 0.11.5 is not supported.
 
-## [0.11.0] - June 22, 2019
+## [0.11.0] - June 22, 2019 (Do not use)
 
 #### (Flutter version support: v1.6.3)
 
 - Updated all widgets compatible with Flutter v 1.6.3
 - Added Material Flat button option for PlatformButton (see Readme)
 - Fixed example issue
+- Due to pub.dev supporting only Stable channel, version 0.11.0 is not supported.
 
 ## [0.10.0] - May 12, 2019
 
