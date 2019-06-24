@@ -80,7 +80,7 @@ class MaterialTextFieldData {
     this.minLines,
     this.scrollPhysics,
     this.strutStyle,
-    this.scrollController,
+    // 1.6.3 this.scrollController,
   });
 
   final Key widgetKey;
@@ -117,7 +117,7 @@ class MaterialTextFieldData {
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  final ScrollController scrollController;
+  // 1.6.3 final ScrollController scrollController;
 }
 
 class CupertinoTextFieldData {
@@ -160,8 +160,8 @@ class CupertinoTextFieldData {
     this.minLines,
     this.scrollPhysics,
     this.strutStyle,
-    this.enableInteractiveSelection,
-    this.scrollController,
+    // 1.6.3 this.enableInteractiveSelection,
+    // 1.6.3 this.scrollController,
   });
 
   final Key widgetKey;
@@ -202,8 +202,8 @@ class CupertinoTextFieldData {
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  final bool enableInteractiveSelection;
-  final ScrollController scrollController;
+  // 1.6.3 final bool enableInteractiveSelection;
+  // 1.6.3 final ScrollController scrollController;
 }
 
 class PlatformTextField
@@ -240,7 +240,7 @@ class PlatformTextField
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  final ScrollController scrollController;
+  // 1.6.3 final ScrollController scrollController;
 
   final Color cursorColor;
   final Brightness keyboardAppearance;
@@ -277,7 +277,7 @@ class PlatformTextField
       this.expands,
       this.scrollPhysics,
       this.strutStyle,
-      this.scrollController,
+      // 1.6.3 this.scrollController,
       this.android,
       this.ios})
       : cursorColor =
@@ -331,7 +331,7 @@ class PlatformTextField
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      scrollController: data?.scrollController ?? scrollController,
+      // 1.6.3 scrollController: data?.scrollController ?? scrollController,
     );
   }
 
@@ -383,8 +383,8 @@ class PlatformTextField
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      enableInteractiveSelection: data?.enableInteractiveSelection,
-      scrollController: data?.scrollController ?? scrollController,
+      // 1.6.3 enableInteractiveSelection: data?.enableInteractiveSelection,
+      // 1.6.3 scrollController: data?.scrollController ?? scrollController,
     );
   }
 }

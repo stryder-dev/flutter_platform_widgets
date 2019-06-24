@@ -65,31 +65,31 @@ class CupertinoTabBarData extends _BaseData {
 }
 
 class MaterialNavBarData extends _BaseData {
-  MaterialNavBarData(
-      {List<BottomNavigationBarItem> items,
-      Color backgroundColor,
-      double iconSize,
-      this.elevation,
-      Color fixedColor,
-      Key widgetKey,
-      ValueChanged<int> itemChanged,
-      int currentIndex,
-      this.type,
-      this.bottomNavigationBarKey,
-      this.shape,
-      this.clipBehavior,
-      this.notchMargin,
-      this.selectedFontSize,
-      this.selectedItemColor,
-      this.showSelectedLabels,
-      this.showUnselectedLabels,
-      this.unselectedFontSize,
-      this.unselectedItemColor,
-      this.selectedIconTheme,
-      this.selectedLabelStyle,
-      this.unselectedIconTheme,
-      this.unselectedLabelStyle})
-      : super(
+  MaterialNavBarData({
+    List<BottomNavigationBarItem> items,
+    Color backgroundColor,
+    double iconSize,
+    this.elevation,
+    Color fixedColor,
+    Key widgetKey,
+    ValueChanged<int> itemChanged,
+    int currentIndex,
+    this.type,
+    this.bottomNavigationBarKey,
+    this.shape,
+    this.clipBehavior,
+    this.notchMargin,
+    this.selectedFontSize,
+    this.selectedItemColor,
+    this.showSelectedLabels,
+    this.showUnselectedLabels,
+    this.unselectedFontSize,
+    this.unselectedItemColor,
+    // 1.6.3 this.selectedIconTheme,
+    // 1.6.3 this.selectedLabelStyle,
+    // 1.6.3 this.unselectedIconTheme,
+    // 1.6.3 this.unselectedLabelStyle
+  }) : super(
             widgetKey: widgetKey,
             items: items,
             backgroundColor: backgroundColor,
@@ -110,10 +110,10 @@ class MaterialNavBarData extends _BaseData {
   final bool showUnselectedLabels;
   final bool unselectedFontSize;
   final Color unselectedItemColor;
-  final IconThemeData selectedIconTheme;
-  final TextStyle selectedLabelStyle;
-  final IconThemeData unselectedIconTheme;
-  final TextStyle unselectedLabelStyle;
+  // 1.6.3 final IconThemeData selectedIconTheme;
+  // 1.6.3 final TextStyle selectedLabelStyle;
+  // 1.6.3 final IconThemeData unselectedIconTheme;
+  // 1.6.3 final TextStyle unselectedLabelStyle;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -161,10 +161,10 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       showUnselectedLabels: data?.showUnselectedLabels,
       unselectedFontSize: data?.unselectedFontSize ?? 12.0,
       unselectedItemColor: data?.unselectedItemColor,
-      selectedIconTheme: data?.selectedIconTheme ?? const IconThemeData(),
-      selectedLabelStyle: data?.selectedLabelStyle,
-      unselectedIconTheme: data?.unselectedIconTheme ?? const IconThemeData(),
-      unselectedLabelStyle: data?.unselectedLabelStyle,
+      // 1.6.3 selectedIconTheme: data?.selectedIconTheme ?? const IconThemeData(),
+      // 1.6.3 selectedLabelStyle: data?.selectedLabelStyle,
+      // 1.6.3 unselectedIconTheme: data?.unselectedIconTheme ?? const IconThemeData(),
+      // 1.6.3 unselectedLabelStyle: data?.unselectedLabelStyle,
     );
 
     return BottomAppBar(
