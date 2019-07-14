@@ -88,9 +88,9 @@ class MaterialIconButtonData extends _BaseData {
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final Key widgetKey;
 
-  final Icon icon;
-  final Icon iosIcon;
-  final Icon androidIcon;
+  final Widget icon;
+  final Widget iosIcon;
+  final Widget androidIcon;
   final VoidCallback onPressed;
   final Color color;
   final EdgeInsets padding;
