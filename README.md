@@ -1,5 +1,7 @@
 # Flutter Platform Widgets
 
+![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/aqwert/flutter_platform_widgets)
+
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
 This package only supports at most the Beta release. Dev or Master channels are not supprted.
