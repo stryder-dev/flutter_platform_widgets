@@ -162,7 +162,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
     Widget result;
-    if (bottomNavBar != null) {
+    if (bottomNavBar != null || data?.bottomTabBar != null) {
       var tabBar = data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context);
 
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
