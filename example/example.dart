@@ -66,7 +66,7 @@ class LandingPageState extends State<LandingPage> {
   TextEditingController textControlller;
 
   _switchPlatform(BuildContext context) {
-    if (isMaterial) {
+    if (isMaterial(context)) {
       PlatformProvider.of(context).changeToCupertinoPlatform();
     } else {
       PlatformProvider.of(context).changeToMaterialPlatform();
@@ -196,6 +196,7 @@ class LandingPageState extends State<LandingPage> {
     Navigator.push(
       context,
       platformPageRoute(
+        context: context,
         builder: pageToDisplayBuilder,
       ),
     );

@@ -262,9 +262,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
           data?.showSemanticsDebugger ?? showSemanticsDebugger,
       debugShowCheckedModeBanner:
           data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
-      theme: data?.theme,
+      theme: data?.theme?.copyWith(platform: TargetPlatform.android),
       debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
-      darkTheme: data?.darkTheme,
+      darkTheme: data?.darkTheme?.copyWith(platform: TargetPlatform.android),
       themeMode: data?.themeMode ?? ThemeMode.system,
     );
   }
