@@ -5,7 +5,7 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoApp, CupertinoThemeData;
-import 'package:flutter/material.dart' show MaterialApp, ThemeData, ThemeMode;
+import 'package:flutter/material.dart' show MaterialApp, Theme, ThemeData, ThemeMode;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -262,7 +262,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
           data?.showSemanticsDebugger ?? showSemanticsDebugger,
       debugShowCheckedModeBanner:
           data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
-      theme: data?.theme?.copyWith(platform: TargetPlatform.android),
+      theme: (data?.theme ?? Theme.of(context)).copyWith(platform: TargetPlatform.android),
       debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
       darkTheme: data?.darkTheme?.copyWith(platform: TargetPlatform.android),
       themeMode: data?.themeMode ?? ThemeMode.system,
