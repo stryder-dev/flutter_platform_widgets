@@ -10,6 +10,10 @@ This package only supports the **Stable** release. Beta, Dev or Master channels 
 
 > Pubspec: https://pub.dev/packages/flutter_platform_widgets
 
+# How it works
+
+The flutter `ThemeData` object used with the `Theme` widget has a `platform` property. This defaults to `TargetPlatform.android` on Android and `TargetPlatform.ios` on iOS, but when creating a ThemeData object, it can be set programmatically. Calling `Theme.of(context).platform` will return the current platform. Several Flutter library widgets use this field to change how they are rendered, and all of the Flutter Platform Widgets library widgets use this field to render the platform specific versions of things.
+
 # Widgets
 
 These set of widgets allow for rendering based on the target platform using a single cross platform set of widget.
