@@ -6,6 +6,7 @@
 
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart' show showCupertinoDialog;
 import 'package:flutter/material.dart' show showDialog;
 import 'package:flutter/widgets.dart';
@@ -33,13 +34,27 @@ bool get isMaterial =>
 bool get isCupertino =>
     _forceCupertino || (!_forceMaterial && _isCupertinoCompatible);
 
-bool get _isMaterialCompatible =>
-    Platform.isWindows ||
-    Platform.isAndroid ||
-    Platform.isFuchsia ||
-    Platform.isLinux;
+bool get isWeb => kIsWeb;
 
-bool get _isCupertinoCompatible => Platform.isIOS || Platform.isMacOS;
+bool get _isMaterialCompatible {
+  if (kIsWeb) {
+    return true;
+  } else {
+    return
+      Platform.isWindows ||
+      Platform.isAndroid ||
+      Platform.isFuchsia ||
+      Platform.isLinux;
+  }
+}
+
+bool get _isCupertinoCompatible {
+  if (kIsWeb) {
+    return true;
+  } else {
+    return Platform.isIOS || Platform.isMacOS;
+  }
+}
 
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,
