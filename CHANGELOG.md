@@ -4,6 +4,7 @@
 
 - Updated all widgets compatible with Flutter v 1.9.1
 - Added showPlatformModalSheet
+- Added check for web to allow web to compile (thanks cbenhagen)
 
 ## [0.12.0] - June 24, 2019
 
