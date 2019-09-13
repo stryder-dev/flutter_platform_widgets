@@ -31,7 +31,7 @@ class PlatformText extends StatelessWidget {
     Locale locale,
     String semanticsLabel,
     StrutStyle strutStyle,
-    // 1.6.3 TextWidthBasis textWidthBasis,
+    TextWidthBasis textWidthBasis,
   })  : _text = Text(
           formatData(data),
           key: key,
@@ -45,7 +45,7 @@ class PlatformText extends StatelessWidget {
           locale: locale,
           semanticsLabel: semanticsLabel,
           strutStyle: strutStyle,
-          // 1.6.3 textWidthBasis: textWidthBasis,
+          textWidthBasis: textWidthBasis,
         ),
         super(key: key);
 

@@ -1,8 +1,10 @@
 # Flutter Platform Widgets
 
+![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/aqwert/flutter_platform_widgets)
+
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
-This package only supports at most the Beta release. Dev or Master channels are not supprted.
+This package only supports the **Stable** release. Beta, Dev or Master channels are not supported. This is due to pub.dev applying checks to packages that conform to the Stable version of the framework
 
 # Installation
 
@@ -33,6 +35,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
 - [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+- [ShowPlatformModalSheet](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
 
 ## PlatformWidget
@@ -414,6 +417,22 @@ This function can be used within the `Navigator` to push either the `MaterialPag
     ),
   );
 ```
+
+## ShowPlatformModalSheet
+
+This function is used to either display a `ModalBottomSheet` for android or `CupertinoModalPopup` for iOS.
+
+```dart
+  showPlatformModalSheet(
+      context: context,
+      builder: (_) => PlatformWidget(
+        android: (_) => _androidPopupContent(),
+        ios: (_) => _cupertinoSheetContent(),
+      ),
+    );
+```
+
+ > Note: Since Android and iOS content may be quite different it may be useful tl use `PlatformWidget`.
 
 ## PlatformProvider
 

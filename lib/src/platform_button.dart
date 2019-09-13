@@ -35,33 +35,34 @@ abstract class _BaseData {
 }
 
 class MaterialFlatButtonData extends _BaseData {
-  MaterialFlatButtonData({
-    Key widgetKey,
-    Widget child,
-    Color color,
-    VoidCallback onPressed,
-    EdgeInsetsGeometry padding,
-    Color disabledColor,
-    this.animationDuration,
-    this.colorBrightness,
-    this.disabledElevation,
-    this.disabledTextColor,
-    this.elevation,
-    this.highlightColor,
-    this.highlightElevation,
-    this.onHighlightChanged,
-    this.shape,
-    this.splashColor,
-    this.textColor,
-    this.textTheme,
-    this.clipBehavior,
-    this.materialTapTargetSize,
-    // 1.6.3 this.focusElevation,
-    // 1.6.3 this.focusColor,
-    // 1.6.3 this.hoverColor,
-    // 1.6.3 this.focusNode,
-    // 1.6.3 this.hoverElevation
-  }) : super(
+  MaterialFlatButtonData(
+      {Key widgetKey,
+      Widget child,
+      Color color,
+      VoidCallback onPressed,
+      EdgeInsetsGeometry padding,
+      Color disabledColor,
+      this.animationDuration,
+      this.colorBrightness,
+      this.disabledElevation,
+      this.disabledTextColor,
+      this.elevation,
+      this.highlightColor,
+      this.highlightElevation,
+      this.onHighlightChanged,
+      this.shape,
+      this.splashColor,
+      this.textColor,
+      this.textTheme,
+      this.clipBehavior,
+      this.materialTapTargetSize,
+      this.focusElevation,
+      this.focusColor,
+      this.hoverColor,
+      this.focusNode,
+      this.hoverElevation,
+      this.autofocus})
+      : super(
             widgetKey: widgetKey,
             child: child,
             color: color,
@@ -84,41 +85,43 @@ class MaterialFlatButtonData extends _BaseData {
   final ButtonTextTheme textTheme;
   final Clip clipBehavior;
   final MaterialTapTargetSize materialTapTargetSize;
-  // 1.6.3 final double focusElevation;
-  // 1.6.3 final Color focusColor;
-  // 1.6.3 final Color hoverColor;
-  // 1.6.3 final FocusNode focusNode;
-  // 1.6.3 final double hoverElevation;
+  final double focusElevation;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final double hoverElevation;
+  final bool autofocus;
 }
 
 class MaterialRaisedButtonData extends _BaseData {
-  MaterialRaisedButtonData({
-    Key widgetKey,
-    Widget child,
-    Color color,
-    VoidCallback onPressed,
-    EdgeInsetsGeometry padding,
-    Color disabledColor,
-    this.animationDuration,
-    this.colorBrightness,
-    this.disabledElevation,
-    this.disabledTextColor,
-    this.elevation,
-    this.highlightColor,
-    this.highlightElevation,
-    this.onHighlightChanged,
-    this.shape,
-    this.splashColor,
-    this.textColor,
-    this.textTheme,
-    this.clipBehavior,
-    this.materialTapTargetSize,
-    // 1.6.3 this.focusElevation,
-    // 1.6.3 this.focusColor,
-    // 1.6.3 this.hoverColor,
-    // 1.6.3 this.focusNode,
-    // 1.6.3 this.hoverElevation
-  }) : super(
+  MaterialRaisedButtonData(
+      {Key widgetKey,
+      Widget child,
+      Color color,
+      VoidCallback onPressed,
+      EdgeInsetsGeometry padding,
+      Color disabledColor,
+      this.animationDuration,
+      this.colorBrightness,
+      this.disabledElevation,
+      this.disabledTextColor,
+      this.elevation,
+      this.highlightColor,
+      this.highlightElevation,
+      this.onHighlightChanged,
+      this.shape,
+      this.splashColor,
+      this.textColor,
+      this.textTheme,
+      this.clipBehavior,
+      this.materialTapTargetSize,
+      this.focusElevation,
+      this.focusColor,
+      this.hoverColor,
+      this.focusNode,
+      this.hoverElevation,
+      this.autofocus})
+      : super(
             widgetKey: widgetKey,
             child: child,
             color: color,
@@ -141,11 +144,12 @@ class MaterialRaisedButtonData extends _BaseData {
   final ButtonTextTheme textTheme;
   final Clip clipBehavior;
   final MaterialTapTargetSize materialTapTargetSize;
-  // 1.6.3 final double focusElevation;
-  // 1.6.3 final Color focusColor;
-  // 1.6.3 final Color hoverColor;
-  // 1.6.3 final FocusNode focusNode;
-  // 1.6.3 final double hoverElevation;
+  final double focusElevation;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final double hoverElevation;
+  final bool autofocus;
 }
 
 class CupertinoButtonData extends _BaseData {
@@ -222,9 +226,10 @@ class PlatformButton
         textTheme: dataFlat?.textTheme,
         clipBehavior: dataFlat?.clipBehavior ?? Clip.none,
         materialTapTargetSize: dataFlat?.materialTapTargetSize,
-        // 1.6.3 focusColor: dataFlat?.focusColor,
-        // 1.6.3 focusNode: dataFlat?.focusNode,
-        // 1.6.3 hoverColor: dataFlat?.hoverColor,
+        focusColor: dataFlat?.focusColor,
+        focusNode: dataFlat?.focusNode,
+        hoverColor: dataFlat?.hoverColor,
+        autofocus: dataFlat?.autofocus ?? false,
       );
     }
 
@@ -254,11 +259,12 @@ class PlatformButton
       textTheme: dataRaised?.textTheme,
       clipBehavior: dataRaised?.clipBehavior ?? Clip.none,
       materialTapTargetSize: dataRaised?.materialTapTargetSize,
-      // 1.6.3 focusElevation: dataRaised?.focusElevation,
-      // 1.6.3 focusColor: dataRaised?.focusColor,
-      // 1.6.3 hoverColor: dataRaised?.hoverColor,
-      // 1.6.3 focusNode: dataRaised?.focusNode,
-      // 1.6.3 hoverElevation: dataRaised?.hoverElevation,
+      focusElevation: dataRaised?.focusElevation,
+      focusColor: dataRaised?.focusColor,
+      hoverColor: dataRaised?.hoverColor,
+      focusNode: dataRaised?.focusNode,
+      hoverElevation: dataRaised?.hoverElevation,
+      autofocus: dataRaised?.autofocus ?? false,
     );
   }
 
