@@ -49,6 +49,7 @@ class MaterialScaffoldData extends _BaseData {
     this.bottomSheet,
     this.drawerDragStartBehavior,
     this.extendBody,
+    this.extendBodyBehindAppBar,
     this.resizeToAvoidBottomInset,
     // 1.6.3 this.drawerScrimColor,
   }) : super(
@@ -67,6 +68,7 @@ class MaterialScaffoldData extends _BaseData {
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
   final bool extendBody;
+  final bool extendBodyBehindAppBar;
   final bool resizeToAvoidBottomInset;
   // 1.6.3 final Color drawerScrimColor;
 }
@@ -146,6 +148,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       drawerDragStartBehavior:
           data?.drawerDragStartBehavior ?? DragStartBehavior.start,
       extendBody: data?.extendBody ?? false,
+      extendBodyBehindAppBar: data?.extendBodyBehindAppBar ?? false,
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset,
       // 1.6.3 drawerScrimColor: data?.drawerScrimColor,
     );
