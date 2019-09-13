@@ -2,7 +2,7 @@
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
-This package only supports at most the Beta release. Dev or Master channels are not supprted.
+This package only supports the **Stable** release. Beta, Dev or Master channels are not supported. This is due to pub.dev applying checks to packages that conform to the Stable version of the framework
 
 # Installation
 

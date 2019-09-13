@@ -80,7 +80,11 @@ class MaterialTextFieldData {
     this.minLines,
     this.scrollPhysics,
     this.strutStyle,
-    // 1.6.3 this.scrollController,
+    this.scrollController,
+    this.readOnly,
+    this.showCursor,
+    this.textAlignVertical,
+    this.toolbarOptions,
   });
 
   final Key widgetKey;
@@ -117,7 +121,11 @@ class MaterialTextFieldData {
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  // 1.6.3 final ScrollController scrollController;
+  final ScrollController scrollController;
+  final bool readOnly;
+  final bool showCursor;
+  final TextAlignVertical textAlignVertical;
+  final ToolbarOptions toolbarOptions;
 }
 
 class CupertinoTextFieldData {
@@ -160,8 +168,13 @@ class CupertinoTextFieldData {
     this.minLines,
     this.scrollPhysics,
     this.strutStyle,
-    // 1.6.3 this.enableInteractiveSelection,
-    // 1.6.3 this.scrollController,
+    this.enableInteractiveSelection,
+    this.scrollController,
+    this.readOnly,
+    this.showCursor,
+    this.textAlignVertical,
+    this.toolbarOptions,
+    this.onTap,
   });
 
   final Key widgetKey;
@@ -202,8 +215,13 @@ class CupertinoTextFieldData {
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  // 1.6.3 final bool enableInteractiveSelection;
-  // 1.6.3 final ScrollController scrollController;
+  final bool enableInteractiveSelection;
+  final ScrollController scrollController;
+  final bool readOnly;
+  final bool showCursor;
+  final TextAlignVertical textAlignVertical;
+  final ToolbarOptions toolbarOptions;
+  final GestureTapCallback onTap;
 }
 
 class PlatformTextField
@@ -228,6 +246,7 @@ class PlatformTextField
   final int maxLines;
   final int maxLength;
   final bool maxLengthEnforced;
+
   final ValueChanged<String> onChanged;
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onSubmitted;
@@ -240,7 +259,13 @@ class PlatformTextField
   final int minLines;
   final ScrollPhysics scrollPhysics;
   final StrutStyle strutStyle;
-  // 1.6.3 final ScrollController scrollController;
+  final bool enableInteractiveSelection;
+  final ScrollController scrollController;
+  final GestureTapCallback onTap;
+  final bool readOnly;
+  final bool showCursor;
+  final TextAlignVertical textAlignVertical;
+  final ToolbarOptions toolbarOptions;
 
   final Color cursorColor;
   final Brightness keyboardAppearance;
@@ -277,7 +302,13 @@ class PlatformTextField
       this.expands,
       this.scrollPhysics,
       this.strutStyle,
-      // 1.6.3 this.scrollController,
+      this.enableInteractiveSelection = true,
+      this.scrollController,
+      this.onTap,
+      this.readOnly,
+      this.showCursor,
+      this.textAlignVertical,
+      this.toolbarOptions,
       this.android,
       this.ios})
       : cursorColor =
@@ -321,8 +352,6 @@ class PlatformTextField
       textInputAction: data?.textInputAction ?? textInputAction,
       decoration: data?.decoration ?? const InputDecoration(),
       textDirection: data?.textDirection,
-      enableInteractiveSelection: data?.enableInteractiveSelection ?? false,
-      onTap: data?.onTap,
       buildCounter: data?.buildCounter,
       dragStartBehavior: data?.dragStartBehavior ??
           dragStartBehavior ??
@@ -331,7 +360,14 @@ class PlatformTextField
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      // 1.6.3 scrollController: data?.scrollController ?? scrollController,
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ?? enableInteractiveSelection,
+      scrollController: data?.scrollController ?? scrollController,
+      onTap: data?.onTap ?? onTap,
+      readOnly: data?.readOnly ?? readOnly ?? false,
+      showCursor: data?.showCursor ?? showCursor,
+      textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
+      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
     );
   }
 
@@ -383,8 +419,14 @@ class PlatformTextField
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      // 1.6.3 enableInteractiveSelection: data?.enableInteractiveSelection,
-      // 1.6.3 scrollController: data?.scrollController ?? scrollController,
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ?? enableInteractiveSelection,
+      scrollController: data?.scrollController ?? scrollController,
+      onTap: data?.onTap ?? onTap,
+      readOnly: data?.readOnly ?? readOnly ?? false,
+      showCursor: data?.showCursor ?? showCursor,
+      textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
+      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
     );
   }
 }

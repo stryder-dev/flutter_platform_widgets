@@ -33,11 +33,11 @@ class _AppState extends State<App> {
 
     return PlatformProvider(
       builder: (BuildContext context) => PlatformApp(
-            title: 'Flutter Platform Widgets',
-            android: (_) => new MaterialAppData(theme: themeData),
-            ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
-            home: LandingPage(),
-          ),
+        title: 'Flutter Platform Widgets',
+        android: (_) => new MaterialAppData(theme: themeData),
+        ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
+        home: LandingPage(),
+      ),
     );
   }
 }
@@ -171,9 +171,9 @@ class LandingPageState extends State<LandingPage> {
             PlatformWidget(
               android: (_) => Container(), //this is for iOS only
               ios: (_) => PlatformButton(
-                    child: PlatformText('iOS Page with Colored Header'),
-                    onPressed: () => _openPage((_) => new ListViewHeaderPage()),
-                  ),
+                child: PlatformText('iOS Page with Colored Header'),
+                onPressed: () => _openPage((_) => new ListViewHeaderPage()),
+              ),
             ),
           ],
         ),
@@ -194,21 +194,21 @@ class LandingPageState extends State<LandingPage> {
     showPlatformDialog(
       context: context,
       builder: (_) => PlatformAlertDialog(
-            title: Text('Alert'),
-            content: Text('Some content'),
-            actions: <Widget>[
-              PlatformDialogAction(
-                android: (_) => MaterialDialogActionData(),
-                ios: (_) => CupertinoDialogActionData(),
-                child: PlatformText('Cancel'),
-                onPressed: () => Navigator.pop(context),
-              ),
-              PlatformDialogAction(
-                child: PlatformText('OK'),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
+        title: Text('Alert'),
+        content: Text('Some content'),
+        actions: <Widget>[
+          PlatformDialogAction(
+            android: (_) => MaterialDialogActionData(),
+            ios: (_) => CupertinoDialogActionData(),
+            child: PlatformText('Cancel'),
+            onPressed: () => Navigator.pop(context),
           ),
+          PlatformDialogAction(
+            child: PlatformText('OK'),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ),
     );
   }
 }
