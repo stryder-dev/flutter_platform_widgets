@@ -1,5 +1,10 @@
-import 'package:flutter/cupertino.dart' show CupertinoIcons, CupertinoThemeData;
-import 'package:flutter/material.dart' show ThemeData, Colors, Icons;
+import 'package:flutter/cupertino.dart'
+    show
+        CupertinoActionSheet,
+        CupertinoActionSheetAction,
+        CupertinoIcons,
+        CupertinoThemeData;
+import 'package:flutter/material.dart' show Colors, Icons, ThemeData;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -157,13 +162,19 @@ class LandingPageState extends State<LandingPage> {
               onPressed: () => _showExampleDialog(),
             ),
             Divider(),
-            SectionHeader(title: '4. Navigation'),
+            SectionHeader(title: '4. Popup/Sheet'),
+            PlatformButton(
+              child: PlatformText('Show Popup/Sheet'),
+              onPressed: () => _showPopupSheet(),
+            ),
+            Divider(),
+            SectionHeader(title: '5. Navigation'),
             PlatformButton(
               child: PlatformText('Open Tabbed Page'),
               onPressed: () => _openPage((_) => new TabbedPage()),
             ),
             Divider(),
-            SectionHeader(title: '5. Advanced'),
+            SectionHeader(title: '6. Advanced'),
             PlatformButton(
               child: PlatformText('Page with ListView'),
               onPressed: () => _openPage((_) => new ListViewPage()),
@@ -186,6 +197,75 @@ class LandingPageState extends State<LandingPage> {
       context,
       platformPageRoute(
         builder: pageToDisplayBuilder,
+      ),
+    );
+  }
+
+  _showPopupSheet() {
+    showPlatformModalSheet(
+      context: context,
+      builder: (_) => PlatformWidget(
+        android: (_) => _androidPopupContent(),
+        ios: (_) => _cupertinoSheetContent(),
+      ),
+    );
+  }
+
+  Widget _androidPopupContent() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: <Widget>[
+          GestureDetector(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: PlatformText('Option 1'),
+            ),
+            onTap: () => Navigator.pop(context),
+          ),
+          GestureDetector(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: PlatformText('Option 2'),
+            ),
+            onTap: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _cupertinoSheetContent() {
+    return CupertinoActionSheet(
+      title: const Text('Favorite Dessert'),
+      message:
+          const Text('Please select the best dessert from the options below.'),
+      actions: <Widget>[
+        CupertinoActionSheetAction(
+          child: const Text('Profiteroles'),
+          onPressed: () {
+            Navigator.pop(context, 'Profiteroles');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('Cannolis'),
+          onPressed: () {
+            Navigator.pop(context, 'Cannolis');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('Trifle'),
+          onPressed: () {
+            Navigator.pop(context, 'Trifle');
+          },
+        ),
+      ],
+      cancelButton: CupertinoActionSheetAction(
+        child: const Text('Cancel'),
+        isDefaultAction: true,
+        onPressed: () {
+          Navigator.pop(context, 'Cancel');
+        },
       ),
     );
   }

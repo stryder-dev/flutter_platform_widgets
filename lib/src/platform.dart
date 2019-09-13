@@ -6,8 +6,9 @@
 
 import 'dart:io' show Platform;
 
-import 'package:flutter/cupertino.dart' show showCupertinoDialog;
-import 'package:flutter/material.dart' show showDialog;
+import 'package:flutter/cupertino.dart'
+    show showCupertinoDialog, showCupertinoModalPopup;
+import 'package:flutter/material.dart' show showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 
 bool _forceMaterial = false;
@@ -53,6 +54,35 @@ Future<T> showPlatformDialog<T>({
         barrierDismissible: androidBarrierDismissible);
   } else {
     return showCupertinoDialog<T>(
+      context: context,
+      builder: builder,
+    );
+  }
+}
+
+/// Displays either the showModalBottomSheet for material
+/// or showCupertinoModalPopup for cupertino
+Future<T> showPlatformModalSheet<T>({
+  @required BuildContext context,
+  @required WidgetBuilder builder,
+  Color androidBackgroundColor,
+  double androidElevation,
+  ShapeBorder androidShape,
+  bool androidIsScrollControlled = false,
+  bool androidUseRootNavigator = false,
+}) {
+  if (isMaterial) {
+    return showModalBottomSheet<T>(
+      context: context,
+      builder: builder,
+      backgroundColor: androidBackgroundColor,
+      elevation: androidElevation,
+      shape: androidShape,
+      isScrollControlled: androidIsScrollControlled,
+      useRootNavigator: androidUseRootNavigator,
+    );
+  } else {
+    return showCupertinoModalPopup<T>(
       context: context,
       builder: builder,
     );

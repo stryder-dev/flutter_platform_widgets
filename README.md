@@ -33,6 +33,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
 - [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+- [ShowPlatformModalSheet](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
 
 ## PlatformWidget
@@ -414,6 +415,22 @@ This function can be used within the `Navigator` to push either the `MaterialPag
     ),
   );
 ```
+
+## ShowPlatformModalSheet
+
+This function is used to either display a `ModalBottomSheet` for android or `CupertinoModalPopup` for iOS.
+
+```dart
+  showPlatformModalSheet(
+      context: context,
+      builder: (_) => PlatformWidget(
+        android: (_) => _androidPopupContent(),
+        ios: (_) => _cupertinoSheetContent(),
+      ),
+    );
+```
+
+ > Note: Since Android and iOS content may be quite different it may be useful tl use `PlatformWidget`.
 
 ## PlatformProvider
 

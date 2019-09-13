@@ -3,6 +3,7 @@
 #### (Flutter version support: v1.9.1+hotfix.2)
 
 - Updated all widgets compatible with Flutter v 1.9.1
+- Added showPlatformModalSheet
 
 ## [0.12.0] - June 24, 2019
 
