@@ -4,8 +4,6 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'dart:io' show Platform;
-
 import 'package:flutter/cupertino.dart' show showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show Theme, showDialog, showModalBottomSheet;
