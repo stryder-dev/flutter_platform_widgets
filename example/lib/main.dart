@@ -8,9 +8,9 @@ import 'package:flutter/material.dart' show Colors, Icons, ThemeData;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import 'lib/listViewHeaderPage.dart';
-import 'lib/listViewPage.dart';
-import 'lib/tabbedPage.dart';
+import 'listViewHeaderPage.dart';
+import 'listViewPage.dart';
+import 'tabbedPage.dart';
 
 void main() => runApp(Main());
 
@@ -66,7 +66,7 @@ class LandingPageState extends State<LandingPage> {
   TextEditingController textControlller;
 
   _switchPlatform(BuildContext context) {
-    if (isMaterial) {
+    if (isMaterial(context)) {
       PlatformProvider.of(context).changeToCupertinoPlatform();
     } else {
       PlatformProvider.of(context).changeToMaterialPlatform();
@@ -196,6 +196,7 @@ class LandingPageState extends State<LandingPage> {
     Navigator.push(
       context,
       platformPageRoute(
+        context: context,
         builder: pageToDisplayBuilder,
       ),
     );

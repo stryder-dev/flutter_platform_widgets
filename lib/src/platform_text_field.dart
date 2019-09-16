@@ -279,7 +279,7 @@ class PlatformTextField
       TextInputType keyboardType,
       this.textInputAction,
       this.textCapitalization = TextCapitalization.none,
-      TextStyle style,
+      this.style,
       this.textAlign = TextAlign.start,
       this.autofocus = false,
       this.obscureText = false,
@@ -294,7 +294,7 @@ class PlatformTextField
       this.enabled,
       this.cursorWidth = 2.0,
       this.cursorRadius,
-      Color cursorColor,
+      this.cursorColor,
       this.keyboardAppearance,
       this.scrollPadding = const EdgeInsets.all(20.0),
       this.dragStartBehavior,
@@ -311,10 +311,7 @@ class PlatformTextField
       this.toolbarOptions,
       this.android,
       this.ios})
-      : cursorColor =
-            cursorColor ?? (isMaterial ? null : CupertinoColors.activeBlue),
-        style = style ?? (isMaterial ? null : _kDefaultTextStyle),
-        keyboardType = keyboardType ??
+      : keyboardType = keyboardType ??
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
         super(key: key);
 
@@ -383,7 +380,7 @@ class PlatformTextField
       autocorrect: data?.autocorrect ?? autocorrect,
       autofocus: data?.autofocus ?? autofocus,
       controller: data?.controller ?? controller,
-      cursorColor: data?.cursorColor ?? cursorColor,
+      cursorColor: data?.cursorColor ?? cursorColor ?? CupertinoColors.activeBlue,
       cursorRadius: data?.cursorRadius ?? cursorRadius,
       cursorWidth: data?.cursorWidth ?? cursorWidth,
       enabled: data?.enabled ?? enabled,
@@ -399,7 +396,7 @@ class PlatformTextField
       onEditingComplete: data?.onEditingComplete ?? onEditingComplete,
       onSubmitted: data?.onSubmitted ?? onSubmitted,
       scrollPadding: data?.scrollPadding ?? scrollPadding,
-      style: data?.style ?? style,
+      style: data?.style ?? style ?? _kDefaultTextStyle,
       textAlign: data?.textAlign ?? textAlign,
       textCapitalization: data?.textCapitalization ?? textCapitalization,
       textInputAction: data?.textInputAction ?? textInputAction,

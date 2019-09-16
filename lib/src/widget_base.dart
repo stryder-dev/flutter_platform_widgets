@@ -4,8 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'dart:io' show Platform;
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'platform.dart';
 
@@ -17,14 +16,14 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
 
   @override
   Widget build(BuildContext context) {
-    if (isMaterial) {
+    if (isMaterial(context)) {
       return createAndroidWidget(context);
-    } else if (isCupertino) {
+    } else if (isCupertino(context)) {
       return createIosWidget(context);
     }
 
     return throw new UnsupportedError(
-        'This platform is not supported: ' + Platform.operatingSystem);
+        'This platform is not supported: $defaultTargetPlatform');
   }
 
   I createIosWidget(BuildContext context);

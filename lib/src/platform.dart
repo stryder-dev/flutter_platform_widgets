@@ -4,55 +4,38 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'dart:io' show Platform;
-
-import 'package:flutter/cupertino.dart'
-    show showCupertinoDialog, showCupertinoModalPopup;
+import 'package:flutter/cupertino.dart' show showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show showDialog, showModalBottomSheet;
+import 'package:flutter/material.dart' show Theme, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 
-bool _forceMaterial = false;
 
-void changeToMaterialPlatform() {
-  _forceMaterial = true;
-  _forceCupertino = false;
+bool isMaterial(BuildContext context) {
+  switch (Theme.of(context).platform) {
+    case TargetPlatform.android:
+    case TargetPlatform.fuchsia:
+      return true;
+    case TargetPlatform.iOS:
+      return false;
+  }
 }
 
-bool _forceCupertino = false;
-
-void changeToCupertinoPlatform() {
-  _forceCupertino = true;
-  _forceMaterial = false;
+bool isCupertino(BuildContext context) {
+  switch (Theme.of(context).platform) {
+    case TargetPlatform.android:
+    case TargetPlatform.fuchsia:
+      return false;
+    case TargetPlatform.iOS:
+      return true;
+  }
 }
-
-void changeToAutoDetectPlatform() {
-  _forceMaterial = false;
-  _forceCupertino = false;
-}
-
-bool get isMaterial =>
-    _forceMaterial || (!_forceCupertino && _isMaterialCompatible);
-
-bool get isCupertino =>
-    _forceCupertino || (!_forceMaterial && _isCupertinoCompatible);
-
-bool get _isMaterialCompatible =>
-    kIsWeb ||
-    Platform.isWindows ||
-    Platform.isAndroid ||
-    Platform.isFuchsia ||
-    Platform.isLinux;
-
-bool get _isCupertinoCompatible =>
-    !kIsWeb && (Platform.isIOS || Platform.isMacOS);
 
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
   androidBarrierDismissible = false,
 }) {
-  if (isMaterial) {
+  if (isMaterial(context)) {
     return showDialog<T>(
         context: context,
         builder: builder,
@@ -76,7 +59,7 @@ Future<T> showPlatformModalSheet<T>({
   bool androidIsScrollControlled = false,
   bool androidUseRootNavigator = false,
 }) {
-  if (isMaterial) {
+  if (isMaterial(context)) {
     return showModalBottomSheet<T>(
       context: context,
       builder: builder,
