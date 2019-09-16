@@ -1,3 +1,9 @@
+## [0.20.0] - September 16, 2019
+
+- Switching of Platform based off theme. (thanks stefanrusek)
+- From now on the only way to dynamically change the target platform is to use `PlatformProvider`
+- `PlatformIconButton` can now take a Widget instead of it having to be an Icon (thanks GillesMontyne)
+
 ## [0.13.0] - September 13, 2019
 
 #### (Flutter version support: v1.9.1+hotfix.2)

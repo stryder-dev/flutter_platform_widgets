@@ -36,7 +36,11 @@ class _AppState extends State<App> {
       primaryColor: Colors.purple,
     );
 
+    // Example of optionally setting the platform upfront.
+    //final initialPlatform = TargetPlatform.iOS;
+
     return PlatformProvider(
+      //initialPlatform: initialPlatform,
       builder: (BuildContext context) => PlatformApp(
         title: 'Flutter Platform Widgets',
         android: (_) => new MaterialAppData(theme: themeData),

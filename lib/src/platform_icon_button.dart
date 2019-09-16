@@ -20,7 +20,7 @@ abstract class _BaseData {
       this.disabledColor});
 
   final Key widgetKey;
-  final Icon icon;
+  final Widget icon;
   final VoidCallback onPressed;
   final EdgeInsets padding;
   final Color color;
@@ -30,7 +30,7 @@ abstract class _BaseData {
 class CupertinoIconButtonData extends _BaseData {
   CupertinoIconButtonData(
       {Key widgetKey,
-      Icon icon,
+      Widget icon,
       VoidCallback onPressed,
       EdgeInsets padding,
       Color color,
@@ -54,7 +54,7 @@ class CupertinoIconButtonData extends _BaseData {
 class MaterialIconButtonData extends _BaseData {
   MaterialIconButtonData({
     Key widgetKey,
-    Icon icon,
+    Widget icon,
     VoidCallback onPressed,
     EdgeInsets padding,
     Color color,

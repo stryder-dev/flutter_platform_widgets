@@ -7,14 +7,7 @@
 library flutter_platform_widgets;
 
 export 'src/platform.dart'
-    show
-        isCupertino,
-        isMaterial,
-        changeToAutoDetectPlatform,
-        changeToCupertinoPlatform,
-        changeToMaterialPlatform,
-        showPlatformDialog,
-        showPlatformModalSheet;
+    show isCupertino, isMaterial, showPlatformDialog, showPlatformModalSheet;
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_app.dart';
 export 'src/platform_app_bar.dart';

@@ -4,11 +4,12 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show showCupertinoDialog, showCupertinoModalPopup;
+import 'package:flutter/cupertino.dart'
+    show showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show Theme, showDialog, showModalBottomSheet;
+import 'package:flutter/material.dart'
+    show Theme, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
-
 
 bool isMaterial(BuildContext context) {
   switch (Theme.of(context).platform) {
@@ -17,6 +18,8 @@ bool isMaterial(BuildContext context) {
       return true;
     case TargetPlatform.iOS:
       return false;
+    default:
+      return true;
   }
 }
 
@@ -27,6 +30,8 @@ bool isCupertino(BuildContext context) {
       return false;
     case TargetPlatform.iOS:
       return true;
+    default:
+      return false;
   }
 }
 

@@ -436,7 +436,7 @@ This function is used to either display a `ModalBottomSheet` for android or `Cup
     );
 ```
 
- > Note: Since Android and iOS content may be quite different it may be useful tl use `PlatformWidget`.
+> Note: Since Android and iOS content may be quite different it may be useful tl use `PlatformWidget`.
 
 ## PlatformProvider
 
@@ -449,6 +449,8 @@ Requires to be placed at the root (above MaterialApp, CupertinoApp or PlatformAp
     builder: (BuildContext context) MaterialApp(...)
   );
 ```
+
+An optional argument `initialPlatform` can be passed in to force the platform upon startup. This could be useful for development or if the platform is persisted externally (i.e. Shared preferences) and needs to be set on startup.
 
 And to switch platforms...
 

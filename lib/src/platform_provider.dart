@@ -23,11 +23,11 @@ import 'package:flutter/widgets.dart';
 /// PlatformProvider.of(context).changeToCupertinoPlatform();
 /// ```
 class PlatformProvider extends StatefulWidget {
-  const PlatformProvider({
-    @required this.builder,
-  }) : assert(builder != null);
+  const PlatformProvider({@required this.builder, this.initialPlatform})
+      : assert(builder != null);
 
   final WidgetBuilder builder;
+  final TargetPlatform initialPlatform;
 
   static PlatformProviderState of(BuildContext context) {
     return context
@@ -40,6 +40,12 @@ class PlatformProvider extends StatefulWidget {
 
 class PlatformProviderState extends State<PlatformProvider> {
   TargetPlatform platform;
+
+  @override
+  void initState() {
+    super.initState();
+    platform = widget.initialPlatform;
+  }
 
   void changeToMaterialPlatform() {
     setState(() {

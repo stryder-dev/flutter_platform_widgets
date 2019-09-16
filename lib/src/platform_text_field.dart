@@ -18,7 +18,6 @@ import 'package:flutter/services.dart'
         TextCapitalization;
 import 'package:flutter/widgets.dart';
 
-import 'platform.dart';
 import 'widget_base.dart';
 
 const TextStyle _kDefaultTextStyle = TextStyle(
@@ -380,7 +379,8 @@ class PlatformTextField
       autocorrect: data?.autocorrect ?? autocorrect,
       autofocus: data?.autofocus ?? autofocus,
       controller: data?.controller ?? controller,
-      cursorColor: data?.cursorColor ?? cursorColor ?? CupertinoColors.activeBlue,
+      cursorColor:
+          data?.cursorColor ?? cursorColor ?? CupertinoColors.activeBlue,
       cursorRadius: data?.cursorRadius ?? cursorRadius,
       cursorWidth: data?.cursorWidth ?? cursorWidth,
       enabled: data?.enabled ?? enabled,
