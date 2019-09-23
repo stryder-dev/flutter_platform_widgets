@@ -70,7 +70,10 @@ class PlatformProviderState extends State<PlatformProvider> {
     if (platform == null) return widget.builder(context);
 
     return Theme(
-        data: Theme.of(context).copyWith(platform: platform),
-        child: widget.builder(context));
+      data: Theme.of(context).copyWith(platform: platform),
+      child: Builder(
+        builder: (context) => widget.builder(context),
+      ),
+    );
   }
 }
