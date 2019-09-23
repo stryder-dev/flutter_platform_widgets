@@ -1,4 +1,12 @@
+## [0.20.1] - September 23, 2019
+
+#### (Flutter version support: v1.9.1+hotfix.2)
+
+- Added a `Builder` to allow for children of `PlatformProvider` to get the Theme change on the builder argument.
+
 ## [0.20.0] - September 16, 2019
+
+#### (Flutter version support: v1.9.1+hotfix.2)
 
 - Switching of Platform based off theme. (thanks stefanrusek)
 - From now on the only way to dynamically change the target platform is to use `PlatformProvider`
