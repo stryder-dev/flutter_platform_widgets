@@ -23,5 +23,6 @@ export 'src/platform_slider.dart';
 export 'src/platform_switch.dart';
 export 'src/platform_text.dart';
 export 'src/platform_text_field.dart';
+export 'src/platform_text_form_field.dart';
 export 'src/platform_widget.dart';
 export 'src/widget_base.dart';
