@@ -29,6 +29,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformSwitch](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformswitch)
 - [PlatformSlider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformslider)
 - [PlatformTextField](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtextfield)
+- [PlatformSelect](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformselect)
 - [PlatformButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformbutton)
 - [PlatformIconButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
 - [PlatformApp](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformapp)
@@ -119,6 +120,64 @@ return PlatformTextField();
 return PlatformTextField(
   android: (_) => MaterialTextFieldData(...),
   ios: (_) => CupertinoTextFieldData(...)
+);
+```
+
+## PlatformSelect
+
+A select widget that will use a `DropdownButton` for android or a `CupertinoButton` + `CupertinoPicker` for iOS.
+
+`T` at `PlatformSelectItem<T>` specifies the type of the `id`, can be an `int` for example.
+
+```dart
+List<PlatformSelectItem<String>> platforms = <PlatformSelectItem<String>>[
+  PlatformSelectItem<String>(
+    id: 'material',
+    label: 'Android',
+    data: '(dynamic) custom data'
+  ),
+  PlatformSelectItem<String>(
+    id: 'cupertino',
+    label: 'iOS',
+    data: '(dynamic) custom data'
+  ),
+];
+
+return PlatformSelect(
+  initialValue:
+    PlatformProvider.of(context).isMaterial ?
+    platforms[0] : platforms[1],
+  availableValues: platforms,
+  onChanged: (PlatformSelectItem item) {
+    dynamic customData = item.data;
+
+    switch (item.id) {
+      case 'material':
+        S().switchTheme('material');
+        PlatformProvider.of(context).changeToMaterialPlatform();
+        break;
+      case 'cupertino':
+        S().switchTheme('cupertino');
+        PlatformProvider.of(context).changeToCupertinoPlatform();
+        break;
+    }
+  },
+  android: (_) => MaterialSelectData(
+    icon: Icon(Icons.arrow_downward),
+    iconSize: 24,
+    elevation: 16,
+    style: TextStyle(
+      color: Colors.deepPurple
+    ),
+    underline: Container(
+      height: 2,
+      color: Colors.deepPurpleAccent,
+    ),
+  ),
+  ios: (_) => CupertinoSelectData(
+    pickerHeight: 216.0,
+    itemHeight: 32.0,
+  ),
 );
 ```
 
