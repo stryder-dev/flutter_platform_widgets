@@ -393,7 +393,7 @@ return PlatformNavBar(
 
 Uses `ListView` on Android and a custom built list view layout for iOS to reflect the [Apple guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/views/tables/).
 
-## Example
+#### Example
 
 ```dart
   List list = [
