@@ -24,5 +24,6 @@ export 'src/platform_switch.dart';
 export 'src/platform_text.dart';
 export 'src/platform_text_field.dart';
 export 'src/platform_select.dart';
+export 'src/platform_list_view.dart';
 export 'src/platform_widget.dart';
 export 'src/widget_base.dart';

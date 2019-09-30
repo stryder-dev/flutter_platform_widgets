@@ -36,6 +36,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformscaffold)
 - [PlatformAppBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformappbar)
 - [PlatformNavBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformnavbar)
+- [PlatformListView](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformlistview)
 - [PlatformAlertDialog](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
 - [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
@@ -387,6 +388,94 @@ return PlatformNavBar(
   ios: (_) => CupertinoTabBarData(...),
 );
 ```
+
+## PlatformListView
+
+Uses `ListView` on Android and a custom built list view layout for iOS to reflect the [Apple guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/views/tables/).
+
+## Example
+
+```dart
+  List list = [
+    PlatformListTile(
+      leading: PlatformWidget(
+        ios: (_) => Icon(
+          IconData(
+            0xf37b,
+            fontFamily: CupertinoIcons.iconFont,
+            fontPackage: CupertinoIcons.iconFontPackage
+          )
+        ),
+      ),
+      title: Text('Theme'),
+      onTap: () {
+        print('Row tapped.');
+      },
+      trailing: PlatformSelect( /* ... see PlatformSelect ... */ )
+    ),
+
+    PlatformListHeading(
+      leading: PlatformWidget(
+        android: (_) => Icon(Icons.tune, size: 40),
+      ),
+      title: PlatformWidget(
+        android: (_) => Text('Debug'),
+        ios: (_) => Text('Debug'.toUpperCase() + ': ' + 'The geek stuff you may eventually need.'),
+      ),
+      secondaryTitle: PlatformWidget(
+        android: (_) => Text('The geek stuff you may eventually need.'),
+      ),
+      onTap: () {
+        print('Row tapped.');
+      },
+    ),
+
+    PlatformListTile(
+      leading: PlatformWidget(
+        ios: (_) => Icon(
+          IconData(
+            0xf458,
+            fontFamily: CupertinoIcons.iconFont,
+            fontPackage: CupertinoIcons.iconFontPackage
+          )
+        ),
+      ),
+      title: Text('Another setting'),
+      onTap: () {
+        print('Row tapped.');
+      },
+      trailing: PlatformButton(
+        onPressed: () {
+          Clipboard.setData(new ClipboardData(text: 'Copy button!'));
+        },
+        child: PlatformWidget(
+          ios: (_) => Icon(
+            IconData(
+              0xf3f0,
+              fontFamily: CupertinoIcons.iconFont,
+              fontPackage: CupertinoIcons.iconFontPackage
+            )
+          ),
+          android: (_) => Icon(Icons.content_copy),
+        ),
+      ),
+    ),
+  ];
+
+  return PlatformScaffold(
+    iosContentPadding: true,
+    appBar: PlatformAppBar(
+      title: Text('Settings'),
+    ),
+    body: PlatformListView(
+      children: list,
+    )
+  );
+```
+
+![alt text](images/android-listview.png)
+
+![alt text](images/ios-listview.png)
 
 ## PlatformAlertDialog
 
