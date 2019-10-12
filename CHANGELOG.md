@@ -1,3 +1,9 @@
+## [0.20.2] - October 12, 2019
+
+#### (Flutter version support: v1.9.1+hotfix.2)
+
+- Fixed unselectedFontSize to be a double and not a bool
+
 ## [0.20.1] - September 23, 2019
 
 #### (Flutter version support: v1.9.1+hotfix.2)

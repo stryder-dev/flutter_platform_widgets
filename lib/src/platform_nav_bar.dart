@@ -108,7 +108,7 @@ class MaterialNavBarData extends _BaseData {
   final Color selectedItemColor;
   final bool showSelectedLabels;
   final bool showUnselectedLabels;
-  final bool unselectedFontSize;
+  final double unselectedFontSize;
   final Color unselectedItemColor;
   final IconThemeData selectedIconTheme;
   final TextStyle selectedLabelStyle;
