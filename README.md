@@ -4,7 +4,11 @@
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
-This package only supports the **Stable** release. Beta, Dev or Master channels are not supported. This is due to pub.dev applying checks to packages that conform to the Stable version of the framework
+This package supports the **Stable** release as a full released version. 
+
+Beta or Dev channels might be supported when there is a pre-release version. Please check the CHANGELOG for version compatibility version. 
+
+Due to Master being in rapid development this package is unable to support Master. If this support is required then it is best to folk the repo and locally reference the folked version where changes can be made appropriately.
 
 # Installation
 
@@ -224,7 +228,7 @@ return PlatformScaffold(
 );
 ```
 
-> Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it
+> Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it. This will not have the translucent effect for iOS when these are set to `true`. If that is desirable, then the scrolling and content alignment need to be managed yourself.
 
 #### Enhance
 

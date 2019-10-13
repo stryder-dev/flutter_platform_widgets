@@ -1,3 +1,10 @@
+## [0.20.3+1] - October 14, 2019
+
+#### (Flutter version support: v1.10.7)
+
+- Uses `shouldFullyObstruct`
+- Updated all widgets compatible with Flutter v 1.10.7
+
 ## [0.20.2] - October 12, 2019
 
 #### (Flutter version support: v1.9.1+hotfix.2)
@@ -130,7 +137,7 @@
 #### (Flutter version support: v1.0.0)
 
 - Redone the way PlaformScaffold renders Cupertino. Requires fluttter version 0.11+
-- Added iosContentPadding to PlatformScaffold for iOS to push content bown past the navigation (app) bar
+- Added iosContentPadding to PlatformScaffold for iOS to push content down past the navigation (app) bar
 
 ## [0.4.0] - Oct 27, 2018
 

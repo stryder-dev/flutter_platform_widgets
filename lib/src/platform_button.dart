@@ -4,7 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoButton;
+import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart'
     show
         MaterialButton,
@@ -275,7 +275,7 @@ class PlatformButton
       data = ios(context);
     }
 
-    return new CupertinoButton(
+    return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child,
       onPressed: data?.onPressed ?? onPressed,
@@ -285,7 +285,9 @@ class PlatformButton
       minSize: data?.minSize ?? 44.0,
       padding: data?.padding ?? padding,
       pressedOpacity: data?.pressedOpacity ?? 0.1,
-      disabledColor: data?.disabledColor ?? disabledColor,
+      disabledColor: data?.disabledColor ??
+          disabledColor ??
+          CupertinoColors.quaternarySystemFill,
     );
   }
 }

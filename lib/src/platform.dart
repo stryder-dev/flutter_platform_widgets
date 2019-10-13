@@ -63,6 +63,7 @@ Future<T> showPlatformModalSheet<T>({
   ShapeBorder androidShape,
   bool androidIsScrollControlled = false,
   bool androidUseRootNavigator = false,
+  Clip androidClipBehavior,
 }) {
   if (isMaterial(context)) {
     return showModalBottomSheet<T>(
@@ -73,6 +74,7 @@ Future<T> showPlatformModalSheet<T>({
       shape: androidShape,
       isScrollControlled: androidIsScrollControlled,
       useRootNavigator: androidUseRootNavigator,
+      clipBehavior: androidClipBehavior,
     );
   } else {
     return showCupertinoModalPopup<T>(
