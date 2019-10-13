@@ -1,4 +1,4 @@
-## [0.20.3+1] - October 14, 2019
+## [0.20.3-beta.1] - October 14, 2019
 
 #### (Flutter version support: v1.10.7)
 
