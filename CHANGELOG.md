@@ -1,4 +1,4 @@
-## [0.30.0] - December 11, 2019
+## [0.30.1] - December 11, 2019
 
 #### (Flutter version support: v1.12.13+hotfix.5)
 
