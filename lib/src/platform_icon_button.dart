@@ -4,7 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoButton;
+import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart' show IconButton;
 import 'package:flutter/widgets.dart';
 
@@ -158,7 +158,9 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
           const BorderRadius.all(const Radius.circular(8.0)),
       minSize: data?.minSize ?? 44.0,
       pressedOpacity: data?.pressedOpacity ?? 0.1,
-      disabledColor: data?.disabledColor ?? disabledColor,
+      disabledColor: data?.disabledColor ??
+          disabledColor ??
+          CupertinoColors.quaternarySystemFill,
     );
   }
 }

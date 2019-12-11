@@ -21,16 +21,16 @@ class TabbedPageState extends State<TabbedPage> {
       appBar: PlatformAppBar(
         title: Text('Platform Widgets'),
         ios: (_) => CupertinoNavigationBarData(
-              transitionBetweenRoutes: false,
-            ),
+          transitionBetweenRoutes: false,
+        ),
       ),
       bottomNavBar: PlatformNavBar(
         currentIndex: _selectedTabIndex,
         itemChanged: (index) => setState(
-              () {
-                _selectedTabIndex = index;
-              },
-            ),
+          () {
+            _selectedTabIndex = index;
+          },
+        ),
         items: [
           BottomNavigationBarItem(
             title: Text('Flag'),
