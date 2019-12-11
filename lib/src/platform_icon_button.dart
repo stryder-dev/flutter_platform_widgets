@@ -68,6 +68,7 @@ class MaterialIconButtonData extends _BaseData {
     this.hoverColor,
     this.focusNode,
     this.autofocus,
+    this.enableFeedback,
   }) : super(
             widgetKey: widgetKey,
             icon: icon,
@@ -85,6 +86,7 @@ class MaterialIconButtonData extends _BaseData {
   final Color hoverColor;
   final FocusNode focusNode;
   final bool autofocus;
+  final bool enableFeedback;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -138,6 +140,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       focusNode: data?.focusNode,
       hoverColor: data?.hoverColor,
       autofocus: data?.autofocus ?? false,
+      enableFeedback: data?.enableFeedback ?? true,
     );
   }
 

@@ -84,6 +84,7 @@ class MaterialTextFieldData {
     this.showCursor,
     this.textAlignVertical,
     this.toolbarOptions,
+    this.enableSuggestions,
   });
 
   final Key widgetKey;
@@ -125,6 +126,7 @@ class MaterialTextFieldData {
   final bool showCursor;
   final TextAlignVertical textAlignVertical;
   final ToolbarOptions toolbarOptions;
+  final bool enableSuggestions;
 }
 
 class CupertinoTextFieldData {
@@ -174,6 +176,7 @@ class CupertinoTextFieldData {
     this.textAlignVertical,
     this.toolbarOptions,
     this.onTap,
+    this.enableSuggestions,
   });
 
   final Key widgetKey;
@@ -221,6 +224,7 @@ class CupertinoTextFieldData {
   final TextAlignVertical textAlignVertical;
   final ToolbarOptions toolbarOptions;
   final GestureTapCallback onTap;
+  final bool enableSuggestions;
 }
 
 class PlatformTextField
@@ -364,6 +368,7 @@ class PlatformTextField
       showCursor: data?.showCursor ?? showCursor,
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
+      enableSuggestions: data?.enableSuggestions ?? true,
     );
   }
 
@@ -424,6 +429,7 @@ class PlatformTextField
       showCursor: data?.showCursor ?? showCursor,
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
+      enableSuggestions: data?.enableSuggestions ?? true,
     );
   }
 }

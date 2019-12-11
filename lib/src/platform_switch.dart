@@ -41,6 +41,10 @@ class MaterialSwitchData extends _BaseData {
     this.activeThumbImage,
     this.inactiveThumbImage,
     this.materialTapTargetSize,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.autofocus,
   }) : super(
             widgetKey: widgetKey,
             value: value,
@@ -54,6 +58,10 @@ class MaterialSwitchData extends _BaseData {
   final ImageProvider activeThumbImage;
   final ImageProvider inactiveThumbImage;
   final MaterialTapTargetSize materialTapTargetSize;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final bool autofocus;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -113,6 +121,10 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       dragStartBehavior: data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
+      autofocus: data?.autofocus ?? false,
+      focusColor: data?.focusColor,
+      focusNode: data?.focusNode,
+      hoverColor: data?.hoverColor,
     );
   }
 

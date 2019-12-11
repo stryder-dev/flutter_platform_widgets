@@ -4,7 +4,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoSlider;
+import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
 import 'package:flutter/material.dart' show Slider, SemanticFormatterCallback;
 import 'package:flutter/widgets.dart';
 
@@ -76,6 +76,7 @@ class CupertinoSliderData extends _BaseData {
     int divisions,
     double min,
     double max,
+    this.thumbColor,
   }) : super(
             widgetKey: widgetKey,
             value: value,
@@ -86,6 +87,8 @@ class CupertinoSliderData extends _BaseData {
             divisions: divisions,
             min: min,
             max: max);
+
+  final CupertinoColors thumbColor;
 }
 
 class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
@@ -161,6 +164,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       divisions: data?.divisions ?? divisions,
       max: data?.max ?? max,
       min: data?.min ?? min,
+      thumbColor: data?.thumbColor ?? CupertinoColors.white,
     );
   }
 }

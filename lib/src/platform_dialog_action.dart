@@ -12,17 +12,18 @@ import 'package:flutter/widgets.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.child, this.onPressed});
+  _BaseData({this.widgetKey, this.child, this.onPressed});
 
   final Widget child;
   final VoidCallback onPressed;
+  final Key widgetKey;
 }
 
 class MaterialDialogActionData extends _BaseData {
   MaterialDialogActionData({
     Widget child,
     VoidCallback onPressed,
-    this.widgetKey,
+    Key widgetKey,
     this.color,
     this.colorBrightness,
     this.disabledColor,
@@ -40,9 +41,8 @@ class MaterialDialogActionData extends _BaseData {
     this.hoverColor,
     this.focusNode,
     this.autofocus,
-  }) : super(child: child, onPressed: onPressed);
+  }) : super(widgetKey: widgetKey, child: child, onPressed: onPressed);
 
-  final Key widgetKey;
   final Color color;
   final Brightness colorBrightness;
   final Color disabledColor;
@@ -66,10 +66,11 @@ class CupertinoDialogActionData extends _BaseData {
   CupertinoDialogActionData(
       {Widget child,
       VoidCallback onPressed,
+      Key widgetKey,
       this.isDefaultAction,
       this.isDestructiveAction,
       this.textStyle})
-      : super(child: child, onPressed: onPressed);
+      : super(widgetKey: widgetKey, child: child, onPressed: onPressed);
 
   final bool isDefaultAction;
   final bool isDestructiveAction;
@@ -132,6 +133,7 @@ class PlatformDialogAction
     }
 
     return CupertinoDialogAction(
+      key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child,
       isDefaultAction: data?.isDefaultAction ?? false,
       isDestructiveAction: data?.isDestructiveAction ?? false,

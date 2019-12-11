@@ -30,8 +30,7 @@ class PlatformProvider extends StatefulWidget {
   final TargetPlatform initialPlatform;
 
   static PlatformProviderState of(BuildContext context) {
-    return context
-        .ancestorStateOfType(const TypeMatcher<PlatformProviderState>());
+    return context.findAncestorStateOfType<PlatformProviderState>();
   }
 
   @override

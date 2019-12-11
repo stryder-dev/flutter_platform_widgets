@@ -50,14 +50,16 @@ class MaterialAlertDialogData extends _BaseData {
 }
 
 class CupertinoAlertDialogData extends _BaseData {
-  CupertinoAlertDialogData(
-      {Key widgetKey,
-      List<Widget> actions,
-      Widget content,
-      Widget title,
-      this.scrollController,
-      this.actionScrollController})
-      : super(
+  CupertinoAlertDialogData({
+    Key widgetKey,
+    List<Widget> actions,
+    Widget content,
+    Widget title,
+    this.scrollController,
+    this.actionScrollController,
+    this.insetAnimationCurve,
+    this.insetAnimationDuration,
+  }) : super(
             widgetKey: widgetKey,
             actions: actions,
             content: content,
@@ -65,6 +67,8 @@ class CupertinoAlertDialogData extends _BaseData {
 
   final ScrollController scrollController;
   final ScrollController actionScrollController;
+  final Curves insetAnimationCurve;
+  final Duration insetAnimationDuration;
 }
 
 class PlatformAlertDialog
@@ -125,6 +129,9 @@ class PlatformAlertDialog
       scrollController: data?.scrollController,
       actionScrollController: data?.actionScrollController,
       title: data?.title ?? title,
+      insetAnimationCurve: data?.insetAnimationCurve ?? Curves.decelerate,
+      insetAnimationDuration:
+          data?.insetAnimationDuration ?? Duration(milliseconds: 100),
     );
   }
 }

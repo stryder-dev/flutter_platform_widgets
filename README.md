@@ -4,15 +4,15 @@
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
-This package supports the **Stable** release as a full released version. 
+This package supports the **Stable** release as a full released version.
 
-Beta or Dev channels might be supported when there is a pre-release version. Please check the CHANGELOG for version compatibility version. 
+Beta or Dev channels might be supported when there is a pre-release version. Please check the CHANGELOG for version compatibility version.
 
 Due to Master being in rapid development this package is unable to support Master. If this support is required then it is best to folk the repo and locally reference the folked version where changes can be made appropriately.
 
 # Installation
 
-> Pubspec: https://pub.dev/packages/flutter_platform_widgets
+> pub.dev: https://pub.dev/packages/flutter_platform_widgets
 
 # How it works
 
@@ -282,7 +282,7 @@ Extend with `WidgetBuilder` for android or iOS.
 ```dart
 return PlatformAppBar(
   title: new Text('Platform Widgets'),
-  leading: PlatformIconButton()),
+  leading: PlatformIconButton(),
   trailingActions: <Widget>[
     PlatformIconButton(),
   ],

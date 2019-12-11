@@ -204,7 +204,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
     // Ensure that there is Material widget at the root page level
     // as there will still be Material widgets using on ios (for now)
-    final materialWidget = context.ancestorWidgetOfExactType(Material);
+    final materialWidget = context.findAncestorWidgetOfExactType<Material>();
     if (materialWidget == null) {
       return Material(
         elevation: 0.0,
