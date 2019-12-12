@@ -253,7 +253,7 @@ The AppBar is the top Header bar with a title, leftside or rightside buttons. Us
 ```dart
 return PlatformAppBar(
     title: new Text('Platform Widgets'),
-    leading: PlatformIconButton()),
+    leading: PlatformIconButton(),
     trailingActions: <Widget>[
       PlatformIconButton(),
     ],
