@@ -409,7 +409,11 @@ class PlatformTextField
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
       placeholder: data?.placeholder,
-      placeholderStyle: data?.placeholderStyle,
+      placeholderStyle: data?.placeholderStyle ??
+          const TextStyle(
+            fontWeight: FontWeight.w400,
+            color: CupertinoColors.placeholderText,
+          ),
       prefix: data?.prefix,
       prefixMode: data?.prefixMode ?? OverlayVisibilityMode.always,
       suffix: data?.suffix,
