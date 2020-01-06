@@ -5,7 +5,11 @@
  */
 
 import 'package:flutter/cupertino.dart'
-    show CupertinoTextField, CupertinoColors, OverlayVisibilityMode;
+    show
+        CupertinoColors,
+        CupertinoDynamicColor,
+        CupertinoTextField,
+        OverlayVisibilityMode;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show InputDecoration, TextField, InputCounterWidgetBuilder;
@@ -20,27 +24,29 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
-const TextStyle _kDefaultTextStyle = TextStyle(
-  fontFamily: '.SF Pro Text',
-  fontSize: 17.0,
-  letterSpacing: -0.38,
-  color: CupertinoColors.black,
-  decoration: TextDecoration.none,
-);
 const BorderSide _kDefaultRoundedBorderSide = BorderSide(
-  color: CupertinoColors.lightBackgroundGray,
+  color: CupertinoDynamicColor.withBrightness(
+    color: Color(0x33000000),
+    darkColor: Color(0x33FFFFFF),
+  ),
   style: BorderStyle.solid,
   width: 0.0,
 );
+
 const Border _kDefaultRoundedBorder = Border(
   top: _kDefaultRoundedBorderSide,
   bottom: _kDefaultRoundedBorderSide,
   left: _kDefaultRoundedBorderSide,
   right: _kDefaultRoundedBorderSide,
 );
+
 const BoxDecoration _kDefaultRoundedBorderDecoration = BoxDecoration(
+  color: CupertinoDynamicColor.withBrightness(
+    color: CupertinoColors.white,
+    darkColor: CupertinoColors.black,
+  ),
   border: _kDefaultRoundedBorder,
-  borderRadius: BorderRadius.all(Radius.circular(4.0)),
+  borderRadius: BorderRadius.all(Radius.circular(5.0)),
 );
 
 class MaterialTextFieldData {
@@ -401,7 +407,7 @@ class PlatformTextField
       onEditingComplete: data?.onEditingComplete ?? onEditingComplete,
       onSubmitted: data?.onSubmitted ?? onSubmitted,
       scrollPadding: data?.scrollPadding ?? scrollPadding,
-      style: data?.style ?? style ?? _kDefaultTextStyle,
+      style: data?.style ?? style,
       textAlign: data?.textAlign ?? textAlign,
       textCapitalization: data?.textCapitalization ?? textCapitalization,
       textInputAction: data?.textInputAction ?? textInputAction,
