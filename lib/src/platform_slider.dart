@@ -5,7 +5,7 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
-import 'package:flutter/material.dart' show Slider, SemanticFormatterCallback;
+import 'package:flutter/material.dart' show SemanticFormatterCallback, Slider;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -88,7 +88,7 @@ class CupertinoSliderData extends _BaseData {
             min: min,
             max: max);
 
-  final CupertinoColors thumbColor;
+  final Color thumbColor;
 }
 
 class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
