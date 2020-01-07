@@ -22,6 +22,7 @@ import 'package:flutter/widgets.dart';
 
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
+import 'platform_provider.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -202,15 +203,22 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       );
     }
 
-    // Ensure that there is Material widget at the root page level
-    // as there will still be Material widgets using on ios (for now)
-    final materialWidget = context.findAncestorWidgetOfExactType<Material>();
-    if (materialWidget == null) {
-      return Material(
-        elevation: 0.0,
-        child: result,
-      );
+    final providerState = PlatformProvider.of(context);
+    final useMaterial =
+        providerState?.settings?.iosUsesMaterialWidgets ?? false;
+
+    if (useMaterial) {
+      // Ensure that there is Material widget at the root page level
+      // as there can be Material widgets used on ios
+      final materialWidget = context.findAncestorWidgetOfExactType<Material>();
+      if (materialWidget == null) {
+        return Material(
+          elevation: 0.0,
+          child: result,
+        );
+      }
     }
+
     return result;
   }
 

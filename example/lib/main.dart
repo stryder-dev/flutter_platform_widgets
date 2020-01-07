@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart'
         CupertinoActionSheetAction,
         CupertinoIcons,
         CupertinoThemeData;
-import 'package:flutter/material.dart' show Colors, Icons, ThemeData;
+import 'package:flutter/material.dart' show Colors, Icons, ThemeData, ThemeMode;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -26,6 +27,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  Brightness brightness = Brightness.light;
+
   @override
   Widget build(BuildContext context) {
     final themeData = new ThemeData(
@@ -35,23 +38,55 @@ class _AppState extends State<App> {
     final cupertinoTheme = new CupertinoThemeData(
       primaryColor: Colors.purple,
     );
+    final cupertinoDarkTheme = new CupertinoThemeData(
+      primaryColor: Colors.cyan,
+      brightness: Brightness.dark,
+    );
 
     // Example of optionally setting the platform upfront.
     //final initialPlatform = TargetPlatform.iOS;
 
+    // If you mix material and cupertino widgets together then you cam
+    // set this setting. Will mean ios darmk mode to not to work properly
+    //final settings = PlatformSettingsData(iosUsesMaterialWidgets: true);
+
     return PlatformProvider(
-      //initialPlatform: initialPlatform,
-      builder: (BuildContext context) => PlatformApp(
+      builder: (context) => PlatformApp(
         title: 'Flutter Platform Widgets',
-        android: (_) => new MaterialAppData(theme: themeData),
-        ios: (_) => new CupertinoAppData(theme: cupertinoTheme),
-        home: LandingPage(),
+        android: (_) {
+          return new MaterialAppData(
+            theme: themeData,
+            darkTheme: themeData.copyWith(
+              brightness: Brightness.dark,
+            ),
+            themeMode: brightness == Brightness.light
+                ? ThemeMode.light
+                : ThemeMode.dark,
+          );
+        },
+        ios: (_) => new CupertinoAppData(
+          theme: brightness == Brightness.light
+              ? cupertinoTheme
+              : cupertinoDarkTheme,
+        ),
+        home: LandingPage(() {
+          setState(() {
+            brightness = brightness == Brightness.light
+                ? Brightness.dark
+                : Brightness.light;
+          });
+        }),
       ),
+      // ),
     );
   }
 }
 
 class LandingPage extends StatefulWidget {
+  LandingPage(this.toggleBrightness);
+
+  final void Function() toggleBrightness;
+
   @override
   LandingPageState createState() => LandingPageState();
 }
@@ -77,6 +112,10 @@ class LandingPageState extends State<LandingPage> {
     }
   }
 
+  _toggleBrightness() {
+    widget.toggleBrightness();
+  }
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -98,6 +137,11 @@ class LandingPageState extends State<LandingPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                   'This approach is best when both iOS and Android apps follow the same design in layout and navigation, but need to look as close to native styling as possible.'),
+            ),
+            Divider(),
+            PlatformButton(
+              child: PlatformText('Toggle Dark / Light mode'),
+              onPressed: _toggleBrightness,
             ),
             Divider(),
             SectionHeader(title: '1. Change Platform'),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart' show ListTile;
 import 'package:flutter/material.dart' show Colors;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -40,17 +39,18 @@ class ListViewHeaderPage extends StatelessWidget {
       appBar: PlatformAppBar(
         title: Text('iOS Colored Header'),
         ios: (_) => CupertinoNavigationBarData(
-              // Issue with cupertino where a bar with no transparency
-              // will push the list down. Adding some alpha value fixes it (in a hacky way)
-              backgroundColor: Colors.lightGreen.withAlpha(254),
-            ),
+          // Issue with cupertino where a bar with no transparency
+          // will push the list down. Adding some alpha value fixes it (in a hacky way)
+          backgroundColor: Colors.lightGreen.withAlpha(254),
+        ),
       ),
       body: ListView(
         children: _words
             .map(
-              (w) => ListTile(
-                    title: Text(w),
-                  ),
+              (w) => Container(
+                padding: EdgeInsets.all(16),
+                child: Text(w),
+              ),
             )
             .toList(),
       ),

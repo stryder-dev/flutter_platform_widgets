@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart' show ListTile;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -42,9 +41,10 @@ class ListViewPage extends StatelessWidget {
       body: ListView(
         children: _words
             .map(
-              (w) => ListTile(
-                    title: Text(w),
-                  ),
+              (w) => Container(
+                padding: EdgeInsets.all(16),
+                child: Text(w),
+              ),
             )
             .toList(),
       ),
