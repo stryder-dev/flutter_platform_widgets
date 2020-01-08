@@ -293,8 +293,6 @@ return PlatformAppBar(
 
 ## PlatformNavBar
 
-> Note: hasNotch has been removed to allow for the widget to work with the change on the development branch of flutter. To work around the breaking change either use the Material `BottomAppBar` directly or cast the result from PlatformNavBar to `BottomAppBar` for android builds and set the `hasNotch` property. Otherwise target version 0.2.0
-
 The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for iOS.
 
 ```dart
@@ -454,6 +452,10 @@ Requires to be placed at the root (above MaterialApp, CupertinoApp or PlatformAp
   );
 ```
 
+### Arguments
+
+#### initialPlatform
+
 An optional argument `initialPlatform` can be passed in to force the platform upon startup. This could be useful for development or if the platform is persisted externally (i.e. Shared preferences) and needs to be set on startup.
 
 And to switch platforms...
@@ -468,6 +470,14 @@ or
 PlatformProvider.of(context).changeToCupertinoPlatform();
 ```
 
+#### settings
+
+The settings argument have been added to assist in configuring Platform Widgets.
+
+_iosUsesMaterialWidgets_
+
+- If true it will add a Material widget above the CupertinoPageScaffold so that Material widgets can be added to the ios page. This does affect dark mode and some ios rendering so it is best to have it false (default). If you use Material widgets on the page simply add `Material(child: yourWidget)`.
+
 # TODO
 
 - UI / Unit Tests.
@@ -475,7 +485,7 @@ PlatformProvider.of(context).changeToCupertinoPlatform();
 
 # Changing / Checking Platform
 
-When importing `flutter_platform_widgets` you can check `isMaterial` or `isCupertino` to determine what style will be used. This is independent to `Platform.isAndroid` or `Platform.isIOS` from `'import 'dart:io'`
+When importing `flutter_platform_widgets` you can check `isMaterial(context)` or `isCupertino(context)` to determine what style will be used. This is independent to `Platform.isAndroid` or `Platform.isIOS` from `'import 'dart:io'`
 
 See the example code for how this is used.
 
