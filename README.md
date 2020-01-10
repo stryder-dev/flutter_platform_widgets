@@ -8,7 +8,7 @@ This package supports the **Stable** release as a full released version.
 
 Beta or Dev channels might be supported when there is a pre-release version. Please check the CHANGELOG for version compatibility version.
 
-Due to Master being in rapid development this package is unable to support Master. If this support is required then it is best to folk the repo and locally reference the folked version where changes can be made appropriately.
+Due to Master being in rapid development this package is unable to support Master. If this support is required then it is best to fork the repo and locally reference the forked version where changes can be made appropriately.
 
 # Installation
 
