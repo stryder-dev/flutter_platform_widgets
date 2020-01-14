@@ -1,3 +1,11 @@
+## [0.32.0] - January 14, 2020
+
+#### (Flutter version support: v1.12.13+hotfix.5)
+
+- Increased SDK verson to be ">=2.6.0 <3.0.0"
+- Added PlatformIcons where Material and Cupertino icons are picked based on the platform
+- Added PlatformTabScaffold to offer a simplier and more flexible platform tabbed page
+
 ## [0.31.0] - January 09, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
