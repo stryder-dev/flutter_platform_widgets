@@ -9,8 +9,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import 'iconPage.dart';
 import 'listViewHeaderPage.dart';
 import 'listViewPage.dart';
+import 'tabbed/basicTabbedPage.dart';
+import 'tabbed/originalTabbedPage.dart';
+import 'tabbed/sliverTabbedPage.dart';
 import 'tabbedPage.dart';
 
 void main() => runApp(Main());
@@ -219,19 +223,37 @@ class LandingPageState extends State<LandingPage> {
             SectionHeader(title: '5. Navigation'),
             PlatformButton(
               child: PlatformText('Open Tabbed Page'),
-              onPressed: () => _openPage((_) => new TabbedPage()),
+              onPressed: () => _openPage((_) => TabbedPage()),
+            ),
+            PlatformButton(
+              child: PlatformText('Open Basic Tabbed Page'),
+              onPressed: () => _openPage((_) => BasicTabbedPage()),
+            ),
+            PlatformButton(
+              child: PlatformText('Open Sliver Tabbed Page'),
+              onPressed: () => _openPage((_) => SliverTabbedPage()),
+            ),
+            PlatformButton(
+              child: PlatformText('Open Original Tabbed Page'),
+              onPressed: () => _openPage((_) => OriginalTabbedPage()),
             ),
             Divider(),
-            SectionHeader(title: '6. Advanced'),
+            SectionHeader(title: '6. Icons'),
+            PlatformButton(
+              child: PlatformText('Open Icons Page'),
+              onPressed: () => _openPage((_) => IconsPage()),
+            ),
+            Divider(),
+            SectionHeader(title: '7. Advanced'),
             PlatformButton(
               child: PlatformText('Page with ListView'),
-              onPressed: () => _openPage((_) => new ListViewPage()),
+              onPressed: () => _openPage((_) => ListViewPage()),
             ),
             PlatformWidget(
               android: (_) => Container(), //this is for iOS only
               ios: (_) => PlatformButton(
                 child: PlatformText('iOS Page with Colored Header'),
-                onPressed: () => _openPage((_) => new ListViewHeaderPage()),
+                onPressed: () => _openPage((_) => ListViewHeaderPage()),
               ),
             ),
           ],

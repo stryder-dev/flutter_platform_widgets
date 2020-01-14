@@ -37,6 +37,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformIconButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
 - [PlatformApp](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformapp)
 - [PlatformScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformscaffold)
+- [PlatformTabScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtabscaffold)
 - [PlatformAppBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformappbar)
 - [PlatformNavBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformnavbar)
 - [PlatformAlertDialog](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
@@ -45,6 +46,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
 - [ShowPlatformModalSheet](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
+- [PlatformIcons](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformicons)
 
 ## PlatformWidget
 
@@ -246,6 +248,47 @@ return PlatformScaffold(
 
 > Both the android and iOS builders are optional. If not provided the `Container` placeholder widget will be returned.
 
+## PlatformTabScaffold
+
+> Note: Using `PlatformTabScaffold` provides a more refined and flexible experience than using `PlatformScaffold`.
+
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for iOS with bottom tabs.
+
+```dart
+return PlatformTabScaffold(
+  tabController: tabController,
+  appBarBuilder: (_, index) => PlatformAppBar(),
+  bodyBuilder: (context, index) => _buildContent(index),
+  items: _items(context),
+);
+```
+
+More more detailed example look at:
+
+- [Basic Example](https://github.com/aqwert/flutter_platform_widgets/blob/master/example/lib/tabbed/basicTabbedPage.dart)
+- [Sliver Example](https://github.com/aqwert/flutter_platform_widgets/blob/master/example/lib/tabbed/sliverTabbedPage.dart)
+
+> Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it. This will not have the translucent effect for iOS when these are set to `true`. If that is desirable, then the scrolling and content alignment need to be managed yourself.
+
+#### Enhance
+
+Extend with `WidgetBuilder` for android or iOS.
+
+```dart
+return PlatformTabScaffold(
+  tabController: tabController,
+  appBarBuilder: (_, index) => PlatformAppBar(),
+  bodyBuilder: (context, index) => _buildContent(index),
+  items: _items(context),
+  android: (_) => MaterialTabScaffoldData(...)
+  ios: (_) => CupertinoTabScaffoldData(...);
+  androidTabs: (_) => MaterialNavBarData(...)
+  iosTabs: (_) => CupertinoTabBarData(...);
+);
+```
+
+> Both the android and iOS builders are optional. If not provided the `Container` placeholder widget will be returned.
+
 ## PlatformAppBar
 
 The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for iOS.
@@ -442,7 +485,7 @@ This function is used to either display a `ModalBottomSheet` for android or `Cup
 
 ## PlatformProvider
 
-A Provider that provides access to the functions of swicthing platforms which can be accessed from any screen.
+A Provider that provides access to the functions of switching platforms which can be accessed from any screen.
 
 Requires to be placed at the root (above MaterialApp, CupertinoApp or PlatformApp).
 
@@ -477,6 +520,18 @@ The settings argument have been added to assist in configuring Platform Widgets.
 _iosUsesMaterialWidgets_
 
 - If true it will add a Material widget above the CupertinoPageScaffold so that Material widgets can be added to the ios page. This does affect dark mode and some ios rendering so it is best to have it false (default). If you use Material widgets on the page simply add `Material(child: yourWidget)`.
+
+## PlatformIcons
+
+Render a Material or Cupertino looking icon
+
+```dart
+  Icon(context.platformIcons.book)
+//or
+  Icon(PlatformIcons(context).book)
+```
+
+View the [source](https://github.com/aqwert/flutter_platform_widgets/blob/master/lib/src/../../../../../../../../lib/src/platform_icons.dart) for the list of icons.
 
 # TODO
 
