@@ -361,13 +361,9 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 class MaterialTabControllerData {
   MaterialTabControllerData({
     this.initialIndex,
-    this.length,
-    this.vsync,
   });
 
-  int initialIndex;
-  int length;
-  TickerProvider vsync;
+  final int initialIndex;
 }
 
 class CupertinoTabControllerData {
@@ -375,11 +371,11 @@ class CupertinoTabControllerData {
     this.initialIndex,
   });
 
-  int initialIndex;
+  final int initialIndex;
 }
 
 class MaterialTabController extends ChangeNotifier {
-  MaterialTabController({int initialIndex})
+  MaterialTabController({int initialIndex = 0})
       : _index = initialIndex,
         assert(initialIndex != null),
         assert(initialIndex >= 0);
@@ -402,28 +398,18 @@ class PlatformTabController extends ChangeNotifier {
   MaterialTabController _materialController;
   CupertinoTabController _cupertinoController;
 
-  MaterialTabControllerData android;
-  CupertinoTabControllerData ios;
+  final MaterialTabControllerData android;
+  final CupertinoTabControllerData ios;
 
-  final int initialIndex;
+  final int _initialIndex;
 
   PlatformTabController({
-    this.initialIndex,
+    int initialIndex = 0,
     this.android,
     this.ios,
-  }) {
-    // if (isMaterial(context)) {
-    //   _materialController = MaterialTabController(
-    //     initialIndex: android?.initialIndex ?? initialIndex,
-    //   );
-    //   _materialController.addListener(_listener);
-    // } else {
-    //   _cupertinoController = CupertinoTabController(
-    //     initialIndex: ios?.initialIndex ?? initialIndex,
-    //   );
-    //   _cupertinoController.addListener(_listener);
-    // }
-  }
+  })  : _initialIndex = initialIndex,
+        assert(initialIndex != null),
+        assert(initialIndex >= 0);
 
   CupertinoTabController _cupertino(BuildContext context) {
     _init(context);
@@ -440,15 +426,13 @@ class PlatformTabController extends ChangeNotifier {
 
     return _materialController?.index ?? _cupertinoController.index;
   }
-  // int get index =>
-  //     _materialController?.index ?? _cupertinoController?.index ?? 0;
 
   void _init(BuildContext context) {
     if (isMaterial(context)) {
       if (_materialController == null) {
-        int useIndex = ios?.initialIndex ?? initialIndex;
+        int useIndex = android?.initialIndex ?? _initialIndex;
         if (_cupertinoController != null) {
-          useIndex = _materialController.index;
+          useIndex = _cupertinoController.index;
 
           _cupertinoController.removeListener(_listener);
           _cupertinoController.dispose();
@@ -461,7 +445,7 @@ class PlatformTabController extends ChangeNotifier {
     }
     if (isCupertino(context)) {
       if (_cupertinoController == null) {
-        int useIndex = ios?.initialIndex ?? initialIndex;
+        int useIndex = ios?.initialIndex ?? _initialIndex;
         if (_materialController != null) {
           useIndex = _materialController.index;
 

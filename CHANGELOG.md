@@ -1,3 +1,10 @@
+## [0.32.1] - January 14, 2020
+
+#### (Flutter version support: v1.12.13+hotfix.5)
+
+- Fix for PlatformTabScaffold that would not pickup the right indexc or set a default value.
+
+
 ## [0.32.0] - January 14, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
