@@ -56,6 +56,11 @@ class _AppState extends State<App> {
 
     return PlatformProvider(
       builder: (context) => PlatformApp(
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+          DefaultMaterialLocalizations.delegate,
+          DefaultWidgetsLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate,
+        ],
         title: 'Flutter Platform Widgets',
         android: (_) {
           return new MaterialAppData(
