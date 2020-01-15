@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart'
         CupertinoActionSheet,
         CupertinoActionSheetAction,
         CupertinoIcons,
-        CupertinoThemeData;
-import 'package:flutter/material.dart' show Colors, Icons, ThemeData, ThemeMode;
+        CupertinoThemeData,
+        DefaultCupertinoLocalizations;
+import 'package:flutter/material.dart'
+    show Colors, DefaultMaterialLocalizations, Icons, ThemeData, ThemeMode;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -56,7 +58,7 @@ class _AppState extends State<App> {
 
     return PlatformProvider(
       builder: (context) => PlatformApp(
-          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        localizationsDelegates: <LocalizationsDelegate<dynamic>>[
           DefaultMaterialLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,
           DefaultCupertinoLocalizations.delegate,
