@@ -202,25 +202,25 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       this.widgetKey,
       this.navigatorKey,
       this.home,
-      this.routes = const <String, WidgetBuilder>{},
+      this.routes,
       this.initialRoute,
       this.onGenerateRoute,
       this.onUnknownRoute,
-      this.navigatorObservers = const <NavigatorObserver>[],
+      this.navigatorObservers,
       this.builder,
-      this.title = '',
+      this.title,
       this.onGenerateTitle,
       this.color,
       this.locale,
       this.localizationsDelegates,
       this.localeListResolutionCallback,
       this.localeResolutionCallback,
-      this.supportedLocales = const <Locale>[Locale('en', 'US')],
-      this.showPerformanceOverlay = false,
-      this.checkerboardRasterCacheImages = false,
-      this.checkerboardOffscreenLayers = false,
-      this.showSemanticsDebugger = false,
-      this.debugShowCheckedModeBanner = true,
+      this.supportedLocales,
+      this.showPerformanceOverlay,
+      this.checkerboardRasterCacheImages,
+      this.checkerboardOffscreenLayers,
+      this.showSemanticsDebugger,
+      this.debugShowCheckedModeBanner,
       this.android,
       this.ios})
       : super(key: key);
@@ -236,13 +236,15 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       key: data?.widgetKey ?? widgetKey,
       navigatorKey: data?.navigatorKey ?? navigatorKey,
       home: data?.home ?? home,
-      routes: data?.routes ?? routes,
+      routes: data?.routes ?? routes ?? const <String, WidgetBuilder>{},
       initialRoute: data?.initialRoute ?? initialRoute,
       onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
       onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-      navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
+      navigatorObservers: data?.navigatorObservers ??
+          navigatorObservers ??
+          const <NavigatorObserver>[],
       builder: data?.builder ?? builder,
-      title: data?.title ?? title,
+      title: data?.title ?? title ?? '',
       onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
       color: data?.color ?? color,
       locale: data?.locale ?? locale,
@@ -252,17 +254,22 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
           data?.localeListResolutionCallback ?? localeListResolutionCallback,
       localeResolutionCallback:
           data?.localeResolutionCallback ?? localeResolutionCallback,
-      supportedLocales: data?.supportedLocales ?? supportedLocales,
+      supportedLocales: data?.supportedLocales ??
+          supportedLocales ??
+          const <Locale>[Locale('en', 'US')],
       showPerformanceOverlay:
-          data?.showPerformanceOverlay ?? showPerformanceOverlay,
-      checkerboardRasterCacheImages:
-          data?.checkerboardRasterCacheImages ?? checkerboardRasterCacheImages,
-      checkerboardOffscreenLayers:
-          data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
+          data?.showPerformanceOverlay ?? showPerformanceOverlay ?? false,
+      checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
+          checkerboardRasterCacheImages ??
+          false,
+      checkerboardOffscreenLayers: data?.checkerboardOffscreenLayers ??
+          checkerboardOffscreenLayers ??
+          false,
       showSemanticsDebugger:
-          data?.showSemanticsDebugger ?? showSemanticsDebugger,
-      debugShowCheckedModeBanner:
-          data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
+          data?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
+      debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
+          debugShowCheckedModeBanner ??
+          true,
       theme: (data?.theme ?? Theme.of(context))
           .copyWith(platform: TargetPlatform.android),
       debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
@@ -282,13 +289,15 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       key: data?.widgetKey ?? widgetKey,
       navigatorKey: data?.navigatorKey ?? navigatorKey,
       home: data?.home ?? home,
-      routes: data?.routes ?? routes,
+      routes: data?.routes ?? routes ?? const <String, WidgetBuilder>{},
       initialRoute: data?.initialRoute ?? initialRoute,
       onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
       onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-      navigatorObservers: data?.navigatorObservers ?? navigatorObservers,
+      navigatorObservers: data?.navigatorObservers ??
+          navigatorObservers ??
+          const <NavigatorObserver>[],
       builder: data?.builder ?? builder,
-      title: data?.title ?? title,
+      title: data?.title ?? title ?? '',
       onGenerateTitle: data?.onGenerateTitle ?? onGenerateTitle,
       color: data?.color ?? color,
       locale: data?.locale ?? locale,
@@ -298,17 +307,22 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
           data?.localeListResolutionCallback ?? localeListResolutionCallback,
       localeResolutionCallback:
           data?.localeResolutionCallback ?? localeResolutionCallback,
-      supportedLocales: data?.supportedLocales ?? supportedLocales,
+      supportedLocales: data?.supportedLocales ??
+          supportedLocales ??
+          const <Locale>[Locale('en', 'US')],
       showPerformanceOverlay:
-          data?.showPerformanceOverlay ?? showPerformanceOverlay,
-      checkerboardRasterCacheImages:
-          data?.checkerboardRasterCacheImages ?? checkerboardRasterCacheImages,
-      checkerboardOffscreenLayers:
-          data?.checkerboardOffscreenLayers ?? checkerboardOffscreenLayers,
+          data?.showPerformanceOverlay ?? showPerformanceOverlay ?? false,
+      checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
+          checkerboardRasterCacheImages ??
+          false,
+      checkerboardOffscreenLayers: data?.checkerboardOffscreenLayers ??
+          checkerboardOffscreenLayers ??
+          false,
       showSemanticsDebugger:
-          data?.showSemanticsDebugger ?? showSemanticsDebugger,
-      debugShowCheckedModeBanner:
-          data?.debugShowCheckedModeBanner ?? debugShowCheckedModeBanner,
+          data?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
+      debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
+          debugShowCheckedModeBanner ??
+          true,
       theme: data?.theme,
     );
   }

@@ -17,6 +17,8 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
+const double _kMinInteractiveDimensionCupertino = 44.0;
+
 abstract class _BaseData {
   _BaseData(
       {this.widgetKey,
@@ -288,9 +290,9 @@ class PlatformButton
       borderRadius: data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
       color: data?.color ?? color,
-      minSize: data?.minSize ?? 44.0,
+      minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
       padding: data?.padding ?? padding,
-      pressedOpacity: data?.pressedOpacity ?? 0.1,
+      pressedOpacity: data?.pressedOpacity ?? 0.4,
       disabledColor: data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,

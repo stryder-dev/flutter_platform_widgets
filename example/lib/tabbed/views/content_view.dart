@@ -7,7 +7,6 @@ class ContentView extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    print('_TabView $index');
     return Column(
       children: [
         PlatformButton(

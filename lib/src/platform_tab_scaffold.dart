@@ -71,6 +71,9 @@ class MaterialTabScaffoldData extends _BaseData {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final List<Widget> persistentFooterButtons;
   final bool primary;
+  @Deprecated(
+      'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
+      'This feature was deprecated after v1.1.9.')
   final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
@@ -228,7 +231,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       floatingActionButtonLocation: data?.floatingActionButtonLocation,
       persistentFooterButtons: data?.persistentFooterButtons,
       primary: data?.primary ?? true,
-      resizeToAvoidBottomPadding: data?.resizeToAvoidBottomPadding ?? true,
+      resizeToAvoidBottomPadding: data?.resizeToAvoidBottomPadding,
       bottomSheet: data?.bottomSheet,
       drawerDragStartBehavior:
           data?.drawerDragStartBehavior ?? DragStartBehavior.start,
