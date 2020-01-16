@@ -10,6 +10,8 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
+const double _kMinInteractiveDimensionCupertino = 44.0;
+
 abstract class _BaseData {
   _BaseData(
       {this.widgetKey,
@@ -155,12 +157,12 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       key: data?.widgetKey ?? widgetKey,
       child: data?.icon ?? iosIcon ?? icon,
       onPressed: data?.onPressed ?? onPressed,
-      padding: data?.padding ?? padding ?? const EdgeInsets.all(0.0),
+      padding: data?.padding ?? padding,
       color: data?.color ?? color,
       borderRadius: data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
-      minSize: data?.minSize ?? 44.0,
-      pressedOpacity: data?.pressedOpacity ?? 0.1,
+      minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
+      pressedOpacity: data?.pressedOpacity ?? 0.4,
       disabledColor: data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,

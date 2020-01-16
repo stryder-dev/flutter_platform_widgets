@@ -12,14 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'widget_base.dart';
 
 const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
-
-const Border _kDefaultNavBarBorder = const Border(
-  top: BorderSide(
-    color: _kDefaultTabBarBorderColor,
-    width: 0.0, // One physical pixel.
-    style: BorderStyle.solid,
-  ),
-);
+const Color _kDefaultTabBarInactiveColor = CupertinoColors.inactiveGray;
 
 abstract class _BaseData {
   _BaseData(
@@ -133,7 +126,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       this.backgroundColor,
       this.items,
       this.itemChanged,
-      this.currentIndex = 0,
+      this.currentIndex,
       this.android,
       this.ios})
       : super(key: key);
@@ -147,7 +140,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
 
     var bar = BottomNavigationBar(
       items: data?.items ?? items,
-      currentIndex: data?.currentIndex ?? currentIndex,
+      currentIndex: data?.currentIndex ?? currentIndex ?? 0,
       onTap: data?.itemChanged ?? itemChanged,
       iconSize: data?.iconSize ?? 24.0,
       fixedColor: data?.activeColor,
@@ -170,7 +163,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     return BottomAppBar(
       child: bar,
       color: data?.backgroundColor ?? backgroundColor,
-      elevation: data?.elevation ?? 8.0,
+      elevation: data?.elevation,
       key: data?.widgetKey ?? widgetKey,
       shape: data?.shape,
       clipBehavior: data?.clipBehavior ?? Clip.none,
@@ -191,10 +184,17 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       currentIndex: data?.currentIndex ?? currentIndex ?? 0,
       iconSize: data?.iconSize ?? 30.0,
-      inactiveColor: data?.inactiveColor ?? CupertinoColors.inactiveGray,
+      inactiveColor: data?.inactiveColor ?? _kDefaultTabBarInactiveColor,
       key: data?.widgetKey ?? widgetKey,
       onTap: data?.itemChanged ?? itemChanged,
-      border: data?.border ?? _kDefaultNavBarBorder,
+      border: data?.border ??
+          const Border(
+            top: BorderSide(
+              color: _kDefaultTabBarBorderColor,
+              width: 0.0, // One physical pixel.
+              style: BorderStyle.solid,
+            ),
+          ),
     );
   }
 }

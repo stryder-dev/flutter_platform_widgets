@@ -140,8 +140,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       onChangeEnd: data?.onChangeEnd ?? onChangeEnd,
       activeColor: data?.activeColor ?? activeColor,
       divisions: data?.divisions ?? divisions,
-      max: data?.max ?? max,
-      min: data?.min ?? min,
+      max: data?.max ?? max ?? 1.0,
+      min: data?.min ?? min ?? 0.0,
       inactiveColor: data?.inactiveColor,
       label: data?.label,
       semanticFormatterCallback: data?.semanticFormatterCallback,
@@ -162,8 +162,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       onChangeEnd: data?.onChangeEnd ?? onChangeEnd,
       activeColor: data?.activeColor ?? activeColor,
       divisions: data?.divisions ?? divisions,
-      max: data?.max ?? max,
-      min: data?.min ?? min,
+      max: data?.max ?? max ?? 1.0,
+      min: data?.min ?? min ?? 0.0,
       thumbColor: data?.thumbColor ?? CupertinoColors.white,
     );
   }
