@@ -1,10 +1,10 @@
-## [0.32.2] - January 14, 2020
+## [0.32.2] - January 16, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
 
 - Update widget arguments to match latest flutter widgets.
 
-## [0.32.1] - January 14, 2020
+## [0.32.1] - January 15, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
 
