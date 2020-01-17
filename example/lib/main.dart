@@ -2,11 +2,18 @@ import 'package:flutter/cupertino.dart'
     show
         CupertinoActionSheet,
         CupertinoActionSheetAction,
+        CupertinoDynamicColor,
         CupertinoIcons,
         CupertinoThemeData,
         DefaultCupertinoLocalizations;
 import 'package:flutter/material.dart'
-    show Colors, DefaultMaterialLocalizations, Icons, ThemeData, ThemeMode;
+    show
+        Colors,
+        DefaultMaterialLocalizations,
+        Icons,
+        Theme,
+        ThemeData,
+        ThemeMode;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -37,16 +44,20 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = new ThemeData(
+    final materialTheme = new ThemeData(
       primarySwatch: Colors.purple,
+    );
+    final materialDarkTheme = new ThemeData(
+      brightness: Brightness.dark,
+      primarySwatch: Colors.teal,
     );
 
     final cupertinoTheme = new CupertinoThemeData(
-      primaryColor: Colors.purple,
-    );
-    final cupertinoDarkTheme = new CupertinoThemeData(
-      primaryColor: Colors.cyan,
-      brightness: Brightness.dark,
+      brightness: brightness, // if null will use the system theme
+      primaryColor: CupertinoDynamicColor.withBrightness(
+        color: Colors.purple,
+        darkColor: Colors.cyan,
+      ),
     );
 
     // Example of optionally setting the platform upfront.
@@ -56,39 +67,39 @@ class _AppState extends State<App> {
     // set this setting. Will mean ios darmk mode to not to work properly
     //final settings = PlatformSettingsData(iosUsesMaterialWidgets: true);
 
-    return PlatformProvider(
-      builder: (context) => PlatformApp(
-        localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-          DefaultMaterialLocalizations.delegate,
-          DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate,
-        ],
-        title: 'Flutter Platform Widgets',
-        android: (_) {
-          return new MaterialAppData(
-            theme: themeData,
-            darkTheme: themeData.copyWith(
-              brightness: Brightness.dark,
-            ),
-            themeMode: brightness == Brightness.light
-                ? ThemeMode.light
-                : ThemeMode.dark,
-          );
-        },
-        ios: (_) => new CupertinoAppData(
-          theme: brightness == Brightness.light
-              ? cupertinoTheme
-              : cupertinoDarkTheme,
+    // This theme is required since icons light/dark mode will look for it
+    return Theme(
+      data: brightness == Brightness.light ? materialTheme : materialDarkTheme,
+      child: PlatformProvider(
+        //initialPlatform: initialPlatform,
+        builder: (context) => PlatformApp(
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+            DefaultMaterialLocalizations.delegate,
+            DefaultWidgetsLocalizations.delegate,
+            DefaultCupertinoLocalizations.delegate,
+          ],
+          title: 'Flutter Platform Widgets',
+          android: (_) {
+            return new MaterialAppData(
+              theme: materialTheme,
+              darkTheme: materialDarkTheme,
+              themeMode: brightness == Brightness.light
+                  ? ThemeMode.light
+                  : ThemeMode.dark,
+            );
+          },
+          ios: (_) => new CupertinoAppData(
+            theme: cupertinoTheme,
+          ),
+          home: LandingPage(() {
+            setState(() {
+              brightness = brightness == Brightness.light
+                  ? Brightness.dark
+                  : Brightness.light;
+            });
+          }),
         ),
-        home: LandingPage(() {
-          setState(() {
-            brightness = brightness == Brightness.light
-                ? Brightness.dark
-                : Brightness.light;
-          });
-        }),
       ),
-      // ),
     );
   }
 }

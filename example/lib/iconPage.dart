@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -200,7 +201,6 @@ class _ThemedPlatform extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Theme.of(context).copyWith(platform: platform);
-
     return Theme(
       data: data,
       child: Builder(
