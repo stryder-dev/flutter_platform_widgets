@@ -188,6 +188,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
           return CupertinoPageScaffold(
+            // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
             child: iosContentPad(context, child, navigationBar, tabBar),
             navigationBar: navigationBar,

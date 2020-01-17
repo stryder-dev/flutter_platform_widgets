@@ -32,7 +32,8 @@ class MaterialAlertDialogData extends _BaseData {
       this.contentPadding,
       this.semanticLabel,
       this.titlePadding,
-      this.titleTextStyle})
+      this.titleTextStyle,
+      this.scrollable})
       : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -47,6 +48,7 @@ class MaterialAlertDialogData extends _BaseData {
   final double elevation;
   final ShapeBorder shape;
   final TextStyle titleTextStyle;
+  final bool scrollable;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -112,6 +114,7 @@ class PlatformAlertDialog
       elevation: data?.elevation,
       shape: data?.shape,
       titleTextStyle: data?.titleTextStyle,
+      scrollable: data?.scrollable ?? false,
     );
   }
 
