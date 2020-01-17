@@ -5,7 +5,7 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
-import 'package:flutter/material.dart' show IconButton;
+import 'package:flutter/material.dart' show IconButton, VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -71,13 +71,15 @@ class MaterialIconButtonData extends _BaseData {
     this.focusNode,
     this.autofocus,
     this.enableFeedback,
+    this.visualDensity,
   }) : super(
-            widgetKey: widgetKey,
-            icon: icon,
-            onPressed: onPressed,
-            padding: padding,
-            color: color,
-            disabledColor: disabledColor);
+          widgetKey: widgetKey,
+          icon: icon,
+          onPressed: onPressed,
+          padding: padding,
+          color: color,
+          disabledColor: disabledColor,
+        );
 
   final AlignmentGeometry alignment;
   final Color highlightColor;
@@ -89,6 +91,7 @@ class MaterialIconButtonData extends _BaseData {
   final FocusNode focusNode;
   final bool autofocus;
   final bool enableFeedback;
+  final VisualDensity visualDensity;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -143,6 +146,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       hoverColor: data?.hoverColor,
       autofocus: data?.autofocus ?? false,
       enableFeedback: data?.enableFeedback ?? true,
+      visualDensity: data.visualDensity,
     );
   }
 

@@ -269,23 +269,23 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       tabBuilder: (context, index) {
         if (data == null || data.useCupertinoTabView) {
           return CupertinoTabView(
-              defaultTitle:
-                  data?.tabViewDataBuilder(context, index)?.defaultTitle,
-              navigatorKey:
-                  data?.tabViewDataBuilder(context, index)?.navigatorKey,
-              navigatorObservers: data
-                      ?.tabViewDataBuilder(context, index)
-                      ?.navigatorObservers ??
-                  const <NavigatorObserver>[],
-              onGenerateRoute:
-                  data?.tabViewDataBuilder(context, index)?.onGenerateRoute,
-              onUnknownRoute:
-                  data?.tabViewDataBuilder(context, index)?.onUnknownRoute,
-              routes: data?.tabViewDataBuilder(context, index)?.routes,
-              builder: (context) {
-                return _buildCupertinoPageScaffold(
-                    context, index, data, tabBar);
-              });
+            // key
+            defaultTitle:
+                data?.tabViewDataBuilder(context, index)?.defaultTitle,
+            navigatorKey:
+                data?.tabViewDataBuilder(context, index)?.navigatorKey,
+            navigatorObservers:
+                data?.tabViewDataBuilder(context, index)?.navigatorObservers ??
+                    const <NavigatorObserver>[],
+            onGenerateRoute:
+                data?.tabViewDataBuilder(context, index)?.onGenerateRoute,
+            onUnknownRoute:
+                data?.tabViewDataBuilder(context, index)?.onUnknownRoute,
+            routes: data?.tabViewDataBuilder(context, index)?.routes,
+            builder: (context) {
+              return _buildCupertinoPageScaffold(context, index, data, tabBar);
+            },
+          );
         }
 
         return _buildCupertinoPageScaffold(context, index, data, tabBar);

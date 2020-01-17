@@ -91,6 +91,8 @@ class MaterialTextFieldData {
     this.textAlignVertical,
     this.toolbarOptions,
     this.enableSuggestions,
+    this.smartDashesType,
+    this.smartQuotesType,
   });
 
   final Key widgetKey;
@@ -133,6 +135,8 @@ class MaterialTextFieldData {
   final TextAlignVertical textAlignVertical;
   final ToolbarOptions toolbarOptions;
   final bool enableSuggestions;
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
 }
 
 class CupertinoTextFieldData {
@@ -183,6 +187,8 @@ class CupertinoTextFieldData {
     this.toolbarOptions,
     this.onTap,
     this.enableSuggestions,
+    this.smartDashesType,
+    this.smartQuotesType,
   });
 
   final Key widgetKey;
@@ -231,6 +237,8 @@ class CupertinoTextFieldData {
   final ToolbarOptions toolbarOptions;
   final GestureTapCallback onTap;
   final bool enableSuggestions;
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
 }
 
 class PlatformTextField
@@ -280,6 +288,9 @@ class PlatformTextField
   final Brightness keyboardAppearance;
   final EdgeInsets scrollPadding;
 
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
+
   PlatformTextField(
       {Key key,
       this.widgetKey,
@@ -318,6 +329,8 @@ class PlatformTextField
       this.showCursor,
       this.textAlignVertical,
       this.toolbarOptions,
+      this.smartDashesType,
+      this.smartQuotesType,
       this.android,
       this.ios})
       : keyboardType = keyboardType ??
@@ -379,6 +392,8 @@ class PlatformTextField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
+      smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
+      smartDashesType: data?.smartDashesType ?? smartDashesType,
     );
   }
 
@@ -449,6 +464,8 @@ class PlatformTextField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
+      smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
+      smartDashesType: data?.smartDashesType ?? smartDashesType,
     );
   }
 }
