@@ -203,6 +203,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       items: items,
       backgroundColor: data?.tabsBackgroundColor ?? tabsBackgroundColor,
       currentIndex: controller?.index ?? currentIndex,
+      android: androidTabs,
       itemChanged: (int index) {
         controller?.index = index;
         itemChanged?.call(index);
@@ -255,7 +256,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       backgroundColor: tabsBackgroundColor,
       currentIndex: currentIndex,
       itemChanged: itemChanged,
-      android: androidTabs,
       ios: iosTabs,
     );
     final tabBar = navBar.createIosWidget(context);
