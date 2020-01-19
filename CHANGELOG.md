@@ -1,3 +1,9 @@
+## [0.32.3] - January 19, 2020
+
+#### (Flutter version support: v1.12.13+hotfix.5)
+
+- Fix for `PlatformTabScaffold` to use androidTabs properly. (Thanks abahnj)
+
 ## [0.32.2] - January 16, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
@@ -9,7 +15,6 @@
 #### (Flutter version support: v1.12.13+hotfix.5)
 
 - Fix for PlatformTabScaffold that would not pickup the right indexc or set a default value.
-
 
 ## [0.32.0] - January 14, 2020
 
