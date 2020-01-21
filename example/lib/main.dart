@@ -119,12 +119,15 @@ class LandingPageState extends State<LandingPage> {
     super.initState();
 
     textControlller = TextEditingController(text: 'text');
+    textMultiLineControlller = TextEditingController(text: 'text multi line');
   }
 
   bool switchValue = false;
   double sliderValue = 0.5;
 
   TextEditingController textControlller;
+
+  TextEditingController textMultiLineControlller;
 
   _switchPlatform(BuildContext context) {
     if (isMaterial(context)) {
@@ -144,6 +147,13 @@ class LandingPageState extends State<LandingPage> {
       iosContentPadding: true,
       appBar: PlatformAppBar(
         title: Text('Flutter Platform Widgets'),
+        trailingActions: <Widget>[
+          PlatformIconButton(
+            padding: EdgeInsets.zero,
+            icon: Icon(context.platformIcons.share),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -219,6 +229,15 @@ class LandingPageState extends State<LandingPage> {
               padding: const EdgeInsets.all(8.0),
               child: PlatformTextField(
                 controller: textControlller,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              height: 100,
+              child: PlatformTextField(
+                expands: true,
+                maxLines: null,
+                controller: textMultiLineControlller,
               ),
             ),
             Padding(

@@ -44,6 +44,13 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
       tabController: tabController,
       appBarBuilder: (_, index) => PlatformAppBar(
         title: Text('Page Title'),
+        trailingActions: <Widget>[
+          PlatformIconButton(
+            padding: EdgeInsets.zero,
+            icon: Icon(context.platformIcons.share),
+            onPressed: () {},
+          ),
+        ],
         ios: (_) => CupertinoNavigationBarData(
           title: Text('${titles[index]}'),
         ),

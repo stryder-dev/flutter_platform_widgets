@@ -1,3 +1,9 @@
+## [0.32.4] - January 21, 2020
+
+#### (Flutter version support: v1.12.13+hotfix.5)
+
+- Fix for `PlatformTextField` not allowing for `maxLines` to be null which is required when `expands` is true to enable multiline. (Thanks bangfalse)
+
 ## [0.32.3] - January 19, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
@@ -14,7 +20,7 @@
 
 #### (Flutter version support: v1.12.13+hotfix.5)
 
-- Fix for PlatformTabScaffold that would not pickup the right indexc or set a default value.
+- Fix for PlatformTabScaffold that would not pickup the right index or set a default value.
 
 ## [0.32.0] - January 14, 2020
 
