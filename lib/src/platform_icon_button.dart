@@ -146,7 +146,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       hoverColor: data?.hoverColor,
       autofocus: data?.autofocus ?? false,
       enableFeedback: data?.enableFeedback ?? true,
-      visualDensity: data.visualDensity,
+      visualDensity: data?.visualDensity,
     );
   }
 
