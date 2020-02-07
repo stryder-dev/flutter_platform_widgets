@@ -242,7 +242,7 @@ return PlatformScaffold(
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
   android: (_) => MaterialScaffoldData(...)
-  ios: (_) => CupertinoScaffoldData(...);
+  ios: (_) => CupertinoPageScaffoldData(...);
 );
 ```
 
