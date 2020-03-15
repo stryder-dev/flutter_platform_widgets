@@ -1,8 +1,8 @@
 ## [0.40.0] Beta
 
-#### (Flutter version support: v1.13.6)
+#### (Flutter version support: v1.14.3)
 
-- Updagte parameters
+- Update parameters
 
 ## [0.32.4] - January 21, 2020
 

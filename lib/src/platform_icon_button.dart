@@ -72,6 +72,7 @@ class MaterialIconButtonData extends _BaseData {
     this.autofocus,
     this.enableFeedback,
     this.visualDensity,
+    this.constraints,
   }) : super(
           widgetKey: widgetKey,
           icon: icon,
@@ -92,6 +93,7 @@ class MaterialIconButtonData extends _BaseData {
   final bool autofocus;
   final bool enableFeedback;
   final VisualDensity visualDensity;
+  final BoxConstraints constraints;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -147,6 +149,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       autofocus: data?.autofocus ?? false,
       enableFeedback: data?.enableFeedback ?? true,
       visualDensity: data?.visualDensity,
+      constraints: data?.constraints,
     );
   }
 

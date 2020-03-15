@@ -47,6 +47,7 @@ class MaterialDialogActionData extends _BaseData {
     this.focusNode,
     this.autofocus,
     this.visualDensity,
+    this.onLongPress,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -71,6 +72,7 @@ class MaterialDialogActionData extends _BaseData {
   final FocusNode focusNode;
   final bool autofocus;
   final VisualDensity visualDensity;
+  final VoidCallback onLongPress;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -137,7 +139,8 @@ class PlatformDialogAction
       focusNode: data?.focusNode,
       hoverColor: data?.hoverColor,
       autofocus: data?.autofocus ?? false,
-      visualDensity: data.visualDensity,
+      visualDensity: data?.visualDensity,
+      onLongPress: data?.onLongPress,
     );
   }
 

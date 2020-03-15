@@ -20,21 +20,24 @@ abstract class _BaseData {
 }
 
 class MaterialAlertDialogData extends _BaseData {
-  MaterialAlertDialogData(
-      {Key widgetKey,
-      List<Widget> actions,
-      Widget content,
-      Widget title,
-      this.contentTextStyle,
-      this.backgroundColor,
-      this.elevation,
-      this.shape,
-      this.contentPadding,
-      this.semanticLabel,
-      this.titlePadding,
-      this.titleTextStyle,
-      this.scrollable})
-      : super(
+  MaterialAlertDialogData({
+    Key widgetKey,
+    List<Widget> actions,
+    Widget content,
+    Widget title,
+    this.contentTextStyle,
+    this.backgroundColor,
+    this.elevation,
+    this.shape,
+    this.contentPadding,
+    this.semanticLabel,
+    this.titlePadding,
+    this.titleTextStyle,
+    this.scrollable,
+    this.actionsOverflowDirection,
+    this.actionsPadding,
+    this.buttonPadding,
+  }) : super(
             widgetKey: widgetKey,
             actions: actions,
             content: content,
@@ -49,6 +52,9 @@ class MaterialAlertDialogData extends _BaseData {
   final ShapeBorder shape;
   final TextStyle titleTextStyle;
   final bool scrollable;
+  final VerticalDirection actionsOverflowDirection;
+  final EdgeInsetsGeometry actionsPadding;
+  final EdgeInsetsGeometry buttonPadding;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -115,6 +121,9 @@ class PlatformAlertDialog
       shape: data?.shape,
       titleTextStyle: data?.titleTextStyle,
       scrollable: data?.scrollable ?? false,
+      actionsOverflowDirection: data?.actionsOverflowDirection,
+      actionsPadding: data?.actionsPadding,
+      buttonPadding: data?.buttonPadding,
     );
   }
 

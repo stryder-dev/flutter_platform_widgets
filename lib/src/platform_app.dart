@@ -36,6 +36,7 @@ abstract class _BaseData {
     this.showSemanticsDebugger,
     this.debugShowCheckedModeBanner,
     this.shortcuts,
+    this.actions,
   });
 
   final Key widgetKey;
@@ -61,6 +62,7 @@ abstract class _BaseData {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
   final Map<LogicalKeySet, Intent> shortcuts;
+  final Map<LocalKey, ActionFactory> actions;
 }
 
 class MaterialAppData extends _BaseData {
@@ -87,7 +89,8 @@ class MaterialAppData extends _BaseData {
       bool checkerboardOffscreenLayers,
       bool showSemanticsDebugger,
       bool debugShowCheckedModeBanner,
-      final Map<LogicalKeySet, Intent> shortcuts,
+      Map<LogicalKeySet, Intent> shortcuts,
+      Map<LocalKey, ActionFactory> actions,
       this.theme,
       this.debugShowMaterialGrid,
       this.darkTheme,
@@ -116,6 +119,7 @@ class MaterialAppData extends _BaseData {
           showSemanticsDebugger: showSemanticsDebugger,
           debugShowCheckedModeBanner: debugShowCheckedModeBanner,
           shortcuts: shortcuts,
+          actions: actions,
         );
 
   final ThemeData theme;
@@ -139,7 +143,8 @@ class CupertinoAppData extends _BaseData {
       GenerateAppTitle onGenerateTitle,
       Color color,
       Locale locale,
-      final Map<LogicalKeySet, Intent> shortcuts,
+      Map<LogicalKeySet, Intent> shortcuts,
+      Map<LocalKey, ActionFactory> actions,
       Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
       LocaleListResolutionCallback localeListResolutionCallback,
       LocaleResolutionCallback localeResolutionCallback,
@@ -174,6 +179,7 @@ class CupertinoAppData extends _BaseData {
           showSemanticsDebugger: showSemanticsDebugger,
           debugShowCheckedModeBanner: debugShowCheckedModeBanner,
           shortcuts: shortcuts,
+          actions: actions,
         );
 
   final CupertinoThemeData theme;
@@ -203,6 +209,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
   final Map<LogicalKeySet, Intent> shortcuts;
+  final Map<LocalKey, ActionFactory> actions;
 
   final PlatformBuilder<MaterialAppData> android;
   final PlatformBuilder<CupertinoAppData> ios;
@@ -232,6 +239,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       this.showSemanticsDebugger,
       this.debugShowCheckedModeBanner,
       this.shortcuts,
+      this.actions,
       this.android,
       this.ios})
       : super(key: key);
@@ -286,7 +294,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
       darkTheme: data?.darkTheme?.copyWith(platform: TargetPlatform.android),
       themeMode: data?.themeMode ?? ThemeMode.system,
-      shortcuts: data.shortcuts ?? shortcuts,
+      shortcuts: data?.shortcuts ?? shortcuts,
+      actions: data?.actions ?? actions,
     );
   }
 
@@ -336,8 +345,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
           debugShowCheckedModeBanner ??
           true,
       theme: data?.theme,
-      shortcuts: data.shortcuts ?? shortcuts,
-      // ! actions: ,
+      shortcuts: data?.shortcuts ?? shortcuts,
+      actions: data?.actions ?? actions,
     );
   }
 }
