@@ -203,7 +203,7 @@ class PlatformAppBar
         leading: data?.leading ?? leading,
         trailing: data?.trailing ?? trailing,
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
-        brightness: data.brightness,
+        brightness: data?.brightness,
         heroTag: data.heroTag,
       );
     }
