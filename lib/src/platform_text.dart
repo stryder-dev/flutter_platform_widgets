@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:ui' as ui show TextHeightBehavior;
+
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart' show isMaterial;
@@ -36,6 +38,7 @@ class PlatformText extends StatelessWidget {
     String semanticsLabel,
     StrutStyle strutStyle,
     TextWidthBasis textWidthBasis,
+    ui.TextHeightBehavior textHeightBehavior,
   }) {
     return PlatformText._(
         key,
@@ -53,6 +56,7 @@ class PlatformText extends StatelessWidget {
               semanticsLabel: semanticsLabel,
               strutStyle: strutStyle,
               textWidthBasis: textWidthBasis,
+              textHeightBehavior: textHeightBehavior,
             ));
   }
 

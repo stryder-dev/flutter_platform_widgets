@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart'
     show showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
@@ -38,17 +40,24 @@ bool isCupertino(BuildContext context) {
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
-  androidBarrierDismissible = false,
+  bool androidBarrierDismissible = true,
+  RouteSettings routeSettings,
+  bool useRootNavigator = true,
 }) {
   if (isMaterial(context)) {
     return showDialog<T>(
-        context: context,
-        builder: builder,
-        barrierDismissible: androidBarrierDismissible);
+      context: context,
+      builder: builder,
+      barrierDismissible: androidBarrierDismissible,
+      routeSettings: routeSettings,
+      useRootNavigator: useRootNavigator,
+    );
   } else {
     return showCupertinoDialog<T>(
       context: context,
       builder: builder,
+      routeSettings: routeSettings,
+      useRootNavigator: useRootNavigator,
     );
   }
 }
@@ -64,6 +73,12 @@ Future<T> showPlatformModalSheet<T>({
   bool androidIsScrollControlled = false,
   bool androidUseRootNavigator = false,
   Clip androidClipBehavior,
+  Color androidBarrierColor,
+  bool androidEnableDrag = true,
+  bool androidIsDismissible = true,
+  ImageFilter iosImageFilter,
+  bool iosSemanticsDismissible,
+  bool iosUseRootNavigator = true,
 }) {
   if (isMaterial(context)) {
     return showModalBottomSheet<T>(
@@ -75,11 +90,17 @@ Future<T> showPlatformModalSheet<T>({
       isScrollControlled: androidIsScrollControlled,
       useRootNavigator: androidUseRootNavigator,
       clipBehavior: androidClipBehavior,
+      barrierColor: androidBarrierColor,
+      enableDrag: androidEnableDrag,
+      isDismissible: androidIsDismissible,
     );
   } else {
     return showCupertinoModalPopup<T>(
       context: context,
       builder: builder,
+      filter: iosImageFilter,
+      semanticsDismissible: iosSemanticsDismissible,
+      useRootNavigator: iosUseRootNavigator,
     );
   }
 }

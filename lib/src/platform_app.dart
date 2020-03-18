@@ -37,6 +37,7 @@ abstract class _BaseData {
     this.debugShowCheckedModeBanner,
     this.shortcuts,
     this.actions,
+    this.onGenerateInitialRoutes,
   });
 
   final Key widgetKey;
@@ -63,6 +64,7 @@ abstract class _BaseData {
   final bool debugShowCheckedModeBanner;
   final Map<LogicalKeySet, Intent> shortcuts;
   final Map<LocalKey, ActionFactory> actions;
+  final InitialRouteListFactory onGenerateInitialRoutes;
 }
 
 class MaterialAppData extends _BaseData {
@@ -91,6 +93,7 @@ class MaterialAppData extends _BaseData {
       bool debugShowCheckedModeBanner,
       Map<LogicalKeySet, Intent> shortcuts,
       Map<LocalKey, ActionFactory> actions,
+      InitialRouteListFactory onGenerateInitialRoutes,
       this.theme,
       this.debugShowMaterialGrid,
       this.darkTheme,
@@ -120,6 +123,7 @@ class MaterialAppData extends _BaseData {
           debugShowCheckedModeBanner: debugShowCheckedModeBanner,
           shortcuts: shortcuts,
           actions: actions,
+          onGenerateInitialRoutes: onGenerateInitialRoutes,
         );
 
   final ThemeData theme;
@@ -145,6 +149,7 @@ class CupertinoAppData extends _BaseData {
       Locale locale,
       Map<LogicalKeySet, Intent> shortcuts,
       Map<LocalKey, ActionFactory> actions,
+      InitialRouteListFactory onGenerateInitialRoutes,
       Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
       LocaleListResolutionCallback localeListResolutionCallback,
       LocaleResolutionCallback localeResolutionCallback,
@@ -180,6 +185,7 @@ class CupertinoAppData extends _BaseData {
           debugShowCheckedModeBanner: debugShowCheckedModeBanner,
           shortcuts: shortcuts,
           actions: actions,
+          onGenerateInitialRoutes: onGenerateInitialRoutes,
         );
 
   final CupertinoThemeData theme;
@@ -210,6 +216,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final bool debugShowCheckedModeBanner;
   final Map<LogicalKeySet, Intent> shortcuts;
   final Map<LocalKey, ActionFactory> actions;
+  final InitialRouteListFactory onGenerateInitialRoutes;
 
   final PlatformBuilder<MaterialAppData> android;
   final PlatformBuilder<CupertinoAppData> ios;
@@ -240,6 +247,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       this.debugShowCheckedModeBanner,
       this.shortcuts,
       this.actions,
+      this.onGenerateInitialRoutes,
       this.android,
       this.ios})
       : super(key: key);
@@ -296,6 +304,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       themeMode: data?.themeMode ?? ThemeMode.system,
       shortcuts: data?.shortcuts ?? shortcuts,
       actions: data?.actions ?? actions,
+      onGenerateInitialRoutes:
+          data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
     );
   }
 
@@ -347,6 +357,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       theme: data?.theme,
       shortcuts: data?.shortcuts ?? shortcuts,
       actions: data?.actions ?? actions,
+      onGenerateInitialRoutes:
+          data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
     );
   }
 }

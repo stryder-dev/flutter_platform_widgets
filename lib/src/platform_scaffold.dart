@@ -55,6 +55,8 @@ class MaterialScaffoldData extends _BaseData {
     this.drawerScrimColor,
     this.drawerEdgeDragWidth,
     this.extendBodyBehindAppBar,
+    this.drawerEnableOpenDragGesture,
+    this.endDrawerEnableOpenDragGesture,
   }) : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
@@ -78,6 +80,8 @@ class MaterialScaffoldData extends _BaseData {
   final Color drawerScrimColor;
   final double drawerEdgeDragWidth;
   final bool extendBodyBehindAppBar;
+  final bool drawerEnableOpenDragGesture;
+  final bool endDrawerEnableOpenDragGesture;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -162,6 +166,9 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       drawerScrimColor: data?.drawerScrimColor,
       drawerEdgeDragWidth: data?.drawerEdgeDragWidth,
       extendBodyBehindAppBar: data?.extendBodyBehindAppBar ?? false,
+      drawerEnableOpenDragGesture: data?.drawerEnableOpenDragGesture ?? true,
+      endDrawerEnableOpenDragGesture:
+          data?.endDrawerEnableOpenDragGesture ?? true,
     );
   }
 

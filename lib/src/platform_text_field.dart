@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
+
 import 'package:flutter/cupertino.dart'
     show
         CupertinoColors,
@@ -93,6 +95,8 @@ class MaterialTextFieldData {
     this.enableSuggestions,
     this.smartDashesType,
     this.smartQuotesType,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
   });
 
   final Key widgetKey;
@@ -137,6 +141,8 @@ class MaterialTextFieldData {
   final bool enableSuggestions;
   final SmartDashesType smartDashesType;
   final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
 }
 
 class CupertinoTextFieldData {
@@ -189,6 +195,8 @@ class CupertinoTextFieldData {
     this.enableSuggestions,
     this.smartDashesType,
     this.smartQuotesType,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
   });
 
   final Key widgetKey;
@@ -239,6 +247,8 @@ class CupertinoTextFieldData {
   final bool enableSuggestions;
   final SmartDashesType smartDashesType;
   final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
 }
 
 class PlatformTextField
@@ -290,6 +300,8 @@ class PlatformTextField
 
   final SmartDashesType smartDashesType;
   final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
 
   PlatformTextField(
       {Key key,
@@ -331,6 +343,8 @@ class PlatformTextField
       this.toolbarOptions,
       this.smartDashesType,
       this.smartQuotesType,
+      this.selectionHeightStyle,
+      this.selectionWidthStyle,
       this.android,
       this.ios})
       : keyboardType = keyboardType ??
@@ -394,6 +408,12 @@ class PlatformTextField
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
+      selectionHeightStyle: data?.selectionHeightStyle ??
+          selectionHeightStyle ??
+          ui.BoxHeightStyle.tight,
+      selectionWidthStyle: data?.selectionWidthStyle ??
+          selectionWidthStyle ??
+          ui.BoxWidthStyle.tight,
     );
   }
 
@@ -466,6 +486,12 @@ class PlatformTextField
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
+      selectionHeightStyle: data?.selectionHeightStyle ??
+          selectionHeightStyle ??
+          ui.BoxHeightStyle.tight,
+      selectionWidthStyle: data?.selectionWidthStyle ??
+          selectionWidthStyle ??
+          ui.BoxWidthStyle.tight,
     );
   }
 }

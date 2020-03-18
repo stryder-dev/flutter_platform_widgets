@@ -10,6 +10,9 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
+const EdgeInsets _defaultInsetPadding =
+    EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
+
 abstract class _BaseData {
   _BaseData({this.widgetKey, this.actions, this.content, this.title});
 
@@ -37,6 +40,9 @@ class MaterialAlertDialogData extends _BaseData {
     this.actionsOverflowDirection,
     this.actionsPadding,
     this.buttonPadding,
+    this.actionsOverflowButtonSpacing,
+    this.clipBehavior,
+    this.insetPadding,
   }) : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -55,6 +61,9 @@ class MaterialAlertDialogData extends _BaseData {
   final VerticalDirection actionsOverflowDirection;
   final EdgeInsetsGeometry actionsPadding;
   final EdgeInsetsGeometry buttonPadding;
+  final double actionsOverflowButtonSpacing;
+  final Clip clipBehavior;
+  final EdgeInsets insetPadding;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -122,8 +131,11 @@ class PlatformAlertDialog
       titleTextStyle: data?.titleTextStyle,
       scrollable: data?.scrollable ?? false,
       actionsOverflowDirection: data?.actionsOverflowDirection,
-      actionsPadding: data?.actionsPadding,
+      actionsPadding: data?.actionsPadding ?? EdgeInsets.zero,
       buttonPadding: data?.buttonPadding,
+      actionsOverflowButtonSpacing: data?.actionsOverflowButtonSpacing,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      insetPadding: data?.insetPadding ?? _defaultInsetPadding,
     );
   }
 
