@@ -1,3 +1,9 @@
+## [0.32.5] - March 24, 2020
+
+#### (Flutter version support: v1.12.13+hotfix.5)
+
+- Fixed `PlatformButton` for android `FlatButton` to directly use color, disabledColor and padding properties that were missing
+
 ## [0.32.4] - January 21, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)
