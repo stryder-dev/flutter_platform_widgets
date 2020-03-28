@@ -172,7 +172,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       data = ios(context);
     }
 
-    Widget child = body ?? data?.body;
+    Widget child = data?.body ?? body;
     var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
 
     Widget result;
