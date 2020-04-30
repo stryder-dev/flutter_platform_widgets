@@ -301,6 +301,25 @@ class PlatformButton
 
   @override
   CupertinoButton createIosWidget(BuildContext context) {
+    CupertinoFilledButtonData filledData;
+    if (iosFilled != null) {
+      filledData = iosFilled(context);  
+        
+      return CupertinoButton.filled(
+        key: data?.widgetKey ?? widgetKey,
+        child: data?.child ?? child,
+        onPressed: data?.onPressed ?? onPressed,
+        borderRadius: data?.borderRadius ??
+            const BorderRadius.all(const Radius.circular(8.0)),
+        minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
+        padding: data?.padding ?? padding,
+        pressedOpacity: data?.pressedOpacity ?? 0.4,
+        disabledColor: data?.disabledColor ??
+            disabledColor ??
+            CupertinoColors.quaternarySystemFill,
+      );
+    }    
+      
     CupertinoButtonData data;
     if (ios != null) {
       data = ios(context);
@@ -313,25 +332,6 @@ class PlatformButton
       borderRadius: data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
       color: data?.color ?? color,
-      minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
-      padding: data?.padding ?? padding,
-      pressedOpacity: data?.pressedOpacity ?? 0.4,
-      disabledColor: data?.disabledColor ??
-          disabledColor ??
-          CupertinoColors.quaternarySystemFill,
-    );
-      
-    CupertinoFilledButtonData filledData;
-    if (iosFilled != null) {
-      filledData = iosFilled(context);  
-    }
-      
-    return CupertinoButton.filled(
-      key: data?.widgetKey ?? widgetKey,
-      child: data?.child ?? child,
-      onPressed: data?.onPressed ?? onPressed,
-      borderRadius: data?.borderRadius ??
-          const BorderRadius.all(const Radius.circular(8.0)),
       minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
       padding: data?.padding ?? padding,
       pressedOpacity: data?.pressedOpacity ?? 0.4,
