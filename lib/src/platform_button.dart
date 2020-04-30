@@ -195,7 +195,6 @@ class CupertinoFilledButtonData extends _BaseData {
       : super(
             widgetKey: widgetKey,
             child: child,
-            color: color,
             onPressed: onPressed,
             padding: padding,
             disabledColor: disabledColor);
