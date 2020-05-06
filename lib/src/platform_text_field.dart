@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
+
 import 'package:flutter/cupertino.dart'
     show
         CupertinoColors,
@@ -91,6 +93,10 @@ class MaterialTextFieldData {
     this.textAlignVertical,
     this.toolbarOptions,
     this.enableSuggestions,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
   });
 
   final Key widgetKey;
@@ -133,6 +139,10 @@ class MaterialTextFieldData {
   final TextAlignVertical textAlignVertical;
   final ToolbarOptions toolbarOptions;
   final bool enableSuggestions;
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
 }
 
 class CupertinoTextFieldData {
@@ -183,6 +193,10 @@ class CupertinoTextFieldData {
     this.toolbarOptions,
     this.onTap,
     this.enableSuggestions,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
   });
 
   final Key widgetKey;
@@ -231,6 +245,10 @@ class CupertinoTextFieldData {
   final ToolbarOptions toolbarOptions;
   final GestureTapCallback onTap;
   final bool enableSuggestions;
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
 }
 
 class PlatformTextField
@@ -280,6 +298,11 @@ class PlatformTextField
   final Brightness keyboardAppearance;
   final EdgeInsets scrollPadding;
 
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
+  final ui.BoxHeightStyle selectionHeightStyle;
+  final ui.BoxWidthStyle selectionWidthStyle;
+
   PlatformTextField(
       {Key key,
       this.widgetKey,
@@ -318,6 +341,10 @@ class PlatformTextField
       this.showCursor,
       this.textAlignVertical,
       this.toolbarOptions,
+      this.smartDashesType,
+      this.smartQuotesType,
+      this.selectionHeightStyle,
+      this.selectionWidthStyle,
       this.android,
       this.ios})
       : keyboardType = keyboardType ??
@@ -379,6 +406,14 @@ class PlatformTextField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
+      smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
+      smartDashesType: data?.smartDashesType ?? smartDashesType,
+      selectionHeightStyle: data?.selectionHeightStyle ??
+          selectionHeightStyle ??
+          ui.BoxHeightStyle.tight,
+      selectionWidthStyle: data?.selectionWidthStyle ??
+          selectionWidthStyle ??
+          ui.BoxWidthStyle.tight,
     );
   }
 
@@ -449,6 +484,14 @@ class PlatformTextField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
+      smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
+      smartDashesType: data?.smartDashesType ?? smartDashesType,
+      selectionHeightStyle: data?.selectionHeightStyle ??
+          selectionHeightStyle ??
+          ui.BoxHeightStyle.tight,
+      selectionWidthStyle: data?.selectionWidthStyle ??
+          selectionWidthStyle ??
+          ui.BoxWidthStyle.tight,
     );
   }
 }

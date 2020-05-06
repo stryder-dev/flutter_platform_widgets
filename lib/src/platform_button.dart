@@ -7,12 +7,13 @@
 import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart'
     show
-        MaterialButton,
-        FlatButton,
-        RaisedButton,
         Brightness,
         ButtonTextTheme,
-        MaterialTapTargetSize;
+        FlatButton,
+        MaterialButton,
+        MaterialTapTargetSize,
+        RaisedButton,
+        VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -37,41 +38,43 @@ abstract class _BaseData {
 }
 
 class MaterialFlatButtonData extends _BaseData {
-  MaterialFlatButtonData(
-      {Key widgetKey,
-      Widget child,
-      Color color,
-      VoidCallback onPressed,
-      EdgeInsetsGeometry padding,
-      Color disabledColor,
-      this.animationDuration,
-      this.colorBrightness,
-      this.disabledElevation,
-      this.disabledTextColor,
-      this.elevation,
-      this.highlightColor,
-      this.highlightElevation,
-      this.onHighlightChanged,
-      this.shape,
-      this.splashColor,
-      this.textColor,
-      this.textTheme,
-      this.clipBehavior,
-      this.materialTapTargetSize,
-      this.focusElevation,
-      this.focusColor,
-      this.hoverColor,
-      this.focusNode,
-      this.hoverElevation,
-      this.autofocus,
-      this.onLongPress})
-      : super(
-            widgetKey: widgetKey,
-            child: child,
-            color: color,
-            onPressed: onPressed,
-            padding: padding,
-            disabledColor: disabledColor);
+  MaterialFlatButtonData({
+    Key widgetKey,
+    Widget child,
+    Color color,
+    VoidCallback onPressed,
+    EdgeInsetsGeometry padding,
+    Color disabledColor,
+    this.animationDuration,
+    this.colorBrightness,
+    this.disabledElevation,
+    this.disabledTextColor,
+    this.elevation,
+    this.highlightColor,
+    this.highlightElevation,
+    this.onHighlightChanged,
+    this.shape,
+    this.splashColor,
+    this.textColor,
+    this.textTheme,
+    this.clipBehavior,
+    this.materialTapTargetSize,
+    this.focusElevation,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.hoverElevation,
+    this.autofocus,
+    this.onLongPress,
+    this.visualDensity,
+  }) : super(
+          widgetKey: widgetKey,
+          child: child,
+          color: color,
+          onPressed: onPressed,
+          padding: padding,
+          disabledColor: disabledColor,
+        );
 
   final Duration animationDuration;
   final Brightness colorBrightness;
@@ -95,44 +98,47 @@ class MaterialFlatButtonData extends _BaseData {
   final double hoverElevation;
   final bool autofocus;
   final VoidCallback onLongPress;
+  final VisualDensity visualDensity;
 }
 
 class MaterialRaisedButtonData extends _BaseData {
-  MaterialRaisedButtonData(
-      {Key widgetKey,
-      Widget child,
-      Color color,
-      VoidCallback onPressed,
-      EdgeInsetsGeometry padding,
-      Color disabledColor,
-      this.animationDuration,
-      this.colorBrightness,
-      this.disabledElevation,
-      this.disabledTextColor,
-      this.elevation,
-      this.highlightColor,
-      this.highlightElevation,
-      this.onHighlightChanged,
-      this.shape,
-      this.splashColor,
-      this.textColor,
-      this.textTheme,
-      this.clipBehavior,
-      this.materialTapTargetSize,
-      this.focusElevation,
-      this.focusColor,
-      this.hoverColor,
-      this.focusNode,
-      this.hoverElevation,
-      this.autofocus,
-      this.onLongPress})
-      : super(
-            widgetKey: widgetKey,
-            child: child,
-            color: color,
-            onPressed: onPressed,
-            padding: padding,
-            disabledColor: disabledColor);
+  MaterialRaisedButtonData({
+    Key widgetKey,
+    Widget child,
+    Color color,
+    VoidCallback onPressed,
+    EdgeInsetsGeometry padding,
+    Color disabledColor,
+    this.animationDuration,
+    this.colorBrightness,
+    this.disabledElevation,
+    this.disabledTextColor,
+    this.elevation,
+    this.highlightColor,
+    this.highlightElevation,
+    this.onHighlightChanged,
+    this.shape,
+    this.splashColor,
+    this.textColor,
+    this.textTheme,
+    this.clipBehavior,
+    this.materialTapTargetSize,
+    this.focusElevation,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.hoverElevation,
+    this.autofocus,
+    this.onLongPress,
+    this.visualDensity,
+  }) : super(
+          widgetKey: widgetKey,
+          child: child,
+          color: color,
+          onPressed: onPressed,
+          padding: padding,
+          disabledColor: disabledColor,
+        );
 
   final Duration animationDuration;
   final Brightness colorBrightness;
@@ -156,6 +162,7 @@ class MaterialRaisedButtonData extends _BaseData {
   final double hoverElevation;
   final bool autofocus;
   final VoidCallback onLongPress;
+  final VisualDensity visualDensity;
 }
 
 class CupertinoButtonData extends _BaseData {
@@ -237,6 +244,7 @@ class PlatformButton
         hoverColor: dataFlat?.hoverColor,
         autofocus: dataFlat?.autofocus ?? false,
         onLongPress: dataFlat?.onLongPress,
+        visualDensity: dataFlat?.visualDensity,
       );
     }
 
@@ -273,6 +281,7 @@ class PlatformButton
       hoverElevation: dataRaised?.hoverElevation,
       autofocus: dataRaised?.autofocus ?? false,
       onLongPress: dataRaised?.onLongPress,
+      visualDensity: dataRaised?.visualDensity,
     );
   }
 

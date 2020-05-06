@@ -46,11 +46,12 @@ class MaterialSwitchData extends _BaseData {
     this.focusNode,
     this.autofocus,
   }) : super(
-            widgetKey: widgetKey,
-            value: value,
-            onChanged: onChanged,
-            activeColor: activeColor,
-            dragStartBehavior: dragStartBehavior);
+          widgetKey: widgetKey,
+          value: value,
+          onChanged: onChanged,
+          activeColor: activeColor,
+          dragStartBehavior: dragStartBehavior,
+        );
 
   final Color activeTrackColor;
   final Color inactiveThumbColor;
@@ -71,12 +72,16 @@ class CupertinoSwitchData extends _BaseData {
     ValueChanged<bool> onChanged,
     Color activeColor,
     DragStartBehavior dragStartBehavior,
+    this.trackColor,
   }) : super(
-            widgetKey: widgetKey,
-            value: value,
-            onChanged: onChanged,
-            activeColor: activeColor,
-            dragStartBehavior: dragStartBehavior);
+          widgetKey: widgetKey,
+          value: value,
+          onChanged: onChanged,
+          activeColor: activeColor,
+          dragStartBehavior: dragStartBehavior,
+        );
+
+  final Color trackColor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -142,6 +147,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       dragStartBehavior: data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
+      trackColor: data?.trackColor,
     );
   }
 }

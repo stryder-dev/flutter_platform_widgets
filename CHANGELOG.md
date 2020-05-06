@@ -1,3 +1,8 @@
+## [0.40.0] - May 07, 2020
+
+#### (Flutter version support: v1.17.0)
+
+
 ## [0.32.5] - March 24, 2020
 
 #### (Flutter version support: v1.12.13+hotfix.5)

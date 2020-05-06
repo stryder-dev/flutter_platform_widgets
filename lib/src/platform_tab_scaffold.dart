@@ -58,6 +58,8 @@ class MaterialTabScaffoldData extends _BaseData {
     this.drawerEdgeDragWidth,
     this.extendBodyBehindAppBar,
     this.tabsBackgroundColor,
+    this.drawerEnableOpenDragGesture,
+    this.endDrawerEnableOpenDragGesture,
   }) : super(widgetKey: widgetKey, backgroundColor: backgroundColor);
 
   final Widget Function(BuildContext context, int index) bodyBuilder;
@@ -83,6 +85,8 @@ class MaterialTabScaffoldData extends _BaseData {
   final double drawerEdgeDragWidth;
   final bool extendBodyBehindAppBar;
   final Color tabsBackgroundColor;
+  final bool drawerEnableOpenDragGesture;
+  final bool endDrawerEnableOpenDragGesture;
 }
 
 class CupertinoTabViewData {
@@ -241,6 +245,9 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       drawerScrimColor: data?.drawerScrimColor,
       drawerEdgeDragWidth: data?.drawerEdgeDragWidth,
       extendBodyBehindAppBar: data?.extendBodyBehindAppBar ?? false,
+      drawerEnableOpenDragGesture: data?.drawerEnableOpenDragGesture ?? true,
+      endDrawerEnableOpenDragGesture:
+          data?.endDrawerEnableOpenDragGesture ?? true,
     );
   }
 
@@ -269,23 +276,23 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       tabBuilder: (context, index) {
         if (data == null || data.useCupertinoTabView) {
           return CupertinoTabView(
-              defaultTitle:
-                  data?.tabViewDataBuilder(context, index)?.defaultTitle,
-              navigatorKey:
-                  data?.tabViewDataBuilder(context, index)?.navigatorKey,
-              navigatorObservers: data
-                      ?.tabViewDataBuilder(context, index)
-                      ?.navigatorObservers ??
-                  const <NavigatorObserver>[],
-              onGenerateRoute:
-                  data?.tabViewDataBuilder(context, index)?.onGenerateRoute,
-              onUnknownRoute:
-                  data?.tabViewDataBuilder(context, index)?.onUnknownRoute,
-              routes: data?.tabViewDataBuilder(context, index)?.routes,
-              builder: (context) {
-                return _buildCupertinoPageScaffold(
-                    context, index, data, tabBar);
-              });
+            // key
+            defaultTitle:
+                data?.tabViewDataBuilder(context, index)?.defaultTitle,
+            navigatorKey:
+                data?.tabViewDataBuilder(context, index)?.navigatorKey,
+            navigatorObservers:
+                data?.tabViewDataBuilder(context, index)?.navigatorObservers ??
+                    const <NavigatorObserver>[],
+            onGenerateRoute:
+                data?.tabViewDataBuilder(context, index)?.onGenerateRoute,
+            onUnknownRoute:
+                data?.tabViewDataBuilder(context, index)?.onUnknownRoute,
+            routes: data?.tabViewDataBuilder(context, index)?.routes,
+            builder: (context) {
+              return _buildCupertinoPageScaffold(context, index, data, tabBar);
+            },
+          );
         }
 
         return _buildCupertinoPageScaffold(context, index, data, tabBar);
@@ -323,6 +330,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     final child = data?.bodyBuilder?.call(context, index) ??
         bodyBuilder?.call(context, index);
     return CupertinoPageScaffold(
+      //key
       navigationBar: appBar,
       child: iosContentPad(context, child, appBar, tabBar),
       backgroundColor: data?.backgroundColor ?? pageBackgroundColor,

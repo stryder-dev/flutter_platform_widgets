@@ -6,7 +6,12 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoDialogAction;
 import 'package:flutter/material.dart'
-    show FlatButton, Brightness, ButtonTextTheme, MaterialTapTargetSize;
+    show
+        Brightness,
+        ButtonTextTheme,
+        FlatButton,
+        MaterialTapTargetSize,
+        VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
@@ -41,7 +46,13 @@ class MaterialDialogActionData extends _BaseData {
     this.hoverColor,
     this.focusNode,
     this.autofocus,
-  }) : super(widgetKey: widgetKey, child: child, onPressed: onPressed);
+    this.visualDensity,
+    this.onLongPress,
+  }) : super(
+          widgetKey: widgetKey,
+          child: child,
+          onPressed: onPressed,
+        );
 
   final Color color;
   final Brightness colorBrightness;
@@ -60,6 +71,8 @@ class MaterialDialogActionData extends _BaseData {
   final Color hoverColor;
   final FocusNode focusNode;
   final bool autofocus;
+  final VisualDensity visualDensity;
+  final VoidCallback onLongPress;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -70,7 +83,11 @@ class CupertinoDialogActionData extends _BaseData {
       this.isDefaultAction,
       this.isDestructiveAction,
       this.textStyle})
-      : super(widgetKey: widgetKey, child: child, onPressed: onPressed);
+      : super(
+          widgetKey: widgetKey,
+          child: child,
+          onPressed: onPressed,
+        );
 
   final bool isDefaultAction;
   final bool isDestructiveAction;
@@ -122,6 +139,8 @@ class PlatformDialogAction
       focusNode: data?.focusNode,
       hoverColor: data?.hoverColor,
       autofocus: data?.autofocus ?? false,
+      visualDensity: data?.visualDensity,
+      onLongPress: data?.onLongPress,
     );
   }
 

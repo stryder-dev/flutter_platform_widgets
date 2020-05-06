@@ -58,11 +58,12 @@ class MaterialAppBarData extends _BaseData {
       this.actionsIconTheme,
       this.shape})
       : super(
-            widgetKey: widgetKey,
-            title: title,
-            backgroundColor: backgroundColor,
-            leading: leading,
-            automaticallyImplyLeading: automaticallyImplyLeading);
+          widgetKey: widgetKey,
+          title: title,
+          backgroundColor: backgroundColor,
+          leading: leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+        );
 
   final List<Widget> actions;
   final PreferredSizeWidget bottom;
@@ -95,6 +96,7 @@ class CupertinoNavigationBarData extends _BaseData {
       this.border,
       this.actionsForegroundColor,
       this.transitionBetweenRoutes,
+      this.brightness,
       this.heroTag})
       : super(
             widgetKey: widgetKey,
@@ -111,6 +113,7 @@ class CupertinoNavigationBarData extends _BaseData {
   final bool automaticallyImplyMiddle;
   final String previousPageTitle;
   final EdgeInsetsDirectional padding;
+  final Brightness brightness;
 }
 
 class PlatformAppBar
@@ -200,6 +203,7 @@ class PlatformAppBar
         leading: data?.leading ?? leading,
         trailing: data?.trailing ?? trailing,
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
+        brightness: data?.brightness,
         heroTag: data.heroTag,
       );
     }
@@ -218,6 +222,7 @@ class PlatformAppBar
       leading: data?.leading ?? leading,
       trailing: data?.trailing ?? trailing,
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
+      brightness: data?.brightness,
     );
   }
 }

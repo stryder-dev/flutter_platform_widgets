@@ -10,6 +10,9 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_base.dart';
 
+const EdgeInsets _defaultInsetPadding =
+    EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
+
 abstract class _BaseData {
   _BaseData({this.widgetKey, this.actions, this.content, this.title});
 
@@ -20,20 +23,27 @@ abstract class _BaseData {
 }
 
 class MaterialAlertDialogData extends _BaseData {
-  MaterialAlertDialogData(
-      {Key widgetKey,
-      List<Widget> actions,
-      Widget content,
-      Widget title,
-      this.contentTextStyle,
-      this.backgroundColor,
-      this.elevation,
-      this.shape,
-      this.contentPadding,
-      this.semanticLabel,
-      this.titlePadding,
-      this.titleTextStyle})
-      : super(
+  MaterialAlertDialogData({
+    Key widgetKey,
+    List<Widget> actions,
+    Widget content,
+    Widget title,
+    this.contentTextStyle,
+    this.backgroundColor,
+    this.elevation,
+    this.shape,
+    this.contentPadding,
+    this.semanticLabel,
+    this.titlePadding,
+    this.titleTextStyle,
+    this.scrollable,
+    this.actionsOverflowDirection,
+    this.actionsPadding,
+    this.buttonPadding,
+    this.actionsOverflowButtonSpacing,
+    this.clipBehavior,
+    this.insetPadding,
+  }) : super(
             widgetKey: widgetKey,
             actions: actions,
             content: content,
@@ -47,6 +57,13 @@ class MaterialAlertDialogData extends _BaseData {
   final double elevation;
   final ShapeBorder shape;
   final TextStyle titleTextStyle;
+  final bool scrollable;
+  final VerticalDirection actionsOverflowDirection;
+  final EdgeInsetsGeometry actionsPadding;
+  final EdgeInsetsGeometry buttonPadding;
+  final double actionsOverflowButtonSpacing;
+  final Clip clipBehavior;
+  final EdgeInsets insetPadding;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -112,6 +129,13 @@ class PlatformAlertDialog
       elevation: data?.elevation,
       shape: data?.shape,
       titleTextStyle: data?.titleTextStyle,
+      scrollable: data?.scrollable ?? false,
+      actionsOverflowDirection: data?.actionsOverflowDirection,
+      actionsPadding: data?.actionsPadding ?? EdgeInsets.zero,
+      buttonPadding: data?.buttonPadding,
+      actionsOverflowButtonSpacing: data?.actionsOverflowButtonSpacing,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      insetPadding: data?.insetPadding ?? _defaultInsetPadding,
     );
   }
 
