@@ -437,6 +437,16 @@ class PlatformTabController extends ChangeNotifier {
     return _materialController?.index ?? _cupertinoController.index;
   }
 
+  void setIndex(BuildContext context, int index) {
+    _init(context);
+
+    if (_materialController != null) {
+      _materialController.index = index;
+    } else if (_cupertinoController != null) {
+      _cupertinoController.index = index;
+    }
+  }
+
   void _init(BuildContext context) {
     if (isMaterial(context)) {
       if (_materialController == null) {
