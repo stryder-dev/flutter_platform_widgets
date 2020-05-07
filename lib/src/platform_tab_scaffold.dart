@@ -236,7 +236,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       floatingActionButtonLocation: data?.floatingActionButtonLocation,
       persistentFooterButtons: data?.persistentFooterButtons,
       primary: data?.primary ?? true,
-      resizeToAvoidBottomInset: data?.resizeToAvoidBottomPadding,
       bottomSheet: data?.bottomSheet,
       drawerDragStartBehavior:
           data?.drawerDragStartBehavior ?? DragStartBehavior.start,
