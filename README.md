@@ -154,11 +154,14 @@ return PlatformButton(
 
 > Note: For android you can use the `FlatButton` instead. To do this use the `MaterialFlatButtonData` on the `androidFlat` argument.
 
+> NoteL For iOS you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `iosFilled` argument.
+
 ```dart
 return PlatformButton(
  onPressed: () => print('send'),
  child: PlatformText('Send'),
- androidFlat: (_) => MaterialFlatButtonData()
+ androidFlat: (_) => MaterialFlatButtonData(),
+ iosFilled: (_) => CupertinoFilledButtonData(),
 );
 ```
 
