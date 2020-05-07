@@ -3,6 +3,10 @@
 #### (Flutter version support: v1.17.0)
 
 - Update widget arguments to match latest flutter widgets.
+- Fixed issue with CupertinoPageScaffoldData (thanks josxha)
+- Removed deprecated fields (thanks fredgrott)
+- Added setIndex to PlatformTabScaffold (thanks	GillesMontyne)
+- Added more PlatformIcons (thanks mhaid)
 
 ## [0.32.5] - March 24, 2020
 

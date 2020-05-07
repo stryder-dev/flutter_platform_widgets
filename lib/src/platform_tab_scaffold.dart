@@ -438,6 +438,9 @@ class PlatformTabController extends ChangeNotifier {
   }
 
   void setIndex(BuildContext context, int index) {
+    assert(context != null);
+    assert(index >= 0);
+
     _init(context);
 
     if (_materialController != null) {
