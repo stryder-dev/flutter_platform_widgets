@@ -36,6 +36,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('back', (c) => c.platformIcons.back),
           _IconCompared(
               'batteryCharging', (c) => c.platformIcons.batteryCharging),
+          _IconCompared('batteryEmpty', (c) => c.platformIcons.batteryEmpty),
           _IconCompared('batteryFull', (c) => c.platformIcons.batteryFull),
           _IconCompared('bluetooth', (c) => c.platformIcons.bluetooth),
           _IconCompared('book', (c) => c.platformIcons.book),
@@ -44,8 +45,10 @@ class IconsPage extends StatelessWidget {
           _IconCompared(
               'bookmarkOutline', (c) => c.platformIcons.bookmarkOutline),
           _IconCompared('brightness', (c) => c.platformIcons.brightness),
+          _IconCompared('bus', (c) => c.platformIcons.bus),
           _IconCompared(
               'brightnessSolid', (c) => c.platformIcons.brightnessSolid),
+          _IconCompared('car', (c) => c.platformIcons.car),
           _IconCompared('checkMark', (c) => c.platformIcons.checkMark),
           _IconCompared(
               'checkMarkCircled', (c) => c.platformIcons.checkMarkCircled),
@@ -54,6 +57,10 @@ class IconsPage extends StatelessWidget {
           _IconCompared('checkMarkCircledOutline',
               (c) => c.platformIcons.checkMarkCircledOutline),
           _IconCompared('clear', (c) => c.platformIcons.clear),
+          _IconCompared('clearThick', (c) => c.platformIcons.clearThick),
+          _IconCompared(
+              'clearThickCircled', (c) => c.platformIcons.clearThickCircled),
+          _IconCompared('clockSolid', (c) => c.platformIcons.clockSolid),
           _IconCompared('collections', (c) => c.platformIcons.collections),
           _IconCompared(
               'collectionsSolid', (c) => c.platformIcons.collectionsSolid),
@@ -65,8 +72,10 @@ class IconsPage extends StatelessWidget {
           _IconCompared('delete', (c) => c.platformIcons.delete),
           _IconCompared('deleteSolid', (c) => c.platformIcons.deleteSolid),
           _IconCompared('deleteOutline', (c) => c.platformIcons.deleteOutline),
+          _IconCompared('done', (c) => c.platformIcons.done),
           _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
           _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
+          _IconCompared('eyeSolid', (c) => c.platformIcons.eyeSolid),
           _IconCompared('folder', (c) => c.platformIcons.folder),
           _IconCompared('folderOpen', (c) => c.platformIcons.folderOpen),
           _IconCompared('folderSolid', (c) => c.platformIcons.folderSolid),
@@ -78,8 +87,10 @@ class IconsPage extends StatelessWidget {
               'gameController', (c) => c.platformIcons.gameController),
           _IconCompared('gameControllerSolid',
               (c) => c.platformIcons.gameControllerSolid),
+          _IconCompared('gearSolid', (c) => c.platformIcons.gearSolid),
           _IconCompared('group', (c) => c.platformIcons.group),
           _IconCompared('groupSolid', (c) => c.platformIcons.groupSolid),
+          _IconCompared('heartSolid', (c) => c.platformIcons.heartSolid),
           _IconCompared('home', (c) => c.platformIcons.home),
           _IconCompared('info', (c) => c.platformIcons.info),
           _IconCompared('leftChevron', (c) => c.platformIcons.leftChevron),
@@ -99,6 +110,8 @@ class IconsPage extends StatelessWidget {
           _IconCompared(
               'padlockOutline', (c) => c.platformIcons.padlockOutline),
           _IconCompared('pause', (c) => c.platformIcons.pause),
+          _IconCompared('pawSolid', (c) => c.platformIcons.pawSolid),
+          _IconCompared('pen', (c) => c.platformIcons.pen),
           _IconCompared('person', (c) => c.platformIcons.person),
           _IconCompared('personSolid', (c) => c.platformIcons.personSolid),
           _IconCompared('personOutline', (c) => c.platformIcons.personOutline),
@@ -131,6 +144,8 @@ class IconsPage extends StatelessWidget {
           _IconCompared('tag', (c) => c.platformIcons.tag),
           _IconCompared('tagSolid', (c) => c.platformIcons.tagSolid),
           _IconCompared('tagOutline', (c) => c.platformIcons.tagOutline),
+          _IconCompared('time', (c) => c.platformIcons.time),
+          _IconCompared('timeSolid', (c) => c.platformIcons.timeSolid),
           _IconCompared('train', (c) => c.platformIcons.train),
           _IconCompared('upArrow', (c) => c.platformIcons.upArrow),
           _IconCompared('videoCamera', (c) => c.platformIcons.videoCamera),
@@ -140,6 +155,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('volumnMute', (c) => c.platformIcons.volumnMute),
           _IconCompared('volumnnUp', (c) => c.platformIcons.volumnnUp),
           _IconCompared('volumnOff', (c) => c.platformIcons.volumnOff),
+          _IconCompared('work', (c) => c.platformIcons.work),
         ],
       ),
     );
