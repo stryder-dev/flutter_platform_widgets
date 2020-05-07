@@ -37,27 +37,28 @@ abstract class _BaseData {
 }
 
 class MaterialAppBarData extends _BaseData {
-  MaterialAppBarData(
-      {Widget title,
-      Color backgroundColor,
-      Widget leading,
-      Key widgetKey,
-      bool automaticallyImplyLeading,
-      this.actions,
-      this.bottom,
-      this.bottomOpacity,
-      this.brightness,
-      this.centerTitle,
-      this.elevation,
-      this.flexibleSpace,
-      this.iconTheme,
-      this.primary,
-      this.textTheme,
-      this.titleSpacing,
-      this.toolbarOpacity,
-      this.actionsIconTheme,
-      this.shape})
-      : super(
+  MaterialAppBarData({
+    Widget title,
+    Color backgroundColor,
+    Widget leading,
+    Key widgetKey,
+    bool automaticallyImplyLeading,
+    this.actions,
+    this.bottom,
+    this.bottomOpacity,
+    this.brightness,
+    this.centerTitle,
+    this.elevation,
+    this.flexibleSpace,
+    this.iconTheme,
+    this.primary,
+    this.textTheme,
+    this.titleSpacing,
+    this.toolbarOpacity,
+    this.actionsIconTheme,
+    this.shape,
+    this.excludeHeaderSemantics,
+  }) : super(
           widgetKey: widgetKey,
           title: title,
           backgroundColor: backgroundColor,
@@ -80,6 +81,7 @@ class MaterialAppBarData extends _BaseData {
   final double toolbarOpacity;
   final IconThemeData actionsIconTheme;
   final ShapeBorder shape;
+  final bool excludeHeaderSemantics;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -169,6 +171,7 @@ class PlatformAppBar
       toolbarOpacity: data?.toolbarOpacity ?? 1.0,
       actionsIconTheme: data?.actionsIconTheme,
       shape: data?.shape,
+      excludeHeaderSemantics: data?.excludeHeaderSemantics ?? false,
     );
   }
 

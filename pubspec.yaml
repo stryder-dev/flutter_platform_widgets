@@ -5,7 +5,7 @@ homepage: https://github.com/aqwert/flutter_platform_widgets
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
-  flutter: ^1.15.17
+  flutter: ^1.17.0
 
 dependencies:
   flutter:
