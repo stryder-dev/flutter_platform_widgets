@@ -198,9 +198,10 @@ class LandingPageState extends State<LandingPage> {
               onPressed: () {},
             ),
             PlatformButton(
-              child: PlatformText('Platform Flat Button'),
+              child: PlatformText('Platform Flat/Filled Button'),
               onPressed: () {},
               androidFlat: (_) => MaterialFlatButtonData(),
+              iosFilled: (_) => CupertinoFilledButtonData(),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

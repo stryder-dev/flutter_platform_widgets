@@ -7,6 +7,7 @@
 - Removed deprecated fields (thanks fredgrott)
 - Added setIndex to PlatformTabScaffold (thanks	GillesMontyne)
 - Added more PlatformIcons (thanks mhaid)
+- Added CupertinoFilledButton (thanks eyecreate)
 
 ## [0.32.5] - March 24, 2020
 

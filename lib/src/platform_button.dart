@@ -166,17 +166,17 @@ class MaterialRaisedButtonData extends _BaseData {
 }
 
 class CupertinoButtonData extends _BaseData {
-  CupertinoButtonData(
-      {Key widgetKey,
-      Widget child,
-      Color color,
-      VoidCallback onPressed,
-      EdgeInsetsGeometry padding,
-      Color disabledColor,
-      this.borderRadius,
-      this.minSize,
-      this.pressedOpacity})
-      : super(
+  CupertinoButtonData({
+    Key widgetKey,
+    Widget child,
+    Color color,
+    VoidCallback onPressed,
+    EdgeInsetsGeometry padding,
+    Color disabledColor,
+    this.borderRadius,
+    this.minSize,
+    this.pressedOpacity,
+  }) : super(
             widgetKey: widgetKey,
             child: child,
             color: color,
@@ -190,16 +190,16 @@ class CupertinoButtonData extends _BaseData {
 }
 
 class CupertinoFilledButtonData extends _BaseData {
-  CupertinoButtonData(
-      {Key widgetKey,
-      Widget child,
-      VoidCallback onPressed,
-      EdgeInsetsGeometry padding,
-      Color disabledColor,
-      this.borderRadius,
-      this.minSize,
-      this.pressedOpacity})
-      : super(
+  CupertinoFilledButtonData({
+    Key widgetKey,
+    Widget child,
+    VoidCallback onPressed,
+    EdgeInsetsGeometry padding,
+    Color disabledColor,
+    this.borderRadius,
+    this.minSize,
+    this.pressedOpacity,
+  }) : super(
             widgetKey: widgetKey,
             child: child,
             onPressed: onPressed,
@@ -226,18 +226,19 @@ class PlatformButton
   final PlatformBuilder<CupertinoButtonData> ios;
   final PlatformBuilder<CupertinoFilledButtonData> iosFilled;
 
-  PlatformButton(
-      {Key key,
-      this.widgetKey,
-      this.child,
-      this.onPressed,
-      this.color,
-      this.disabledColor,
-      this.padding,
-      this.android,
-      this.androidFlat,
-      this.ios})
-      : assert(androidFlat == null || android == null),
+  PlatformButton({
+    Key key,
+    this.widgetKey,
+    this.child,
+    this.onPressed,
+    this.color,
+    this.disabledColor,
+    this.padding,
+    this.android,
+    this.androidFlat,
+    this.ios,
+    this.iosFilled,
+  })  : assert(androidFlat == null || android == null),
         super(key: key);
 
   @override
@@ -310,25 +311,24 @@ class PlatformButton
 
   @override
   CupertinoButton createIosWidget(BuildContext context) {
-    CupertinoFilledButtonData filledData;
     if (iosFilled != null) {
-      filledData = iosFilled(context);  
-        
+      final filledData = iosFilled(context);
+
       return CupertinoButton.filled(
-        key: data?.widgetKey ?? widgetKey,
-        child: data?.child ?? child,
-        onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
+        key: filledData?.widgetKey ?? widgetKey,
+        child: filledData?.child ?? child,
+        onPressed: filledData?.onPressed ?? onPressed,
+        borderRadius: filledData?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
-        padding: data?.padding ?? padding,
-        pressedOpacity: data?.pressedOpacity ?? 0.4,
-        disabledColor: data?.disabledColor ??
+        minSize: filledData?.minSize ?? _kMinInteractiveDimensionCupertino,
+        padding: filledData?.padding ?? padding,
+        pressedOpacity: filledData?.pressedOpacity ?? 0.4,
+        disabledColor: filledData?.disabledColor ??
             disabledColor ??
             CupertinoColors.quaternarySystemFill,
       );
-    }    
-      
+    }
+
     CupertinoButtonData data;
     if (ios != null) {
       data = ios(context);
