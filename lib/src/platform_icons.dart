@@ -175,6 +175,9 @@ class PlatformIcons {
 
   // IconData get createSolid =>
   //     isMaterial(context) ? Icons. : CupertinoIcons.create_solid;
+  
+  /// Icons: Icons.dehaze : CupertinoIcons.(custom)
+  IconData get dehaze => isMaterial(context) ? Icons.dehaze : IconData(0xf394, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.delete : CupertinoIcons.delete
   IconData get delete =>
@@ -211,6 +214,12 @@ class PlatformIcons {
   /// Icons: Icons.visibility : CupertinoIcons.eye_solid
   IconData get eyeSolid =>
       isMaterial(context) ? Icons.visibility : CupertinoIcons.eye_solid;
+
+  /// Icons: Icons.favorite : CupertinoIcons.heart_solid
+  IconData get favorite => isMaterial(context) ? Icons.favorite : CupertinoIcons.heart_solid;
+
+  /// Icons: Icons.favorite_border : CupertinoIcons.heart
+  IconData get favorite_border => isMaterial(context) ? Icons.favorite_border : CupertinoIcons.heart;
 
   /// Icons: Icons.flag : CupertinoIcons.flag
   IconData get flag => isMaterial(context) ? Icons.flag : CupertinoIcons.flag;
