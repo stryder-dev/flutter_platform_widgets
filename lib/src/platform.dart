@@ -40,7 +40,9 @@ bool isCupertino(BuildContext context) {
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
+  @Deprecated("Use barrierDismissible instead")
   bool androidBarrierDismissible = true,
+  bool barrierDismissible = true,
   RouteSettings routeSettings,
   bool useRootNavigator = true,
 }) {
@@ -48,7 +50,7 @@ Future<T> showPlatformDialog<T>({
     return showDialog<T>(
       context: context,
       builder: builder,
-      barrierDismissible: androidBarrierDismissible,
+      barrierDismissible: androidBarrierDismissible || barrierDismissible,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
     );
@@ -58,6 +60,7 @@ Future<T> showPlatformDialog<T>({
       builder: builder,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
+      barrierDismissible: barrierDismissible,
     );
   }
 }
