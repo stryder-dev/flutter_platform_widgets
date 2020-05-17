@@ -12,29 +12,39 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     show Theme, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-bool isMaterial(BuildContext context) {
+PlatformStyle _platformStyle(BuildContext context) {
+  final platformStyle = PlatformProvider.of(context)?.settings?.platformStyle;
+
+  if (kIsWeb) {
+    return platformStyle?.web ?? PlatformStyle.Material;
+  }
+
   switch (Theme.of(context).platform) {
     case TargetPlatform.android:
+      return platformStyle?.android ?? PlatformStyle.Material;
     case TargetPlatform.fuchsia:
-      return true;
+      return platformStyle?.fuchsia ?? PlatformStyle.Material;
     case TargetPlatform.iOS:
-      return false;
-    default:
-      return true;
+      return platformStyle?.ios ?? PlatformStyle.Cupertino;
+    case TargetPlatform.linux:
+      return platformStyle?.linux ?? PlatformStyle.Material;
+    case TargetPlatform.macOS:
+      return platformStyle?.macos ?? PlatformStyle.Cupertino;
+    case TargetPlatform.windows:
+      return platformStyle?.windows ?? PlatformStyle.Material;
   }
+
+  return PlatformStyle.Material;
+}
+
+bool isMaterial(BuildContext context) {
+  return _platformStyle(context) == PlatformStyle.Material;
 }
 
 bool isCupertino(BuildContext context) {
-  switch (Theme.of(context).platform) {
-    case TargetPlatform.android:
-    case TargetPlatform.fuchsia:
-      return false;
-    case TargetPlatform.iOS:
-      return true;
-    default:
-      return false;
-  }
+  return _platformStyle(context) == PlatformStyle.Cupertino;
 }
 
 Future<T> showPlatformDialog<T>({

@@ -247,6 +247,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       drawerEnableOpenDragGesture: data?.drawerEnableOpenDragGesture ?? true,
       endDrawerEnableOpenDragGesture:
           data?.endDrawerEnableOpenDragGesture ?? true,
+      //resizeToAvoidBottomPadding: deprecated,
     );
   }
 
