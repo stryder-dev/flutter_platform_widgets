@@ -498,7 +498,7 @@ Requires to be placed at the root (above MaterialApp, CupertinoApp or PlatformAp
 
 ```dart
   return PlatformProvider(
-    builder: (BuildContext context) MaterialApp(...)
+    builder: (BuildContext context) => MaterialApp(...)
   );
 ```
 
@@ -530,7 +530,7 @@ _iosUsesMaterialWidgets_
 
 _platformStyle_
 
-- Provides a way to set either `Material` or `Cupertino` style on any supported platforms such as android, ios, web, macos, fuchsia, windows amd linux. For example if you wanted to use `Cupertino` widgets for web you would configure by setting the settings object on `PlatformProvider:
+- Provides a way to set either `Material` or `Cupertino` style on any supported platforms such as android, ios, web, macos, fuchsia, windows amd linux. For example if you wanted to use `Cupertino` widgets for web you would configure by setting the settings object on `PlatformProvider`:
 
 ```
 PlatformProvider(
