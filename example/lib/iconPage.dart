@@ -77,8 +77,9 @@ class IconsPage extends StatelessWidget {
           _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
           _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
           _IconCompared('eyeSolid', (c) => c.platformIcons.eyeSolid),
-          _IconCompared('favorite', (c) => c.platformIcons.favorite),
-          _IconCompared('favorite_border', (c) => c.platformIcons.favorite_border),
+          _IconCompared('favoriteSolid', (c) => c.platformIcons.favoriteSolid),
+          _IconCompared(
+              'favoriteOutline', (c) => c.platformIcons.favoriteOutline),
           _IconCompared('folder', (c) => c.platformIcons.folder),
           _IconCompared('folderOpen', (c) => c.platformIcons.folderOpen),
           _IconCompared('folderSolid', (c) => c.platformIcons.folderSolid),

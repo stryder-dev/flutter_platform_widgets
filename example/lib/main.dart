@@ -72,11 +72,11 @@ class _AppState extends State<App> {
       data: brightness == Brightness.light ? materialTheme : materialDarkTheme,
       child: PlatformProvider(
         //initialPlatform: initialPlatform,
-        settings: PlatformSettingsData(
-          platformStyle: PlatformStyleData(
-            android: PlatformStyle.Cupertino,
-          ),
-        ),
+        // settings: PlatformSettingsData(
+        //   platformStyle: PlatformStyleData(
+        //     android: PlatformStyle.Cupertino,
+        //   ),
+        // ),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,

@@ -89,10 +89,12 @@ class PlatformIcons {
       : CupertinoIcons.brightness_solid;
 
   /// Icons: Icons.directions_bus : CupertinoIcons.bus
-  IconData get bus => isMaterial(context) ? Icons.directions_bus : CupertinoIcons.bus;
+  IconData get bus =>
+      isMaterial(context) ? Icons.directions_bus : CupertinoIcons.bus;
 
   /// Icons: Icons.directions_car : CupertinoIcons.car
-  IconData get car => isMaterial(context) ? Icons.directions_car : CupertinoIcons.car;
+  IconData get car =>
+      isMaterial(context) ? Icons.directions_car : CupertinoIcons.car;
 
   // IconData get carDetailed =>
   //     isMaterial(context) ? Icons.book : CupertinoIcons.car_detailed;
@@ -175,9 +177,12 @@ class PlatformIcons {
 
   // IconData get createSolid =>
   //     isMaterial(context) ? Icons. : CupertinoIcons.create_solid;
-  
+
   /// Icons: Icons.dehaze : CupertinoIcons.(custom)
-  IconData get dehaze => isMaterial(context) ? Icons.dehaze : IconData(0xf394, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+  IconData get dehaze => isMaterial(context)
+      ? Icons.dehaze
+      : IconData(0xf394,
+          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.delete : CupertinoIcons.delete
   IconData get delete =>
@@ -195,9 +200,11 @@ class PlatformIcons {
       isMaterial(context) ? Icons.delete_outline : CupertinoIcons.delete;
 
   /// Icons: Icons.done : CupertinoIcons.(custom)
-  IconData get done =>
-      isMaterial(context) ? Icons.done : IconData(0xf383, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
-  
+  IconData get done => isMaterial(context)
+      ? Icons.done
+      : IconData(0xf383,
+          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+
   // IconData get doubleMusicNote =>
   //     isMaterial(context) ? Icons.music_note : CupertinoIcons.double_music_note;
 
@@ -216,10 +223,12 @@ class PlatformIcons {
       isMaterial(context) ? Icons.visibility : CupertinoIcons.eye_solid;
 
   /// Icons: Icons.favorite : CupertinoIcons.heart_solid
-  IconData get favorite => isMaterial(context) ? Icons.favorite : CupertinoIcons.heart_solid;
+  IconData get favoriteSolid =>
+      isMaterial(context) ? Icons.favorite : CupertinoIcons.heart_solid;
 
   /// Icons: Icons.favorite_border : CupertinoIcons.heart
-  IconData get favorite_border => isMaterial(context) ? Icons.favorite_border : CupertinoIcons.heart;
+  IconData get favoriteOutline =>
+      isMaterial(context) ? Icons.favorite_border : CupertinoIcons.heart;
 
   /// Icons: Icons.flag : CupertinoIcons.flag
   IconData get flag => isMaterial(context) ? Icons.flag : CupertinoIcons.flag;
@@ -533,7 +542,8 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.tags_solid;
 
   /// Icons: Icons.schedule : CupertinoIcons.time
-  IconData get time => isMaterial(context) ? Icons.schedule : CupertinoIcons.time;
+  IconData get time =>
+      isMaterial(context) ? Icons.schedule : CupertinoIcons.time;
 
   /// Icons: Icons.watch_later : CupertinoIcons.time_solid
   IconData get timeSolid =>
@@ -573,8 +583,10 @@ class PlatformIcons {
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
   IconData get volumnnUp =>
       isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
-  
+
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
-  IconData get work =>
-      isMaterial(context) ? Icons.work : IconData(0xf3ee, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+  IconData get work => isMaterial(context)
+      ? Icons.work
+      : IconData(0xf3ee,
+          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 }
