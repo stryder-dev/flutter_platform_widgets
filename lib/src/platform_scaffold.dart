@@ -168,6 +168,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       drawerEnableOpenDragGesture: data?.drawerEnableOpenDragGesture ?? true,
       endDrawerEnableOpenDragGesture:
           data?.endDrawerEnableOpenDragGesture ?? true,
+      //resizeToAvoidBottomPadding: deprecated,
     );
   }
 

@@ -72,6 +72,11 @@ class _AppState extends State<App> {
       data: brightness == Brightness.light ? materialTheme : materialDarkTheme,
       child: PlatformProvider(
         //initialPlatform: initialPlatform,
+        settings: PlatformSettingsData(
+          platformStyle: PlatformStyleData(
+            android: PlatformStyle.Cupertino,
+          ),
+        ),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,
@@ -243,7 +248,13 @@ class LandingPageState extends State<LandingPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: PlatformCircularProgressIndicator(),
+              child: PlatformCircularProgressIndicator(
+                ios: (_) => CupertinoProgressIndicatorData(),
+                android: (_) => MaterialProgressIndicatorData(),
+                //cupertino: (context, platform) => CupertinoProgressIndicatorData(),
+                //material: (context, platform) => MaterialProgressIndicatorData(),
+                //),
+              ),
             ),
             Divider(),
             SectionHeader(title: '3. Dialogs'),

@@ -112,15 +112,51 @@ class PlatformProviderState {
 }
 
 class PlatformSettingsData {
-  bool _iosUsesMaterialWidgets = false;
-
   /// If there is a mixture of Material and Cupertino widgets it maybe
   /// useful to wrap in a Material. This will affect font and colors
   /// particulary ios dark mode may not work as expected.
   /// Alternatively when using Material widgets ensure that a parent Material widget exists.
-  bool get iosUsesMaterialWidgets => _iosUsesMaterialWidgets;
+  final bool iosUsesMaterialWidgets;
+
+  /// The style each platform will use. Either [PlatformStyle.Material] or
+  /// [PlatformStyle.Cupertino].
+  final PlatformStyleData platformStyle;
 
   PlatformSettingsData({
-    bool iosUsesMaterialWidgets = false,
-  }) : _iosUsesMaterialWidgets = iosUsesMaterialWidgets;
+    this.iosUsesMaterialWidgets = false,
+    this.platformStyle = const PlatformStyleData(),
+  })  : assert(iosUsesMaterialWidgets != null),
+        assert(platformStyle != null);
+}
+
+enum PlatformStyle {
+  Material,
+  Cupertino,
+}
+
+class PlatformStyleData {
+  final PlatformStyle android;
+  final PlatformStyle ios;
+  final PlatformStyle macos;
+  final PlatformStyle windows;
+  final PlatformStyle web;
+  final PlatformStyle fuchsia;
+  final PlatformStyle linux;
+
+  const PlatformStyleData({
+    this.android = PlatformStyle.Material,
+    this.ios = PlatformStyle.Cupertino,
+    this.macos = PlatformStyle.Cupertino,
+    this.windows = PlatformStyle.Material,
+    this.web = PlatformStyle.Material,
+    this.fuchsia = PlatformStyle.Material,
+    this.linux = PlatformStyle.Material,
+  })  : assert(android != null),
+        assert(android != null),
+        assert(ios != null),
+        assert(macos != null),
+        assert(windows != null),
+        assert(web != null),
+        assert(fuchsia != null),
+        assert(linux != null);
 }

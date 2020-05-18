@@ -1,3 +1,9 @@
+## [0.40.1] - May 18, 2020
+
+#### (Flutter version support: v1.17.0-v1.17.1)
+
+- Add configurable platform style which allows each target platform to be either Material or Cupertino
+
 ## [0.40.0] - May 07, 2020
 
 #### (Flutter version support: v1.17.0)

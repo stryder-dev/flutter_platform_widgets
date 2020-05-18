@@ -16,7 +16,11 @@ Due to Master being in rapid development this package is unable to support Maste
 
 # How it works
 
-The flutter `ThemeData` object used with the `Theme` widget has a `platform` property. This defaults to `TargetPlatform.android` on Android and `TargetPlatform.ios` on iOS, but when creating a ThemeData object, it can be set programmatically. Calling `Theme.of(context).platform` will return the current platform. Several Flutter library widgets use this field to change how they are rendered, and all of the Flutter Platform Widgets library widgets use this field to render the platform specific versions of things.
+The flutter `ThemeData` object used with the `Theme` widget has a `platform` property. This defaults to `TargetPlatform.android` on Android and `TargetPlatform.ios` on iOS (also for macos etc), but when creating a ThemeData object, it can be set programmatically. Calling `Theme.of(context).platform` will return the current platform. Several Flutter library widgets use this field to change how they are rendered, and all of the Flutter Platform Widgets library widgets use this field to render the platform specific versions of things.
+
+# Configuration
+
+See [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider) for configuration options.
 
 # Widgets
 
@@ -523,6 +527,19 @@ The settings argument have been added to assist in configuring Platform Widgets.
 _iosUsesMaterialWidgets_
 
 - If true it will add a Material widget above the CupertinoPageScaffold so that Material widgets can be added to the ios page. This does affect dark mode and some ios rendering so it is best to have it false (default). If you use Material widgets on the page simply add `Material(child: yourWidget)`.
+
+_platformStyle_
+
+- Provides a way to set either `Material` or `Cupertino` style on any supported platforms such as android, ios, web, macos, fuchsia, windows amd linux. For example if you wanted to use `Cupertino` widgets for web you would configure by setting the settings object on `PlatformProvider:
+
+```
+PlatformProvider(
+  settings: PlatformSettingsData(
+    platformStyle: PlatformStyleData(web: PlatformStyle.Cupertino)
+  ),
+  builder: (context) => PlatformApp(...)
+)
+```
 
 ## PlatformIcons
 
