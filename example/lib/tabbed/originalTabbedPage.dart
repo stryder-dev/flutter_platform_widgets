@@ -44,7 +44,7 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       tabController: tabController,
       appBarBuilder: (_, index) => PlatformAppBar(
         title: Text('Page Title'),
-        ios: (_) => CupertinoNavigationBarData(
+        cupertino: (_, __) => CupertinoNavigationBarData(
           title: Text('Title: ${titles[index]}'),
           //   only required if useCupertinoTabView = false,
           transitionBetweenRoutes: false,
@@ -52,7 +52,7 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       ),
       bodyBuilder: (context, index) => ContentView(index),
       items: items(context),
-      ios: (_) => CupertinoTabScaffoldData(
+      cupertino: (_, __) => CupertinoTabScaffoldData(
         //   Having this property as false (default true) forces it not to use CupertinoTabView which will show
         //   the back button, but does required transitionBetweenRoutes set to false (see above)
         useCupertinoTabView: false,

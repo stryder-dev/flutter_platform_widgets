@@ -51,7 +51,7 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
             onPressed: () {},
           ),
         ],
-        ios: (_) => CupertinoNavigationBarData(
+        cupertino: (_, __) => CupertinoNavigationBarData(
           title: Text('${titles[index]}'),
         ),
       ),

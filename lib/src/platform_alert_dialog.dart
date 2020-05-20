@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 import 'package:flutter/material.dart' show AlertDialog;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 const EdgeInsets _defaultInsetPadding =
@@ -95,25 +96,30 @@ class PlatformAlertDialog
   final Widget content;
   final Widget title;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAlertDialogData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoAlertDialogData> ios;
 
-  PlatformAlertDialog(
-      {Key key,
-      this.widgetKey,
-      this.actions,
-      this.content,
-      this.title,
-      this.ios,
-      this.android})
-      : super(key: key);
+  final PlatformBuilder2<MaterialAlertDialogData> material;
+  final PlatformBuilder2<CupertinoAlertDialogData> cupertino;
+
+  PlatformAlertDialog({
+    Key key,
+    this.widgetKey,
+    this.actions,
+    this.content,
+    this.title,
+    this.ios,
+    this.android,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
 
   @override
-  AlertDialog createAndroidWidget(BuildContext context) {
-    MaterialAlertDialogData data;
-    if (android != null) {
-      data = android(context);
-    }
+  AlertDialog createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return AlertDialog(
       key: data?.widgetKey ?? widgetKey,
@@ -140,11 +146,9 @@ class PlatformAlertDialog
   }
 
   @override
-  CupertinoAlertDialog createIosWidget(BuildContext context) {
-    CupertinoAlertDialogData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoAlertDialog createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,

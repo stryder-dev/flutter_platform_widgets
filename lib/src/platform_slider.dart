@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
 import 'package:flutter/material.dart' show SemanticFormatterCallback, Slider;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -103,23 +104,30 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final double min;
   final double max;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialSliderData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoSliderData> ios;
 
-  PlatformSlider(
-      {Key key,
-      this.widgetKey,
-      @required this.value,
-      @required this.onChanged,
-      this.onChangeStart,
-      this.onChangeEnd,
-      this.activeColor,
-      this.divisions,
-      this.min = 0.0,
-      this.max = 1.0,
-      this.android,
-      this.ios})
-      : assert(value != null),
+  final PlatformBuilder2<MaterialSliderData> material;
+  final PlatformBuilder2<CupertinoSliderData> cupertino;
+
+  PlatformSlider({
+    Key key,
+    this.widgetKey,
+    @required this.value,
+    @required this.onChanged,
+    this.onChangeStart,
+    this.onChangeEnd,
+    this.activeColor,
+    this.divisions,
+    this.min = 0.0,
+    this.max = 1.0,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  })  : assert(value != null),
         assert(divisions == null || divisions > 0),
         assert(min != null),
         assert(max != null),
@@ -127,11 +135,10 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
         super(key: key);
 
   @override
-  Slider createAndroidWidget(BuildContext context) {
-    MaterialSliderData data;
-    if (android != null) {
-      data = android(context);
-    }
+  Slider createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
+
     return Slider(
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
@@ -149,11 +156,10 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   }
 
   @override
-  CupertinoSlider createIosWidget(BuildContext context) {
-    CupertinoSliderData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoSlider createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
+
     return CupertinoSlider(
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,

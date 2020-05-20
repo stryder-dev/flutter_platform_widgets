@@ -16,6 +16,7 @@ import 'package:flutter/material.dart'
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
@@ -221,10 +222,20 @@ class PlatformButton
   final EdgeInsetsGeometry padding;
   final Color disabledColor;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialRaisedButtonData> android;
+  @Deprecated('Use materialFlat argument. materialFlat: (context, platform) {}')
   final PlatformBuilder<MaterialFlatButtonData> androidFlat;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoButtonData> ios;
+  @Deprecated(
+      'Use cupertinoFilled argument. cupertinoFilled: (context, platform) {}')
   final PlatformBuilder<CupertinoFilledButtonData> iosFilled;
+
+  final PlatformBuilder2<MaterialRaisedButtonData> material;
+  final PlatformBuilder2<MaterialFlatButtonData> materialFlat;
+  final PlatformBuilder2<CupertinoButtonData> cupertino;
+  final PlatformBuilder2<CupertinoFilledButtonData> cupertinoFilled;
 
   PlatformButton({
     Key key,
@@ -238,13 +249,18 @@ class PlatformButton
     this.androidFlat,
     this.ios,
     this.iosFilled,
+    this.material,
+    this.materialFlat,
+    this.cupertino,
+    this.cupertinoFilled,
   })  : assert(androidFlat == null || android == null),
         super(key: key);
 
   @override
-  MaterialButton createAndroidWidget(BuildContext context) {
-    if (androidFlat != null) {
-      MaterialFlatButtonData dataFlat = androidFlat(context);
+  MaterialButton createMaterialWidget(BuildContext context) {
+    if (androidFlat != null || materialFlat != null) {
+      final dataFlat = androidFlat?.call(context) ??
+          materialFlat(context, platform(context));
 
       return FlatButton(
         key: dataFlat?.widgetKey ?? widgetKey,
@@ -272,10 +288,8 @@ class PlatformButton
       );
     }
 
-    MaterialRaisedButtonData dataRaised;
-    if (android != null) {
-      dataRaised = android(context);
-    }
+    final dataRaised =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return RaisedButton(
       key: dataRaised?.widgetKey ?? widgetKey,
@@ -310,9 +324,10 @@ class PlatformButton
   }
 
   @override
-  CupertinoButton createIosWidget(BuildContext context) {
-    if (iosFilled != null) {
-      final filledData = iosFilled(context);
+  CupertinoButton createCupertinoWidget(BuildContext context) {
+    if (iosFilled != null || cupertinoFilled != null) {
+      final filledData = iosFilled?.call(context) ??
+          cupertinoFilled(context, platform(context));
 
       return CupertinoButton.filled(
         key: filledData?.widgetKey ?? widgetKey,
@@ -329,10 +344,8 @@ class PlatformButton
       );
     }
 
-    CupertinoButtonData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,

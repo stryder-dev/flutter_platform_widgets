@@ -149,10 +149,20 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final int currentIndex;
   final void Function(int index) itemChanged;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialTabScaffoldData> android;
+  @Deprecated('Use materialTabs argument. materialTabs: (context, platform) {}')
   final PlatformBuilder<MaterialNavBarData> androidTabs;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoTabScaffoldData> ios;
+  @Deprecated(
+      'Use cupertinoTabs argument. cupertinoTabs: (context, platform) {}')
   final PlatformBuilder<CupertinoTabBarData> iosTabs;
+
+  final PlatformBuilder2<MaterialTabScaffoldData> material;
+  final PlatformBuilder2<MaterialNavBarData> materialTabs;
+  final PlatformBuilder2<CupertinoTabScaffoldData> cupertino;
+  final PlatformBuilder2<CupertinoTabBarData> cupertinoTabs;
 
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
@@ -180,14 +190,16 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.iosTabs,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
+    this.material,
+    this.materialTabs,
+    this.cupertino,
+    this.cupertinoTabs,
   }) : super(key: key);
 
   @override
-  Widget createAndroidWidget(BuildContext context) {
-    MaterialTabScaffoldData data;
-    if (android != null) {
-      data = android(context);
-    }
+  Widget createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     final controller = data?.controller ?? tabController?._material(context);
 
@@ -208,12 +220,13 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       backgroundColor: data?.tabsBackgroundColor ?? tabsBackgroundColor,
       currentIndex: controller?.index ?? currentIndex,
       android: androidTabs,
+      material: materialTabs,
       itemChanged: (int index) {
         controller?.index = index;
         itemChanged?.call(index);
       },
     );
-    final tabBar = platformNavBar.createAndroidWidget(context);
+    final tabBar = platformNavBar.createMaterialWidget(context);
 
     final child = data?.bodyBuilder?.call(context, controller.index) ??
         bodyBuilder?.call(context, controller.index);
@@ -221,7 +234,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     final appBar = data?.appBarBuilder?.call(context, controller.index) ??
         appBarBuilder
             ?.call(context, controller.index)
-            ?.createAndroidWidget(context);
+            ?.createMaterialWidget(context);
 
     return Scaffold(
       key: data?.widgetKey ?? widgetKey,
@@ -252,11 +265,9 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   }
 
   @override
-  Widget createIosWidget(BuildContext context) {
-    CupertinoTabScaffoldData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  Widget createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     final navBar = PlatformNavBar(
       items: items,
@@ -264,8 +275,9 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       currentIndex: currentIndex,
       itemChanged: itemChanged,
       ios: iosTabs,
+      cupertino: cupertinoTabs,
     );
-    final tabBar = navBar.createIosWidget(context);
+    final tabBar = navBar.createCupertinoWidget(context);
 
     final result = CupertinoTabScaffold(
       key: widgetKey,
@@ -325,7 +337,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     CupertinoTabBar tabBar,
   ) {
     final appBar = data?.appBarBuilder?.call(context, index) ??
-        appBarBuilder?.call(context, index)?.createIosWidget(context);
+        appBarBuilder?.call(context, index)?.createCupertinoWidget(context);
 
     final child = data?.bodyBuilder?.call(context, index) ??
         bodyBuilder?.call(context, index);

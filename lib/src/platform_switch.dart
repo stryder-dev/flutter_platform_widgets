@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' show Switch, MaterialTapTargetSize;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -96,26 +97,32 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final ValueChanged<bool> onChanged;
   final DragStartBehavior dragStartBehavior;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialSwitchData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoSwitchData> ios;
 
-  PlatformSwitch(
-      {Key key,
-      this.widgetKey,
-      @required this.value,
-      @required this.onChanged,
-      this.dragStartBehavior,
-      this.activeColor,
-      this.android,
-      this.ios})
-      : super(key: key);
+  final PlatformBuilder2<MaterialSwitchData> material;
+  final PlatformBuilder2<CupertinoSwitchData> cupertino;
+
+  PlatformSwitch({
+    Key key,
+    this.widgetKey,
+    @required this.value,
+    @required this.onChanged,
+    this.dragStartBehavior,
+    this.activeColor,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
 
   @override
-  Switch createAndroidWidget(BuildContext context) {
-    MaterialSwitchData data;
-    if (android != null) {
-      data = android(context);
-    }
+  Switch createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
+
     return Switch(
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
@@ -140,11 +147,10 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   }
 
   @override
-  CupertinoSwitch createIosWidget(BuildContext context) {
-    CupertinoSwitchData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoSwitch createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
+
     return CupertinoSwitch(
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,

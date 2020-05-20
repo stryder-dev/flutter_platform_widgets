@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart' show CupertinoNavigationBar;
 import 'package:flutter/material.dart' show AppBar, Brightness, TextTheme;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
@@ -128,27 +129,32 @@ class PlatformAppBar
   final List<Widget> trailingActions;
   final bool automaticallyImplyLeading;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAppBarData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoNavigationBarData> ios;
 
-  PlatformAppBar(
-      {Key key,
-      this.widgetKey,
-      this.title,
-      this.backgroundColor,
-      this.leading,
-      this.trailingActions,
-      this.automaticallyImplyLeading,
-      this.android,
-      this.ios})
-      : super(key: key);
+  final PlatformBuilder2<MaterialAppBarData> material;
+  final PlatformBuilder2<CupertinoNavigationBarData> cupertino;
+
+  PlatformAppBar({
+    Key key,
+    this.widgetKey,
+    this.title,
+    this.backgroundColor,
+    this.leading,
+    this.trailingActions,
+    this.automaticallyImplyLeading,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
 
   @override
-  PreferredSizeWidget createAndroidWidget(BuildContext context) {
-    MaterialAppBarData data;
-    if (android != null) {
-      data = android(context);
-    }
+  PreferredSizeWidget createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return AppBar(
       key: data?.widgetKey ?? widgetKey,
@@ -176,11 +182,9 @@ class PlatformAppBar
   }
 
   @override
-  CupertinoNavigationBar createIosWidget(BuildContext context) {
-    CupertinoNavigationBarData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoNavigationBar createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     var trailing = trailingActions == null || trailingActions.isEmpty
         ? null

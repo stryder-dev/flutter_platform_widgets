@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
     show MaterialApp, Theme, ThemeData, ThemeMode;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -218,46 +219,51 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<LocalKey, ActionFactory> actions;
   final InitialRouteListFactory onGenerateInitialRoutes;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAppData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoAppData> ios;
 
-  PlatformApp(
-      {Key key,
-      this.widgetKey,
-      this.navigatorKey,
-      this.home,
-      this.routes,
-      this.initialRoute,
-      this.onGenerateRoute,
-      this.onUnknownRoute,
-      this.navigatorObservers,
-      this.builder,
-      this.title,
-      this.onGenerateTitle,
-      this.color,
-      this.locale,
-      this.localizationsDelegates,
-      this.localeListResolutionCallback,
-      this.localeResolutionCallback,
-      this.supportedLocales,
-      this.showPerformanceOverlay,
-      this.checkerboardRasterCacheImages,
-      this.checkerboardOffscreenLayers,
-      this.showSemanticsDebugger,
-      this.debugShowCheckedModeBanner,
-      this.shortcuts,
-      this.actions,
-      this.onGenerateInitialRoutes,
-      this.android,
-      this.ios})
-      : super(key: key);
+  final PlatformBuilder2<MaterialAppData> material;
+  final PlatformBuilder2<CupertinoAppData> cupertino;
+
+  PlatformApp({
+    Key key,
+    this.widgetKey,
+    this.navigatorKey,
+    this.home,
+    this.routes,
+    this.initialRoute,
+    this.onGenerateRoute,
+    this.onUnknownRoute,
+    this.navigatorObservers,
+    this.builder,
+    this.title,
+    this.onGenerateTitle,
+    this.color,
+    this.locale,
+    this.localizationsDelegates,
+    this.localeListResolutionCallback,
+    this.localeResolutionCallback,
+    this.supportedLocales,
+    this.showPerformanceOverlay,
+    this.checkerboardRasterCacheImages,
+    this.checkerboardOffscreenLayers,
+    this.showSemanticsDebugger,
+    this.debugShowCheckedModeBanner,
+    this.shortcuts,
+    this.actions,
+    this.onGenerateInitialRoutes,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
 
   @override
-  createAndroidWidget(BuildContext context) {
-    MaterialAppData data;
-    if (android != null) {
-      data = android(context);
-    }
+  createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return MaterialApp(
       key: data?.widgetKey ?? widgetKey,
@@ -310,11 +316,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   }
 
   @override
-  createIosWidget(BuildContext context) {
-    CupertinoAppData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoApp(
       key: data?.widgetKey ?? widgetKey,

@@ -205,14 +205,14 @@ class LandingPageState extends State<LandingPage> {
             PlatformButton(
               child: PlatformText('Platform Flat/Filled Button'),
               onPressed: () {},
-              androidFlat: (_) => MaterialFlatButtonData(),
-              iosFilled: (_) => CupertinoFilledButtonData(),
+              materialFlat: (_, __) => MaterialFlatButtonData(),
+              cupertinoFilled: (_, __) => CupertinoFilledButtonData(),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformIconButton(
-                androidIcon: Icon(Icons.home),
-                iosIcon: Icon(CupertinoIcons.home),
+                materialIcon: Icon(Icons.home),
+                cupertinoIcon: Icon(CupertinoIcons.home),
                 onPressed: () {},
               ),
             ),
@@ -249,11 +249,8 @@ class LandingPageState extends State<LandingPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformCircularProgressIndicator(
-                ios: (_) => CupertinoProgressIndicatorData(),
-                android: (_) => MaterialProgressIndicatorData(),
-                //cupertino: (context, platform) => CupertinoProgressIndicatorData(),
-                //material: (context, platform) => MaterialProgressIndicatorData(),
-                //),
+                cupertino: (_, __) => CupertinoProgressIndicatorData(),
+                material: (_, __) => MaterialProgressIndicatorData(),
               ),
             ),
             Divider(),
@@ -299,8 +296,7 @@ class LandingPageState extends State<LandingPage> {
               onPressed: () => _openPage((_) => ListViewPage()),
             ),
             PlatformWidget(
-              android: (_) => Container(), //this is for iOS only
-              ios: (_) => PlatformButton(
+              cupertino: (_, __) => PlatformButton(
                 child: PlatformText('iOS Page with Colored Header'),
                 onPressed: () => _openPage((_) => ListViewHeaderPage()),
               ),
@@ -325,8 +321,8 @@ class LandingPageState extends State<LandingPage> {
     showPlatformModalSheet(
       context: context,
       builder: (_) => PlatformWidget(
-        android: (_) => _androidPopupContent(),
-        ios: (_) => _cupertinoSheetContent(),
+        material: (_, __) => _androidPopupContent(),
+        cupertino: (_, __) => _cupertinoSheetContent(),
       ),
     );
   }

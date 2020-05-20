@@ -14,6 +14,7 @@ import 'package:flutter/material.dart'
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -100,23 +101,28 @@ class PlatformDialogAction
   final Widget child;
   final VoidCallback onPressed;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialDialogActionData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoDialogActionData> ios;
 
-  PlatformDialogAction(
-      {Key key,
-      this.widgetKey,
-      @required this.child,
-      @required this.onPressed,
-      this.android,
-      this.ios})
-      : super(key: key);
+  final PlatformBuilder2<MaterialDialogActionData> material;
+  final PlatformBuilder2<CupertinoDialogActionData> cupertino;
+
+  PlatformDialogAction({
+    Key key,
+    this.widgetKey,
+    @required this.child,
+    @required this.onPressed,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
   @override
-  FlatButton createAndroidWidget(BuildContext context) {
-    MaterialDialogActionData data;
-    if (android != null) {
-      data = android(context);
-    }
+  FlatButton createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return FlatButton(
       key: data?.widgetKey ?? widgetKey,
@@ -145,11 +151,9 @@ class PlatformDialogAction
   }
 
   @override
-  CupertinoDialogAction createIosWidget(BuildContext context) {
-    CupertinoDialogActionData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoDialogAction createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoDialogAction(
       key: data?.widgetKey ?? widgetKey,
