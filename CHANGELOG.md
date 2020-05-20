@@ -1,3 +1,12 @@
+## [0.50.0] - May 20, 2020
+
+- Changed the enhancement of widgets to use an argument matching the style rather than platform. `android: (_){}` becomes `material: (_, __){}` and `ios: (_){}` becomes `cupertino: (_, __){}`. The second argument of the callback is now `PlatformTarget` which will allow a decision (if required) to return a different data object based on the platform.
+- `PlatformTarget` is similar to the flutter `TargetPlatform` with the addition of `web`.
+- The use of `android: (_){}` and `ios: (_){}` is now deprecated and will be removed in a future release.
+- `showPlatformModalSheet` and `showPlatformDialog` has deprecated arguments
+
+#### (Flutter version support: v1.17.0-v1.17.1)
+
 ## [0.41.0] - May 18, 2020
 
 #### (Flutter version support: v1.17.0-v1.17.1)

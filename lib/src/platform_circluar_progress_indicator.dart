@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 import 'package:flutter/material.dart' show CircularProgressIndicator;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kDefaultIndicatorRadius = 10.0;
@@ -47,22 +48,27 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
     CupertinoActivityIndicator, CircularProgressIndicator> {
   final Key widgetKey;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialProgressIndicatorData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoProgressIndicatorData> ios;
+
+  final PlatformBuilder2<MaterialProgressIndicatorData> material;
+  final PlatformBuilder2<CupertinoProgressIndicatorData> cupertino;
 
   PlatformCircularProgressIndicator({
     Key key,
     this.widgetKey,
     this.android,
     this.ios,
+    this.material,
+    this.cupertino,
   }) : super(key: key);
 
   @override
-  CircularProgressIndicator createAndroidWidget(BuildContext context) {
-    MaterialProgressIndicatorData data;
-    if (android != null) {
-      data = android(context);
-    }
+  CircularProgressIndicator createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return CircularProgressIndicator(
       key: data?.key ?? widgetKey,
@@ -76,11 +82,9 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
   }
 
   @override
-  CupertinoActivityIndicator createIosWidget(BuildContext context) {
-    CupertinoProgressIndicatorData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoActivityIndicator createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoActivityIndicator(
       key: data?.key ?? widgetKey,

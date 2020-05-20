@@ -24,6 +24,7 @@ import 'package:flutter/services.dart'
         TextCapitalization;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 const BorderSide _kDefaultRoundedBorderSide = BorderSide(
@@ -255,8 +256,13 @@ class PlatformTextField
     extends PlatformWidgetBase<CupertinoTextField, TextField> {
   final Key widgetKey;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialTextFieldData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoTextFieldData> ios;
+
+  final PlatformBuilder2<MaterialTextFieldData> material;
+  final PlatformBuilder2<CupertinoTextFieldData> cupertino;
 
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -303,60 +309,60 @@ class PlatformTextField
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
 
-  PlatformTextField(
-      {Key key,
-      this.widgetKey,
-      this.controller,
-      this.focusNode,
-      TextInputType keyboardType,
-      this.textInputAction,
-      this.textCapitalization = TextCapitalization.none,
-      this.style,
-      this.textAlign,
-      this.autofocus,
-      this.obscureText,
-      this.autocorrect,
-      this.maxLines = 1,
-      this.maxLength,
-      this.maxLengthEnforced,
-      this.onChanged,
-      this.onEditingComplete,
-      this.onSubmitted,
-      this.inputFormatters,
-      this.enabled,
-      this.cursorWidth,
-      this.cursorRadius,
-      this.cursorColor,
-      this.keyboardAppearance,
-      this.scrollPadding,
-      this.dragStartBehavior,
-      this.minLines,
-      this.expands,
-      this.scrollPhysics,
-      this.strutStyle,
-      this.enableInteractiveSelection,
-      this.scrollController,
-      this.onTap,
-      this.readOnly,
-      this.showCursor,
-      this.textAlignVertical,
-      this.toolbarOptions,
-      this.smartDashesType,
-      this.smartQuotesType,
-      this.selectionHeightStyle,
-      this.selectionWidthStyle,
-      this.android,
-      this.ios})
-      : keyboardType = keyboardType ??
+  PlatformTextField({
+    Key key,
+    this.widgetKey,
+    this.controller,
+    this.focusNode,
+    TextInputType keyboardType,
+    this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
+    this.style,
+    this.textAlign,
+    this.autofocus,
+    this.obscureText,
+    this.autocorrect,
+    this.maxLines = 1,
+    this.maxLength,
+    this.maxLengthEnforced,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.inputFormatters,
+    this.enabled,
+    this.cursorWidth,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.scrollPadding,
+    this.dragStartBehavior,
+    this.minLines,
+    this.expands,
+    this.scrollPhysics,
+    this.strutStyle,
+    this.enableInteractiveSelection,
+    this.scrollController,
+    this.onTap,
+    this.readOnly,
+    this.showCursor,
+    this.textAlignVertical,
+    this.toolbarOptions,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  })  : keyboardType = keyboardType ??
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
         super(key: key);
 
   @override
-  TextField createAndroidWidget(BuildContext context) {
-    MaterialTextFieldData data;
-    if (android != null) {
-      data = android(context);
-    }
+  TextField createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return TextField(
       key: data?.widgetKey ?? widgetKey,
@@ -418,11 +424,9 @@ class PlatformTextField
   }
 
   @override
-  CupertinoTextField createIosWidget(BuildContext context) {
-    CupertinoTextFieldData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoTextField createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoTextField(
       key: data?.widgetKey ?? widgetKey,

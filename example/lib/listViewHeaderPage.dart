@@ -38,7 +38,7 @@ class ListViewHeaderPage extends StatelessWidget {
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: Text('iOS Colored Header'),
-        ios: (_) => CupertinoNavigationBarData(
+        cupertino: (_, __) => CupertinoNavigationBarData(
           // Issue with cupertino where a bar with no transparency
           // will push the list down. Adding some alpha value fixes it (in a hacky way)
           backgroundColor: Colors.lightGreen.withAlpha(254),

@@ -19,6 +19,7 @@ import 'package:flutter/material.dart'
         FloatingActionButtonAnimator,
         FloatingActionButtonLocation;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/platform.dart';
 
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
@@ -117,8 +118,13 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformAppBar appBar;
   final PlatformNavBar bottomNavBar;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialScaffoldData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoPageScaffoldData> ios;
+
+  final PlatformBuilder2<MaterialScaffoldData> material;
+  final PlatformBuilder2<CupertinoPageScaffoldData> cupertino;
 
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
@@ -134,22 +140,22 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.ios,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
+    this.material,
+    this.cupertino,
   }) : super(key: key);
 
   @override
-  Scaffold createAndroidWidget(BuildContext context) {
-    MaterialScaffoldData data;
-    if (android != null) {
-      data = android(context);
-    }
+  Scaffold createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     return Scaffold(
       key: data?.widgetKey ?? widgetKey,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       body: data?.body ?? body,
-      appBar: data?.appBar ?? appBar?.createAndroidWidget(context),
+      appBar: data?.appBar ?? appBar?.createMaterialWidget(context),
       bottomNavigationBar:
-          data?.bottomNavBar ?? bottomNavBar?.createAndroidWidget(context),
+          data?.bottomNavBar ?? bottomNavBar?.createMaterialWidget(context),
       drawer: data?.drawer,
       endDrawer: data?.endDrawer,
       floatingActionButton: data?.floatingActionButton,
@@ -173,18 +179,18 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   }
 
   @override
-  Widget createIosWidget(BuildContext context) {
-    CupertinoPageScaffoldData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  Widget createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     Widget child = data?.body ?? body;
-    var navigationBar = appBar?.createIosWidget(context) ?? data?.navigationBar;
+    var navigationBar =
+        appBar?.createCupertinoWidget(context) ?? data?.navigationBar;
 
     Widget result;
     if (bottomNavBar != null) {
-      var tabBar = data?.bottomTabBar ?? bottomNavBar?.createIosWidget(context);
+      var tabBar =
+          data?.bottomTabBar ?? bottomNavBar?.createCupertinoWidget(context);
 
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
       result = CupertinoTabScaffold(

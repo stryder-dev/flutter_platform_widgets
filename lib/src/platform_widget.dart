@@ -6,29 +6,40 @@
 
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
   final PlatformBuilder<Widget> android;
   final PlatformBuilder<Widget> ios;
 
-  PlatformWidget({Key key, this.ios, this.android}) : super(key: key);
+  final PlatformBuilder2<Widget> material;
+  final PlatformBuilder2<Widget> cupertino;
+
+  PlatformWidget({
+    Key key,
+    this.ios,
+    this.android,
+    this.cupertino,
+    this.material,
+  }) : super(key: key);
 
   @override
-  Widget createAndroidWidget(BuildContext context) {
-    if (android == null) {
-      return Container();
+  Widget createMaterialWidget(BuildContext context) {
+    if (android == null && material == null) {
+      return SizedBox.shrink();
     } else {
-      return android(context);
+      return android?.call(context) ??
+          material?.call(context, platform(context));
     }
   }
 
   @override
-  Widget createIosWidget(BuildContext context) {
-    if (ios == null) {
-      return Container();
+  Widget createCupertinoWidget(BuildContext context) {
+    if (ios == null && cupertino == null) {
+      return SizedBox.shrink();
     } else {
-      return ios(context);
+      return ios?.call(context) ?? cupertino?.call(context, platform(context));
     }
   }
 }

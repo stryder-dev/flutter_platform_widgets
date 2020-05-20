@@ -20,7 +20,7 @@ class TabbedPageState extends State<TabbedPage> {
       iosContentBottomPadding: true,
       appBar: PlatformAppBar(
         title: Text('Platform Widgets'),
-        ios: (_) => CupertinoNavigationBarData(
+        cupertino: (_, __) => CupertinoNavigationBarData(
           transitionBetweenRoutes: false,
         ),
       ),
@@ -35,15 +35,15 @@ class TabbedPageState extends State<TabbedPage> {
           BottomNavigationBarItem(
             title: Text('Flag'),
             icon: PlatformWidget(
-              ios: (_) => Icon(CupertinoIcons.flag),
-              android: (_) => Icon(Icons.flag),
+              cupertino: (_, __) => Icon(CupertinoIcons.flag),
+              material: (_, __) => Icon(Icons.flag),
             ),
           ),
           BottomNavigationBarItem(
             title: Text('Book'),
             icon: PlatformWidget(
-              ios: (_) => Icon(CupertinoIcons.book),
-              android: (_) => Icon(Icons.book),
+              cupertino: (_, __) => Icon(CupertinoIcons.book),
+              material: (_, __) => Icon(Icons.book),
             ),
           ),
         ],

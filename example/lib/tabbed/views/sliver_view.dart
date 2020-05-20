@@ -17,7 +17,7 @@ class SliverView extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         PlatformWidget(
-          android: (context) => SliverAppBar(
+          material: (context, _) => SliverAppBar(
             pinned: true,
             forceElevated: true,
             expandedHeight: 150.0,
@@ -25,7 +25,7 @@ class SliverView extends StatelessWidget {
               title: Text(title),
             ),
           ),
-          ios: (context) => CupertinoSliverNavigationBar(
+          cupertino: (context, _) => CupertinoSliverNavigationBar(
             largeTitle: Text(title),
           ),
         ),

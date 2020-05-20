@@ -2,7 +2,7 @@
 
 ![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/aqwert/flutter_platform_widgets)
 
-This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Android or iOS device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
+This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Material or Cupertino device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
 This package supports the **Stable** release as a full released version.
 
@@ -54,18 +54,18 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 
 ## PlatformWidget
 
-A widget that will render either the android widget or cupertino widget based on the target platform. The widgets themselves do not need to be specifically Material or Cupertino.
+A widget that will render either the material widget or cupertino widget based on the target platform. The widgets themselves do not need to be specifically Material or Cupertino.
 
 ```dart
 return PlatformWidget(
-  ios: (_) => Icon(CupertinoIcons.flag),
-  android: (_) => Icon(Icons.flag),
+  cupertino: (_, __) => Icon(CupertinoIcons.flag),
+  material: (_, __)  => Icon(Icons.flag),
 );
 ```
 
 ## PlatformText
 
-A widget that will render uppercase for Android. iOS will remain unchanged.
+A widget that will render uppercase for material. Cupertino will remain unchanged.
 
 ```dart
 return PlatformText('Cancel');
@@ -73,7 +73,7 @@ return PlatformText('Cancel');
 
 ## PlatformSwitch
 
-A switch widget that will use a `Switch` for android or a `CupertinoSwitch` for iOS.
+A switch widget that will use a `Switch` for material or a `CupertinoSwitch` for cupertino.
 
 ```dart
 return PlatformSwitch(
@@ -88,14 +88,14 @@ return PlatformSwitch(
 return PlatformSwitch(
   onChanged: (bool value) {},
   value: value,
-  android: (_) => MaterialSwitchData(...),
-  ios: (_) => CupertinoSwitchData(...)
+  material: (_, __)  => MaterialSwitchData(...),
+  cupertino: (_, __) => CupertinoSwitchData(...)
 );
 ```
 
 ## PlatformSlider
 
-A slider widget that will use a `Slider` for android or a `CupertinoSlider` for iOS
+A slider widget that will use a `Slider` for material or a `CupertinoSlider` for cupertino
 
 ```dart
 return PlatformSlider(
@@ -110,14 +110,14 @@ return PlatformSlider(
 return PlatformSlider(
   onChanged: (bool value) {},
   value: value,
-  android: (_) => MaterialSliderData(...),
-  ios: (_) => CupertinoSliderData(...)
+  material: (_, __)  => MaterialSliderData(...),
+  cupertino: (_, __) => CupertinoSliderData(...)
 );
 ```
 
 ## PlatformTextField
 
-A text field widget that will use a `TextField` for android or a `CupertinoTextField` for iOS.
+A text field widget that will use a `TextField` for material or a `CupertinoTextField` for cupertino.
 
 ```dart
 return PlatformTextField();
@@ -127,14 +127,14 @@ return PlatformTextField();
 
 ```dart
 return PlatformTextField(
-  android: (_) => MaterialTextFieldData(...),
-  ios: (_) => CupertinoTextFieldData(...)
+  material: (_, __)  => MaterialTextFieldData(...),
+  cupertino: (_, __) => CupertinoTextFieldData(...)
 );
 ```
 
 ## PlatformButton
 
-A button that will render a `RaisedButton` or `FlatButton` for android or a `CupertinoButton` for iOS.
+A button that will render a `RaisedButton` or `FlatButton` for material or a `CupertinoButton` for cupertino.
 
 ```dart
 return PlatformButton(
@@ -145,64 +145,64 @@ return PlatformButton(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformButton(
   onPressed: () => print('send'),
   child: PlatformText('Send'),
-  android: (_) => MaterialRaisedButtonData(...),
-  ios: (_) => CupertinoButtonData(...)
+  material: (_, __)  => MaterialRaisedButtonData(...),
+  cupertino: (_, __) => CupertinoButtonData(...)
 );
 ```
 
-> Note: For android you can use the `FlatButton` instead. To do this use the `MaterialFlatButtonData` on the `androidFlat` argument.
+> Note: For material you can use the `FlatButton` instead. To do this use the `MaterialFlatButtonData` on the `materialFlat` argument.
 
-> NoteL For iOS you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `iosFilled` argument.
+> NoteL For cupertino you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `cupertinoFilled` argument.
 
 ```dart
 return PlatformButton(
  onPressed: () => print('send'),
  child: PlatformText('Send'),
- androidFlat: (_) => MaterialFlatButtonData(),
- iosFilled: (_) => CupertinoFilledButtonData(),
+ materialFlat: (_, __)    => MaterialFlatButtonData(),
+ cupertinoFilled: (_, __) => CupertinoFilledButtonData(),
 );
 ```
 
 ## PlatformIconButton
 
-A clickable (tappable) button with an icon. Uses `IconButton` for android or `CupertinoButton` for iOS.
+A clickable (tappable) button with an icon. Uses `IconButton` for material or `CupertinoButton` for cupertino.
 
 ```dart
 return PlatformIconButton(
   onPressed: () => print('info pressed'),
-  iosIcon: Icon(
+  materialIcon: Icon(Icons.info),
+  cupertinoIcon: Icon(
     CupertinoIcons.info,
     size: 28.0,
   ),
-  androidIcon: Icon(Icons.info)
 );
 ```
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 Widget infoIconButton() {
   return PlatformIconButton(
     onPressed: () => print('info pressed'),
-    iosIcon: Icon(CupertinoIcons.info),
-    androidIcon: Icon(Icons.info),
-    android: (_) => MaterialIconButtonData(...),
-    ios: (_) => CupertinoIconButtonData(...),
+    materialIcon: Icon(Icons.info),
+    cupertinoIcon: Icon(CupertinoIcons.info),
+    material: (_, __)  => MaterialIconButtonData(...),
+    cupertino: (_, __) => CupertinoIconButtonData(...),
   );
 }
 ```
 
 ## PlatformApp
 
-A top level widget for the applciation that uses `MaterialApp` for android or `CupertinoApp` for iOS.
+A top level widget for the applciation that uses `MaterialApp` for material or `CupertinoApp` for cupertino.
 
 ```dart
 return PlatformApp(
@@ -213,19 +213,19 @@ return PlatformApp(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformApp(
   home:  ...
-  android: (_) => MaterialAppData(...)
-  ios: (_) => CupertinoAppData(...)
+  material: (_, __)  => MaterialAppData(...)
+  cupertino: (_, __) => CupertinoAppData(...)
 );
 ```
 
 ## PlatformScaffold
 
-A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for iOS with bottom tabs or `CupertinoPageScaffold` for iOS without bottom tabs.
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for material or `CupertinoTabScaffold` for cupertino with bottom tabs or `CupertinoPageScaffold` for cupertino without bottom tabs.
 
 ```dart
 return PlatformScaffold(
@@ -241,25 +241,25 @@ return PlatformScaffold(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformScaffold(
   appBar: PlatformAppBar()
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
-  android: (_) => MaterialScaffoldData(...)
-  ios: (_) => CupertinoPageScaffoldData(...);
+  material: (_, __)  => MaterialScaffoldData(...)
+  cupertino: (_, __) => CupertinoPageScaffoldData(...);
 );
 ```
 
-> Both the android and iOS builders are optional. If not provided the `Container` placeholder widget will be returned.
+> Both the material and cupertino builders are optional. If not provided the `Container` placeholder widget will be returned.
 
 ## PlatformTabScaffold
 
 > Note: Using `PlatformTabScaffold` provides a more refined and flexible experience than using `PlatformScaffold`.
 
-A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for android or `CupertinoTabScaffold` for iOS with bottom tabs.
+A Scaffold that provides the correctly hosted header (AppBar) and navigation bar (Bottom Bar) for each platform. Uses `Scaffold` for material or `CupertinoTabScaffold` for cupertino with bottom tabs.
 
 ```dart
 return PlatformTabScaffold(
@@ -279,7 +279,7 @@ More more detailed example look at:
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformTabScaffold(
@@ -287,18 +287,18 @@ return PlatformTabScaffold(
   appBarBuilder: (_, index) => PlatformAppBar(),
   bodyBuilder: (context, index) => _buildContent(index),
   items: _items(context),
-  android: (_) => MaterialTabScaffoldData(...)
-  ios: (_) => CupertinoTabScaffoldData(...);
-  androidTabs: (_) => MaterialNavBarData(...)
-  iosTabs: (_) => CupertinoTabBarData(...);
+  material: (_, __)  => MaterialTabScaffoldData(...)
+  cupertino: (_, __) => CupertinoTabScaffoldData(...);
+  materialtabs: (_, __) => MaterialNavBarData(...)
+  cupertinoTabs: (_, __) => CupertinoTabBarData(...);
 );
 ```
 
-> Both the android and iOS builders are optional. If not provided the `Container` placeholder widget will be returned.
+> Both the material and cupertino builders are optional. If not provided the `SizedBox.shrink()` placeholder widget will be returned.
 
 ## PlatformAppBar
 
-The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for android or `CupertinoNavigationBar` for iOS.
+The AppBar is the top Header bar with a title, leftside or rightside buttons. Uses `AppBar` for material or `CupertinoNavigationBar` for cupertino.
 
 ```dart
 return PlatformAppBar(
@@ -310,14 +310,14 @@ return PlatformAppBar(
   );
 ```
 
-> In iOS if a solid color header is required and there is a ListView
+> In Cupertino if a solid color header is required and there is a ListView
 > on the page, you would need to add some alpha to the color so that the
 > ListView is not pushed down too far
 
 ```
      appBar: PlatformAppBar(
        title: Text('iOS Colored Header'),
-       ios: (_) => CupertinoNavigationBarData(
+       cupertino: (_, __) => CupertinoNavigationBarData(
              // Issue with cupertino where a bar with no transparency
              // will push the list down. Adding some alpha value fixes it (in a hacky way)
              backgroundColor: Colors.lightGreen.withAlpha(254),
@@ -327,7 +327,7 @@ return PlatformAppBar(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformAppBar(
@@ -336,14 +336,14 @@ return PlatformAppBar(
   trailingActions: <Widget>[
     PlatformIconButton(),
   ],
-  android: (_) => MaterialAppBarData(...),
-  ios: (_)=> CupertinoNavigationBarData(...),
+  material: (_, __)  => MaterialAppBarData(...),
+  cupertino: (_, __) => CupertinoNavigationBarData(...),
 );
 ```
 
 ## PlatformNavBar
 
-The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for android or `CupertinoTabBar` for iOS.
+The NavBar is placed at the bottom of the page with a set of buttons that typically navigate between screens. Implementing this widget requires the parent widget to manage the `currentIndex` of the page and to set `PlatformNavBar.currrentIndex`. Uses `BottomAppBar` with `BottomNavigationBar` for material or `CupertinoTabBar` for cupertino.
 
 ```dart
 return PlatformNavBar(
@@ -362,7 +362,7 @@ return PlatformNavBar(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformNavBar(
@@ -376,14 +376,14 @@ return PlatformNavBar(
     BottomNavigationBarItem(),
     BottomNavigationBarItem(),
   ],
-  android: (_) => MaterialNavBarData(...),
-  ios: (_) => CupertinoTabBarData(...),
+  material: (_, __)  => MaterialNavBarData(...),
+  cupertino: (_, __) => CupertinoTabBarData(...),
 );
 ```
 
 ## PlatformAlertDialog
 
-The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for android or `CupertinoAlertDialog` for iOS.
+The AlertDialog will render a caption/title, body/text and a set of action buttons specific for the platform. Uses `AlertDialog` for material or `CupertinoAlertDialog` for cupertino.
 
 > Note use `showPlatformDialog` instead of either `showDialog` from the Material library or `showCupertinoDialog` from the Cupertino library.
 
@@ -407,20 +407,20 @@ showPlatformDialog(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 showDialog(
   context: context,
   builder: (_) => PlatformAlertDialog(...),
-  ios: (_) => CupertinoAlertDialogData(...),
-  android: (_) => MaterialAlertDialogData(...),
+  cupertino: (_, __) => CupertinoAlertDialogData(...),
+  material: (_, __)  => MaterialAlertDialogData(...),
 )
 ```
 
 ## PlatformDialogAction
 
-The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for android or `CupertinoDialogAction` for iOS.
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for material or `CupertinoDialogAction` for cupertino.
 
 ```dart
 PlatformDialogAction(
@@ -431,20 +431,20 @@ PlatformDialogAction(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 PlatformDialogAction(
   child: PlatformText('Cancel'),
   onPressed: () => Navigator.pop(context),
-  android: (_) => MaterialDialogActionData(...),
-  ios: (_) => CupertinoDialogActionData(...),
+  material: (_, __)  => MaterialDialogActionData(...),
+  cupertino: (_, __) => CupertinoDialogActionData(...),
 ),
 ```
 
 ## PlatformCircularProgressIndicator
 
-A circular looking progress indicator. Uses `CircularProgressIndicator` for android or `CupertinoActivityIndicator` for iOS.
+A circular looking progress indicator. Uses `CircularProgressIndicator` for material or `CupertinoActivityIndicator` for cupertino.
 
 ```dart
 return PlatformCircularProgressIndicator();
@@ -452,18 +452,18 @@ return PlatformCircularProgressIndicator();
 
 #### Enhance
 
-Extend with `WidgetBuilder` for android or iOS.
+Extend with `WidgetBuilder` for material or cupertino.
 
 ```dart
 return PlatformCircularProgressIndicator(
-  android: (_) => MaterialProgressIndicatorData(...),
-  ios: (_)=> CupertinoProgressIndicatorData(...),
+  material: (_, __)  => MaterialProgressIndicatorData(...),
+  cupertino: (_, __) => CupertinoProgressIndicatorData(...),
 );
 ```
 
 ## PlatformPageRoute
 
-This function can be used within the `Navigator` to push either the `MaterialPageRoute` for android or `CupertinoPageRoute` for iOS.
+This function can be used within the `Navigator` to push either the `MaterialPageRoute` for material or `CupertinoPageRoute` for cupertino.
 
 ```dart
   Navigator.push(
@@ -476,19 +476,19 @@ This function can be used within the `Navigator` to push either the `MaterialPag
 
 ## ShowPlatformModalSheet
 
-This function is used to either display a `ModalBottomSheet` for android or `CupertinoModalPopup` for iOS.
+This function is used to either display a `ModalBottomSheet` for material or `CupertinoModalPopup` for cupertino.
 
 ```dart
   showPlatformModalSheet(
       context: context,
       builder: (_) => PlatformWidget(
-        android: (_) => _androidPopupContent(),
-        ios: (_) => _cupertinoSheetContent(),
+        material: (_, __)  => _materialPopupContent(),
+        cupertino: (_, __) => _cupertinoSheetContent(),
       ),
     );
 ```
 
-> Note: Since Android and iOS content may be quite different it may be useful tl use `PlatformWidget`.
+> Note: Since Material and Cupertino content may be quite different it may be useful tl use `PlatformWidget`.
 
 ## PlatformProvider
 
@@ -561,6 +561,8 @@ View the [source](https://github.com/aqwert/flutter_platform_widgets/blob/master
 # Changing / Checking Platform
 
 When importing `flutter_platform_widgets` you can check `isMaterial(context)` or `isCupertino(context)` to determine what style will be used. This is independent to `Platform.isAndroid` or `Platform.isIOS` from `'import 'dart:io'`
+
+You can call `platform(context)` to get the current platform. This is an enhancement on the existing `TargetPlatform` enum which now includes a value for web.
 
 See the example code for how this is used.
 

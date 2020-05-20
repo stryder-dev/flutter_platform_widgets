@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
     show BottomAppBar, BottomNavigationBar, BottomNavigationBarType;
 import 'package:flutter/widgets.dart';
 
+import 'platform.dart';
 import 'widget_base.dart';
 
 const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
@@ -117,26 +118,31 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final ValueChanged<int> itemChanged;
   final int currentIndex;
 
+  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialNavBarData> android;
+  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoTabBarData> ios;
 
-  PlatformNavBar(
-      {Key key,
-      this.widgetKey,
-      this.backgroundColor,
-      this.items,
-      this.itemChanged,
-      this.currentIndex,
-      this.android,
-      this.ios})
-      : super(key: key);
+  final PlatformBuilder2<MaterialNavBarData> material;
+  final PlatformBuilder2<CupertinoTabBarData> cupertino;
+
+  PlatformNavBar({
+    Key key,
+    this.widgetKey,
+    this.backgroundColor,
+    this.items,
+    this.itemChanged,
+    this.currentIndex,
+    this.android,
+    this.ios,
+    this.material,
+    this.cupertino,
+  }) : super(key: key);
 
   @override
-  BottomAppBar createAndroidWidget(BuildContext context) {
-    MaterialNavBarData data;
-    if (android != null) {
-      data = android(context);
-    }
+  BottomAppBar createMaterialWidget(BuildContext context) {
+    final data =
+        android?.call(context) ?? material?.call(context, platform(context));
 
     var bar = BottomNavigationBar(
       items: data?.items ?? items,
@@ -172,11 +178,9 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   }
 
   @override
-  CupertinoTabBar createIosWidget(BuildContext context) {
-    CupertinoTabBarData data;
-    if (ios != null) {
-      data = ios(context);
-    }
+  CupertinoTabBar createCupertinoWidget(BuildContext context) {
+    final data =
+        ios?.call(context) ?? cupertino?.call(context, platform(context));
 
     return CupertinoTabBar(
       items: data?.items ?? items,

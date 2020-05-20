@@ -6,9 +6,12 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import 'platform.dart';
 
 typedef T PlatformBuilder<T>(BuildContext context);
+
+typedef T PlatformBuilder2<T>(BuildContext context, PlatformTarget platform);
 
 abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
     extends StatelessWidget {
@@ -17,16 +20,16 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
   @override
   Widget build(BuildContext context) {
     if (isMaterial(context)) {
-      return createAndroidWidget(context);
+      return createMaterialWidget(context);
     } else if (isCupertino(context)) {
-      return createIosWidget(context);
+      return createCupertinoWidget(context);
     }
 
     return throw new UnsupportedError(
         'This platform is not supported: $defaultTargetPlatform');
   }
 
-  I createIosWidget(BuildContext context);
+  I createCupertinoWidget(BuildContext context);
 
-  A createAndroidWidget(BuildContext context);
+  A createMaterialWidget(BuildContext context);
 }
