@@ -49,7 +49,8 @@ class MaterialSliderData extends _BaseData {
       Color activeColor,
       this.inactiveColor,
       this.label,
-      this.semanticFormatterCallback})
+      this.semanticFormatterCallback,
+      this.focusNode})
       : super(
             widgetKey: widgetKey,
             value: value,
@@ -64,6 +65,7 @@ class MaterialSliderData extends _BaseData {
   final Color inactiveColor;
   final String label;
   final SemanticFormatterCallback semanticFormatterCallback;
+  final FocusNode focusNode;
 }
 
 class CupertinoSliderData extends _BaseData {
@@ -152,6 +154,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       inactiveColor: data?.inactiveColor,
       label: data?.label,
       semanticFormatterCallback: data?.semanticFormatterCallback,
+      focusNode: data?.focusNode,
     );
   }
 

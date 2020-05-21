@@ -102,6 +102,7 @@ Future<T> showPlatformDialog<T>({
   bool barrierDismissible,
   RouteSettings routeSettings,
   bool useRootNavigator = true,
+  bool materialUseSafeArea = true,
 }) {
   if (isMaterial(context)) {
     return showDialog<T>(
@@ -110,6 +111,7 @@ Future<T> showPlatformDialog<T>({
       barrierDismissible: barrierDismissible ?? androidBarrierDismissible,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
+      useSafeArea: materialUseSafeArea,
     );
   } else {
     return showCupertinoDialog<T>(
@@ -117,6 +119,7 @@ Future<T> showPlatformDialog<T>({
       builder: builder,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
+      barrierDismissible: barrierDismissible ?? false,
     );
   }
 }

@@ -74,6 +74,7 @@ class MaterialIconButtonData extends _BaseData {
     this.enableFeedback,
     this.visualDensity,
     this.constraints,
+    this.splashRadius,
   }) : super(
           widgetKey: widgetKey,
           icon: icon,
@@ -95,6 +96,7 @@ class MaterialIconButtonData extends _BaseData {
   final bool enableFeedback;
   final VisualDensity visualDensity;
   final BoxConstraints constraints;
+  final double splashRadius;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -162,6 +164,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       enableFeedback: data?.enableFeedback ?? true,
       visualDensity: data?.visualDensity,
       constraints: data?.constraints,
+      splashRadius: data?.splashRadius,
     );
   }
 
