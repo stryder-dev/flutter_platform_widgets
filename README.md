@@ -520,6 +520,14 @@ or
 PlatformProvider.of(context).changeToCupertinoPlatform();
 ```
 
+or 
+
+```
+PlatformProvider.of(context).changeToPlatform(Platform.fuchsia);
+```
+
+This will set the `Theme.of(context).platform` but the platform widgets will use the style as defined in the `PlatformStyle` as set inside the settings object. See below.
+
 #### settings
 
 The settings argument have been added to assist in configuring Platform Widgets.

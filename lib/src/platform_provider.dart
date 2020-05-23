@@ -55,12 +55,20 @@ class _PlatformProviderState extends State<PlatformProvider> {
     platform = widget.initialPlatform;
   }
 
+  void changeToPlatform(TargetPlatform platform) {
+    setState(() {
+      this.platform = platform;
+    });
+  }
+
+  /// Sets the platform to be [TargetPlatform.android]
   void changeToMaterialPlatform() {
     setState(() {
       platform = TargetPlatform.android;
     });
   }
 
+  /// Sets the platform to be [TargetPlatform.iOS]
   void changeToCupertinoPlatform() {
     setState(() {
       platform = TargetPlatform.iOS;

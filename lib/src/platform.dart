@@ -38,13 +38,15 @@ enum PlatformTarget {
 }
 
 PlatformStyle _platformStyle(BuildContext context) {
+  final platform = PlatformProvider.of(context)?.platform;
+
   final platformStyle = PlatformProvider.of(context)?.settings?.platformStyle;
 
-  if (kIsWeb) {
+  if (platform == null && kIsWeb) {
     return platformStyle?.web ?? PlatformStyle.Material;
   }
 
-  switch (Theme.of(context).platform) {
+  switch (platform) {
     case TargetPlatform.android:
       return platformStyle?.android ?? PlatformStyle.Material;
     case TargetPlatform.fuchsia:
