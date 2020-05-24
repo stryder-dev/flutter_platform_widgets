@@ -46,7 +46,7 @@ PlatformStyle _platformStyle(BuildContext context) {
     return platformStyle?.web ?? PlatformStyle.Material;
   }
 
-  switch (platform) {
+  switch (platform ?? Theme.of(context).platform) {
     case TargetPlatform.android:
       return platformStyle?.android ?? PlatformStyle.Material;
     case TargetPlatform.fuchsia:
