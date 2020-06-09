@@ -117,7 +117,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final Color backgroundColor;
   final PlatformAppBar appBar;
   final PlatformNavBar bottomNavBar;
-  final IndexedWidgetBuilder tabChildBuilder;
+  final IndexedWidgetBuilder cupertinoTabChildBuilder;
 
   @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialScaffoldData> android;
@@ -143,8 +143,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.iosContentBottomPadding = false,
     this.material,
     this.cupertino,
-    this.tabChildBuilder,
-    })  : super(key: key);
+    this.cupertinoTabChildBuilder,
+  }) : super(key: key);
 
   @override
   Scaffold createMaterialWidget(BuildContext context) {
@@ -185,7 +185,6 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     final data =
         ios?.call(context) ?? cupertino?.call(context, platform(context));
 
-    Widget child = data?.body ?? body;
     var navigationBar =
         appBar?.createCupertinoWidget(context) ?? data?.navigationBar;
 
@@ -202,7 +201,9 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         tabBar: tabBar,
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
-          var currentChild = tabChildBuilder != null ? tabChildBuilder.call(context, index) : child;
+          var currentChild = cupertinoTabChildBuilder?.call(context, index) ??
+              data?.body ??
+              body;
           return CupertinoPageScaffold(
             // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
@@ -214,6 +215,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         },
       );
     } else {
+      final child = data?.body ?? body;
+
       result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
