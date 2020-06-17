@@ -14,6 +14,7 @@ import 'package:flutter/material.dart'
         MaterialTapTargetSize,
         RaisedButton,
         VisualDensity;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -68,6 +69,7 @@ class MaterialFlatButtonData extends _BaseData {
     this.autofocus,
     this.onLongPress,
     this.visualDensity,
+    this.mouseCursor,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -100,6 +102,7 @@ class MaterialFlatButtonData extends _BaseData {
   final bool autofocus;
   final VoidCallback onLongPress;
   final VisualDensity visualDensity;
+  final MouseCursor mouseCursor;
 }
 
 class MaterialRaisedButtonData extends _BaseData {
@@ -132,6 +135,7 @@ class MaterialRaisedButtonData extends _BaseData {
     this.autofocus,
     this.onLongPress,
     this.visualDensity,
+    this.mouseCursor,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -164,6 +168,7 @@ class MaterialRaisedButtonData extends _BaseData {
   final bool autofocus;
   final VoidCallback onLongPress;
   final VisualDensity visualDensity;
+  final MouseCursor mouseCursor;
 }
 
 class CupertinoButtonData extends _BaseData {
@@ -284,6 +289,7 @@ class PlatformButton
         autofocus: dataFlat?.autofocus ?? false,
         onLongPress: dataFlat?.onLongPress,
         visualDensity: dataFlat?.visualDensity,
+        mouseCursor: dataFlat?.mouseCursor,
       );
     }
 
@@ -319,6 +325,7 @@ class PlatformButton
       autofocus: dataRaised?.autofocus ?? false,
       onLongPress: dataRaised?.onLongPress,
       visualDensity: dataRaised?.visualDensity,
+      mouseCursor: dataRaised?.mouseCursor,
     );
   }
 

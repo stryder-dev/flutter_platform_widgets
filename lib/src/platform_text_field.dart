@@ -99,6 +99,8 @@ class MaterialTextFieldData {
     this.selectionHeightStyle,
     this.selectionWidthStyle,
     this.obscuringCharacter,
+    this.autofillHints,
+    this.canAssertMaterialLocalizations,
   });
 
   final Key widgetKey;
@@ -146,6 +148,8 @@ class MaterialTextFieldData {
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
   final String obscuringCharacter;
+  final Iterable<String> autofillHints;
+  final bool canAssertMaterialLocalizations;
 }
 
 class CupertinoTextFieldData {
@@ -201,6 +205,7 @@ class CupertinoTextFieldData {
     this.selectionHeightStyle,
     this.selectionWidthStyle,
     this.obscuringCharacter,
+    this.autofillHints,
   });
 
   final Key widgetKey;
@@ -254,6 +259,7 @@ class CupertinoTextFieldData {
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
   final String obscuringCharacter;
+  final Iterable<String> autofillHints;
 }
 
 class PlatformTextField
@@ -312,6 +318,7 @@ class PlatformTextField
   final ui.BoxWidthStyle selectionWidthStyle;
 
   final String obscuringCharacter;
+  final Iterable<String> autofillHints;
 
   PlatformTextField({
     Key key,
@@ -356,6 +363,7 @@ class PlatformTextField
     this.selectionHeightStyle,
     this.selectionWidthStyle,
     this.obscuringCharacter,
+    this.autofillHints,
     @Deprecated('Use material argument. material: (context, platform) {}')
         this.android,
     @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
@@ -428,6 +436,8 @@ class PlatformTextField
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
+      autofillHints: data?.autofillHints ?? autofillHints,
+      canAssertMaterialLocalizations: data?.canAssertMaterialLocalizations,
     );
   }
 
@@ -505,6 +515,7 @@ class PlatformTextField
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
+      autofillHints: data?.autofillHints ?? autofillHints,
     );
   }
 }

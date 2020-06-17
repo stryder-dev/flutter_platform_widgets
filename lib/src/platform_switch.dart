@@ -7,6 +7,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoSwitch;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' show Switch, MaterialTapTargetSize;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -48,6 +49,7 @@ class MaterialSwitchData extends _BaseData {
     this.autofocus,
     this.onActiveThumbImageError,
     this.onInactiveThumbImageError,
+    this.mouseCursor,
   }) : super(
           widgetKey: widgetKey,
           value: value,
@@ -68,6 +70,7 @@ class MaterialSwitchData extends _BaseData {
   final bool autofocus;
   final ImageErrorListener onActiveThumbImageError;
   final ImageErrorListener onInactiveThumbImageError;
+  final MouseCursor mouseCursor;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -143,6 +146,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       hoverColor: data?.hoverColor,
       onActiveThumbImageError: data?.onActiveThumbImageError,
       onInactiveThumbImageError: data?.onInactiveThumbImageError,
+      mouseCursor: data?.mouseCursor,
     );
   }
 
