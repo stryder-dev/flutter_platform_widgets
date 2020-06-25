@@ -49,7 +49,10 @@ class MaterialTabScaffoldData extends _BaseData {
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
     this.primary,
-    this.resizeToAvoidBottomPadding,
+    @Deprecated(
+        'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
+        'This feature was deprecated after v1.1.9.')
+        this.resizeToAvoidBottomPadding,
     this.bottomSheet,
     this.drawerDragStartBehavior,
     this.extendBody,
@@ -73,9 +76,6 @@ class MaterialTabScaffoldData extends _BaseData {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final List<Widget> persistentFooterButtons;
   final bool primary;
-  @Deprecated(
-      'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
-      'This feature was deprecated after v1.1.9.')
   final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
@@ -149,14 +149,9 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final int currentIndex;
   final void Function(int index) itemChanged;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialTabScaffoldData> android;
-  @Deprecated('Use materialTabs argument. materialTabs: (context, platform) {}')
   final PlatformBuilder<MaterialNavBarData> androidTabs;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoTabScaffoldData> ios;
-  @Deprecated(
-      'Use cupertinoTabs argument. cupertinoTabs: (context, platform) {}')
   final PlatformBuilder<CupertinoTabBarData> iosTabs;
 
   final PlatformBuilder2<MaterialTabScaffoldData> material;
@@ -184,10 +179,14 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.tabController,
     this.currentIndex,
     this.itemChanged,
-    this.android,
-    this.androidTabs,
-    this.ios,
-    this.iosTabs,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use materialTabs argument. materialTabs: (context, platform) {}')
+        this.androidTabs,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
+    @Deprecated('Use cupertinoTabs argument. cupertinoTabs: (context, platform) {}')
+        this.iosTabs,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
     this.material,

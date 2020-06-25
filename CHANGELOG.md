@@ -1,3 +1,10 @@
+## [0.51.0] - June 25, 2020
+
+#### (Flutter version support: v1.17.0-v1.17.4)
+
+- added `PlatformWidgetBuilder` which allows to use a platform specific as a parent widget for a child that is the same for both platforms.
+- Forced deprecation on widget arguments to make them more obvious
+
 ## [0.50.1] - June 09, 2020
 
 #### (Flutter version support: v1.17.0-v1.17.3)

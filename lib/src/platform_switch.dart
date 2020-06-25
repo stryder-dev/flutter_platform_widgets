@@ -97,9 +97,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final ValueChanged<bool> onChanged;
   final DragStartBehavior dragStartBehavior;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialSwitchData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoSwitchData> ios;
 
   final PlatformBuilder2<MaterialSwitchData> material;
@@ -112,8 +110,10 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     @required this.onChanged,
     this.dragStartBehavior,
     this.activeColor,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);

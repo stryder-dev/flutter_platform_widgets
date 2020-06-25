@@ -129,9 +129,8 @@ class PlatformAppBar
   final List<Widget> trailingActions;
   final bool automaticallyImplyLeading;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAppBarData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+
   final PlatformBuilder<CupertinoNavigationBarData> ios;
 
   final PlatformBuilder2<MaterialAppBarData> material;
@@ -145,8 +144,10 @@ class PlatformAppBar
     this.leading,
     this.trailingActions,
     this.automaticallyImplyLeading,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);

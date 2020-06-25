@@ -48,7 +48,10 @@ class MaterialScaffoldData extends _BaseData {
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
     this.primary,
-    this.resizeToAvoidBottomPadding,
+    @Deprecated(
+        'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
+        'This feature was deprecated after v1.1.9.')
+        this.resizeToAvoidBottomPadding,
     this.bottomSheet,
     this.drawerDragStartBehavior,
     this.extendBody,
@@ -70,9 +73,6 @@ class MaterialScaffoldData extends _BaseData {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final List<Widget> persistentFooterButtons;
   final bool primary;
-  @Deprecated(
-      'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
-      'This feature was deprecated after v1.1.9.')
   final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
@@ -119,9 +119,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformNavBar bottomNavBar;
   final IndexedWidgetBuilder cupertinoTabChildBuilder;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialScaffoldData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoPageScaffoldData> ios;
 
   final PlatformBuilder2<MaterialScaffoldData> material;
@@ -137,8 +135,10 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.backgroundColor,
     this.appBar,
     this.bottomNavBar,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
     this.material,

@@ -219,9 +219,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<LocalKey, ActionFactory> actions;
   final InitialRouteListFactory onGenerateInitialRoutes;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAppData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoAppData> ios;
 
   final PlatformBuilder2<MaterialAppData> material;
@@ -254,8 +252,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.shortcuts,
     this.actions,
     this.onGenerateInitialRoutes,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);

@@ -222,14 +222,9 @@ class PlatformButton
   final EdgeInsetsGeometry padding;
   final Color disabledColor;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialRaisedButtonData> android;
-  @Deprecated('Use materialFlat argument. materialFlat: (context, platform) {}')
   final PlatformBuilder<MaterialFlatButtonData> androidFlat;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoButtonData> ios;
-  @Deprecated(
-      'Use cupertinoFilled argument. cupertinoFilled: (context, platform) {}')
   final PlatformBuilder<CupertinoFilledButtonData> iosFilled;
 
   final PlatformBuilder2<MaterialRaisedButtonData> material;
@@ -245,10 +240,14 @@ class PlatformButton
     this.color,
     this.disabledColor,
     this.padding,
-    this.android,
-    this.androidFlat,
-    this.ios,
-    this.iosFilled,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use materialFlat argument. materialFlat: (context, platform) {}')
+        this.androidFlat,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
+    @Deprecated('Use cupertinoFilled argument. cupertinoFilled: (context, platform) {}')
+        this.iosFilled,
     this.material,
     this.materialFlat,
     this.cupertino,
