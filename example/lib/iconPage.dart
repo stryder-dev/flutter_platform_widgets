@@ -97,7 +97,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('groupSolid', (c) => c.platformIcons.groupSolid),
           _IconCompared('heartSolid', (c) => c.platformIcons.heartSolid),
           _IconCompared('help', (c) => c.platformIcons.help),
-          _IconCompared('help_outline', (c) => c.platformIcons.help_outline),
+          _IconCompared('helpOutline', (c) => c.platformIcons.helpOutline),
           _IconCompared('home', (c) => c.platformIcons.home),
           _IconCompared('info', (c) => c.platformIcons.info),
           _IconCompared('leftChevron', (c) => c.platformIcons.leftChevron),

@@ -4,6 +4,7 @@
 
 - added `PlatformWidgetBuilder` which allows to use a platform specific as a parent widget for a child that is the same for both platforms.
 - Forced deprecation on widget arguments to make them more obvious
+- Added more PlatformIcons (thanks mlava)
 
 ## [0.50.1] - June 09, 2020
 

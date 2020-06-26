@@ -1,6 +1,6 @@
 # Flutter Platform Widgets
 
-![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/aqwert/flutter_platform_widgets)
+![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/stryder-dev/flutter_platform_widgets)
 
 This project is an attempt to see if it is possible to create widgets that are platform aware. Currently in order to render targeted Material or Cupertino device specific styles, you need to either conditionaly check the platform or create a set of widgets to render differently depending on the running platform.
 
@@ -20,7 +20,7 @@ The flutter `ThemeData` object used with the `Theme` widget has a `platform` pro
 
 # Configuration
 
-See [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider) for configuration options.
+See [PlatformProvider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformprovider) for configuration options.
 
 # Widgets
 
@@ -32,26 +32,26 @@ These set of widgets allow for rendering based on the target platform using a si
 
 Each `PlatformWidget` provides common properties directly as constructor arguments. If required further customization can be achieved by using the platform widget builder. See the **Enhance** section of each widget.
 
-- [PlatformWidget](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformwidget)
-- [PlatformText](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtext)
-- [PlatformSwitch](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformswitch)
-- [PlatformSlider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformslider)
-- [PlatformTextField](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtextfield)
-- [PlatformButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformbutton)
-- [PlatformIconButton](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
-- [PlatformApp](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformapp)
-- [PlatformScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformscaffold)
-- [PlatformTabScaffold](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformtabscaffold)
-- [PlatformAppBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformappbar)
-- [PlatformNavBar](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformnavbar)
-- [PlatformAlertDialog](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
-- [PlatformDialogAction](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
-- [PlatformCircularProgressIndicator](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
-- [PlatformPageRoute](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformpageroute)
-- [ShowPlatformModalSheet](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
-- [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
-- [PlatformIcons](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformicons)
-- [PlatformWidgetBuilder](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformwidgetbuilder)
+- [PlatformWidget](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformwidget)
+- [PlatformText](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtext)
+- [PlatformSwitch](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformswitch)
+- [PlatformSlider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformslider)
+- [PlatformTextField](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtextfield)
+- [PlatformButton](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformbutton)
+- [PlatformIconButton](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
+- [PlatformApp](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformapp)
+- [PlatformScaffold](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformscaffold)
+- [PlatformTabScaffold](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtabscaffold)
+- [PlatformAppBar](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformappbar)
+- [PlatformNavBar](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformnavbar)
+- [PlatformAlertDialog](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
+- [PlatformDialogAction](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
+- [PlatformCircularProgressIndicator](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
+- [PlatformPageRoute](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+- [ShowPlatformModalSheet](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
+- [PlatformProvider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformprovider)
+- [PlatformIcons](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformicons)
+- [PlatformWidgetBuilder](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformwidgetbuilder)
 
 ## PlatformWidget
 
@@ -273,8 +273,8 @@ return PlatformTabScaffold(
 
 More more detailed example look at:
 
-- [Basic Example](https://github.com/aqwert/flutter_platform_widgets/blob/master/example/lib/tabbed/basicTabbedPage.dart)
-- [Sliver Example](https://github.com/aqwert/flutter_platform_widgets/blob/master/example/lib/tabbed/sliverTabbedPage.dart)
+- [Basic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/basicTabbedPage.dart)
+- [Sliver Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/sliverTabbedPage.dart)
 
 > Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it. This will not have the translucent effect for iOS when these are set to `true`. If that is desirable, then the scrolling and content alignment need to be managed yourself.
 
@@ -560,7 +560,7 @@ Render a Material or Cupertino looking icon
   Icon(PlatformIcons(context).book)
 ```
 
-View the [source](https://github.com/aqwert/flutter_platform_widgets/blob/master/lib/src/../../../../../../../../lib/src/platform_icons.dart) for the list of icons.
+View the [source](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/lib/src/platform_icons.dart) or [screenshots](https://github.com/stryder-dev/flutter_platform_widgets/ICONS.md) for the list of icons or 
 
 ## PlatformWidgetBuilder
 
@@ -589,7 +589,7 @@ See the example code for how this is used.
 
 # Issues and Feedback
 
-Please [create](https://github.com/aqwert/flutter_platform_widgets/issues/new) an issue to provide feedback or an issue.
+Please [create](https://github.com/stryder-dev/flutter_platform_widgets/issues/new) an issue to provide feedback or an issue.
 
 # Acknowledgements
 
