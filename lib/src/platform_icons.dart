@@ -215,6 +215,10 @@ class PlatformIcons {
   /// Icons: Icons.more_horiz : CupertinoIcons.ellipsis
   IconData get ellipsis =>
       isMaterial(context) ? Icons.more_horiz : CupertinoIcons.ellipsis;
+  
+  /// Icons: Icons.error : CupertinoIcons.(custom)
+  IconData get error => isMaterial(context)
+      ? Icons.error : IconData(0xf35b, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
 
@@ -288,6 +292,14 @@ class PlatformIcons {
   /// Icons: Icons.favorite : CupertinoIcons.heart_solid
   IconData get heartSolid =>
       isMaterial(context) ? Icons.favorite : CupertinoIcons.heart_solid;
+  
+  /// Icons: Icons.help : CupertinoIcons.(custom)
+  IconData get help => isMaterial(context)
+      ? Icons.help : IconData(0xf446, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+  
+  /// Icons: Icons.help_outline : CupertinoIcons.(custom)
+  IconData get help_outline => isMaterial(context)
+      ? Icons.help_outline : IconData(0xf445, fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.home : CupertinoIcons.home
   IconData get home => isMaterial(context) ? Icons.home : CupertinoIcons.home;
@@ -514,6 +526,12 @@ class PlatformIcons {
 
   // IconData get shuffleThick =>
   //     isMaterial(context) ? Icons.share : CupertinoIcons.shuffle_thick;
+  
+  /// Icons: Icons.star : CupertinoIcons.(custom)
+  IconData get star => isMaterial(context)
+      ? Icons.star
+      : IconData(0xf2fc,
+          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
   IconData get switchCamera =>
