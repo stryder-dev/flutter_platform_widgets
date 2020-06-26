@@ -76,6 +76,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('done', (c) => c.platformIcons.done),
           _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
           _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
+          _IconCompared('error', (c) => c.platformIcons.error),
           _IconCompared('eyeSolid', (c) => c.platformIcons.eyeSolid),
           _IconCompared('favoriteSolid', (c) => c.platformIcons.favoriteSolid),
           _IconCompared(
@@ -95,6 +96,8 @@ class IconsPage extends StatelessWidget {
           _IconCompared('group', (c) => c.platformIcons.group),
           _IconCompared('groupSolid', (c) => c.platformIcons.groupSolid),
           _IconCompared('heartSolid', (c) => c.platformIcons.heartSolid),
+          _IconCompared('help', (c) => c.platformIcons.help),
+          _IconCompared('help_outline', (c) => c.platformIcons.help_outline),
           _IconCompared('home', (c) => c.platformIcons.home),
           _IconCompared('info', (c) => c.platformIcons.info),
           _IconCompared('leftChevron', (c) => c.platformIcons.leftChevron),
@@ -142,6 +145,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('shareSolid', (c) => c.platformIcons.shareSolid),
           _IconCompared('shoppingCart', (c) => c.platformIcons.shoppingCart),
           _IconCompared('shuffle', (c) => c.platformIcons.shuffle),
+          _IconCompared('star', (c) => c.platformIcons.star),
           _IconCompared('switchCamera', (c) => c.platformIcons.switchCamera),
           _IconCompared(
               'switchCameraSolid', (c) => c.platformIcons.switchCameraSolid),
