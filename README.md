@@ -560,7 +560,7 @@ Render a Material or Cupertino looking icon
   Icon(PlatformIcons(context).book)
 ```
 
-View the [source](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/lib/src/platform_icons.dart) or [screenshots](https://github.com/stryder-dev/flutter_platform_widgets/ICONS.md) for the list of icons. 
+View the [source](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/lib/src/platform_icons.dart) or [screenshots](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/ICONS.md) for the list of icons. 
 
 ## PlatformWidgetBuilder
 
