@@ -256,9 +256,7 @@ class PlatformTextField
     extends PlatformWidgetBase<CupertinoTextField, TextField> {
   final Key widgetKey;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialTextFieldData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoTextFieldData> ios;
 
   final PlatformBuilder2<MaterialTextFieldData> material;
@@ -351,8 +349,10 @@ class PlatformTextField
     this.smartQuotesType,
     this.selectionHeightStyle,
     this.selectionWidthStyle,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??

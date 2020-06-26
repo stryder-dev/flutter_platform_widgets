@@ -104,9 +104,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final double min;
   final double max;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialSliderData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoSliderData> ios;
 
   final PlatformBuilder2<MaterialSliderData> material;
@@ -123,8 +121,10 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.divisions,
     this.min = 0.0,
     this.max = 1.0,
-    this.android,
-    this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
     this.material,
     this.cupertino,
   })  : assert(value != null),

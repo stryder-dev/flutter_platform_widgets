@@ -96,9 +96,7 @@ class PlatformAlertDialog
   final Widget content;
   final Widget title;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
   final PlatformBuilder<MaterialAlertDialogData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
   final PlatformBuilder<CupertinoAlertDialogData> ios;
 
   final PlatformBuilder2<MaterialAlertDialogData> material;
@@ -110,8 +108,10 @@ class PlatformAlertDialog
     this.actions,
     this.content,
     this.title,
-    this.ios,
-    this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
     this.material,
     this.cupertino,
   }) : super(key: key);

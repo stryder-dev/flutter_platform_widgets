@@ -18,8 +18,10 @@ class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
 
   PlatformWidget({
     Key key,
-    this.ios,
-    this.android,
+    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
+        this.ios,
+    @Deprecated('Use material argument. material: (context, platform) {}')
+        this.android,
     this.cupertino,
     this.material,
   }) : super(key: key);

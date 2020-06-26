@@ -51,6 +51,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [ShowPlatformModalSheet](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformprovider)
 - [PlatformIcons](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformicons)
+- [PlatformWidgetBuilder](https://github.com/aqwert/flutter_platform_widgets/blob/master/README.md#platformwidgetbuilder)
 
 ## PlatformWidget
 
@@ -560,6 +561,18 @@ Render a Material or Cupertino looking icon
 ```
 
 View the [source](https://github.com/aqwert/flutter_platform_widgets/blob/master/lib/src/../../../../../../../../lib/src/platform_icons.dart) for the list of icons.
+
+## PlatformWidgetBuilder
+
+Renders a parent widget for either `Cupertino` or `Material` while sharing a common child Widget
+
+```dart
+ PlatformWidgetBuilder(;
+   cupertino: (_, child, __) => GestureDetector(child: child, onTap: _handleTap),
+   material: (_, child, __) => IniWell(child: child, onTap: _handleTap),
+   child: Container(child: Text('Common text')),
+ );
+```
 
 # TODO
 
