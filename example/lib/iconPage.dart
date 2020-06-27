@@ -146,6 +146,7 @@ class IconsPage extends StatelessWidget {
           _IconCompared('shoppingCart', (c) => c.platformIcons.shoppingCart),
           _IconCompared('shuffle', (c) => c.platformIcons.shuffle),
           _IconCompared('star', (c) => c.platformIcons.star),
+          _IconCompared('star_outline', (c) => c.platformIcons.star_outline),
           _IconCompared('switchCamera', (c) => c.platformIcons.switchCamera),
           _IconCompared(
               'switchCameraSolid', (c) => c.platformIcons.switchCameraSolid),
