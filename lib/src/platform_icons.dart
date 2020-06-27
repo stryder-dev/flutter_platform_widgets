@@ -539,6 +539,12 @@ class PlatformIcons {
       : IconData(0xf2fc,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
+  /// Icons: Icons.star_outline : CupertinoIcons.(custom)
+  IconData get star_outline => isMaterial(context)
+      ? Icons.star_outline
+      : IconData(0xf3ae,
+          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
   IconData get switchCamera =>
       isMaterial(context) ? Icons.switch_camera : CupertinoIcons.switch_camera;
