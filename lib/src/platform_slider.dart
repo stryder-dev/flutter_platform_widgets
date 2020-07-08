@@ -53,6 +53,7 @@ class MaterialSliderData extends _BaseData {
     this.semanticFormatterCallback,
     this.focusNode,
     this.mouseCursor,
+    this.autofocus,
   }) : super(
             widgetKey: widgetKey,
             value: value,
@@ -69,6 +70,7 @@ class MaterialSliderData extends _BaseData {
   final SemanticFormatterCallback semanticFormatterCallback;
   final FocusNode focusNode;
   final MouseCursor mouseCursor;
+  final bool autofocus;
 }
 
 class CupertinoSliderData extends _BaseData {
@@ -159,6 +161,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       semanticFormatterCallback: data?.semanticFormatterCallback,
       focusNode: data?.focusNode,
       mouseCursor: data?.mouseCursor,
+      autofocus: data?.autofocus ?? false,
     );
   }
 
