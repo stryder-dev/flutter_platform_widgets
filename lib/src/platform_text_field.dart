@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show InputDecoration, TextField, InputCounterWidgetBuilder;
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart'
     show
         Brightness,
@@ -100,7 +101,7 @@ class MaterialTextFieldData {
     this.selectionWidthStyle,
     this.obscuringCharacter,
     this.autofillHints,
-    this.canAssertMaterialLocalizations,
+    this.mouseCursor,
   });
 
   final Key widgetKey;
@@ -149,7 +150,7 @@ class MaterialTextFieldData {
   final ui.BoxWidthStyle selectionWidthStyle;
   final String obscuringCharacter;
   final Iterable<String> autofillHints;
-  final bool canAssertMaterialLocalizations;
+  final MouseCursor mouseCursor;
 }
 
 class CupertinoTextFieldData {
@@ -437,7 +438,7 @@ class PlatformTextField
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
       autofillHints: data?.autofillHints ?? autofillHints,
-      canAssertMaterialLocalizations: data?.canAssertMaterialLocalizations,
+      mouseCursor: data?.mouseCursor ?? MouseCursor.defer,
     );
   }
 
