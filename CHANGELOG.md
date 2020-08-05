@@ -1,3 +1,10 @@
+## [0.60.0] - August 05, 2020
+
+#### (Flutter version support: v1.20)
+
+- Upgrade to flutter version v1.20
+
+
 ## [0.51.0] - June 25, 2020
 
 #### (Flutter version support: v1.17.0-v1.17.4)
