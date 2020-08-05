@@ -59,6 +59,8 @@ class MaterialAppBarData extends _BaseData {
     this.actionsIconTheme,
     this.shape,
     this.excludeHeaderSemantics,
+    this.shadowColor,
+    this.toolbarHeight,
   }) : super(
           widgetKey: widgetKey,
           title: title,
@@ -83,6 +85,8 @@ class MaterialAppBarData extends _BaseData {
   final IconThemeData actionsIconTheme;
   final ShapeBorder shape;
   final bool excludeHeaderSemantics;
+  final Color shadowColor;
+  final double toolbarHeight;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -179,6 +183,8 @@ class PlatformAppBar
       actionsIconTheme: data?.actionsIconTheme,
       shape: data?.shape,
       excludeHeaderSemantics: data?.excludeHeaderSemantics ?? false,
+      shadowColor: data?.shadowColor,
+      toolbarHeight: data?.toolbarHeight,
     );
   }
 
@@ -189,7 +195,7 @@ class PlatformAppBar
 
     var trailing = trailingActions == null || trailingActions.isEmpty
         ? null
-        : new Row(
+        : Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: trailingActions,

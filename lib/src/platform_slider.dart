@@ -6,6 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
 import 'package:flutter/material.dart' show SemanticFormatterCallback, Slider;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -37,20 +38,23 @@ abstract class _BaseData {
 }
 
 class MaterialSliderData extends _BaseData {
-  MaterialSliderData(
-      {Key widgetKey,
-      double value,
-      ValueChanged<double> onChanged,
-      ValueChanged<double> onChangeStart,
-      ValueChanged<double> onChangeEnd,
-      int divisions,
-      double min,
-      double max,
-      Color activeColor,
-      this.inactiveColor,
-      this.label,
-      this.semanticFormatterCallback})
-      : super(
+  MaterialSliderData({
+    Key widgetKey,
+    double value,
+    ValueChanged<double> onChanged,
+    ValueChanged<double> onChangeStart,
+    ValueChanged<double> onChangeEnd,
+    int divisions,
+    double min,
+    double max,
+    Color activeColor,
+    this.inactiveColor,
+    this.label,
+    this.semanticFormatterCallback,
+    this.focusNode,
+    this.mouseCursor,
+    this.autofocus,
+  }) : super(
             widgetKey: widgetKey,
             value: value,
             onChanged: onChanged,
@@ -64,6 +68,9 @@ class MaterialSliderData extends _BaseData {
   final Color inactiveColor;
   final String label;
   final SemanticFormatterCallback semanticFormatterCallback;
+  final FocusNode focusNode;
+  final MouseCursor mouseCursor;
+  final bool autofocus;
 }
 
 class CupertinoSliderData extends _BaseData {
@@ -152,6 +159,9 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       inactiveColor: data?.inactiveColor,
       label: data?.label,
       semanticFormatterCallback: data?.semanticFormatterCallback,
+      focusNode: data?.focusNode,
+      mouseCursor: data?.mouseCursor,
+      autofocus: data?.autofocus ?? false,
     );
   }
 

@@ -74,7 +74,7 @@ class _AppState extends State<App> {
         //initialPlatform: initialPlatform,
         // settings: PlatformSettingsData(
         //   platformStyle: PlatformStyleData(
-        //     android: PlatformStyle.Cupertino,
+        //     web: PlatformStyle.Cupertino,
         //   ),
         // ),
         builder: (context) => PlatformApp(

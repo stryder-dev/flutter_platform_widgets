@@ -6,6 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart' show IconButton, VisualDensity;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -74,6 +75,8 @@ class MaterialIconButtonData extends _BaseData {
     this.enableFeedback,
     this.visualDensity,
     this.constraints,
+    this.splashRadius,
+    this.mouseCursor,
   }) : super(
           widgetKey: widgetKey,
           icon: icon,
@@ -95,6 +98,8 @@ class MaterialIconButtonData extends _BaseData {
   final bool enableFeedback;
   final VisualDensity visualDensity;
   final BoxConstraints constraints;
+  final double splashRadius;
+  final MouseCursor mouseCursor;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -162,6 +167,8 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       enableFeedback: data?.enableFeedback ?? true,
       visualDensity: data?.visualDensity,
       constraints: data?.constraints,
+      splashRadius: data?.splashRadius,
+      mouseCursor: data?.mouseCursor,
     );
   }
 

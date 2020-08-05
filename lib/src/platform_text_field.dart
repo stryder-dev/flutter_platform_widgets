@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show InputDecoration, TextField, InputCounterWidgetBuilder;
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart'
     show
         Brightness,
@@ -98,6 +99,9 @@ class MaterialTextFieldData {
     this.smartQuotesType,
     this.selectionHeightStyle,
     this.selectionWidthStyle,
+    this.obscuringCharacter,
+    this.autofillHints,
+    this.mouseCursor,
   });
 
   final Key widgetKey;
@@ -144,6 +148,9 @@ class MaterialTextFieldData {
   final SmartQuotesType smartQuotesType;
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
+  final String obscuringCharacter;
+  final Iterable<String> autofillHints;
+  final MouseCursor mouseCursor;
 }
 
 class CupertinoTextFieldData {
@@ -198,6 +205,8 @@ class CupertinoTextFieldData {
     this.smartQuotesType,
     this.selectionHeightStyle,
     this.selectionWidthStyle,
+    this.obscuringCharacter,
+    this.autofillHints,
   });
 
   final Key widgetKey;
@@ -250,6 +259,8 @@ class CupertinoTextFieldData {
   final SmartQuotesType smartQuotesType;
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
+  final String obscuringCharacter;
+  final Iterable<String> autofillHints;
 }
 
 class PlatformTextField
@@ -307,6 +318,9 @@ class PlatformTextField
   final ui.BoxHeightStyle selectionHeightStyle;
   final ui.BoxWidthStyle selectionWidthStyle;
 
+  final String obscuringCharacter;
+  final Iterable<String> autofillHints;
+
   PlatformTextField({
     Key key,
     this.widgetKey,
@@ -349,6 +363,8 @@ class PlatformTextField
     this.smartQuotesType,
     this.selectionHeightStyle,
     this.selectionWidthStyle,
+    this.obscuringCharacter,
+    this.autofillHints,
     @Deprecated('Use material argument. material: (context, platform) {}')
         this.android,
     @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
@@ -420,6 +436,9 @@ class PlatformTextField
       selectionWidthStyle: data?.selectionWidthStyle ??
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
+      obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
+      autofillHints: data?.autofillHints ?? autofillHints,
+      mouseCursor: data?.mouseCursor ?? MouseCursor.defer,
     );
   }
 
@@ -496,6 +515,8 @@ class PlatformTextField
       selectionWidthStyle: data?.selectionWidthStyle ??
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
+      obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
+      autofillHints: data?.autofillHints ?? autofillHints,
     );
   }
 }

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         FlatButton,
         MaterialTapTargetSize,
         VisualDensity;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -49,6 +50,7 @@ class MaterialDialogActionData extends _BaseData {
     this.autofocus,
     this.visualDensity,
     this.onLongPress,
+    this.mouseCursor,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -74,6 +76,7 @@ class MaterialDialogActionData extends _BaseData {
   final bool autofocus;
   final VisualDensity visualDensity;
   final VoidCallback onLongPress;
+  final MouseCursor mouseCursor;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -147,6 +150,7 @@ class PlatformDialogAction
       autofocus: data?.autofocus ?? false,
       visualDensity: data?.visualDensity,
       onLongPress: data?.onLongPress,
+      mouseCursor: data?.mouseCursor,
     );
   }
 

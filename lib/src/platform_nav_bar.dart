@@ -7,6 +7,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoTabBar, CupertinoColors;
 import 'package:flutter/material.dart'
     show BottomAppBar, BottomNavigationBar, BottomNavigationBarType;
+import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -59,31 +60,32 @@ class CupertinoTabBarData extends _BaseData {
 }
 
 class MaterialNavBarData extends _BaseData {
-  MaterialNavBarData(
-      {List<BottomNavigationBarItem> items,
-      Color backgroundColor,
-      double iconSize,
-      this.elevation,
-      Color fixedColor,
-      Key widgetKey,
-      ValueChanged<int> itemChanged,
-      int currentIndex,
-      this.type,
-      this.bottomNavigationBarKey,
-      this.shape,
-      this.clipBehavior,
-      this.notchMargin,
-      this.selectedFontSize,
-      this.selectedItemColor,
-      this.showSelectedLabels,
-      this.showUnselectedLabels,
-      this.unselectedFontSize,
-      this.unselectedItemColor,
-      this.selectedIconTheme,
-      this.selectedLabelStyle,
-      this.unselectedIconTheme,
-      this.unselectedLabelStyle})
-      : super(
+  MaterialNavBarData({
+    List<BottomNavigationBarItem> items,
+    Color backgroundColor,
+    double iconSize,
+    this.elevation,
+    Color fixedColor,
+    Key widgetKey,
+    ValueChanged<int> itemChanged,
+    int currentIndex,
+    this.type,
+    this.bottomNavigationBarKey,
+    this.shape,
+    this.clipBehavior,
+    this.notchMargin,
+    this.selectedFontSize,
+    this.selectedItemColor,
+    this.showSelectedLabels,
+    this.showUnselectedLabels,
+    this.unselectedFontSize,
+    this.unselectedItemColor,
+    this.selectedIconTheme,
+    this.selectedLabelStyle,
+    this.unselectedIconTheme,
+    this.unselectedLabelStyle,
+    this.mouseCursor,
+  }) : super(
             widgetKey: widgetKey,
             items: items,
             backgroundColor: backgroundColor,
@@ -108,6 +110,7 @@ class MaterialNavBarData extends _BaseData {
   final TextStyle selectedLabelStyle;
   final IconThemeData unselectedIconTheme;
   final TextStyle unselectedLabelStyle;
+  final MouseCursor mouseCursor;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -164,6 +167,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       selectedLabelStyle: data?.selectedLabelStyle,
       unselectedIconTheme: data?.unselectedIconTheme ?? const IconThemeData(),
       unselectedLabelStyle: data?.unselectedLabelStyle,
+      mouseCursor: data?.mouseCursor,
     );
 
     return BottomAppBar(
