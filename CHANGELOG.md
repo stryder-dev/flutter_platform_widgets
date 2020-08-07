@@ -1,4 +1,4 @@
-## [0.60.0] - August 05, 2020
+## [0.60.1] - August 05, 2020
 
 #### (Flutter version support: v1.20)
 
