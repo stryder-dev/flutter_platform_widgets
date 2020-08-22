@@ -1,3 +1,10 @@
+## [0.60.2] - August 22, 2020
+
+#### (Flutter version support: v1.20.0 - v1.20.2)
+
+- Added const to icons for treeshaking (thanks sck-v)
+- Added contributers to ReadMe
+
 ## [0.60.1] - August 05, 2020
 
 #### (Flutter version support: v1.20)

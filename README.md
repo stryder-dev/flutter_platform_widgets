@@ -591,6 +591,39 @@ See the example code for how this is used.
 
 Please [create](https://github.com/stryder-dev/flutter_platform_widgets/issues/new) an issue to provide feedback or an issue.
 
+# Contributers
+
+Special thanks for everyone that have contributed to this project...
+
+|                                                                                                       |                                                               |                                                                                                       |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [![](https://avatars1.githubusercontent.com/u/4413519?s=40&v=4)](https://github.com/aqwert)           | [Lance Johnstone](https://github.com/aqwert)                  | [![](images/linkedIn_img.png)](https://www.linkedin.com/in/lancejohnstone/)                           |
+| [![](https://avatars2.githubusercontent.com/u/58397?s=40&v=4)](https://github.com/stefanrusek)        | [Stefan Rusek](https://github.com/stefanrusek)                |
+| [![](https://ui-avatars.com/api/?name=Mark+Lavercombe&size=40)](https://github.com/stefanrusek)       | [Mark Lavercombe](https://github.com/mlava)                   |
+| [![](https://avatars3.githubusercontent.com/u/15651?s=40&v=4)](https://github.com/fredgrott)          | [Fred Grott](https://github.com/fredgrott)                    | [![](images/linkedIn_img.png)](https://www.linkedin.com/in/fredgrottstartupfluttermobileappdesigner/) |
+| [![](https://avatars0.githubusercontent.com/u/26111180?s=40&v=4)](https://github.com/fbernutz)        | [Felizia Bernutz](https://github.com/fbernutz)                |
+| [![](https://avatars3.githubusercontent.com/u/227856?s=40&v=4)](https://github.com/eyecreate)         | [eyecreate](https://github.com/eyecreate)                     |
+| [![](https://avatars1.githubusercontent.com/u/53199186?s=40&v=4)](https://github.com/ahawlitschek)    | [Adrian](https://github.com/ahawlitschek)                     |
+| [![](https://avatars2.githubusercontent.com/u/244358?s=40&v=4)](https://github.com/ericmartineau)     | [Eric Martineau](https://github.com/ericmartineau)            |
+| [![](https://avatars2.githubusercontent.com/u/10937624?s=40&v=4)](https://github.com/GillesMontyne)   | [Gilles Montyne](https://github.com/GillesMontyne)            |
+| [![](https://avatars2.githubusercontent.com/u/1435744?s=40&v=4)](https://github.com/sck-v)            | [Ivan Kryak](https://github.com/sck-v)                        |
+| [![](https://ui-avatars.com/api/?name=Morris+Haid&size=40)](https://github.com/mhaid)                 | [Morris Haid](https://github.com/mhaid)                       |
+| [![](https://ui-avatars.com/api/?name=Joscha+Eckert&size=40)](https://github.com/josxhad)             | [Joscha Eckert](https://github.com/josxha)                    |
+| [![](https://avatars1.githubusercontent.com/u/1281777?s=40&v=4)](https://github.com/furkantektas)     | [Furkan Tektas](https://github.com/furkantektas)              |
+| [![](https://avatars3.githubusercontent.com/u/2480235?s=40&v=4)](https://github.com/dabenzel)         | [benzel](https://github.com/dabenzel)                         |
+| [![](https://avatars1.githubusercontent.com/u/1858194?s=40&v=4)](https://github.com/cmengler)         | [Christian Mengler](https://github.com/cmengler)              |
+| [![](https://avatars1.githubusercontent.com/u/814785?s=40&v=4)](https://github.com/cbenhagen)         | [Ben Hagen](https://github.com/cbenhagen)                     |
+| [![](https://avatars2.githubusercontent.com/u/340836?s=40&v=4)](https://github.com/anticafe)          | [anticafe](https://github.com/anticafe)                       |
+| [![](https://avatars1.githubusercontent.com/u/14137351?s=40&v=4)](https://github.com/abahnj)          | [Nnaemeka Abah](https://github.com/abahnj)                    |
+| [![](https://avatars1.githubusercontent.com/u/11311182?s=40&v=4)](https://github.com/OnyekachiSamuel) | [Ezeoke Onyekachi Samuel](https://github.com/OnyekachiSamuel) |
+| [![](https://avatars0.githubusercontent.com/u/7694636?s=40&v=4)](https://github.com/KoningJasper)     | [Jasper Koning](https://github.com/KoningJasper)              |
+| [![](https://ui-avatars.com/api/?name=AlexIver&size=40)](https://github.com/AlexIver)                 | [AlexIver](https://github.com/AlexIver)                       |
+
+
+
+
 # Acknowledgements
 
 Inspired by the example given by Swav Kulinski (https://github.com/swavkulinski/flutter-platform-specific-widgets)
+
+
