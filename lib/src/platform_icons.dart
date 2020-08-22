@@ -181,7 +181,7 @@ class PlatformIcons {
   /// Icons: Icons.dehaze : CupertinoIcons.(custom)
   IconData get dehaze => isMaterial(context)
       ? Icons.dehaze
-      : IconData(0xf394,
+      : const IconData(0xf394,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.delete : CupertinoIcons.delete
@@ -202,7 +202,7 @@ class PlatformIcons {
   /// Icons: Icons.done : CupertinoIcons.(custom)
   IconData get done => isMaterial(context)
       ? Icons.done
-      : IconData(0xf383,
+      : const IconData(0xf383,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   // IconData get doubleMusicNote =>
@@ -219,7 +219,7 @@ class PlatformIcons {
   /// Icons: Icons.error : CupertinoIcons.(custom)
   IconData get error => isMaterial(context)
       ? Icons.error
-      : IconData(0xf35b,
+      : const IconData(0xf35b,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
@@ -298,13 +298,13 @@ class PlatformIcons {
   /// Icons: Icons.help : CupertinoIcons.(custom)
   IconData get help => isMaterial(context)
       ? Icons.help
-      : IconData(0xf446,
+      : const IconData(0xf446,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.helOutline : CupertinoIcons.(custom)
   IconData get helpOutline => isMaterial(context)
       ? Icons.help_outline
-      : IconData(0xf445,
+      : const IconData(0xf445,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.home : CupertinoIcons.home
@@ -536,7 +536,7 @@ class PlatformIcons {
   /// Icons: Icons.star : CupertinoIcons.(custom)
   IconData get star => isMaterial(context)
       ? Icons.star
-      : IconData(0xf2fc,
+      : const IconData(0xf2fc,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
@@ -611,6 +611,6 @@ class PlatformIcons {
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
   IconData get work => isMaterial(context)
       ? Icons.work
-      : IconData(0xf3ee,
+      : const IconData(0xf3ee,
           fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
 }
