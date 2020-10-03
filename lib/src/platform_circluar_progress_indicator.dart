@@ -48,27 +48,19 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
     CupertinoActivityIndicator, CircularProgressIndicator> {
   final Key widgetKey;
 
-  final PlatformBuilder<MaterialProgressIndicatorData> android;
-  final PlatformBuilder<CupertinoProgressIndicatorData> ios;
-
   final PlatformBuilder2<MaterialProgressIndicatorData> material;
   final PlatformBuilder2<CupertinoProgressIndicatorData> cupertino;
 
   PlatformCircularProgressIndicator({
     Key key,
     this.widgetKey,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);
 
   @override
   CircularProgressIndicator createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return CircularProgressIndicator(
       key: data?.key ?? widgetKey,
@@ -83,13 +75,13 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
 
   @override
   CupertinoActivityIndicator createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoActivityIndicator(
       key: data?.key ?? widgetKey,
       animating: data?.animating ?? true,
       radius: data?.radius ?? _kDefaultIndicatorRadius,
+      //iOSVersionStyle: , deprecated
     );
   }
 }

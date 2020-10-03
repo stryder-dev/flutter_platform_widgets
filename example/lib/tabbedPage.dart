@@ -33,14 +33,14 @@ class TabbedPageState extends State<TabbedPage> {
         ),
         items: [
           BottomNavigationBarItem(
-            title: Text('Flag'),
+            label: 'Flag',
             icon: PlatformWidget(
               cupertino: (_, __) => Icon(CupertinoIcons.flag),
               material: (_, __) => Icon(Icons.flag),
             ),
           ),
           BottomNavigationBarItem(
-            title: Text('Book'),
+            label: 'Book',
             icon: PlatformWidget(
               cupertino: (_, __) => Icon(CupertinoIcons.book),
               material: (_, __) => Icon(Icons.book),

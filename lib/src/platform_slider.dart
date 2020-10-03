@@ -111,9 +111,6 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final double min;
   final double max;
 
-  final PlatformBuilder<MaterialSliderData> android;
-  final PlatformBuilder<CupertinoSliderData> ios;
-
   final PlatformBuilder2<MaterialSliderData> material;
   final PlatformBuilder2<CupertinoSliderData> cupertino;
 
@@ -128,10 +125,6 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.divisions,
     this.min = 0.0,
     this.max = 1.0,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.material,
     this.cupertino,
   })  : assert(value != null),
@@ -143,8 +136,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
 
   @override
   Slider createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return Slider(
       key: data?.widgetKey ?? widgetKey,
@@ -167,8 +159,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
 
   @override
   CupertinoSlider createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoSlider(
       key: data?.widgetKey ?? widgetKey,

@@ -96,9 +96,6 @@ class PlatformAlertDialog
   final Widget content;
   final Widget title;
 
-  final PlatformBuilder<MaterialAlertDialogData> android;
-  final PlatformBuilder<CupertinoAlertDialogData> ios;
-
   final PlatformBuilder2<MaterialAlertDialogData> material;
   final PlatformBuilder2<CupertinoAlertDialogData> cupertino;
 
@@ -108,18 +105,13 @@ class PlatformAlertDialog
     this.actions,
     this.content,
     this.title,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
     this.material,
     this.cupertino,
   }) : super(key: key);
 
   @override
   AlertDialog createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return AlertDialog(
       key: data?.widgetKey ?? widgetKey,
@@ -147,8 +139,7 @@ class PlatformAlertDialog
 
   @override
   CupertinoAlertDialog createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,

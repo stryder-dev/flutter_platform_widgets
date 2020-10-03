@@ -1,3 +1,11 @@
+## [0.70.0] - October 03, 2020
+
+#### (Flutter version support: v1.22.0)
+
+- Used label instead of text for BottomNavigationBarItem in examples
+- Removed deprecated android and ios parameters. Use material or cupertino instead
+- Added widget parameters introduced in flutter version 1.22.0
+
 ## [0.60.2] - August 22, 2020
 
 #### (Flutter version support: v1.20.0 - v1.20.2)
@@ -10,7 +18,6 @@
 #### (Flutter version support: v1.20)
 
 - Upgrade to flutter version v1.20
-
 
 ## [0.51.0] - June 25, 2020
 
@@ -35,7 +42,6 @@
 - The use of `android: (_){}` and `ios: (_){}` is now deprecated and will be removed in a future release.
 - `showPlatformModalSheet` and `showPlatformDialog` has deprecated arguments
 
-
 ## [0.41.0] - May 18, 2020
 
 #### (Flutter version support: v1.17.0-v1.17.1)
@@ -50,7 +56,7 @@
 - Update widget arguments to match latest flutter widgets.
 - Fixed issue with CupertinoPageScaffoldData (thanks josxha)
 - Removed deprecated fields (thanks fredgrott)
-- Added setIndex to PlatformTabScaffold (thanks	GillesMontyne)
+- Added setIndex to PlatformTabScaffold (thanks GillesMontyne)
 - Added more PlatformIcons (thanks mhaid)
 - Added CupertinoFilledButton (thanks eyecreate)
 

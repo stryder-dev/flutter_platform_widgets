@@ -14,11 +14,11 @@ class _SliverTabbedPageState extends State<SliverTabbedPage> {
   static final titles = ['Flag', 'Book'];
   final items = (BuildContext context) => [
         BottomNavigationBarItem(
-          title: Text(titles[0]),
+          label: titles[0],
           icon: Icon(context.platformIcons.flag),
         ),
         BottomNavigationBarItem(
-          title: Text(titles[1]),
+          label: titles[1],
           icon: Icon(context.platformIcons.book),
         ),
       ];

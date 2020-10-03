@@ -49,10 +49,6 @@ class MaterialTabScaffoldData extends _BaseData {
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
     this.primary,
-    @Deprecated(
-        'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
-        'This feature was deprecated after v1.1.9.')
-        this.resizeToAvoidBottomPadding,
     this.bottomSheet,
     this.drawerDragStartBehavior,
     this.extendBody,
@@ -76,7 +72,6 @@ class MaterialTabScaffoldData extends _BaseData {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final List<Widget> persistentFooterButtons;
   final bool primary;
-  final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
   final bool extendBody;
@@ -149,11 +144,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final int currentIndex;
   final void Function(int index) itemChanged;
 
-  final PlatformBuilder<MaterialTabScaffoldData> android;
-  final PlatformBuilder<MaterialNavBarData> androidTabs;
-  final PlatformBuilder<CupertinoTabScaffoldData> ios;
-  final PlatformBuilder<CupertinoTabBarData> iosTabs;
-
   final PlatformBuilder2<MaterialTabScaffoldData> material;
   final PlatformBuilder2<MaterialNavBarData> materialTabs;
   final PlatformBuilder2<CupertinoTabScaffoldData> cupertino;
@@ -179,14 +169,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.tabController,
     this.currentIndex,
     this.itemChanged,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use materialTabs argument. materialTabs: (context, platform) {}')
-        this.androidTabs,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
-    @Deprecated('Use cupertinoTabs argument. cupertinoTabs: (context, platform) {}')
-        this.iosTabs,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
     this.material,
@@ -197,8 +179,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
   @override
   Widget createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     final controller = data?.controller ?? tabController?._material(context);
 
@@ -218,7 +199,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       items: items,
       backgroundColor: data?.tabsBackgroundColor ?? tabsBackgroundColor,
       currentIndex: controller?.index ?? currentIndex,
-      android: androidTabs,
       material: materialTabs,
       itemChanged: (int index) {
         controller?.index = index;
@@ -265,15 +245,13 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
   @override
   Widget createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     final navBar = PlatformNavBar(
       items: items,
       backgroundColor: tabsBackgroundColor,
       currentIndex: currentIndex,
       itemChanged: itemChanged,
-      ios: iosTabs,
       cupertino: cupertinoTabs,
     );
     final tabBar = navBar.createCupertinoWidget(context);
