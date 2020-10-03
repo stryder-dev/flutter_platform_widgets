@@ -9,7 +9,7 @@ import 'platform_widget.dart';
 /// ```dart
 /// PlatformWidgetBuilder(;
 ///   cupertino: (context, child, target) => GestureDetector(child: child, onTap: _handleTap),
-///   material: (context, child, target) => IniWell(child: child, onTap: _handleTap),
+///   material: (context, child, target) => InkWell(child: child, onTap: _handleTap),
 ///   child: Container(child: Text('Common text')),
 /// );
 ///
