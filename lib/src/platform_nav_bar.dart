@@ -121,11 +121,6 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final ValueChanged<int> itemChanged;
   final int currentIndex;
 
-  @Deprecated('Use material argument. material: (context, platform) {}')
-  final PlatformBuilder<MaterialNavBarData> android;
-  @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-  final PlatformBuilder<CupertinoTabBarData> ios;
-
   final PlatformBuilder2<MaterialNavBarData> material;
   final PlatformBuilder2<CupertinoTabBarData> cupertino;
 
@@ -136,16 +131,13 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     this.items,
     this.itemChanged,
     this.currentIndex,
-    this.android,
-    this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);
 
   @override
   BottomAppBar createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     var bar = BottomNavigationBar(
       items: data?.items ?? items,
@@ -183,8 +175,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
 
   @override
   CupertinoTabBar createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoTabBar(
       items: data?.items ?? items,

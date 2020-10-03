@@ -416,8 +416,8 @@ class LandingPageState extends State<LandingPage> {
         content: Text('Some content'),
         actions: <Widget>[
           PlatformDialogAction(
-            android: (_) => MaterialDialogActionData(),
-            ios: (_) => CupertinoDialogActionData(),
+            material: (_, __) => MaterialDialogActionData(),
+            cupertino: (_, __) => CupertinoDialogActionData(),
             child: PlatformText('Cancel'),
             onPressed: () => Navigator.pop(context),
           ),

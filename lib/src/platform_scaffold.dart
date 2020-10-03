@@ -48,10 +48,6 @@ class MaterialScaffoldData extends _BaseData {
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
     this.primary,
-    @Deprecated(
-        'Use resizeToAvoidBottomInset to specify if the body should resize when the keyboard appears. '
-        'This feature was deprecated after v1.1.9.')
-        this.resizeToAvoidBottomPadding,
     this.bottomSheet,
     this.drawerDragStartBehavior,
     this.extendBody,
@@ -73,7 +69,6 @@ class MaterialScaffoldData extends _BaseData {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final List<Widget> persistentFooterButtons;
   final bool primary;
-  final bool resizeToAvoidBottomPadding;
   final Widget bottomSheet;
   final DragStartBehavior drawerDragStartBehavior;
   final bool extendBody;
@@ -119,9 +114,6 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformNavBar bottomNavBar;
   final IndexedWidgetBuilder cupertinoTabChildBuilder;
 
-  final PlatformBuilder<MaterialScaffoldData> android;
-  final PlatformBuilder<CupertinoPageScaffoldData> ios;
-
   final PlatformBuilder2<MaterialScaffoldData> material;
   final PlatformBuilder2<CupertinoPageScaffoldData> cupertino;
 
@@ -135,10 +127,6 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.backgroundColor,
     this.appBar,
     this.bottomNavBar,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
     this.material,
@@ -148,8 +136,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
   @override
   Scaffold createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return Scaffold(
       key: data?.widgetKey ?? widgetKey,
@@ -182,8 +169,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
   @override
   Widget createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     var navigationBar =
         appBar?.createCupertinoWidget(context) ?? data?.navigationBar;

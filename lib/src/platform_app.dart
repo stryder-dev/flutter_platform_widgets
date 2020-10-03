@@ -219,9 +219,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<Type, Action<Intent>> actions;
   final InitialRouteListFactory onGenerateInitialRoutes;
 
-  final PlatformBuilder<MaterialAppData> android;
-  final PlatformBuilder<CupertinoAppData> ios;
-
   final PlatformBuilder2<MaterialAppData> material;
   final PlatformBuilder2<CupertinoAppData> cupertino;
 
@@ -252,18 +249,13 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.shortcuts,
     this.actions,
     this.onGenerateInitialRoutes,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);
 
   @override
   createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return MaterialApp(
       key: data?.widgetKey ?? widgetKey,
@@ -317,8 +309,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   @override
   createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoApp(
       key: data?.widgetKey ?? widgetKey,

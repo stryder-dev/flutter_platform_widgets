@@ -267,9 +267,6 @@ class PlatformTextField
     extends PlatformWidgetBase<CupertinoTextField, TextField> {
   final Key widgetKey;
 
-  final PlatformBuilder<MaterialTextFieldData> android;
-  final PlatformBuilder<CupertinoTextFieldData> ios;
-
   final PlatformBuilder2<MaterialTextFieldData> material;
   final PlatformBuilder2<CupertinoTextFieldData> cupertino;
 
@@ -365,10 +362,6 @@ class PlatformTextField
     this.selectionWidthStyle,
     this.obscuringCharacter,
     this.autofillHints,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -377,8 +370,7 @@ class PlatformTextField
 
   @override
   TextField createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return TextField(
       key: data?.widgetKey ?? widgetKey,
@@ -444,8 +436,7 @@ class PlatformTextField
 
   @override
   CupertinoTextField createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     return CupertinoTextField(
       key: data?.widgetKey ?? widgetKey,

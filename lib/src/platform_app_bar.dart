@@ -133,10 +133,6 @@ class PlatformAppBar
   final List<Widget> trailingActions;
   final bool automaticallyImplyLeading;
 
-  final PlatformBuilder<MaterialAppBarData> android;
-
-  final PlatformBuilder<CupertinoNavigationBarData> ios;
-
   final PlatformBuilder2<MaterialAppBarData> material;
   final PlatformBuilder2<CupertinoNavigationBarData> cupertino;
 
@@ -148,18 +144,13 @@ class PlatformAppBar
     this.leading,
     this.trailingActions,
     this.automaticallyImplyLeading,
-    @Deprecated('Use material argument. material: (context, platform) {}')
-        this.android,
-    @Deprecated('Use cupertino argument. cupertino: (context, platform) {}')
-        this.ios,
     this.material,
     this.cupertino,
   }) : super(key: key);
 
   @override
   PreferredSizeWidget createMaterialWidget(BuildContext context) {
-    final data =
-        android?.call(context) ?? material?.call(context, platform(context));
+    final data = material?.call(context, platform(context));
 
     return AppBar(
       key: data?.widgetKey ?? widgetKey,
@@ -190,8 +181,7 @@ class PlatformAppBar
 
   @override
   CupertinoNavigationBar createCupertinoWidget(BuildContext context) {
-    final data =
-        ios?.call(context) ?? cupertino?.call(context, platform(context));
+    final data = cupertino?.call(context, platform(context));
 
     var trailing = trailingActions == null || trailingActions.isEmpty
         ? null
