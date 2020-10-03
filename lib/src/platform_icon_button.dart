@@ -106,10 +106,6 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final Key widgetKey;
 
   final Widget icon;
-  @Deprecated('Use cupertinoIcon argument instead')
-  final Widget iosIcon;
-  @Deprecated('Use materialIcon argument instead')
-  final Widget androidIcon;
   final Widget cupertinoIcon;
   final Widget materialIcon;
   final VoidCallback onPressed;
@@ -124,8 +120,6 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     Key key,
     this.widgetKey,
     this.icon,
-    this.iosIcon,
-    this.androidIcon,
     this.cupertinoIcon,
     this.materialIcon,
     this.onPressed,
