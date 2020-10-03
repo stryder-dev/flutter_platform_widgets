@@ -183,12 +183,12 @@ Future<T> showPlatformModalSheet<T>({
       backgroundColor: material?.backgroundColor,
       elevation: material?.elevation,
       shape: material?.shape,
-      isScrollControlled: material?.isScrollControlled,
-      useRootNavigator: material?.useRootNavigator,
+      isScrollControlled: material?.isScrollControlled ?? false,
+      useRootNavigator: material?.useRootNavigator ?? false,
       clipBehavior: material?.clipBehavior,
       barrierColor: material?.barrierColor,
-      enableDrag: material?.enableDrag,
-      isDismissible: material?.isDismissible,
+      enableDrag: material?.enableDrag ?? true,
+      isDismissible: material?.isDismissible ?? true,
       routeSettings: material?.routeSettings,
     );
   } else {
@@ -197,7 +197,7 @@ Future<T> showPlatformModalSheet<T>({
       builder: builder,
       filter: cupertino?.imageFilter,
       semanticsDismissible: cupertino?.semanticsDismissible,
-      useRootNavigator: cupertino?.useRootNavigator,
+      useRootNavigator: cupertino?.useRootNavigator ?? true,
     );
   }
 }
