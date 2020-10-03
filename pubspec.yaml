@@ -1,11 +1,11 @@
 name: flutter_platform_widgets
 description: Simplifying the use of both Material and Cupertino widgets with a single widget
-version: 0.60.2
+version: 0.70.0
 homepage: https://github.com/aqwert/flutter_platform_widgets
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
-  flutter: ^1.17.5
+  flutter: ^1.22.0
 
 dependencies:
   flutter:
