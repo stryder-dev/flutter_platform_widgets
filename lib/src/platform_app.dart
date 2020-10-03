@@ -39,6 +39,8 @@ abstract class _BaseData {
     this.shortcuts,
     this.actions,
     this.onGenerateInitialRoutes,
+    this.highContrastDarkTheme,
+    this.highContrastTheme,
   });
 
   final Key widgetKey;
@@ -66,6 +68,8 @@ abstract class _BaseData {
   final Map<LogicalKeySet, Intent> shortcuts;
   final Map<Type, Action<Intent>> actions;
   final InitialRouteListFactory onGenerateInitialRoutes;
+  final ThemeData highContrastDarkTheme;
+  final ThemeData highContrastTheme;
 }
 
 class MaterialAppData extends _BaseData {
@@ -304,6 +308,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       actions: data?.actions ?? actions,
       onGenerateInitialRoutes:
           data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
+      highContrastDarkTheme: data?.highContrastDarkTheme,
+      highContrastTheme: data?.highContrastTheme,
     );
   }
 

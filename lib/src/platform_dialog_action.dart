@@ -51,6 +51,8 @@ class MaterialDialogActionData extends _BaseData {
     this.visualDensity,
     this.onLongPress,
     this.mouseCursor,
+    this.height,
+    this.minWidth,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -77,6 +79,8 @@ class MaterialDialogActionData extends _BaseData {
   final VisualDensity visualDensity;
   final VoidCallback onLongPress;
   final MouseCursor mouseCursor;
+  final double height;
+  final double minWidth;
 }
 
 class CupertinoDialogActionData extends _BaseData {
@@ -143,6 +147,8 @@ class PlatformDialogAction
       visualDensity: data?.visualDensity,
       onLongPress: data?.onLongPress,
       mouseCursor: data?.mouseCursor,
+      height: data?.height,
+      minWidth: data?.minWidth,
     );
   }
 

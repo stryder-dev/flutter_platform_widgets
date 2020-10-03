@@ -70,6 +70,8 @@ class MaterialFlatButtonData extends _BaseData {
     this.onLongPress,
     this.visualDensity,
     this.mouseCursor,
+    this.height,
+    this.minWidth,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -103,6 +105,8 @@ class MaterialFlatButtonData extends _BaseData {
   final VoidCallback onLongPress;
   final VisualDensity visualDensity;
   final MouseCursor mouseCursor;
+  final double height;
+  final double minWidth;
 }
 
 class MaterialRaisedButtonData extends _BaseData {
@@ -275,6 +279,8 @@ class PlatformButton
         onLongPress: dataFlat?.onLongPress,
         visualDensity: dataFlat?.visualDensity,
         mouseCursor: dataFlat?.mouseCursor,
+        height: dataFlat?.height,
+        minWidth: dataFlat?.minWidth,
       );
     }
 

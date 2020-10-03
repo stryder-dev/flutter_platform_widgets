@@ -102,6 +102,9 @@ class MaterialTextFieldData {
     this.obscuringCharacter,
     this.autofillHints,
     this.mouseCursor,
+    this.onAppPrivateCommand,
+    this.cursorHeight,
+    this.restorationId,
   });
 
   final Key widgetKey;
@@ -151,6 +154,9 @@ class MaterialTextFieldData {
   final String obscuringCharacter;
   final Iterable<String> autofillHints;
   final MouseCursor mouseCursor;
+  final AppPrivateCommandCallback onAppPrivateCommand;
+  final double cursorHeight;
+  final String restorationId;
 }
 
 class CupertinoTextFieldData {
@@ -207,6 +213,8 @@ class CupertinoTextFieldData {
     this.selectionWidthStyle,
     this.obscuringCharacter,
     this.autofillHints,
+    this.cursorHeight,
+    this.restorationId,
   });
 
   final Key widgetKey;
@@ -261,6 +269,8 @@ class CupertinoTextFieldData {
   final ui.BoxWidthStyle selectionWidthStyle;
   final String obscuringCharacter;
   final Iterable<String> autofillHints;
+  final double cursorHeight;
+  final String restorationId;
 }
 
 class PlatformTextField
@@ -318,6 +328,9 @@ class PlatformTextField
   final String obscuringCharacter;
   final Iterable<String> autofillHints;
 
+  final double cursorHeight;
+  final String restorationId;
+
   PlatformTextField({
     Key key,
     this.widgetKey,
@@ -362,6 +375,8 @@ class PlatformTextField
     this.selectionWidthStyle,
     this.obscuringCharacter,
     this.autofillHints,
+    this.cursorHeight,
+    this.restorationId,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -431,6 +446,9 @@ class PlatformTextField
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
       autofillHints: data?.autofillHints ?? autofillHints,
       mouseCursor: data?.mouseCursor ?? MouseCursor.defer,
+      onAppPrivateCommand: data?.onAppPrivateCommand,
+      cursorHeight: data?.cursorHeight ?? cursorHeight,
+      restorationId: data?.restorationId ?? restorationId,
     );
   }
 
@@ -508,6 +526,8 @@ class PlatformTextField
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
       autofillHints: data?.autofillHints ?? autofillHints,
+      cursorHeight: data?.cursorHeight ?? cursorHeight,
+      restorationId: data?.restorationId ?? restorationId,
     );
   }
 }

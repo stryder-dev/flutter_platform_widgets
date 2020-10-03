@@ -61,6 +61,7 @@ class MaterialAppBarData extends _BaseData {
     this.excludeHeaderSemantics,
     this.shadowColor,
     this.toolbarHeight,
+    this.leadingWidth,
   }) : super(
           widgetKey: widgetKey,
           title: title,
@@ -87,6 +88,7 @@ class MaterialAppBarData extends _BaseData {
   final bool excludeHeaderSemantics;
   final Color shadowColor;
   final double toolbarHeight;
+  final double leadingWidth;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -176,6 +178,7 @@ class PlatformAppBar
       excludeHeaderSemantics: data?.excludeHeaderSemantics ?? false,
       shadowColor: data?.shadowColor,
       toolbarHeight: data?.toolbarHeight,
+      leadingWidth: data?.leadingWidth,
     );
   }
 
@@ -227,6 +230,7 @@ class PlatformAppBar
       trailing: data?.trailing ?? trailing,
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
+      //heroTag: , used above
     );
   }
 }

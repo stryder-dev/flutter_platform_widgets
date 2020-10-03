@@ -137,6 +137,7 @@ class MaterialModalSheetData {
   final Color barrierColor;
   final bool enableDrag;
   final bool isDismissible;
+  final RouteSettings routeSettings;
 
   MaterialModalSheetData({
     this.backgroundColor,
@@ -148,6 +149,7 @@ class MaterialModalSheetData {
     this.barrierColor,
     this.enableDrag = false,
     this.isDismissible = false,
+    this.routeSettings,
   })  : assert(isScrollControlled != null),
         assert(useRootNavigator != null),
         assert(enableDrag != null),
@@ -187,6 +189,7 @@ Future<T> showPlatformModalSheet<T>({
       barrierColor: material?.barrierColor,
       enableDrag: material?.enableDrag,
       isDismissible: material?.isDismissible,
+      routeSettings: material?.routeSettings,
     );
   } else {
     return showCupertinoModalPopup<T>(
