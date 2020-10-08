@@ -1,3 +1,9 @@
+## [0.70.2] - October 08, 2020
+
+#### (Flutter version support: v1.22.0)
+
+- fix export of MaterialModalSheetData and CupertinoModalSheetData (thanks in74mz)
+
 ## [0.70.1] - October 03, 2020
 
 #### (Flutter version support: v1.22.0)

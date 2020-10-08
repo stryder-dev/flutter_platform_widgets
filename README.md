@@ -521,7 +521,7 @@ or
 PlatformProvider.of(context).changeToCupertinoPlatform();
 ```
 
-or 
+or
 
 ```
 PlatformProvider.of(context).changeToPlatform(Platform.fuchsia);
@@ -560,7 +560,7 @@ Render a Material or Cupertino looking icon
   Icon(PlatformIcons(context).book)
 ```
 
-View the [source](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/lib/src/platform_icons.dart) or [screenshots](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/ICONS.md) for the list of icons. 
+View the [source](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/lib/src/platform_icons.dart) or [screenshots](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/ICONS.md) for the list of icons.
 
 ## PlatformWidgetBuilder
 
@@ -618,12 +618,8 @@ Special thanks for everyone that have contributed to this project...
 | [![](https://avatars1.githubusercontent.com/u/11311182?s=40&v=4)](https://github.com/OnyekachiSamuel) | [Ezeoke Onyekachi Samuel](https://github.com/OnyekachiSamuel) |
 | [![](https://avatars0.githubusercontent.com/u/7694636?s=40&v=4)](https://github.com/KoningJasper)     | [Jasper Koning](https://github.com/KoningJasper)              |
 | [![](https://ui-avatars.com/api/?name=AlexIver&size=40)](https://github.com/AlexIver)                 | [AlexIver](https://github.com/AlexIver)                       |
-
-
-
+| [![](https://ui-avatars.com/api/?name=in74mz&size=40)](https://github.com/in74mz)                     | [AlexIver](https://github.com/**in74mz**)                     |
 
 # Acknowledgements
 
 Inspired by the example given by Swav Kulinski (https://github.com/swavkulinski/flutter-platform-specific-widgets)
-
-
