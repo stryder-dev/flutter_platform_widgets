@@ -212,6 +212,15 @@ return PlatformApp(
 );
 ```
 
+or
+
+```dart
+return PlatformApp.router(
+  routeInformationParser: ...
+  routerDelegate: ...
+)
+```
+
 #### Enhance
 
 Extend with `WidgetBuilder` for material or cupertino.
@@ -221,6 +230,15 @@ return PlatformApp(
   home:  ...
   material: (_, __)  => MaterialAppData(...)
   cupertino: (_, __) => CupertinoAppData(...)
+);
+```
+
+or 
+
+```dart
+return PlatformApp.router(
+  material: (_, __)  => MaterialAppRouterData(...)
+  cupertino: (_, __) => CupertinoAppRouterData(...)
 );
 ```
 

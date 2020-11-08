@@ -1,3 +1,9 @@
+## [0.71.0] - November 08, 2020
+
+#### (Flutter version support: v1.22.0 - v1.22.3)
+
+- Added `PlatformApp.router` to support Router 2.0
+
 ## [0.70.2] - October 08, 2020
 
 #### (Flutter version support: v1.22.0)
