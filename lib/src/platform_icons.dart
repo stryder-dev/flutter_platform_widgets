@@ -534,10 +534,7 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons.share : CupertinoIcons.shuffle_thick;
 
   /// Icons: Icons.star : CupertinoIcons.(custom)
-  IconData get star => isMaterial(context)
-      ? Icons.star
-      : const IconData(0xf2fc,
-          fontFamily: 'CupertinoIcons', fontPackage: 'cupertino_icons');
+  IconData get star => isMaterial(context) ? Icons.star : CupertinoIcons.star;
 
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
   IconData get switchCamera =>
@@ -564,6 +561,25 @@ class PlatformIcons {
 
   // IconData get tagsSolid =>
   //     isMaterial(context) ? Icons. : CupertinoIcons.tags_solid;
+
+  /// Icons: Icons.thumb_down : CupertinoIcons.hand_thumbsdown_fill
+  IconData get thumbDown => isMaterial(context)
+      ? Icons.thumb_down
+      : CupertinoIcons.hand_thumbsdown_fill;
+
+  /// Icons: Icons.thumb_down_outlined : CupertinoIcons.hand_thumbsdown
+  IconData get thumbDownOutlined => isMaterial(context)
+      ? Icons.thumb_down_outlined
+      : CupertinoIcons.hand_thumbsdown;
+
+  /// Icons: Icons.thumb_up : CupertinoIcons.hand_thumbsup_fill
+  IconData get thumbUp =>
+      isMaterial(context) ? Icons.thumb_up : CupertinoIcons.hand_thumbsup_fill;
+
+  /// Icons: Icons.thumb_up_outlined : CupertinoIcons.hand_thumbsup
+  IconData get thumbUpOutlined => isMaterial(context)
+      ? Icons.thumb_up_outlined
+      : CupertinoIcons.hand_thumbsup;
 
   /// Icons: Icons.schedule : CupertinoIcons.time
   IconData get time =>
