@@ -10,8 +10,8 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
-  final PlatformBuilder2<Widget> material;
-  final PlatformBuilder2<Widget> cupertino;
+  final PlatformBuilder<Widget> material;
+  final PlatformBuilder<Widget> cupertino;
 
   PlatformWidget({
     Key key,

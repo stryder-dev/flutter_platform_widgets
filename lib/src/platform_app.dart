@@ -389,10 +389,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<Type, Action<Intent>> actions;
   final InitialRouteListFactory onGenerateInitialRoutes;
 
-  final PlatformBuilder2<MaterialAppData> material;
-  final PlatformBuilder2<CupertinoAppData> cupertino;
-  final PlatformBuilder2<MaterialAppRouterData> materialRouter;
-  final PlatformBuilder2<CupertinoAppRouterData> cupertinoRouter;
+  final PlatformBuilder<MaterialAppData> material;
+  final PlatformBuilder<CupertinoAppData> cupertino;
+  final PlatformBuilder<MaterialAppRouterData> materialRouter;
+  final PlatformBuilder<CupertinoAppRouterData> cupertinoRouter;
 
   /// {@macro flutter.widgets.widgetsApp.routeInformationProvider}
   final RouteInformationProvider routeInformationProvider;
@@ -466,8 +466,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.debugShowCheckedModeBanner,
     this.shortcuts,
     this.actions,
-    PlatformBuilder2<MaterialAppRouterData> material,
-    PlatformBuilder2<CupertinoAppRouterData> cupertino,
+    PlatformBuilder<MaterialAppRouterData> material,
+    PlatformBuilder<CupertinoAppRouterData> cupertino,
   })  : navigatorObservers = null,
         navigatorKey = null,
         onGenerateRoute = null,

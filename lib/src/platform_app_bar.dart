@@ -135,8 +135,8 @@ class PlatformAppBar
   final List<Widget> trailingActions;
   final bool automaticallyImplyLeading;
 
-  final PlatformBuilder2<MaterialAppBarData> material;
-  final PlatformBuilder2<CupertinoNavigationBarData> cupertino;
+  final PlatformBuilder<MaterialAppBarData> material;
+  final PlatformBuilder<CupertinoNavigationBarData> cupertino;
 
   PlatformAppBar({
     Key key,

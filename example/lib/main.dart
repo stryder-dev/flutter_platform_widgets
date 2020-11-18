@@ -22,6 +22,7 @@ import 'iconPage.dart';
 import 'listViewHeaderPage.dart';
 import 'listViewPage.dart';
 import 'tabbed/basicTabbedPage.dart';
+import 'tabbed/dynamicTabbedPage.dart';
 import 'tabbed/originalTabbedPage.dart';
 import 'tabbed/sliverTabbedPage.dart';
 import 'tabbedPage.dart';
@@ -149,7 +150,7 @@ class LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      iosContentPadding: true,
+      //iosContentPadding: true,
       appBar: PlatformAppBar(
         title: Text('Flutter Platform Widgets'),
         trailingActions: <Widget>[
@@ -160,170 +161,177 @@ class LandingPageState extends State<LandingPage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                  'Primary concept of this package is to use the same widgets to create iOS (Cupertino) or Android (Material) looking apps rather than needing to discover what widgets to use.'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                  'This approach is best when both iOS and Android apps follow the same design in layout and navigation, but need to look as close to native styling as possible.'),
-            ),
-            Divider(),
-            PlatformButton(
-              child: PlatformText('Toggle Dark / Light mode'),
-              onPressed: _toggleBrightness,
-            ),
-            Divider(),
-            SectionHeader(title: '1. Change Platform'),
-            PlatformButton(
-              child: PlatformText('Switch Platform'),
-              onPressed: () => _switchPlatform(context),
-            ),
-            PlatformWidget(
-              material: (_, __) => Text('Currently showing Material'),
-              cupertino: (_, __) => Text('Currently showing Cupertino'),
-            ),
-            Text('Scaffold: PlatformScaffold'),
-            Text('AppBar: PlatformAppBar'),
-            Divider(),
-            SectionHeader(title: '2. Basic Widgets'),
-            PlatformText(
-              'PlatformText will uppercase for Material only',
-              textAlign: TextAlign.center,
-            ),
-            PlatformButton(
-              child: PlatformText('PlatformButton'),
-              onPressed: () {},
-            ),
-            PlatformButton(
-              child: PlatformText('Platform Flat/Filled Button'),
-              onPressed: () {},
-              materialFlat: (_, __) => MaterialFlatButtonData(),
-              cupertinoFilled: (_, __) => CupertinoFilledButtonData(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PlatformIconButton(
-                materialIcon: Icon(Icons.home),
-                cupertinoIcon: Icon(CupertinoIcons.home),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    'Primary concept of this package is to use the same widgets to create iOS (Cupertino) or Android (Material) looking apps rather than needing to discover what widgets to use.'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    'This approach is best when both iOS and Android apps follow the same design in layout and navigation, but need to look as close to native styling as possible.'),
+              ),
+              Divider(),
+              PlatformButton(
+                child: PlatformText('Toggle Dark / Light mode'),
+                onPressed: _toggleBrightness,
+              ),
+              Divider(),
+              SectionHeader(title: '1. Change Platform'),
+              PlatformButton(
+                child: PlatformText('Switch Platform'),
+                onPressed: () => _switchPlatform(context),
+              ),
+              PlatformWidget(
+                material: (_, __) => Text('Currently showing Material'),
+                cupertino: (_, __) => Text('Currently showing Cupertino'),
+              ),
+              Text('Scaffold: PlatformScaffold'),
+              Text('AppBar: PlatformAppBar'),
+              Divider(),
+              SectionHeader(title: '2. Basic Widgets'),
+              PlatformText(
+                'PlatformText will uppercase for Material only',
+                textAlign: TextAlign.center,
+              ),
+              PlatformButton(
+                child: PlatformText('PlatformButton'),
                 onPressed: () {},
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PlatformSwitch(
-                value: switchValue,
-                onChanged: (bool value) => setState(() => switchValue = value),
+              PlatformButton(
+                child: PlatformText('Platform Flat/Filled Button'),
+                onPressed: () {},
+                materialFlat: (_, __) => MaterialFlatButtonData(),
+                cupertinoFilled: (_, __) => CupertinoFilledButtonData(),
               ),
-            ),
-            PlatformSlider(
-              value: sliderValue,
-              onChanged: (double newValue) {
-                setState(() {
-                  sliderValue = newValue;
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PlatformTextField(
-                controller: textControlller,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              height: 100,
-              child: PlatformTextField(
-                expands: true,
-                maxLines: null,
-                controller: textMultiLineControlller,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PlatformCircularProgressIndicator(
-                cupertino: (_, __) => CupertinoProgressIndicatorData(),
-                material: (_, __) => MaterialProgressIndicatorData(),
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PlatformWidgetBuilder(
-                cupertino: (_, child, __) => GestureDetector(
-                  child: child,
-                  onTap: () => print('Cupertino PlatformWidgetBuilder'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformIconButton(
+                  materialIcon: Icon(Icons.home),
+                  cupertinoIcon: Icon(CupertinoIcons.home),
+                  onPressed: () {},
                 ),
-                material: (_, child, __) => GestureDetector(
-                  child: child,
-                  onTap: () => print('Material PlatformWidgetBuilder'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformSwitch(
+                  value: switchValue,
+                  onChanged: (bool value) =>
+                      setState(() => switchValue = value),
                 ),
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(20),
+              ),
+              PlatformSlider(
+                value: sliderValue,
+                onChanged: (double newValue) {
+                  setState(() {
+                    sliderValue = newValue;
+                  });
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformTextField(
+                  controller: textControlller,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                height: 100,
+                child: PlatformTextField(
+                  expands: true,
+                  maxLines: null,
+                  controller: textMultiLineControlller,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformCircularProgressIndicator(
+                  cupertino: (_, __) => CupertinoProgressIndicatorData(),
+                  material: (_, __) => MaterialProgressIndicatorData(),
+                ),
+              ),
+              Divider(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformWidgetBuilder(
+                  cupertino: (_, child, __) => GestureDetector(
+                    child: child,
+                    onTap: () => print('Cupertino PlatformWidgetBuilder'),
                   ),
-                  child: PlatformText('Platform Widget Builder'),
+                  material: (_, child, __) => GestureDetector(
+                    child: child,
+                    onTap: () => print('Material PlatformWidgetBuilder'),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: PlatformText('Platform Widget Builder'),
+                  ),
                 ),
               ),
-            ),
-            Divider(),
-            SectionHeader(title: '3. Dialogs'),
-            PlatformButton(
-              child: PlatformText('Show Dialog'),
-              onPressed: () => _showExampleDialog(),
-            ),
-            Divider(),
-            SectionHeader(title: '4. Popup/Sheet'),
-            PlatformButton(
-              child: PlatformText('Show Popup/Sheet'),
-              onPressed: () => _showPopupSheet(),
-            ),
-            Divider(),
-            SectionHeader(title: '5. Navigation'),
-            PlatformButton(
-              child: PlatformText('Open Tabbed Page'),
-              onPressed: () => _openPage((_) => TabbedPage()),
-            ),
-            PlatformButton(
-              child: PlatformText('Open Basic Tabbed Page'),
-              onPressed: () => _openPage((_) => BasicTabbedPage()),
-            ),
-            PlatformButton(
-              child: PlatformText('Open Sliver Tabbed Page'),
-              onPressed: () => _openPage((_) => SliverTabbedPage()),
-            ),
-            PlatformButton(
-              child: PlatformText('Open Original Tabbed Page'),
-              onPressed: () => _openPage((_) => OriginalTabbedPage()),
-            ),
-            Divider(),
-            SectionHeader(title: '6. Icons'),
-            PlatformButton(
-              child: PlatformText('Open Icons Page'),
-              onPressed: () => _openPage((_) => IconsPage()),
-            ),
-            Divider(),
-            SectionHeader(title: '7. Advanced'),
-            PlatformButton(
-              child: PlatformText('Page with ListView'),
-              onPressed: () => _openPage((_) => ListViewPage()),
-            ),
-            PlatformWidget(
-              cupertino: (_, __) => PlatformButton(
-                child: PlatformText('iOS Page with Colored Header'),
-                onPressed: () => _openPage((_) => ListViewHeaderPage()),
+              Divider(),
+              SectionHeader(title: '3. Dialogs'),
+              PlatformButton(
+                child: PlatformText('Show Dialog'),
+                onPressed: () => _showExampleDialog(),
               ),
-            ),
-          ],
+              Divider(),
+              SectionHeader(title: '4. Popup/Sheet'),
+              PlatformButton(
+                child: PlatformText('Show Popup/Sheet'),
+                onPressed: () => _showPopupSheet(),
+              ),
+              Divider(),
+              SectionHeader(title: '5. Navigation'),
+              PlatformButton(
+                child: PlatformText('Open Tabbed Page'),
+                onPressed: () => _openPage((_) => TabbedPage()),
+              ),
+              PlatformButton(
+                child: PlatformText('Open Basic Tabbed Page'),
+                onPressed: () => _openPage((_) => BasicTabbedPage()),
+              ),
+              PlatformButton(
+                child: PlatformText('Open Sliver Tabbed Page'),
+                onPressed: () => _openPage((_) => SliverTabbedPage()),
+              ),
+              PlatformButton(
+                child: PlatformText('Open Original Tabbed Page'),
+                onPressed: () => _openPage((_) => OriginalTabbedPage()),
+              ),
+              PlatformButton(
+                child: PlatformText('Open Dynamic Tabbed Page'),
+                onPressed: () => _openPage((_) => DynamicTabbedPage()),
+              ),
+              Divider(),
+              SectionHeader(title: '6. Icons'),
+              PlatformButton(
+                child: PlatformText('Open Icons Page'),
+                onPressed: () => _openPage((_) => IconsPage()),
+              ),
+              Divider(),
+              SectionHeader(title: '7. Advanced'),
+              PlatformButton(
+                child: PlatformText('Page with ListView'),
+                onPressed: () => _openPage((_) => ListViewPage()),
+              ),
+              PlatformWidget(
+                cupertino: (_, __) => PlatformButton(
+                  child: PlatformText('iOS Page with Colored Header'),
+                  onPressed: () => _openPage((_) => ListViewHeaderPage()),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

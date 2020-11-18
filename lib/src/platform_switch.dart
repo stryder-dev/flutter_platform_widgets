@@ -100,8 +100,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final ValueChanged<bool> onChanged;
   final DragStartBehavior dragStartBehavior;
 
-  final PlatformBuilder2<MaterialSwitchData> material;
-  final PlatformBuilder2<CupertinoSwitchData> cupertino;
+  final PlatformBuilder<MaterialSwitchData> material;
+  final PlatformBuilder<CupertinoSwitchData> cupertino;
 
   PlatformSwitch({
     Key key,

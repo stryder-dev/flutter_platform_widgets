@@ -9,9 +9,9 @@ import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 
-typedef T PlatformBuilder<T>(BuildContext context);
-
-typedef T PlatformBuilder2<T>(BuildContext context, PlatformTarget platform);
+typedef T PlatformBuilder<T>(BuildContext context, PlatformTarget platform);
+typedef T PlatformIndexBuilder<T>(
+    BuildContext context, PlatformTarget platform, int index);
 
 abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
     extends StatelessWidget {

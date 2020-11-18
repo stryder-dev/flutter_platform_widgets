@@ -277,8 +277,8 @@ class PlatformTextField
     extends PlatformWidgetBase<CupertinoTextField, TextField> {
   final Key widgetKey;
 
-  final PlatformBuilder2<MaterialTextFieldData> material;
-  final PlatformBuilder2<CupertinoTextFieldData> cupertino;
+  final PlatformBuilder<MaterialTextFieldData> material;
+  final PlatformBuilder<CupertinoTextFieldData> cupertino;
 
   final TextEditingController controller;
   final FocusNode focusNode;

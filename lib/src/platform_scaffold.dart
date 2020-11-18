@@ -114,8 +114,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformNavBar bottomNavBar;
   final IndexedWidgetBuilder cupertinoTabChildBuilder;
 
-  final PlatformBuilder2<MaterialScaffoldData> material;
-  final PlatformBuilder2<CupertinoPageScaffoldData> cupertino;
+  final PlatformBuilder<MaterialScaffoldData> material;
+  final PlatformBuilder<CupertinoPageScaffoldData> cupertino;
 
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
