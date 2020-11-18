@@ -231,10 +231,10 @@ class PlatformButton
   final EdgeInsetsGeometry padding;
   final Color disabledColor;
 
-  final PlatformBuilder2<MaterialRaisedButtonData> material;
-  final PlatformBuilder2<MaterialFlatButtonData> materialFlat;
-  final PlatformBuilder2<CupertinoButtonData> cupertino;
-  final PlatformBuilder2<CupertinoFilledButtonData> cupertinoFilled;
+  final PlatformBuilder<MaterialRaisedButtonData> material;
+  final PlatformBuilder<MaterialFlatButtonData> materialFlat;
+  final PlatformBuilder<CupertinoButtonData> cupertino;
+  final PlatformBuilder<CupertinoFilledButtonData> cupertinoFilled;
 
   PlatformButton({
     Key key,

@@ -111,8 +111,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final double min;
   final double max;
 
-  final PlatformBuilder2<MaterialSliderData> material;
-  final PlatformBuilder2<CupertinoSliderData> cupertino;
+  final PlatformBuilder<MaterialSliderData> material;
+  final PlatformBuilder<CupertinoSliderData> cupertino;
 
   PlatformSlider({
     Key key,

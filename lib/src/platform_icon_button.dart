@@ -113,8 +113,8 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final EdgeInsets padding;
   final Color disabledColor;
 
-  final PlatformBuilder2<MaterialIconButtonData> material;
-  final PlatformBuilder2<CupertinoIconButtonData> cupertino;
+  final PlatformBuilder<MaterialIconButtonData> material;
+  final PlatformBuilder<CupertinoIconButtonData> cupertino;
 
   PlatformIconButton({
     Key key,

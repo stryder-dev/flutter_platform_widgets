@@ -121,8 +121,8 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final ValueChanged<int> itemChanged;
   final int currentIndex;
 
-  final PlatformBuilder2<MaterialNavBarData> material;
-  final PlatformBuilder2<CupertinoTabBarData> cupertino;
+  final PlatformBuilder<MaterialNavBarData> material;
+  final PlatformBuilder<CupertinoTabBarData> cupertino;
 
   PlatformNavBar({
     Key key,

@@ -108,8 +108,8 @@ class PlatformDialogAction
   final Widget child;
   final VoidCallback onPressed;
 
-  final PlatformBuilder2<MaterialDialogActionData> material;
-  final PlatformBuilder2<CupertinoDialogActionData> cupertino;
+  final PlatformBuilder<MaterialDialogActionData> material;
+  final PlatformBuilder<CupertinoDialogActionData> cupertino;
 
   PlatformDialogAction({
     Key key,
