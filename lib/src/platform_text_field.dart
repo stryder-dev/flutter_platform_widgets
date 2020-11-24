@@ -53,6 +53,54 @@ const BoxDecoration _kDefaultRoundedBorderDecoration = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(5.0)),
 );
 
+InputDecoration _inputDecorationWithHint(String hint, InputDecoration inputDecoration) {
+  return InputDecoration(
+    alignLabelWithHint: inputDecoration?.alignLabelWithHint ?? null,
+    border: inputDecoration?.border ?? null,
+    contentPadding: inputDecoration?.contentPadding ?? null,
+    counter: inputDecoration?.counter ?? null,
+    counterStyle: inputDecoration?.counterStyle ?? null,
+    counterText: inputDecoration?.counterText ?? null,
+    disabledBorder: inputDecoration?.disabledBorder ?? null,
+    enabled: inputDecoration?.enabled ?? null,
+    enabledBorder: inputDecoration?.enabledBorder ?? null,
+    errorBorder: inputDecoration?.errorBorder ?? null,
+    errorMaxLines: inputDecoration?.errorMaxLines ?? null,
+    errorStyle: inputDecoration?.errorStyle ?? null,
+    errorText: inputDecoration?.errorText ?? null,
+    fillColor: inputDecoration?.fillColor ?? null,
+    filled: inputDecoration?.filled ?? null,
+    floatingLabelBehavior: inputDecoration?.floatingLabelBehavior ?? null,
+    focusColor: inputDecoration?.focusColor ?? null,
+    focusedBorder: inputDecoration?.focusedBorder ?? null,
+    focusedErrorBorder: inputDecoration?.focusedErrorBorder ?? null,
+    hasFloatingPlaceholder: inputDecoration?.hasFloatingPlaceholder ?? null,
+    helperMaxLines: inputDecoration?.helperMaxLines ?? null,
+    helperStyle: inputDecoration?.helperStyle ?? null,
+    helperText: inputDecoration?.helperText ?? null,
+    hintMaxLines: inputDecoration?.hintMaxLines ?? null,
+    hintStyle: inputDecoration?.hintStyle ?? null,
+    hintText: hint,
+    hoverColor: inputDecoration?.hoverColor ?? null,
+    icon: inputDecoration?.icon ?? null,
+    isCollapsed: inputDecoration?.isCollapsed ?? null,
+    isDense: inputDecoration?.isDense ?? null,
+    labelStyle: inputDecoration?.labelStyle ?? null,
+    labelText: inputDecoration?.labelText ?? null,
+    prefix: inputDecoration?.prefix ?? null,
+    prefixIcon: inputDecoration?.prefixIcon ?? null,
+    prefixIconConstraints: inputDecoration?.prefixIconConstraints ?? null,
+    prefixStyle: inputDecoration?.prefixStyle ?? null,
+    prefixText: inputDecoration?.prefixText ?? null,
+    semanticCounterText: inputDecoration?.semanticCounterText ?? null,
+    suffix: inputDecoration?.suffix ?? null,
+    suffixIcon: inputDecoration?.suffixIcon ?? null,
+    suffixIconConstraints: inputDecoration?.suffixIconConstraints ?? null,
+    suffixStyle: inputDecoration?.suffixStyle ?? null,
+    suffixText: inputDecoration?.suffixText ?? null,
+  );
+}
+
 class MaterialTextFieldData {
   MaterialTextFieldData({
     this.widgetKey,
@@ -330,6 +378,8 @@ class PlatformTextField
 
   final double cursorHeight;
   final String restorationId;
+  
+  final String hint;
 
   PlatformTextField({
     Key key,
@@ -377,6 +427,7 @@ class PlatformTextField
     this.autofillHints,
     this.cursorHeight,
     this.restorationId,
+    this.hint,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -386,6 +437,8 @@ class PlatformTextField
   @override
   TextField createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
+
+    final decoration = _inputDecorationWithHint(hint, data?.decoration ?? const InputDecoration());
 
     return TextField(
       key: data?.widgetKey ?? widgetKey,
@@ -415,7 +468,7 @@ class PlatformTextField
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
-      decoration: data?.decoration ?? const InputDecoration(),
+      decoration: decoration,
       textDirection: data?.textDirection,
       buildCounter: data?.buildCounter,
       dragStartBehavior: data?.dragStartBehavior ??
@@ -489,7 +542,7 @@ class PlatformTextField
       decoration: data?.decoration ?? _kDefaultRoundedBorderDecoration,
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
-      placeholder: data?.placeholder,
+      placeholder: data?.placeholder ?? hint,
       placeholderStyle: data?.placeholderStyle ??
           const TextStyle(
             fontWeight: FontWeight.w400,
