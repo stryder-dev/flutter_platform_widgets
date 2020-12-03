@@ -1,3 +1,10 @@
+## [0.72.0] - December 03, 2020
+
+#### (Flutter version support: v1.22.0 - v1.22.4)
+
+- Adds `materialBuilder` and `cupertinoBuilder` as alternatives to `material` and `cupertino` on `PlatformTabScaffold` so that the widgets can change properties on tab index change. see example/lib/tabbed/dynamicTabbedPage.dart.
+- Adds new polatform icons, thumb up and down and fix the star icon (thanks DFelten)
+
 ## [0.71.0] - November 08, 2020
 
 #### (Flutter version support: v1.22.0 - v1.22.3)

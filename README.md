@@ -293,6 +293,7 @@ More more detailed example look at:
 
 - [Basic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/basicTabbedPage.dart)
 - [Sliver Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/sliverTabbedPage.dart)
+- [Dynamic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/dynamicTabbedPage.dart)
 
 > Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it. This will not have the translucent effect for iOS when these are set to `true`. If that is desirable, then the scrolling and content alignment need to be managed yourself.
 
@@ -314,6 +315,8 @@ return PlatformTabScaffold(
 ```
 
 > Both the material and cupertino builders are optional. If not provided the `SizedBox.shrink()` placeholder widget will be returned.
+> `material` can be replaced with `materialBuilder` for dynamic rendering on index change
+> `cupertino` can be replaced with `cupertinoBuilder` for dynamic rendering on index change
 
 ## PlatformAppBar
 
@@ -617,7 +620,7 @@ Special thanks for everyone that have contributed to this project...
 | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | [![](https://avatars1.githubusercontent.com/u/4413519?s=40&v=4)](https://github.com/aqwert)           | [Lance Johnstone](https://github.com/aqwert)                  | [![](images/linkedIn_img.png)](https://www.linkedin.com/in/lancejohnstone/)                           |
 | [![](https://avatars2.githubusercontent.com/u/58397?s=40&v=4)](https://github.com/stefanrusek)        | [Stefan Rusek](https://github.com/stefanrusek)                |
-| [![](https://ui-avatars.com/api/?name=Mark+Lavercombe&size=40)](https://github.com/stefanrusek)       | [Mark Lavercombe](https://github.com/mlava)                   |
+| [![](https://ui-avatars.com/api/?name=Mark+Lavercombe&size=40)](https://github.com/mlava)             | [Mark Lavercombe](https://github.com/mlava)                   |
 | [![](https://avatars3.githubusercontent.com/u/15651?s=40&v=4)](https://github.com/fredgrott)          | [Fred Grott](https://github.com/fredgrott)                    | [![](images/linkedIn_img.png)](https://www.linkedin.com/in/fredgrottstartupfluttermobileappdesigner/) |
 | [![](https://avatars0.githubusercontent.com/u/26111180?s=40&v=4)](https://github.com/fbernutz)        | [Felizia Bernutz](https://github.com/fbernutz)                |
 | [![](https://avatars3.githubusercontent.com/u/227856?s=40&v=4)](https://github.com/eyecreate)         | [eyecreate](https://github.com/eyecreate)                     |
@@ -626,7 +629,7 @@ Special thanks for everyone that have contributed to this project...
 | [![](https://avatars2.githubusercontent.com/u/10937624?s=40&v=4)](https://github.com/GillesMontyne)   | [Gilles Montyne](https://github.com/GillesMontyne)            |
 | [![](https://avatars2.githubusercontent.com/u/1435744?s=40&v=4)](https://github.com/sck-v)            | [Ivan Kryak](https://github.com/sck-v)                        |
 | [![](https://ui-avatars.com/api/?name=Morris+Haid&size=40)](https://github.com/mhaid)                 | [Morris Haid](https://github.com/mhaid)                       |
-| [![](https://ui-avatars.com/api/?name=Joscha+Eckert&size=40)](https://github.com/josxhad)             | [Joscha Eckert](https://github.com/josxha)                    |
+| [![](https://ui-avatars.com/api/?name=Joscha+Eckert&size=40)](https://github.com/josxha)              | [Joscha Eckert](https://github.com/josxha)                    |
 | [![](https://avatars1.githubusercontent.com/u/1281777?s=40&v=4)](https://github.com/furkantektas)     | [Furkan Tektas](https://github.com/furkantektas)              |
 | [![](https://avatars3.githubusercontent.com/u/2480235?s=40&v=4)](https://github.com/dabenzel)         | [benzel](https://github.com/dabenzel)                         |
 | [![](https://avatars1.githubusercontent.com/u/1858194?s=40&v=4)](https://github.com/cmengler)         | [Christian Mengler](https://github.com/cmengler)              |
@@ -636,7 +639,8 @@ Special thanks for everyone that have contributed to this project...
 | [![](https://avatars1.githubusercontent.com/u/11311182?s=40&v=4)](https://github.com/OnyekachiSamuel) | [Ezeoke Onyekachi Samuel](https://github.com/OnyekachiSamuel) |
 | [![](https://avatars0.githubusercontent.com/u/7694636?s=40&v=4)](https://github.com/KoningJasper)     | [Jasper Koning](https://github.com/KoningJasper)              |
 | [![](https://ui-avatars.com/api/?name=AlexIver&size=40)](https://github.com/AlexIver)                 | [AlexIver](https://github.com/AlexIver)                       |
-| [![](https://ui-avatars.com/api/?name=in74mz&size=40)](https://github.com/in74mz)                     | [AlexIver](https://github.com/**in74mz**)                     |
+| [![](https://avatars1.githubusercontent.com/u/35923031?s=40&v=4)](https://github.com/in74mz)          | [in74mz](https://github.com/in74mz)                           |
+| [![](https://avatars0.githubusercontent.com/u/1169185?s=40&v=4)](https://github.com/DFelten)          | [Daniel Felten](https://github.com/DFelten)                    |
 
 # Acknowledgements
 
