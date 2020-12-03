@@ -96,8 +96,8 @@ class PlatformAlertDialog
   final Widget content;
   final Widget title;
 
-  final PlatformBuilder2<MaterialAlertDialogData> material;
-  final PlatformBuilder2<CupertinoAlertDialogData> cupertino;
+  final PlatformBuilder<MaterialAlertDialogData> material;
+  final PlatformBuilder<CupertinoAlertDialogData> cupertino;
 
   PlatformAlertDialog({
     Key key,
