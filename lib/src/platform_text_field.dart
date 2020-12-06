@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show InputDecoration, TextField, InputCounterWidgetBuilder;
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart'
     show
@@ -53,51 +54,53 @@ const BoxDecoration _kDefaultRoundedBorderDecoration = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(5.0)),
 );
 
-InputDecoration _inputDecorationWithHint(String hint, InputDecoration inputDecoration) {
+InputDecoration _inputDecorationWithHint(
+    String hintText, InputDecoration inputDecoration) {
   return InputDecoration(
-    alignLabelWithHint: inputDecoration?.alignLabelWithHint ?? null,
-    border: inputDecoration?.border ?? null,
-    contentPadding: inputDecoration?.contentPadding ?? null,
-    counter: inputDecoration?.counter ?? null,
-    counterStyle: inputDecoration?.counterStyle ?? null,
-    counterText: inputDecoration?.counterText ?? null,
-    disabledBorder: inputDecoration?.disabledBorder ?? null,
-    enabled: inputDecoration?.enabled ?? null,
-    enabledBorder: inputDecoration?.enabledBorder ?? null,
-    errorBorder: inputDecoration?.errorBorder ?? null,
-    errorMaxLines: inputDecoration?.errorMaxLines ?? null,
-    errorStyle: inputDecoration?.errorStyle ?? null,
-    errorText: inputDecoration?.errorText ?? null,
-    fillColor: inputDecoration?.fillColor ?? null,
-    filled: inputDecoration?.filled ?? null,
-    floatingLabelBehavior: inputDecoration?.floatingLabelBehavior ?? null,
-    focusColor: inputDecoration?.focusColor ?? null,
-    focusedBorder: inputDecoration?.focusedBorder ?? null,
-    focusedErrorBorder: inputDecoration?.focusedErrorBorder ?? null,
-    hasFloatingPlaceholder: inputDecoration?.hasFloatingPlaceholder ?? null,
-    helperMaxLines: inputDecoration?.helperMaxLines ?? null,
-    helperStyle: inputDecoration?.helperStyle ?? null,
-    helperText: inputDecoration?.helperText ?? null,
-    hintMaxLines: inputDecoration?.hintMaxLines ?? null,
-    hintStyle: inputDecoration?.hintStyle ?? null,
-    hintText: hint,
-    hoverColor: inputDecoration?.hoverColor ?? null,
-    icon: inputDecoration?.icon ?? null,
-    isCollapsed: inputDecoration?.isCollapsed ?? null,
-    isDense: inputDecoration?.isDense ?? null,
-    labelStyle: inputDecoration?.labelStyle ?? null,
-    labelText: inputDecoration?.labelText ?? null,
-    prefix: inputDecoration?.prefix ?? null,
-    prefixIcon: inputDecoration?.prefixIcon ?? null,
-    prefixIconConstraints: inputDecoration?.prefixIconConstraints ?? null,
-    prefixStyle: inputDecoration?.prefixStyle ?? null,
-    prefixText: inputDecoration?.prefixText ?? null,
-    semanticCounterText: inputDecoration?.semanticCounterText ?? null,
-    suffix: inputDecoration?.suffix ?? null,
-    suffixIcon: inputDecoration?.suffixIcon ?? null,
-    suffixIconConstraints: inputDecoration?.suffixIconConstraints ?? null,
-    suffixStyle: inputDecoration?.suffixStyle ?? null,
-    suffixText: inputDecoration?.suffixText ?? null,
+    alignLabelWithHint: inputDecoration?.alignLabelWithHint,
+    border: inputDecoration?.border,
+    contentPadding: inputDecoration?.contentPadding,
+    counter: inputDecoration?.counter,
+    counterStyle: inputDecoration?.counterStyle,
+    counterText: inputDecoration?.counterText,
+    disabledBorder: inputDecoration?.disabledBorder,
+    enabled: inputDecoration?.enabled ?? true,
+    enabledBorder: inputDecoration?.enabledBorder,
+    errorBorder: inputDecoration?.errorBorder,
+    errorMaxLines: inputDecoration?.errorMaxLines,
+    errorStyle: inputDecoration?.errorStyle,
+    errorText: inputDecoration?.errorText,
+    fillColor: inputDecoration?.fillColor,
+    filled: inputDecoration?.filled,
+    floatingLabelBehavior:
+        inputDecoration?.floatingLabelBehavior ?? FloatingLabelBehavior.auto,
+    focusColor: inputDecoration?.focusColor,
+    focusedBorder: inputDecoration?.focusedBorder,
+    focusedErrorBorder: inputDecoration?.focusedErrorBorder,
+    hasFloatingPlaceholder: inputDecoration?.hasFloatingPlaceholder ?? true,
+    helperMaxLines: inputDecoration?.helperMaxLines,
+    helperStyle: inputDecoration?.helperStyle,
+    helperText: inputDecoration?.helperText,
+    hintMaxLines: inputDecoration?.hintMaxLines,
+    hintStyle: inputDecoration?.hintStyle,
+    hintText: hintText ?? inputDecoration?.hintText,
+    hoverColor: inputDecoration?.hoverColor,
+    icon: inputDecoration?.icon,
+    isCollapsed: inputDecoration?.isCollapsed ?? false,
+    isDense: inputDecoration?.isDense,
+    labelStyle: inputDecoration?.labelStyle,
+    labelText: inputDecoration?.labelText,
+    prefix: inputDecoration?.prefix,
+    prefixIcon: inputDecoration?.prefixIcon,
+    prefixIconConstraints: inputDecoration?.prefixIconConstraints,
+    prefixStyle: inputDecoration?.prefixStyle,
+    prefixText: inputDecoration?.prefixText,
+    semanticCounterText: inputDecoration?.semanticCounterText,
+    suffix: inputDecoration?.suffix,
+    suffixIcon: inputDecoration?.suffixIcon,
+    suffixIconConstraints: inputDecoration?.suffixIconConstraints,
+    suffixStyle: inputDecoration?.suffixStyle,
+    suffixText: inputDecoration?.suffixText,
   );
 }
 
@@ -378,8 +381,8 @@ class PlatformTextField
 
   final double cursorHeight;
   final String restorationId;
-  
-  final String hint;
+
+  final String hintText;
 
   PlatformTextField({
     Key key,
@@ -427,7 +430,7 @@ class PlatformTextField
     this.autofillHints,
     this.cursorHeight,
     this.restorationId,
-    this.hint,
+    this.hintText,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -438,7 +441,10 @@ class PlatformTextField
   TextField createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
-    final decoration = _inputDecorationWithHint(hint, data?.decoration ?? const InputDecoration());
+    final decoration = (hintText == null)
+        ? data?.decoration ?? const InputDecoration()
+        : _inputDecorationWithHint(
+            hintText, data?.decoration ?? const InputDecoration());
 
     return TextField(
       key: data?.widgetKey ?? widgetKey,
@@ -542,7 +548,7 @@ class PlatformTextField
       decoration: data?.decoration ?? _kDefaultRoundedBorderDecoration,
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
-      placeholder: data?.placeholder ?? hint,
+      placeholder: data?.placeholder ?? hintText,
       placeholderStyle: data?.placeholderStyle ??
           const TextStyle(
             fontWeight: FontWeight.w400,
