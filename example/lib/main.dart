@@ -235,14 +235,14 @@ class LandingPageState extends State<LandingPage> {
               padding: const EdgeInsets.all(8.0),
               child: PlatformTextField(
                 controller: textControlller,
-                hint: null,
+                hintText: null,
               ),
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
               height: 100,
               child: PlatformTextField(
-                hint: 'And another one',
+                hintText: 'And another one',
                 expands: true,
                 maxLines: null,
                 controller: textMultiLineControlller,
