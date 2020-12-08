@@ -90,7 +90,7 @@ class CupertinoAlertDialogData extends _BaseData {
 
   final ScrollController? scrollController;
   final ScrollController? actionScrollController;
-  final Curves? insetAnimationCurve;
+  final Curve? insetAnimationCurve;
   final Duration? insetAnimationDuration;
 }
 
@@ -146,7 +146,7 @@ class PlatformAlertDialog
   CupertinoAlertDialog createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    Curves? curve = data?.insetAnimationCurve;
+    Curve? curve = data?.insetAnimationCurve;
 
     return CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,
