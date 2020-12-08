@@ -11,12 +11,12 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 
 PageRoute<T> platformPageRoute<T>({
-  @required BuildContext context,
-  @required WidgetBuilder builder,
-  RouteSettings settings,
+  required BuildContext context,
+  required WidgetBuilder builder,
+  RouteSettings? settings,
   bool maintainState = true,
   bool fullscreenDialog = false,
-  String iosTitle,
+  String? iosTitle,
 }) {
   if (isMaterial(context)) {
     return MaterialPageRoute<T>(

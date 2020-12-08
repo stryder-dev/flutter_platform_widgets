@@ -23,13 +23,13 @@ class MaterialProgressIndicatorData {
     this.semanticsLabel,
     this.semanticsValue,
   });
-  final Key key;
-  final Color backgroundColor;
-  final double strokeWidth;
-  final double value;
-  final Animation<Color> valueColor;
-  final String semanticsLabel;
-  final String semanticsValue;
+  final Key? key;
+  final Color? backgroundColor;
+  final double? strokeWidth;
+  final double? value;
+  final Animation<Color>? valueColor;
+  final String? semanticsLabel;
+  final String? semanticsValue;
 }
 
 class CupertinoProgressIndicatorData {
@@ -39,20 +39,20 @@ class CupertinoProgressIndicatorData {
     this.radius: _kDefaultIndicatorRadius,
   });
 
-  final Key key;
-  final bool animating;
-  final double radius;
+  final Key? key;
+  final bool? animating;
+  final double? radius;
 }
 
 class PlatformCircularProgressIndicator extends PlatformWidgetBase<
     CupertinoActivityIndicator, CircularProgressIndicator> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final PlatformBuilder<MaterialProgressIndicatorData> material;
-  final PlatformBuilder<CupertinoProgressIndicatorData> cupertino;
+  final PlatformBuilder<MaterialProgressIndicatorData>? material;
+  final PlatformBuilder<CupertinoProgressIndicatorData>? cupertino;
 
   PlatformCircularProgressIndicator({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.material,
     this.cupertino,

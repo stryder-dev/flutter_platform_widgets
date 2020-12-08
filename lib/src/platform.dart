@@ -40,7 +40,7 @@ enum PlatformTarget {
 PlatformStyle _platformStyle(BuildContext context) {
   final platform = PlatformProvider.of(context)?.platform;
 
-  final platformStyle = PlatformProvider.of(context)?.settings?.platformStyle;
+  final platformStyle = PlatformProvider.of(context)?.settings.platformStyle;
 
   if (platform == null && kIsWeb) {
     return platformStyle?.web ?? PlatformStyle.Material;
@@ -60,8 +60,6 @@ PlatformStyle _platformStyle(BuildContext context) {
     case TargetPlatform.windows:
       return platformStyle?.windows ?? PlatformStyle.Material;
   }
-
-  return PlatformStyle.Material;
 }
 
 bool isMaterial(BuildContext context) {
@@ -91,19 +89,17 @@ PlatformTarget platform(BuildContext context) {
     case TargetPlatform.windows:
       return PlatformTarget.windows;
   }
-
-  return null;
 }
 
-Future<T> showPlatformDialog<T>({
-  @required BuildContext context,
-  @required WidgetBuilder builder,
+Future<T?> showPlatformDialog<T>({
+  required BuildContext context,
+  required WidgetBuilder builder,
   @Deprecated('Use barrierDismissible.') bool androidBarrierDismissible = true,
-  bool barrierDismissible,
-  RouteSettings routeSettings,
+  bool? barrierDismissible,
+  RouteSettings? routeSettings,
   bool useRootNavigator = true,
   bool materialUseSafeArea = true,
-  Color materialBarrierColor,
+  Color? materialBarrierColor,
 }) {
   if (isMaterial(context)) {
     return showDialog<T>(
@@ -128,16 +124,16 @@ Future<T> showPlatformDialog<T>({
 }
 
 class MaterialModalSheetData {
-  final Color backgroundColor;
-  final double elevation;
-  final ShapeBorder shape;
+  final Color? backgroundColor;
+  final double? elevation;
+  final ShapeBorder? shape;
   final bool isScrollControlled;
   final bool useRootNavigator;
-  final Clip clipBehavior;
-  final Color barrierColor;
+  final Clip? clipBehavior;
+  final Color? barrierColor;
   final bool enableDrag;
   final bool isDismissible;
-  final RouteSettings routeSettings;
+  final RouteSettings? routeSettings;
 
   MaterialModalSheetData({
     this.backgroundColor,
@@ -150,31 +146,28 @@ class MaterialModalSheetData {
     this.enableDrag = false,
     this.isDismissible = false,
     this.routeSettings,
-  })  : assert(isScrollControlled != null),
-        assert(useRootNavigator != null),
-        assert(enableDrag != null),
-        assert(isDismissible != null);
+  });
 }
 
 class CupertinoModalSheetData {
-  final ImageFilter imageFilter;
-  final bool semanticsDismissible;
+  final ImageFilter? imageFilter;
+  final bool? semanticsDismissible;
   final bool useRootNavigator;
 
   CupertinoModalSheetData({
     this.imageFilter,
     this.semanticsDismissible,
     this.useRootNavigator = true,
-  }) : assert(useRootNavigator != null);
+  });
 }
 
 /// Displays either the showModalBottomSheet for material
 /// or showCupertinoModalPopup for cupertino
-Future<T> showPlatformModalSheet<T>({
-  @required BuildContext context,
-  @required WidgetBuilder builder,
-  MaterialModalSheetData material,
-  CupertinoModalSheetData cupertino,
+Future<T?> showPlatformModalSheet<T>({
+  required BuildContext context,
+  required WidgetBuilder builder,
+  MaterialModalSheetData? material,
+  CupertinoModalSheetData? cupertino,
 }) {
   if (isMaterial(context)) {
     return showModalBottomSheet<T>(

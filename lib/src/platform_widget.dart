@@ -10,30 +10,22 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
-  final PlatformBuilder<Widget> material;
-  final PlatformBuilder<Widget> cupertino;
+  final PlatformBuilder<Widget?>? material;
+  final PlatformBuilder<Widget?>? cupertino;
 
   PlatformWidget({
-    Key key,
+    Key? key,
     this.cupertino,
     this.material,
   }) : super(key: key);
 
   @override
   Widget createMaterialWidget(BuildContext context) {
-    if (material == null) {
-      return SizedBox.shrink();
-    } else {
-      return material?.call(context, platform(context));
-    }
+    return material?.call(context, platform(context)) ?? SizedBox.shrink();
   }
 
   @override
   Widget createCupertinoWidget(BuildContext context) {
-    if (cupertino == null) {
-      return SizedBox.shrink();
-    } else {
-      return cupertino?.call(context, platform(context));
-    }
+    return cupertino?.call(context, platform(context)) ?? SizedBox.shrink();
   }
 }

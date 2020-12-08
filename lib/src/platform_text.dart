@@ -12,7 +12,7 @@ import 'platform.dart' show isMaterial;
 
 String formatData(BuildContext context, String data) {
   if (isMaterial(context)) {
-    return data?.toUpperCase();
+    return data.toUpperCase();
   }
   return data;
 }
@@ -22,23 +22,23 @@ typedef Text _TextBuilder(BuildContext context);
 class PlatformText extends StatelessWidget {
   final _TextBuilder _textBuilder;
 
-  PlatformText._(Key key, this._textBuilder) : super(key: key);
+  PlatformText._(Key? key, this._textBuilder) : super(key: key);
 
   factory PlatformText(
     String data, {
-    Key key,
-    TextStyle style,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    Locale locale,
-    String semanticsLabel,
-    StrutStyle strutStyle,
-    TextWidthBasis textWidthBasis,
-    ui.TextHeightBehavior textHeightBehavior,
+    Key? key,
+    TextStyle? style,
+    TextAlign? textAlign,
+    TextDirection? textDirection,
+    bool? softWrap,
+    TextOverflow? overflow,
+    double? textScaleFactor,
+    int? maxLines,
+    Locale? locale,
+    String? semanticsLabel,
+    StrutStyle? strutStyle,
+    TextWidthBasis? textWidthBasis,
+    ui.TextHeightBehavior? textHeightBehavior,
   }) {
     return PlatformText._(
         key,

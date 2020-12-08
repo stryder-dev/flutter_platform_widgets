@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart' show IconButton, VisualDensity;
-import 'package:flutter/rendering.dart' show MouseCursor;
+import 'package:flutter/rendering.dart' show MouseCursor, SystemMouseCursors;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -23,22 +23,22 @@ abstract class _BaseData {
       this.color,
       this.disabledColor});
 
-  final Key widgetKey;
-  final Widget icon;
-  final VoidCallback onPressed;
-  final EdgeInsets padding;
-  final Color color;
-  final Color disabledColor;
+  final Key? widgetKey;
+  final Widget? icon;
+  final void Function()? onPressed;
+  final EdgeInsets? padding;
+  final Color? color;
+  final Color? disabledColor;
 }
 
 class CupertinoIconButtonData extends _BaseData {
   CupertinoIconButtonData(
-      {Key widgetKey,
-      Widget icon,
-      VoidCallback onPressed,
-      EdgeInsets padding,
-      Color color,
-      Color disabledColor,
+      {Key? widgetKey,
+      Widget? icon,
+      void Function()? onPressed,
+      EdgeInsets? padding,
+      Color? color,
+      Color? disabledColor,
       this.borderRadius,
       this.minSize,
       this.pressedOpacity})
@@ -50,19 +50,19 @@ class CupertinoIconButtonData extends _BaseData {
             color: color,
             disabledColor: disabledColor);
 
-  final BorderRadius borderRadius;
-  final double minSize;
-  final double pressedOpacity;
+  final BorderRadius? borderRadius;
+  final double? minSize;
+  final double? pressedOpacity;
 }
 
 class MaterialIconButtonData extends _BaseData {
   MaterialIconButtonData({
-    Key widgetKey,
-    Widget icon,
-    VoidCallback onPressed,
-    EdgeInsets padding,
-    Color color,
-    Color disabledColor,
+    Key? widgetKey,
+    Widget? icon,
+    void Function()? onPressed,
+    EdgeInsets? padding,
+    Color? color,
+    Color? disabledColor,
     this.alignment,
     this.highlightColor,
     this.iconSize = 24.0,
@@ -86,38 +86,38 @@ class MaterialIconButtonData extends _BaseData {
           disabledColor: disabledColor,
         );
 
-  final AlignmentGeometry alignment;
-  final Color highlightColor;
-  final double iconSize;
-  final Color splashColor;
-  final String tooltip;
-  final Color focusColor;
-  final Color hoverColor;
-  final FocusNode focusNode;
-  final bool autofocus;
-  final bool enableFeedback;
-  final VisualDensity visualDensity;
-  final BoxConstraints constraints;
-  final double splashRadius;
-  final MouseCursor mouseCursor;
+  final AlignmentGeometry? alignment;
+  final Color? highlightColor;
+  final double? iconSize;
+  final Color? splashColor;
+  final String? tooltip;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final FocusNode? focusNode;
+  final bool? autofocus;
+  final bool? enableFeedback;
+  final VisualDensity? visualDensity;
+  final BoxConstraints? constraints;
+  final double? splashRadius;
+  final MouseCursor? mouseCursor;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final Widget icon;
-  final Widget cupertinoIcon;
-  final Widget materialIcon;
-  final VoidCallback onPressed;
-  final Color color;
-  final EdgeInsets padding;
-  final Color disabledColor;
+  final Widget? icon;
+  final Widget? cupertinoIcon;
+  final Widget? materialIcon;
+  final void Function()? onPressed;
+  final Color? color;
+  final EdgeInsets? padding;
+  final Color? disabledColor;
 
-  final PlatformBuilder<MaterialIconButtonData> material;
-  final PlatformBuilder<CupertinoIconButtonData> cupertino;
+  final PlatformBuilder<MaterialIconButtonData>? material;
+  final PlatformBuilder<CupertinoIconButtonData>? cupertino;
 
   PlatformIconButton({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.icon,
     this.cupertinoIcon,
@@ -134,10 +134,13 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   Widget createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
+    // icon is required non nullable
+    assert(data?.icon != null || materialIcon != null || icon != null);
+
     return IconButton(
       key: data?.widgetKey ?? widgetKey,
-      icon: data?.icon ?? materialIcon ?? icon,
-      onPressed: data?.onPressed ?? onPressed,
+      icon: data?.icon ?? materialIcon ?? icon!,
+      onPressed: data?.onPressed ?? onPressed ?? null,
       padding: data?.padding ?? padding ?? const EdgeInsets.all(8.0),
       color: data?.color ?? color,
       alignment: data?.alignment ?? Alignment.center,
@@ -154,7 +157,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       visualDensity: data?.visualDensity,
       constraints: data?.constraints,
       splashRadius: data?.splashRadius,
-      mouseCursor: data?.mouseCursor,
+      mouseCursor: data?.mouseCursor ?? SystemMouseCursors.click,
     );
   }
 
@@ -162,10 +165,13 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   CupertinoButton createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
+    // child is required non nullable
+    assert(data?.icon != null || cupertinoIcon != null || icon != null);
+
     return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,
-      child: data?.icon ?? cupertinoIcon ?? icon,
-      onPressed: data?.onPressed ?? onPressed,
+      child: data?.icon ?? cupertinoIcon ?? icon!,
+      onPressed: data?.onPressed ?? onPressed ?? null,
       padding: data?.padding ?? padding,
       color: data?.color ?? color,
       borderRadius: data?.borderRadius ??

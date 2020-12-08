@@ -1,3 +1,7 @@
+## [1.0.0] (null saftey)
+
+- Full null safety support.
+
 ## [0.72.0] - December 03, 2020
 
 #### (Flutter version support: v1.22.0 - v1.22.4)

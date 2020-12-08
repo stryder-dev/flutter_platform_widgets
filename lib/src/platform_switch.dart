@@ -22,21 +22,21 @@ abstract class _BaseData {
     this.dragStartBehavior,
   });
 
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final bool value;
-  final Color activeColor;
-  final ValueChanged<bool> onChanged;
-  final DragStartBehavior dragStartBehavior;
+  final bool? value;
+  final Color? activeColor;
+  final void Function(bool)? onChanged;
+  final DragStartBehavior? dragStartBehavior;
 }
 
 class MaterialSwitchData extends _BaseData {
   MaterialSwitchData({
-    Key widgetKey,
-    bool value,
-    ValueChanged<bool> onChanged,
-    Color activeColor,
-    DragStartBehavior dragStartBehavior,
+    Key? widgetKey,
+    bool? value,
+    void Function(bool)? onChanged,
+    Color? activeColor,
+    DragStartBehavior? dragStartBehavior,
     this.activeTrackColor,
     this.inactiveThumbColor,
     this.inactiveTrackColor,
@@ -58,28 +58,28 @@ class MaterialSwitchData extends _BaseData {
           dragStartBehavior: dragStartBehavior,
         );
 
-  final Color activeTrackColor;
-  final Color inactiveThumbColor;
-  final Color inactiveTrackColor;
-  final ImageProvider activeThumbImage;
-  final ImageProvider inactiveThumbImage;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final Color focusColor;
-  final Color hoverColor;
-  final FocusNode focusNode;
-  final bool autofocus;
-  final ImageErrorListener onActiveThumbImageError;
-  final ImageErrorListener onInactiveThumbImageError;
-  final MouseCursor mouseCursor;
+  final Color? activeTrackColor;
+  final Color? inactiveThumbColor;
+  final Color? inactiveTrackColor;
+  final ImageProvider? activeThumbImage;
+  final ImageProvider? inactiveThumbImage;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final FocusNode? focusNode;
+  final bool? autofocus;
+  final ImageErrorListener? onActiveThumbImageError;
+  final ImageErrorListener? onInactiveThumbImageError;
+  final MouseCursor? mouseCursor;
 }
 
 class CupertinoSwitchData extends _BaseData {
   CupertinoSwitchData({
-    Key widgetKey,
-    bool value,
-    ValueChanged<bool> onChanged,
-    Color activeColor,
-    DragStartBehavior dragStartBehavior,
+    Key? widgetKey,
+    bool? value,
+    void Function(bool)? onChanged,
+    Color? activeColor,
+    DragStartBehavior? dragStartBehavior,
     this.trackColor,
   }) : super(
           widgetKey: widgetKey,
@@ -89,25 +89,25 @@ class CupertinoSwitchData extends _BaseData {
           dragStartBehavior: dragStartBehavior,
         );
 
-  final Color trackColor;
+  final Color? trackColor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
   final bool value;
-  final Color activeColor;
-  final ValueChanged<bool> onChanged;
-  final DragStartBehavior dragStartBehavior;
+  final Color? activeColor;
+  final void Function(bool)? onChanged;
+  final DragStartBehavior? dragStartBehavior;
 
-  final PlatformBuilder<MaterialSwitchData> material;
-  final PlatformBuilder<CupertinoSwitchData> cupertino;
+  final PlatformBuilder<MaterialSwitchData>? material;
+  final PlatformBuilder<CupertinoSwitchData>? cupertino;
 
   PlatformSwitch({
-    Key key,
+    Key? key,
     this.widgetKey,
-    @required this.value,
-    @required this.onChanged,
+    required this.value,
+    required this.onChanged,
     this.dragStartBehavior,
     this.activeColor,
     this.material,

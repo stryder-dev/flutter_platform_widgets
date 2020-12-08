@@ -27,18 +27,22 @@ import 'platform_provider.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.widgetKey, this.backgroundColor, this.body});
+  _BaseData({
+    this.widgetKey,
+    this.backgroundColor,
+    this.body,
+  });
 
-  final Color backgroundColor;
-  final Widget body;
-  final Key widgetKey;
+  final Color? backgroundColor;
+  final Widget? body;
+  final Key? widgetKey;
 }
 
 class MaterialScaffoldData extends _BaseData {
   MaterialScaffoldData({
-    Color backgroundColor,
-    Widget body,
-    Key widgetKey,
+    Color? backgroundColor,
+    Widget? body,
+    Key? widgetKey,
     this.appBar,
     this.bottomNavBar,
     this.drawer,
@@ -58,70 +62,73 @@ class MaterialScaffoldData extends _BaseData {
     this.drawerEnableOpenDragGesture,
     this.endDrawerEnableOpenDragGesture,
   }) : super(
-            widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
-
-  final PreferredSizeWidget appBar;
-  final Widget bottomNavBar;
-  final Widget drawer;
-  final Widget endDrawer;
-  final Widget floatingActionButton;
-  final FloatingActionButtonAnimator floatingActionButtonAnimator;
-  final FloatingActionButtonLocation floatingActionButtonLocation;
-  final List<Widget> persistentFooterButtons;
-  final bool primary;
-  final Widget bottomSheet;
-  final DragStartBehavior drawerDragStartBehavior;
-  final bool extendBody;
-  final bool resizeToAvoidBottomInset;
-  final Color drawerScrimColor;
-  final double drawerEdgeDragWidth;
-  final bool extendBodyBehindAppBar;
-  final bool drawerEnableOpenDragGesture;
-  final bool endDrawerEnableOpenDragGesture;
-}
-
-class CupertinoPageScaffoldData extends _BaseData {
-  CupertinoPageScaffoldData(
-      {Color backgroundColor,
-      Widget body,
-      Key widgetKey,
-      this.navigationBar,
-      this.bottomTabBar,
-      this.resizeToAvoidBottomInset,
-      this.resizeToAvoidBottomInsetTab,
-      this.backgroundColorTab,
-      this.controller})
-      : super(
           widgetKey: widgetKey,
           backgroundColor: backgroundColor,
           body: body,
         );
 
-  final ObstructingPreferredSizeWidget navigationBar;
-  final CupertinoTabBar bottomTabBar;
-  final bool resizeToAvoidBottomInset;
-  final bool resizeToAvoidBottomInsetTab;
-  final Color backgroundColorTab;
-  final CupertinoTabController controller;
+  final PreferredSizeWidget? appBar;
+  final Widget? bottomNavBar;
+  final Widget? drawer;
+  final Widget? endDrawer;
+  final Widget? floatingActionButton;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final List<Widget>? persistentFooterButtons;
+  final bool? primary;
+  final Widget? bottomSheet;
+  final DragStartBehavior? drawerDragStartBehavior;
+  final bool? extendBody;
+  final bool? resizeToAvoidBottomInset;
+  final Color? drawerScrimColor;
+  final double? drawerEdgeDragWidth;
+  final bool? extendBodyBehindAppBar;
+  final bool? drawerEnableOpenDragGesture;
+  final bool? endDrawerEnableOpenDragGesture;
+}
+
+class CupertinoPageScaffoldData extends _BaseData {
+  CupertinoPageScaffoldData({
+    Color? backgroundColor,
+    Widget? body,
+    Key? widgetKey,
+    this.navigationBar,
+    this.bottomTabBar,
+    this.resizeToAvoidBottomInset,
+    this.resizeToAvoidBottomInsetTab,
+    this.backgroundColorTab,
+    this.controller,
+  }) : super(
+          widgetKey: widgetKey,
+          backgroundColor: backgroundColor,
+          body: body,
+        );
+
+  final ObstructingPreferredSizeWidget? navigationBar;
+  final CupertinoTabBar? bottomTabBar;
+  final bool? resizeToAvoidBottomInset;
+  final bool? resizeToAvoidBottomInsetTab;
+  final Color? backgroundColorTab;
+  final CupertinoTabController? controller;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final Widget body;
-  final Color backgroundColor;
-  final PlatformAppBar appBar;
-  final PlatformNavBar bottomNavBar;
-  final IndexedWidgetBuilder cupertinoTabChildBuilder;
+  final Widget? body;
+  final Color? backgroundColor;
+  final PlatformAppBar? appBar;
+  final PlatformNavBar? bottomNavBar;
+  final IndexedWidgetBuilder? cupertinoTabChildBuilder;
 
-  final PlatformBuilder<MaterialScaffoldData> material;
-  final PlatformBuilder<CupertinoPageScaffoldData> cupertino;
+  final PlatformBuilder<MaterialScaffoldData>? material;
+  final PlatformBuilder<CupertinoPageScaffoldData>? cupertino;
 
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
 
   PlatformScaffold({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.body,
     this.backgroundColor,
@@ -184,12 +191,13 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         key: data?.widgetKey ?? widgetKey,
         backgroundColor: data?.backgroundColorTab,
         resizeToAvoidBottomInset: data?.resizeToAvoidBottomInsetTab ?? true,
-        tabBar: tabBar,
+        tabBar: tabBar!,
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
           var currentChild = cupertinoTabChildBuilder?.call(context, index) ??
               data?.body ??
-              body;
+              body ??
+              SizedBox.shrink();
           return CupertinoPageScaffold(
             // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
@@ -201,7 +209,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         },
       );
     } else {
-      final child = data?.body ?? body;
+      final child = data?.body ?? body ?? SizedBox.shrink();
 
       result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,
@@ -213,8 +221,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     }
 
     final providerState = PlatformProvider.of(context);
-    final useMaterial =
-        providerState?.settings?.iosUsesMaterialWidgets ?? false;
+    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
 
     if (useMaterial) {
       // Ensure that there is Material widget at the root page level
@@ -232,7 +239,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   }
 
   Widget iosContentPad(BuildContext context, Widget child,
-      ObstructingPreferredSizeWidget navigationBar, CupertinoTabBar tabBar) {
+      ObstructingPreferredSizeWidget? navigationBar, CupertinoTabBar? tabBar) {
     final MediaQueryData existingMediaQuery = MediaQuery.of(context);
 
     if (!iosContentPadding && !iosContentBottomPadding) {

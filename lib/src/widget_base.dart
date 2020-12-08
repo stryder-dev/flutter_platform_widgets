@@ -15,7 +15,7 @@ typedef T PlatformIndexBuilder<T>(
 
 abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
     extends StatelessWidget {
-  const PlatformWidgetBase({Key key}) : super(key: key);
+  const PlatformWidgetBase({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

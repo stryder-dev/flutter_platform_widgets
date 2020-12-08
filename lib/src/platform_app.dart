@@ -43,33 +43,33 @@ abstract class _BaseData {
     this.highContrastTheme,
   });
 
-  final Key widgetKey;
-  final GlobalKey<NavigatorState> navigatorKey;
-  final Widget home;
-  final Map<String, WidgetBuilder> routes;
-  final String initialRoute;
-  final RouteFactory onGenerateRoute;
-  final RouteFactory onUnknownRoute;
-  final List<NavigatorObserver> navigatorObservers;
-  final TransitionBuilder builder;
-  final String title;
-  final GenerateAppTitle onGenerateTitle;
-  final Color color;
-  final Locale locale;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
-  final LocaleListResolutionCallback localeListResolutionCallback;
-  final LocaleResolutionCallback localeResolutionCallback;
-  final Iterable<Locale> supportedLocales;
-  final bool showPerformanceOverlay;
-  final bool checkerboardRasterCacheImages;
-  final bool checkerboardOffscreenLayers;
-  final bool showSemanticsDebugger;
-  final bool debugShowCheckedModeBanner;
-  final Map<LogicalKeySet, Intent> shortcuts;
-  final Map<Type, Action<Intent>> actions;
-  final InitialRouteListFactory onGenerateInitialRoutes;
-  final ThemeData highContrastDarkTheme;
-  final ThemeData highContrastTheme;
+  final Key? widgetKey;
+  final GlobalKey<NavigatorState>? navigatorKey;
+  final Widget? home;
+  final Map<String, WidgetBuilder>? routes;
+  final String? initialRoute;
+  final RouteFactory? onGenerateRoute;
+  final RouteFactory? onUnknownRoute;
+  final List<NavigatorObserver>? navigatorObservers;
+  final TransitionBuilder? builder;
+  final String? title;
+  final GenerateAppTitle? onGenerateTitle;
+  final Color? color;
+  final Locale? locale;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final LocaleListResolutionCallback? localeListResolutionCallback;
+  final LocaleResolutionCallback? localeResolutionCallback;
+  final Iterable<Locale>? supportedLocales;
+  final bool? showPerformanceOverlay;
+  final bool? checkerboardRasterCacheImages;
+  final bool? checkerboardOffscreenLayers;
+  final bool? showSemanticsDebugger;
+  final bool? debugShowCheckedModeBanner;
+  final Map<LogicalKeySet, Intent>? shortcuts;
+  final Map<Type, Action<Intent>>? actions;
+  final InitialRouteListFactory? onGenerateInitialRoutes;
+  final ThemeData? highContrastDarkTheme;
+  final ThemeData? highContrastTheme;
 }
 
 abstract class _BaseRouterData {
@@ -100,72 +100,72 @@ abstract class _BaseRouterData {
     this.backButtonDispatcher,
   });
 
-  final Key widgetKey;
-  final TransitionBuilder builder;
-  final String title;
-  final GenerateAppTitle onGenerateTitle;
-  final Color color;
-  final Locale locale;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
-  final LocaleListResolutionCallback localeListResolutionCallback;
-  final LocaleResolutionCallback localeResolutionCallback;
-  final Iterable<Locale> supportedLocales;
-  final bool showPerformanceOverlay;
-  final bool checkerboardRasterCacheImages;
-  final bool checkerboardOffscreenLayers;
-  final bool showSemanticsDebugger;
-  final bool debugShowCheckedModeBanner;
-  final Map<LogicalKeySet, Intent> shortcuts;
-  final Map<Type, Action<Intent>> actions;
-  final InitialRouteListFactory onGenerateInitialRoutes;
-  final ThemeData highContrastDarkTheme;
-  final ThemeData highContrastTheme;
+  final Key? widgetKey;
+  final TransitionBuilder? builder;
+  final String? title;
+  final GenerateAppTitle? onGenerateTitle;
+  final Color? color;
+  final Locale? locale;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final LocaleListResolutionCallback? localeListResolutionCallback;
+  final LocaleResolutionCallback? localeResolutionCallback;
+  final Iterable<Locale>? supportedLocales;
+  final bool? showPerformanceOverlay;
+  final bool? checkerboardRasterCacheImages;
+  final bool? checkerboardOffscreenLayers;
+  final bool? showSemanticsDebugger;
+  final bool? debugShowCheckedModeBanner;
+  final Map<LogicalKeySet, Intent>? shortcuts;
+  final Map<Type, Action<Intent>>? actions;
+  final InitialRouteListFactory? onGenerateInitialRoutes;
+  final ThemeData? highContrastDarkTheme;
+  final ThemeData? highContrastTheme;
 
   /// {@macro flutter.widgets.widgetsApp.routeInformationProvider}
-  final RouteInformationProvider routeInformationProvider;
+  final RouteInformationProvider? routeInformationProvider;
 
   /// {@macro flutter.widgets.widgetsApp.routeInformationParser}
-  final RouteInformationParser<Object> routeInformationParser;
+  final RouteInformationParser<Object>? routeInformationParser;
 
   /// {@macro flutter.widgets.widgetsApp.routerDelegate}
-  final RouterDelegate<Object> routerDelegate;
+  final RouterDelegate<Object>? routerDelegate;
 
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
-  final BackButtonDispatcher backButtonDispatcher;
+  final BackButtonDispatcher? backButtonDispatcher;
 }
 
 class MaterialAppData extends _BaseData {
-  MaterialAppData(
-      {Key widgetKey,
-      GlobalKey<NavigatorState> navigatorKey,
-      Widget home,
-      Map<String, WidgetBuilder> routes,
-      String initialRoute,
-      RouteFactory onGenerateRoute,
-      RouteFactory onUnknownRoute,
-      List<NavigatorObserver> navigatorObservers,
-      TransitionBuilder builder,
-      String title,
-      GenerateAppTitle onGenerateTitle,
-      Color color,
-      Locale locale,
-      Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
-      LocaleListResolutionCallback localeListResolutionCallback,
-      LocaleResolutionCallback localeResolutionCallback,
-      Iterable<Locale> supportedLocales,
-      bool showPerformanceOverlay,
-      bool checkerboardRasterCacheImages,
-      bool checkerboardOffscreenLayers,
-      bool showSemanticsDebugger,
-      bool debugShowCheckedModeBanner,
-      Map<LogicalKeySet, Intent> shortcuts,
-      Map<Type, Action<Intent>> actions,
-      InitialRouteListFactory onGenerateInitialRoutes,
-      this.theme,
-      this.debugShowMaterialGrid,
-      this.darkTheme,
-      this.themeMode})
-      : super(
+  MaterialAppData({
+    Key? widgetKey,
+    GlobalKey<NavigatorState>? navigatorKey,
+    Widget? home,
+    Map<String, WidgetBuilder>? routes,
+    String? initialRoute,
+    RouteFactory? onGenerateRoute,
+    RouteFactory? onUnknownRoute,
+    List<NavigatorObserver>? navigatorObservers,
+    TransitionBuilder? builder,
+    String? title,
+    GenerateAppTitle? onGenerateTitle,
+    Color? color,
+    Locale? locale,
+    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+    LocaleListResolutionCallback? localeListResolutionCallback,
+    LocaleResolutionCallback? localeResolutionCallback,
+    Iterable<Locale>? supportedLocales,
+    bool? showPerformanceOverlay,
+    bool? checkerboardRasterCacheImages,
+    bool? checkerboardOffscreenLayers,
+    bool? showSemanticsDebugger,
+    bool? debugShowCheckedModeBanner,
+    Map<LogicalKeySet, Intent>? shortcuts,
+    Map<Type, Action<Intent>>? actions,
+    InitialRouteListFactory? onGenerateInitialRoutes,
+    this.theme,
+    this.debugShowMaterialGrid,
+    this.darkTheme,
+    this.themeMode,
+  }) : super(
           widgetKey: widgetKey,
           navigatorKey: navigatorKey,
           home: home,
@@ -193,32 +193,32 @@ class MaterialAppData extends _BaseData {
           onGenerateInitialRoutes: onGenerateInitialRoutes,
         );
 
-  final ThemeData theme;
-  final bool debugShowMaterialGrid;
-  final ThemeData darkTheme;
-  final ThemeMode themeMode;
+  final ThemeData? theme;
+  final bool? debugShowMaterialGrid;
+  final ThemeData? darkTheme;
+  final ThemeMode? themeMode;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
   MaterialAppRouterData({
-    Key widgetKey,
-    TransitionBuilder builder,
-    String title,
-    GenerateAppTitle onGenerateTitle,
-    Color color,
-    Locale locale,
-    Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
-    LocaleListResolutionCallback localeListResolutionCallback,
-    LocaleResolutionCallback localeResolutionCallback,
-    Iterable<Locale> supportedLocales,
-    bool showPerformanceOverlay,
-    bool checkerboardRasterCacheImages,
-    bool checkerboardOffscreenLayers,
-    bool showSemanticsDebugger,
-    bool debugShowCheckedModeBanner,
-    Map<LogicalKeySet, Intent> shortcuts,
-    Map<Type, Action<Intent>> actions,
-    InitialRouteListFactory onGenerateInitialRoutes,
+    Key? widgetKey,
+    TransitionBuilder? builder,
+    String? title,
+    GenerateAppTitle? onGenerateTitle,
+    Color? color,
+    Locale? locale,
+    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+    LocaleListResolutionCallback? localeListResolutionCallback,
+    LocaleResolutionCallback? localeResolutionCallback,
+    Iterable<Locale>? supportedLocales,
+    bool? showPerformanceOverlay,
+    bool? checkerboardRasterCacheImages,
+    bool? checkerboardOffscreenLayers,
+    bool? showSemanticsDebugger,
+    bool? debugShowCheckedModeBanner,
+    Map<LogicalKeySet, Intent>? shortcuts,
+    Map<Type, Action<Intent>>? actions,
+    InitialRouteListFactory? onGenerateInitialRoutes,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
@@ -244,41 +244,41 @@ class MaterialAppRouterData extends _BaseRouterData {
           onGenerateInitialRoutes: onGenerateInitialRoutes,
         );
 
-  final ThemeData theme;
-  final bool debugShowMaterialGrid;
-  final ThemeData darkTheme;
-  final ThemeMode themeMode;
+  final ThemeData? theme;
+  final bool? debugShowMaterialGrid;
+  final ThemeData? darkTheme;
+  final ThemeMode? themeMode;
 }
 
 class CupertinoAppData extends _BaseData {
-  CupertinoAppData(
-      {Key widgetKey,
-      GlobalKey<NavigatorState> navigatorKey,
-      Widget home,
-      Map<String, WidgetBuilder> routes,
-      String initialRoute,
-      RouteFactory onGenerateRoute,
-      RouteFactory onUnknownRoute,
-      List<NavigatorObserver> navigatorObservers,
-      TransitionBuilder builder,
-      String title,
-      GenerateAppTitle onGenerateTitle,
-      Color color,
-      Locale locale,
-      Map<LogicalKeySet, Intent> shortcuts,
-      Map<Type, Action<Intent>> actions,
-      InitialRouteListFactory onGenerateInitialRoutes,
-      Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
-      LocaleListResolutionCallback localeListResolutionCallback,
-      LocaleResolutionCallback localeResolutionCallback,
-      Iterable<Locale> supportedLocales,
-      bool showPerformanceOverlay,
-      bool checkerboardRasterCacheImages,
-      bool checkerboardOffscreenLayers,
-      bool showSemanticsDebugger,
-      bool debugShowCheckedModeBanner,
-      this.theme})
-      : super(
+  CupertinoAppData({
+    Key? widgetKey,
+    GlobalKey<NavigatorState>? navigatorKey,
+    Widget? home,
+    Map<String, WidgetBuilder>? routes,
+    String? initialRoute,
+    RouteFactory? onGenerateRoute,
+    RouteFactory? onUnknownRoute,
+    List<NavigatorObserver>? navigatorObservers,
+    TransitionBuilder? builder,
+    String? title,
+    GenerateAppTitle? onGenerateTitle,
+    Color? color,
+    Locale? locale,
+    Map<LogicalKeySet, Intent>? shortcuts,
+    Map<Type, Action<Intent>>? actions,
+    InitialRouteListFactory? onGenerateInitialRoutes,
+    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+    LocaleListResolutionCallback? localeListResolutionCallback,
+    LocaleResolutionCallback? localeResolutionCallback,
+    Iterable<Locale>? supportedLocales,
+    bool? showPerformanceOverlay,
+    bool? checkerboardRasterCacheImages,
+    bool? checkerboardOffscreenLayers,
+    bool? showSemanticsDebugger,
+    bool? debugShowCheckedModeBanner,
+    this.theme,
+  }) : super(
           widgetKey: widgetKey,
           navigatorKey: navigatorKey,
           home: home,
@@ -306,35 +306,35 @@ class CupertinoAppData extends _BaseData {
           onGenerateInitialRoutes: onGenerateInitialRoutes,
         );
 
-  final CupertinoThemeData theme;
+  final CupertinoThemeData? theme;
 }
 
 class CupertinoAppRouterData extends _BaseRouterData {
-  CupertinoAppRouterData(
-      {Key widgetKey,
-      TransitionBuilder builder,
-      String title,
-      GenerateAppTitle onGenerateTitle,
-      Color color,
-      Locale locale,
-      Map<LogicalKeySet, Intent> shortcuts,
-      Map<Type, Action<Intent>> actions,
-      InitialRouteListFactory onGenerateInitialRoutes,
-      Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
-      LocaleListResolutionCallback localeListResolutionCallback,
-      LocaleResolutionCallback localeResolutionCallback,
-      Iterable<Locale> supportedLocales,
-      bool showPerformanceOverlay,
-      bool checkerboardRasterCacheImages,
-      bool checkerboardOffscreenLayers,
-      bool showSemanticsDebugger,
-      bool debugShowCheckedModeBanner,
-      RouteInformationProvider routeInformationProvider,
-      RouteInformationParser<Object> routeInformationParser,
-      RouterDelegate<Object> routerDelegate,
-      BackButtonDispatcher backButtonDispatcher,
-      this.theme})
-      : super(
+  CupertinoAppRouterData({
+    Key? widgetKey,
+    TransitionBuilder? builder,
+    String? title,
+    GenerateAppTitle? onGenerateTitle,
+    Color? color,
+    Locale? locale,
+    Map<LogicalKeySet, Intent>? shortcuts,
+    Map<Type, Action<Intent>>? actions,
+    InitialRouteListFactory? onGenerateInitialRoutes,
+    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+    LocaleListResolutionCallback? localeListResolutionCallback,
+    LocaleResolutionCallback? localeResolutionCallback,
+    Iterable<Locale>? supportedLocales,
+    bool? showPerformanceOverlay,
+    bool? checkerboardRasterCacheImages,
+    bool? checkerboardOffscreenLayers,
+    bool? showSemanticsDebugger,
+    bool? debugShowCheckedModeBanner,
+    RouteInformationProvider? routeInformationProvider,
+    RouteInformationParser<Object>? routeInformationParser,
+    RouterDelegate<Object>? routerDelegate,
+    BackButtonDispatcher? backButtonDispatcher,
+    this.theme,
+  }) : super(
           widgetKey: widgetKey,
           builder: builder,
           title: title,
@@ -359,55 +359,55 @@ class CupertinoAppRouterData extends _BaseRouterData {
           backButtonDispatcher: backButtonDispatcher,
         );
 
-  final CupertinoThemeData theme;
+  final CupertinoThemeData? theme;
 }
 
 class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
-  final Key widgetKey;
-  final GlobalKey<NavigatorState> navigatorKey;
-  final Widget home;
-  final Map<String, WidgetBuilder> routes;
-  final String initialRoute;
-  final RouteFactory onGenerateRoute;
-  final RouteFactory onUnknownRoute;
-  final List<NavigatorObserver> navigatorObservers;
-  final TransitionBuilder builder;
-  final String title;
-  final GenerateAppTitle onGenerateTitle;
-  final Color color;
-  final Locale locale;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
-  final LocaleListResolutionCallback localeListResolutionCallback;
-  final LocaleResolutionCallback localeResolutionCallback;
-  final Iterable<Locale> supportedLocales;
-  final bool showPerformanceOverlay;
-  final bool checkerboardRasterCacheImages;
-  final bool checkerboardOffscreenLayers;
-  final bool showSemanticsDebugger;
-  final bool debugShowCheckedModeBanner;
-  final Map<LogicalKeySet, Intent> shortcuts;
-  final Map<Type, Action<Intent>> actions;
-  final InitialRouteListFactory onGenerateInitialRoutes;
+  final Key? widgetKey;
+  final GlobalKey<NavigatorState>? navigatorKey;
+  final Widget? home;
+  final Map<String, WidgetBuilder>? routes;
+  final String? initialRoute;
+  final RouteFactory? onGenerateRoute;
+  final RouteFactory? onUnknownRoute;
+  final List<NavigatorObserver>? navigatorObservers;
+  final TransitionBuilder? builder;
+  final String? title;
+  final GenerateAppTitle? onGenerateTitle;
+  final Color? color;
+  final Locale? locale;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final LocaleListResolutionCallback? localeListResolutionCallback;
+  final LocaleResolutionCallback? localeResolutionCallback;
+  final Iterable<Locale>? supportedLocales;
+  final bool? showPerformanceOverlay;
+  final bool? checkerboardRasterCacheImages;
+  final bool? checkerboardOffscreenLayers;
+  final bool? showSemanticsDebugger;
+  final bool? debugShowCheckedModeBanner;
+  final Map<LogicalKeySet, Intent>? shortcuts;
+  final Map<Type, Action<Intent>>? actions;
+  final InitialRouteListFactory? onGenerateInitialRoutes;
 
-  final PlatformBuilder<MaterialAppData> material;
-  final PlatformBuilder<CupertinoAppData> cupertino;
-  final PlatformBuilder<MaterialAppRouterData> materialRouter;
-  final PlatformBuilder<CupertinoAppRouterData> cupertinoRouter;
+  final PlatformBuilder<MaterialAppData>? material;
+  final PlatformBuilder<CupertinoAppData>? cupertino;
+  final PlatformBuilder<MaterialAppRouterData>? materialRouter;
+  final PlatformBuilder<CupertinoAppRouterData>? cupertinoRouter;
 
   /// {@macro flutter.widgets.widgetsApp.routeInformationProvider}
-  final RouteInformationProvider routeInformationProvider;
+  final RouteInformationProvider? routeInformationProvider;
 
   /// {@macro flutter.widgets.widgetsApp.routeInformationParser}
-  final RouteInformationParser<Object> routeInformationParser;
+  final RouteInformationParser<Object>? routeInformationParser;
 
   /// {@macro flutter.widgets.widgetsApp.routerDelegate}
-  final RouterDelegate<Object> routerDelegate;
+  final RouterDelegate<Object>? routerDelegate;
 
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
-  final BackButtonDispatcher backButtonDispatcher;
+  final BackButtonDispatcher? backButtonDispatcher;
 
   const PlatformApp({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.navigatorKey,
     this.home,
@@ -444,7 +444,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         super(key: key);
 
   const PlatformApp.router({
-    Key key,
+    Key? key,
     this.routeInformationProvider,
     this.routeInformationParser,
     this.routerDelegate,
@@ -466,8 +466,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.debugShowCheckedModeBanner,
     this.shortcuts,
     this.actions,
-    PlatformBuilder<MaterialAppRouterData> material,
-    PlatformBuilder<CupertinoAppRouterData> cupertino,
+    PlatformBuilder<MaterialAppRouterData>? material,
+    PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
         navigatorKey = null,
         onGenerateRoute = null,
@@ -488,12 +488,15 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
     if (routeInformationParser != null ||
         dataRouter?.routeInformationParser != null) {
+      assert(dataRouter?.routerDelegate != null || routerDelegate != null);
+
       return MaterialApp.router(
+        key: dataRouter?.widgetKey ?? widgetKey,
         routeInformationProvider:
             dataRouter?.routeInformationProvider ?? routeInformationProvider,
         routeInformationParser:
-            dataRouter?.routeInformationParser ?? routeInformationParser,
-        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate,
+            dataRouter?.routeInformationParser ?? routeInformationParser!,
+        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate!,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
         builder: dataRouter?.builder ?? builder,
@@ -598,12 +601,14 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
     if (routeInformationParser != null ||
         dataRouter?.routeInformationParser != null) {
+      assert(dataRouter?.routerDelegate != null || routerDelegate != null);
+
       return CupertinoApp.router(
         routeInformationProvider:
             dataRouter?.routeInformationProvider ?? routeInformationProvider,
         routeInformationParser:
-            dataRouter?.routeInformationParser ?? routeInformationParser,
-        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate,
+            dataRouter?.routeInformationParser ?? routeInformationParser!,
+        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate!,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
         theme: dataRouter?.theme,
