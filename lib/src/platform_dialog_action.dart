@@ -19,18 +19,22 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({this.widgetKey, this.child, this.onPressed});
+  _BaseData({
+    this.widgetKey,
+    this.child,
+    this.onPressed,
+  });
 
-  final Widget child;
-  final VoidCallback onPressed;
-  final Key widgetKey;
+  final Widget? child;
+  final void Function()? onPressed;
+  final Key? widgetKey;
 }
 
 class MaterialDialogActionData extends _BaseData {
   MaterialDialogActionData({
-    Widget child,
-    VoidCallback onPressed,
-    Key widgetKey,
+    Widget? child,
+    void Function()? onPressed,
+    Key? widgetKey,
     this.color,
     this.colorBrightness,
     this.disabledColor,
@@ -59,63 +63,63 @@ class MaterialDialogActionData extends _BaseData {
           onPressed: onPressed,
         );
 
-  final Color color;
-  final Brightness colorBrightness;
-  final Color disabledColor;
-  final Color disabledTextColor;
-  final Color highlightColor;
-  final ValueChanged<bool> onHighlightChanged;
-  final EdgeInsetsGeometry padding;
-  final ShapeBorder shape;
-  final Color splashColor;
-  final Color textColor;
-  final ButtonTextTheme textTheme;
-  final Clip clipBehavior;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final Color focusColor;
-  final Color hoverColor;
-  final FocusNode focusNode;
-  final bool autofocus;
-  final VisualDensity visualDensity;
-  final VoidCallback onLongPress;
-  final MouseCursor mouseCursor;
-  final double height;
-  final double minWidth;
+  final Color? color;
+  final Brightness? colorBrightness;
+  final Color? disabledColor;
+  final Color? disabledTextColor;
+  final Color? highlightColor;
+  final ValueChanged<bool>? onHighlightChanged;
+  final EdgeInsetsGeometry? padding;
+  final ShapeBorder? shape;
+  final Color? splashColor;
+  final Color? textColor;
+  final ButtonTextTheme? textTheme;
+  final Clip? clipBehavior;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final FocusNode? focusNode;
+  final bool? autofocus;
+  final VisualDensity? visualDensity;
+  final void Function()? onLongPress;
+  final MouseCursor? mouseCursor;
+  final double? height;
+  final double? minWidth;
 }
 
 class CupertinoDialogActionData extends _BaseData {
-  CupertinoDialogActionData(
-      {Widget child,
-      VoidCallback onPressed,
-      Key widgetKey,
-      this.isDefaultAction,
-      this.isDestructiveAction,
-      this.textStyle})
-      : super(
+  CupertinoDialogActionData({
+    Widget? child,
+    VoidCallback? onPressed,
+    Key? widgetKey,
+    this.isDefaultAction,
+    this.isDestructiveAction,
+    this.textStyle,
+  }) : super(
           widgetKey: widgetKey,
           child: child,
           onPressed: onPressed,
         );
 
-  final bool isDefaultAction;
-  final bool isDestructiveAction;
-  final TextStyle textStyle;
+  final bool? isDefaultAction;
+  final bool? isDestructiveAction;
+  final TextStyle? textStyle;
 }
 
 class PlatformDialogAction
     extends PlatformWidgetBase<CupertinoDialogAction, FlatButton> {
-  final Key widgetKey;
-  final Widget child;
-  final VoidCallback onPressed;
+  final Key? widgetKey;
+  final Widget? child;
+  final void Function()? onPressed;
 
-  final PlatformBuilder<MaterialDialogActionData> material;
-  final PlatformBuilder<CupertinoDialogActionData> cupertino;
+  final PlatformBuilder<MaterialDialogActionData>? material;
+  final PlatformBuilder<CupertinoDialogActionData>? cupertino;
 
   PlatformDialogAction({
-    Key key,
+    Key? key,
     this.widgetKey,
-    @required this.child,
-    @required this.onPressed,
+    this.child,
+    this.onPressed,
     this.material,
     this.cupertino,
   }) : super(key: key);
@@ -123,9 +127,11 @@ class PlatformDialogAction
   FlatButton createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
+    assert(data?.child != null || child != null);
+
     return FlatButton(
       key: data?.widgetKey ?? widgetKey,
-      child: data?.child ?? child,
+      child: data?.child ?? child!,
       onPressed: data?.onPressed ?? onPressed,
       color: data?.color,
       colorBrightness: data?.colorBrightness,
@@ -156,9 +162,11 @@ class PlatformDialogAction
   CupertinoDialogAction createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
+    assert(data?.child != null || child != null);
+
     return CupertinoDialogAction(
       key: data?.widgetKey ?? widgetKey,
-      child: data?.child ?? child,
+      child: data?.child ?? child!,
       isDefaultAction: data?.isDefaultAction ?? false,
       isDestructiveAction: data?.isDestructiveAction ?? false,
       onPressed: data?.onPressed ?? onPressed,

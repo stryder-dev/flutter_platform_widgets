@@ -25,29 +25,29 @@ abstract class _BaseData {
     this.max,
   });
 
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final double value;
-  final Color activeColor;
-  final ValueChanged<double> onChanged;
-  final ValueChanged<double> onChangeStart;
-  final ValueChanged<double> onChangeEnd;
-  final int divisions;
-  final double min;
-  final double max;
+  final double? value;
+  final Color? activeColor;
+  final void Function(double)? onChanged;
+  final void Function(double)? onChangeStart;
+  final void Function(double)? onChangeEnd;
+  final int? divisions;
+  final double? min;
+  final double? max;
 }
 
 class MaterialSliderData extends _BaseData {
   MaterialSliderData({
-    Key widgetKey,
-    double value,
-    ValueChanged<double> onChanged,
-    ValueChanged<double> onChangeStart,
-    ValueChanged<double> onChangeEnd,
-    int divisions,
-    double min,
-    double max,
-    Color activeColor,
+    Key? widgetKey,
+    double? value,
+    void Function(double)? onChanged,
+    void Function(double)? onChangeStart,
+    void Function(double)? onChangeEnd,
+    int? divisions,
+    double? min,
+    double? max,
+    Color? activeColor,
     this.inactiveColor,
     this.label,
     this.semanticFormatterCallback,
@@ -65,25 +65,25 @@ class MaterialSliderData extends _BaseData {
             min: min,
             max: max);
 
-  final Color inactiveColor;
-  final String label;
-  final SemanticFormatterCallback semanticFormatterCallback;
-  final FocusNode focusNode;
-  final MouseCursor mouseCursor;
-  final bool autofocus;
+  final Color? inactiveColor;
+  final String? label;
+  final SemanticFormatterCallback? semanticFormatterCallback;
+  final FocusNode? focusNode;
+  final MouseCursor? mouseCursor;
+  final bool? autofocus;
 }
 
 class CupertinoSliderData extends _BaseData {
   CupertinoSliderData({
-    Key widgetKey,
-    double value,
-    ValueChanged<double> onChanged,
-    ValueChanged<double> onChangeStart,
-    ValueChanged<double> onChangeEnd,
-    Color activeColor,
-    int divisions,
-    double min,
-    double max,
+    Key? widgetKey,
+    double? value,
+    void Function(double)? onChanged,
+    void Function(double)? onChangeStart,
+    void Function(double)? onChangeEnd,
+    Color? activeColor,
+    int? divisions,
+    double? min,
+    double? max,
     this.thumbColor,
   }) : super(
             widgetKey: widgetKey,
@@ -96,29 +96,29 @@ class CupertinoSliderData extends _BaseData {
             min: min,
             max: max);
 
-  final Color thumbColor;
+  final Color? thumbColor;
 }
 
 class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
   final double value;
-  final Color activeColor;
-  final ValueChanged<double> onChanged;
-  final ValueChanged<double> onChangeStart;
-  final ValueChanged<double> onChangeEnd;
-  final int divisions;
+  final Color? activeColor;
+  final void Function(double)? onChanged;
+  final void Function(double)? onChangeStart;
+  final void Function(double)? onChangeEnd;
+  final int? divisions;
   final double min;
   final double max;
 
-  final PlatformBuilder<MaterialSliderData> material;
-  final PlatformBuilder<CupertinoSliderData> cupertino;
+  final PlatformBuilder<MaterialSliderData>? material;
+  final PlatformBuilder<CupertinoSliderData>? cupertino;
 
   PlatformSlider({
-    Key key,
+    Key? key,
     this.widgetKey,
-    @required this.value,
-    @required this.onChanged,
+    required this.value,
+    required this.onChanged,
     this.onChangeStart,
     this.onChangeEnd,
     this.activeColor,
@@ -127,10 +127,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.max = 1.0,
     this.material,
     this.cupertino,
-  })  : assert(value != null),
-        assert(divisions == null || divisions > 0),
-        assert(min != null),
-        assert(max != null),
+  })  : assert(divisions == null || divisions > 0),
         assert(value >= min && value <= max),
         super(key: key);
 
@@ -146,8 +143,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       onChangeEnd: data?.onChangeEnd ?? onChangeEnd,
       activeColor: data?.activeColor ?? activeColor,
       divisions: data?.divisions ?? divisions,
-      max: data?.max ?? max ?? 1.0,
-      min: data?.min ?? min ?? 0.0,
+      max: data?.max ?? max,
+      min: data?.min ?? min,
       inactiveColor: data?.inactiveColor,
       label: data?.label,
       semanticFormatterCallback: data?.semanticFormatterCallback,
@@ -169,8 +166,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       onChangeEnd: data?.onChangeEnd ?? onChangeEnd,
       activeColor: data?.activeColor ?? activeColor,
       divisions: data?.divisions ?? divisions,
-      max: data?.max ?? max ?? 1.0,
-      min: data?.min ?? min ?? 0.0,
+      max: data?.max ?? max,
+      min: data?.min ?? min,
       thumbColor: data?.thumbColor ?? CupertinoColors.white,
     );
   }
