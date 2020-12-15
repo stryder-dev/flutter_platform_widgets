@@ -1,4 +1,6 @@
-## [1.0.0] (null saftey)
+## [1.0.0-nullsafety.0] 
+
+#### (Flutter version support: v1.24.0-10.2.pre +)
 
 - Full null safety support.
 
