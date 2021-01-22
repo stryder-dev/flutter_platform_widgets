@@ -137,6 +137,12 @@ class IconsPage extends StatelessWidget {
           _IconCompared('refreshBold', (c) => c.platformIcons.refreshBold),
           _IconCompared('reply', (c) => c.platformIcons.reply),
           _IconCompared('replyAll', (c) => c.platformIcons.replyAll),
+          _IconCompared('remove', (c) => c.platformIcons.remove),
+          _IconCompared('removeCircled', (c) => c.platformIcons.removeCircled),
+          _IconCompared(
+              'removeCircledSolid', (c) => c.platformIcons.removeCircledSolid),
+          _IconCompared('removeCircledOutline',
+              (c) => c.platformIcons.removeCircledOutline),
           _IconCompared('rightChevron', (c) => c.platformIcons.rightChevron),
           _IconCompared('search', (c) => c.platformIcons.search),
           _IconCompared('settings', (c) => c.platformIcons.settings),
