@@ -6,6 +6,12 @@ import 'platform.dart';
 extension PlatformIconsExt on BuildContext {
   /// Render either a Material or Cupertino icon based on the platform
   PlatformIcons get platformIcons => PlatformIcons(this);
+
+  IconData platformIcon({
+    required IconData material,
+    required IconData cupertino,
+  }) =>
+      isMaterial(this) ? material : cupertino;
 }
 
 class PlatformIcons {
