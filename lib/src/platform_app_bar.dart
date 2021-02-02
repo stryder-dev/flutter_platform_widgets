@@ -199,7 +199,6 @@ class PlatformAppBar
         key: data?.widgetKey ?? widgetKey,
         middle: data?.title ?? title,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
-        actionsForegroundColor: data?.actionsForegroundColor,
         automaticallyImplyLeading: data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
             true,
@@ -219,7 +218,6 @@ class PlatformAppBar
       key: data?.widgetKey ?? widgetKey,
       middle: data?.title ?? title,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
-      actionsForegroundColor: data?.actionsForegroundColor,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
