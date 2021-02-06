@@ -1,3 +1,9 @@
+## [1.0.1-nullsafety.0] 
+
+#### (Flutter version support: v1.26.0-17.3.pre +)
+
+- Removed `actionsForegroundColor` on PlatformAppBar
+
 ## [1.0.0-nullsafety.0] 
 
 #### (Flutter version support: v1.24.0-10.2.pre +)
