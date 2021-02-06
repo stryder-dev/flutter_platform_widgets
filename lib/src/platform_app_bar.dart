@@ -110,7 +110,6 @@ class CupertinoNavigationBarData extends _BaseData {
     this.padding,
     this.trailing,
     this.border,
-    this.actionsForegroundColor,
     this.transitionBetweenRoutes,
     this.brightness,
     this.heroTag,
@@ -123,7 +122,6 @@ class CupertinoNavigationBarData extends _BaseData {
 
   final Widget? trailing;
   final Border? border;
-  final Color? actionsForegroundColor;
   final bool? transitionBetweenRoutes;
   final Object? heroTag;
   final bool? automaticallyImplyMiddle;
