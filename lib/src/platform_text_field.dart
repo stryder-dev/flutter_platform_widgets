@@ -107,7 +107,6 @@ class MaterialTextFieldData {
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
-    this.selectionControls,
   });
 
   final Key? widgetKey;
@@ -125,6 +124,9 @@ class MaterialTextFieldData {
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool? maxLengthEnforced;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
@@ -160,6 +162,7 @@ class MaterialTextFieldData {
   final AppPrivateCommandCallback? onAppPrivateCommand;
   final double? cursorHeight;
   final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
 }
 
 class CupertinoTextFieldData {
@@ -219,7 +222,6 @@ class CupertinoTextFieldData {
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
-    this.selectionControls,
   });
 
   final Key? widgetKey;
@@ -244,6 +246,9 @@ class CupertinoTextFieldData {
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool? maxLengthEnforced;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
@@ -276,6 +281,7 @@ class CupertinoTextFieldData {
   final Iterable<String>? autofillHints;
   final double? cursorHeight;
   final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
 }
 
 class PlatformTextField
@@ -299,6 +305,9 @@ class PlatformTextField
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool? maxLengthEnforced;
 
   final void Function(String)? onChanged;
@@ -335,6 +344,7 @@ class PlatformTextField
 
   final double? cursorHeight;
   final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
 
   final MaxLengthEnforcement maxLengthEnforcement;
   final TextSelectionControls selectionControls;
@@ -386,7 +396,6 @@ class PlatformTextField
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
-    this.selectionControls,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -460,7 +469,6 @@ class PlatformTextField
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
-      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 
@@ -541,7 +549,6 @@ class PlatformTextField
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
-      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 }
