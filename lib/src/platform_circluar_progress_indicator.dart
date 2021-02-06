@@ -81,7 +81,6 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       key: data?.key ?? widgetKey,
       animating: data?.animating ?? true,
       radius: data?.radius ?? _kDefaultIndicatorRadius,
-      //iOSVersionStyle: , deprecated
     );
   }
 }

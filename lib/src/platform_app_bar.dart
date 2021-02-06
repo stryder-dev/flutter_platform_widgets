@@ -6,6 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoNavigationBar;
 import 'package:flutter/material.dart' show AppBar, Brightness, TextTheme;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -62,6 +63,11 @@ class MaterialAppBarData extends _BaseData {
     this.shadowColor,
     this.toolbarHeight,
     this.leadingWidth,
+    this.backwardsCompatibility,
+    this.foregroundColor,
+    this.systemOverlayStyle,
+    this.titleTextStyle,
+    this.toolbarTextStyle,
   }) : super(
           widgetKey: widgetKey,
           title: title,
@@ -89,6 +95,11 @@ class MaterialAppBarData extends _BaseData {
   final Color shadowColor;
   final double toolbarHeight;
   final double leadingWidth;
+  final bool backwardsCompatibility;
+  final Color foregroundColor;
+  final SystemUiOverlayStyle systemOverlayStyle;
+  final TextStyle titleTextStyle;
+  final TextStyle toolbarTextStyle;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -177,6 +188,11 @@ class PlatformAppBar
       shadowColor: data?.shadowColor,
       toolbarHeight: data?.toolbarHeight,
       leadingWidth: data?.leadingWidth,
+      backwardsCompatibility: data?.backwardsCompatibility,
+      foregroundColor: data?.foregroundColor,
+      systemOverlayStyle: data?.systemOverlayStyle,
+      titleTextStyle: data?.titleTextStyle,
+      toolbarTextStyle: data?.toolbarTextStyle,
     );
   }
 
