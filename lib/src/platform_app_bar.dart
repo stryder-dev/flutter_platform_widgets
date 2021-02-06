@@ -104,7 +104,6 @@ class CupertinoNavigationBarData extends _BaseData {
     this.padding,
     this.trailing,
     this.border,
-    this.actionsForegroundColor,
     this.transitionBetweenRoutes,
     this.brightness,
     this.heroTag,
@@ -117,7 +116,6 @@ class CupertinoNavigationBarData extends _BaseData {
 
   final Widget? trailing;
   final Border? border;
-  final Color? actionsForegroundColor;
   final bool? transitionBetweenRoutes;
   final Object? heroTag;
   final bool? automaticallyImplyMiddle;
@@ -201,7 +199,6 @@ class PlatformAppBar
         key: data?.widgetKey ?? widgetKey,
         middle: data?.title ?? title,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
-        actionsForegroundColor: data?.actionsForegroundColor,
         automaticallyImplyLeading: data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
             true,
@@ -221,7 +218,6 @@ class PlatformAppBar
       key: data?.widgetKey ?? widgetKey,
       middle: data?.title ?? title,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
-      actionsForegroundColor: data?.actionsForegroundColor,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
