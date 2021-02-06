@@ -1,6 +1,6 @@
 name: flutter_platform_widgets
 description: Simplifying the use of both Material and Cupertino widgets with a single widget
-version: 1.0.0-nullsafety.0
+version: 1.0.1-nullsafety.0
 homepage: https://github.com/aqwert/flutter_platform_widgets
 
 environment:
