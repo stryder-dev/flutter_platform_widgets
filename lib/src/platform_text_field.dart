@@ -23,6 +23,7 @@ import 'package:flutter/services.dart'
         TextInputType,
         TextInputAction,
         TextCapitalization;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -105,6 +106,8 @@ class MaterialTextFieldData {
     this.onAppPrivateCommand,
     this.cursorHeight,
     this.restorationId,
+    this.maxLengthEnforcement,
+    this.selectionControls,
   });
 
   final Key widgetKey;
@@ -122,6 +125,9 @@ class MaterialTextFieldData {
   final bool autocorrect;
   final int maxLines;
   final int maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool maxLengthEnforced;
   final ValueChanged<String> onChanged;
   final VoidCallback onEditingComplete;
@@ -157,6 +163,8 @@ class MaterialTextFieldData {
   final AppPrivateCommandCallback onAppPrivateCommand;
   final double cursorHeight;
   final String restorationId;
+  final MaxLengthEnforcement maxLengthEnforcement;
+  final TextSelectionControls selectionControls;
 }
 
 class CupertinoTextFieldData {
@@ -215,6 +223,8 @@ class CupertinoTextFieldData {
     this.autofillHints,
     this.cursorHeight,
     this.restorationId,
+    this.maxLengthEnforcement,
+    this.selectionControls,
   });
 
   final Key widgetKey;
@@ -239,6 +249,9 @@ class CupertinoTextFieldData {
   final bool autocorrect;
   final int maxLines;
   final int maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool maxLengthEnforced;
   final ValueChanged<String> onChanged;
   final VoidCallback onEditingComplete;
@@ -271,6 +284,8 @@ class CupertinoTextFieldData {
   final Iterable<String> autofillHints;
   final double cursorHeight;
   final String restorationId;
+  final MaxLengthEnforcement maxLengthEnforcement;
+  final TextSelectionControls selectionControls;
 }
 
 class PlatformTextField
@@ -294,6 +309,9 @@ class PlatformTextField
   final bool autocorrect;
   final int maxLines;
   final int maxLength;
+  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
+      'behavior related to the maxLength limit. '
+      'This feature was deprecated after v1.25.0-5.0.pre.')
   final bool maxLengthEnforced;
 
   final ValueChanged<String> onChanged;
@@ -330,6 +348,9 @@ class PlatformTextField
 
   final double cursorHeight;
   final String restorationId;
+
+  final MaxLengthEnforcement maxLengthEnforcement;
+  final TextSelectionControls selectionControls;
 
   PlatformTextField({
     Key key,
@@ -377,6 +398,8 @@ class PlatformTextField
     this.autofillHints,
     this.cursorHeight,
     this.restorationId,
+    this.maxLengthEnforcement,
+    this.selectionControls,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -449,6 +472,8 @@ class PlatformTextField
       onAppPrivateCommand: data?.onAppPrivateCommand,
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
+      maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
+      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 
@@ -528,6 +553,8 @@ class PlatformTextField
       autofillHints: data?.autofillHints ?? autofillHints,
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
+      maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
+      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 }

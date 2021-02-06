@@ -186,6 +186,7 @@ class CupertinoButtonData extends _BaseData {
     this.borderRadius,
     this.minSize,
     this.pressedOpacity,
+    this.alignment,
   }) : super(
             widgetKey: widgetKey,
             child: child,
@@ -197,6 +198,7 @@ class CupertinoButtonData extends _BaseData {
   final BorderRadius borderRadius;
   final double minSize;
   final double pressedOpacity;
+  final AlignmentGeometry alignment;
 }
 
 class CupertinoFilledButtonData extends _BaseData {
@@ -209,6 +211,7 @@ class CupertinoFilledButtonData extends _BaseData {
     this.borderRadius,
     this.minSize,
     this.pressedOpacity,
+    this.alignment,
   }) : super(
             widgetKey: widgetKey,
             child: child,
@@ -219,6 +222,7 @@ class CupertinoFilledButtonData extends _BaseData {
   final BorderRadius borderRadius;
   final double minSize;
   final double pressedOpacity;
+  final AlignmentGeometry alignment;
 }
 
 class PlatformButton
@@ -336,6 +340,7 @@ class PlatformButton
         disabledColor: filledData?.disabledColor ??
             disabledColor ??
             CupertinoColors.quaternarySystemFill,
+        alignment: filledData?.alignment ?? Alignment.center,
       );
     }
 
@@ -354,6 +359,7 @@ class PlatformButton
       disabledColor: data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,
+      alignment: data?.alignment ?? Alignment.center,
     );
   }
 }

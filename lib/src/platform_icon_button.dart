@@ -41,7 +41,8 @@ class CupertinoIconButtonData extends _BaseData {
       Color disabledColor,
       this.borderRadius,
       this.minSize,
-      this.pressedOpacity})
+      this.pressedOpacity,
+      this.alignment})
       : super(
             widgetKey: widgetKey,
             icon: icon,
@@ -53,6 +54,7 @@ class CupertinoIconButtonData extends _BaseData {
   final BorderRadius borderRadius;
   final double minSize;
   final double pressedOpacity;
+  final AlignmentGeometry alignment;
 }
 
 class MaterialIconButtonData extends _BaseData {
@@ -175,6 +177,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       disabledColor: data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,
+      alignment: data?.alignment ?? Alignment.center,
     );
   }
 }
