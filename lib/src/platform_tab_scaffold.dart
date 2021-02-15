@@ -381,7 +381,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       //key
       navigationBar: appBar,
       child: iosContentPad(context, child, appBar, tabBar),
-      backgroundColor: data?.backgroundColor ?? pageBackgroundColor,
+      backgroundColor: Color.fromRGBO(255, 0, 0, 1.0),
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
     );
   }
