@@ -228,7 +228,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
     final platformNavBar = PlatformNavBar(
       items: items,
-      backgroundColor: Color.fromRGBO(255, 0, 0, 1.0),
+      backgroundColor: Color.fromRGBO(0, 255, 255, 1.0),
       currentIndex: index,
       material: materialTabs,
       itemChanged: (int index) {
@@ -381,7 +381,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       //key
       navigationBar: appBar,
       child: iosContentPad(context, child, appBar, tabBar),
-      backgroundColor: Color.fromRGBO(255, 0, 0, 1.0),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
     );
   }
