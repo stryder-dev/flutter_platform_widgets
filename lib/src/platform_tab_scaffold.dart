@@ -228,7 +228,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
     final platformNavBar = PlatformNavBar(
       items: items,
-      backgroundColor: data?.tabsBackgroundColor ?? tabsBackgroundColor,
+      backgroundColor: Color.fromRGBO(255, 0, 0, 1.0),
       currentIndex: index,
       material: materialTabs,
       itemChanged: (int index) {
@@ -307,7 +307,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   ) {
     final navBar = PlatformNavBar(
       items: items,
-      backgroundColor: tabsBackgroundColor,
+      backgroundColor: Color.fromRGBO(0, 255, 0, 1.0),
       currentIndex: currentIndex,
       itemChanged: itemChanged,
       cupertino: cupertinoTabs,
@@ -318,7 +318,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       key: widgetKey,
       tabBar: tabBar,
       controller: controller,
-      backgroundColor: data?.tabsBackgroundColor,
+      backgroundColor: Color.fromRGBO(0, 0, 255, 1.0),
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
       tabBuilder: (context, index) {
         if (data == null || data.useCupertinoTabView) {
