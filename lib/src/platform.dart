@@ -103,7 +103,6 @@ PlatformTarget platform(BuildContext context) {
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
-  @Deprecated('Use barrierDismissible.') bool androidBarrierDismissible = true,
   bool barrierDismissible,
   RouteSettings routeSettings,
   bool useRootNavigator = true,
@@ -115,7 +114,7 @@ Future<T> showPlatformDialog<T>({
     return showDialog<T>(
       context: context,
       builder: builder,
-      barrierDismissible: barrierDismissible ?? androidBarrierDismissible,
+      barrierDismissible: barrierDismissible,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
       useSafeArea: materialUseSafeArea,
