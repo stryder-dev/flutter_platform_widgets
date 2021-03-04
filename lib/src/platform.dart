@@ -7,12 +7,17 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart'
-    show showCupertinoDialog, showCupertinoModalPopup;
+    show CupertinoDynamicColor, showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     show Theme, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+
+const Color _kModalBarrierColor = CupertinoDynamicColor.withBrightness(
+  color: Color(0x33000000),
+  darkColor: Color(0x7A000000),
+);
 
 /// Extends on [TargetPlatform] to include web
 enum PlatformTarget {
@@ -104,6 +109,7 @@ Future<T> showPlatformDialog<T>({
   bool useRootNavigator = true,
   bool materialUseSafeArea = true,
   Color materialBarrierColor,
+  String barrierLabel,
 }) {
   if (isMaterial(context)) {
     return showDialog<T>(
@@ -115,6 +121,7 @@ Future<T> showPlatformDialog<T>({
       useSafeArea: materialUseSafeArea,
       //child: , deprecated
       barrierColor: materialBarrierColor,
+      barrierLabel: barrierLabel,
     );
   } else {
     return showCupertinoDialog<T>(
@@ -123,6 +130,7 @@ Future<T> showPlatformDialog<T>({
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
       barrierDismissible: barrierDismissible ?? false,
+      barrierLabel: barrierLabel,
     );
   }
 }
@@ -138,6 +146,7 @@ class MaterialModalSheetData {
   final bool enableDrag;
   final bool isDismissible;
   final RouteSettings routeSettings;
+  AnimationController transitionAnimationController;
 
   MaterialModalSheetData({
     this.backgroundColor,
@@ -150,6 +159,7 @@ class MaterialModalSheetData {
     this.enableDrag = false,
     this.isDismissible = false,
     this.routeSettings,
+    this.transitionAnimationController,
   })  : assert(isScrollControlled != null),
         assert(useRootNavigator != null),
         assert(enableDrag != null),
@@ -160,11 +170,17 @@ class CupertinoModalSheetData {
   final ImageFilter imageFilter;
   final bool semanticsDismissible;
   final bool useRootNavigator;
+  final Color barrierColor;
+  final bool barrierDismissible;
+  final RouteSettings routeSettings;
 
   CupertinoModalSheetData({
     this.imageFilter,
     this.semanticsDismissible,
     this.useRootNavigator = true,
+    this.barrierColor = _kModalBarrierColor,
+    this.barrierDismissible = true,
+    this.routeSettings,
   }) : assert(useRootNavigator != null);
 }
 
@@ -190,6 +206,7 @@ Future<T> showPlatformModalSheet<T>({
       enableDrag: material?.enableDrag ?? true,
       isDismissible: material?.isDismissible ?? true,
       routeSettings: material?.routeSettings,
+      transitionAnimationController: material?.transitionAnimationController,
     );
   } else {
     return showCupertinoModalPopup<T>(
@@ -198,6 +215,9 @@ Future<T> showPlatformModalSheet<T>({
       filter: cupertino?.imageFilter,
       semanticsDismissible: cupertino?.semanticsDismissible,
       useRootNavigator: cupertino?.useRootNavigator ?? true,
+      barrierColor: cupertino?.barrierColor,
+      barrierDismissible: cupertino?.barrierDismissible ?? true,
+      routeSettings: cupertino?.routeSettings,
     );
   }
 }

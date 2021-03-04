@@ -1,3 +1,9 @@
+## [0.80.0-beta.0] - Feburary 06, 2021
+
+#### (Flutter version support: v1.26.0-17.3.pre)
+
+- Update to include additional params
+
 ## [0.72.0] - December 03, 2020
 
 #### (Flutter version support: v1.22.0 - v1.22.4)

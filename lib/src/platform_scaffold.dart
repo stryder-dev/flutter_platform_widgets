@@ -14,10 +14,11 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show
-        Material,
-        Scaffold,
+        DrawerCallback,
         FloatingActionButtonAnimator,
-        FloatingActionButtonLocation;
+        FloatingActionButtonLocation,
+        Material,
+        Scaffold;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/src/platform.dart';
 
@@ -57,6 +58,9 @@ class MaterialScaffoldData extends _BaseData {
     this.extendBodyBehindAppBar,
     this.drawerEnableOpenDragGesture,
     this.endDrawerEnableOpenDragGesture,
+    this.restorationId,
+    this.onDrawerChanged,
+    this.onEndDrawerChanged,
   }) : super(
             widgetKey: widgetKey, backgroundColor: backgroundColor, body: body);
 
@@ -78,6 +82,9 @@ class MaterialScaffoldData extends _BaseData {
   final bool extendBodyBehindAppBar;
   final bool drawerEnableOpenDragGesture;
   final bool endDrawerEnableOpenDragGesture;
+  final String restorationId;
+  final DrawerCallback onDrawerChanged;
+  final DrawerCallback onEndDrawerChanged;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -90,6 +97,7 @@ class CupertinoPageScaffoldData extends _BaseData {
       this.resizeToAvoidBottomInset,
       this.resizeToAvoidBottomInsetTab,
       this.backgroundColorTab,
+      this.restorationIdTab,
       this.controller})
       : super(
           widgetKey: widgetKey,
@@ -103,6 +111,7 @@ class CupertinoPageScaffoldData extends _BaseData {
   final bool resizeToAvoidBottomInsetTab;
   final Color backgroundColorTab;
   final CupertinoTabController controller;
+  final String restorationIdTab;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
@@ -163,6 +172,9 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       drawerEnableOpenDragGesture: data?.drawerEnableOpenDragGesture ?? true,
       endDrawerEnableOpenDragGesture:
           data?.endDrawerEnableOpenDragGesture ?? true,
+      onDrawerChanged: data?.onDrawerChanged,
+      onEndDrawerChanged: data?.onEndDrawerChanged,
+      restorationId: data?.restorationId,
       //resizeToAvoidBottomPadding: deprecated,
     );
   }
@@ -199,6 +211,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
             // key: widgetKey used for CupertinoTabScaffold
           );
         },
+        restorationId: data?.restorationIdTab,
       );
     } else {
       final child = data?.body ?? body;

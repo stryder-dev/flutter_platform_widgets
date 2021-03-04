@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoApp, CupertinoThemeData;
 import 'package:flutter/material.dart'
-    show MaterialApp, Theme, ThemeData, ThemeMode;
+    show MaterialApp, ScaffoldMessengerState, Theme, ThemeData, ThemeMode;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -41,6 +41,7 @@ abstract class _BaseData {
     this.onGenerateInitialRoutes,
     this.highContrastDarkTheme,
     this.highContrastTheme,
+    this.restorationScopeId,
   });
 
   final Key widgetKey;
@@ -70,6 +71,7 @@ abstract class _BaseData {
   final InitialRouteListFactory onGenerateInitialRoutes;
   final ThemeData highContrastDarkTheme;
   final ThemeData highContrastTheme;
+  final String restorationScopeId;
 }
 
 abstract class _BaseRouterData {
@@ -98,6 +100,7 @@ abstract class _BaseRouterData {
     this.routeInformationParser,
     this.routerDelegate,
     this.backButtonDispatcher,
+    this.restorationScopeId,
   });
 
   final Key widgetKey;
@@ -132,6 +135,8 @@ abstract class _BaseRouterData {
 
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher backButtonDispatcher;
+
+  final String restorationScopeId;
 }
 
 class MaterialAppData extends _BaseData {
@@ -161,10 +166,12 @@ class MaterialAppData extends _BaseData {
       Map<LogicalKeySet, Intent> shortcuts,
       Map<Type, Action<Intent>> actions,
       InitialRouteListFactory onGenerateInitialRoutes,
+      String restorationScopeId,
       this.theme,
       this.debugShowMaterialGrid,
       this.darkTheme,
-      this.themeMode})
+      this.themeMode,
+      this.scaffoldMessengerKey})
       : super(
           widgetKey: widgetKey,
           navigatorKey: navigatorKey,
@@ -191,12 +198,14 @@ class MaterialAppData extends _BaseData {
           shortcuts: shortcuts,
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
+          restorationScopeId: restorationScopeId,
         );
 
   final ThemeData theme;
   final bool debugShowMaterialGrid;
   final ThemeData darkTheme;
   final ThemeMode themeMode;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
@@ -223,6 +232,7 @@ class MaterialAppRouterData extends _BaseRouterData {
     this.debugShowMaterialGrid,
     this.darkTheme,
     this.themeMode,
+    this.scaffoldMessengerKey,
   }) : super(
           widgetKey: widgetKey,
           builder: builder,
@@ -248,6 +258,7 @@ class MaterialAppRouterData extends _BaseRouterData {
   final bool debugShowMaterialGrid;
   final ThemeData darkTheme;
   final ThemeMode themeMode;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -406,6 +417,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher backButtonDispatcher;
 
+  final String restorationScopeId;
+
   const PlatformApp({
     Key key,
     this.widgetKey,
@@ -433,6 +446,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.shortcuts,
     this.actions,
     this.onGenerateInitialRoutes,
+    this.restorationScopeId,
     this.material,
     this.cupertino,
   })  : routeInformationProvider = null,
@@ -466,6 +480,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.debugShowCheckedModeBanner,
     this.shortcuts,
     this.actions,
+    this.restorationScopeId,
     PlatformBuilder<MaterialAppRouterData> material,
     PlatformBuilder<CupertinoAppRouterData> cupertino,
   })  : navigatorObservers = null,
@@ -536,6 +551,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             true,
         shortcuts: dataRouter?.shortcuts ?? shortcuts,
         actions: dataRouter?.actions ?? actions,
+        key: dataRouter?.widgetKey ?? widgetKey,
+        restorationScopeId:
+            dataRouter?.restorationScopeId ?? restorationScopeId,
+        scaffoldMessengerKey: dataRouter?.scaffoldMessengerKey,
       );
     } else {
       final data = material?.call(context, platform(context));
@@ -588,6 +607,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
         highContrastDarkTheme: data?.highContrastDarkTheme,
         highContrastTheme: data?.highContrastTheme,
+        restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
+        scaffoldMessengerKey: data?.scaffoldMessengerKey,
       );
     }
   }
@@ -639,6 +660,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             true,
         shortcuts: dataRouter?.shortcuts ?? shortcuts,
         actions: dataRouter?.actions ?? actions,
+        key: dataRouter?.widgetKey ?? widgetKey,
+        restorationScopeId:
+            dataRouter?.restorationScopeId ?? restorationScopeId,
       );
     } else {
       final data = cupertino?.call(context, platform(context));
@@ -685,6 +709,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         actions: data?.actions ?? actions,
         onGenerateInitialRoutes:
             data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
+        restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
       );
     }
   }
