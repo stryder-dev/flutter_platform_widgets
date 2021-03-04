@@ -1,8 +1,9 @@
-## [0.80.0-beta.0] - Feburary 06, 2021
+## [0.80.0] - March 04, 2021
 
-#### (Flutter version support: v1.26.0-17.3.pre)
+#### (Flutter version support: v2.0)
 
 - Update to include additional params
+- Remove a deprecated field
 
 ## [0.72.0] - December 03, 2020
 
