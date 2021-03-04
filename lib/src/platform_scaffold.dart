@@ -175,7 +175,6 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       onDrawerChanged: data?.onDrawerChanged,
       onEndDrawerChanged: data?.onEndDrawerChanged,
       restorationId: data?.restorationId,
-      //resizeToAvoidBottomPadding: deprecated,
     );
   }
 

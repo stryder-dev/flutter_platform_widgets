@@ -286,7 +286,6 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       onDrawerChanged: data?.onDrawerChanged,
       onEndDrawerChanged: data?.onEndDrawerChanged,
       restorationId: data?.restorationId ?? restorationId,
-      //resizeToAvoidBottomPadding: deprecated,
     );
   }
 
