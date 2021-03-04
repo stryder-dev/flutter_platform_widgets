@@ -159,7 +159,7 @@ return PlatformButton(
 
 > Note: For material you can use the `FlatButton` instead. To do this use the `MaterialFlatButtonData` on the `materialFlat` argument.
 
-> NoteL For cupertino you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `cupertinoFilled` argument.
+> Note: For cupertino you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `cupertinoFilled` argument.
 
 ```dart
 return PlatformButton(
