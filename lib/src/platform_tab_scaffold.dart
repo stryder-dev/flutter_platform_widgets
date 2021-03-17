@@ -67,7 +67,7 @@ class MaterialTabScaffoldData extends _BaseData {
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
   final MaterialTabController? controller;
-  final PreferredSizeWidget Function(BuildContext context, int index)?
+  final PreferredSizeWidget? Function(BuildContext context, int index)?
       appBarBuilder;
   final Widget? drawer;
   final Widget? endDrawer;
@@ -130,7 +130,7 @@ class CupertinoTabScaffoldData extends _BaseData {
       tabViewDataBuilder;
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
-  final ObstructingPreferredSizeWidget Function(
+  final ObstructingPreferredSizeWidget? Function(
       BuildContext context, int index)? appBarBuilder;
   final bool? resizeToAvoidBottomInset;
   final bool? resizeToAvoidBottomInsetTab;
@@ -164,7 +164,8 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
   final List<BottomNavigationBarItem>? items;
 
-  final PlatformAppBar Function(BuildContext context, int index)? appBarBuilder;
+  final PlatformAppBar? Function(BuildContext context, int index)?
+      appBarBuilder;
 
   PlatformTabScaffold({
     Key? key,
@@ -244,7 +245,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     final appBar = data?.appBarBuilder?.call(context, controller.index) ??
         appBarBuilder
             ?.call(context, controller.index)
-            .createMaterialWidget(context);
+            ?.createMaterialWidget(context);
 
     return Scaffold(
       key: data?.widgetKey ?? widgetKey,
@@ -374,7 +375,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     CupertinoTabBar tabBar,
   ) {
     final appBar = data?.appBarBuilder?.call(context, index) ??
-        appBarBuilder?.call(context, index).createCupertinoWidget(context);
+        appBarBuilder?.call(context, index)?.createCupertinoWidget(context);
 
     final child = data?.bodyBuilder?.call(context, index) ??
         bodyBuilder?.call(context, index);
