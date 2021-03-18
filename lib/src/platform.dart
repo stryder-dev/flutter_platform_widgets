@@ -114,7 +114,7 @@ Future<T> showPlatformDialog<T>({
     return showDialog<T>(
       context: context,
       builder: builder,
-      barrierDismissible: barrierDismissible,
+      barrierDismissible: barrierDismissible ?? true,
       routeSettings: routeSettings,
       useRootNavigator: useRootNavigator,
       useSafeArea: materialUseSafeArea,
