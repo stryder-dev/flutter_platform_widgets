@@ -1,3 +1,9 @@
+## [1.0.1-nullsafety.2] 
+
+#### (Flutter version support: v2.0.0 +)
+
+- export `PlatformTarget`
+
 ## [1.0.1-nullsafety.1] 
 
 #### (Flutter version support: v2.0.0 +)
