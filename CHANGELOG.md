@@ -1,3 +1,17 @@
+## [0.80.1] - March 18, 2021
+
+#### (Flutter version support: v2.0)
+
+- fix for `showPlatformDialog` barrierDismissible
+- export `PlatformTarget`
+
+## [0.80.0] - March 04, 2021
+
+#### (Flutter version support: v2.0)
+
+- Update to include additional params
+- Remove a deprecated field
+
 ## [1.0.1-nullsafety.2] 
 
 #### (Flutter version support: v2.0.0 +)

@@ -76,6 +76,10 @@ class MaterialSwitchData extends _BaseData {
   final ImageErrorListener? onActiveThumbImageError;
   final ImageErrorListener? onInactiveThumbImageError;
   final MouseCursor? mouseCursor;
+  final MaterialStateProperty<Color?>? overlayColor;
+  final double? splashRadius;
+  final MaterialStateProperty<Color?>? thumbColor;
+  final MaterialStateProperty<Color?>? trackColor;
 }
 
 class CupertinoSwitchData extends _BaseData {

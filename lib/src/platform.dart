@@ -104,6 +104,7 @@ Future<T?> showPlatformDialog<T>({
   bool useRootNavigator = true,
   bool materialUseSafeArea = true,
   Color? materialBarrierColor,
+  String? barrierLabel,
 }) {
   if (isMaterial(context)) {
     return showDialog<T>(
@@ -163,7 +164,7 @@ class CupertinoModalSheetData {
   final bool useRootNavigator;
   final Color barrierColor;
   final bool barrierDismissible;
-  final RouteSettings routeSettings;
+  final RouteSettings? routeSettings;
 
   CupertinoModalSheetData({
     this.imageFilter,
@@ -206,7 +207,7 @@ Future<T?> showPlatformModalSheet<T>({
       filter: cupertino?.imageFilter,
       semanticsDismissible: cupertino?.semanticsDismissible,
       useRootNavigator: cupertino?.useRootNavigator ?? true,
-      barrierColor: cupertino?.barrierColor,
+      barrierColor: cupertino?.barrierColor ?? _kModalBarrierColor,
       barrierDismissible: cupertino?.barrierDismissible ?? true,
       routeSettings: cupertino?.routeSettings,
     );

@@ -71,6 +71,7 @@ abstract class _BaseData {
   final InitialRouteListFactory? onGenerateInitialRoutes;
   final ThemeData? highContrastDarkTheme;
   final ThemeData? highContrastTheme;
+  final String? restorationScopeId;
 }
 
 abstract class _BaseRouterData {
@@ -134,40 +135,44 @@ abstract class _BaseRouterData {
 
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher? backButtonDispatcher;
+
+  final String? restorationScopeId;
 }
 
 class MaterialAppData extends _BaseData {
-  MaterialAppData({
-    Key? widgetKey,
-    GlobalKey<NavigatorState>? navigatorKey,
-    Widget? home,
-    Map<String, WidgetBuilder>? routes,
-    String? initialRoute,
-    RouteFactory? onGenerateRoute,
-    RouteFactory? onUnknownRoute,
-    List<NavigatorObserver>? navigatorObservers,
-    TransitionBuilder? builder,
-    String? title,
-    GenerateAppTitle? onGenerateTitle,
-    Color? color,
-    Locale? locale,
-    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
-    LocaleListResolutionCallback? localeListResolutionCallback,
-    LocaleResolutionCallback? localeResolutionCallback,
-    Iterable<Locale>? supportedLocales,
-    bool? showPerformanceOverlay,
-    bool? checkerboardRasterCacheImages,
-    bool? checkerboardOffscreenLayers,
-    bool? showSemanticsDebugger,
-    bool? debugShowCheckedModeBanner,
-    Map<LogicalKeySet, Intent>? shortcuts,
-    Map<Type, Action<Intent>>? actions,
-    InitialRouteListFactory? onGenerateInitialRoutes,
-    this.theme,
-    this.debugShowMaterialGrid,
-    this.darkTheme,
-    this.themeMode,
-  }) : super(
+  MaterialAppData(
+      {Key? widgetKey,
+      GlobalKey<NavigatorState>? navigatorKey,
+      Widget? home,
+      Map<String, WidgetBuilder>? routes,
+      String? initialRoute,
+      RouteFactory? onGenerateRoute,
+      RouteFactory? onUnknownRoute,
+      List<NavigatorObserver>? navigatorObservers,
+      TransitionBuilder? builder,
+      String? title,
+      GenerateAppTitle? onGenerateTitle,
+      Color? color,
+      Locale? locale,
+      Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+      LocaleListResolutionCallback? localeListResolutionCallback,
+      LocaleResolutionCallback? localeResolutionCallback,
+      Iterable<Locale>? supportedLocales,
+      bool? showPerformanceOverlay,
+      bool? checkerboardRasterCacheImages,
+      bool? checkerboardOffscreenLayers,
+      bool? showSemanticsDebugger,
+      bool? debugShowCheckedModeBanner,
+      Map<LogicalKeySet, Intent>? shortcuts,
+      Map<Type, Action<Intent>>? actions,
+      InitialRouteListFactory? onGenerateInitialRoutes,
+      String? restorationScopeId,
+      this.theme,
+      this.debugShowMaterialGrid,
+      this.darkTheme,
+      this.themeMode,
+      this.scaffoldMessengerKey})
+      : super(
           widgetKey: widgetKey,
           navigatorKey: navigatorKey,
           home: home,
@@ -200,6 +205,7 @@ class MaterialAppData extends _BaseData {
   final bool? debugShowMaterialGrid;
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
+  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
@@ -252,6 +258,7 @@ class MaterialAppRouterData extends _BaseRouterData {
   final bool? debugShowMaterialGrid;
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
+  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -410,7 +417,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher? backButtonDispatcher;
 
-  final String restorationScopeId;
+  final String? restorationScopeId;
 
   const PlatformApp({
     Key? key,
@@ -473,6 +480,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.debugShowCheckedModeBanner,
     this.shortcuts,
     this.actions,
+    this.restorationScopeId,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
@@ -498,7 +506,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       assert(dataRouter?.routerDelegate != null || routerDelegate != null);
 
       return MaterialApp.router(
-        key: dataRouter?.widgetKey ?? widgetKey,
         routeInformationProvider:
             dataRouter?.routeInformationProvider ?? routeInformationProvider,
         routeInformationParser:

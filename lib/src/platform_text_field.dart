@@ -107,6 +107,7 @@ class MaterialTextFieldData {
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
+    this.selectionControls,
   });
 
   final Key? widgetKey;
@@ -163,6 +164,7 @@ class MaterialTextFieldData {
   final double? cursorHeight;
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
+  final TextSelectionControls? selectionControls;
 }
 
 class CupertinoTextFieldData {
@@ -222,6 +224,7 @@ class CupertinoTextFieldData {
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
+    this.selectionControls,
   });
 
   final Key? widgetKey;
@@ -282,6 +285,7 @@ class CupertinoTextFieldData {
   final double? cursorHeight;
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
+  final TextSelectionControls? selectionControls;
 }
 
 class PlatformTextField
@@ -346,8 +350,7 @@ class PlatformTextField
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
 
-  final MaxLengthEnforcement maxLengthEnforcement;
-  final TextSelectionControls selectionControls;
+  final TextSelectionControls? selectionControls;
 
   PlatformTextField({
     Key? key,
@@ -396,6 +399,7 @@ class PlatformTextField
     this.cursorHeight,
     this.restorationId,
     this.maxLengthEnforcement,
+    this.selectionControls,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -469,6 +473,7 @@ class PlatformTextField
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
+      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 
@@ -549,6 +554,7 @@ class PlatformTextField
       cursorHeight: data?.cursorHeight ?? cursorHeight,
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
+      selectionControls: data?.selectionControls ?? selectionControls,
     );
   }
 }

@@ -89,6 +89,9 @@ class MaterialScaffoldData extends _BaseData {
   final bool? extendBodyBehindAppBar;
   final bool? drawerEnableOpenDragGesture;
   final bool? endDrawerEnableOpenDragGesture;
+  final String? restorationId;
+  final DrawerCallback? onDrawerChanged;
+  final DrawerCallback? onEndDrawerChanged;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -101,6 +104,7 @@ class CupertinoPageScaffoldData extends _BaseData {
     this.resizeToAvoidBottomInset,
     this.resizeToAvoidBottomInsetTab,
     this.backgroundColorTab,
+    this.restorationIdTab,
     this.controller,
   }) : super(
           widgetKey: widgetKey,
@@ -114,6 +118,7 @@ class CupertinoPageScaffoldData extends _BaseData {
   final bool? resizeToAvoidBottomInsetTab;
   final Color? backgroundColorTab;
   final CupertinoTabController? controller;
+  final String? restorationIdTab;
 }
 
 class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {

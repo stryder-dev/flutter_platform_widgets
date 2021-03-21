@@ -96,6 +96,11 @@ class MaterialAppBarData extends _BaseData {
   final Color? shadowColor;
   final double? toolbarHeight;
   final double? leadingWidth;
+  final bool? backwardsCompatibility;
+  final Color? foregroundColor;
+  final SystemUiOverlayStyle? systemOverlayStyle;
+  final TextStyle? titleTextStyle;
+  final TextStyle? toolbarTextStyle;
 }
 
 class CupertinoNavigationBarData extends _BaseData {

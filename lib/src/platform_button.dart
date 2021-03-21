@@ -199,6 +199,7 @@ class CupertinoButtonData extends _BaseData {
   final BorderRadius? borderRadius;
   final double? minSize;
   final double? pressedOpacity;
+  final AlignmentGeometry? alignment;
 }
 
 class CupertinoFilledButtonData extends _BaseData {
@@ -222,6 +223,7 @@ class CupertinoFilledButtonData extends _BaseData {
   final BorderRadius? borderRadius;
   final double? minSize;
   final double? pressedOpacity;
+  final AlignmentGeometry? alignment;
 }
 
 class PlatformButton
@@ -347,7 +349,7 @@ class PlatformButton
         disabledColor: filledData.disabledColor ??
             disabledColor ??
             CupertinoColors.quaternarySystemFill,
-        alignment: filledData?.alignment ?? Alignment.center,
+        alignment: filledData.alignment ?? Alignment.center,
       );
     }
 

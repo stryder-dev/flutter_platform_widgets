@@ -54,6 +54,7 @@ class CupertinoIconButtonData extends _BaseData {
   final BorderRadius? borderRadius;
   final double? minSize;
   final double? pressedOpacity;
+  final AlignmentGeometry? alignment;
 }
 
 class MaterialIconButtonData extends _BaseData {

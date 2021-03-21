@@ -90,6 +90,9 @@ class MaterialTabScaffoldData extends _BaseData {
   final Color? tabsBackgroundColor;
   final bool? drawerEnableOpenDragGesture;
   final bool? endDrawerEnableOpenDragGesture;
+  final String? restorationId;
+  final DrawerCallback? onDrawerChanged;
+  final DrawerCallback? onEndDrawerChanged;
 }
 
 class CupertinoTabViewData {
@@ -143,6 +146,8 @@ class CupertinoTabScaffoldData extends _BaseData {
   final Color? tabsBackgroundColor;
   final CupertinoTabController? controller;
   final bool? useCupertinoTabView;
+  final String? restorationId;
+  final String? restorationScopeIdTabView;
 }
 
 class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
@@ -173,7 +178,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final PlatformAppBar? Function(BuildContext context, int index)?
       appBarBuilder;
 
-  final String restorationId;
+  final String? restorationId;
 
   PlatformTabScaffold({
     Key? key,
