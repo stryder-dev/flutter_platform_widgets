@@ -110,61 +110,61 @@ class MaterialTextFieldData {
     this.selectionControls,
   });
 
-  final Key widgetKey;
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final InputDecoration decoration;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final TextCapitalization textCapitalization;
-  final TextStyle style;
-  final TextAlign textAlign;
-  final TextDirection textDirection;
-  final bool autofocus;
-  final bool obscureText;
-  final bool autocorrect;
-  final int maxLines;
-  final int maxLength;
+  final Key? widgetKey;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final InputDecoration? decoration;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization? textCapitalization;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final bool? autofocus;
+  final bool? obscureText;
+  final bool? autocorrect;
+  final int? maxLines;
+  final int? maxLength;
   @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
       'behavior related to the maxLength limit. '
       'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool maxLengthEnforced;
-  final ValueChanged<String> onChanged;
-  final VoidCallback onEditingComplete;
-  final ValueChanged<String> onSubmitted;
-  final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
-  final double cursorWidth;
-  final Radius cursorRadius;
-  final Color cursorColor;
-  final Brightness keyboardAppearance;
-  final EdgeInsets scrollPadding;
-  final bool enableInteractiveSelection;
-  final GestureTapCallback onTap;
-  final InputCounterWidgetBuilder buildCounter;
-  final DragStartBehavior dragStartBehavior;
-  final bool expands;
-  final int minLines;
-  final ScrollPhysics scrollPhysics;
-  final StrutStyle strutStyle;
-  final ScrollController scrollController;
-  final bool readOnly;
-  final bool showCursor;
-  final TextAlignVertical textAlignVertical;
-  final ToolbarOptions toolbarOptions;
-  final bool enableSuggestions;
-  final SmartDashesType smartDashesType;
-  final SmartQuotesType smartQuotesType;
-  final ui.BoxHeightStyle selectionHeightStyle;
-  final ui.BoxWidthStyle selectionWidthStyle;
-  final String obscuringCharacter;
-  final Iterable<String> autofillHints;
-  final MouseCursor mouseCursor;
-  final AppPrivateCommandCallback onAppPrivateCommand;
-  final double cursorHeight;
-  final String restorationId;
-  final MaxLengthEnforcement maxLengthEnforcement;
-  final TextSelectionControls selectionControls;
+  final bool? maxLengthEnforced;
+  final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final double? cursorWidth;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets? scrollPadding;
+  final bool? enableInteractiveSelection;
+  final GestureTapCallback? onTap;
+  final InputCounterWidgetBuilder? buildCounter;
+  final DragStartBehavior? dragStartBehavior;
+  final bool? expands;
+  final int? minLines;
+  final ScrollPhysics? scrollPhysics;
+  final StrutStyle? strutStyle;
+  final ScrollController? scrollController;
+  final bool? readOnly;
+  final bool? showCursor;
+  final TextAlignVertical? textAlignVertical;
+  final ToolbarOptions? toolbarOptions;
+  final bool? enableSuggestions;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final ui.BoxHeightStyle? selectionHeightStyle;
+  final ui.BoxWidthStyle? selectionWidthStyle;
+  final String? obscuringCharacter;
+  final Iterable<String>? autofillHints;
+  final MouseCursor? mouseCursor;
+  final AppPrivateCommandCallback? onAppPrivateCommand;
+  final double? cursorHeight;
+  final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final TextSelectionControls? selectionControls;
 }
 
 class CupertinoTextFieldData {
@@ -227,137 +227,137 @@ class CupertinoTextFieldData {
     this.selectionControls,
   });
 
-  final Key widgetKey;
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final BoxDecoration decoration;
-  final EdgeInsetsGeometry padding;
-  final String placeholder;
-  final TextStyle placeholderStyle;
-  final Widget prefix;
-  final OverlayVisibilityMode prefixMode;
-  final Widget suffix;
-  final OverlayVisibilityMode suffixMode;
-  final OverlayVisibilityMode clearButtonMode;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final TextCapitalization textCapitalization;
-  final TextStyle style;
-  final TextAlign textAlign;
-  final bool autofocus;
-  final bool obscureText;
-  final bool autocorrect;
-  final int maxLines;
-  final int maxLength;
+  final Key? widgetKey;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final BoxDecoration? decoration;
+  final EdgeInsetsGeometry? padding;
+  final String? placeholder;
+  final TextStyle? placeholderStyle;
+  final Widget? prefix;
+  final OverlayVisibilityMode? prefixMode;
+  final Widget? suffix;
+  final OverlayVisibilityMode? suffixMode;
+  final OverlayVisibilityMode? clearButtonMode;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization? textCapitalization;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final bool? autofocus;
+  final bool? obscureText;
+  final bool? autocorrect;
+  final int? maxLines;
+  final int? maxLength;
   @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
       'behavior related to the maxLength limit. '
       'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool maxLengthEnforced;
-  final ValueChanged<String> onChanged;
-  final VoidCallback onEditingComplete;
-  final ValueChanged<String> onSubmitted;
-  final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
-  final double cursorWidth;
-  final Radius cursorRadius;
-  final Color cursorColor;
-  final Brightness keyboardAppearance;
-  final EdgeInsets scrollPadding;
-  final DragStartBehavior dragStartBehavior;
-  final bool expands;
-  final int minLines;
-  final ScrollPhysics scrollPhysics;
-  final StrutStyle strutStyle;
-  final bool enableInteractiveSelection;
-  final ScrollController scrollController;
-  final bool readOnly;
-  final bool showCursor;
-  final TextAlignVertical textAlignVertical;
-  final ToolbarOptions toolbarOptions;
-  final GestureTapCallback onTap;
-  final bool enableSuggestions;
-  final SmartDashesType smartDashesType;
-  final SmartQuotesType smartQuotesType;
-  final ui.BoxHeightStyle selectionHeightStyle;
-  final ui.BoxWidthStyle selectionWidthStyle;
-  final String obscuringCharacter;
-  final Iterable<String> autofillHints;
-  final double cursorHeight;
-  final String restorationId;
-  final MaxLengthEnforcement maxLengthEnforcement;
-  final TextSelectionControls selectionControls;
+  final bool? maxLengthEnforced;
+  final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final double? cursorWidth;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets? scrollPadding;
+  final DragStartBehavior? dragStartBehavior;
+  final bool? expands;
+  final int? minLines;
+  final ScrollPhysics? scrollPhysics;
+  final StrutStyle? strutStyle;
+  final bool? enableInteractiveSelection;
+  final ScrollController? scrollController;
+  final bool? readOnly;
+  final bool? showCursor;
+  final TextAlignVertical? textAlignVertical;
+  final ToolbarOptions? toolbarOptions;
+  final GestureTapCallback? onTap;
+  final bool? enableSuggestions;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final ui.BoxHeightStyle? selectionHeightStyle;
+  final ui.BoxWidthStyle? selectionWidthStyle;
+  final String? obscuringCharacter;
+  final Iterable<String>? autofillHints;
+  final double? cursorHeight;
+  final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final TextSelectionControls? selectionControls;
 }
 
 class PlatformTextField
     extends PlatformWidgetBase<CupertinoTextField, TextField> {
-  final Key widgetKey;
+  final Key? widgetKey;
 
-  final PlatformBuilder<MaterialTextFieldData> material;
-  final PlatformBuilder<CupertinoTextFieldData> cupertino;
+  final PlatformBuilder<MaterialTextFieldData>? material;
+  final PlatformBuilder<CupertinoTextFieldData>? cupertino;
 
-  final TextEditingController controller;
-  final FocusNode focusNode;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
 
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final TextCapitalization textCapitalization;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization? textCapitalization;
 
-  final TextStyle style;
-  final TextAlign textAlign;
-  final bool autofocus;
-  final bool obscureText;
-  final bool autocorrect;
-  final int maxLines;
-  final int maxLength;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final bool? autofocus;
+  final bool? obscureText;
+  final bool? autocorrect;
+  final int? maxLines;
+  final int? maxLength;
   @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
       'behavior related to the maxLength limit. '
       'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool maxLengthEnforced;
+  final bool? maxLengthEnforced;
 
-  final ValueChanged<String> onChanged;
-  final VoidCallback onEditingComplete;
-  final ValueChanged<String> onSubmitted;
-  final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
-  final double cursorWidth;
-  final Radius cursorRadius;
-  final DragStartBehavior dragStartBehavior;
-  final bool expands;
-  final int minLines;
-  final ScrollPhysics scrollPhysics;
-  final StrutStyle strutStyle;
-  final bool enableInteractiveSelection;
-  final ScrollController scrollController;
-  final GestureTapCallback onTap;
-  final bool readOnly;
-  final bool showCursor;
-  final TextAlignVertical textAlignVertical;
-  final ToolbarOptions toolbarOptions;
+  final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final double? cursorWidth;
+  final Radius? cursorRadius;
+  final DragStartBehavior? dragStartBehavior;
+  final bool? expands;
+  final int? minLines;
+  final ScrollPhysics? scrollPhysics;
+  final StrutStyle? strutStyle;
+  final bool? enableInteractiveSelection;
+  final ScrollController? scrollController;
+  final GestureTapCallback? onTap;
+  final bool? readOnly;
+  final bool? showCursor;
+  final TextAlignVertical? textAlignVertical;
+  final ToolbarOptions? toolbarOptions;
 
-  final Color cursorColor;
-  final Brightness keyboardAppearance;
-  final EdgeInsets scrollPadding;
+  final Color? cursorColor;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets? scrollPadding;
 
-  final SmartDashesType smartDashesType;
-  final SmartQuotesType smartQuotesType;
-  final ui.BoxHeightStyle selectionHeightStyle;
-  final ui.BoxWidthStyle selectionWidthStyle;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final ui.BoxHeightStyle? selectionHeightStyle;
+  final ui.BoxWidthStyle? selectionWidthStyle;
 
-  final String obscuringCharacter;
-  final Iterable<String> autofillHints;
+  final String? obscuringCharacter;
+  final Iterable<String>? autofillHints;
 
-  final double cursorHeight;
-  final String restorationId;
+  final double? cursorHeight;
+  final String? restorationId;
+  final MaxLengthEnforcement? maxLengthEnforcement;
 
-  final MaxLengthEnforcement maxLengthEnforcement;
-  final TextSelectionControls selectionControls;
+  final TextSelectionControls? selectionControls;
 
   PlatformTextField({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.controller,
     this.focusNode,
-    TextInputType keyboardType,
+    TextInputType? keyboardType,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
     this.style,

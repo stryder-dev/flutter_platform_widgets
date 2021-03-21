@@ -24,17 +24,17 @@ import 'package:flutter/widgets.dart';
 /// ```
 class PlatformProvider extends StatefulWidget {
   const PlatformProvider({
-    @required this.builder,
+    required this.builder,
     this.initialPlatform,
     this.settings,
-  }) : assert(builder != null);
+  });
 
   final WidgetBuilder builder;
-  final TargetPlatform initialPlatform;
-  final PlatformSettingsData settings;
+  final TargetPlatform? initialPlatform;
+  final PlatformSettingsData? settings;
 
-  static PlatformProviderState of(BuildContext context) {
-    _PlatformProviderState state =
+  static PlatformProviderState? of(BuildContext context) {
+    _PlatformProviderState? state =
         context.findAncestorStateOfType<_PlatformProviderState>();
 
     return state?.state;
@@ -45,7 +45,7 @@ class PlatformProvider extends StatefulWidget {
 }
 
 class _PlatformProviderState extends State<PlatformProvider> {
-  TargetPlatform platform;
+  late TargetPlatform? platform;
 
   PlatformProviderState get state => PlatformProviderState._(this);
 
@@ -81,7 +81,7 @@ class _PlatformProviderState extends State<PlatformProvider> {
     });
   }
 
-  PlatformSettingsData get settings => widget.settings;
+  PlatformSettingsData? get settings => widget.settings;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class PlatformProviderState {
 
   final _PlatformProviderState _parent;
 
-  TargetPlatform get platform => _parent.platform;
+  TargetPlatform? get platform => _parent.platform;
 
   PlatformSettingsData get settings =>
       _parent.settings ?? PlatformSettingsData();
@@ -133,8 +133,7 @@ class PlatformSettingsData {
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.platformStyle = const PlatformStyleData(),
-  })  : assert(iosUsesMaterialWidgets != null),
-        assert(platformStyle != null);
+  });
 }
 
 enum PlatformStyle {
@@ -159,12 +158,5 @@ class PlatformStyleData {
     this.web = PlatformStyle.Material,
     this.fuchsia = PlatformStyle.Material,
     this.linux = PlatformStyle.Material,
-  })  : assert(android != null),
-        assert(android != null),
-        assert(ios != null),
-        assert(macos != null),
-        assert(windows != null),
-        assert(web != null),
-        assert(fuchsia != null),
-        assert(linux != null);
+  });
 }

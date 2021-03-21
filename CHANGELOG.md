@@ -12,6 +12,30 @@
 - Update to include additional params
 - Remove a deprecated field
 
+## [1.0.1-nullsafety.2] 
+
+#### (Flutter version support: v2.0.0 +)
+
+- export `PlatformTarget`
+
+## [1.0.1-nullsafety.1] 
+
+#### (Flutter version support: v2.0.0 +)
+
+- fix to allow for null appBar in `PlatformTabScaffold`
+
+## [1.0.1-nullsafety.0] 
+
+#### (Flutter version support: v1.26.0-17.3.pre +)
+
+- Removed `actionsForegroundColor` on PlatformAppBar
+
+## [1.0.0-nullsafety.0] 
+
+#### (Flutter version support: v1.24.0-10.2.pre +)
+
+- Full null safety support.
+
 ## [0.72.0] - December 03, 2020
 
 #### (Flutter version support: v1.22.0 - v1.22.4)

@@ -15,20 +15,25 @@ const EdgeInsets _defaultInsetPadding =
     EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
 
 abstract class _BaseData {
-  _BaseData({this.widgetKey, this.actions, this.content, this.title});
+  _BaseData({
+    this.widgetKey,
+    this.actions,
+    this.content,
+    this.title,
+  });
 
-  final Key widgetKey;
-  final List<Widget> actions;
-  final Widget content;
-  final Widget title;
+  final Key? widgetKey;
+  final List<Widget>? actions;
+  final Widget? content;
+  final Widget? title;
 }
 
 class MaterialAlertDialogData extends _BaseData {
   MaterialAlertDialogData({
-    Key widgetKey,
-    List<Widget> actions,
-    Widget content,
-    Widget title,
+    Key? widgetKey,
+    List<Widget>? actions,
+    Widget? content,
+    Widget? title,
     this.contentTextStyle,
     this.backgroundColor,
     this.elevation,
@@ -50,29 +55,29 @@ class MaterialAlertDialogData extends _BaseData {
             content: content,
             title: title);
 
-  final EdgeInsetsGeometry contentPadding;
-  final String semanticLabel;
-  final EdgeInsetsGeometry titlePadding;
-  final TextStyle contentTextStyle;
-  final Color backgroundColor;
-  final double elevation;
-  final ShapeBorder shape;
-  final TextStyle titleTextStyle;
-  final bool scrollable;
-  final VerticalDirection actionsOverflowDirection;
-  final EdgeInsetsGeometry actionsPadding;
-  final EdgeInsetsGeometry buttonPadding;
-  final double actionsOverflowButtonSpacing;
-  final Clip clipBehavior;
-  final EdgeInsets insetPadding;
+  final EdgeInsetsGeometry? contentPadding;
+  final String? semanticLabel;
+  final EdgeInsetsGeometry? titlePadding;
+  final TextStyle? contentTextStyle;
+  final Color? backgroundColor;
+  final double? elevation;
+  final ShapeBorder? shape;
+  final TextStyle? titleTextStyle;
+  final bool? scrollable;
+  final VerticalDirection? actionsOverflowDirection;
+  final EdgeInsetsGeometry? actionsPadding;
+  final EdgeInsetsGeometry? buttonPadding;
+  final double? actionsOverflowButtonSpacing;
+  final Clip? clipBehavior;
+  final EdgeInsets? insetPadding;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
   CupertinoAlertDialogData({
-    Key widgetKey,
-    List<Widget> actions,
-    Widget content,
-    Widget title,
+    Key? widgetKey,
+    List<Widget>? actions,
+    Widget? content,
+    Widget? title,
     this.scrollController,
     this.actionScrollController,
     this.insetAnimationCurve,
@@ -83,24 +88,24 @@ class CupertinoAlertDialogData extends _BaseData {
             content: content,
             title: title);
 
-  final ScrollController scrollController;
-  final ScrollController actionScrollController;
-  final Curves insetAnimationCurve;
-  final Duration insetAnimationDuration;
+  final ScrollController? scrollController;
+  final ScrollController? actionScrollController;
+  final Curve? insetAnimationCurve;
+  final Duration? insetAnimationDuration;
 }
 
 class PlatformAlertDialog
     extends PlatformWidgetBase<CupertinoAlertDialog, AlertDialog> {
-  final Key widgetKey;
-  final List<Widget> actions;
-  final Widget content;
-  final Widget title;
+  final Key? widgetKey;
+  final List<Widget>? actions;
+  final Widget? content;
+  final Widget? title;
 
-  final PlatformBuilder<MaterialAlertDialogData> material;
-  final PlatformBuilder<CupertinoAlertDialogData> cupertino;
+  final PlatformBuilder<MaterialAlertDialogData>? material;
+  final PlatformBuilder<CupertinoAlertDialogData>? cupertino;
 
   PlatformAlertDialog({
-    Key key,
+    Key? key,
     this.widgetKey,
     this.actions,
     this.content,
@@ -141,6 +146,8 @@ class PlatformAlertDialog
   CupertinoAlertDialog createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
+    Curve? curve = data?.insetAnimationCurve;
+
     return CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,
       actions: data?.actions ?? actions ?? const <Widget>[],
@@ -148,7 +155,7 @@ class PlatformAlertDialog
       scrollController: data?.scrollController,
       actionScrollController: data?.actionScrollController,
       title: data?.title ?? title,
-      insetAnimationCurve: data?.insetAnimationCurve ?? Curves.decelerate,
+      insetAnimationCurve: curve ?? Curves.decelerate,
       insetAnimationDuration:
           data?.insetAnimationDuration ?? Duration(milliseconds: 100),
     );
