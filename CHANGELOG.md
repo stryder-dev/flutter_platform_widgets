@@ -1,3 +1,10 @@
+## [1.2.0] - April 15, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Added hintText to PlatformTextField to easier set the hint of the field. Thanks slimyjimmy for the suggestion
+- Fixed issue with showPlatformDialog that did not show the `BarrierColor` for the material dialog.
+
 ## [1.1.0] - March 22, 2021
 
 #### (Flutter version support: v2.0)
