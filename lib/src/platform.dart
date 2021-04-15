@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart'
     show CupertinoDynamicColor, showCupertinoDialog, showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
-    show Theme, showDialog, showModalBottomSheet;
+    show Theme, Colors, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -103,7 +103,7 @@ Future<T?> showPlatformDialog<T>({
   RouteSettings? routeSettings,
   bool useRootNavigator = true,
   bool materialUseSafeArea = true,
-  Color? materialBarrierColor,
+  Color? materialBarrierColor = Colors.black54,
   String? barrierLabel,
 }) {
   if (isMaterial(context)) {
