@@ -238,6 +238,7 @@ class LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: PlatformTextField(
                   controller: textControlller,
+                  hintText: 'hint',
                 ),
               ),
               Container(
