@@ -352,6 +352,8 @@ class PlatformTextField
 
   final TextSelectionControls? selectionControls;
 
+  final String? hintText;
+
   PlatformTextField({
     Key? key,
     this.widgetKey,
@@ -400,6 +402,7 @@ class PlatformTextField
     this.restorationId,
     this.maxLengthEnforcement,
     this.selectionControls,
+    this.hintText,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -409,6 +412,14 @@ class PlatformTextField
   @override
   TextField createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
+
+    final hintText = this.hintText;
+    final decoration = hintText == null
+        ? (data?.decoration ?? const InputDecoration())
+        : _inputDecorationWithHint(
+            hintText,
+            data?.decoration ?? const InputDecoration(),
+          );
 
     return TextField(
       key: data?.widgetKey ?? widgetKey,
@@ -438,7 +449,7 @@ class PlatformTextField
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
-      decoration: data?.decoration ?? const InputDecoration(),
+      decoration: decoration,
       textDirection: data?.textDirection,
       buildCounter: data?.buildCounter,
       dragStartBehavior: data?.dragStartBehavior ??
@@ -514,7 +525,7 @@ class PlatformTextField
       decoration: data?.decoration ?? _kDefaultRoundedBorderDecoration,
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
-      placeholder: data?.placeholder,
+      placeholder: data?.placeholder ?? hintText,
       placeholderStyle: data?.placeholderStyle ??
           const TextStyle(
             fontWeight: FontWeight.w400,
@@ -555,6 +566,15 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
+    );
+  }
+
+  InputDecoration _inputDecorationWithHint(
+    String hintText,
+    InputDecoration inputDecoration,
+  ) {
+    return inputDecoration.copyWith(
+      hintText: inputDecoration.hintText ?? hintText,
     );
   }
 }
