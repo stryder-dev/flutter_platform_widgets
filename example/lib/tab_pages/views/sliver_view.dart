@@ -5,8 +5,8 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SliverView extends StatelessWidget {
   SliverView({
-    @required this.title,
-    @required this.children,
+    required this.title,
+    required this.children,
   });
 
   final String title;

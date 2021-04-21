@@ -1,10 +1,15 @@
-import 'package:example/tabbed/pages/sub_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import '../../extensions.dart';
+import 'sub_page.dart';
+
 class ContentView extends StatelessWidget {
-  ContentView(this.index);
   final int index;
+  final TargetPlatform platform;
+
+  ContentView(this.index, this.platform);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,12 +25,12 @@ class ContentView extends StatelessWidget {
             context,
             platformPageRoute(
               context: context,
-              builder: (context) {
+              builder: (context) => ((context) {
                 if (index == 0) {
-                  return SubPage('Flag', 1);
+                  return SubPage('Flag', 1, platform);
                 }
-                return SubPage('Book', 1);
-              },
+                return SubPage('Book', 1, platform);
+              }).asPlatform(platform),
             ),
           ),
         ),

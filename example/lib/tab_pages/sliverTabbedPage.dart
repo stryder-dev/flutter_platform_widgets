@@ -1,11 +1,16 @@
-import 'package:example/tabbed/views/content_view.dart';
-import 'package:example/tabbed/views/sliver_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import './views/content_view.dart';
+import './views/sliver_view.dart';
+
 class SliverTabbedPage extends StatefulWidget {
+  final TargetPlatform platform;
+
+  const SliverTabbedPage({Key? key, required this.platform}) : super(key: key);
+
   @override
   _SliverTabbedPageState createState() => _SliverTabbedPageState();
 }
@@ -23,24 +28,24 @@ class _SliverTabbedPageState extends State<SliverTabbedPage> {
         ),
       ];
 
-  final contentBuilder = (BuildContext context, int index) => SliverView(
-        title: titles[index],
-        children: [ContentView(index)],
-      );
+  late Widget Function(BuildContext, int) contentBuilder;
 
   // This needs to be captured here in a stateful widget
-  PlatformTabController tabController;
+  late PlatformTabController tabController;
 
   @override
   void initState() {
     super.initState();
 
     // If you want further control of the tabs have one of these
-    if (tabController == null) {
-      tabController = PlatformTabController(
-        initialIndex: 1,
-      );
-    }
+    tabController = PlatformTabController(
+      initialIndex: 1,
+    );
+
+    contentBuilder = (BuildContext context, int index) => SliverView(
+          title: titles[index],
+          children: [ContentView(index, widget.platform)],
+        );
   }
 
   @override

@@ -1,10 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import '../../extensions.dart';
+
 class SubPage extends StatelessWidget {
-  SubPage(this.tab, this.level);
+  SubPage(this.tab, this.level, this.platform);
   final String tab;
   final int level;
+  final TargetPlatform platform;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,9 @@ class SubPage extends StatelessWidget {
               context,
               platformPageRoute(
                 context: context,
-                builder: (context) => SubPage(tab, level + 1),
+                builder: (context) => ((context) {
+                  return SubPage(tab, level + 1, platform);
+                }).asPlatform(platform),
               ),
             ),
           ),
