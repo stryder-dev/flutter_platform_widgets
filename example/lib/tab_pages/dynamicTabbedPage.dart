@@ -1,10 +1,16 @@
-import 'package:example/tabbed/views/content_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import './views/content_view.dart';
+import '../extensions.dart';
+
 class DynamicTabbedPage extends StatefulWidget {
+  final TargetPlatform platform;
+
+  const DynamicTabbedPage({Key? key, required this.platform}) : super(key: key);
+
   @override
   _DynamicTabbedPageState createState() => _DynamicTabbedPageState();
 }
@@ -21,21 +27,20 @@ class _DynamicTabbedPageState extends State<DynamicTabbedPage> {
     Colors.cyan,
     Colors.lime,
   ];
-  List<BottomNavigationBarItem> Function(BuildContext) items;
+  late List<BottomNavigationBarItem> Function(BuildContext) items;
 
   // This needs to be captured here in a stateful widget
-  PlatformTabController tabController;
+  late PlatformTabController tabController;
 
   @override
   void initState() {
     super.initState();
 
     // If you want further control of the tabs have one of these
-    if (tabController == null) {
-      tabController = PlatformTabController(
-        initialIndex: 1,
-      );
-    }
+
+    tabController = PlatformTabController(
+      initialIndex: 1,
+    );
 
     items = (BuildContext context) => [
           BottomNavigationBarItem(
@@ -62,7 +67,7 @@ class _DynamicTabbedPageState extends State<DynamicTabbedPage> {
       iosContentPadding: true,
       tabController: tabController,
       appBarBuilder: (_, index) => PlatformAppBar(
-        title: Text('Page Title'),
+        title: Text('${widget.platform.text} Page Title'),
         backgroundColor: colors[index],
         trailingActions: <Widget>[
           PlatformIconButton(
@@ -75,7 +80,7 @@ class _DynamicTabbedPageState extends State<DynamicTabbedPage> {
           title: Text('${titles[index]}'),
         ),
       ),
-      bodyBuilder: (context, index) => ContentView(index),
+      bodyBuilder: (context, index) => ContentView(index, widget.platform),
       items: items(context),
       materialBuilder: (context, __, index) => MaterialTabScaffoldData(
         floatingActionButton: FloatingActionButton(

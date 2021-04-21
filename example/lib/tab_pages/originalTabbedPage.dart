@@ -1,10 +1,17 @@
-import 'package:example/tabbed/views/content_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import './views/content_view.dart';
+import '../extensions.dart';
+
 class OriginalTabbedPage extends StatefulWidget {
+  final TargetPlatform platform;
+
+  const OriginalTabbedPage({Key? key, required this.platform})
+      : super(key: key);
+
   @override
   _OriginalTabbedPageState createState() => _OriginalTabbedPageState();
 }
@@ -23,18 +30,16 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       ];
 
   // This needs to be captured here in a stateful widget
-  PlatformTabController tabController;
+  late PlatformTabController tabController;
 
   @override
   void initState() {
     super.initState();
 
     // If you want further control of the tabs have one of these
-    if (tabController == null) {
-      tabController = PlatformTabController(
-        initialIndex: 1,
-      );
-    }
+    tabController = PlatformTabController(
+      initialIndex: 1,
+    );
   }
 
   @override
@@ -43,14 +48,14 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       iosContentPadding: true,
       tabController: tabController,
       appBarBuilder: (_, index) => PlatformAppBar(
-        title: Text('Page Title'),
+        title: Text('${widget.platform.text} Page Title'),
         cupertino: (_, __) => CupertinoNavigationBarData(
           title: Text('Title: ${titles[index]}'),
           //   only required if useCupertinoTabView = false,
           transitionBetweenRoutes: false,
         ),
       ),
-      bodyBuilder: (context, index) => ContentView(index),
+      bodyBuilder: (context, index) => ContentView(index, widget.platform),
       items: items(context),
       cupertino: (_, __) => CupertinoTabScaffoldData(
         //   Having this property as false (default true) forces it not to use CupertinoTabView which will show
