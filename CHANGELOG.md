@@ -1,3 +1,11 @@
+## [1.3.0] - April 23, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Added PlatformElevatedButton and PlatformTextButton which change to Flutter 2.0 Material elevated and text buttons. Cupertino buttons are unchanged, although now by default match Text > Text and Elevated > Filled
+- Updated the Example project
+- Start of documentation (github pages)
+
 ## [1.2.0] - April 15, 2021
 
 #### (Flutter version support: v2.0+)
