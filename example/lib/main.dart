@@ -79,6 +79,52 @@ class PlatformPage extends StatelessWidget {
               onPressed: () {},
             ),
           ),
+          // ! PlatformElevatedButton
+          PlatformWidgetExample(
+            title: 'PlatformElevatedButton',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () => print('${platform.text} PlatformButton'),
+              padding: const EdgeInsets.all(8),
+            ),
+          ),
+          PlatformWidgetExample(
+            title: 'PlatformElevatedButton Icon',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () => print('${platform.text} PlatformButton'),
+              padding: const EdgeInsets.all(8),
+              material: (_, __) => MaterialElevatedButtonData(
+                icon: Icon(Icons.home),
+              ),
+              cupertino: (_, __) => CupertinoElevatedButtonData(
+                originalStyle: true,
+              ),
+            ),
+          ),
+          // ! PlatformTextButton
+          PlatformWidgetExample(
+            title: 'PlatformTextButton',
+            builder: (_, platform) => PlatformTextButton(
+              child: Text(platform.text),
+              onPressed: () => print('${platform.text} PlatformButton'),
+              padding: const EdgeInsets.all(8),
+            ),
+          ),
+          PlatformWidgetExample(
+            title: 'PlatformTextButton Icon',
+            builder: (_, platform) => PlatformTextButton(
+              child: Text(platform.text),
+              onPressed: () => print('${platform.text} PlatformButton'),
+              padding: const EdgeInsets.all(8),
+              material: (_, __) => MaterialTextButtonData(
+                icon: Icon(Icons.home),
+              ),
+              cupertino: (_, __) => CupertinoTextButtonData(
+                originalStyle: true,
+              ),
+            ),
+          ),
           // ! PlatformSwitch
           PlatformWidgetExample(
             title: 'PlatformSwitch',
