@@ -147,6 +147,14 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+          // ! PlatformIconButton
+          PlatformWidgetExample(
+            title: 'PlatformIconButton',
+            builder: (context, __) => PlatformIconButton(
+              icon: Icon(context.platformIcons.done),
+              onPressed: () {},
+            ),
+          ),
           // ! PlatformTextField
           PlatformWidgetExample(
             title: 'PlatformTextField',
