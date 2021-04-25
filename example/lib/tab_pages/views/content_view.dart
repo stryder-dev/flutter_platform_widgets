@@ -4,21 +4,29 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../extensions.dart';
 import 'sub_page.dart';
 
-class ContentView extends StatelessWidget {
+class ContentView extends StatefulWidget {
   final int index;
   final TargetPlatform platform;
 
-  ContentView(this.index, this.platform);
+  ContentView(this.index, this.platform, {Key? key}) : super(key: key);
+
+  @override
+  _ContentViewState createState() => _ContentViewState();
+}
+
+class _ContentViewState extends State<ContentView> {
+  late int counter = 0;
 
   @override
   Widget build(BuildContext context) {
+    print('ContentView::build');
     return Column(
       children: [
         PlatformButton(
           child: Text('Back'),
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
-        Text('Viewing Tab $index'),
+        Text('Viewing Tab ${widget.index}'),
         PlatformButton(
           child: Text('Push to subpage'),
           onPressed: () => Navigator.push(
@@ -26,14 +34,19 @@ class ContentView extends StatelessWidget {
             platformPageRoute(
               context: context,
               builder: (context) => ((context) {
-                if (index == 0) {
-                  return SubPage('Flag', 1, platform);
+                if (widget.index == 0) {
+                  return SubPage('Flag', 1, widget.platform);
                 }
-                return SubPage('Book', 1, platform);
-              }).asPlatform(platform),
+                return SubPage('Book', 1, widget.platform);
+              }).asPlatform(widget.platform),
             ),
           ),
         ),
+        PlatformButton(
+          child: Text('Increment'),
+          onPressed: () => setState(() => counter++),
+        ),
+        Text('Counter: $counter'),
       ],
     );
   }

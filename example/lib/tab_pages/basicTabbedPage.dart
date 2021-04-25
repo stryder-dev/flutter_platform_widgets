@@ -31,6 +31,8 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
   // This needs to be captured here in a stateful widget
   late PlatformTabController tabController;
 
+  late List<Widget> tabs;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +41,19 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
     tabController = PlatformTabController(
       initialIndex: 1,
     );
+
+    tabs = [
+      ContentView(
+        0,
+        widget.platform,
+        key: ValueKey('key0'),
+      ),
+      ContentView(
+        1,
+        widget.platform,
+        key: ValueKey('key1'),
+      )
+    ];
   }
 
   @override
@@ -59,7 +74,10 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
           title: Text('${titles[index]}'),
         ),
       ),
-      bodyBuilder: (context, index) => ContentView(index, widget.platform),
+      bodyBuilder: (context, index) => IndexedStack(
+        index: index,
+        children: tabs,
+      ),
       items: items(context),
     );
   }

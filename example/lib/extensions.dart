@@ -31,7 +31,6 @@ extension PlatformTargetExt on WidgetBuilder {
     return Builder(
       builder: (ctx) {
         final data = Theme.of(ctx).copyWith(platform: platform);
-        print('$platform');
         return Theme(
           data: data,
           child: Builder(
