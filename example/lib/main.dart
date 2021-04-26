@@ -172,6 +172,16 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+          // ! PlatformTextFormField
+          PlatformWidgetExample(
+            title: 'PlatformTextFormField',
+            builder: (_, platform) => PlatformTextFormField(
+              hintText: 'hint',
+              validator: (value) =>
+                  (value?.length ?? 0) < 3 ? 'Not enough' : null,
+              autovalidateMode: AutovalidateMode.always,
+            ),
+          ),
           // ! PlatformCircularProgressIndicator
           // _PlatformWidgetExample(
           //   title: 'PlatformCircularProgressIndicator',
