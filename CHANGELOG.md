@@ -1,3 +1,9 @@
+## [1.4.0] - April 26, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Added `PlatformTextFormField`
+
 ## [1.3.0] - April 23, 2021
 
 #### (Flutter version support: v2.0+)

@@ -334,7 +334,7 @@ class PlatformTextFormField
       controller: data?.controller ?? controller,
       initialValue: data?.initialValue ?? initialValue,
       focusNode: data?.focusNode ?? focusNode,
-      decoration: decoration ?? const InputDecoration(),
+      decoration: decoration,
       keyboardType: data?.keyboardType ?? keyboardType,
       textCapitalization: data?.textCapitalization ??
           textCapitalization ??
