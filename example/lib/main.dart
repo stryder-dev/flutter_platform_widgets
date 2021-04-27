@@ -151,7 +151,7 @@ class PlatformPage extends StatelessWidget {
           PlatformWidgetExample(
             title: 'PlatformIconButton',
             builder: (context, __) => PlatformIconButton(
-              icon: Icon(context.platformIcons.done),
+              icon: Icon(context.platformIcons.folder),
               onPressed: () {},
             ),
           ),
