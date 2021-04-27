@@ -179,11 +179,11 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.create_solid;
 
   /// Icons: Icons.dehaze : CupertinoIcons.(custom)
-  IconData get dehaze => isMaterial(context)
-      ? Icons.dehaze
-      : const IconData(0xf394,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get dehaze => isMaterial(context)
+  //     ? Icons.dehaze
+  //     : const IconData(0xf394, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 
   /// Icons: Icons.delete : CupertinoIcons.delete
   IconData get delete =>
@@ -201,11 +201,11 @@ class PlatformIcons {
       isMaterial(context) ? Icons.delete_outline : CupertinoIcons.delete;
 
   /// Icons: Icons.done : CupertinoIcons.(custom)
-  IconData get done => isMaterial(context)
-      ? Icons.done
-      : const IconData(0xf383,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get done => isMaterial(context)
+  //     ? Icons.done
+  //     : const IconData(0xf383, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 
   // IconData get doubleMusicNote =>
   //     isMaterial(context) ? Icons.music_note : CupertinoIcons.double_music_note;
@@ -219,11 +219,11 @@ class PlatformIcons {
       isMaterial(context) ? Icons.more_horiz : CupertinoIcons.ellipsis;
 
   /// Icons: Icons.error : CupertinoIcons.(custom)
-  IconData get error => isMaterial(context)
-      ? Icons.error
-      : const IconData(0xf35b,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get error => isMaterial(context)
+  //     ? Icons.error
+  //     : const IconData(0xf35b, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
 
@@ -299,18 +299,18 @@ class PlatformIcons {
       isMaterial(context) ? Icons.favorite : CupertinoIcons.heart_solid;
 
   /// Icons: Icons.help : CupertinoIcons.(custom)
-  IconData get help => isMaterial(context)
-      ? Icons.help
-      : const IconData(0xf446,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get help => isMaterial(context)
+  //     ? Icons.help
+  //     : const IconData(0xf446, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 
   /// Icons: Icons.helOutline : CupertinoIcons.(custom)
-  IconData get helpOutline => isMaterial(context)
-      ? Icons.help_outline
-      : const IconData(0xf445,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get helpOutline => isMaterial(context)
+  //     ? Icons.help_outline
+  //     : const IconData(0xf445, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 
   /// Icons: Icons.home : CupertinoIcons.home
   IconData get home => isMaterial(context) ? Icons.home : CupertinoIcons.home;
@@ -627,9 +627,9 @@ class PlatformIcons {
       isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
 
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
-  IconData get work => isMaterial(context)
-      ? Icons.work
-      : const IconData(0xf3ee,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage);
+  // IconData get work => isMaterial(context)
+  //     ? Icons.work
+  //     : const IconData(0xf3ee, not mapped in CupertinoIcons
+  //         fontFamily: CupertinoIcons.iconFont,
+  //         fontPackage: CupertinoIcons.iconFontPackage);
 }
