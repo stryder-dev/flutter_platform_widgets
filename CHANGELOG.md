@@ -1,3 +1,9 @@
+## [1.4.1] - April 27, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Removed unmapped cupertino icons that show up as a 'question mark'
+  
 ## [1.4.0] - April 26, 2021
 
 #### (Flutter version support: v2.0+)
