@@ -483,6 +483,24 @@ class PlatformIcons {
   // IconData get refreshThin =>
   //     isMaterial(context) ? Icons.flag : CupertinoIcons.refresh_thin;
 
+  /// Icons: Icons.remove : CupertinoIcons.minus
+  IconData get remove =>
+      isMaterial(context) ? Icons.remove : CupertinoIcons.minus;
+
+  /// Icons: Icons.remove_circle : CupertinoIcons.minus_circle
+  IconData get removeCircled =>
+      isMaterial(context) ? Icons.remove_circle : CupertinoIcons.minus_circle;
+
+  /// Icons: Icons.remove_circle_outline : CupertinoIcons.minus_circle
+  IconData get removeCircledOutline => isMaterial(context)
+      ? Icons.remove_circle_outline
+      : CupertinoIcons.minus_circle;
+
+  /// Icons: Icons.remove_circle : CupertinoIcons.minus_circle_fill
+  IconData get removeCircledSolid => isMaterial(context)
+      ? Icons.remove_circle
+      : CupertinoIcons.minus_circle_fill;
+
   /// Icons: Icons.reply : CupertinoIcons.reply
   IconData get reply =>
       isMaterial(context) ? Icons.reply : CupertinoIcons.reply;
