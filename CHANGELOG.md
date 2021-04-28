@@ -1,3 +1,9 @@
+## [1.5.0] - April 28, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Added context.platformIcon and additional remove platform icons (thanks vincevargadev)
+
 ## [1.4.1] - April 27, 2021
 
 #### (Flutter version support: v2.0+)
