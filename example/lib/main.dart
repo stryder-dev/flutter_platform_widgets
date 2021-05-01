@@ -14,17 +14,31 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return PlatformProvider(
-      //initialPlatform: TargetPlatform.android,
-      settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
-      builder: (context) => PlatformApp(
-        localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-          DefaultMaterialLocalizations.delegate,
-          DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate,
-        ],
-        title: 'Flutter Platform Widgets',
-        home: PlatformPage(),
+    final materialTheme = new ThemeData(
+      primarySwatch: Colors.green,
+    );
+
+    return Theme(
+      data: materialTheme,
+      child: PlatformProvider(
+        //initialPlatform: TargetPlatform.android,
+        settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
+        builder: (context) => PlatformApp(
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+            DefaultMaterialLocalizations.delegate,
+            DefaultWidgetsLocalizations.delegate,
+            DefaultCupertinoLocalizations.delegate,
+          ],
+          title: 'Flutter Platform Widgets',
+          home: PlatformPage(),
+          material: (_, __) => new MaterialAppData(
+            theme: materialTheme,
+          ),
+          cupertino: (_, __) => new CupertinoAppData(
+            theme:
+                MaterialBasedCupertinoThemeData(materialTheme: materialTheme),
+          ),
+        ),
       ),
     );
   }
