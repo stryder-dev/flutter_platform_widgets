@@ -50,6 +50,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformPageRoute](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformpageroute)
 - [ShowPlatformModalSheet](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformprovider)
+- [PlatformThemeData](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformthemedata)
 - [PlatformIcons](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformicons)
 - [PlatformWidgetBuilder](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformwidgetbuilder)
 
@@ -571,9 +572,25 @@ PlatformProvider(
 )
 ```
 
+## PlatformThemeData
+
+Helper function to a `Material` or `Cupertino` theme data property based on the platform
+
+```dart
+Text(
+  platform.text,
+  textAlign: TextAlign.center,
+  style: platformThemeData(
+    context,
+    material: (data) => data.textTheme.headline5,
+    cupertino: (data) => data.textTheme.navTitleTextStyle,
+  ),
+)
+```
+
 ## PlatformIcons
 
-Render a Material or Cupertino looking icon
+Render a `Material` or `Cupertino` looking icon
 
 ```dart
   Icon(context.platformIcons.book)

@@ -223,6 +223,19 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+          // ! platformThemeData
+          PlatformWidgetExample(
+            title: 'platformThemeData',
+            builder: (context, platform) => Text(
+              platform.text,
+              textAlign: TextAlign.center,
+              style: platformThemeData(
+                context,
+                material: (data) => data.textTheme.headline5,
+                cupertino: (data) => data.textTheme.navTitleTextStyle,
+              ),
+            ),
+          ),
           // ! Dialogs
           PlatformWidgetExample(
             title: 'showPlatformDialog',
