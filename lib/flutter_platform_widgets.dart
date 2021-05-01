@@ -11,6 +11,7 @@ export 'src/platform.dart'
         isCupertino,
         isMaterial,
         platform,
+        platformThemeData,
         showPlatformDialog,
         showPlatformModalSheet,
         MaterialModalSheetData,

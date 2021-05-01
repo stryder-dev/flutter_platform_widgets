@@ -7,10 +7,15 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart'
-    show CupertinoDynamicColor, showCupertinoDialog, showCupertinoModalPopup;
+    show
+        CupertinoDynamicColor,
+        CupertinoTheme,
+        CupertinoThemeData,
+        showCupertinoDialog,
+        showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
-    show Theme, Colors, showDialog, showModalBottomSheet;
+    show Theme, ThemeData, Colors, showDialog, showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -73,6 +78,16 @@ bool isMaterial(BuildContext context) {
 
 bool isCupertino(BuildContext context) {
   return _platformStyle(context) == PlatformStyle.Cupertino;
+}
+
+T platformThemeData<T>(
+  BuildContext context, {
+  required T Function(ThemeData theme) material,
+  required T Function(CupertinoThemeData theme) cupertino,
+}) {
+  return isMaterial(context)
+      ? material(Theme.of(context))
+      : cupertino(CupertinoTheme.of(context));
 }
 
 PlatformTarget platform(BuildContext context) {
