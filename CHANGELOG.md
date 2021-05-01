@@ -1,3 +1,9 @@
+## [1.6.0] - May 01, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Added `platformThemeData` to get access to the platform specific `ThemeData` more easily
+
 ## [1.5.0] - April 28, 2021
 
 #### (Flutter version support: v2.0+)
