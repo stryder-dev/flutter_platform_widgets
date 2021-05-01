@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return Theme(
       data: materialTheme,
       child: PlatformProvider(
-        //initialPlatform: TargetPlatform.android,
+        initialPlatform: TargetPlatform.android,
         settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
