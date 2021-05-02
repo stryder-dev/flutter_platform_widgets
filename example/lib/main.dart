@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
     return Theme(
       data: materialTheme,
       child: PlatformProvider(
-        initialPlatform: TargetPlatform.android,
         settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
@@ -53,6 +52,20 @@ class PlatformPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+                child: PlatformText('Change Platform'),
+                onPressed: () {
+                  final p = PlatformProvider.of(context)!;
+
+                  isMaterial(context)
+                      ? p.changeToCupertinoPlatform()
+                      : p.changeToMaterialPlatform();
+                }),
+          ),
+          Divider(thickness: 10),
+
           // ! PlatformText
           PlatformWidgetExample(
             title: 'PlatformText',
@@ -253,22 +266,28 @@ class PlatformPage extends StatelessWidget {
             ),
           ),
           // ! Tab pages
-          PlatformButton(
-            child: Text('Show Tabbed Pages'),
-            onPressed: () => Navigator.of(context).push(
-              platformPageRoute(
-                context: context,
-                builder: (context) => TabImplementationPage(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformButton(
+              child: Text('Show Tabbed Pages'),
+              onPressed: () => Navigator.of(context).push(
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => TabImplementationPage(),
+                ),
               ),
             ),
           ),
           // ! Icons
-          PlatformButton(
-            child: Text('Show Platform Icons'),
-            onPressed: () => Navigator.of(context).push(
-              platformPageRoute(
-                context: context,
-                builder: (context) => IconsPage(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformButton(
+              child: Text('Show Platform Icons'),
+              onPressed: () => Navigator.of(context).push(
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => IconsPage(),
+                ),
               ),
             ),
           )

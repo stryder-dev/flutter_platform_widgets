@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 extension WidgetExt on Widget {
   Widget maxWidth(double maxWidth) {
@@ -29,13 +30,13 @@ extension PlatformTargetExt on WidgetBuilder {
 
   Widget asPlatform(TargetPlatform platform) {
     return Builder(
-      builder: (ctx) {
-        final data = Theme.of(ctx).copyWith(platform: platform);
-        return Theme(
-          data: data,
-          child: Builder(
-            builder: (context) => this(context),
-          ),
+      builder: (context) {
+        final p = PlatformProvider.of(context)!;
+
+        return PlatformProvider(
+          settings: p.settings,
+          initialPlatform: platform,
+          builder: (context) => this(context),
         );
       },
     );

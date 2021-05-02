@@ -241,6 +241,7 @@ class _IconCompared extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformWidgetExample(
       title: title,
+      showBothPlatforms: true,
       builder: (context, platform) => Icon(icon(context)),
     );
   }
