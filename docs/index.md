@@ -34,7 +34,16 @@ Widget build(BuildContext context) {
 
 ```
 
-## What this package is not
+## Contents
+
+
+* [Get Started](./get_started.md)
+  
+  
+-----
+
+
+## What this package is and is not
 
 Each platform widget tries to remain as a simple wrapper to both a comparative `Material` and `Cupertino` widget. Each platform widget attempts to map common properties between the two platforms within the primary constructor arguments, but where they diverge provide platform specific data via the `material` and `cupertino` 'enhancing' properties.
 
