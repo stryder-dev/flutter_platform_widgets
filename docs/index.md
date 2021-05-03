@@ -33,3 +33,9 @@ Widget build(BuildContext context) {
 }
 
 ```
+
+## What this package is not
+
+Each platform widget tries to remain as a simple wrapper to both a comparative `Material` and `Cupertino` widget. Each platform widget attempts to map common properties between the two platforms within the primary constructor arguments, but where they diverge provide platform specific data via the `material` and `cupertino` 'enhancing' properties.
+
+What theis package will not do is be too opinionated (or none at all) as to the implementation of a platform widget. Other than `PlatformScaffold` and `PlatformTabScaffold` each widget will directly map its property to its underlying platform widget and not compose up numerous widgets imposing a structure and style that does not cover usage in a generic 'unopinionated' way.
