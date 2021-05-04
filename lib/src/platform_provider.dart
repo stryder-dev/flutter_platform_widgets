@@ -120,11 +120,22 @@ class PlatformProviderState {
 }
 
 class PlatformSettingsData {
-  /// If there is a mixture of Material and Cupertino widgets it maybe
-  /// useful to wrap in a Material. This will affect font and colors
-  /// particulary ios dark mode may not work as expected.
-  /// Alternatively when using Material widgets ensure that a parent Material widget exists.
+  /// Adds a [Material] widget to [CupertinoScaffold] and [CupertinoTabScaffold] to
+  /// allow for Material widgets to be used. This is required when using a PlatformApp
+  /// since some Material widgets will expect a Material parent, otherwise an exception is thrown.
+  /// Note: This may affect fonts and colors and dark mode may not work in all cases.
+  ///
+  /// Note: This may cause widgtes to show a ripple effect where as before 1.6.0 it did not
   final bool iosUsesMaterialWidgets;
+
+  /// Adds a [Material] widget to [CupertinoScaffold] and [CupertinoTabScaffold] to
+  /// allow for Material widgets to be used. This is required when using a PlatformApp
+  /// since some Material widgets will expect a Material parent, otherwise an exception is thrown.
+  ///  Note: This may affect fonts and colors and dark mode may not work in all cases.
+  ///
+  /// Note: legacyIosUsesMaterialWidgets places the Material widget above the CupertinoScaffold and
+  /// CupertinoTabScaffold widgets matching the behavour before v1.6.0
+  final bool legacyIosUsesMaterialWidgets;
 
   /// The style each platform will use. Either [PlatformStyle.Material] or
   /// [PlatformStyle.Cupertino].
@@ -132,6 +143,7 @@ class PlatformSettingsData {
 
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
+    this.legacyIosUsesMaterialWidgets = false,
     this.platformStyle = const PlatformStyleData(),
   });
 }

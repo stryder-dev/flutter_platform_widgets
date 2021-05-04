@@ -22,6 +22,7 @@ import 'package:flutter/material.dart'
         Scaffold;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
@@ -336,6 +337,11 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     );
     final tabBar = navBar.createCupertinoWidget(context);
 
+    final providerState = PlatformProvider.of(context);
+    final useLegacyMaterial =
+        providerState?.settings.legacyIosUsesMaterialWidgets ?? false;
+    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
+
     final result = CupertinoTabScaffold(
       key: widgetKey,
       tabBar: tabBar,
@@ -360,33 +366,33 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
                 data?.tabViewDataBuilder?.call(context, index).onUnknownRoute,
             routes: data?.tabViewDataBuilder?.call(context, index).routes,
             builder: (context) {
-              return _buildCupertinoPageScaffold(context, index, data, tabBar);
+              return _buildCupertinoPageScaffold(
+                context,
+                index,
+                data,
+                tabBar,
+                useMaterial,
+              );
             },
             restorationScopeId: data?.restorationScopeIdTabView,
           );
         }
 
-        return _buildCupertinoPageScaffold(context, index, data, tabBar);
+        return _buildCupertinoPageScaffold(
+          context,
+          index,
+          data,
+          tabBar,
+          useMaterial,
+        );
       },
       restorationId: data?.restorationId ?? restorationId,
     );
 
-    final providerState = PlatformProvider.of(context);
-    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
-
-    if (useMaterial) {
-      // Ensure that there is Material widget at the root page level
-      // as there can be Material widgets used on ios
-      final materialWidget = context.findAncestorWidgetOfExactType<Material>();
-      if (materialWidget == null) {
-        return Material(
-          elevation: 0.0,
-          child: result,
-        );
-      }
-    }
-
-    return result;
+    // Ensure that there is Material widget at the root page level
+    // as there can be Material widgets used on ios
+    return result.withMaterial(useLegacyMaterial &&
+        context.findAncestorWidgetOfExactType<Material>() == null);
   }
 
   CupertinoPageScaffold _buildCupertinoPageScaffold(
@@ -394,6 +400,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     int index,
     CupertinoTabScaffoldData? data,
     CupertinoTabBar tabBar,
+    bool useMaterial,
   ) {
     final appBar = data?.appBarBuilder?.call(context, index) ??
         appBarBuilder?.call(context, index)?.createCupertinoWidget(context);
@@ -406,7 +413,12 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     return CupertinoPageScaffold(
       //key Not used
       navigationBar: appBar,
-      child: iosContentPad(context, child!, appBar, tabBar),
+      child: iosContentPad(
+        context,
+        child!.withMaterial(useMaterial),
+        appBar,
+        tabBar,
+      ),
       backgroundColor: data?.backgroundColor ?? pageBackgroundColor,
       resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
     );

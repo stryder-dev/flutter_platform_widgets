@@ -20,8 +20,9 @@ import 'package:flutter/material.dart'
         Material,
         Scaffold;
 import 'package:flutter/widgets.dart';
-import 'package:flutter_platform_widgets/src/platform.dart';
 
+import 'extensions.dart';
+import 'platform.dart';
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
 import 'platform_provider.dart';
@@ -190,7 +191,12 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     final data = cupertino?.call(context, platform(context));
 
     var navigationBar =
-        appBar?.createCupertinoWidget(context) ?? data?.navigationBar;
+        data?.navigationBar ?? appBar?.createCupertinoWidget(context);
+
+    final providerState = PlatformProvider.of(context);
+    final useLegacyMaterial =
+        providerState?.settings.legacyIosUsesMaterialWidgets ?? false;
+    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
 
     Widget result;
     if (bottomNavBar != null) {
@@ -212,7 +218,12 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           return CupertinoPageScaffold(
             // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
-            child: iosContentPad(context, currentChild, navigationBar, tabBar),
+            child: iosContentPad(
+              context,
+              currentChild.withMaterial(useMaterial),
+              navigationBar,
+              tabBar,
+            ),
             navigationBar: navigationBar,
             resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
             // key: widgetKey used for CupertinoTabScaffold
@@ -226,28 +237,21 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
-        child: iosContentPad(context, child, navigationBar, null),
+        child: iosContentPad(
+          context,
+          child.withMaterial(useMaterial),
+          navigationBar,
+          null,
+        ),
         navigationBar: navigationBar,
         resizeToAvoidBottomInset: data?.resizeToAvoidBottomInset ?? true,
       );
     }
 
-    final providerState = PlatformProvider.of(context);
-    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
-
-    if (useMaterial) {
-      // Ensure that there is Material widget at the root page level
-      // as there can be Material widgets used on ios
-      final materialWidget = context.findAncestorWidgetOfExactType<Material>();
-      if (materialWidget == null) {
-        return Material(
-          elevation: 0.0,
-          child: result,
-        );
-      }
-    }
-
-    return result;
+    // Ensure that there is Material widget at the root page level
+    // as there can be Material widgets used on ios
+    return result.withMaterial(useLegacyMaterial &&
+        context.findAncestorWidgetOfExactType<Material>() == null);
   }
 
   Widget iosContentPad(BuildContext context, Widget child,

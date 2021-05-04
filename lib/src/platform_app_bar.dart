@@ -9,7 +9,9 @@ import 'package:flutter/material.dart' show AppBar, Brightness, TextTheme;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
+import 'platform_provider.dart';
 import 'widget_base.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
@@ -209,11 +211,14 @@ class PlatformAppBar
             children: trailingActions!,
           );
 
+    final providerState = PlatformProvider.of(context);
+    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
+
     final heroTag = data?.heroTag;
     if (heroTag != null) {
       return CupertinoNavigationBar(
         key: data?.widgetKey ?? widgetKey,
-        middle: data?.title ?? title,
+        middle: (data?.title ?? title)?.withMaterial(useMaterial),
         backgroundColor: data?.backgroundColor ?? backgroundColor,
         automaticallyImplyLeading: data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
@@ -222,8 +227,8 @@ class PlatformAppBar
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading: data?.leading ?? leading,
-        trailing: data?.trailing ?? trailing,
+        leading: (data?.leading ?? leading)?.withMaterial(useMaterial),
+        trailing: (data?.trailing ?? trailing)?.withMaterial(useMaterial),
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
