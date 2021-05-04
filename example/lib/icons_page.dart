@@ -91,13 +91,16 @@ class IconsPage extends StatelessWidget {
                   _IconCompared('conversationBubbleOutline',
                       (c) => c.platformIcons.conversationBubbleOutline),
                   _IconCompared('create', (c) => c.platformIcons.create),
+                  
                   _IconCompared('delete', (c) => c.platformIcons.delete),
+                  _IconCompared('dehaze', (c) => c.platformIcons.dehaze),
                   _IconCompared(
                       'deleteSolid', (c) => c.platformIcons.deleteSolid),
                   _IconCompared(
                       'deleteOutline', (c) => c.platformIcons.deleteOutline),
                   _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
                   _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
+                  _IconCompared('error', (c) => c.platformIcons.error),
                   _IconCompared('eyeSolid', (c) => c.platformIcons.eyeSolid),
                   _IconCompared(
                       'favoriteSolid', (c) => c.platformIcons.favoriteSolid),
@@ -124,6 +127,10 @@ class IconsPage extends StatelessWidget {
                       'groupSolid', (c) => c.platformIcons.groupSolid),
                   _IconCompared(
                       'heartSolid', (c) => c.platformIcons.heartSolid),
+                  _IconCompared(
+                      'help', (c) => c.platformIcons.help),
+                  _IconCompared(
+                      'helpOutline', (c) => c.platformIcons.helpOutline),
                   _IconCompared('home', (c) => c.platformIcons.home),
                   _IconCompared('info', (c) => c.platformIcons.info),
                   _IconCompared(
