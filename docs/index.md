@@ -34,10 +34,14 @@ Widget build(BuildContext context) {
 
 ```
 
+-----
+
 ## Contents
 
 
 * [Get Started](./get_started.md)
+* [App Setup](./app_setup.md)
+* [Theming](./theming.md)
   
   
 -----
