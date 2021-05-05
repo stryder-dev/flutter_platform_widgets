@@ -1,3 +1,11 @@
+## [1.7.0] - May 05, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Moved Material wrapper for cupertino under CupertinoScaffold and CuertinoTabScaffold so Material widgets can render for iOS when using PlatformApp. Need to have `settings: PlatformSettingsData(iosUsesMaterialWidgets: true)` on the `PlatformProvider` to enable. This may now render splash effect for Material widgets which would not occurred before. If this change is not needed then use `settings: PlatformSettingsData(legacyIosUsesMaterialWidgets: true)` 
+- Added more PlatformIcons, dehaze, error, help and helpOutline (thanks mlava)
+  
+
 ## [1.6.0] - May 01, 2021
 
 #### (Flutter version support: v2.0+)
