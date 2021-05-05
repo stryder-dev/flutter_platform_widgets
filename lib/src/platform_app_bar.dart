@@ -218,7 +218,7 @@ class PlatformAppBar
     if (heroTag != null) {
       return CupertinoNavigationBar(
         key: data?.widgetKey ?? widgetKey,
-        middle: (data?.title ?? title)?.withMaterial(useMaterial),
+        middle: data?.title ?? title,
         backgroundColor: data?.backgroundColor ?? backgroundColor,
         automaticallyImplyLeading: data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
@@ -237,7 +237,7 @@ class PlatformAppBar
 
     return CupertinoNavigationBar(
       key: data?.widgetKey ?? widgetKey,
-      middle: (data?.title ?? title)?.withMaterial(useMaterial),
+      middle: data?.title ?? title,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
