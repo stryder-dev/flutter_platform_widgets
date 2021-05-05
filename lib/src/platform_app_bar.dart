@@ -120,6 +120,7 @@ class CupertinoNavigationBarData extends _BaseData {
     this.transitionBetweenRoutes,
     this.brightness,
     this.heroTag,
+    this.noMaterialParent = false,
   }) : super(
             widgetKey: widgetKey,
             title: title,
@@ -135,6 +136,11 @@ class CupertinoNavigationBarData extends _BaseData {
   final String? previousPageTitle;
   final EdgeInsetsDirectional? padding;
   final Brightness? brightness;
+
+  /// When enabling [iosUsesMaterialWidgets] on [PlatformProvider] settings it will
+  /// add a Material widget as a parent to both the leading and trailing widgets.
+  /// Setting [noMaterialParent] to true (default false) will remove the [Material] parent
+  final bool noMaterialParent;
 }
 
 class PlatformAppBar
@@ -212,7 +218,9 @@ class PlatformAppBar
           );
 
     final providerState = PlatformProvider.of(context);
-    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
+    final noMaterialParent = data?.noMaterialParent ?? false;
+    final useMaterial = (!noMaterialParent) &&
+        (providerState?.settings.iosUsesMaterialWidgets ?? false);
 
     final heroTag = data?.heroTag;
     if (heroTag != null) {

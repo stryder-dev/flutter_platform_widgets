@@ -9,6 +9,14 @@ class IosMaterialPage extends StatelessWidget {
     return PlatformScaffold(
       appBar: PlatformAppBar(
         title: Text('iOS with Material'),
+        trailingActions: [
+          // This is possible because of PlatformProvider iosUsesMaterialWidgets setting
+          IconButton(icon: Icon(Icons.ac_unit), onPressed: () {}),
+        ],
+        cupertino: (_, __) => CupertinoNavigationBarData(
+            // If this is enabled and set to true then the IconButton above will complain of no parent Material widget
+            //noMaterialParent: true,
+            ),
       ),
       body: ListView(
         children: [
