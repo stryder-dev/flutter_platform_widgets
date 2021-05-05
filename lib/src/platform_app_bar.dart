@@ -237,7 +237,7 @@ class PlatformAppBar
 
     return CupertinoNavigationBar(
       key: data?.widgetKey ?? widgetKey,
-      middle: data?.title ?? title,
+      middle: (data?.title ?? title)?.withMaterial(useMaterial),
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
@@ -245,8 +245,8 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading: data?.leading ?? leading,
-      trailing: data?.trailing ?? trailing,
+      leading: (data?.leading ?? leading)?.withMaterial(useMaterial),
+      trailing: (data?.trailing ?? trailing)?.withMaterial(useMaterial),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
       //heroTag: , used above
