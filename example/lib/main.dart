@@ -4,6 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'extensions.dart';
 import 'icons_page.dart';
+import 'logo.dart';
 import 'material_ios_page.dart';
 import 'platform_widget_example.dart';
 import 'tab_impl_page.dart';
@@ -15,8 +16,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final materialTheme = new ThemeData(
+    final materialTheme = ThemeData(
+      cupertinoOverrideTheme: CupertinoThemeData(
+        primaryColor: Color(0xff127EFB),
+      ),
       primarySwatch: Colors.green,
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.all(16.0)),
+          foregroundColor: MaterialStateProperty.all(Color(0xFF3DDC84)),
+        ),
+      ),
     );
 
     return Theme(
@@ -31,12 +41,13 @@ class MyApp extends StatelessWidget {
           ],
           title: 'Flutter Platform Widgets',
           home: PlatformPage(),
-          material: (_, __) => new MaterialAppData(
+          material: (_, __) => MaterialAppData(
             theme: materialTheme,
           ),
-          cupertino: (_, __) => new CupertinoAppData(
-            theme:
-                MaterialBasedCupertinoThemeData(materialTheme: materialTheme),
+          cupertino: (_, __) => CupertinoAppData(
+            theme: CupertinoThemeData(
+              primaryColor: Color(0xff127EFB),
+            ),
           ),
         ),
       ),
@@ -53,6 +64,8 @@ class PlatformPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          FlutterPlatformWidgetsLogo(size: 60),
+          Divider(thickness: 10),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(

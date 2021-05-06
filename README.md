@@ -1,3 +1,8 @@
+<p align="center">
+<img src="https://raw.githubusercontent.com/stryder-dev/flutter_platform_widgets/master/images/logo.png" width="250px" alt="Flutter Platform Widgets" />
+</p>
+
+
 # Flutter Platform Widgets
 
 ![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/stryder-dev/flutter_platform_widgets)
