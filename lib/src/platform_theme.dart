@@ -39,10 +39,11 @@ class PlatformTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final materialTheme = _materialTheme();
     return Theme(
-      data: _materialTheme(),
+      data: materialTheme,
       child: CupertinoTheme(
-        data: _cupertinoTheme(),
+        data: _cupertinoTheme(materialTheme),
         child: child,
       ),
     );
@@ -51,18 +52,24 @@ class PlatformTheme extends StatelessWidget {
   ThemeData _materialTheme() {
     final theme = materialTheme ?? ThemeData.fallback();
 
-    return theme.copyWith(
-      cupertinoOverrideTheme: _cupertinoTheme(),
+    final updatedTheme = theme.copyWith(
       primaryColor: primaryColor ?? theme.primaryColor,
       accentColor: accentColor ?? theme.accentColor,
       scaffoldBackgroundColor:
           scaffoldBackgroundColor ?? theme.scaffoldBackgroundColor,
       bottomAppBarColor: bottomAppBarColor ?? theme.bottomAppBarColor,
     );
+
+    return updatedTheme.copyWith(
+      cupertinoOverrideTheme: _cupertinoTheme(updatedTheme),
+    );
   }
 
-  CupertinoThemeData _cupertinoTheme() {
-    final theme = cupertinoTheme ?? const CupertinoThemeData();
+  CupertinoThemeData _cupertinoTheme(ThemeData materialData) {
+    final theme = cupertinoTheme ??
+        MaterialBasedCupertinoThemeData(
+          materialTheme: materialData,
+        );
 
     return theme.copyWith(
       primaryColor: primaryColor ?? theme.primaryColor,
