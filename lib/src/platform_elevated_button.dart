@@ -154,6 +154,7 @@ class PlatformElevatedButton
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
+        color: data?.color,
       );
     } else {
       return CupertinoButton.filled(

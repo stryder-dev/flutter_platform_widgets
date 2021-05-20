@@ -22,6 +22,7 @@ class MaterialProgressIndicatorData {
     this.valueColor,
     this.semanticsLabel,
     this.semanticsValue,
+    this.color,
   });
   final Key? key;
   final Color? backgroundColor;
@@ -30,6 +31,7 @@ class MaterialProgressIndicatorData {
   final Animation<Color>? valueColor;
   final String? semanticsLabel;
   final String? semanticsValue;
+  final Color? color;
 }
 
 class CupertinoProgressIndicatorData {
@@ -70,6 +72,7 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       valueColor: data?.valueColor,
       semanticsLabel: data?.semanticsLabel,
       semanticsValue: data?.semanticsValue,
+      color: data?.color,
     );
   }
 

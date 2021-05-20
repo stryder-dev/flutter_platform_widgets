@@ -42,6 +42,7 @@ abstract class _BaseData {
     this.highContrastDarkTheme,
     this.highContrastTheme,
     this.restorationScopeId,
+    this.scrollBehavior,
   });
 
   final Key? widgetKey;
@@ -72,6 +73,7 @@ abstract class _BaseData {
   final ThemeData? highContrastDarkTheme;
   final ThemeData? highContrastTheme;
   final String? restorationScopeId;
+  final ScrollBehavior? scrollBehavior;
 }
 
 abstract class _BaseRouterData {
@@ -101,6 +103,7 @@ abstract class _BaseRouterData {
     this.routerDelegate,
     this.backButtonDispatcher,
     this.restorationScopeId,
+    this.scrollBehavior,
   });
 
   final Key? widgetKey;
@@ -137,6 +140,8 @@ abstract class _BaseRouterData {
   final BackButtonDispatcher? backButtonDispatcher;
 
   final String? restorationScopeId;
+
+  final ScrollBehavior? scrollBehavior;
 }
 
 class MaterialAppData extends _BaseData {
@@ -167,6 +172,7 @@ class MaterialAppData extends _BaseData {
       Map<Type, Action<Intent>>? actions,
       InitialRouteListFactory? onGenerateInitialRoutes,
       String? restorationScopeId,
+      ScrollBehavior? scrollBehavior,
       this.theme,
       this.debugShowMaterialGrid,
       this.darkTheme,
@@ -199,6 +205,7 @@ class MaterialAppData extends _BaseData {
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
           restorationScopeId: restorationScopeId,
+          scrollBehavior: scrollBehavior,
         );
 
   final ThemeData? theme;
@@ -228,6 +235,7 @@ class MaterialAppRouterData extends _BaseRouterData {
     Map<LogicalKeySet, Intent>? shortcuts,
     Map<Type, Action<Intent>>? actions,
     InitialRouteListFactory? onGenerateInitialRoutes,
+    ScrollBehavior? scrollBehavior,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
@@ -252,6 +260,7 @@ class MaterialAppRouterData extends _BaseRouterData {
           shortcuts: shortcuts,
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
+          scrollBehavior: scrollBehavior,
         );
 
   final ThemeData? theme;
@@ -288,6 +297,7 @@ class CupertinoAppData extends _BaseData {
     bool? checkerboardOffscreenLayers,
     bool? showSemanticsDebugger,
     bool? debugShowCheckedModeBanner,
+    ScrollBehavior? scrollBehavior,
     this.theme,
   }) : super(
           widgetKey: widgetKey,
@@ -315,6 +325,7 @@ class CupertinoAppData extends _BaseData {
           shortcuts: shortcuts,
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
+          scrollBehavior: scrollBehavior,
         );
 
   final CupertinoThemeData? theme;
@@ -344,6 +355,7 @@ class CupertinoAppRouterData extends _BaseRouterData {
     RouteInformationParser<Object>? routeInformationParser,
     RouterDelegate<Object>? routerDelegate,
     BackButtonDispatcher? backButtonDispatcher,
+    ScrollBehavior? scrollBehavior,
     this.theme,
   }) : super(
           widgetKey: widgetKey,
@@ -368,6 +380,7 @@ class CupertinoAppRouterData extends _BaseRouterData {
           routeInformationParser: routeInformationParser,
           routerDelegate: routerDelegate,
           backButtonDispatcher: backButtonDispatcher,
+          scrollBehavior: scrollBehavior,
         );
 
   final CupertinoThemeData? theme;
@@ -419,6 +432,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   final String? restorationScopeId;
 
+  final ScrollBehavior? scrollBehavior;
+
   const PlatformApp({
     Key? key,
     this.widgetKey,
@@ -447,6 +462,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.actions,
     this.onGenerateInitialRoutes,
     this.restorationScopeId,
+    this.scrollBehavior,
     this.material,
     this.cupertino,
   })  : routeInformationProvider = null,
@@ -481,6 +497,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.shortcuts,
     this.actions,
     this.restorationScopeId,
+    this.scrollBehavior,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
@@ -557,6 +574,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         restorationScopeId:
             dataRouter?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: dataRouter?.scaffoldMessengerKey,
+        scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
       );
     } else {
       final data = material?.call(context, platform(context));
@@ -611,6 +629,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         highContrastTheme: data?.highContrastTheme,
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: data?.scaffoldMessengerKey,
+        scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
       );
     }
   }

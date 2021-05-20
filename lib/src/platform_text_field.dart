@@ -71,7 +71,6 @@ class MaterialTextFieldData {
     this.autocorrect,
     this.maxLines,
     this.maxLength,
-    this.maxLengthEnforced,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -125,10 +124,6 @@ class MaterialTextFieldData {
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
-  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
-      'behavior related to the maxLength limit. '
-      'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool? maxLengthEnforced;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
   final void Function(String)? onSubmitted;
@@ -191,7 +186,6 @@ class CupertinoTextFieldData {
     this.autocorrect,
     this.maxLines,
     this.maxLength,
-    this.maxLengthEnforced,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -249,10 +243,6 @@ class CupertinoTextFieldData {
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
-  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
-      'behavior related to the maxLength limit. '
-      'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool? maxLengthEnforced;
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
   final void Function(String)? onSubmitted;
@@ -309,11 +299,6 @@ class PlatformTextField
   final bool? autocorrect;
   final int? maxLines;
   final int? maxLength;
-  @Deprecated('Use maxLengthEnforcement parameter which provides more specific '
-      'behavior related to the maxLength limit. '
-      'This feature was deprecated after v1.25.0-5.0.pre.')
-  final bool? maxLengthEnforced;
-
   final void Function(String)? onChanged;
   final void Function()? onEditingComplete;
   final void Function(String)? onSubmitted;
@@ -371,7 +356,6 @@ class PlatformTextField
     this.autocorrect,
     this.maxLines = 1,
     this.maxLength,
-    this.maxLengthEnforced,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -438,7 +422,6 @@ class PlatformTextField
       keyboardAppearance: data?.keyboardAppearance ?? keyboardAppearance,
       keyboardType: data?.keyboardType ?? keyboardType,
       maxLength: data?.maxLength ?? maxLength,
-      maxLengthEnforced: data?.maxLengthEnforced ?? maxLengthEnforced ?? true,
       maxLines: data?.maxLines ?? maxLines,
       obscureText: data?.obscureText ?? obscureText ?? false,
       onChanged: data?.onChanged ?? onChanged,
@@ -488,6 +471,7 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
+      //maxLengthEnforced: deprecated
     );
   }
 
@@ -511,7 +495,6 @@ class PlatformTextField
       keyboardAppearance: data?.keyboardAppearance ?? keyboardAppearance,
       keyboardType: data?.keyboardType ?? keyboardType,
       maxLength: data?.maxLength ?? maxLength,
-      maxLengthEnforced: data?.maxLengthEnforced ?? maxLengthEnforced ?? true,
       maxLines: data?.maxLines ?? maxLines,
       obscureText: data?.obscureText ?? obscureText ?? false,
       onChanged: data?.onChanged ?? onChanged,
@@ -572,6 +555,7 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
+      //maxLengthEnforced: deprecated
     );
   }
 

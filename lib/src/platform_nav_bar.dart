@@ -86,6 +86,7 @@ class MaterialNavBarData extends _BaseData {
     this.unselectedIconTheme,
     this.unselectedLabelStyle,
     this.mouseCursor,
+    this.enableFeedback,
   }) : super(
             widgetKey: widgetKey,
             items: items,
@@ -112,6 +113,7 @@ class MaterialNavBarData extends _BaseData {
   final IconThemeData? unselectedIconTheme;
   final TextStyle? unselectedLabelStyle;
   final MouseCursor? mouseCursor;
+  final bool? enableFeedback;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -161,6 +163,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       unselectedIconTheme: data?.unselectedIconTheme ?? const IconThemeData(),
       unselectedLabelStyle: data?.unselectedLabelStyle,
       mouseCursor: data?.mouseCursor,
+      enableFeedback: data?.enableFeedback,
     );
 
     return BottomAppBar(
