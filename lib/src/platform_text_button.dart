@@ -169,6 +169,7 @@ class PlatformTextButton
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
+        color: data?.color,
       );
     }
   }

@@ -1,3 +1,10 @@
+## [1.8.1] - May 21, 2021
+
+#### (Flutter version support: v2.2)
+
+- Added extra fields from Flutter 2.2
+- Removed deprecated field maxLengthEnforced from PlatformtextField. use maxLengthEnforcement instead
+
 ## [1.8.0] - May 20, 2021
 
 #### (Flutter version support: v2.2)

@@ -383,6 +383,7 @@ class PlatformTextFormField
       maxLengthEnforcement: data?.maxLengthEnforcement,
       cursorRadius: data?.cursorRadius,
       buildCounter: data?.buildCounter,
+      scrollController: data?.scrollController,
       //autovalidate: , deprecated
       //maxLengthEnforced: , deprecated
     );
