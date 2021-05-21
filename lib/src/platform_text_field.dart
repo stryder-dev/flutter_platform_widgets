@@ -45,7 +45,7 @@ const Border _kDefaultRoundedBorder = Border(
   right: _kDefaultRoundedBorderSide,
 );
 
-const BoxDecoration _kDefaultRoundedBorderDecoration = BoxDecoration(
+const BoxDecoration kDefaultRoundedBorderDecoration = BoxDecoration(
   color: CupertinoDynamicColor.withBrightness(
     color: CupertinoColors.white,
     darkColor: CupertinoColors.black,
@@ -352,6 +352,8 @@ class PlatformTextField
 
   final TextSelectionControls? selectionControls;
 
+  final bool makeCupertinoDecorationNull;
+
   final String? hintText;
 
   PlatformTextField({
@@ -403,6 +405,7 @@ class PlatformTextField
     this.maxLengthEnforcement,
     this.selectionControls,
     this.hintText,
+    this.makeCupertinoDecorationNull = false,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -522,7 +525,10 @@ class PlatformTextField
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
-      decoration: data?.decoration ?? _kDefaultRoundedBorderDecoration,
+      decoration: data?.decoration ??
+          (makeCupertinoDecorationNull
+              ? null
+              : kDefaultRoundedBorderDecoration),
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
       placeholder: data?.placeholder ?? hintText,
