@@ -53,6 +53,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformDialogAction](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
 - [PlatformPageRoute](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformpageroute)
+- [PlatformPage](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformpage)
 - [ShowPlatformModalSheet](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#showplatformmodalsheet)
 - [PlatformProvider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformprovider)
 - [PlatformThemeData](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformthemedata)
@@ -497,9 +498,46 @@ This function can be used within the `Navigator` to push either the `MaterialPag
   Navigator.push(
     context,
     platformPageRoute(
+      context: context,
       builder: pageToDisplayBuilder,
     ),
   );
+```
+
+#### Enhance
+
+Extend with `WidgetBuilder` for material or cupertino.
+
+```dart
+return platformPageRoute(
+  context: context,
+  material: (_, __)  => MaterialPageRouteData(...),
+  cupertino: (_, __) => CupertinoPageRouteData(...),
+);
+```
+
+## PlatformPage
+
+This function can be used within flutter's `Navigator 2` to push either the `MaterialPage` for material or `CupertinoPage` for cupertino.
+
+```dart
+    platformPage(
+      context: context,
+      child: child,
+    ),
+  );
+```
+
+#### Enhance
+
+Extend with `WidgetBuilder` for material or cupertino.
+
+```dart
+return platformPage(
+  context: context,
+  material: (_, __)  => MaterialPageData(...),
+  cupertino: (_, __) => CupertinoPageData(...),
+);
 ```
 
 ## ShowPlatformModalSheet

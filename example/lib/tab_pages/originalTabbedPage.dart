@@ -39,7 +39,17 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
     // If you want further control of the tabs have one of these
     tabController = PlatformTabController(
       initialIndex: 1,
-    );
+    )..addListener(_listener);
+  }
+
+  void _listener() {
+    print('Current index: ${tabController.index(context)}');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    tabController.dispose();
   }
 
   @override
