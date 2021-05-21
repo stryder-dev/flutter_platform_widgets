@@ -547,7 +547,7 @@ class PlatformTabController extends ChangeNotifier {
         }
         _materialController = MaterialTabController(
           initialIndex: useIndex,
-        );
+        )..addListener(_listener);
       }
     }
     if (isCupertino(context)) {
@@ -563,7 +563,7 @@ class PlatformTabController extends ChangeNotifier {
 
         _cupertinoController = CupertinoTabController(
           initialIndex: useIndex,
-        );
+        )..addListener(_listener);
       }
     }
   }
