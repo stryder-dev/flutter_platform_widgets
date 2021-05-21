@@ -1,3 +1,11 @@
+## [1.8.0] - May 20, 2021
+
+#### (Flutter version support: v2.0+)
+
+- Add `platformPage` to use as part of Navigator's 2.0 implemention
+- Add `makeCupertinoDecorationNull` to `PlatformtextField` so cupertino's decoration field can be set to null rather than any default style. the default kDefaultRoundedBorderDecoration is now not private
+- Fix issue where `PlatformTabController` was not notifying when index changed.
+
 ## [1.7.0, 1.7.1] - May 05, 2021
 
 #### (Flutter version support: v2.0+)
