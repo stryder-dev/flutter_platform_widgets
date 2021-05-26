@@ -1,3 +1,9 @@
+## [1.9.0] - May 26, 2021
+
+#### (Flutter version support: v2.2)
+
+- `PlatformDialogAction` by default uses `TextButton` rather than `FlatButton`. If you wish to still use `FlatButton` set `legacyMaterialDialogActionButtons` on `PlatformSettingsData` which is set on `PlatformProvider`.  
+
 ## [1.8.1] - May 21, 2021
 
 #### (Flutter version support: v2.2)

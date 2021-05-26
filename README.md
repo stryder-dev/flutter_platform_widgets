@@ -449,7 +449,7 @@ showDialog(
 
 ## PlatformDialogAction
 
-The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `FlatButton` for material or `CupertinoDialogAction` for cupertino.
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `TextButton` for material or `CupertinoDialogAction` for cupertino. If you want to use `FlatButton` for material which is the default pre v1.9.0 then set `legacyMaterialDialogActionButtons` setting on `PlatformProvider`
 
 ```dart
 PlatformDialogAction(
@@ -614,6 +614,14 @@ PlatformProvider(
   builder: (context) => PlatformApp(...)
 )
 ```
+
+_legacyIosUsesMaterialWidgets_
+
+- If true will have the `Material` widget above `CupertinoScaffold` and `CupertinoTabScaffold` rather than one level down. Having set to `false` will likely prevent an exception when using a material widget for a cupertino style. This setting was the defaut pre v1.6.0
+
+_legacyMaterialDialogActionButtons_
+
+- If true all material dialog action buttons will use `FlatButton` which is the default pre v1.9.0. As of v1.9.0 the material dialog action button will use the newer material `TextButton`
 
 ## PlatformThemeData
 
