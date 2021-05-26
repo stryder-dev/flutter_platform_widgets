@@ -137,6 +137,10 @@ class PlatformSettingsData {
   /// CupertinoTabScaffold widgets matching the behavour before v1.6.0
   final bool legacyIosUsesMaterialWidgets;
 
+  /// When true it uses [FlatButton] for [PlatformDialogActon] which is used before v1.9.0
+  /// Otherwise the Materiasl dialog actions use [TextButton]
+  final bool legacyMaterialDialogActionButtons;
+
   /// The style each platform will use. Either [PlatformStyle.Material] or
   /// [PlatformStyle.Cupertino].
   final PlatformStyleData platformStyle;
@@ -144,6 +148,7 @@ class PlatformSettingsData {
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.legacyIosUsesMaterialWidgets = false,
+    this.legacyMaterialDialogActionButtons = false,
     this.platformStyle = const PlatformStyleData(),
   });
 }
