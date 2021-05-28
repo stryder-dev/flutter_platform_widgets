@@ -717,4 +717,12 @@ class PlatformIcons {
   //     : const IconData(0xf3ee, not mapped in CupertinoIcons
   //         fontFamily: CupertinoIcons.iconFont,
   //         fontPackage: CupertinoIcons.iconFontPackage);
+
+  /// Icons: Icons.wifi : CupertinoIcons.wifi
+  IconData get wifi => isMaterial(context) ? Icons.wifi : CupertinoIcons.wifi;
+
+  /// Icons: Icons.wifi_off : CupertinoIcons.wifi_slash
+  IconData get wifiOff =>
+      isMaterial(context) ? Icons.wifi_off : CupertinoIcons.wifi_slash;
+
 }
