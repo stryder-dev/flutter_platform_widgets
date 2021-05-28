@@ -179,6 +179,14 @@ class PlatformIcons {
   IconData get clockSolid =>
       isMaterial(context) ? Icons.watch_later : CupertinoIcons.clock_solid;
 
+  /// Icons: Icons.cloud_outlined : CupertinoIcons.cloud
+  IconData get cloud =>
+      isMaterial(context) ? Icons.cloud_outlined : CupertinoIcons.cloud;
+
+  /// Icons: Icons.cloud : CupertinoIcons.cloud_fill
+  IconData get cloudSolid =>
+      isMaterial(context) ? Icons.cloud : CupertinoIcons.cloud_fill;
+
   /// Icons: Icons.collections : CupertinoIcons.collections
   IconData get collections =>
       isMaterial(context) ? Icons.collections : CupertinoIcons.collections;
@@ -210,7 +218,7 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.create_solid;
 
   /// Icons: Icons.dehaze : CupertinoIcons.bars
-  IconData get dehaze => 
+  IconData get dehaze =>
       isMaterial(context) ? Icons.dehaze : CupertinoIcons.bars;
 
   /// Icons: Icons.delete : CupertinoIcons.delete
@@ -247,8 +255,9 @@ class PlatformIcons {
       isMaterial(context) ? Icons.more_horiz : CupertinoIcons.ellipsis;
 
   /// Icons: Icons.error : CupertinoIcons.exclamationmark_circle_fill
-  IconData get error => 
-      isMaterial(context) ? Icons.error : CupertinoIcons.exclamationmark_circle_fill;
+  IconData get error => isMaterial(context)
+      ? Icons.error
+      : CupertinoIcons.exclamationmark_circle_fill;
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
 
@@ -671,19 +680,35 @@ class PlatformIcons {
       isMaterial(context) ? Icons.videocam : CupertinoIcons.video_camera_solid;
 
   /// Icons: Icons.volume_down : CupertinoIcons.volume_down
+  @deprecated
   IconData get volumnDown =>
       isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
 
+  IconData get volumeDown =>
+      isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
+
   /// Icons: Icons.volume_mute : CupertinoIcons.volume_mute
+  @deprecated
   IconData get volumnMute =>
       isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
 
+  IconData get volumeMute =>
+      isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
+
   /// Icons: Icons.volume_off : CupertinoIcons.volume_off
+  @deprecated
   IconData get volumnOff =>
       isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
 
+  IconData get volumeOff =>
+      isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
+
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
+  @deprecated
   IconData get volumnUp =>
+      isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
+
+  IconData get volumeUp =>
       isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
 
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
