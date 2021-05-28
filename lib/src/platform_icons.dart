@@ -461,6 +461,15 @@ class PlatformIcons {
   IconData get playArrowSolid =>
       isMaterial(context) ? Icons.play_arrow : CupertinoIcons.play_arrow_solid;
 
+  /// Icons: Icons.play_circle_outline : CupertinoIcons.play_circle
+  IconData get playCircle => isMaterial(context)
+      ? Icons.play_circle_outline
+      : CupertinoIcons.play_circle;
+
+  /// Icons: Icons.play_circle : CupertinoIcons.play_circle_fill
+  IconData get playCircleSolid =>
+      isMaterial(context) ? Icons.play_circle : CupertinoIcons.play_circle_fill;
+
   // IconData get plusCircled =>
   //     isMaterial(context) ? Icons. : CupertinoIcons.plus_circled;
 
