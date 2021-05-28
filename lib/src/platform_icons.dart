@@ -19,6 +19,16 @@ class PlatformIcons {
 
   final BuildContext context;
 
+  /// Icons: Icons.account_circle : CupertinoIcons.person_crop_circle
+  IconData get accountCircle => isMaterial(context)
+      ? Icons.account_circle_outlined
+      : CupertinoIcons.person_crop_circle;
+
+  /// Icons: Icons.account_circle : CupertinoIcons.person_crop_circle_fill
+  IconData get accountCircleSolid => isMaterial(context)
+      ? Icons.account_circle
+      : CupertinoIcons.person_crop_circle_fill;
+
   /// Icons: Icons.add : CupertinoIcons.add
   IconData get add => isMaterial(context) ? Icons.add : CupertinoIcons.add;
 
