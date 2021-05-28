@@ -227,6 +227,16 @@ class PlatformIcons {
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
 
+  /// Icons: Icons.visibility_off : CupertinoIcons.eye_slash
+  IconData get eyeSlash => isMaterial(context)
+      ? Icons.visibility_off_outlined
+      : CupertinoIcons.eye_slash;
+
+  /// Icons: Icons.visibility_off : CupertinoIcons.eye_slash
+  IconData get eyeSlashSolid => isMaterial(context)
+      ? Icons.visibility_off
+      : CupertinoIcons.eye_slash_fill;
+
   /// Icons: Icons.visibility : CupertinoIcons.eye_solid
   IconData get eyeSolid =>
       isMaterial(context) ? Icons.visibility : CupertinoIcons.eye_solid;
