@@ -105,6 +105,21 @@ class PlatformIcons {
   // IconData get carDetailed =>
   //     isMaterial(context) ? Icons.book : CupertinoIcons.car_detailed;
 
+  /// Icons: Icons.check_box_outline_blank_rounded : CupertinoIcons.square
+  IconData get checkBoxBlankOutlineRounded => isMaterial(context)
+      ? Icons.check_box_outline_blank_rounded
+      : CupertinoIcons.square;
+
+  /// Icons: Icons.indeterminate_check_box_outlined : CupertinoIcons.minus_square
+  IconData get checkBoxIndeterminateOutlineRounded => isMaterial(context)
+      ? Icons.indeterminate_check_box_outlined
+      : CupertinoIcons.minus_square;
+
+  /// Icons: Icons.indeterminate_check_box_outlined : CupertinoIcons.checkmark_square
+  IconData get checkBoxCheckedOutlineRounded => isMaterial(context)
+      ? Icons.check_box_outlined
+      : CupertinoIcons.checkmark_square;
+
   /// Icons: Icons.check : CupertinoIcons.check_mark
   IconData get checkMark =>
       isMaterial(context) ? Icons.check : CupertinoIcons.check_mark;
