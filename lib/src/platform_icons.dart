@@ -587,6 +587,10 @@ class PlatformIcons {
   /// Icons: Icons.star : CupertinoIcons.(custom)
   IconData get star => isMaterial(context) ? Icons.star : CupertinoIcons.star;
 
+  /// Icons: Icons.stars : CupertinoIcons.(custom)
+  IconData get starCircleSolid =>
+      isMaterial(context) ? Icons.stars : CupertinoIcons.star_circle_fill;
+
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
   IconData get switchCamera =>
       isMaterial(context) ? Icons.switch_camera : CupertinoIcons.switch_camera;
