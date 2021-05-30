@@ -298,9 +298,9 @@ return PlatformTabScaffold(
 
 More more detailed example look at:
 
-- [Basic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/basicTabbedPage.dart)
-- [Sliver Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/sliverTabbedPage.dart)
-- [Dynamic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tabbed/dynamicTabbedPage.dart)
+- [Basic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tab_pages/basicTabbedPage.dart)
+- [Sliver Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tab_pages/sliverTabbedPage.dart)
+- [Dynamic Example](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/example/lib/tab_pages/dynamicTabbedPage.dart)
 
 > Note that the use of `iosContentPadding = true` is only required if the content is being obstruced behind the appBar. `iosContentBottomPadding` is used if the content needs to be above the navBar and not go behind it. This will not have the translucent effect for iOS when these are set to `true`. If that is desirable, then the scrolling and content alignment need to be managed yourself.
 
