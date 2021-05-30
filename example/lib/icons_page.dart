@@ -41,6 +41,10 @@ class IconsPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+                  _IconCompared(
+                      'accountCircle', (c) => c.platformIcons.accountCircle),
+                  _IconCompared('accountCircleSolid',
+                      (c) => c.platformIcons.accountCircleSolid),
                   _IconCompared('add', (c) => c.platformIcons.add),
                   _IconCompared(
                       'addCircled', (c) => c.platformIcons.addCircled),
@@ -68,6 +72,14 @@ class IconsPage extends StatelessWidget {
                       (c) => c.platformIcons.brightnessSolid),
                   _IconCompared('bus', (c) => c.platformIcons.bus),
                   _IconCompared('car', (c) => c.platformIcons.car),
+                  _IconCompared('checkBoxBlankOutlineRounded',
+                      (c) => c.platformIcons.checkBoxBlankOutlineRounded),
+                  _IconCompared(
+                      'checkBoxIndeterminateOutlineRounded',
+                      (c) =>
+                          c.platformIcons.checkBoxIndeterminateOutlineRounded),
+                  _IconCompared('checkBoxCheckedOutlineRounded',
+                      (c) => c.platformIcons.checkBoxCheckedOutlineRounded),
                   _IconCompared('checkMark', (c) => c.platformIcons.checkMark),
                   _IconCompared('checkMarkCircled',
                       (c) => c.platformIcons.checkMarkCircled),
@@ -82,6 +94,10 @@ class IconsPage extends StatelessWidget {
                       (c) => c.platformIcons.clearThickCircled),
                   _IconCompared(
                       'clockSolid', (c) => c.platformIcons.clockSolid),
+                  _IconCompared(
+                      'cloud', (c) => c.platformIcons.cloud),
+                  _IconCompared(
+                      'cloudSolid', (c) => c.platformIcons.cloudSolid),
                   _IconCompared(
                       'collections', (c) => c.platformIcons.collections),
                   _IconCompared('collectionsSolid',
@@ -101,6 +117,9 @@ class IconsPage extends StatelessWidget {
                   _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
                   _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
                   _IconCompared('error', (c) => c.platformIcons.error),
+                  _IconCompared('eyeSlash', (c) => c.platformIcons.eyeSlash),
+                  _IconCompared(
+                      'eyeSlashSolid', (c) => c.platformIcons.eyeSlashSolid),
                   _IconCompared('eyeSolid', (c) => c.platformIcons.eyeSolid),
                   _IconCompared(
                       'favoriteSolid', (c) => c.platformIcons.favoriteSolid),
@@ -174,6 +193,10 @@ class IconsPage extends StatelessWidget {
                       (c) => c.platformIcons.photoCameraSolid),
                   _IconCompared('playArrow', (c) => c.platformIcons.playArrow),
                   _IconCompared(
+                      'playCircle', (c) => c.platformIcons.playCircle),
+                  _IconCompared('playCircleSolid',
+                      (c) => c.platformIcons.playCircleSolid),
+                  _IconCompared(
                       'playArrowSolid', (c) => c.platformIcons.playArrowSolid),
                   _IconCompared('refresh', (c) => c.platformIcons.refresh),
                   _IconCompared(
@@ -200,6 +223,8 @@ class IconsPage extends StatelessWidget {
                       'shoppingCart', (c) => c.platformIcons.shoppingCart),
                   _IconCompared('shuffle', (c) => c.platformIcons.shuffle),
                   _IconCompared('star', (c) => c.platformIcons.star),
+                  _IconCompared('starCircleSolid',
+                      (c) => c.platformIcons.starCircleSolid),
                   _IconCompared(
                       'switchCamera', (c) => c.platformIcons.switchCamera),
                   _IconCompared('switchCameraSolid',
@@ -223,11 +248,13 @@ class IconsPage extends StatelessWidget {
                   _IconCompared('videoCameraSolid',
                       (c) => c.platformIcons.videoCameraSolid),
                   _IconCompared(
-                      'volumnDown', (c) => c.platformIcons.volumnDown),
+                      'volumeDown', (c) => c.platformIcons.volumeDown),
                   _IconCompared(
-                      'volumnMute', (c) => c.platformIcons.volumnMute),
-                  _IconCompared('volumnOff', (c) => c.platformIcons.volumnOff),
-                  _IconCompared('volumnUp', (c) => c.platformIcons.volumnUp),
+                      'volumeMute', (c) => c.platformIcons.volumeMute),
+                  _IconCompared('volumeOff', (c) => c.platformIcons.volumeOff),
+                  _IconCompared('volumeUp', (c) => c.platformIcons.volumeUp),
+                  _IconCompared('wifi', (c) => c.platformIcons.wifi),
+                  _IconCompared('wifiOff', (c) => c.platformIcons.wifiOff),
                 ],
               ),
             ),
