@@ -251,6 +251,9 @@ class PlatformIcons {
       isMaterial(context) ? Icons.arrow_downward : CupertinoIcons.down_arrow;
 
   /// Icons: Icons.more_horiz : CupertinoIcons.ellipsis
+  IconData get edit => isMaterial(context) ? Icons.edit : CupertinoIcons.pencil;
+
+  /// Icons: Icons.more_horiz : CupertinoIcons.ellipsis
   IconData get ellipsis =>
       isMaterial(context) ? Icons.more_horiz : CupertinoIcons.ellipsis;
 

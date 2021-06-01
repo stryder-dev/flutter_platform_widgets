@@ -115,6 +115,7 @@ class IconsPage extends StatelessWidget {
                   _IconCompared(
                       'deleteOutline', (c) => c.platformIcons.deleteOutline),
                   _IconCompared('downArrow', (c) => c.platformIcons.downArrow),
+                  _IconCompared('edit', (c) => c.platformIcons.edit),
                   _IconCompared('ellipsis', (c) => c.platformIcons.ellipsis),
                   _IconCompared('error', (c) => c.platformIcons.error),
                   _IconCompared('eyeSlash', (c) => c.platformIcons.eyeSlash),
