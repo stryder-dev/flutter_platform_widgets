@@ -490,6 +490,16 @@ class PlatformIcons {
       ? Icons.photo_camera
       : CupertinoIcons.photo_camera_solid;
 
+  /// Icons: Icons.photo_library_outlined : CupertinoIcons.photo_on_rectangle
+  IconData get photoLibrary => isMaterial(context)
+      ? Icons.photo_library_outlined
+      : CupertinoIcons.photo_on_rectangle;
+
+  /// Icons: Icons.photo_library : CupertinoIcons.photo_fill_on_rectangle_fill
+  IconData get photoLibrarySolid => isMaterial(context)
+      ? Icons.photo_library
+      : CupertinoIcons.photo_fill_on_rectangle_fill;
+  
   /// Icons: Icons.play_arrow : CupertinoIcons.play_arrow
   IconData get playArrow =>
       isMaterial(context) ? Icons.play_arrow : CupertinoIcons.play_arrow;

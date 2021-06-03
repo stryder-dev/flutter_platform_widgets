@@ -192,6 +192,10 @@ class IconsPage extends StatelessWidget {
                       'photoCamera', (c) => c.platformIcons.photoCamera),
                   _IconCompared('photoCameraSolid',
                       (c) => c.platformIcons.photoCameraSolid),
+                  _IconCompared(
+                      'photoLibrary', (c) => c.platformIcons.photoLibrary),
+                  _IconCompared('photoLibrarySolid',
+                      (c) => c.platformIcons.photoLibrarySolid),
                   _IconCompared('playArrow', (c) => c.platformIcons.playArrow),
                   _IconCompared(
                       'playCircle', (c) => c.platformIcons.playCircle),
