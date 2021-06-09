@@ -709,6 +709,7 @@ Special thanks for everyone that have contributed to this project...
 | [![](https://ui-avatars.com/api/?name=AlexIver&size=40)](https://github.com/AlexIver)                 | [AlexIver](https://github.com/AlexIver)                       |
 | [![](https://avatars1.githubusercontent.com/u/35923031?s=40&v=4)](https://github.com/in74mz)          | [in74mz](https://github.com/in74mz)                           |
 | [![](https://avatars0.githubusercontent.com/u/1169185?s=40&v=4)](https://github.com/DFelten)          | [Daniel Felten](https://github.com/DFelten)                    |
+| [![](https://avatars0.githubusercontent.com/u/1911919?s=40&v=4)](https://github.com/hanskokx)          | [Hans Kokx](https://github.com/hanskokx)                    |
 
 # Acknowledgements
 
