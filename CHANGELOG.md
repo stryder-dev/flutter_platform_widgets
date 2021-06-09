@@ -1,3 +1,9 @@
+## [1.9.0] - June 09, 2021
+
+#### (Flutter version support: v2.2)
+
+- Fixes issue where `PlatformTextFormField` could not set expands to true and maxLines to null. 
+
 ## [1.9.0] - May 26, 2021
 
 #### (Flutter version support: v2.2)
