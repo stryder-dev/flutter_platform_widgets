@@ -19,6 +19,16 @@ class PlatformIcons {
 
   final BuildContext context;
 
+  /// Icons: Icons.account_circle : CupertinoIcons.person_crop_circle
+  IconData get accountCircle => isMaterial(context)
+      ? Icons.account_circle_outlined
+      : CupertinoIcons.person_crop_circle;
+
+  /// Icons: Icons.account_circle : CupertinoIcons.person_crop_circle_fill
+  IconData get accountCircleSolid => isMaterial(context)
+      ? Icons.account_circle
+      : CupertinoIcons.person_crop_circle_fill;
+
   /// Icons: Icons.add : CupertinoIcons.add
   IconData get add => isMaterial(context) ? Icons.add : CupertinoIcons.add;
 
@@ -105,6 +115,21 @@ class PlatformIcons {
   // IconData get carDetailed =>
   //     isMaterial(context) ? Icons.book : CupertinoIcons.car_detailed;
 
+  /// Icons: Icons.check_box_outline_blank_rounded : CupertinoIcons.square
+  IconData get checkBoxBlankOutlineRounded => isMaterial(context)
+      ? Icons.check_box_outline_blank_rounded
+      : CupertinoIcons.square;
+
+  /// Icons: Icons.indeterminate_check_box_outlined : CupertinoIcons.minus_square
+  IconData get checkBoxIndeterminateOutlineRounded => isMaterial(context)
+      ? Icons.indeterminate_check_box_outlined
+      : CupertinoIcons.minus_square;
+
+  /// Icons: Icons.indeterminate_check_box_outlined : CupertinoIcons.checkmark_square
+  IconData get checkBoxCheckedOutlineRounded => isMaterial(context)
+      ? Icons.check_box_outlined
+      : CupertinoIcons.checkmark_square;
+
   /// Icons: Icons.check : CupertinoIcons.check_mark
   IconData get checkMark =>
       isMaterial(context) ? Icons.check : CupertinoIcons.check_mark;
@@ -154,6 +179,14 @@ class PlatformIcons {
   IconData get clockSolid =>
       isMaterial(context) ? Icons.watch_later : CupertinoIcons.clock_solid;
 
+  /// Icons: Icons.cloud_outlined : CupertinoIcons.cloud
+  IconData get cloud =>
+      isMaterial(context) ? Icons.cloud_outlined : CupertinoIcons.cloud;
+
+  /// Icons: Icons.cloud : CupertinoIcons.cloud_fill
+  IconData get cloudSolid =>
+      isMaterial(context) ? Icons.cloud : CupertinoIcons.cloud_fill;
+
   /// Icons: Icons.collections : CupertinoIcons.collections
   IconData get collections =>
       isMaterial(context) ? Icons.collections : CupertinoIcons.collections;
@@ -185,7 +218,7 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.create_solid;
 
   /// Icons: Icons.dehaze : CupertinoIcons.bars
-  IconData get dehaze => 
+  IconData get dehaze =>
       isMaterial(context) ? Icons.dehaze : CupertinoIcons.bars;
 
   /// Icons: Icons.delete : CupertinoIcons.delete
@@ -218,14 +251,28 @@ class PlatformIcons {
       isMaterial(context) ? Icons.arrow_downward : CupertinoIcons.down_arrow;
 
   /// Icons: Icons.more_horiz : CupertinoIcons.ellipsis
+  IconData get edit => isMaterial(context) ? Icons.edit : CupertinoIcons.pencil;
+
+  /// Icons: Icons.more_horiz : CupertinoIcons.ellipsis
   IconData get ellipsis =>
       isMaterial(context) ? Icons.more_horiz : CupertinoIcons.ellipsis;
 
   /// Icons: Icons.error : CupertinoIcons.exclamationmark_circle_fill
-  IconData get error => 
-      isMaterial(context) ? Icons.error : CupertinoIcons.exclamationmark_circle_fill;
+  IconData get error => isMaterial(context)
+      ? Icons.error
+      : CupertinoIcons.exclamationmark_circle_fill;
 
   // IconData get eye => isMaterial(context) ? Icons. : CupertinoIcons.eye;
+
+  /// Icons: Icons.visibility_off : CupertinoIcons.eye_slash
+  IconData get eyeSlash => isMaterial(context)
+      ? Icons.visibility_off_outlined
+      : CupertinoIcons.eye_slash;
+
+  /// Icons: Icons.visibility_off : CupertinoIcons.eye_slash
+  IconData get eyeSlashSolid => isMaterial(context)
+      ? Icons.visibility_off
+      : CupertinoIcons.eye_slash_fill;
 
   /// Icons: Icons.visibility : CupertinoIcons.eye_solid
   IconData get eyeSolid =>
@@ -443,6 +490,16 @@ class PlatformIcons {
       ? Icons.photo_camera
       : CupertinoIcons.photo_camera_solid;
 
+  /// Icons: Icons.photo_library_outlined : CupertinoIcons.photo_on_rectangle
+  IconData get photoLibrary => isMaterial(context)
+      ? Icons.photo_library_outlined
+      : CupertinoIcons.photo_on_rectangle;
+
+  /// Icons: Icons.photo_library : CupertinoIcons.photo_fill_on_rectangle_fill
+  IconData get photoLibrarySolid => isMaterial(context)
+      ? Icons.photo_library
+      : CupertinoIcons.photo_fill_on_rectangle_fill;
+  
   /// Icons: Icons.play_arrow : CupertinoIcons.play_arrow
   IconData get playArrow =>
       isMaterial(context) ? Icons.play_arrow : CupertinoIcons.play_arrow;
@@ -450,6 +507,15 @@ class PlatformIcons {
   /// Icons: Icons.play_arrow : CupertinoIcons.play_arrow_solid
   IconData get playArrowSolid =>
       isMaterial(context) ? Icons.play_arrow : CupertinoIcons.play_arrow_solid;
+
+  /// Icons: Icons.play_circle_outline : CupertinoIcons.play_circle
+  IconData get playCircle => isMaterial(context)
+      ? Icons.play_circle_outline
+      : CupertinoIcons.play_circle;
+
+  /// Icons: Icons.play_circle : CupertinoIcons.play_circle_fill
+  IconData get playCircleSolid =>
+      isMaterial(context) ? Icons.play_circle : CupertinoIcons.play_circle_fill;
 
   // IconData get plusCircled =>
   //     isMaterial(context) ? Icons. : CupertinoIcons.plus_circled;
@@ -553,6 +619,10 @@ class PlatformIcons {
   /// Icons: Icons.star : CupertinoIcons.(custom)
   IconData get star => isMaterial(context) ? Icons.star : CupertinoIcons.star;
 
+  /// Icons: Icons.stars : CupertinoIcons.(custom)
+  IconData get starCircleSolid =>
+      isMaterial(context) ? Icons.stars : CupertinoIcons.star_circle_fill;
+
   /// Icons: Icons.switch_camera : CupertinoIcons.switch_camera
   IconData get switchCamera =>
       isMaterial(context) ? Icons.switch_camera : CupertinoIcons.switch_camera;
@@ -623,19 +693,35 @@ class PlatformIcons {
       isMaterial(context) ? Icons.videocam : CupertinoIcons.video_camera_solid;
 
   /// Icons: Icons.volume_down : CupertinoIcons.volume_down
+  @deprecated
   IconData get volumnDown =>
       isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
 
+  IconData get volumeDown =>
+      isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
+
   /// Icons: Icons.volume_mute : CupertinoIcons.volume_mute
+  @deprecated
   IconData get volumnMute =>
       isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
 
+  IconData get volumeMute =>
+      isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
+
   /// Icons: Icons.volume_off : CupertinoIcons.volume_off
+  @deprecated
   IconData get volumnOff =>
       isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
 
+  IconData get volumeOff =>
+      isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
+
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
+  @deprecated
   IconData get volumnUp =>
+      isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
+
+  IconData get volumeUp =>
       isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
 
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
@@ -644,4 +730,12 @@ class PlatformIcons {
   //     : const IconData(0xf3ee, not mapped in CupertinoIcons
   //         fontFamily: CupertinoIcons.iconFont,
   //         fontPackage: CupertinoIcons.iconFontPackage);
+
+  /// Icons: Icons.wifi : CupertinoIcons.wifi
+  IconData get wifi => isMaterial(context) ? Icons.wifi : CupertinoIcons.wifi;
+
+  /// Icons: Icons.wifi_off : CupertinoIcons.wifi_slash
+  IconData get wifiOff =>
+      isMaterial(context) ? Icons.wifi_off : CupertinoIcons.wifi_slash;
+
 }
