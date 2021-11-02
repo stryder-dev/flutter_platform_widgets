@@ -58,6 +58,8 @@ class MaterialTextFormFieldData {
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
   final ScrollController? scrollController;
+  final bool? enableIMEPersonalizedLearning;
+  final String? restorationId;
 
   MaterialTextFormFieldData({
     this.widgetKey,
@@ -109,6 +111,8 @@ class MaterialTextFormFieldData {
     this.autofillHints,
     this.autovalidateMode,
     this.scrollController,
+    this.enableIMEPersonalizedLearning,
+    this.restorationId,
   });
 }
 
@@ -161,6 +165,7 @@ class CupertinoTextFormFieldData {
   final AutovalidateMode? autovalidateMode;
   final String? placeholder;
   final TextStyle? placeholderStyle;
+  final TextDirection? textDirection;
 
   CupertinoTextFormFieldData({
     this.widgetKey,
@@ -211,6 +216,7 @@ class CupertinoTextFormFieldData {
     this.autovalidateMode,
     this.placeholder,
     this.placeholderStyle,
+    this.textDirection,
   });
 }
 
@@ -384,6 +390,9 @@ class PlatformTextFormField
       cursorRadius: data?.cursorRadius,
       buildCounter: data?.buildCounter,
       scrollController: data?.scrollController,
+      enableIMEPersonalizedLearning:
+          data?.enableIMEPersonalizedLearning ?? true,
+      restorationId: data?.restorationId,
       //autovalidate: , deprecated
       //maxLengthEnforced: , deprecated
     );
@@ -453,6 +462,7 @@ class PlatformTextFormField
             fontWeight: FontWeight.w400,
             color: CupertinoColors.placeholderText,
           ),
+      textDirection: data?.textDirection,
     );
   }
 

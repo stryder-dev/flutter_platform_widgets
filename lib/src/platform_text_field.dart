@@ -107,6 +107,7 @@ class MaterialTextFieldData {
     this.restorationId,
     this.maxLengthEnforcement,
     this.selectionControls,
+    this.enableIMEPersonalizedLearning,
   });
 
   final Key? widgetKey;
@@ -160,6 +161,7 @@ class MaterialTextFieldData {
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
   final TextSelectionControls? selectionControls;
+  final bool? enableIMEPersonalizedLearning;
 }
 
 class CupertinoTextFieldData {
@@ -219,6 +221,8 @@ class CupertinoTextFieldData {
     this.restorationId,
     this.maxLengthEnforcement,
     this.selectionControls,
+    this.enableIMEPersonalizedLearning,
+    this.textDirection,
   });
 
   final Key? widgetKey;
@@ -276,6 +280,8 @@ class CupertinoTextFieldData {
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
   final TextSelectionControls? selectionControls;
+  final bool? enableIMEPersonalizedLearning;
+  final TextDirection? textDirection;
 }
 
 class PlatformTextField
@@ -341,6 +347,8 @@ class PlatformTextField
 
   final String? hintText;
 
+  final bool? enableIMEPersonalizedLearning;
+
   PlatformTextField({
     Key? key,
     this.widgetKey,
@@ -389,6 +397,7 @@ class PlatformTextField
     this.maxLengthEnforcement,
     this.selectionControls,
     this.hintText,
+    this.enableIMEPersonalizedLearning,
     this.makeCupertinoDecorationNull = false,
     this.material,
     this.cupertino,
@@ -471,6 +480,9 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
+      enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
+          enableIMEPersonalizedLearning ??
+          true,
       //maxLengthEnforced: deprecated
     );
   }
@@ -555,6 +567,10 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
+      enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
+          enableIMEPersonalizedLearning ??
+          true,
+      textDirection: data?.textDirection,
       //maxLengthEnforced: deprecated
     );
   }

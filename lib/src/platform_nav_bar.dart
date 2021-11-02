@@ -6,7 +6,11 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoTabBar, CupertinoColors;
 import 'package:flutter/material.dart'
-    show BottomAppBar, BottomNavigationBar, BottomNavigationBarType;
+    show
+        BottomAppBar,
+        BottomNavigationBar,
+        BottomNavigationBarType,
+        BottomNavigationBarLandscapeLayout;
 import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
@@ -87,6 +91,7 @@ class MaterialNavBarData extends _BaseData {
     this.unselectedLabelStyle,
     this.mouseCursor,
     this.enableFeedback,
+    this.landscapeLayout,
   }) : super(
             widgetKey: widgetKey,
             items: items,
@@ -114,6 +119,7 @@ class MaterialNavBarData extends _BaseData {
   final TextStyle? unselectedLabelStyle;
   final MouseCursor? mouseCursor;
   final bool? enableFeedback;
+  final BottomNavigationBarLandscapeLayout? landscapeLayout;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -164,6 +170,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       unselectedLabelStyle: data?.unselectedLabelStyle,
       mouseCursor: data?.mouseCursor,
       enableFeedback: data?.enableFeedback,
+      landscapeLayout: data?.landscapeLayout,
     );
 
     return BottomAppBar(

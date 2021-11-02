@@ -51,13 +51,15 @@ class MaterialAppBarData extends _BaseData {
     this.actions,
     this.bottom,
     this.bottomOpacity,
-    this.brightness,
+    @Deprecated('This property is no longer used, please use systemOverlayStyle instead. ')
+        this.brightness,
     this.centerTitle,
     this.elevation,
     this.flexibleSpace,
     this.iconTheme,
     this.primary,
-    this.textTheme,
+    @Deprecated('This property is no longer used, please use toolbarTextStyle and titleTextStyle instead. ')
+        this.textTheme,
     this.titleSpacing,
     this.toolbarOpacity,
     this.actionsIconTheme,
@@ -66,7 +68,8 @@ class MaterialAppBarData extends _BaseData {
     this.shadowColor,
     this.toolbarHeight,
     this.leadingWidth,
-    this.backwardsCompatibility,
+    @Deprecated('This property is obsolete and is false by default. ')
+        this.backwardsCompatibility,
     this.foregroundColor,
     this.systemOverlayStyle,
     this.titleTextStyle,
@@ -181,6 +184,7 @@ class PlatformAppBar
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       bottomOpacity: data?.bottomOpacity ?? 1.0,
+      // ignore: deprecated_member_use
       brightness: data?.brightness,
       centerTitle: data?.centerTitle,
       elevation: data?.elevation,
@@ -188,6 +192,7 @@ class PlatformAppBar
       iconTheme: data?.iconTheme,
       leading: data?.leading ?? leading,
       primary: data?.primary ?? true,
+      // ignore: deprecated_member_use
       textTheme: data?.textTheme,
       titleSpacing: data?.titleSpacing,
       toolbarOpacity: data?.toolbarOpacity ?? 1.0,
@@ -197,6 +202,7 @@ class PlatformAppBar
       shadowColor: data?.shadowColor,
       toolbarHeight: data?.toolbarHeight,
       leadingWidth: data?.leadingWidth,
+      // ignore: deprecated_member_use
       backwardsCompatibility: data?.backwardsCompatibility,
       foregroundColor: data?.foregroundColor,
       systemOverlayStyle: data?.systemOverlayStyle,

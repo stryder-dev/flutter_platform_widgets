@@ -156,7 +156,8 @@ class MaterialModalSheetData {
   final bool enableDrag;
   final bool isDismissible;
   final RouteSettings? routeSettings;
-  AnimationController? transitionAnimationController;
+  final AnimationController? transitionAnimationController;
+  final BoxConstraints? constraints;
 
   MaterialModalSheetData({
     this.backgroundColor,
@@ -170,6 +171,7 @@ class MaterialModalSheetData {
     this.isDismissible = false,
     this.routeSettings,
     this.transitionAnimationController,
+    this.constraints,
   });
 }
 
@@ -214,6 +216,7 @@ Future<T?> showPlatformModalSheet<T>({
       isDismissible: material?.isDismissible ?? true,
       routeSettings: material?.routeSettings,
       transitionAnimationController: material?.transitionAnimationController,
+      constraints: material?.constraints,
     );
   } else {
     return showCupertinoModalPopup<T>(
