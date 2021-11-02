@@ -226,6 +226,8 @@ class CupertinoFilledButtonData extends _BaseData {
   final AlignmentGeometry? alignment;
 }
 
+@Deprecated(
+    'Use PlatformTextButton instead. Material FlatButton and RaisedButton are deprecated.')
 class PlatformButton
     extends PlatformWidgetBase<CupertinoButton, MaterialButton> {
   final Key? widgetKey;
