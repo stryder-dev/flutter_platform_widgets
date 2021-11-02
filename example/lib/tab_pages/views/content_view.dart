@@ -22,12 +22,12 @@ class _ContentViewState extends State<ContentView> {
     print('ContentView::build');
     return Column(
       children: [
-        PlatformButton(
+        PlatformElevatedButton(
           child: Text('Back'),
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
         Text('Viewing Tab ${widget.index}'),
-        PlatformButton(
+        PlatformElevatedButton(
           child: Text('Push to subpage'),
           onPressed: () => Navigator.push(
             context,
@@ -42,7 +42,7 @@ class _ContentViewState extends State<ContentView> {
             ),
           ),
         ),
-        PlatformButton(
+        PlatformElevatedButton(
           child: Text('Increment'),
           onPressed: () => setState(() => counter++),
         ),

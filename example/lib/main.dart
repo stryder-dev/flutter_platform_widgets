@@ -102,24 +102,6 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
-          // ! PlatformButton
-          PlatformWidgetExample(
-            title: 'PlatformButton',
-            builder: (_, platform) => PlatformButton(
-              child: Text(platform.text),
-              onPressed: () => print('${platform.text} PlatformButton'),
-            ),
-          ),
-          PlatformWidgetExample(
-            title: 'Flat/Filled PlatformButton',
-            builder: (_, platform) => PlatformButton(
-              materialFlat: (_, __) => MaterialFlatButtonData(),
-              cupertinoFilled: (_, __) =>
-                  CupertinoFilledButtonData(padding: const EdgeInsets.all(0)),
-              child: Text(platform.text),
-              onPressed: () {},
-            ),
-          ),
           // ! PlatformElevatedButton
           PlatformWidgetExample(
             title: 'PlatformElevatedButton',
@@ -266,7 +248,7 @@ class PlatformPage extends StatelessWidget {
           // ! Dialogs
           PlatformWidgetExample(
             title: 'showPlatformDialog',
-            builder: (context, platform) => PlatformButton(
+            builder: (context, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _showExampleDialog(context, platform.text),
             ),
@@ -274,7 +256,7 @@ class PlatformPage extends StatelessWidget {
           // ! Bottomsheet
           PlatformWidgetExample(
             title: 'showPlatformModalSheet',
-            builder: (context, platform) => PlatformButton(
+            builder: (context, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _showPopupSheet(context, platform.text),
             ),
@@ -282,7 +264,7 @@ class PlatformPage extends StatelessWidget {
           // ! Tab pages
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PlatformButton(
+            child: PlatformElevatedButton(
               child: Text('Show Tabbed Pages'),
               onPressed: () => Navigator.of(context).push(
                 platformPageRoute(
@@ -295,7 +277,7 @@ class PlatformPage extends StatelessWidget {
           // ! Icons
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PlatformButton(
+            child: PlatformElevatedButton(
               child: Text('Show Platform Icons'),
               onPressed: () => Navigator.of(context).push(
                 platformPageRoute(
@@ -309,7 +291,7 @@ class PlatformPage extends StatelessWidget {
           if (isCupertino(context))
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: PlatformButton(
+              child: PlatformElevatedButton(
                 child: Text('Show Material on iOS'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(

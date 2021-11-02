@@ -19,7 +19,7 @@ class TabImplementationPage extends StatelessWidget {
         children: [
           PlatformWidgetExample(
             title: 'Basic Tabbed Page',
-            builder: (_, platform) => PlatformButton(
+            builder: (_, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _openPage(
                 context,
@@ -30,7 +30,7 @@ class TabImplementationPage extends StatelessWidget {
           ),
           PlatformWidgetExample(
             title: 'Sliver Tabbed Page',
-            builder: (_, platform) => PlatformButton(
+            builder: (_, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _openPage(
                 context,
@@ -41,7 +41,7 @@ class TabImplementationPage extends StatelessWidget {
           ),
           PlatformWidgetExample(
             title: 'Original Tabbed Page',
-            builder: (_, platform) => PlatformButton(
+            builder: (_, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _openPage(
                 context,
@@ -52,7 +52,7 @@ class TabImplementationPage extends StatelessWidget {
           ),
           PlatformWidgetExample(
             title: 'Dynamic Tabbed Page',
-            builder: (_, platform) => PlatformButton(
+            builder: (_, platform) => PlatformElevatedButton(
               child: Text(platform.text),
               onPressed: () => _openPage(
                 context,
