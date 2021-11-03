@@ -680,7 +680,7 @@ See the example code for how this is used.
 
 Please [create](https://github.com/stryder-dev/flutter_platform_widgets/issues/new) an issue to provide feedback or an issue.
 
-# Contributers
+# Contributors
 
 Special thanks for everyone that have contributed to this project...
 
