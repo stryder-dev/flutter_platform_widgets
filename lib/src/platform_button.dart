@@ -9,9 +9,11 @@ import 'package:flutter/material.dart'
     show
         Brightness,
         ButtonTextTheme,
+        // ignore: deprecated_member_use
         FlatButton,
         MaterialButton,
         MaterialTapTargetSize,
+        // ignore: deprecated_member_use
         RaisedButton,
         VisualDensity;
 import 'package:flutter/rendering.dart' show MouseCursor;
@@ -226,6 +228,8 @@ class CupertinoFilledButtonData extends _BaseData {
   final AlignmentGeometry? alignment;
 }
 
+@Deprecated(
+    'Use PlatformTextButton or PlatformElevatedButton instead. Material FlatButton and RaisedButton are deprecated.')
 class PlatformButton
     extends PlatformWidgetBase<CupertinoButton, MaterialButton> {
   final Key? widgetKey;

@@ -49,6 +49,7 @@ class MaterialAlertDialogData extends _BaseData {
     this.actionsOverflowButtonSpacing,
     this.clipBehavior,
     this.insetPadding,
+    this.actionsAlignment,
   }) : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -70,6 +71,7 @@ class MaterialAlertDialogData extends _BaseData {
   final double? actionsOverflowButtonSpacing;
   final Clip? clipBehavior;
   final EdgeInsets? insetPadding;
+  final MainAxisAlignment? actionsAlignment;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -139,6 +141,7 @@ class PlatformAlertDialog
       actionsOverflowButtonSpacing: data?.actionsOverflowButtonSpacing,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       insetPadding: data?.insetPadding ?? _defaultInsetPadding,
+      actionsAlignment: data?.actionsAlignment,
     );
   }
 

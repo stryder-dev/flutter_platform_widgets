@@ -10,6 +10,7 @@ import 'package:flutter/material.dart'
         Brightness,
         ButtonStyle,
         ButtonTextTheme,
+        // ignore: deprecated_member_use
         FlatButton,
         MaterialTapTargetSize,
         TextButton,
@@ -163,6 +164,7 @@ class PlatformDialogAction
 
       assert(data?.child != null || child != null);
 
+      // ignore: deprecated_member_use
       return FlatButton(
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,

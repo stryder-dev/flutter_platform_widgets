@@ -90,6 +90,7 @@ class CupertinoSwitchData extends _BaseData {
     Color? activeColor,
     DragStartBehavior? dragStartBehavior,
     this.trackColor,
+    this.thumbColor,
   }) : super(
           widgetKey: widgetKey,
           value: value,
@@ -99,6 +100,7 @@ class CupertinoSwitchData extends _BaseData {
         );
 
   final Color? trackColor;
+  final Color? thumbColor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -168,6 +170,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
           dragStartBehavior ??
           DragStartBehavior.start,
       trackColor: data?.trackColor,
+      thumbColor: data?.thumbColor,
     );
   }
 }

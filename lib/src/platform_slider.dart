@@ -23,6 +23,7 @@ abstract class _BaseData {
     this.divisions,
     this.min,
     this.max,
+    this.thumbColor,
   });
 
   final Key? widgetKey;
@@ -35,6 +36,7 @@ abstract class _BaseData {
   final int? divisions;
   final double? min;
   final double? max;
+  final Color? thumbColor;
 }
 
 class MaterialSliderData extends _BaseData {
@@ -54,6 +56,7 @@ class MaterialSliderData extends _BaseData {
     this.focusNode,
     this.mouseCursor,
     this.autofocus,
+    Color? thumbColor,
   }) : super(
             widgetKey: widgetKey,
             value: value,
@@ -63,7 +66,8 @@ class MaterialSliderData extends _BaseData {
             activeColor: activeColor,
             divisions: divisions,
             min: min,
-            max: max);
+            max: max,
+            thumbColor: thumbColor);
 
   final Color? inactiveColor;
   final String? label;
@@ -84,7 +88,7 @@ class CupertinoSliderData extends _BaseData {
     int? divisions,
     double? min,
     double? max,
-    this.thumbColor,
+    Color? thumbColor,
   }) : super(
             widgetKey: widgetKey,
             value: value,
@@ -94,9 +98,8 @@ class CupertinoSliderData extends _BaseData {
             activeColor: activeColor,
             divisions: divisions,
             min: min,
-            max: max);
-
-  final Color? thumbColor;
+            max: max,
+            thumbColor: thumbColor);
 }
 
 class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
@@ -110,6 +113,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final int? divisions;
   final double min;
   final double max;
+  final Color? thumbColor;
 
   final PlatformBuilder<MaterialSliderData>? material;
   final PlatformBuilder<CupertinoSliderData>? cupertino;
@@ -125,6 +129,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.divisions,
     this.min = 0.0,
     this.max = 1.0,
+    this.thumbColor,
     this.material,
     this.cupertino,
   })  : assert(divisions == null || divisions > 0),
@@ -151,6 +156,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       focusNode: data?.focusNode,
       mouseCursor: data?.mouseCursor,
       autofocus: data?.autofocus ?? false,
+      thumbColor: data?.thumbColor ?? thumbColor,
     );
   }
 
@@ -168,7 +174,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       divisions: data?.divisions ?? divisions,
       max: data?.max ?? max,
       min: data?.min ?? min,
-      thumbColor: data?.thumbColor ?? CupertinoColors.white,
+      thumbColor: data?.thumbColor ?? thumbColor ?? CupertinoColors.white,
     );
   }
 }

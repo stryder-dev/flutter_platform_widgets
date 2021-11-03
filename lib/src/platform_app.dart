@@ -43,6 +43,7 @@ abstract class _BaseData {
     this.highContrastTheme,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.useInheritedMediaQuery,
   });
 
   final Key? widgetKey;
@@ -74,6 +75,7 @@ abstract class _BaseData {
   final ThemeData? highContrastTheme;
   final String? restorationScopeId;
   final ScrollBehavior? scrollBehavior;
+  final bool? useInheritedMediaQuery;
 }
 
 abstract class _BaseRouterData {
@@ -104,6 +106,7 @@ abstract class _BaseRouterData {
     this.backButtonDispatcher,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.useInheritedMediaQuery,
   });
 
   final Key? widgetKey;
@@ -142,6 +145,8 @@ abstract class _BaseRouterData {
   final String? restorationScopeId;
 
   final ScrollBehavior? scrollBehavior;
+
+  final bool? useInheritedMediaQuery;
 }
 
 class MaterialAppData extends _BaseData {
@@ -173,6 +178,7 @@ class MaterialAppData extends _BaseData {
       InitialRouteListFactory? onGenerateInitialRoutes,
       String? restorationScopeId,
       ScrollBehavior? scrollBehavior,
+      bool? useInheritedMediaQuery,
       this.theme,
       this.debugShowMaterialGrid,
       this.darkTheme,
@@ -206,6 +212,7 @@ class MaterialAppData extends _BaseData {
           onGenerateInitialRoutes: onGenerateInitialRoutes,
           restorationScopeId: restorationScopeId,
           scrollBehavior: scrollBehavior,
+          useInheritedMediaQuery: useInheritedMediaQuery,
         );
 
   final ThemeData? theme;
@@ -236,6 +243,7 @@ class MaterialAppRouterData extends _BaseRouterData {
     Map<Type, Action<Intent>>? actions,
     InitialRouteListFactory? onGenerateInitialRoutes,
     ScrollBehavior? scrollBehavior,
+    bool? useInheritedMediaQuery,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
@@ -261,6 +269,7 @@ class MaterialAppRouterData extends _BaseRouterData {
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
           scrollBehavior: scrollBehavior,
+          useInheritedMediaQuery: useInheritedMediaQuery,
         );
 
   final ThemeData? theme;
@@ -298,6 +307,7 @@ class CupertinoAppData extends _BaseData {
     bool? showSemanticsDebugger,
     bool? debugShowCheckedModeBanner,
     ScrollBehavior? scrollBehavior,
+    bool? useInheritedMediaQuery,
     this.theme,
   }) : super(
           widgetKey: widgetKey,
@@ -326,6 +336,7 @@ class CupertinoAppData extends _BaseData {
           actions: actions,
           onGenerateInitialRoutes: onGenerateInitialRoutes,
           scrollBehavior: scrollBehavior,
+          useInheritedMediaQuery: useInheritedMediaQuery,
         );
 
   final CupertinoThemeData? theme;
@@ -356,6 +367,7 @@ class CupertinoAppRouterData extends _BaseRouterData {
     RouterDelegate<Object>? routerDelegate,
     BackButtonDispatcher? backButtonDispatcher,
     ScrollBehavior? scrollBehavior,
+    bool? useInheritedMediaQuery,
     this.theme,
   }) : super(
           widgetKey: widgetKey,
@@ -381,6 +393,7 @@ class CupertinoAppRouterData extends _BaseRouterData {
           routerDelegate: routerDelegate,
           backButtonDispatcher: backButtonDispatcher,
           scrollBehavior: scrollBehavior,
+          useInheritedMediaQuery: useInheritedMediaQuery,
         );
 
   final CupertinoThemeData? theme;
@@ -434,6 +447,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   final ScrollBehavior? scrollBehavior;
 
+  final bool? useInheritedMediaQuery;
+
   const PlatformApp({
     Key? key,
     this.widgetKey,
@@ -463,6 +478,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.onGenerateInitialRoutes,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.useInheritedMediaQuery,
     this.material,
     this.cupertino,
   })  : routeInformationProvider = null,
@@ -498,6 +514,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.actions,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.useInheritedMediaQuery,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
@@ -575,6 +592,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             dataRouter?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: dataRouter?.scaffoldMessengerKey,
         scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
+        useInheritedMediaQuery: dataRouter?.useInheritedMediaQuery ??
+            useInheritedMediaQuery ??
+            false,
       );
     } else {
       final data = material?.call(context, platform(context));
@@ -630,6 +650,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: data?.scaffoldMessengerKey,
         scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
+        useInheritedMediaQuery:
+            data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
       );
     }
   }
@@ -686,6 +708,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         key: dataRouter?.widgetKey ?? widgetKey,
         restorationScopeId:
             dataRouter?.restorationScopeId ?? restorationScopeId,
+        scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
+        useInheritedMediaQuery: dataRouter?.useInheritedMediaQuery ??
+            useInheritedMediaQuery ??
+            false,
       );
     } else {
       final data = cupertino?.call(context, platform(context));
@@ -733,6 +759,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         onGenerateInitialRoutes:
             data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
+        scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
+        useInheritedMediaQuery:
+            data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
       );
     }
   }

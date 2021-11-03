@@ -499,7 +499,7 @@ class PlatformIcons {
   IconData get photoLibrarySolid => isMaterial(context)
       ? Icons.photo_library
       : CupertinoIcons.photo_fill_on_rectangle_fill;
-  
+
   /// Icons: Icons.play_arrow : CupertinoIcons.play_arrow
   IconData get playArrow =>
       isMaterial(context) ? Icons.play_arrow : CupertinoIcons.play_arrow;
@@ -693,34 +693,18 @@ class PlatformIcons {
       isMaterial(context) ? Icons.videocam : CupertinoIcons.video_camera_solid;
 
   /// Icons: Icons.volume_down : CupertinoIcons.volume_down
-  @deprecated
-  IconData get volumnDown =>
-      isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
-
   IconData get volumeDown =>
       isMaterial(context) ? Icons.volume_down : CupertinoIcons.volume_down;
 
   /// Icons: Icons.volume_mute : CupertinoIcons.volume_mute
-  @deprecated
-  IconData get volumnMute =>
-      isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
-
   IconData get volumeMute =>
       isMaterial(context) ? Icons.volume_mute : CupertinoIcons.volume_mute;
 
   /// Icons: Icons.volume_off : CupertinoIcons.volume_off
-  @deprecated
-  IconData get volumnOff =>
-      isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
-
   IconData get volumeOff =>
       isMaterial(context) ? Icons.volume_off : CupertinoIcons.volume_off;
 
   /// Icons: Icons.volume_up : CupertinoIcons.volume_up
-  @deprecated
-  IconData get volumnUp =>
-      isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
-
   IconData get volumeUp =>
       isMaterial(context) ? Icons.volume_up : CupertinoIcons.volume_up;
 
@@ -737,5 +721,4 @@ class PlatformIcons {
   /// Icons: Icons.wifi_off : CupertinoIcons.wifi_slash
   IconData get wifiOff =>
       isMaterial(context) ? Icons.wifi_off : CupertinoIcons.wifi_slash;
-
 }
