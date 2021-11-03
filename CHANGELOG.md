@@ -1,3 +1,12 @@
+## [1.10.0] - October 03, 2021
+
+#### (Flutter version support: v2.5.3)
+
+- Added extra fields from Flutter 2.5
+- Added deprecation for `PlatformButton`. Please use `PlatformElevatedButton` or `PlatformTextButton`
+- Added deprecation on fields that are deprecated in Flutter widgets
+- Removed deprecated platform icons
+
 ## [1.9.5] - June 09, 2021
 
 #### (Flutter version support: v2.2)
