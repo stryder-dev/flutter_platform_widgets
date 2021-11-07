@@ -205,6 +205,7 @@ class PlatformPage extends StatelessWidget {
               autovalidateMode: AutovalidateMode.always,
             ),
           ),
+
           // ! PlatformCircularProgressIndicator
           // _PlatformWidgetExample(
           //   title: 'PlatformCircularProgressIndicator',
@@ -243,6 +244,14 @@ class PlatformPage extends StatelessWidget {
                 material: (data) => data.textTheme.headline5,
                 cupertino: (data) => data.textTheme.navTitleTextStyle,
               ),
+            ),
+          ),
+          // ! Date Picker
+          PlatformWidgetExample(
+            title: 'showPlatformDatePicker',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () => _showDatePicker(context),
             ),
           ),
           // ! Dialogs
@@ -305,6 +314,15 @@ class PlatformPage extends StatelessWidget {
       ),
     );
   }
+}
+
+_showDatePicker(BuildContext context) async {
+  await showPlatformDatePicker(
+    context: context,
+    firstDate: DateTime.now().subtract(const Duration(days: 100)),
+    lastDate: DateTime.now().add(const Duration(days: 100)),
+    initialDate: DateTime.now(),
+  );
 }
 
 _showExampleDialog(BuildContext context, String text) {
