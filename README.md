@@ -49,6 +49,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformTabScaffold](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtabscaffold)
 - [PlatformAppBar](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformappbar)
 - [PlatformNavBar](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformnavbar)
+- [PlatformPopupMenu](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformpopupmenu)
 - [PlatformAlertDialog](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformalertdialog)
 - [PlatformDialogAction](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformdialogaction)
 - [PlatformCircularProgressIndicator](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformcircularprogressindicator)
@@ -154,7 +155,7 @@ return PlatformButton(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformButton(
@@ -195,7 +196,7 @@ return PlatformIconButton(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 Widget infoIconButton() {
@@ -231,7 +232,7 @@ return PlatformApp.router(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformApp(
@@ -268,7 +269,7 @@ return PlatformScaffold(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformScaffold(
@@ -307,7 +308,7 @@ More more detailed example look at:
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformTabScaffold(
@@ -357,7 +358,7 @@ return PlatformAppBar(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformAppBar(
@@ -392,7 +393,7 @@ return PlatformNavBar(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformNavBar(
@@ -410,6 +411,49 @@ return PlatformNavBar(
   cupertino: (_, __) => CupertinoTabBarData(...),
 );
 ```
+
+## PlatformPopupMenu
+
+The PlatformPopupMenu will render a using a `PopupMenuButton` for material or use a `CupertinoActionSheet` for cupertino which will display a list of actions.
+
+```dart
+return PlatformPopupMenu(
+  options: [
+    PopupMenuOption(label: 'One', onTap: _navToPageOne),
+    PopupMenuOption(label: 'Two', onTap: _navToPageTwo),
+    PopupMenuOption(label: 'Three', onTap: _navToPageThree)
+  ],
+  icon: Icon(
+    context.platformIcon(
+      material: Icons.more_vert_rounded,
+      cupertino: CupertinoIcons.ellipsis,
+    ),
+  ),
+);
+```
+
+#### Enhance
+
+Extend with `PlatformBuilder` for material or cupertino.
+
+```dart
+return PlatformPopupMenu(
+  options: [
+    PopupMenuOption(label: 'One', onTap: _navToPageOne),
+    PopupMenuOption(label: 'Two', onTap: _navToPageTwo),
+    PopupMenuOption(label: 'Three', onTap: _navToPageThree)
+  ],
+  icon: Icon(
+    context.platformIcon(
+      material: Icons.more_vert_rounded,
+      cupertino: CupertinoIcons.ellipsis,
+    ),
+  ),
+  material: (_, __)  => MaterialPopupMenuData(...),
+  cupertino: (_, __) => CupertinoPopupMenuData(...),
+);
+```
+
 
 ## PlatformAlertDialog
 
@@ -437,7 +481,7 @@ showPlatformDialog(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 showDialog(
@@ -461,7 +505,7 @@ PlatformDialogAction(
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 PlatformDialogAction(
@@ -482,7 +526,7 @@ return PlatformCircularProgressIndicator();
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformCircularProgressIndicator(
@@ -507,7 +551,7 @@ This function can be used within the `Navigator` to push either the `MaterialPag
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return platformPageRoute(
@@ -531,7 +575,7 @@ This function can be used within flutter's `Navigator 2` to push either the `Mat
 
 #### Enhance
 
-Extend with `WidgetBuilder` for material or cupertino.
+Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return platformPage(

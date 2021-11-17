@@ -246,6 +246,23 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+          // ! Popup Menu
+          PlatformWidgetExample(
+            title: 'Popup Menu',
+            builder: (_, platform) => PlatformPopupMenu(
+              icon: Icon(
+                context.platformIcon(
+                  material: Icons.more_vert_rounded,
+                  cupertino: CupertinoIcons.ellipsis,
+                ),
+              ),
+              options: [
+                PopupMenuOption(label: 'One'),
+                PopupMenuOption(label: 'Two'),
+                PopupMenuOption(label: 'Three'),
+              ],
+            ),
+          ),
           // ! Date Picker
           PlatformWidgetExample(
             title: 'showPlatformDatePicker',

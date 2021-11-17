@@ -30,6 +30,7 @@ export 'src/platform_icons.dart';
 export 'src/platform_nav_bar.dart';
 export 'src/platform_page.dart';
 export 'src/platform_page_route.dart';
+export 'src/platform_popup_menu.dart';
 export 'src/platform_provider.dart';
 export 'src/platform_scaffold.dart';
 export 'src/platform_slider.dart';
