@@ -1,3 +1,10 @@
+## [1.11.0] - November 19, 2021
+
+#### (Flutter version support: v2.5.3)
+
+- Added `PlatformPopupMenu` to display a material `PopupMenuButton` or cupertino `CupertinoActionSheet`
+- Added `showPlatformDatePicker` to display a material date picker via `showDatePicker` or a custom cupertino date tumbler via `showCupertinoModalPopup`. For cupertino you can replace the default panel to render your own by implementing the widget builder argument `cupertinoContentBuilder`.
+
 ## [1.10.0] - October 03, 2021
 
 #### (Flutter version support: v2.5.3)
