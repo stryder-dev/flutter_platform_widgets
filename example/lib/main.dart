@@ -205,6 +205,7 @@ class PlatformPage extends StatelessWidget {
               autovalidateMode: AutovalidateMode.always,
             ),
           ),
+
           // ! PlatformCircularProgressIndicator
           // _PlatformWidgetExample(
           //   title: 'PlatformCircularProgressIndicator',
@@ -243,6 +244,31 @@ class PlatformPage extends StatelessWidget {
                 material: (data) => data.textTheme.headline5,
                 cupertino: (data) => data.textTheme.navTitleTextStyle,
               ),
+            ),
+          ),
+          // ! Popup Menu
+          PlatformWidgetExample(
+            title: 'Popup Menu',
+            builder: (_, platform) => PlatformPopupMenu(
+              icon: Icon(
+                context.platformIcon(
+                  material: Icons.more_vert_rounded,
+                  cupertino: CupertinoIcons.ellipsis,
+                ),
+              ),
+              options: [
+                PopupMenuOption(label: 'One'),
+                PopupMenuOption(label: 'Two'),
+                PopupMenuOption(label: 'Three'),
+              ],
+            ),
+          ),
+          // ! Date Picker
+          PlatformWidgetExample(
+            title: 'showPlatformDatePicker',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () => _showDatePicker(context),
             ),
           ),
           // ! Dialogs
@@ -305,6 +331,15 @@ class PlatformPage extends StatelessWidget {
       ),
     );
   }
+}
+
+_showDatePicker(BuildContext context) async {
+  await showPlatformDatePicker(
+    context: context,
+    firstDate: DateTime.now().subtract(const Duration(days: 100)),
+    lastDate: DateTime.now().add(const Duration(days: 100)),
+    initialDate: DateTime.now(),
+  );
 }
 
 _showExampleDialog(BuildContext context, String text) {
