@@ -616,6 +616,20 @@ This function is used to either display a `DatePickerDialog` for material or `Cu
 
 > Note: The Cupertino popup uses a modal bottom sheet. If you need to customize
 > the look then set the `cupertinoContentBuilder` property and return a custom content.
+> If you create your own content builder you will need to manage the state of the date yourself.
+> See the implementation of using `StatefulBuilder` or `StatefulWidget` to manage state updates within the example project.
+
+```dart
+final date = await showPlatformDatePicker(
+    context: context,
+    firstDate: DateTime.now().subtract(const Duration(days: 100)),
+    lastDate: DateTime.now().add(const Duration(days: 100)),
+    initialDate: DateTime.now(),
+    cupertinoContentBuilder: (contentData, data) =>
+        _CustomCupertinoDatePicker(contentData: contentData),
+  );
+```
+
 
 ## PlatformProvider
 

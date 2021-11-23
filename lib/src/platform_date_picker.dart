@@ -154,28 +154,51 @@ Future<DateTime?> showPlatformDatePicker({
   } else {
     final data = cupertino?.call(context, platform(context));
 
-    DateTime selectedDate = data?.initialDate ?? initialDate;
+    final contentData = DatePickerContentData(
+      initialDate: data?.initialDate ?? initialDate,
+      firstDate: data?.firstDate ?? firstDate,
+      lastDate: data?.lastDate ?? lastDate,
+      selectedDate: data?.initialDate ?? initialDate,
+    );
     return await _showDateModalBottomSheet<DateTime?>(
       context,
-      StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          final contentData = DatePickerContentData(
-            initialDate: data?.initialDate ?? initialDate,
-            firstDate: data?.firstDate ?? firstDate,
-            lastDate: data?.lastDate ?? lastDate,
-            selectedDate: selectedDate,
-          );
-          return cupertinoContentBuilder?.call(contentData, data) ??
-              DefaultCupertinoDatePicker(
-                contentData: contentData,
-                data: data,
-                onDateTimeChanged: (newDate) =>
-                    setState(() => selectedDate = newDate),
-              );
-        },
-      ),
+      cupertinoContentBuilder?.call(
+            contentData,
+            data,
+          ) ??
+          _renderManagedCupertinoDatePicker(
+            data: data,
+            initialDate: initialDate,
+            firstDate: firstDate,
+            lastDate: lastDate,
+          ),
     );
   }
+}
+
+Widget _renderManagedCupertinoDatePicker({
+  CupertinoDatePickerData? data,
+  required DateTime initialDate,
+  required DateTime firstDate,
+  required DateTime lastDate,
+}) {
+  DateTime selectedDate = data?.initialDate ?? initialDate;
+
+  return StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState) {
+      final contentData = DatePickerContentData(
+        initialDate: data?.initialDate ?? initialDate,
+        firstDate: data?.firstDate ?? firstDate,
+        lastDate: data?.lastDate ?? lastDate,
+        selectedDate: selectedDate,
+      );
+      return DefaultCupertinoDatePicker(
+        contentData: contentData,
+        data: data,
+        onDateTimeChanged: (newDate) => setState(() => selectedDate = newDate),
+      );
+    },
+  );
 }
 
 class DefaultCupertinoDatePicker extends StatelessWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import 'cupertino_date_picker.dart';
 import 'extensions.dart';
 import 'icons_page.dart';
 import 'logo.dart';
@@ -271,6 +272,22 @@ class PlatformPage extends StatelessWidget {
               onPressed: () => _showDatePicker(context),
             ),
           ),
+          // ! Date Picker with Custom iOS
+          PlatformWidgetExample(
+            title: 'showPlatformDatePicker (Custom Cupertino 1 )',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () => showDatePickerWithCustomCupertino(context),
+            ),
+          ),
+          PlatformWidgetExample(
+            title: 'showPlatformDatePicker (Custom Cupertino 2)',
+            builder: (_, platform) => PlatformElevatedButton(
+              child: Text(platform.text),
+              onPressed: () =>
+                  showDatePickerWithCustomCupertinoStateful(context),
+            ),
+          ),
           // ! Dialogs
           PlatformWidgetExample(
             title: 'showPlatformDialog',
@@ -334,12 +351,17 @@ class PlatformPage extends StatelessWidget {
 }
 
 _showDatePicker(BuildContext context) async {
-  await showPlatformDatePicker(
+  final now = DateUtils.dateOnly(DateTime.now());
+  final date = await showPlatformDatePicker(
     context: context,
-    firstDate: DateTime.now().subtract(const Duration(days: 100)),
-    lastDate: DateTime.now().add(const Duration(days: 100)),
-    initialDate: DateTime.now(),
+    firstDate: now.subtract(const Duration(days: 100)),
+    lastDate: now.add(const Duration(days: 100)),
+    initialDate: now,
   );
+
+  if (date != null) {
+    _showExampleDialog(context, 'Date: $date');
+  }
 }
 
 _showExampleDialog(BuildContext context, String text) {
@@ -467,6 +489,80 @@ class _StateProviderState<T> extends State<StateProvider<T>> {
       context,
       state,
       (T newValue) => setState(() => state = newValue),
+    );
+  }
+}
+
+class _CustomCupertinoDatePicker extends StatelessWidget {
+  final double modalHeight;
+  final Color? modalColor;
+  final CupertinoDatePickerMode mode;
+  final DatePickerContentData contentData;
+  final ValueChanged<DateTime> onDateTimeChanged;
+  final CupertinoDatePickerData? data;
+  final String? doneLabel;
+  final String? cancelLabel;
+
+  const _CustomCupertinoDatePicker({
+    required this.contentData,
+    required this.onDateTimeChanged,
+    this.data,
+    this.modalColor,
+    this.modalHeight = 300,
+    this.mode = CupertinoDatePickerMode.date,
+    this.doneLabel,
+    this.cancelLabel,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: modalHeight,
+      color: modalColor ?? Theme.of(context).canvasColor,
+      child: Stack(
+        children: [
+          CupertinoDatePicker(
+            key: data?.key,
+            mode: data?.mode ?? mode,
+            onDateTimeChanged: (value) {
+              data?.onDateTimeChanged?.call(value);
+              onDateTimeChanged.call(value);
+            },
+            initialDateTime: contentData.initialDate,
+            minimumDate: contentData.firstDate,
+            maximumDate: contentData.lastDate,
+            backgroundColor: data?.backgroundColor,
+            dateOrder: data?.dateOrder,
+            maximumYear: data?.maximumYear,
+            minimumYear: data?.minimumYear ?? 1,
+            minuteInterval: data?.minuteInterval ?? 1,
+            use24hFormat: data?.use24hFormat ?? false,
+          ),
+          Row(
+            children: [
+              PlatformTextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(cancelLabel ?? 'Cancel'),
+              ),
+              const Spacer(),
+              Text(
+                '${contentData.selectedDate.toString()}',
+                style: Theme.of(context).textTheme.caption,
+              ),
+              const Spacer(),
+              PlatformTextButton(
+                onPressed: () {
+                  Navigator.pop(context, contentData.selectedDate);
+                },
+                child: Text(doneLabel ?? 'Done'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

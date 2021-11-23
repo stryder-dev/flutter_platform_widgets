@@ -1,3 +1,9 @@
+## [1.11.1] - November 23, 2021
+
+#### (Flutter version support: v2.5.3)
+
+- Added a bit more of an example of how to implement a custom cupertino date picker.
+
 ## [1.11.0] - November 19, 2021
 
 #### (Flutter version support: v2.5.3)
