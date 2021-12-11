@@ -4,7 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
+import 'package:flutter/cupertino.dart'
+    show CupertinoButton, CupertinoColors, CupertinoTheme;
 import 'package:flutter/material.dart' show ElevatedButton, ButtonStyle;
 import 'package:flutter/widgets.dart';
 
@@ -82,7 +83,7 @@ class CupertinoElevatedButtonData extends _BaseData {
 }
 
 class PlatformElevatedButton
-    extends PlatformWidgetBase<CupertinoButton, ElevatedButton> {
+    extends PlatformWidgetBase<Widget, ElevatedButton> {
   final Key? widgetKey;
 
   final VoidCallback? onPressed;
@@ -90,6 +91,7 @@ class PlatformElevatedButton
 
   final EdgeInsetsGeometry? padding;
   final AlignmentGeometry? alignment;
+  final Color? color;
 
   final PlatformBuilder<CupertinoElevatedButtonData>? cupertino;
   final PlatformBuilder<MaterialElevatedButtonData>? material;
@@ -100,6 +102,7 @@ class PlatformElevatedButton
     this.child,
     this.padding,
     this.alignment,
+    this.color,
     this.material,
     this.cupertino,
   });
@@ -121,7 +124,11 @@ class PlatformElevatedButton
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
         style: data?.style ??
-            ElevatedButton.styleFrom(padding: padding, alignment: alignment),
+            ElevatedButton.styleFrom(
+              primary: color,
+              padding: padding,
+              alignment: alignment,
+            ),
       );
     }
 
@@ -134,12 +141,16 @@ class PlatformElevatedButton
       clipBehavior: data?.clipBehavior ?? Clip.none,
       focusNode: data?.focusNode,
       style: data?.style ??
-          ElevatedButton.styleFrom(padding: padding, alignment: alignment),
+          ElevatedButton.styleFrom(
+            primary: color,
+            padding: padding,
+            alignment: alignment,
+          ),
     );
   }
 
   @override
-  CupertinoButton createCupertinoWidget(BuildContext context) {
+  Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
     if (data?.originalStyle ?? false) {
       return CupertinoButton(
@@ -154,10 +165,10 @@ class PlatformElevatedButton
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
-        color: data?.color,
+        color: color ?? data?.color,
       );
     } else {
-      return CupertinoButton.filled(
+      final button = CupertinoButton.filled(
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
@@ -170,6 +181,15 @@ class PlatformElevatedButton
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
       );
+
+      if (color != null) {
+        final themeData = CupertinoTheme.of(context);
+        return CupertinoTheme(
+          data: themeData.copyWith(primaryColor: color),
+          child: button,
+        );
+      }
+      return button;
     }
   }
 }
