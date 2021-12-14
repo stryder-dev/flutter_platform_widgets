@@ -1,8 +1,9 @@
-## [1.12.0] - December 12, 2021
+## [1.12.0] - December 14, 2021
 
 #### (Flutter version support: v2.5.3)
 
 - Added `color` property to `PlatformTextButton` and `PlatformElevatedButton`
+- Added cloud download and upload platform icons. (thanks rledisez)
 
 ## [1.11.1] - November 23, 2021
 
