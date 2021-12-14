@@ -99,6 +99,14 @@ class IconsPage extends StatelessWidget {
                   _IconCompared(
                       'cloudSolid', (c) => c.platformIcons.cloudSolid),
                   _IconCompared(
+                      'cloudDownload', (c) => c.platformIcons.cloudDownload),
+                  _IconCompared(
+                      'cloudDownloadSolid', (c) => c.platformIcons.cloudDownloadSolid),
+                  _IconCompared(
+                      'cloudUpload', (c) => c.platformIcons.cloudUpload),
+                  _IconCompared(
+                      'cloudUploadSolid', (c) => c.platformIcons.cloudUploadSolid),
+                  _IconCompared(
                       'collections', (c) => c.platformIcons.collections),
                   _IconCompared('collectionsSolid',
                       (c) => c.platformIcons.collectionsSolid),
