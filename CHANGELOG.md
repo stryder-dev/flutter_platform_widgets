@@ -1,3 +1,9 @@
+## [1.12.0] - December 12, 2021
+
+#### (Flutter version support: v2.5.3)
+
+- Added `color` property to `PlatformTextButton` and `PlatformElevatedButton`
+
 ## [1.11.1] - November 23, 2021
 
 #### (Flutter version support: v2.5.3)
