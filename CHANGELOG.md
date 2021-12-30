@@ -1,3 +1,10 @@
+## [1.12.1] - December 30, 2021
+
+#### (Flutter version support: v2.5.3)
+
+- Fixed use of context for `PlatformPopupMenu`
+- Added `doneLabel` and `cancelLabel` to `CupertinoDatePickerData`
+
 ## [1.12.0] - December 14, 2021
 
 #### (Flutter version support: v2.5.3)
