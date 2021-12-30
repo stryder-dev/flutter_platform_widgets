@@ -102,6 +102,8 @@ class CupertinoDatePickerData extends _BaseData {
     this.use24hFormat = false,
     this.dateOrder,
     this.backgroundColor,
+    this.doneLabel,
+    this.cancelLabel,
   }) : super(
           initialDate: initialDate,
           firstDate: firstDate,
@@ -117,6 +119,8 @@ class CupertinoDatePickerData extends _BaseData {
   final DatePickerDateOrder? dateOrder;
   final ValueChanged<DateTime>? onDateTimeChanged;
   final Color? backgroundColor;
+  final String? doneLabel;
+  final String? cancelLabel;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -253,14 +257,14 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text(cancelLabel ?? 'Cancel'),
+                child: Text(data?.cancelLabel ?? cancelLabel ?? 'Cancel'),
               ),
               const Spacer(),
               PlatformTextButton(
                 onPressed: () {
                   Navigator.pop(context, contentData.selectedDate);
                 },
-                child: Text(doneLabel ?? 'Done'),
+                child: Text(data?.doneLabel ?? doneLabel ?? 'Done'),
               ),
             ],
           ),
