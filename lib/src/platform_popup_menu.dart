@@ -130,7 +130,7 @@ class PlatformPopupMenu extends StatelessWidget {
       onTap: () {
         showPlatformModalSheet(
           context: context,
-          builder: (_) => _cupertinoSheetContent(context),
+          builder: (context) => _cupertinoSheetContent(context),
         );
       },
       child: icon,
