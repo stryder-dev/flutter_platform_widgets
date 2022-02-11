@@ -215,6 +215,7 @@ class CupertinoTextFieldData {
     this.selectionControls,
     this.enableIMEPersonalizedLearning,
     this.textDirection,
+    this.clipBehavior,
   });
 
   final Key? widgetKey;
@@ -274,6 +275,7 @@ class CupertinoTextFieldData {
   final TextSelectionControls? selectionControls;
   final bool? enableIMEPersonalizedLearning;
   final TextDirection? textDirection;
+  final Clip? clipBehavior;
 }
 
 class PlatformTextField
@@ -475,6 +477,7 @@ class PlatformTextField
       enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
           enableIMEPersonalizedLearning ??
           true,
+      // clipBehavior: ,
       //maxLengthEnforced: deprecated
     );
   }
@@ -563,6 +566,7 @@ class PlatformTextField
           enableIMEPersonalizedLearning ??
           true,
       textDirection: data?.textDirection,
+      clipBehavior: data?.clipBehavior ?? Clip.hardEdge,
       //maxLengthEnforced: deprecated
     );
   }

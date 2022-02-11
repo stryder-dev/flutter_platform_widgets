@@ -37,6 +37,8 @@ class MaterialTextButtonData extends _BaseData {
     this.autofocus,
     this.clipBehavior,
     this.icon,
+    this.onHover,
+    this.onFocusChange,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -49,6 +51,8 @@ class MaterialTextButtonData extends _BaseData {
   final bool? autofocus;
   final Clip? clipBehavior;
   final Widget? icon;
+  final ValueChanged<bool>? onHover;
+  final ValueChanged<bool>? onFocusChange;
 }
 
 class CupertinoTextButtonData extends _BaseData {
@@ -128,6 +132,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
               padding: padding,
               alignment: alignment,
             ),
+        onHover: data?.onHover,
+        onFocusChange: data?.onFocusChange,
       );
     }
 
@@ -145,6 +151,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
             padding: padding,
             alignment: alignment,
           ),
+      onHover: data?.onHover,
+      onFocusChange: data?.onFocusChange,
     );
   }
 

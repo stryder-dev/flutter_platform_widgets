@@ -214,6 +214,7 @@ class PlatformPopupMenu extends StatelessWidget {
       onCanceled: data?.onCanceled,
       padding: data?.padding ?? const EdgeInsets.all(8.0),
       shape: data?.shape,
+      tooltip: data?.tooltip,
     );
   }
 }
@@ -233,6 +234,7 @@ class MaterialPopupMenuData {
   final PopupMenuCanceled? onCanceled;
   final EdgeInsets? padding;
   final ShapeBorder? shape;
+  final String? tooltip;
 
   MaterialPopupMenuData({
     this.key,
@@ -249,5 +251,6 @@ class MaterialPopupMenuData {
     this.onCanceled,
     this.padding,
     this.shape,
+    this.tooltip,
   });
 }

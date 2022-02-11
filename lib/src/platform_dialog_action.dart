@@ -44,6 +44,8 @@ class MaterialDialogActionData extends _BaseData {
     this.autofocus,
     this.clipBehavior,
     this.icon,
+    this.onHover,
+    this.onFocusChange,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -56,6 +58,8 @@ class MaterialDialogActionData extends _BaseData {
   final bool? autofocus;
   final Clip? clipBehavior;
   final Widget? icon;
+  final ValueChanged<bool>? onHover;
+  final ValueChanged<bool>? onFocusChange;
 }
 
 class MaterialDialogFlatActionData extends _BaseData {
@@ -209,6 +213,8 @@ class PlatformDialogAction
           clipBehavior: data?.clipBehavior ?? Clip.none,
           focusNode: data?.focusNode,
           style: data?.style,
+          onHover: data?.onHover,
+          onFocusChange: data?.onFocusChange,
         );
       }
 

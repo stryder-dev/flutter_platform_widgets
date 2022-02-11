@@ -154,6 +154,7 @@ Future<DateTime?> showPlatformDatePicker({
       selectableDayPredicate: data?.selectableDayPredicate,
       textDirection: data?.textDirection,
       useRootNavigator: data?.useRootNavigator ?? true,
+      cancelText: data?.cancelText,
     );
   } else {
     final data = cupertino?.call(context, platform(context));

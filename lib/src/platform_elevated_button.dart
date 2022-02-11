@@ -37,6 +37,8 @@ class MaterialElevatedButtonData extends _BaseData {
     this.autofocus,
     this.clipBehavior,
     this.icon,
+    this.onHover,
+    this.onFocusChange,
   }) : super(
           widgetKey: widgetKey,
           child: child,
@@ -49,6 +51,8 @@ class MaterialElevatedButtonData extends _BaseData {
   final bool? autofocus;
   final Clip? clipBehavior;
   final Widget? icon;
+  final ValueChanged<bool>? onHover;
+  final ValueChanged<bool>? onFocusChange;
 }
 
 class CupertinoElevatedButtonData extends _BaseData {
@@ -129,6 +133,8 @@ class PlatformElevatedButton
               padding: padding,
               alignment: alignment,
             ),
+        onHover: data?.onHover,
+        onFocusChange: data?.onFocusChange,
       );
     }
 
@@ -146,6 +152,8 @@ class PlatformElevatedButton
             padding: padding,
             alignment: alignment,
           ),
+      onHover: data?.onHover,
+      onFocusChange: data?.onFocusChange,
     );
   }
 

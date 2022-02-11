@@ -50,6 +50,7 @@ class MaterialAlertDialogData extends _BaseData {
     this.clipBehavior,
     this.insetPadding,
     this.actionsAlignment,
+    this.alignment,
   }) : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -72,6 +73,7 @@ class MaterialAlertDialogData extends _BaseData {
   final Clip? clipBehavior;
   final EdgeInsets? insetPadding;
   final MainAxisAlignment? actionsAlignment;
+  final AlignmentGeometry? alignment;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -142,6 +144,7 @@ class PlatformAlertDialog
       clipBehavior: data?.clipBehavior ?? Clip.none,
       insetPadding: data?.insetPadding ?? _defaultInsetPadding,
       actionsAlignment: data?.actionsAlignment,
+      alignment: data?.alignment,
     );
   }
 

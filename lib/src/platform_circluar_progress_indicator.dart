@@ -39,11 +39,13 @@ class CupertinoProgressIndicatorData {
     this.key,
     this.animating,
     this.radius: _kDefaultIndicatorRadius,
+    this.color,
   });
 
   final Key? key;
   final bool? animating;
   final double? radius;
+  final Color? color;
 }
 
 class PlatformCircularProgressIndicator extends PlatformWidgetBase<
@@ -84,6 +86,7 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       key: data?.key ?? widgetKey,
       animating: data?.animating ?? true,
       radius: data?.radius ?? _kDefaultIndicatorRadius,
+      color: data?.color,
     );
   }
 }
