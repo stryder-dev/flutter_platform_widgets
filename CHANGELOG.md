@@ -1,3 +1,9 @@
+## [1.20.0] - February 12, 2022
+
+#### (Flutter version support: v2.10.0)
+
+- Added extra fields from Flutter 2.10.0
+
 ## [1.12.1] - December 30, 2021
 
 #### (Flutter version support: v2.5.3)
