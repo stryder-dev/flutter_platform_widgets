@@ -11,7 +11,6 @@ import 'package:flutter/material.dart'
         BottomNavigationBar,
         BottomNavigationBarType,
         BottomNavigationBarLandscapeLayout;
-import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
