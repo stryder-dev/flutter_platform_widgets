@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// A Provider that provides access to the functions of swicthing platforms.
 ///

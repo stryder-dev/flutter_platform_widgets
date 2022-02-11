@@ -16,7 +16,6 @@ import 'package:flutter/material.dart'
         // ignore: deprecated_member_use
         RaisedButton,
         VisualDensity;
-import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';

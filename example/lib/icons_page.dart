@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'platform_widget_example.dart';
@@ -94,18 +92,17 @@ class IconsPage extends StatelessWidget {
                       (c) => c.platformIcons.clearThickCircled),
                   _IconCompared(
                       'clockSolid', (c) => c.platformIcons.clockSolid),
-                  _IconCompared(
-                      'cloud', (c) => c.platformIcons.cloud),
+                  _IconCompared('cloud', (c) => c.platformIcons.cloud),
                   _IconCompared(
                       'cloudSolid', (c) => c.platformIcons.cloudSolid),
                   _IconCompared(
                       'cloudDownload', (c) => c.platformIcons.cloudDownload),
-                  _IconCompared(
-                      'cloudDownloadSolid', (c) => c.platformIcons.cloudDownloadSolid),
+                  _IconCompared('cloudDownloadSolid',
+                      (c) => c.platformIcons.cloudDownloadSolid),
                   _IconCompared(
                       'cloudUpload', (c) => c.platformIcons.cloudUpload),
-                  _IconCompared(
-                      'cloudUploadSolid', (c) => c.platformIcons.cloudUploadSolid),
+                  _IconCompared('cloudUploadSolid',
+                      (c) => c.platformIcons.cloudUploadSolid),
                   _IconCompared(
                       'collections', (c) => c.platformIcons.collections),
                   _IconCompared('collectionsSolid',
@@ -115,7 +112,6 @@ class IconsPage extends StatelessWidget {
                   _IconCompared('conversationBubbleOutline',
                       (c) => c.platformIcons.conversationBubbleOutline),
                   _IconCompared('create', (c) => c.platformIcons.create),
-                  
                   _IconCompared('delete', (c) => c.platformIcons.delete),
                   _IconCompared('dehaze', (c) => c.platformIcons.dehaze),
                   _IconCompared(
@@ -155,8 +151,7 @@ class IconsPage extends StatelessWidget {
                       'groupSolid', (c) => c.platformIcons.groupSolid),
                   _IconCompared(
                       'heartSolid', (c) => c.platformIcons.heartSolid),
-                  _IconCompared(
-                      'help', (c) => c.platformIcons.help),
+                  _IconCompared('help', (c) => c.platformIcons.help),
                   _IconCompared(
                       'helpOutline', (c) => c.platformIcons.helpOutline),
                   _IconCompared('home', (c) => c.platformIcons.home),

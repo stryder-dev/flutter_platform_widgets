@@ -15,14 +15,6 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show InputDecoration, TextField, InputCounterWidgetBuilder;
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart'
-    show
-        Brightness,
-        TextInputFormatter,
-        TextInputType,
-        TextInputAction,
-        TextCapitalization;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -223,6 +215,7 @@ class CupertinoTextFieldData {
     this.selectionControls,
     this.enableIMEPersonalizedLearning,
     this.textDirection,
+    this.clipBehavior,
   });
 
   final Key? widgetKey;
@@ -282,6 +275,7 @@ class CupertinoTextFieldData {
   final TextSelectionControls? selectionControls;
   final bool? enableIMEPersonalizedLearning;
   final TextDirection? textDirection;
+  final Clip? clipBehavior;
 }
 
 class PlatformTextField
@@ -483,6 +477,7 @@ class PlatformTextField
       enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
           enableIMEPersonalizedLearning ??
           true,
+      // clipBehavior: ,
       //maxLengthEnforced: deprecated
     );
   }
@@ -571,6 +566,7 @@ class PlatformTextField
           enableIMEPersonalizedLearning ??
           true,
       textDirection: data?.textDirection,
+      clipBehavior: data?.clipBehavior ?? Clip.hardEdge,
       //maxLengthEnforced: deprecated
     );
   }

@@ -11,12 +11,13 @@ import 'package:flutter/material.dart'
         BottomNavigationBar,
         BottomNavigationBarType,
         BottomNavigationBarLandscapeLayout;
-import 'package:flutter/rendering.dart' show MouseCursor;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
 
+// Standard iOS 10 tab bar height.
+const double _kTabBarHeight = 50.0;
 const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
 const Color _kDefaultTabBarInactiveColor = CupertinoColors.inactiveGray;
 
@@ -51,6 +52,7 @@ class CupertinoTabBarData extends _BaseData {
     int? currentIndex,
     this.inactiveColor,
     this.border,
+    this.height,
   }) : super(
             widgetKey: widgetKey,
             items: items,
@@ -62,6 +64,7 @@ class CupertinoTabBarData extends _BaseData {
 
   final Color? inactiveColor;
   final Border? border;
+  final double? height;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -205,6 +208,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
               style: BorderStyle.solid,
             ),
           ),
+      height: data?.height ?? _kTabBarHeight,
     );
   }
 }

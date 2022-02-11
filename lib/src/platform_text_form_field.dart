@@ -393,7 +393,6 @@ class PlatformTextFormField
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
       restorationId: data?.restorationId,
-      //autovalidate: , deprecated
       //maxLengthEnforced: , deprecated
     );
   }

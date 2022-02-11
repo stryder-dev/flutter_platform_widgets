@@ -6,7 +6,6 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart' show IconButton, VisualDensity;
-import 'package:flutter/rendering.dart' show MouseCursor, SystemMouseCursors;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
