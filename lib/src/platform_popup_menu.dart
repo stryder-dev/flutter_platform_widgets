@@ -14,18 +14,18 @@ import 'platform_widget.dart';
 import 'widget_base.dart';
 
 class PopupMenuOption {
-  final String label;
+  final String? label;
   final void Function(PopupMenuOption)? onTap;
 
   final PlatformBuilder<CupertinoPopupMenuOptionData>? cupertino;
   final PlatformBuilder<MaterialPopupMenuOptionData>? material;
 
   PopupMenuOption({
-    required this.label,
+    this.label,
     this.onTap,
     this.cupertino,
     this.material,
-  });
+  }) : assert(label != null || material?.child != null && cupertino?.child != null);
 }
 
 class MaterialPopupMenuOptionData {
@@ -155,7 +155,7 @@ class PlatformPopupMenu extends StatelessWidget {
                 key: data?.key,
                 isDefaultAction: data?.isDefaultAction ?? false,
                 isDestructiveAction: data?.isDestructiveAction ?? false,
-                child: data?.child ?? Text(option.label),
+                child: data?.child ?? Text(option.label ?? ""),
                 onPressed: data?.onPressed ??
                     () {
                       Navigator.pop(context);
@@ -191,7 +191,7 @@ class PlatformPopupMenu extends StatelessWidget {
                       option.material?.call(context, platform(context));
                   return PopupMenuItem(
                     value: option,
-                    child: data?.child ?? Text(option.label),
+                    child: data?.child ?? Text(option.label ?? ""),
                     enabled: data?.enabled ?? true,
                     height: data?.height ?? kMinInteractiveDimension,
                     key: data?.key,
