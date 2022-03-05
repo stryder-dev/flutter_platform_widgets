@@ -99,7 +99,7 @@ return PlatformSwitch(
   onChanged: (bool value) {},
   value: value,
   material: (_, __)  => MaterialSwitchData(...),
-  cupertino: (_, __) => CupertinoSwitchData(...)
+  cupertino: (_, __) => CupertinoSwitchData(...),
 );
 ```
 
@@ -121,7 +121,7 @@ return PlatformSlider(
   onChanged: (bool value) {},
   value: value,
   material: (_, __)  => MaterialSliderData(...),
-  cupertino: (_, __) => CupertinoSliderData(...)
+  cupertino: (_, __) => CupertinoSliderData(...),
 );
 ```
 
@@ -138,7 +138,7 @@ return PlatformTextField();
 ```dart
 return PlatformTextField(
   material: (_, __)  => MaterialTextFieldData(...),
-  cupertino: (_, __) => CupertinoTextFieldData(...)
+  cupertino: (_, __) => CupertinoTextFieldData(...),
 );
 ```
 
@@ -162,7 +162,7 @@ return PlatformButton(
   onPressed: () => print('send'),
   child: PlatformText('Send'),
   material: (_, __)  => MaterialRaisedButtonData(...),
-  cupertino: (_, __) => CupertinoButtonData(...)
+  cupertino: (_, __) => CupertinoButtonData(...),
 );
 ```
 
@@ -237,8 +237,8 @@ Extend with `PlatformBuilder` for material or cupertino.
 ```dart
 return PlatformApp(
   home:  ...
-  material: (_, __)  => MaterialAppData(...)
-  cupertino: (_, __) => CupertinoAppData(...)
+  material: (_, __)  => MaterialAppData(...),
+  cupertino: (_, __) => CupertinoAppData(...),
 );
 ```
 
@@ -246,8 +246,8 @@ or
 
 ```dart
 return PlatformApp.router(
-  material: (_, __)  => MaterialAppRouterData(...)
-  cupertino: (_, __) => CupertinoAppRouterData(...)
+  material: (_, __)  => MaterialAppRouterData(...),
+  cupertino: (_, __) => CupertinoAppRouterData(...),
 );
 ```
 
@@ -257,11 +257,11 @@ A Scaffold that provides the correctly hosted header (AppBar) and navigation bar
 
 ```dart
 return PlatformScaffold(
-  appBar: PlatformAppBar()
+  appBar: PlatformAppBar(),
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
   iosContentPadding: false,
-  iosContentBottomPadding: false
+  iosContentBottomPadding: false,
 );
 ```
 
@@ -273,11 +273,11 @@ Extend with `PlatformBuilder` for material or cupertino.
 
 ```dart
 return PlatformScaffold(
-  appBar: PlatformAppBar()
+  appBar: PlatformAppBar(),
   body: _buildContent(),
   bottomNavBar: PlatformNavBar(),
-  material: (_, __)  => MaterialScaffoldData(...)
-  cupertino: (_, __) => CupertinoPageScaffoldData(...);
+  material: (_, __)  => MaterialScaffoldData(...),
+  cupertino: (_, __) => CupertinoPageScaffoldData(...),
 );
 ```
 
@@ -441,7 +441,7 @@ return PlatformPopupMenu(
   options: [
     PopupMenuOption(label: 'One', onTap: _navToPageOne),
     PopupMenuOption(label: 'Two', onTap: _navToPageTwo),
-    PopupMenuOption(label: 'Three', onTap: _navToPageThree)
+    PopupMenuOption(label: 'Three', onTap: _navToPageThree),
   ],
   icon: Icon(
     context.platformIcon(
