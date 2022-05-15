@@ -7,6 +7,7 @@ import 'package:flutter/material.dart'
         SelectableDayPredicate,
         DatePickerEntryMode,
         DatePickerMode;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -64,6 +65,8 @@ class MaterialDatePickerData extends _BaseData {
     this.errorInvalidText,
     this.fieldHintText,
     this.fieldLabelText,
+    this.anchorPoint,
+    this.keyboardType,
   }) : super(
           initialDate: initialDate,
           firstDate: firstDate,
@@ -86,6 +89,8 @@ class MaterialDatePickerData extends _BaseData {
   final String? errorInvalidText;
   final String? fieldHintText;
   final String? fieldLabelText;
+  final Offset? anchorPoint;
+  final TextInputType? keyboardType;
 }
 
 class CupertinoDatePickerData extends _BaseData {
@@ -155,6 +160,8 @@ Future<DateTime?> showPlatformDatePicker({
       textDirection: data?.textDirection,
       useRootNavigator: data?.useRootNavigator ?? true,
       cancelText: data?.cancelText,
+      anchorPoint: data?.anchorPoint,
+      keyboardType: data?.keyboardType,
     );
   } else {
     final data = cupertino?.call(context, platform(context));

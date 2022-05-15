@@ -100,6 +100,8 @@ class MaterialTextFieldData {
     this.maxLengthEnforcement,
     this.selectionControls,
     this.enableIMEPersonalizedLearning,
+    this.clipBehavior,
+    this.scribbleEnabled,
   });
 
   final Key? widgetKey;
@@ -154,6 +156,8 @@ class MaterialTextFieldData {
   final MaxLengthEnforcement? maxLengthEnforcement;
   final TextSelectionControls? selectionControls;
   final bool? enableIMEPersonalizedLearning;
+  final Clip? clipBehavior;
+  final bool? scribbleEnabled;
 }
 
 class CupertinoTextFieldData {
@@ -216,6 +220,7 @@ class CupertinoTextFieldData {
     this.enableIMEPersonalizedLearning,
     this.textDirection,
     this.clipBehavior,
+    this.scribbleEnabled,
   });
 
   final Key? widgetKey;
@@ -276,6 +281,7 @@ class CupertinoTextFieldData {
   final bool? enableIMEPersonalizedLearning;
   final TextDirection? textDirection;
   final Clip? clipBehavior;
+  final bool? scribbleEnabled;
 }
 
 class PlatformTextField
@@ -334,14 +340,12 @@ class PlatformTextField
   final double? cursorHeight;
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
-
   final TextSelectionControls? selectionControls;
-
   final bool makeCupertinoDecorationNull;
-
   final String? hintText;
-
   final bool? enableIMEPersonalizedLearning;
+  final Clip clipBehavior;
+  final bool scribbleEnabled;
 
   PlatformTextField({
     Key? key,
@@ -393,6 +397,8 @@ class PlatformTextField
     this.hintText,
     this.enableIMEPersonalizedLearning,
     this.makeCupertinoDecorationNull = false,
+    this.clipBehavior = Clip.hardEdge,
+    this.scribbleEnabled = true,
     this.material,
     this.cupertino,
   })  : keyboardType = keyboardType ??
@@ -477,7 +483,8 @@ class PlatformTextField
       enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
           enableIMEPersonalizedLearning ??
           true,
-      // clipBehavior: ,
+      clipBehavior: data?.clipBehavior ?? clipBehavior,
+      scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
       //maxLengthEnforced: deprecated
     );
   }
@@ -566,7 +573,8 @@ class PlatformTextField
           enableIMEPersonalizedLearning ??
           true,
       textDirection: data?.textDirection,
-      clipBehavior: data?.clipBehavior ?? Clip.hardEdge,
+      clipBehavior: data?.clipBehavior ?? clipBehavior,
+      scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
       //maxLengthEnforced: deprecated
     );
   }

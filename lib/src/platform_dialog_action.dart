@@ -227,6 +227,8 @@ class PlatformDialogAction
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
         style: data?.style,
+        onFocusChange: data?.onFocusChange,
+        onHover: data?.onHover,
       );
     }
   }

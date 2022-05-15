@@ -74,6 +74,8 @@ class MaterialAppBarData extends _BaseData {
     this.systemOverlayStyle,
     this.titleTextStyle,
     this.toolbarTextStyle,
+    this.scrolledUnderElevation,
+    this.surfaceTintColor,
   }) : super(
           widgetKey: widgetKey,
           title: title,
@@ -106,6 +108,8 @@ class MaterialAppBarData extends _BaseData {
   final SystemUiOverlayStyle? systemOverlayStyle;
   final TextStyle? titleTextStyle;
   final TextStyle? toolbarTextStyle;
+  final double? scrolledUnderElevation;
+  final Color? surfaceTintColor;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -208,6 +212,8 @@ class PlatformAppBar
       systemOverlayStyle: data?.systemOverlayStyle,
       titleTextStyle: data?.titleTextStyle,
       toolbarTextStyle: data?.toolbarTextStyle,
+      scrolledUnderElevation: data?.scrolledUnderElevation,
+      surfaceTintColor: data?.surfaceTintColor,
     );
   }
 

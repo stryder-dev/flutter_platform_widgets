@@ -6,6 +6,7 @@ import 'package:flutter/material.dart'
         PopupMenuCanceled,
         PopupMenuItem,
         PopupMenuItemBuilder,
+        PopupMenuPosition,
         kMinInteractiveDimension;
 import 'package:flutter/widgets.dart';
 
@@ -215,6 +216,9 @@ class PlatformPopupMenu extends StatelessWidget {
       padding: data?.padding ?? const EdgeInsets.all(8.0),
       shape: data?.shape,
       tooltip: data?.tooltip,
+      constraints: data?.constraints,
+      position: data?.position ?? PopupMenuPosition.over,
+      splashRadius: data?.splashRadius,
     );
   }
 }
@@ -235,6 +239,9 @@ class MaterialPopupMenuData {
   final EdgeInsets? padding;
   final ShapeBorder? shape;
   final String? tooltip;
+  final BoxConstraints? constraints;
+  final PopupMenuPosition? position;
+  final double? splashRadius;
 
   MaterialPopupMenuData({
     this.key,
@@ -252,5 +259,8 @@ class MaterialPopupMenuData {
     this.padding,
     this.shape,
     this.tooltip,
+    this.constraints,
+    this.position,
+    this.splashRadius,
   });
 }
