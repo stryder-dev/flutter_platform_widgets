@@ -33,11 +33,9 @@ abstract class _BaseData {
   _BaseData({
     this.widgetKey,
     this.backgroundColor,
-    this.body,
   });
 
   final Color? backgroundColor;
-  final Widget? body;
   final Key? widgetKey;
 }
 
