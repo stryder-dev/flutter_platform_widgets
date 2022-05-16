@@ -51,6 +51,7 @@ class MaterialAlertDialogData extends _BaseData {
     this.insetPadding,
     this.actionsAlignment,
     this.alignment,
+    this.actionsOverflowAlignment,
   }) : super(
             widgetKey: widgetKey,
             actions: actions,
@@ -74,6 +75,7 @@ class MaterialAlertDialogData extends _BaseData {
   final EdgeInsets? insetPadding;
   final MainAxisAlignment? actionsAlignment;
   final AlignmentGeometry? alignment;
+  final OverflowBarAlignment? actionsOverflowAlignment;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -145,6 +147,7 @@ class PlatformAlertDialog
       insetPadding: data?.insetPadding ?? _defaultInsetPadding,
       actionsAlignment: data?.actionsAlignment,
       alignment: data?.alignment,
+      actionsOverflowAlignment: data?.actionsOverflowAlignment,
     );
   }
 

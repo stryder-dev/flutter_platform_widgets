@@ -153,11 +153,17 @@ class _CustomCupertinoDatePicker extends StatelessWidget {
   const _CustomCupertinoDatePicker({
     required this.contentData,
     required this.onDateTimeChanged,
+    // ignore: unused_element
     this.data,
+    // ignore: unused_element
     this.modalColor,
+    // ignore: unused_element
     this.modalHeight = 300,
+    // ignore: unused_element
     this.mode = CupertinoDatePickerMode.date,
+    // ignore: unused_element
     this.doneLabel,
+    // ignore: unused_element
     this.cancelLabel,
     Key? key,
   }) : super(key: key);

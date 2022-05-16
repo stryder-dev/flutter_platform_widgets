@@ -60,6 +60,7 @@ class MaterialTextFormFieldData {
   final ScrollController? scrollController;
   final bool? enableIMEPersonalizedLearning;
   final String? restorationId;
+  final MouseCursor? mouseCursor;
 
   MaterialTextFormFieldData({
     this.widgetKey,
@@ -113,6 +114,7 @@ class MaterialTextFormFieldData {
     this.scrollController,
     this.enableIMEPersonalizedLearning,
     this.restorationId,
+    this.mouseCursor,
   });
 }
 
@@ -393,6 +395,7 @@ class PlatformTextFormField
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
       restorationId: data?.restorationId,
+      mouseCursor: data?.mouseCursor,
       //maxLengthEnforced: , deprecated
     );
   }

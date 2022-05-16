@@ -158,6 +158,7 @@ class MaterialModalSheetData {
   final RouteSettings? routeSettings;
   final AnimationController? transitionAnimationController;
   final BoxConstraints? constraints;
+  final Offset? anchorPoint;
 
   MaterialModalSheetData({
     this.backgroundColor,
@@ -172,6 +173,7 @@ class MaterialModalSheetData {
     this.routeSettings,
     this.transitionAnimationController,
     this.constraints,
+    this.anchorPoint,
   });
 }
 
@@ -182,6 +184,7 @@ class CupertinoModalSheetData {
   final Color barrierColor;
   final bool barrierDismissible;
   final RouteSettings? routeSettings;
+  final Offset? anchorPoint;
 
   CupertinoModalSheetData({
     this.imageFilter,
@@ -190,6 +193,7 @@ class CupertinoModalSheetData {
     this.barrierColor = _kModalBarrierColor,
     this.barrierDismissible = true,
     this.routeSettings,
+    this.anchorPoint,
   });
 }
 
@@ -217,17 +221,18 @@ Future<T?> showPlatformModalSheet<T>({
       routeSettings: material?.routeSettings,
       transitionAnimationController: material?.transitionAnimationController,
       constraints: material?.constraints,
+      anchorPoint: material?.anchorPoint,
     );
   } else {
     return showCupertinoModalPopup<T>(
-      context: context,
-      builder: builder,
-      filter: cupertino?.imageFilter,
-      semanticsDismissible: cupertino?.semanticsDismissible,
-      useRootNavigator: cupertino?.useRootNavigator ?? true,
-      barrierColor: cupertino?.barrierColor ?? _kModalBarrierColor,
-      barrierDismissible: cupertino?.barrierDismissible ?? true,
-      routeSettings: cupertino?.routeSettings,
-    );
+        context: context,
+        builder: builder,
+        filter: cupertino?.imageFilter,
+        semanticsDismissible: cupertino?.semanticsDismissible,
+        useRootNavigator: cupertino?.useRootNavigator ?? true,
+        barrierColor: cupertino?.barrierColor ?? _kModalBarrierColor,
+        barrierDismissible: cupertino?.barrierDismissible ?? true,
+        routeSettings: cupertino?.routeSettings,
+        anchorPoint: cupertino?.anchorPoint);
   }
 }
