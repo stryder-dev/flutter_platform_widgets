@@ -13,39 +13,46 @@ import 'widget_base.dart';
 
 const double _kDefaultIndicatorRadius = 10.0;
 
-class MaterialProgressIndicatorData {
-  MaterialProgressIndicatorData({
+abstract class _BaseData {
+  _BaseData({
     this.key,
+    this.color,
+  });
+
+  final Key? key;
+  final Color? color;
+}
+
+class MaterialProgressIndicatorData extends _BaseData {
+  MaterialProgressIndicatorData({
+    super.key,
+    super.color,
     this.backgroundColor,
     this.strokeWidth,
     this.value,
     this.valueColor,
     this.semanticsLabel,
     this.semanticsValue,
-    this.color,
   });
-  final Key? key;
+
   final Color? backgroundColor;
   final double? strokeWidth;
   final double? value;
   final Animation<Color>? valueColor;
   final String? semanticsLabel;
   final String? semanticsValue;
-  final Color? color;
 }
 
-class CupertinoProgressIndicatorData {
+class CupertinoProgressIndicatorData extends _BaseData {
   CupertinoProgressIndicatorData({
-    this.key,
+    super.key,
+    super.color,
     this.animating,
     this.radius: _kDefaultIndicatorRadius,
-    this.color,
   });
 
-  final Key? key;
   final bool? animating;
   final double? radius;
-  final Color? color;
 }
 
 class PlatformCircularProgressIndicator extends PlatformWidgetBase<
@@ -56,11 +63,11 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
   final PlatformBuilder<CupertinoProgressIndicatorData>? cupertino;
 
   PlatformCircularProgressIndicator({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   CircularProgressIndicator createMaterialWidget(BuildContext context) {

@@ -43,11 +43,11 @@ abstract class _BaseData {
 
 class MaterialAppBarData extends _BaseData {
   MaterialAppBarData({
-    Widget? title,
-    Color? backgroundColor,
-    Widget? leading,
-    Key? widgetKey,
-    bool? automaticallyImplyLeading,
+    super.title,
+    super.backgroundColor,
+    super.leading,
+    super.widgetKey,
+    super.automaticallyImplyLeading,
     this.actions,
     this.bottom,
     this.bottomOpacity,
@@ -76,13 +76,7 @@ class MaterialAppBarData extends _BaseData {
     this.toolbarTextStyle,
     this.scrolledUnderElevation,
     this.surfaceTintColor,
-  }) : super(
-          widgetKey: widgetKey,
-          title: title,
-          backgroundColor: backgroundColor,
-          leading: leading,
-          automaticallyImplyLeading: automaticallyImplyLeading,
-        );
+  });
 
   final List<Widget>? actions;
   final PreferredSizeWidget? bottom;
@@ -114,11 +108,11 @@ class MaterialAppBarData extends _BaseData {
 
 class CupertinoNavigationBarData extends _BaseData {
   CupertinoNavigationBarData({
-    Widget? title,
-    Color? backgroundColor,
-    Widget? leading,
-    Key? widgetKey,
-    bool? automaticallyImplyLeading,
+    super.title,
+    super.backgroundColor,
+    super.leading,
+    super.widgetKey,
+    super.automaticallyImplyLeading,
     this.previousPageTitle,
     this.automaticallyImplyMiddle,
     this.padding,
@@ -128,12 +122,7 @@ class CupertinoNavigationBarData extends _BaseData {
     this.brightness,
     this.heroTag,
     this.noMaterialParent = false,
-  }) : super(
-            widgetKey: widgetKey,
-            title: title,
-            backgroundColor: backgroundColor,
-            leading: leading,
-            automaticallyImplyLeading: automaticallyImplyLeading);
+  });
 
   final Widget? trailing;
   final Border? border;
@@ -164,7 +153,7 @@ class PlatformAppBar
   final PlatformBuilder<CupertinoNavigationBarData>? cupertino;
 
   PlatformAppBar({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.title,
     this.backgroundColor,
@@ -173,7 +162,7 @@ class PlatformAppBar
     this.automaticallyImplyLeading,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   PreferredSizeWidget createMaterialWidget(BuildContext context) {

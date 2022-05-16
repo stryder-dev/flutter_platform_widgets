@@ -26,37 +26,35 @@ abstract class _BaseData {
     this.widgetKey,
     this.child,
     this.onPressed,
+    this.clipBehavior,
+    this.onLongPress,
   });
 
   final Widget? child;
   final void Function()? onPressed;
   final Key? widgetKey;
+  final Clip? clipBehavior;
+  final VoidCallback? onLongPress;
 }
 
 class MaterialDialogActionData extends _BaseData {
   MaterialDialogActionData({
-    Key? widgetKey,
-    Widget? child,
-    VoidCallback? onPressed,
-    this.onLongPress,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
+    super.onLongPress,
+    super.clipBehavior,
     this.focusNode,
     this.style,
     this.autofocus,
-    this.clipBehavior,
     this.icon,
     this.onHover,
     this.onFocusChange,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
-  final VoidCallback? onLongPress;
   final FocusNode? focusNode;
   final ButtonStyle? style;
   final bool? autofocus;
-  final Clip? clipBehavior;
   final Widget? icon;
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
@@ -64,9 +62,11 @@ class MaterialDialogActionData extends _BaseData {
 
 class MaterialDialogFlatActionData extends _BaseData {
   MaterialDialogFlatActionData({
-    Widget? child,
-    void Function()? onPressed,
-    Key? widgetKey,
+    super.child,
+    super.onPressed,
+    super.widgetKey,
+    super.onLongPress,
+    super.clipBehavior,
     this.color,
     this.colorBrightness,
     this.disabledColor,
@@ -78,22 +78,16 @@ class MaterialDialogFlatActionData extends _BaseData {
     this.splashColor,
     this.textColor,
     this.textTheme,
-    this.clipBehavior,
     this.materialTapTargetSize,
     this.focusColor,
     this.hoverColor,
     this.focusNode,
     this.autofocus,
     this.visualDensity,
-    this.onLongPress,
     this.mouseCursor,
     this.height,
     this.minWidth,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final Color? color;
   final Brightness? colorBrightness;
@@ -106,14 +100,12 @@ class MaterialDialogFlatActionData extends _BaseData {
   final Color? splashColor;
   final Color? textColor;
   final ButtonTextTheme? textTheme;
-  final Clip? clipBehavior;
   final MaterialTapTargetSize? materialTapTargetSize;
   final Color? focusColor;
   final Color? hoverColor;
   final FocusNode? focusNode;
   final bool? autofocus;
   final VisualDensity? visualDensity;
-  final void Function()? onLongPress;
   final MouseCursor? mouseCursor;
   final double? height;
   final double? minWidth;
@@ -121,17 +113,13 @@ class MaterialDialogFlatActionData extends _BaseData {
 
 class CupertinoDialogActionData extends _BaseData {
   CupertinoDialogActionData({
-    Widget? child,
-    VoidCallback? onPressed,
-    Key? widgetKey,
+    super.child,
+    super.onPressed,
+    super.widgetKey,
     this.isDefaultAction,
     this.isDestructiveAction,
     this.textStyle,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final bool? isDefaultAction;
   final bool? isDestructiveAction;
@@ -150,14 +138,15 @@ class PlatformDialogAction
   final PlatformBuilder<CupertinoDialogActionData>? cupertino;
 
   PlatformDialogAction({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.child,
     this.onPressed,
     this.material,
     @Deprecated('materialFlat is deprecated. Use material') this.materialFlat,
     this.cupertino,
-  }) : super(key: key);
+  });
+
   @override
   Widget createMaterialWidget(BuildContext context) {
     final settings = PlatformProvider.of(context)?.settings;

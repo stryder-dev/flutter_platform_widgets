@@ -8,12 +8,59 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-class MaterialTextFormFieldData {
+abstract class _BaseData {
+  _BaseData({
+    this.widgetKey,
+    this.controller,
+    this.initialValue,
+    this.focusNode,
+    this.keyboardType,
+    this.textCapitalization,
+    this.textInputAction,
+    this.style,
+    this.strutStyle,
+    this.textDirection,
+    this.textAlign,
+    this.textAlignVertical,
+    this.autofocus,
+    this.readOnly,
+    this.toolbarOptions,
+    this.showCursor,
+    this.obscuringCharacter,
+    this.obscureText,
+    this.autocorrect,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.enableSuggestions,
+    this.maxLines,
+    this.minLines,
+    this.expands,
+    this.maxLength,
+    this.onChanged,
+    this.onTap,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
+    this.onSaved,
+    this.validator,
+    this.inputFormatters,
+    this.enabled,
+    this.cursorWidth,
+    this.cursorHeight,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.scrollPadding,
+    this.enableInteractiveSelection,
+    this.selectionControls,
+    this.scrollPhysics,
+    this.autofillHints,
+    this.autovalidateMode,
+  });
+
   final Key? widgetKey;
   final TextEditingController? controller;
   final String? initialValue;
   final FocusNode? focusNode;
-  final InputDecoration? decoration;
   final TextInputType? keyboardType;
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
@@ -32,7 +79,6 @@ class MaterialTextFormFieldData {
   final SmartDashesType? smartDashesType;
   final SmartQuotesType? smartQuotesType;
   final bool? enableSuggestions;
-  final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLines;
   final int? minLines;
   final bool? expands;
@@ -53,64 +99,70 @@ class MaterialTextFormFieldData {
   final EdgeInsets? scrollPadding;
   final bool? enableInteractiveSelection;
   final TextSelectionControls? selectionControls;
-  final InputCounterWidgetBuilder? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
+}
+
+class MaterialTextFormFieldData extends _BaseData {
+  final InputDecoration? decoration;
+
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final InputCounterWidgetBuilder? buildCounter;
   final ScrollController? scrollController;
   final bool? enableIMEPersonalizedLearning;
   final String? restorationId;
   final MouseCursor? mouseCursor;
 
   MaterialTextFormFieldData({
-    this.widgetKey,
-    this.controller,
-    this.initialValue,
-    this.focusNode,
+    super.widgetKey,
+    super.controller,
+    super.initialValue,
+    super.focusNode,
+    super.keyboardType,
+    super.textCapitalization,
+    super.textInputAction,
+    super.style,
+    super.strutStyle,
+    super.textDirection,
+    super.textAlign,
+    super.textAlignVertical,
+    super.autofocus,
+    super.readOnly,
+    super.toolbarOptions,
+    super.showCursor,
+    super.obscuringCharacter,
+    super.obscureText,
+    super.autocorrect,
+    super.smartDashesType,
+    super.smartQuotesType,
+    super.enableSuggestions,
+    super.maxLines,
+    super.minLines,
+    super.expands,
+    super.maxLength,
+    super.onChanged,
+    super.onTap,
+    super.onEditingComplete,
+    super.onFieldSubmitted,
+    super.onSaved,
+    super.validator,
+    super.inputFormatters,
+    super.enabled,
+    super.cursorWidth,
+    super.cursorHeight,
+    super.cursorRadius,
+    super.cursorColor,
+    super.keyboardAppearance,
+    super.scrollPadding,
+    super.enableInteractiveSelection,
+    super.selectionControls,
+    super.scrollPhysics,
+    super.autofillHints,
+    super.autovalidateMode,
     this.decoration,
-    this.keyboardType,
-    this.textCapitalization,
-    this.textInputAction,
-    this.style,
-    this.strutStyle,
-    this.textDirection,
-    this.textAlign,
-    this.textAlignVertical,
-    this.autofocus,
-    this.readOnly,
-    this.toolbarOptions,
-    this.showCursor,
-    this.obscuringCharacter,
-    this.obscureText,
-    this.autocorrect,
-    this.smartDashesType,
-    this.smartQuotesType,
-    this.enableSuggestions,
     this.maxLengthEnforcement,
-    this.maxLines,
-    this.minLines,
-    this.expands,
-    this.maxLength,
-    this.onChanged,
-    this.onTap,
-    this.onEditingComplete,
-    this.onFieldSubmitted,
-    this.onSaved,
-    this.validator,
-    this.inputFormatters,
-    this.enabled,
-    this.cursorWidth,
-    this.cursorHeight,
-    this.cursorRadius,
-    this.cursorColor,
-    this.keyboardAppearance,
-    this.scrollPadding,
-    this.enableInteractiveSelection,
-    this.selectionControls,
     this.buildCounter,
-    this.scrollPhysics,
-    this.autofillHints,
-    this.autovalidateMode,
     this.scrollController,
     this.enableIMEPersonalizedLearning,
     this.restorationId,
@@ -118,107 +170,64 @@ class MaterialTextFormFieldData {
   });
 }
 
-class CupertinoTextFormFieldData {
-  final Key? widgetKey;
+class CupertinoTextFormFieldData extends _BaseData {
   final Widget? prefix;
   final EdgeInsetsGeometry? padding;
-  final TextEditingController? controller;
-  final String? initialValue;
   final BoxDecoration? decoration;
-  final FocusNode? focusNode;
-  final TextInputType? keyboardType;
-  final TextCapitalization? textCapitalization;
-  final TextInputAction? textInputAction;
-  final TextStyle? style;
-  final StrutStyle? strutStyle;
-  final TextAlign? textAlign;
-  final TextAlignVertical? textAlignVertical;
-  final bool? autofocus;
-  final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
-  final bool? showCursor;
-  final String? obscuringCharacter;
-  final bool? obscureText;
-  final bool? autocorrect;
-  final SmartDashesType? smartDashesType;
-  final SmartQuotesType? smartQuotesType;
-  final bool? enableSuggestions;
-  final int? maxLines;
-  final int? minLines;
-  final bool? expands;
-  final int? maxLength;
-  final ValueChanged<String>? onChanged;
-  final GestureTapCallback? onTap;
-  final VoidCallback? onEditingComplete;
-  final ValueChanged<String>? onFieldSubmitted;
-  final FormFieldSetter<String>? onSaved;
-  final FormFieldValidator<String>? validator;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool? enabled;
-  final double? cursorWidth;
-  final double? cursorHeight;
-  final Color? cursorColor;
-  final Brightness? keyboardAppearance;
-  final EdgeInsets? scrollPadding;
-  final bool? enableInteractiveSelection;
-  final TextSelectionControls? selectionControls;
-  final ScrollPhysics? scrollPhysics;
-  final Iterable<String>? autofillHints;
-  final AutovalidateMode? autovalidateMode;
   final String? placeholder;
   final TextStyle? placeholderStyle;
-  final TextDirection? textDirection;
 
   CupertinoTextFormFieldData({
-    this.widgetKey,
+    super.widgetKey,
+    super.controller,
+    super.initialValue,
+    super.focusNode,
+    super.keyboardType,
+    super.textCapitalization,
+    super.textInputAction,
+    super.style,
+    super.strutStyle,
+    super.textDirection,
+    super.textAlign,
+    super.textAlignVertical,
+    super.autofocus,
+    super.readOnly,
+    super.toolbarOptions,
+    super.showCursor,
+    super.obscuringCharacter,
+    super.obscureText,
+    super.autocorrect,
+    super.smartDashesType,
+    super.smartQuotesType,
+    super.enableSuggestions,
+    super.maxLines,
+    super.minLines,
+    super.expands,
+    super.maxLength,
+    super.onChanged,
+    super.onTap,
+    super.onEditingComplete,
+    super.onFieldSubmitted,
+    super.onSaved,
+    super.validator,
+    super.inputFormatters,
+    super.enabled,
+    super.cursorWidth,
+    super.cursorHeight,
+    super.cursorRadius,
+    super.cursorColor,
+    super.keyboardAppearance,
+    super.scrollPadding,
+    super.enableInteractiveSelection,
+    super.selectionControls,
+    super.scrollPhysics,
+    super.autofillHints,
+    super.autovalidateMode,
+    this.decoration,
     this.prefix,
     this.padding,
-    this.controller,
-    this.initialValue,
-    this.decoration,
-    this.focusNode,
-    this.keyboardType,
-    this.textCapitalization,
-    this.textInputAction,
-    this.style,
-    this.strutStyle,
-    this.textAlign,
-    this.textAlignVertical,
-    this.autofocus,
-    this.readOnly,
-    this.toolbarOptions,
-    this.showCursor,
-    this.obscuringCharacter,
-    this.obscureText,
-    this.autocorrect,
-    this.smartDashesType,
-    this.smartQuotesType,
-    this.enableSuggestions,
-    this.maxLines,
-    this.minLines,
-    this.expands,
-    this.maxLength,
-    this.onChanged,
-    this.onTap,
-    this.onEditingComplete,
-    this.onFieldSubmitted,
-    this.onSaved,
-    this.validator,
-    this.inputFormatters,
-    this.enabled,
-    this.cursorWidth,
-    this.cursorHeight,
-    this.cursorColor,
-    this.keyboardAppearance,
-    this.scrollPadding,
-    this.enableInteractiveSelection,
-    this.selectionControls,
-    this.scrollPhysics,
-    this.autofillHints,
-    this.autovalidateMode,
     this.placeholder,
     this.placeholderStyle,
-    this.textDirection,
   });
 }
 
@@ -274,7 +283,7 @@ class PlatformTextFormField
   final PlatformBuilder<CupertinoTextFormFieldData>? cupertino;
 
   const PlatformTextFormField({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.controller,
     this.initialValue,
@@ -321,9 +330,8 @@ class PlatformTextFormField
     this.hintText,
     this.material,
     this.cupertino,
-  })  : keyboardType = keyboardType ??
-            (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
-        super(key: key);
+  }) : keyboardType = keyboardType ??
+            (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
 
   @override
   TextFormField createMaterialWidget(BuildContext context) {

@@ -28,9 +28,9 @@ abstract class _BaseData {
 
 class MaterialElevatedButtonData extends _BaseData {
   MaterialElevatedButtonData({
-    Key? widgetKey,
-    Widget? child,
-    VoidCallback? onPressed,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
     this.onLongPress,
     this.focusNode,
     this.style,
@@ -39,11 +39,7 @@ class MaterialElevatedButtonData extends _BaseData {
     this.icon,
     this.onHover,
     this.onFocusChange,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final VoidCallback? onLongPress;
   final FocusNode? focusNode;
@@ -57,9 +53,9 @@ class MaterialElevatedButtonData extends _BaseData {
 
 class CupertinoElevatedButtonData extends _BaseData {
   CupertinoElevatedButtonData({
-    Key? widgetKey,
-    Widget? child,
-    VoidCallback? onPressed,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
     this.color,
     this.padding,
     this.disabledColor,
@@ -68,11 +64,7 @@ class CupertinoElevatedButtonData extends _BaseData {
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final Color? color;
   final EdgeInsetsGeometry? padding;
@@ -101,6 +93,7 @@ class PlatformElevatedButton
   final PlatformBuilder<MaterialElevatedButtonData>? material;
 
   PlatformElevatedButton({
+    super.key,
     this.widgetKey,
     this.onPressed,
     this.child,

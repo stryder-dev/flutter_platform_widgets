@@ -42,9 +42,9 @@ abstract class _BaseData {
 
 class MaterialScaffoldData extends _BaseData {
   MaterialScaffoldData({
-    Color? backgroundColor,
-    Widget? body,
-    Key? widgetKey,
+    super.backgroundColor,
+    super.body,
+    super.widgetKey,
     this.appBar,
     this.bottomNavBar,
     this.drawer,
@@ -66,11 +66,7 @@ class MaterialScaffoldData extends _BaseData {
     this.restorationId,
     this.onDrawerChanged,
     this.onEndDrawerChanged,
-  }) : super(
-          widgetKey: widgetKey,
-          backgroundColor: backgroundColor,
-          body: body,
-        );
+  });
 
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavBar;
@@ -97,9 +93,9 @@ class MaterialScaffoldData extends _BaseData {
 
 class CupertinoPageScaffoldData extends _BaseData {
   CupertinoPageScaffoldData({
-    Color? backgroundColor,
-    Widget? body,
-    Key? widgetKey,
+    super.backgroundColor,
+    super.body,
+    super.widgetKey,
     this.navigationBar,
     this.bottomTabBar,
     this.resizeToAvoidBottomInset,
@@ -107,11 +103,7 @@ class CupertinoPageScaffoldData extends _BaseData {
     this.backgroundColorTab,
     this.restorationIdTab,
     this.controller,
-  }) : super(
-          widgetKey: widgetKey,
-          backgroundColor: backgroundColor,
-          body: body,
-        );
+  });
 
   final ObstructingPreferredSizeWidget? navigationBar;
   final CupertinoTabBar? bottomTabBar;
@@ -138,7 +130,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final bool iosContentBottomPadding;
 
   PlatformScaffold({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.body,
     this.backgroundColor,
@@ -149,7 +141,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.material,
     this.cupertino,
     this.cupertinoTabChildBuilder,
-  }) : super(key: key);
+  });
 
   @override
   Scaffold createMaterialWidget(BuildContext context) {

@@ -43,12 +43,12 @@ abstract class _BaseData {
 
 class MaterialFlatButtonData extends _BaseData {
   MaterialFlatButtonData({
-    Key? widgetKey,
-    Widget? child,
-    Color? color,
-    void Function()? onPressed,
-    EdgeInsetsGeometry? padding,
-    Color? disabledColor,
+    super.widgetKey,
+    super.child,
+    super.color,
+    super.onPressed,
+    super.padding,
+    super.disabledColor,
     this.animationDuration,
     this.colorBrightness,
     this.disabledElevation,
@@ -74,14 +74,7 @@ class MaterialFlatButtonData extends _BaseData {
     this.mouseCursor,
     this.height,
     this.minWidth,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          color: color,
-          onPressed: onPressed,
-          padding: padding,
-          disabledColor: disabledColor,
-        );
+  });
 
   final Duration? animationDuration;
   final Brightness? colorBrightness;
@@ -113,12 +106,12 @@ class MaterialFlatButtonData extends _BaseData {
 
 class MaterialRaisedButtonData extends _BaseData {
   MaterialRaisedButtonData({
-    Key? widgetKey,
-    Widget? child,
-    Color? color,
-    void Function()? onPressed,
-    EdgeInsetsGeometry? padding,
-    Color? disabledColor,
+    super.widgetKey,
+    super.child,
+    super.color,
+    super.onPressed,
+    super.padding,
+    super.disabledColor,
     this.animationDuration,
     this.colorBrightness,
     this.disabledElevation,
@@ -142,14 +135,7 @@ class MaterialRaisedButtonData extends _BaseData {
     this.onLongPress,
     this.visualDensity,
     this.mouseCursor,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          color: color,
-          onPressed: onPressed,
-          padding: padding,
-          disabledColor: disabledColor,
-        );
+  });
 
   final Duration? animationDuration;
   final Brightness? colorBrightness;
@@ -179,23 +165,17 @@ class MaterialRaisedButtonData extends _BaseData {
 
 class CupertinoButtonData extends _BaseData {
   CupertinoButtonData({
-    Key? widgetKey,
-    Widget? child,
-    Color? color,
-    void Function()? onPressed,
-    EdgeInsetsGeometry? padding,
-    Color? disabledColor,
+    super.widgetKey,
+    super.child,
+    super.color,
+    super.onPressed,
+    super.padding,
+    super.disabledColor,
     this.borderRadius,
     this.minSize,
     this.pressedOpacity,
     this.alignment,
-  }) : super(
-            widgetKey: widgetKey,
-            child: child,
-            color: color,
-            onPressed: onPressed,
-            padding: padding,
-            disabledColor: disabledColor);
+  });
 
   final BorderRadius? borderRadius;
   final double? minSize;
@@ -205,21 +185,16 @@ class CupertinoButtonData extends _BaseData {
 
 class CupertinoFilledButtonData extends _BaseData {
   CupertinoFilledButtonData({
-    Key? widgetKey,
-    Widget? child,
-    void Function()? onPressed,
-    EdgeInsetsGeometry? padding,
-    Color? disabledColor,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
+    super.padding,
+    super.disabledColor,
     this.borderRadius,
     this.minSize,
     this.pressedOpacity,
     this.alignment,
-  }) : super(
-            widgetKey: widgetKey,
-            child: child,
-            onPressed: onPressed,
-            padding: padding,
-            disabledColor: disabledColor);
+  });
 
   final BorderRadius? borderRadius;
   final double? minSize;
@@ -245,7 +220,7 @@ class PlatformButton
   final PlatformBuilder<CupertinoFilledButtonData>? cupertinoFilled;
 
   PlatformButton({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.child,
     this.onPressed,
@@ -256,7 +231,7 @@ class PlatformButton
     this.materialFlat,
     this.cupertino,
     this.cupertinoFilled,
-  }) : super(key: key);
+  });
 
   @override
   MaterialButton createMaterialWidget(BuildContext context) {

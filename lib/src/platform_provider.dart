@@ -26,6 +26,7 @@ class PlatformProvider extends StatefulWidget {
     required this.builder,
     this.initialPlatform,
     this.settings,
+    super.key,
   });
 
   final WidgetBuilder builder;

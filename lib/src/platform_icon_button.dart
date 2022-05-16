@@ -14,13 +14,14 @@ import 'widget_base.dart';
 const double _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  _BaseData(
-      {this.widgetKey,
-      this.icon,
-      this.onPressed,
-      this.padding,
-      this.color,
-      this.disabledColor});
+  _BaseData({
+    this.widgetKey,
+    this.icon,
+    this.onPressed,
+    this.padding,
+    this.color,
+    this.disabledColor,
+  });
 
   final Key? widgetKey;
   final Widget? icon;
@@ -31,24 +32,18 @@ abstract class _BaseData {
 }
 
 class CupertinoIconButtonData extends _BaseData {
-  CupertinoIconButtonData(
-      {Key? widgetKey,
-      Widget? icon,
-      void Function()? onPressed,
-      EdgeInsets? padding,
-      Color? color,
-      Color? disabledColor,
-      this.borderRadius,
-      this.minSize,
-      this.pressedOpacity,
-      this.alignment})
-      : super(
-            widgetKey: widgetKey,
-            icon: icon,
-            onPressed: onPressed,
-            padding: padding,
-            color: color,
-            disabledColor: disabledColor);
+  CupertinoIconButtonData({
+    super.widgetKey,
+    super.icon,
+    super.onPressed,
+    super.padding,
+    super.color,
+    super.disabledColor,
+    this.borderRadius,
+    this.minSize,
+    this.pressedOpacity,
+    this.alignment,
+  });
 
   final BorderRadius? borderRadius;
   final double? minSize;
@@ -58,12 +53,12 @@ class CupertinoIconButtonData extends _BaseData {
 
 class MaterialIconButtonData extends _BaseData {
   MaterialIconButtonData({
-    Key? widgetKey,
-    Widget? icon,
-    void Function()? onPressed,
-    EdgeInsets? padding,
-    Color? color,
-    Color? disabledColor,
+    super.widgetKey,
+    super.icon,
+    super.onPressed,
+    super.padding,
+    super.color,
+    super.disabledColor,
     this.alignment,
     this.highlightColor,
     this.iconSize = 24.0,
@@ -78,14 +73,7 @@ class MaterialIconButtonData extends _BaseData {
     this.constraints,
     this.splashRadius,
     this.mouseCursor,
-  }) : super(
-          widgetKey: widgetKey,
-          icon: icon,
-          onPressed: onPressed,
-          padding: padding,
-          color: color,
-          disabledColor: disabledColor,
-        );
+  });
 
   final AlignmentGeometry? alignment;
   final Color? highlightColor;
@@ -118,7 +106,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final PlatformBuilder<CupertinoIconButtonData>? cupertino;
 
   PlatformIconButton({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.icon,
     this.cupertinoIcon,
@@ -129,7 +117,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     this.padding,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   Widget createMaterialWidget(BuildContext context) {

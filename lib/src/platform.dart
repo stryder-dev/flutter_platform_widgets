@@ -145,7 +145,15 @@ Future<T?> showPlatformDialog<T>({
   }
 }
 
-class MaterialModalSheetData {
+abstract class _BaseData {
+  _BaseData({
+    this.anchorPoint,
+  });
+
+  final Offset? anchorPoint;
+}
+
+class MaterialModalSheetData extends _BaseData {
   final Color? backgroundColor;
   final double? elevation;
   final ShapeBorder? shape;
@@ -158,9 +166,9 @@ class MaterialModalSheetData {
   final RouteSettings? routeSettings;
   final AnimationController? transitionAnimationController;
   final BoxConstraints? constraints;
-  final Offset? anchorPoint;
 
   MaterialModalSheetData({
+    super.anchorPoint,
     this.backgroundColor,
     this.elevation,
     this.shape,
@@ -173,27 +181,25 @@ class MaterialModalSheetData {
     this.routeSettings,
     this.transitionAnimationController,
     this.constraints,
-    this.anchorPoint,
   });
 }
 
-class CupertinoModalSheetData {
+class CupertinoModalSheetData extends _BaseData {
   final ImageFilter? imageFilter;
   final bool? semanticsDismissible;
   final bool useRootNavigator;
   final Color barrierColor;
   final bool barrierDismissible;
   final RouteSettings? routeSettings;
-  final Offset? anchorPoint;
 
   CupertinoModalSheetData({
+    super.anchorPoint,
     this.imageFilter,
     this.semanticsDismissible,
     this.useRootNavigator = true,
     this.barrierColor = _kModalBarrierColor,
     this.barrierDismissible = true,
     this.routeSettings,
-    this.anchorPoint,
   });
 }
 

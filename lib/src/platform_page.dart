@@ -11,15 +11,15 @@ import 'package:flutter/widgets.dart' show BuildContext, Page, Widget, LocalKey;
 import 'platform.dart';
 import 'widget_base.dart';
 
-class _BasePageData {
+abstract class _BasePageData {
   /// The content to be shown in the [Route] created by this page.
   final Widget? child;
 
   /// {@macro flutter.widgets.ModalRoute.maintainState}
-  final bool maintainState;
+  final bool? maintainState;
 
   /// {@macro flutter.widgets.PageRoute.fullscreenDialog}
-  final bool fullscreenDialog;
+  final bool? fullscreenDialog;
 
   /// The key associated with this page.
   ///
@@ -47,7 +47,7 @@ class _BasePageData {
   /// May be used when building the route, e.g. in [Navigator.onGenerateRoute].
   final Object? arguments;
 
-  _BasePageData(
+  _BasePageData({
     this.child,
     this.name,
     this.maintainState,
@@ -55,48 +55,32 @@ class _BasePageData {
     this.key,
     this.restorationId,
     this.arguments,
-  );
+  });
 }
 
 class MaterialPageData extends _BasePageData {
-  MaterialPageData(
-    Widget? child,
-    String? name,
-    bool maintainState,
-    bool fullscreenDialog,
-    LocalKey? key,
-    String? restorationId,
-    Object? arguments,
-  ) : super(
-          child,
-          name,
-          maintainState,
-          fullscreenDialog,
-          key,
-          restorationId,
-          arguments,
-        );
+  MaterialPageData({
+    super.child,
+    super.name,
+    super.maintainState,
+    super.fullscreenDialog,
+    super.key,
+    super.restorationId,
+    super.arguments,
+  });
 }
 
 class CupertinoPageData extends _BasePageData {
-  CupertinoPageData(
-    Widget? child,
+  CupertinoPageData({
+    super.child,
+    super.name,
+    super.maintainState,
+    super.fullscreenDialog,
+    super.key,
+    super.restorationId,
+    super.arguments,
     this.title,
-    String? name,
-    bool maintainState,
-    bool fullscreenDialog,
-    LocalKey? key,
-    String? restorationId,
-    Object? arguments,
-  ) : super(
-          child,
-          name,
-          maintainState,
-          fullscreenDialog,
-          key,
-          restorationId,
-          arguments,
-        );
+  });
 
   /// {@macro flutter.cupertino.CupertinoRouteTransitionMixin.title}
   final String? title;

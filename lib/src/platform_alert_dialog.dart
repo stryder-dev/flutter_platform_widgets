@@ -30,10 +30,10 @@ abstract class _BaseData {
 
 class MaterialAlertDialogData extends _BaseData {
   MaterialAlertDialogData({
-    Key? widgetKey,
-    List<Widget>? actions,
-    Widget? content,
-    Widget? title,
+    super.widgetKey,
+    super.actions,
+    super.content,
+    super.title,
     this.contentTextStyle,
     this.backgroundColor,
     this.elevation,
@@ -52,11 +52,7 @@ class MaterialAlertDialogData extends _BaseData {
     this.actionsAlignment,
     this.alignment,
     this.actionsOverflowAlignment,
-  }) : super(
-            widgetKey: widgetKey,
-            actions: actions,
-            content: content,
-            title: title);
+  });
 
   final EdgeInsetsGeometry? contentPadding;
   final String? semanticLabel;
@@ -80,19 +76,15 @@ class MaterialAlertDialogData extends _BaseData {
 
 class CupertinoAlertDialogData extends _BaseData {
   CupertinoAlertDialogData({
-    Key? widgetKey,
-    List<Widget>? actions,
-    Widget? content,
-    Widget? title,
+    super.widgetKey,
+    super.actions,
+    super.content,
+    super.title,
     this.scrollController,
     this.actionScrollController,
     this.insetAnimationCurve,
     this.insetAnimationDuration,
-  }) : super(
-            widgetKey: widgetKey,
-            actions: actions,
-            content: content,
-            title: title);
+  });
 
   final ScrollController? scrollController;
   final ScrollController? actionScrollController;
@@ -111,14 +103,14 @@ class PlatformAlertDialog
   final PlatformBuilder<CupertinoAlertDialogData>? cupertino;
 
   PlatformAlertDialog({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.actions,
     this.content,
     this.title,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   AlertDialog createMaterialWidget(BuildContext context) {
