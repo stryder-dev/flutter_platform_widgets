@@ -23,7 +23,6 @@ abstract class _BaseData {
   });
 
   final Key? widgetKey;
-
   final bool? value;
   final Color? activeColor;
   final void Function(bool)? onChanged;
@@ -32,11 +31,11 @@ abstract class _BaseData {
 
 class MaterialSwitchData extends _BaseData {
   MaterialSwitchData({
-    Key? widgetKey,
-    bool? value,
-    void Function(bool)? onChanged,
-    Color? activeColor,
-    DragStartBehavior? dragStartBehavior,
+    super.widgetKey,
+    super.value,
+    super.onChanged,
+    super.activeColor,
+    super.dragStartBehavior,
     this.activeTrackColor,
     this.inactiveThumbColor,
     this.inactiveTrackColor,
@@ -54,13 +53,7 @@ class MaterialSwitchData extends _BaseData {
     this.splashRadius,
     this.thumbColor,
     this.trackColor,
-  }) : super(
-          widgetKey: widgetKey,
-          value: value,
-          onChanged: onChanged,
-          activeColor: activeColor,
-          dragStartBehavior: dragStartBehavior,
-        );
+  });
 
   final Color? activeTrackColor;
   final Color? inactiveThumbColor;
@@ -83,20 +76,14 @@ class MaterialSwitchData extends _BaseData {
 
 class CupertinoSwitchData extends _BaseData {
   CupertinoSwitchData({
-    Key? widgetKey,
-    bool? value,
-    void Function(bool)? onChanged,
-    Color? activeColor,
-    DragStartBehavior? dragStartBehavior,
+    super.widgetKey,
+    super.value,
+    super.onChanged,
+    super.activeColor,
+    super.dragStartBehavior,
     this.trackColor,
     this.thumbColor,
-  }) : super(
-          widgetKey: widgetKey,
-          value: value,
-          onChanged: onChanged,
-          activeColor: activeColor,
-          dragStartBehavior: dragStartBehavior,
-        );
+  });
 
   final Color? trackColor;
   final Color? thumbColor;
@@ -114,7 +101,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final PlatformBuilder<CupertinoSwitchData>? cupertino;
 
   PlatformSwitch({
-    Key? key,
+    super.key,
     this.widgetKey,
     required this.value,
     required this.onChanged,
@@ -122,7 +109,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     this.activeColor,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   Switch createMaterialWidget(BuildContext context) {

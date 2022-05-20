@@ -18,40 +18,30 @@ class _BasePageRouteData {
   final bool? maintainState;
   final bool? fullscreenDialog;
 
-  _BasePageRouteData(
+  _BasePageRouteData({
     this.builder,
     this.settings,
     this.maintainState,
     this.fullscreenDialog,
-  );
+  });
 }
 
 class MaterialPageRouteData extends _BasePageRouteData {
-  MaterialPageRouteData(
-    WidgetBuilder? builder,
-    RouteSettings? settings,
-    bool? maintainState,
-    bool? fullscreenDialog,
-  ) : super(
-          builder,
-          settings,
-          maintainState,
-          fullscreenDialog,
-        );
+  MaterialPageRouteData({
+    super.builder,
+    super.settings,
+    super.maintainState,
+    super.fullscreenDialog,
+  });
 }
 
 class CupertinoPageRouteData extends _BasePageRouteData {
-  CupertinoPageRouteData(
-    WidgetBuilder? builder,
-    RouteSettings? settings,
-    bool? maintainState,
-    bool? fullscreenDialog,
-  ) : super(
-          builder,
-          settings,
-          maintainState,
-          fullscreenDialog,
-        );
+  CupertinoPageRouteData({
+    super.builder,
+    super.settings,
+    super.maintainState,
+    super.fullscreenDialog,
+  });
 }
 
 PageRoute<T> platformPageRoute<T>({

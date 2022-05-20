@@ -7,7 +7,6 @@ import 'package:flutter/material.dart'
         SelectableDayPredicate,
         DatePickerEntryMode,
         DatePickerMode;
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -46,9 +45,9 @@ abstract class _BaseData {
 
 class MaterialDatePickerData extends _BaseData {
   MaterialDatePickerData({
-    DateTime? initialDate,
-    DateTime? firstDate,
-    DateTime? lastDate,
+    super.initialDate,
+    super.firstDate,
+    super.lastDate,
     this.currentDate,
     this.initialEntryMode,
     this.selectableDayPredicate,
@@ -67,11 +66,7 @@ class MaterialDatePickerData extends _BaseData {
     this.fieldLabelText,
     this.anchorPoint,
     this.keyboardType,
-  }) : super(
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-        );
+  });
 
   final DateTime? currentDate;
   final DatePickerEntryMode? initialEntryMode;
@@ -95,9 +90,9 @@ class MaterialDatePickerData extends _BaseData {
 
 class CupertinoDatePickerData extends _BaseData {
   CupertinoDatePickerData({
-    DateTime? initialDate,
-    DateTime? firstDate,
-    DateTime? lastDate,
+    super.initialDate,
+    super.firstDate,
+    super.lastDate,
     this.key,
     this.mode,
     this.onDateTimeChanged,
@@ -109,11 +104,7 @@ class CupertinoDatePickerData extends _BaseData {
     this.backgroundColor,
     this.doneLabel,
     this.cancelLabel,
-  }) : super(
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-        );
+  });
 
   final Key? key;
   final CupertinoDatePickerMode? mode;
@@ -232,8 +223,8 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
     this.mode = CupertinoDatePickerMode.date,
     this.doneLabel,
     this.cancelLabel,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

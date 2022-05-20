@@ -41,9 +41,9 @@ abstract class _BaseData {
 
 class MaterialTabScaffoldData extends _BaseData {
   MaterialTabScaffoldData({
-    Color? backgroundColor,
+    super.backgroundColor,
+    super.widgetKey,
     this.bodyBuilder,
-    Key? widgetKey,
     this.appBarBuilder,
     this.controller,
     this.drawer,
@@ -66,7 +66,7 @@ class MaterialTabScaffoldData extends _BaseData {
     this.restorationId,
     this.onDrawerChanged,
     this.onEndDrawerChanged,
-  }) : super(widgetKey: widgetKey, backgroundColor: backgroundColor);
+  });
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
   final MaterialTabController? controller;
@@ -114,8 +114,8 @@ class CupertinoTabViewData {
 
 class CupertinoTabScaffoldData extends _BaseData {
   CupertinoTabScaffoldData({
-    Color? backgroundColor,
-    Key? widgetKey,
+    super.backgroundColor,
+    super.widgetKey,
     this.items,
     this.bodyBuilder,
     this.appBarBuilder,
@@ -127,10 +127,7 @@ class CupertinoTabScaffoldData extends _BaseData {
     this.controller,
     this.restorationId,
     this.restorationScopeIdTabView,
-  }) : super(
-          widgetKey: widgetKey,
-          backgroundColor: backgroundColor,
-        );
+  });
 
   final List<BottomNavigationBarItem>? items;
 
@@ -180,7 +177,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final String? restorationId;
 
   PlatformTabScaffold({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.items,
     this.bodyBuilder,
@@ -211,8 +208,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
         assert(
           (cupertino == null && cupertinoBuilder != null) ||
               cupertinoBuilder == null,
-        ),
-        super(key: key);
+        );
 
   @override
   Widget createMaterialWidget(BuildContext context) {

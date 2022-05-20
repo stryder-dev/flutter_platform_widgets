@@ -29,9 +29,17 @@ class PopupMenuOption {
   });
 }
 
-class MaterialPopupMenuOptionData {
+abstract class _BaseData {
   final Key? key;
   final Widget? child;
+
+  _BaseData({
+    this.key,
+    this.child,
+  });
+}
+
+class MaterialPopupMenuOptionData extends _BaseData {
   final bool? enabled;
   final double? height;
   final MouseCursor? mouseCursor;
@@ -40,8 +48,8 @@ class MaterialPopupMenuOptionData {
   final TextStyle? textStyle;
 
   MaterialPopupMenuOptionData({
-    this.key,
-    this.child,
+    super.key,
+    super.child,
     this.enabled,
     this.height,
     this.mouseCursor,
@@ -51,19 +59,59 @@ class MaterialPopupMenuOptionData {
   });
 }
 
-class CupertinoPopupMenuOptionData {
-  final Key? key;
-  final Widget? child;
+class CupertinoPopupMenuOptionData extends _BaseData {
   final VoidCallback? onPressed;
   final bool? isDefaultAction;
   final bool? isDestructiveAction;
 
   CupertinoPopupMenuOptionData({
-    this.key,
-    this.child,
+    super.key,
+    super.child,
     this.onPressed,
     this.isDefaultAction,
     this.isDestructiveAction,
+  });
+}
+
+class MaterialPopupMenuData {
+  final Key? key;
+  final Widget? icon;
+  final PopupMenuItemBuilder<PopupMenuOption>? itemBuilder;
+  final Widget? child;
+  final Color? color;
+  final double? elevation;
+  final bool? enableFeedback;
+  final bool? enabled;
+  final double? iconSize;
+  final PopupMenuOption? initialValue;
+  final Offset? offset;
+  final PopupMenuCanceled? onCanceled;
+  final EdgeInsets? padding;
+  final ShapeBorder? shape;
+  final String? tooltip;
+  final BoxConstraints? constraints;
+  final PopupMenuPosition? position;
+  final double? splashRadius;
+
+  MaterialPopupMenuData({
+    this.key,
+    this.icon,
+    this.itemBuilder,
+    this.child,
+    this.color,
+    this.elevation,
+    this.enableFeedback,
+    this.enabled,
+    this.iconSize,
+    this.initialValue,
+    this.offset,
+    this.onCanceled,
+    this.padding,
+    this.shape,
+    this.tooltip,
+    this.constraints,
+    this.position,
+    this.splashRadius,
   });
 }
 
@@ -115,8 +163,8 @@ class PlatformPopupMenu extends StatelessWidget {
     required this.icon,
     this.cupertino,
     this.material,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -221,46 +269,4 @@ class PlatformPopupMenu extends StatelessWidget {
       splashRadius: data?.splashRadius,
     );
   }
-}
-
-class MaterialPopupMenuData {
-  final Key? key;
-  final Widget? icon;
-  final PopupMenuItemBuilder<PopupMenuOption>? itemBuilder;
-  final Widget? child;
-  final Color? color;
-  final double? elevation;
-  final bool? enableFeedback;
-  final bool? enabled;
-  final double? iconSize;
-  final PopupMenuOption? initialValue;
-  final Offset? offset;
-  final PopupMenuCanceled? onCanceled;
-  final EdgeInsets? padding;
-  final ShapeBorder? shape;
-  final String? tooltip;
-  final BoxConstraints? constraints;
-  final PopupMenuPosition? position;
-  final double? splashRadius;
-
-  MaterialPopupMenuData({
-    this.key,
-    this.icon,
-    this.itemBuilder,
-    this.child,
-    this.color,
-    this.elevation,
-    this.enableFeedback,
-    this.enabled,
-    this.iconSize,
-    this.initialValue,
-    this.offset,
-    this.onCanceled,
-    this.padding,
-    this.shape,
-    this.tooltip,
-    this.constraints,
-    this.position,
-    this.splashRadius,
-  });
 }

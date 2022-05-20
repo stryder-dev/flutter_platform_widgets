@@ -14,10 +14,10 @@ class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
   final PlatformBuilder<Widget?>? cupertino;
 
   PlatformWidget({
-    Key? key,
+    super.key,
     this.cupertino,
     this.material,
-  }) : super(key: key);
+  });
 
   @override
   Widget createMaterialWidget(BuildContext context) {

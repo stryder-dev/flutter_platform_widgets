@@ -28,9 +28,9 @@ abstract class _BaseData {
 
 class MaterialTextButtonData extends _BaseData {
   MaterialTextButtonData({
-    Key? widgetKey,
-    Widget? child,
-    VoidCallback? onPressed,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
     this.onLongPress,
     this.focusNode,
     this.style,
@@ -39,11 +39,7 @@ class MaterialTextButtonData extends _BaseData {
     this.icon,
     this.onHover,
     this.onFocusChange,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final VoidCallback? onLongPress;
   final FocusNode? focusNode;
@@ -57,9 +53,9 @@ class MaterialTextButtonData extends _BaseData {
 
 class CupertinoTextButtonData extends _BaseData {
   CupertinoTextButtonData({
-    Key? widgetKey,
-    Widget? child,
-    VoidCallback? onPressed,
+    super.widgetKey,
+    super.child,
+    super.onPressed,
     this.color,
     this.padding,
     this.disabledColor,
@@ -68,11 +64,7 @@ class CupertinoTextButtonData extends _BaseData {
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
-  }) : super(
-          widgetKey: widgetKey,
-          child: child,
-          onPressed: onPressed,
-        );
+  });
 
   final Color? color;
   final EdgeInsetsGeometry? padding;
@@ -100,6 +92,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
   final PlatformBuilder<MaterialTextButtonData>? material;
 
   PlatformTextButton({
+    super.key,
     this.widgetKey,
     this.onPressed,
     this.child,

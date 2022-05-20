@@ -43,24 +43,17 @@ abstract class _BaseData {
 
 class CupertinoTabBarData extends _BaseData {
   CupertinoTabBarData({
-    Color? backgroundColor,
-    List<BottomNavigationBarItem>? items,
-    Color? activeColor,
-    Key? widgetKey,
-    void Function(int)? itemChanged,
-    double? iconSize,
-    int? currentIndex,
+    super.backgroundColor,
+    super.items,
+    super.activeColor,
+    super.widgetKey,
+    super.itemChanged,
+    super.iconSize,
+    super.currentIndex,
     this.inactiveColor,
     this.border,
     this.height,
-  }) : super(
-            widgetKey: widgetKey,
-            items: items,
-            backgroundColor: backgroundColor,
-            iconSize: iconSize,
-            activeColor: activeColor,
-            currentIndex: currentIndex,
-            itemChanged: itemChanged);
+  });
 
   final Color? inactiveColor;
   final Border? border;
@@ -69,14 +62,14 @@ class CupertinoTabBarData extends _BaseData {
 
 class MaterialNavBarData extends _BaseData {
   MaterialNavBarData({
-    List<BottomNavigationBarItem>? items,
-    Color? backgroundColor,
-    double? iconSize,
+    super.items,
+    super.backgroundColor,
+    super.iconSize,
     this.elevation,
     Color? fixedColor,
-    Key? widgetKey,
-    void Function(int)? itemChanged,
-    int? currentIndex,
+    super.widgetKey,
+    super.itemChanged,
+    super.currentIndex,
     this.type,
     this.bottomNavigationBarKey,
     this.shape,
@@ -95,14 +88,7 @@ class MaterialNavBarData extends _BaseData {
     this.mouseCursor,
     this.enableFeedback,
     this.landscapeLayout,
-  }) : super(
-            widgetKey: widgetKey,
-            items: items,
-            backgroundColor: backgroundColor,
-            iconSize: iconSize,
-            activeColor: fixedColor,
-            currentIndex: currentIndex,
-            itemChanged: itemChanged);
+  }) : super(activeColor: fixedColor);
 
   final double? selectedFontSize;
   final double? elevation;
@@ -137,7 +123,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
 
   PlatformNavBar({
-    Key? key,
+    super.key,
     this.widgetKey,
     this.backgroundColor,
     this.items,
@@ -145,7 +131,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     this.currentIndex,
     this.material,
     this.cupertino,
-  }) : super(key: key);
+  });
 
   @override
   BottomAppBar createMaterialWidget(BuildContext context) {
