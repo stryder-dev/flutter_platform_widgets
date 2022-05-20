@@ -15,8 +15,15 @@ import 'package:flutter/material.dart'
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
+
+class CustomDialogActionBuilder implements CustomBuilder<PlatformDialogAction> {
+  final PlatformTargetBuilder<PlatformDialogAction> builder;
+
+  CustomDialogActionBuilder(this.builder);
+}
 
 abstract class _BaseData {
   _BaseData({
@@ -134,6 +141,8 @@ class PlatformDialogAction
   final PlatformBuilder<MaterialDialogFlatActionData>? materialFlat;
   final PlatformBuilder<CupertinoDialogActionData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   PlatformDialogAction({
     super.key,
     this.widgetKey,
@@ -142,7 +151,21 @@ class PlatformDialogAction
     this.material,
     @Deprecated('materialFlat is deprecated. Use material') this.materialFlat,
     this.cupertino,
+    this.customData,
   });
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomDialogActionBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomDialogActionBuilder).builder(context, this, customData);
+  }
 
   @override
   Widget createMaterialWidget(BuildContext context) {

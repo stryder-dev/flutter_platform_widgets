@@ -8,10 +8,18 @@ import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 import 'package:flutter/material.dart' show CircularProgressIndicator;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kDefaultIndicatorRadius = 10.0;
+
+class CustomCircularProgressIndicatorBuilder
+    implements CustomBuilder<PlatformCircularProgressIndicator> {
+  final PlatformTargetBuilder<PlatformCircularProgressIndicator> builder;
+
+  CustomCircularProgressIndicatorBuilder(this.builder);
+}
 
 abstract class _BaseData {
   _BaseData({
@@ -62,12 +70,30 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
   final PlatformBuilder<MaterialProgressIndicatorData>? material;
   final PlatformBuilder<CupertinoProgressIndicatorData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   PlatformCircularProgressIndicator({
     super.key,
     this.widgetKey,
     this.material,
     this.cupertino,
+    this.customData,
   });
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders
+        .firstWhereOrNull((e) => e is CustomCircularProgressIndicatorBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomCircularProgressIndicatorBuilder)
+        .builder(context, this, customData);
+  }
 
   @override
   CircularProgressIndicator createMaterialWidget(BuildContext context) {

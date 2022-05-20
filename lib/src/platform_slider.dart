@@ -8,8 +8,15 @@ import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
 import 'package:flutter/material.dart' show SemanticFormatterCallback, Slider;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
+
+class CustomSliderBuilder implements CustomBuilder<PlatformSlider> {
+  final PlatformTargetBuilder<PlatformSlider> builder;
+
+  CustomSliderBuilder(this.builder);
+}
 
 abstract class _BaseData {
   _BaseData({
@@ -96,6 +103,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final PlatformBuilder<MaterialSliderData>? material;
   final PlatformBuilder<CupertinoSliderData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   PlatformSlider({
     super.key,
     this.widgetKey,
@@ -110,8 +119,22 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.thumbColor,
     this.material,
     this.cupertino,
+    this.customData,
   })  : assert(divisions == null || divisions > 0),
         assert(value >= min && value <= max);
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomSliderBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomSliderBuilder).builder(context, this, customData);
+  }
 
   @override
   Slider createMaterialWidget(BuildContext context) {

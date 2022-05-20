@@ -22,7 +22,13 @@ typedef Text _TextBuilder(BuildContext context);
 class PlatformText extends StatelessWidget {
   final _TextBuilder _textBuilder;
 
-  PlatformText._(Key? key, this._textBuilder) : super(key: key);
+  PlatformText._(
+    Key? key,
+    this.data,
+    this._textBuilder,
+  ) : super(key: key);
+
+  final String data;
 
   factory PlatformText(
     String data, {
@@ -42,6 +48,7 @@ class PlatformText extends StatelessWidget {
   }) {
     return PlatformText._(
         key,
+        data,
         (BuildContext context) => Text(
               formatData(context, data),
               key: key,

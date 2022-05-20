@@ -13,6 +13,7 @@ import 'package:flutter/material.dart'
         BottomNavigationBarLandscapeLayout;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
@@ -20,6 +21,12 @@ import 'widget_base.dart';
 const double _kTabBarHeight = 50.0;
 const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
 const Color _kDefaultTabBarInactiveColor = CupertinoColors.inactiveGray;
+
+class CustomNavBarBuilder implements CustomBuilder<PlatformNavBar> {
+  final PlatformTargetBuilder<PlatformNavBar> builder;
+
+  CustomNavBarBuilder(this.builder);
+}
 
 abstract class _BaseData {
   _BaseData({
@@ -122,6 +129,8 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final PlatformBuilder<MaterialNavBarData>? material;
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   PlatformNavBar({
     super.key,
     this.widgetKey,
@@ -131,7 +140,21 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     this.currentIndex,
     this.material,
     this.cupertino,
+    this.customData,
   });
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomNavBarBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomNavBarBuilder).builder(context, this, customData);
+  }
 
   @override
   BottomAppBar createMaterialWidget(BuildContext context) {
