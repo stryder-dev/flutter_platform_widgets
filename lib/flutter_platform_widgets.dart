@@ -10,13 +10,16 @@ export 'src/platform.dart'
     show
         isCupertino,
         isMaterial,
+        isCustom,
         platform,
         platformThemeData,
         showPlatformDialog,
         showPlatformModalSheet,
         MaterialModalSheetData,
         CupertinoModalSheetData,
-        PlatformTarget;
+        PlatformTarget,
+        CustomBuilder,
+        PlatformTargetBuilder;
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_app.dart';
 export 'src/platform_app_bar.dart';

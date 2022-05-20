@@ -25,6 +25,12 @@ const Border _kDefaultNavBarBorder = const Border(
   ),
 );
 
+class CustomAppBarBuilder implements CustomBuilder<PlatformAppBar> {
+  final PlatformTargetBuilder<PlatformAppBar> builder;
+
+  CustomAppBarBuilder(this.builder);
+}
+
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -152,6 +158,8 @@ class PlatformAppBar
   final PlatformBuilder<MaterialAppBarData>? material;
   final PlatformBuilder<CupertinoNavigationBarData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   PlatformAppBar({
     super.key,
     this.widgetKey,
@@ -162,7 +170,21 @@ class PlatformAppBar
     this.automaticallyImplyLeading,
     this.material,
     this.cupertino,
+    this.customData,
   });
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomAppBarBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomAppBarBuilder).builder(context, this, customData);
+  }
 
   @override
   PreferredSizeWidget createMaterialWidget(BuildContext context) {

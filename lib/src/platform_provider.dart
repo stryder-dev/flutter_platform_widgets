@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../flutter_platform_widgets.dart';
+
 /// A Provider that provides access to the functions of swicthing platforms.
 ///
 /// When placed at the root, it will rebuild the application with the new platform
@@ -26,12 +28,18 @@ class PlatformProvider extends StatefulWidget {
     required this.builder,
     this.initialPlatform,
     this.settings,
+    this.customWidgetBuilders,
     super.key,
   });
 
   final WidgetBuilder builder;
   final TargetPlatform? initialPlatform;
   final PlatformSettingsData? settings;
+  //final Map<WidgetType, Widget> Function(TargetPlatform)? customWidgetBuilders;
+  // final Map<TargetPlatform, Map<WidgetType, CustomBuilder>>?
+  //     customWidgetBuilders;
+
+  final Map<TargetPlatform, List<CustomBuilder>>? customWidgetBuilders;
 
   static PlatformProviderState? of(BuildContext context) {
     _PlatformProviderState? state =
@@ -106,6 +114,11 @@ class PlatformProviderState {
   PlatformSettingsData get settings =>
       _parent.settings ?? PlatformSettingsData();
 
+  Map<TargetPlatform, List<CustomBuilder>>? get customWidgetBuilders =>
+      _parent.widget.customWidgetBuilders;
+  // Map<TargetPlatform, Map<WidgetType, CustomBuilder>>?
+  //     get customWidgetBuilders => _parent.widget.customWidgetBuilders;
+
   void changeToMaterialPlatform() {
     _parent.changeToMaterialPlatform();
   }
@@ -116,6 +129,10 @@ class PlatformProviderState {
 
   void changeToAutoDetectPlatform() {
     _parent.changeToAutoDetectPlatform();
+  }
+
+  void changeToPlatform(TargetPlatform platform) {
+    _parent.changeToPlatform(platform);
   }
 }
 
@@ -146,18 +163,22 @@ class PlatformSettingsData {
   /// [PlatformStyle.Cupertino].
   final PlatformStyleData platformStyle;
 
+  final PlatformStyleData fallbackPlatformStyle;
+
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.legacyIosUsesMaterialWidgets = false,
     @Deprecated('legacyMaterialDialogActionButtons will be removed from future versions and will be always false. Will use new Material TextButton as Dialog action buttons')
         this.legacyMaterialDialogActionButtons = false,
     this.platformStyle = const PlatformStyleData(),
+    this.fallbackPlatformStyle = const PlatformStyleData(),
   });
 }
 
 enum PlatformStyle {
   Material,
   Cupertino,
+  Custom,
 }
 
 class PlatformStyleData {

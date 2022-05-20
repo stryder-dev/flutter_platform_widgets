@@ -33,7 +33,12 @@ class MyApp extends StatelessWidget {
     return Theme(
       data: materialTheme,
       child: PlatformProvider(
-        settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
+        settings: PlatformSettingsData(
+          iosUsesMaterialWidgets: true,
+          platformStyle: PlatformStyleData(
+            windows: PlatformStyle.Custom,
+          ),
+        ),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,
@@ -51,6 +56,26 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        // Customise the widget deplending on the platform
+        customWidgetBuilders: {
+          TargetPlatform.windows: [
+            //CustomAlertDialogBuilder
+            //CustomAppBarBuilder
+            //CustomAppBuilder
+            //CustomCircularProgressIndicatorBuilder
+            //CustomDialogActionBuilder
+            //CustomElevatedButtonBuilder
+            //CustomIconButtonBuilder
+            //CustomNavBarBuilder
+            //CustomScaffoldBuilder
+            //CustomSliderBuilder
+            //CustomSwitchBuilder
+            // CustomTextButtonBuilder((_, widget, data) =>
+            //     CustomTextButton(widget, data as CustomTextButtonData)),
+            //CustomTextFieldBuilder
+            //CustomTextFormFieldBuilder
+          ]
+        },
       ),
     );
   }
@@ -70,13 +95,34 @@ class PlatformPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
-                child: PlatformText('Change Platform'),
+                child: PlatformText(
+                    'Change to Material ${isMaterial(context) ? "*" : ""}'),
                 onPressed: () {
                   final p = PlatformProvider.of(context)!;
 
-                  isMaterial(context)
-                      ? p.changeToCupertinoPlatform()
-                      : p.changeToMaterialPlatform();
+                  p.changeToMaterialPlatform();
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+                child: PlatformText(
+                    'Change to Cupertino ${isCupertino(context) ? "*" : ""}'),
+                onPressed: () {
+                  final p = PlatformProvider.of(context)!;
+
+                  p.changeToCupertinoPlatform();
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+                child: PlatformText(
+                    'Change to Windows platform ${isCustom(context) ? "*" : ""}'),
+                onPressed: () {
+                  final p = PlatformProvider.of(context)!;
+
+                  p.changeToPlatform(TargetPlatform.windows);
                 }),
           ),
           Divider(thickness: 10),

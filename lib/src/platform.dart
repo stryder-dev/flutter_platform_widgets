@@ -48,9 +48,21 @@ enum PlatformTarget {
 }
 
 PlatformStyle _platformStyle(BuildContext context) {
-  final platform = PlatformProvider.of(context)?.platform;
-
   final platformStyle = PlatformProvider.of(context)?.settings.platformStyle;
+
+  return _platformStyleImpl(context, platformStyle);
+}
+
+PlatformStyle _fallbackPlatformStyle(BuildContext context) {
+  final platformStyle =
+      PlatformProvider.of(context)?.settings.fallbackPlatformStyle;
+
+  return _platformStyleImpl(context, platformStyle);
+}
+
+PlatformStyle _platformStyleImpl(
+    BuildContext context, PlatformStyleData? platformStyle) {
+  final platform = PlatformProvider.of(context)?.platform;
 
   if (platform == null && kIsWeb) {
     return platformStyle?.web ?? PlatformStyle.Material;
@@ -80,11 +92,28 @@ bool isCupertino(BuildContext context) {
   return _platformStyle(context) == PlatformStyle.Cupertino;
 }
 
+bool isCustom(BuildContext context) {
+  return _platformStyle(context) == PlatformStyle.Custom;
+}
+
+bool isMaterialFallback(BuildContext context) {
+  return _fallbackPlatformStyle(context) == PlatformStyle.Material;
+}
+
+bool isCupertinoFallback(BuildContext context) {
+  return _fallbackPlatformStyle(context) == PlatformStyle.Cupertino;
+}
+
 T platformThemeData<T>(
   BuildContext context, {
   required T Function(ThemeData theme) material,
   required T Function(CupertinoThemeData theme) cupertino,
+  T Function(ThemeData theme, CupertinoThemeData cupertinoTheme)? custom,
 }) {
+  if (custom != null && isCustom(context)) {
+    return custom.call(Theme.of(context), CupertinoTheme.of(context));
+  }
+
   return isMaterial(context)
       ? material(Theme.of(context))
       : cupertino(CupertinoTheme.of(context));
@@ -242,3 +271,11 @@ Future<T?> showPlatformModalSheet<T>({
         anchorPoint: cupertino?.anchorPoint);
   }
 }
+
+abstract class CustomBuilder<T> {}
+
+typedef PlatformTargetBuilder<T> = Widget Function(
+  BuildContext context,
+  T widget,
+  Object? data,
+);

@@ -9,8 +9,15 @@ import 'package:flutter/material.dart'
     show MaterialApp, ScaffoldMessengerState, Theme, ThemeData, ThemeMode;
 import 'package:flutter/widgets.dart';
 
+import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
+
+class CustomAppBuilder implements CustomBuilder<PlatformApp> {
+  final PlatformTargetBuilder<PlatformApp> builder;
+
+  CustomAppBuilder(this.builder);
+}
 
 abstract class _BaseData {
   _BaseData({
@@ -351,6 +358,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   final bool? useInheritedMediaQuery;
 
+  final PlatformBuilder? customData;
+
   const PlatformApp({
     super.key,
     this.widgetKey,
@@ -383,6 +392,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.useInheritedMediaQuery,
     this.material,
     this.cupertino,
+    this.customData,
   })  : routeInformationProvider = null,
         routeInformationParser = null,
         routerDelegate = null,
@@ -390,35 +400,36 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         materialRouter = null,
         cupertinoRouter = null;
 
-  const PlatformApp.router({
-    super.key,
-    this.routeInformationProvider,
-    this.routeInformationParser,
-    this.routerDelegate,
-    this.backButtonDispatcher,
-    this.widgetKey,
-    this.builder,
-    this.title,
-    this.onGenerateTitle,
-    this.color,
-    this.locale,
-    this.localizationsDelegates,
-    this.localeListResolutionCallback,
-    this.localeResolutionCallback,
-    this.supportedLocales,
-    this.showPerformanceOverlay,
-    this.checkerboardRasterCacheImages,
-    this.checkerboardOffscreenLayers,
-    this.showSemanticsDebugger,
-    this.debugShowCheckedModeBanner,
-    this.shortcuts,
-    this.actions,
-    this.restorationScopeId,
-    this.scrollBehavior,
-    this.useInheritedMediaQuery,
-    PlatformBuilder<MaterialAppRouterData>? material,
-    PlatformBuilder<CupertinoAppRouterData>? cupertino,
-  })  : navigatorObservers = null,
+  const PlatformApp.router(
+      {super.key,
+      this.routeInformationProvider,
+      this.routeInformationParser,
+      this.routerDelegate,
+      this.backButtonDispatcher,
+      this.widgetKey,
+      this.builder,
+      this.title,
+      this.onGenerateTitle,
+      this.color,
+      this.locale,
+      this.localizationsDelegates,
+      this.localeListResolutionCallback,
+      this.localeResolutionCallback,
+      this.supportedLocales,
+      this.showPerformanceOverlay,
+      this.checkerboardRasterCacheImages,
+      this.checkerboardOffscreenLayers,
+      this.showSemanticsDebugger,
+      this.debugShowCheckedModeBanner,
+      this.shortcuts,
+      this.actions,
+      this.restorationScopeId,
+      this.scrollBehavior,
+      this.useInheritedMediaQuery,
+      PlatformBuilder<MaterialAppRouterData>? material,
+      PlatformBuilder<CupertinoAppRouterData>? cupertino,
+      PlatformBuilder? customData})
+      : navigatorObservers = null,
         navigatorKey = null,
         onGenerateRoute = null,
         home = null,
@@ -429,7 +440,21 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         this.material = null,
         this.cupertino = null,
         materialRouter = material,
-        cupertinoRouter = cupertino;
+        cupertinoRouter = cupertino,
+        customData = customData;
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomAppBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomAppBuilder).builder(context, this, customData);
+  }
 
   @override
   createMaterialWidget(BuildContext context) {

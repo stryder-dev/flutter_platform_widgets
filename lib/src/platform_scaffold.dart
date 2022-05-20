@@ -28,6 +28,12 @@ import 'platform_nav_bar.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
+class CustomScaffoldBuilder implements CustomBuilder<PlatformScaffold> {
+  final PlatformTargetBuilder<PlatformScaffold> builder;
+
+  CustomScaffoldBuilder(this.builder);
+}
+
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -126,6 +132,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final PlatformBuilder<MaterialScaffoldData>? material;
   final PlatformBuilder<CupertinoPageScaffoldData>? cupertino;
 
+  final PlatformBuilder? customData;
+
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
 
@@ -141,7 +149,21 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     this.material,
     this.cupertino,
     this.cupertinoTabChildBuilder,
+    this.customData,
   });
+
+  @protected
+  CustomBuilder? findCustomBuilder(
+    BuildContext context,
+    List<CustomBuilder> builders,
+  ) {
+    return builders.firstWhereOrNull((e) => e is CustomScaffoldBuilder);
+  }
+
+  @protected
+  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
+    return (b as CustomScaffoldBuilder).builder(context, this, customData);
+  }
 
   @override
   Scaffold createMaterialWidget(BuildContext context) {
