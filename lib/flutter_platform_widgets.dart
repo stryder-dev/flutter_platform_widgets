@@ -13,10 +13,6 @@ export 'src/platform.dart'
         isCustom,
         platform,
         platformThemeData,
-        showPlatformDialog,
-        showPlatformModalSheet,
-        MaterialModalSheetData,
-        CupertinoModalSheetData,
         PlatformTarget,
         CustomBuilder,
         PlatformTargetBuilder;
@@ -26,10 +22,12 @@ export 'src/platform_app_bar.dart';
 export 'src/platform_button.dart';
 export 'src/platform_circluar_progress_indicator.dart';
 export 'src/platform_date_picker.dart';
+export 'src/platform_dialog.dart';
 export 'src/platform_dialog_action.dart';
 export 'src/platform_elevated_button.dart';
 export 'src/platform_icon_button.dart';
 export 'src/platform_icons.dart';
+export 'src/platform_modal_sheet.dart';
 export 'src/platform_nav_bar.dart';
 export 'src/platform_page.dart';
 export 'src/platform_page_route.dart';
