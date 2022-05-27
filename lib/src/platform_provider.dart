@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../flutter_platform_widgets.dart';
+import 'platform.dart';
 
 /// A Provider that provides access to the functions of swicthing platforms.
 ///
@@ -36,7 +37,7 @@ class PlatformProvider extends StatefulWidget {
   final TargetPlatform? initialPlatform;
   final PlatformSettingsData? settings;
 
-  final Map<PlatformTarget, List<CustomBuilder>>? customWidgetBuilders;
+  final Map<PlatformTarget, CustomWidgetBuilder>? customWidgetBuilders;
 
   static PlatformProviderState? of(BuildContext context) {
     _PlatformProviderState? state =
@@ -111,10 +112,8 @@ class PlatformProviderState {
   PlatformSettingsData get settings =>
       _parent.settings ?? PlatformSettingsData();
 
-  Map<PlatformTarget, List<CustomBuilder>>? get customWidgetBuilders =>
+  Map<PlatformTarget, CustomWidgetBuilder>? get customWidgetBuilders2 =>
       _parent.widget.customWidgetBuilders;
-  // Map<TargetPlatform, Map<WidgetType, CustomBuilder>>?
-  //     get customWidgetBuilders => _parent.widget.customWidgetBuilders;
 
   void changeToMaterialPlatform() {
     _parent.changeToMaterialPlatform();

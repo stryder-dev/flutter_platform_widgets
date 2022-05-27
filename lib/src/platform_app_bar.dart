@@ -25,12 +25,6 @@ const Border _kDefaultNavBarBorder = const Border(
   ),
 );
 
-class CustomAppBarBuilder implements CustomBuilder<PlatformAppBar> {
-  final PlatformTargetBuilder<PlatformAppBar> builder;
-
-  CustomAppBarBuilder(this.builder);
-}
-
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -165,18 +159,9 @@ class PlatformAppBar
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomAppBarBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    final p = platform(context);
-    final data = customData?.call(context, p);
-    return (b as CustomAppBarBuilder).builder(context, this, data);
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.appBarBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

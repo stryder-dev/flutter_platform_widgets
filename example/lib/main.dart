@@ -56,26 +56,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        // Customise the widget deplending on the platform
-        customWidgetBuilders: {
-          PlatformTarget.windows: [
-            //CustomAlertDialogBuilder
-            //CustomAppBarBuilder
-            //CustomAppBuilder
-            //CustomCircularProgressIndicatorBuilder
-            //CustomDialogActionBuilder
-            //CustomElevatedButtonBuilder
-            //CustomIconButtonBuilder
-            //CustomNavBarBuilder
-            //CustomScaffoldBuilder
-            //CustomSliderBuilder
-            //CustomSwitchBuilder
-            // CustomTextButtonBuilder((_, widget, data) =>
-            //     CustomTextButton(widget, data as CustomTextButtonData)),
-            //CustomTextFieldBuilder
-            //CustomTextFormFieldBuilder
-          ]
-        },
       ),
     );
   }

@@ -5,16 +5,8 @@ import 'package:flutter/material.dart'
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
-
-class CustomTextFormFieldBuilder
-    implements CustomBuilder<PlatformTextFormField> {
-  final PlatformTargetBuilder<PlatformTextFormField> builder;
-
-  CustomTextFormFieldBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -345,17 +337,9 @@ class PlatformTextFormField
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomTextFormFieldBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomTextFormFieldBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.textFormFieldBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

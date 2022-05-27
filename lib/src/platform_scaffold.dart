@@ -28,12 +28,6 @@ import 'platform_nav_bar.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
-class CustomScaffoldBuilder implements CustomBuilder<PlatformScaffold> {
-  final PlatformTargetBuilder<PlatformScaffold> builder;
-
-  CustomScaffoldBuilder(this.builder);
-}
-
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -153,17 +147,9 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomScaffoldBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomScaffoldBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.scaffoldBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

@@ -8,18 +8,11 @@ import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 import 'package:flutter/material.dart' show AlertDialog;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
 const EdgeInsets _defaultInsetPadding =
     EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
-
-class CustomAlertDialogBuilder implements CustomBuilder<PlatformAlertDialog> {
-  final PlatformTargetBuilder<PlatformAlertDialog> builder;
-
-  CustomAlertDialogBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -123,17 +116,9 @@ class PlatformAlertDialog
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomAlertDialogBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomAlertDialogBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.alertDialogBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

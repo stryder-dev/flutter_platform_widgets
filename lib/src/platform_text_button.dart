@@ -9,17 +9,10 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/material.dart' show TextButton, ButtonStyle;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
-
-class CustomTextButtonBuilder implements CustomBuilder<PlatformTextButton> {
-  final PlatformTargetBuilder<PlatformTextButton> builder;
-
-  CustomTextButtonBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -114,17 +107,9 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomTextButtonBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomTextButtonBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.textButtonBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

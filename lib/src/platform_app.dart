@@ -9,15 +9,8 @@ import 'package:flutter/material.dart'
     show MaterialApp, ScaffoldMessengerState, Theme, ThemeData, ThemeMode;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
-
-class CustomAppBuilder implements CustomBuilder<PlatformApp> {
-  final PlatformTargetBuilder<PlatformApp> builder;
-
-  CustomAppBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -444,17 +437,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         customData = customData;
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomAppBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomAppBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.appBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

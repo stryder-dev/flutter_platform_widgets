@@ -56,7 +56,7 @@ Future<T?> showPlatformDialog<T>({
   String? barrierLabel,
   PlatformBuilder<MaterialDialogData>? material,
   PlatformBuilder<CupertinoDialogData>? cupertino,
-  Future<T?> Function(Widget, PlatformTarget)? custom,
+  Future<T?> Function(BuildContext, Widget, PlatformTarget)? custom,
 }) {
   if (isMaterial(context)) {
     final data = material?.call(context, platform(context));
@@ -90,6 +90,7 @@ Future<T?> showPlatformDialog<T>({
     );
   } else if (isCustom(context) && custom != null) {
     return custom(
+      context,
       builder?.call(context) ?? SizedBox.shrink(),
       platform(context),
     );
