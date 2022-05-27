@@ -139,7 +139,8 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomIconButtonBuilder).builder(context, this, customData);
+    return (b as CustomIconButtonBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

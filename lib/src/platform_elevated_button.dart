@@ -126,7 +126,7 @@ class PlatformElevatedButton
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
     return (b as CustomElevatedButtonBuilder)
-        .builder(context, this, customData);
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

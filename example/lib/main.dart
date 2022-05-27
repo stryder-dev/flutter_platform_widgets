@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         ),
         // Customise the widget deplending on the platform
         customWidgetBuilders: {
-          TargetPlatform.windows: [
+          PlatformTarget.windows: [
             //CustomAlertDialogBuilder
             //CustomAppBarBuilder
             //CustomAppBuilder

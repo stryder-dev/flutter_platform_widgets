@@ -92,7 +92,7 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
     return (b as CustomCircularProgressIndicatorBuilder)
-        .builder(context, this, customData);
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

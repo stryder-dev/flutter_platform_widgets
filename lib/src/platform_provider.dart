@@ -35,11 +35,8 @@ class PlatformProvider extends StatefulWidget {
   final WidgetBuilder builder;
   final TargetPlatform? initialPlatform;
   final PlatformSettingsData? settings;
-  //final Map<WidgetType, Widget> Function(TargetPlatform)? customWidgetBuilders;
-  // final Map<TargetPlatform, Map<WidgetType, CustomBuilder>>?
-  //     customWidgetBuilders;
 
-  final Map<TargetPlatform, List<CustomBuilder>>? customWidgetBuilders;
+  final Map<PlatformTarget, List<CustomBuilder>>? customWidgetBuilders;
 
   static PlatformProviderState? of(BuildContext context) {
     _PlatformProviderState? state =
@@ -114,7 +111,7 @@ class PlatformProviderState {
   PlatformSettingsData get settings =>
       _parent.settings ?? PlatformSettingsData();
 
-  Map<TargetPlatform, List<CustomBuilder>>? get customWidgetBuilders =>
+  Map<PlatformTarget, List<CustomBuilder>>? get customWidgetBuilders =>
       _parent.widget.customWidgetBuilders;
   // Map<TargetPlatform, Map<WidgetType, CustomBuilder>>?
   //     get customWidgetBuilders => _parent.widget.customWidgetBuilders;

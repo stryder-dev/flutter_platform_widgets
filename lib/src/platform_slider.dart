@@ -133,7 +133,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomSliderBuilder).builder(context, this, customData);
+    return (b as CustomSliderBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

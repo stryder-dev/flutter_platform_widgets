@@ -435,7 +435,8 @@ class PlatformTextField
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomTextFieldBuilder).builder(context, this, customData);
+    return (b as CustomTextFieldBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

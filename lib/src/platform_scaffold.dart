@@ -162,7 +162,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomScaffoldBuilder).builder(context, this, customData);
+    return (b as CustomScaffoldBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override
