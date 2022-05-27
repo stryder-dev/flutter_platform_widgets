@@ -9,18 +9,10 @@ import 'package:flutter/cupertino.dart'
 import 'package:flutter/material.dart' show ElevatedButton, ButtonStyle;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
-
-class CustomElevatedButtonBuilder
-    implements CustomBuilder<PlatformElevatedButton> {
-  final PlatformTargetBuilder<PlatformElevatedButton> builder;
-
-  CustomElevatedButtonBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -116,17 +108,9 @@ class PlatformElevatedButton
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomElevatedButtonBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomElevatedButtonBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.elevatedButtonBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

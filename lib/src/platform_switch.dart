@@ -10,15 +10,8 @@ import 'package:flutter/material.dart'
     show MaterialStateProperty, MaterialTapTargetSize, Switch;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
-
-class CustomSwitchBuilder implements CustomBuilder<PlatformSwitch> {
-  final PlatformTargetBuilder<PlatformSwitch> builder;
-
-  CustomSwitchBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -122,17 +115,9 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomSwitchBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomSwitchBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.switchBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

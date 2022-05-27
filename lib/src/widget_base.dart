@@ -28,7 +28,7 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
       return createCustomWidget(context);
     }
 
-    throw new UnsupportedError(
+    throw UnsupportedError(
         'This platform is not supported: $defaultTargetPlatform');
   }
 
@@ -37,36 +37,28 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
   A createMaterialWidget(BuildContext context);
 
   @protected
-  CustomBuilder? findCustomBuilder(
+  Widget? buildPlatformWidget(
     BuildContext context,
-    List<CustomBuilder> builders,
+    CustomWidgetBuilder builder,
   ) {
-    return null;
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
     return null;
   }
 
   Widget createCustomWidget(BuildContext context) {
     final provider = PlatformProvider.of(context);
 
-    final builders = provider?.customWidgetBuilders;
-    final p = platform(context);
+    final platformBuilders = provider?.customWidgetBuilders;
+    final currentPlatform = platform(context);
 
-    if (builders != null && builders.containsKey(p)) {
-      final widgetBuilders = builders[p];
+    if (platformBuilders != null &&
+        platformBuilders.containsKey(currentPlatform)) {
+      final platformBuilder = platformBuilders[currentPlatform];
 
-      if (widgetBuilders != null) {
-        final customBuilder = findCustomBuilder(context, widgetBuilders);
+      if (platformBuilder != null) {
+        final customWidget = buildPlatformWidget(context, platformBuilder);
 
-        if (customBuilder != null) {
-          final customWidget = buildPlatformWidget(context, customBuilder);
-
-          if (customWidget != null) {
-            return customWidget;
-          }
+        if (customWidget != null) {
+          return customWidget;
         }
       }
     }
@@ -79,7 +71,7 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
       return createCupertinoWidget(context);
     }
 
-    throw new UnsupportedError(
+    throw UnsupportedError(
         'This platform is not supported: $defaultTargetPlatform');
   }
 }

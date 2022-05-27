@@ -17,16 +17,9 @@ import 'package:flutter/material.dart'
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
-
-class CustomDialogActionBuilder implements CustomBuilder<PlatformDialogAction> {
-  final PlatformTargetBuilder<PlatformDialogAction> builder;
-
-  CustomDialogActionBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -158,17 +151,9 @@ class PlatformDialogAction
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomDialogActionBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomDialogActionBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.dialogActionBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override

@@ -126,10 +126,43 @@ PlatformTarget platform(BuildContext context) {
   }
 }
 
-abstract class CustomBuilder<T> {}
-
 typedef PlatformTargetBuilder<T> = Widget Function(
-  BuildContext context,
   T widget,
   Object? data,
 );
+
+class CustomWidgetBuilder {
+  final PlatformTargetBuilder<PlatformAlertDialog>? alertDialogBuilder;
+  final PlatformTargetBuilder<PlatformAppBar>? appBarBuilder;
+  final PlatformTargetBuilder<PlatformApp>? appBuilder;
+  final PlatformTargetBuilder<PlatformCircularProgressIndicator>?
+      circularProgressIndicatorBuilder;
+  final PlatformTargetBuilder<PlatformDialogAction>? dialogActionBuilder;
+  final PlatformTargetBuilder<PlatformElevatedButton>? elevatedButtonBuilder;
+  final PlatformTargetBuilder<PlatformIconButton>? iconButtonBuilder;
+  final PlatformTargetBuilder<PlatformNavBar>? navBarBuilder;
+  final PlatformTargetBuilder<PlatformScaffold>? scaffoldBuilder;
+  final PlatformTargetBuilder<PlatformSlider>? sliderBuilder;
+  final PlatformTargetBuilder<PlatformSwitch>? switchBuilder;
+
+  final PlatformTargetBuilder<PlatformTextButton>? textButtonBuilder;
+  final PlatformTargetBuilder<PlatformTextField>? textFieldBuilder;
+  final PlatformTargetBuilder<PlatformTextFormField>? textFormFieldBuilder;
+
+  CustomWidgetBuilder({
+    this.alertDialogBuilder,
+    this.appBarBuilder,
+    this.appBuilder,
+    this.circularProgressIndicatorBuilder,
+    this.dialogActionBuilder,
+    this.elevatedButtonBuilder,
+    this.iconButtonBuilder,
+    this.navBarBuilder,
+    this.scaffoldBuilder,
+    this.sliderBuilder,
+    this.switchBuilder,
+    this.textButtonBuilder,
+    this.textFieldBuilder,
+    this.textFormFieldBuilder,
+  });
+}

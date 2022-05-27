@@ -8,17 +8,10 @@ import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
 import 'package:flutter/material.dart' show IconButton, VisualDensity;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
-
-class CustomIconButtonBuilder implements CustomBuilder<PlatformIconButton> {
-  final PlatformTargetBuilder<PlatformIconButton> builder;
-
-  CustomIconButtonBuilder(this.builder);
-}
 
 abstract class _BaseData {
   _BaseData({
@@ -130,17 +123,9 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   });
 
   @protected
-  CustomBuilder? findCustomBuilder(
-    BuildContext context,
-    List<CustomBuilder> builders,
-  ) {
-    return builders.firstWhereOrNull((e) => e is CustomIconButtonBuilder);
-  }
-
-  @protected
-  Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomIconButtonBuilder)
-        .builder(context, this, customData?.call(context, platform(context)));
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.iconButtonBuilder
+        ?.call(this, customData?.call(context, platform(context)));
   }
 
   @override
