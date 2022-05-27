@@ -46,20 +46,14 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
 
   Widget createCustomWidget(BuildContext context) {
     final provider = PlatformProvider.of(context);
-
-    final platformBuilders = provider?.customWidgetBuilders;
     final currentPlatform = platform(context);
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
 
-    if (platformBuilders != null &&
-        platformBuilders.containsKey(currentPlatform)) {
-      final platformBuilder = platformBuilders[currentPlatform];
+    if (platformBuilder != null) {
+      final customWidget = buildPlatformWidget(context, platformBuilder);
 
-      if (platformBuilder != null) {
-        final customWidget = buildPlatformWidget(context, platformBuilder);
-
-        if (customWidget != null) {
-          return customWidget;
-        }
+      if (customWidget != null) {
+        return customWidget;
       }
     }
 

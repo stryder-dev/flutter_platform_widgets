@@ -112,7 +112,7 @@ class PlatformProviderState {
   PlatformSettingsData get settings =>
       _parent.settings ?? PlatformSettingsData();
 
-  Map<PlatformTarget, CustomWidgetBuilder>? get customWidgetBuilders2 =>
+  Map<PlatformTarget, CustomWidgetBuilder>? get customWidgetBuilders =>
       _parent.widget.customWidgetBuilders;
 
   void changeToMaterialPlatform() {

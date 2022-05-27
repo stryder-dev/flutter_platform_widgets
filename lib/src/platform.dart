@@ -144,10 +144,11 @@ class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformScaffold>? scaffoldBuilder;
   final PlatformTargetBuilder<PlatformSlider>? sliderBuilder;
   final PlatformTargetBuilder<PlatformSwitch>? switchBuilder;
-
   final PlatformTargetBuilder<PlatformTextButton>? textButtonBuilder;
   final PlatformTargetBuilder<PlatformTextField>? textFieldBuilder;
   final PlatformTargetBuilder<PlatformTextFormField>? textFormFieldBuilder;
+
+  final dynamic Function(BuildContext, DialogData, Object?)? showDialog;
 
   CustomWidgetBuilder({
     this.alertDialogBuilder,
@@ -164,5 +165,6 @@ class CustomWidgetBuilder {
     this.textButtonBuilder,
     this.textFieldBuilder,
     this.textFormFieldBuilder,
+    this.showDialog,
   });
 }

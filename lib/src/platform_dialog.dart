@@ -4,10 +4,11 @@ import 'package:flutter/material.dart' show showDialog, Colors;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
+import 'platform_provider.dart';
 import 'widget_base.dart';
 
-class _BaseData {
-  _BaseData({
+class DialogData {
+  DialogData({
     this.builder,
     this.barrierDismissible,
     this.routeSettings,
@@ -22,7 +23,7 @@ class _BaseData {
   final String? barrierLabel;
 }
 
-class MaterialDialogData extends _BaseData {
+class MaterialDialogData extends DialogData {
   MaterialDialogData({
     super.builder,
     super.barrierDismissible,
@@ -37,7 +38,7 @@ class MaterialDialogData extends _BaseData {
   final Color? materialBarrierColor;
 }
 
-class CupertinoDialogData extends _BaseData {
+class CupertinoDialogData extends DialogData {
   CupertinoDialogData({
     super.builder,
     super.barrierDismissible,
@@ -56,46 +57,97 @@ Future<T?> showPlatformDialog<T>({
   String? barrierLabel,
   PlatformBuilder<MaterialDialogData>? material,
   PlatformBuilder<CupertinoDialogData>? cupertino,
-  Future<T?> Function(BuildContext, Widget, PlatformTarget)? custom,
+  PlatformBuilder? customData,
+  Future<T?> Function(
+          BuildContext, PlatformTarget, DialogData, PlatformBuilder?)?
+      customDialog,
 }) {
+  final dialogData = DialogData(
+    barrierDismissible: barrierDismissible,
+    barrierLabel: barrierLabel,
+    builder: builder,
+    routeSettings: routeSettings,
+    useRootNavigator: useRootNavigator,
+  );
+
   if (isMaterial(context)) {
-    final data = material?.call(context, platform(context));
-
-    assert(data?.builder != null || builder != null);
-
-    return showDialog<T>(
-      context: context,
-      builder: data?.builder ?? builder ?? (_) => SizedBox.shrink(),
-      barrierDismissible:
-          data?.barrierDismissible ?? barrierDismissible ?? true,
-      routeSettings: data?.routeSettings ?? routeSettings,
-      useRootNavigator: data?.useRootNavigator ?? useRootNavigator,
-      useSafeArea: data?.materialUseSafeArea ?? true,
-      //child: , deprecated
-      barrierColor: data?.materialBarrierColor ?? Colors.black54,
-      barrierLabel: data?.barrierLabel ?? barrierLabel,
-    );
+    return _showMaterialDialog<T>(context, dialogData, material);
   } else if (isCupertino(context)) {
-    final data = cupertino?.call(context, platform(context));
+    return _showCupertinoDialog<T>(context, dialogData, cupertino);
+  } else if (isCustom(context)) {
+    final provider = PlatformProvider.of(context);
+    final currentPlatform = platform(context);
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
 
-    assert(data?.builder != null || builder != null);
-    return showCupertinoDialog<T>(
-      context: context,
-      builder: data?.builder ?? builder ?? (_) => SizedBox.shrink(),
-      routeSettings: data?.routeSettings ?? routeSettings,
-      useRootNavigator: data?.useRootNavigator ?? useRootNavigator,
-      barrierDismissible:
-          data?.barrierDismissible ?? barrierDismissible ?? false,
-      barrierLabel: data?.barrierLabel ?? barrierLabel,
-    );
-  } else if (isCustom(context) && custom != null) {
-    return custom(
-      context,
-      builder?.call(context) ?? SizedBox.shrink(),
-      platform(context),
-    );
+    final showDialog = platformBuilder?.showDialog;
+    if (showDialog != null) {
+      return showDialog.call(
+        context,
+        dialogData,
+        customData?.call(context, currentPlatform),
+      );
+    }
+    if (customDialog != null) {
+      return customDialog.call(
+        context,
+        platform(context),
+        dialogData,
+        customData?.call(context, currentPlatform),
+      );
+    }
   }
 
-  throw new UnsupportedError(
+  if (isMaterialFallback(context)) {
+    return _showMaterialDialog<T>(context, dialogData, material);
+  } else if (isCupertinoFallback(context)) {
+    return _showCupertinoDialog<T>(context, dialogData, cupertino);
+  }
+
+  throw UnsupportedError(
       'This platform is not supported: $defaultTargetPlatform');
+}
+
+Future<T?> _showMaterialDialog<T>(
+  BuildContext context,
+  DialogData dialogData,
+  PlatformBuilder<MaterialDialogData>? material,
+) {
+  final data = material?.call(context, platform(context));
+
+  assert(data?.builder != null || dialogData.builder != null);
+
+  return showDialog<T>(
+    context: context,
+    builder: data?.builder ?? dialogData.builder ?? (_) => SizedBox.shrink(),
+    barrierDismissible:
+        data?.barrierDismissible ?? dialogData.barrierDismissible ?? true,
+    routeSettings: data?.routeSettings ?? dialogData.routeSettings,
+    useRootNavigator:
+        data?.useRootNavigator ?? dialogData.useRootNavigator ?? true,
+    useSafeArea: data?.materialUseSafeArea ?? true,
+    //child: , deprecated
+    barrierColor: data?.materialBarrierColor ?? Colors.black54,
+    barrierLabel: data?.barrierLabel ?? dialogData.barrierLabel,
+  );
+}
+
+Future<T?> _showCupertinoDialog<T>(
+  BuildContext context,
+  DialogData dialogData,
+  PlatformBuilder<CupertinoDialogData>? cupertino,
+) {
+  final data = cupertino?.call(context, platform(context));
+
+  assert(data?.builder != null || dialogData.builder != null);
+
+  return showCupertinoDialog<T>(
+    context: context,
+    builder: data?.builder ?? dialogData.builder ?? (_) => SizedBox.shrink(),
+    routeSettings: data?.routeSettings ?? dialogData.routeSettings,
+    useRootNavigator:
+        data?.useRootNavigator ?? dialogData.useRootNavigator ?? true,
+    barrierDismissible:
+        data?.barrierDismissible ?? dialogData.barrierDismissible ?? false,
+    barrierLabel: data?.barrierLabel ?? dialogData.barrierLabel,
+  );
 }
