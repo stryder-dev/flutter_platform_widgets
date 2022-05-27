@@ -18,11 +18,13 @@ class PlatformWidgetBuilder extends StatelessWidget {
   final Widget? child;
   final Widget? Function(BuildContext, Widget?, PlatformTarget)? cupertino;
   final Widget? Function(BuildContext, Widget?, PlatformTarget)? material;
+  final Widget? Function(BuildContext, Widget?, PlatformTarget)? custom;
 
   PlatformWidgetBuilder({
     super.key,
     this.cupertino,
     this.material,
+    this.custom,
     this.child,
   });
 
@@ -31,6 +33,7 @@ class PlatformWidgetBuilder extends StatelessWidget {
     return PlatformWidget(
       cupertino: (context, target) => cupertino?.call(context, child, target),
       material: (context, target) => material?.call(context, child, target),
+      custom: (context, target) => custom?.call(context, child, target),
     );
   }
 }
