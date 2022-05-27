@@ -476,8 +476,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         title: dataRouter?.title ?? title ?? '',
         onGenerateTitle: dataRouter?.onGenerateTitle ?? onGenerateTitle,
         color: dataRouter?.color ?? color,
-        theme: (dataRouter?.theme ?? Theme.of(context))
-            .copyWith(platform: TargetPlatform.android),
+        theme: (dataRouter?.theme ?? Theme.of(context)),
         darkTheme:
             dataRouter?.darkTheme?.copyWith(platform: TargetPlatform.android),
         highContrastDarkTheme: dataRouter?.highContrastDarkTheme,
@@ -561,8 +560,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
-        theme: (data?.theme ?? Theme.of(context))
-            .copyWith(platform: TargetPlatform.android),
+        theme: (data?.theme ?? Theme.of(context)),
         debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
         darkTheme: data?.darkTheme?.copyWith(platform: TargetPlatform.android),
         themeMode: data?.themeMode ?? ThemeMode.system,
