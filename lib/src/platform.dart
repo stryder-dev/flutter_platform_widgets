@@ -4,25 +4,11 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart'
-    show
-        CupertinoDynamicColor,
-        CupertinoTheme,
-        CupertinoThemeData,
-        showCupertinoDialog,
-        showCupertinoModalPopup;
+import 'package:flutter/cupertino.dart' show CupertinoTheme, CupertinoThemeData;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart'
-    show Theme, ThemeData, Colors, showDialog, showModalBottomSheet;
+import 'package:flutter/material.dart' show Theme, ThemeData;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
-const Color _kModalBarrierColor = CupertinoDynamicColor.withBrightness(
-  color: Color(0x33000000),
-  darkColor: Color(0x7A000000),
-);
 
 /// Extends on [TargetPlatform] to include web
 enum PlatformTarget {

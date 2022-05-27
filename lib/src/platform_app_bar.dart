@@ -174,7 +174,9 @@ class PlatformAppBar
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomAppBarBuilder).builder(context, this, customData);
+    final p = platform(context);
+    final data = customData?.call(context, p);
+    return (b as CustomAppBarBuilder).builder(context, this, data);
   }
 
   @override

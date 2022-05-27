@@ -53,13 +53,10 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
     final provider = PlatformProvider.of(context);
 
     final builders = provider?.customWidgetBuilders;
-    final platform = provider?.platform;
+    final p = platform(context);
 
-    //print(this.runtimeType);
-    if (builders != null &&
-        platform != null &&
-        builders.containsKey(platform)) {
-      final widgetBuilders = builders[platform];
+    if (builders != null && builders.containsKey(p)) {
+      final widgetBuilders = builders[p];
 
       if (widgetBuilders != null) {
         final customBuilder = findCustomBuilder(context, widgetBuilders);

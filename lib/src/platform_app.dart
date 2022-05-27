@@ -453,7 +453,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomAppBuilder).builder(context, this, customData);
+    return (b as CustomAppBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override

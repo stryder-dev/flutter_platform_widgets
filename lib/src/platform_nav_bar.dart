@@ -153,7 +153,8 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
 
   @protected
   Widget? buildPlatformWidget(BuildContext context, CustomBuilder b) {
-    return (b as CustomNavBarBuilder).builder(context, this, customData);
+    return (b as CustomNavBarBuilder)
+        .builder(context, this, customData?.call(context, platform(context)));
   }
 
   @override
