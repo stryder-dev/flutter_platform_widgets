@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'platform.dart';
@@ -10,8 +11,26 @@ extension PlatformIconsExt on BuildContext {
   IconData platformIcon({
     required IconData material,
     required IconData cupertino,
-  }) =>
-      isMaterial(this) ? material : cupertino;
+    IconData Function(PlatformTarget)? custom,
+  }) {
+    if (isMaterial(this)) {
+      return material;
+    }
+    if (isCupertino(this)) {
+      return cupertino;
+    }
+    if (isCustom(this)) {
+      final p = platform(this);
+
+      final icon = custom?.call(p);
+      if (icon != null) {
+        return icon;
+      }
+    }
+
+    throw UnsupportedError(
+        'This platform is not supported: $defaultTargetPlatform');
+  }
 }
 
 class PlatformIcons {
@@ -113,7 +132,7 @@ class PlatformIcons {
       isMaterial(context) ? Icons.directions_car : CupertinoIcons.car;
 
   // IconData get carDetailed =>
-  //     isMaterial(context) ? Icons.book : CupertinoIcons.car_detailed;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.car_detailed;
 
   /// Icons: Icons.check_box_outline_blank_rounded : CupertinoIcons.square
   IconData get checkBoxBlankOutlineRounded => isMaterial(context)
@@ -153,17 +172,17 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.circle;
 
   // IconData get circleFilled =>
-  //     isMaterial(context) ? Icons.book : CupertinoIcons.circle_filled;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.circle_filled;
 
   /// Icons: Icons.clear : CupertinoIcons.clear
   IconData get clear =>
       isMaterial(context) ? Icons.clear : CupertinoIcons.clear;
 
   // IconData get clearCircled =>
-  //     isMaterial(context) ? Icons.clear : CupertinoIcons.clear_circled;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.clear_circled;
 
   // IconData get clearCircledSolid =>
-  //     isMaterial(context) ? Icons.clear : CupertinoIcons.clear_circled_solid;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.clear_circled_solid;
 
   /// Icons: Icons.clear : CupertinoIcons.clear_thick
   IconData get clearThick =>
@@ -188,20 +207,24 @@ class PlatformIcons {
       isMaterial(context) ? Icons.cloud : CupertinoIcons.cloud_fill;
 
   /// Icons: Icons.cloud_download_outlined : CupertinoIcons.cloud_download
-  IconData get cloudDownload =>
-      isMaterial(context) ? Icons.cloud_download_outlined : CupertinoIcons.cloud_download;
+  IconData get cloudDownload => isMaterial(context)
+      ? Icons.cloud_download_outlined
+      : CupertinoIcons.cloud_download;
 
   /// Icons: Icons.cloud_download : CupertinoIcons.cloud_download_fill
-  IconData get cloudDownloadSolid =>
-      isMaterial(context) ? Icons.cloud_download : CupertinoIcons.cloud_download_fill;
+  IconData get cloudDownloadSolid => isMaterial(context)
+      ? Icons.cloud_download
+      : CupertinoIcons.cloud_download_fill;
 
   /// Icons: Icons.cloud_upload_outlined : CupertinoIcons.cloud_upload
-  IconData get cloudUpload =>
-      isMaterial(context) ? Icons.cloud_upload_outlined : CupertinoIcons.cloud_upload;
+  IconData get cloudUpload => isMaterial(context)
+      ? Icons.cloud_upload_outlined
+      : CupertinoIcons.cloud_upload;
 
   /// Icons: Icons.cloud_upload : CupertinoIcons.cloud_upload_fill
-  IconData get cloudUploadSolid =>
-      isMaterial(context) ? Icons.cloud_upload : CupertinoIcons.cloud_upload_fill;
+  IconData get cloudUploadSolid => isMaterial(context)
+      ? Icons.cloud_upload
+      : CupertinoIcons.cloud_upload_fill;
 
   /// Icons: Icons.collections : CupertinoIcons.collections
   IconData get collections =>
@@ -242,7 +265,7 @@ class PlatformIcons {
       isMaterial(context) ? Icons.delete : CupertinoIcons.delete;
 
   // IconData get deleteSimple =>
-  //     isMaterial(context) ? Icons.delete : CupertinoIcons.delete_simple;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.delete_simple;
 
   /// Icons: Icons.delete : CupertinoIcons.delete_solid
   IconData get deleteSolid =>
@@ -341,7 +364,7 @@ class PlatformIcons {
   // IconData get gear => isMaterial(context) ? Icons. : CupertinoIcons.gear;
 
   // IconData get gearBig =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.gear_big;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.gear_big;
 
   /// Icons: Icons.settings : CupertinoIcons.gear_solid
   IconData get gearSolid =>
@@ -379,7 +402,7 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.lab_flask;
 
   // IconData get labFlaskSolid =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.lab_flask_solid;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.lab_flask_solid;
 
   /// Icons: Icons.chevron_left : CupertinoIcons.left_chevron
   IconData get leftChevron =>
@@ -435,7 +458,7 @@ class PlatformIcons {
   // IconData get news => isMaterial(context) ? Icons. : CupertinoIcons.news;
 
   // IconData get newsSolid =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.news_solid;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.news_solid;
 
   /// Icons: Icons.lock : CupertinoIcons.padlock
   IconData get padLock =>
@@ -551,13 +574,13 @@ class PlatformIcons {
   //     isMaterial(context) ? Icons. : CupertinoIcons.refresh_circled;
 
   // IconData get refreshCircledSolid =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.refresh_circled_solid;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.refresh_circled_solid;
 
   // IconData get refreshThick =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.refresh_thick;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.refresh_thick;
 
   // IconData get refreshThin =>
-  //     isMaterial(context) ? Icons.flag : CupertinoIcons.refresh_thin;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.refresh_thin;
 
   /// Icons: Icons.remove : CupertinoIcons.minus
   IconData get remove =>
@@ -627,10 +650,10 @@ class PlatformIcons {
       isMaterial(context) ? Icons.shuffle : CupertinoIcons.shuffle;
 
   // IconData get shuffleMedium =>
-  //     isMaterial(context) ? Icons.share : CupertinoIcons.shuffle_medium;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.shuffle_medium;
 
   // IconData get shuffleThick =>
-  //     isMaterial(context) ? Icons.share : CupertinoIcons.shuffle_thick;
+  //     isMaterial(context) ? Icons. : CupertinoIcons.shuffle_thick;
 
   /// Icons: Icons.star : CupertinoIcons.(custom)
   IconData get star => isMaterial(context) ? Icons.star : CupertinoIcons.star;
