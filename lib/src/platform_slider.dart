@@ -116,7 +116,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   })  : assert(divisions == null || divisions > 0),
         assert(value >= min && value <= max);
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.sliderBuilder
         ?.call(this, customData?.call(context, platform(context)));
