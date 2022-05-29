@@ -135,6 +135,7 @@ class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformAlertDialog>? alertDialogBuilder;
   final PlatformTargetBuilder<PlatformAppBar>? appBarBuilder;
   final PlatformTargetBuilder<PlatformApp>? appBuilder;
+  final PlatformTargetBuilder<PlatformButton>? buttonBuilder;
   final PlatformTargetBuilder<PlatformCircularProgressIndicator>?
       circularProgressIndicatorBuilder;
   final PlatformTargetBuilder<PlatformDialogAction>? dialogActionBuilder;
@@ -149,11 +150,14 @@ class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformTextFormField>? textFormFieldBuilder;
 
   final dynamic Function(BuildContext, DialogData, Object?)? showDialog;
+  final dynamic Function(BuildContext, DatePickerData, Object?)? showDatePicker;
 
   CustomWidgetBuilder({
     this.alertDialogBuilder,
     this.appBarBuilder,
     this.appBuilder,
+    @Deprecated('Use textButtonBuilder or elevatedButtonBuilder instead. PlaformButton deprecated.')
+        this.buttonBuilder,
     this.circularProgressIndicatorBuilder,
     this.dialogActionBuilder,
     this.elevatedButtonBuilder,
@@ -166,5 +170,6 @@ class CustomWidgetBuilder {
     this.textFieldBuilder,
     this.textFormFieldBuilder,
     this.showDialog,
+    this.showDatePicker,
   });
 }
