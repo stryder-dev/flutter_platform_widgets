@@ -418,7 +418,7 @@ class PlatformTextField
   }) : keyboardType = keyboardType ??
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.textFieldBuilder
         ?.call(this, customData?.call(context, platform(context)));

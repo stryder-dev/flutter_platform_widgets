@@ -106,7 +106,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
     this.customData,
   });
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.textButtonBuilder
         ?.call(this, customData?.call(context, platform(context)));

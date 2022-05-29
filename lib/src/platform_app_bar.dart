@@ -167,7 +167,7 @@ class PlatformAppBar
     this.customData,
   });
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.appBarBuilder
         ?.call(this, customData?.call(context, platform(context)));

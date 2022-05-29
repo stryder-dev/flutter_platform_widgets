@@ -114,7 +114,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     this.customData,
   });
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.switchBuilder
         ?.call(this, customData?.call(context, platform(context)));

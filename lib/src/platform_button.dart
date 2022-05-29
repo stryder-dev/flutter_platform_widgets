@@ -218,6 +218,7 @@ class PlatformButton
   final PlatformBuilder<MaterialFlatButtonData>? materialFlat;
   final PlatformBuilder<CupertinoButtonData>? cupertino;
   final PlatformBuilder<CupertinoFilledButtonData>? cupertinoFilled;
+  final PlatformBuilder? customData;
 
   PlatformButton({
     super.key,
@@ -231,7 +232,14 @@ class PlatformButton
     this.materialFlat,
     this.cupertino,
     this.cupertinoFilled,
+    this.customData,
   });
+
+  @override
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    return b.buttonBuilder
+        ?.call(this, customData?.call(context, platform(context)));
+  }
 
   @override
   MaterialButton createMaterialWidget(BuildContext context) {

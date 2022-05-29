@@ -150,7 +150,7 @@ class PlatformDialogAction
     this.customData,
   });
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.dialogActionBuilder
         ?.call(this, customData?.call(context, platform(context)));

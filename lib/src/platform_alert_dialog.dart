@@ -115,7 +115,7 @@ class PlatformAlertDialog
     this.customData,
   });
 
-  @protected
+  @override
   Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
     return b.alertDialogBuilder
         ?.call(this, customData?.call(context, platform(context)));
