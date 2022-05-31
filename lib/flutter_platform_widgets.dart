@@ -15,7 +15,8 @@ export 'src/platform.dart'
         platformThemeData,
         PlatformTarget,
         PlatformTargetBuilder,
-        CustomWidgetBuilder;
+        CustomWidgetBuilder,
+        CustomIconBuilder;
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_app.dart';
 export 'src/platform_app_bar.dart';
