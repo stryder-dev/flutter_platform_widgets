@@ -158,12 +158,15 @@ class PlatformPopupMenu extends StatelessWidget {
 
   final PlatformBuilder<CupertinoPopupMenuData>? cupertino;
   final PlatformBuilder<MaterialPopupMenuData>? material;
+  final Widget Function(BuildContext context, PlatformTarget platformTarget,
+      List<PopupMenuOption> options, Widget icon)? custom;
 
   const PlatformPopupMenu({
     required this.options,
     required this.icon,
     this.cupertino,
     this.material,
+    this.custom,
     super.key,
   });
 
@@ -172,6 +175,16 @@ class PlatformPopupMenu extends StatelessWidget {
     return PlatformWidget(
       material: (context, _) => _materialPopupMenuButton(context),
       cupertino: (context, _) => _cupertinoPopupBottomSheet(context),
+      custom: (context, platformTarget) {
+        assert(custom != null);
+
+        return custom?.call(
+          context,
+          platformTarget,
+          options,
+          icon,
+        );
+      },
     );
   }
 
