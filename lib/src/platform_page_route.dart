@@ -5,20 +5,22 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart'
     show PageRoute, BuildContext, RouteSettings, WidgetBuilder;
 
 import 'platform.dart';
+import 'platform_provider.dart';
 import 'widget_base.dart';
 
-class _BasePageRouteData {
+class PageRouteData {
   final WidgetBuilder? builder;
   final RouteSettings? settings;
   final bool? maintainState;
   final bool? fullscreenDialog;
 
-  _BasePageRouteData({
+  PageRouteData({
     this.builder,
     this.settings,
     this.maintainState,
@@ -26,7 +28,7 @@ class _BasePageRouteData {
   });
 }
 
-class MaterialPageRouteData extends _BasePageRouteData {
+class MaterialPageRouteData extends PageRouteData {
   MaterialPageRouteData({
     super.builder,
     super.settings,
@@ -35,7 +37,7 @@ class MaterialPageRouteData extends _BasePageRouteData {
   });
 }
 
-class CupertinoPageRouteData extends _BasePageRouteData {
+class CupertinoPageRouteData extends PageRouteData {
   CupertinoPageRouteData({
     super.builder,
     super.settings,
@@ -53,25 +55,85 @@ PageRoute<T> platformPageRoute<T>({
   String? iosTitle,
   PlatformBuilder<MaterialPageRouteData>? material,
   PlatformBuilder<CupertinoPageRouteData>? cupertino,
+  PlatformBuilder? customData,
+  PageRoute<T> Function<T>(BuildContext, PageRouteData, Object?)?
+      cutomPageRoute,
 }) {
+  final pageRoute = PageRouteData(
+    builder: builder,
+    settings: settings,
+    maintainState: maintainState,
+    fullscreenDialog: fullscreenDialog,
+  );
+
   if (isMaterial(context)) {
-    final data = material?.call(context, platform(context));
+    return _materialPageRoute<T>(context, material, pageRoute);
+  } else if (isCupertino(context)) {
+    return _cupertinoPageRoute(context, cupertino, pageRoute, iosTitle);
+  } else if (isCustom(context)) {
+    final provider = PlatformProvider.of(context);
+    final currentPlatform = platform(context);
 
-    return MaterialPageRoute<T>(
-      builder: data?.builder ?? builder!,
-      settings: data?.settings ?? settings,
-      maintainState: data?.maintainState ?? maintainState ?? true,
-      fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
-    );
-  } else {
-    final data = cupertino?.call(context, platform(context));
+    if (cutomPageRoute != null) {
+      return cutomPageRoute(
+        context,
+        pageRoute,
+        customData?.call(context, currentPlatform),
+      );
+    }
 
-    return CupertinoPageRoute<T>(
-      builder: data?.builder ?? builder!,
-      settings: data?.settings ?? settings,
-      maintainState: data?.maintainState ?? maintainState ?? true,
-      fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
-      title: iosTitle,
-    );
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
+
+    final builder = platformBuilder?.pageRouteBuilder;
+    if (builder != null) {
+      return builder(
+        context,
+        pageRoute,
+        customData?.call(context, currentPlatform),
+      );
+    }
   }
+
+  if (isMaterialFallback(context)) {
+    return _materialPageRoute<T>(context, material, pageRoute);
+  } else if (isCupertinoFallback(context)) {
+    return _cupertinoPageRoute(context, cupertino, pageRoute, iosTitle);
+  }
+
+  throw UnsupportedError(
+      'This platform is not supported: $defaultTargetPlatform');
+}
+
+PageRoute<T> _materialPageRoute<T>(
+  BuildContext context,
+  PlatformBuilder<MaterialPageRouteData>? material,
+  PageRouteData pageRoute,
+) {
+  final data = material?.call(context, platform(context));
+
+  return MaterialPageRoute<T>(
+    builder: data?.builder ?? pageRoute.builder!,
+    settings: data?.settings ?? pageRoute.settings,
+    maintainState: data?.maintainState ?? pageRoute.maintainState ?? true,
+    fullscreenDialog:
+        data?.fullscreenDialog ?? pageRoute.fullscreenDialog ?? false,
+  );
+}
+
+PageRoute<T> _cupertinoPageRoute<T>(
+  BuildContext context,
+  PlatformBuilder<CupertinoPageRouteData>? cupertino,
+  PageRouteData pageRoute,
+  String? iosTitle,
+) {
+  final data = cupertino?.call(context, platform(context));
+
+  return CupertinoPageRoute<T>(
+    builder: data?.builder ?? pageRoute.builder!,
+    settings: data?.settings ?? pageRoute.settings,
+    maintainState: data?.maintainState ?? pageRoute.maintainState ?? true,
+    fullscreenDialog:
+        data?.fullscreenDialog ?? pageRoute.fullscreenDialog ?? false,
+    title: iosTitle,
+  );
 }

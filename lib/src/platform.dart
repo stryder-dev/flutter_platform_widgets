@@ -154,6 +154,9 @@ class CustomWidgetBuilder {
   final dynamic Function(BuildContext, ModalSheetData, Object?)?
       showPlatformModalSheet;
 
+  final PageRoute<T> Function<T>(BuildContext, PageRouteData, Object?)?
+      pageRouteBuilder;
+
   final CustomIconBuilder iconBuilder;
 
   CustomWidgetBuilder({
@@ -177,6 +180,7 @@ class CustomWidgetBuilder {
     this.showDialog,
     this.showDatePicker,
     this.showPlatformModalSheet,
+    this.pageRouteBuilder,
   });
 }
 
