@@ -57,7 +57,7 @@ PageRoute<T> platformPageRoute<T>({
   PlatformBuilder<CupertinoPageRouteData>? cupertino,
   PlatformBuilder? customData,
   PageRoute<T> Function<T>(BuildContext, PageRouteData, Object?)?
-      cutomPageRoute,
+      customPageRoute,
 }) {
   final pageRoute = PageRouteData(
     builder: builder,
@@ -74,8 +74,8 @@ PageRoute<T> platformPageRoute<T>({
     final provider = PlatformProvider.of(context);
     final currentPlatform = platform(context);
 
-    if (cutomPageRoute != null) {
-      return cutomPageRoute(
+    if (customPageRoute != null) {
+      return customPageRoute(
         context,
         pageRoute,
         customData?.call(context, currentPlatform),
