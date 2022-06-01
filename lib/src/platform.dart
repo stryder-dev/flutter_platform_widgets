@@ -151,6 +151,8 @@ class CustomWidgetBuilder {
 
   final dynamic Function(BuildContext, DialogData, Object?)? showDialog;
   final dynamic Function(BuildContext, DatePickerData, Object?)? showDatePicker;
+  final dynamic Function(BuildContext, ModalSheetData, Object?)?
+      showPlatformModalSheet;
 
   final CustomIconBuilder iconBuilder;
 
@@ -174,6 +176,7 @@ class CustomWidgetBuilder {
     this.textFormFieldBuilder,
     this.showDialog,
     this.showDatePicker,
+    this.showPlatformModalSheet,
   });
 }
 
