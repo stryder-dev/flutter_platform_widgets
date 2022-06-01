@@ -156,6 +156,7 @@ class CustomWidgetBuilder {
 
   final PageRoute<T> Function<T>(BuildContext, PageRouteData, Object?)?
       pageRouteBuilder;
+  final Page Function(BuildContext, PageData, Object?)? pageBuilder;
 
   final CustomIconBuilder iconBuilder;
 
@@ -181,6 +182,7 @@ class CustomWidgetBuilder {
     this.showDatePicker,
     this.showPlatformModalSheet,
     this.pageRouteBuilder,
+    this.pageBuilder,
   });
 }
 
