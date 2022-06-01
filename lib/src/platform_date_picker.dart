@@ -157,20 +157,21 @@ Future<DateTime?> showPlatformDatePicker({
   } else if (isCustom(context)) {
     final provider = PlatformProvider.of(context);
     final currentPlatform = platform(context);
-    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
 
-    final showDatePicker = platformBuilder?.showDatePicker;
-    if (showDatePicker != null) {
-      return showDatePicker.call(
-        context,
-        baseData,
-        customData?.call(context, currentPlatform),
-      );
-    }
     if (customDatePicker != null) {
       return customDatePicker.call(
         context,
         platform(context),
+        baseData,
+        customData?.call(context, currentPlatform),
+      );
+    }
+
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
+    final showDatePicker = platformBuilder?.showDatePicker;
+    if (showDatePicker != null) {
+      return showDatePicker.call(
+        context,
         baseData,
         customData?.call(context, currentPlatform),
       );

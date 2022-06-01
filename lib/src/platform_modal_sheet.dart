@@ -109,20 +109,21 @@ Future<T?> showPlatformModalSheet<T>({
   } else if (isCustom(context)) {
     final provider = PlatformProvider.of(context);
     final currentPlatform = platform(context);
-    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
 
-    final showModal = platformBuilder?.showPlatformModalSheet;
-    if (showModal != null) {
-      return showModal.call(
-        context,
-        modalData,
-        customData?.call(context, currentPlatform),
-      );
-    }
     if (customModal != null) {
       return customModal.call(
         context,
         platform(context),
+        modalData,
+        customData?.call(context, currentPlatform),
+      );
+    }
+
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
+    final showModal = platformBuilder?.showPlatformModalSheet;
+    if (showModal != null) {
+      return showModal.call(
+        context,
         modalData,
         customData?.call(context, currentPlatform),
       );

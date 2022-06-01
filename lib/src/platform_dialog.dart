@@ -77,20 +77,21 @@ Future<T?> showPlatformDialog<T>({
   } else if (isCustom(context)) {
     final provider = PlatformProvider.of(context);
     final currentPlatform = platform(context);
-    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
 
-    final showDialog = platformBuilder?.showDialog;
-    if (showDialog != null) {
-      return showDialog.call(
+    if (customDialog != null) {
+      return customDialog(
         context,
+        platform(context),
         dialogData,
         customData?.call(context, currentPlatform),
       );
     }
-    if (customDialog != null) {
-      return customDialog.call(
+
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
+    final showDialog = platformBuilder?.showDialog;
+    if (showDialog != null) {
+      return showDialog(
         context,
-        platform(context),
         dialogData,
         customData?.call(context, currentPlatform),
       );
