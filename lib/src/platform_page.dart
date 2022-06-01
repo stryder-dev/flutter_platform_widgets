@@ -5,13 +5,15 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoPage;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show MaterialPage;
 import 'package:flutter/widgets.dart' show BuildContext, Page, Widget, LocalKey;
 
 import 'platform.dart';
+import 'platform_provider.dart';
 import 'widget_base.dart';
 
-abstract class _BasePageData {
+class PageData {
   /// The content to be shown in the [Route] created by this page.
   final Widget? child;
 
@@ -47,7 +49,7 @@ abstract class _BasePageData {
   /// May be used when building the route, e.g. in [Navigator.onGenerateRoute].
   final Object? arguments;
 
-  _BasePageData({
+  PageData({
     this.child,
     this.name,
     this.maintainState,
@@ -58,7 +60,7 @@ abstract class _BasePageData {
   });
 }
 
-class MaterialPageData extends _BasePageData {
+class MaterialPageData extends PageData {
   MaterialPageData({
     super.child,
     super.name,
@@ -70,7 +72,7 @@ class MaterialPageData extends _BasePageData {
   });
 }
 
-class CupertinoPageData extends _BasePageData {
+class CupertinoPageData extends PageData {
   CupertinoPageData({
     super.child,
     super.name,
@@ -98,31 +100,92 @@ Page platformPage({
   Object? arguments,
   PlatformBuilder<MaterialPageData>? material,
   PlatformBuilder<CupertinoPageData>? cupertino,
+  PlatformBuilder? customData,
+  Page Function<T>(BuildContext, PageData, Object?)? customPage,
 }) {
+  final pageData = PageData(
+    key: key,
+    arguments: arguments,
+    child: child,
+    fullscreenDialog: fullscreenDialog,
+    maintainState: maintainState,
+    name: name,
+    restorationId: restorationId,
+  );
+
   if (isMaterial(context)) {
-    final data = material?.call(context, platform(context));
+    return _createMaterialPage(context, material, pageData);
+  } else if (isCupertino(context)) {
+    return _createCupertinoPage(context, cupertino, pageData, title);
+  } else if (isCustom(context)) {
+    final provider = PlatformProvider.of(context);
+    final currentPlatform = platform(context);
 
-    return MaterialPage(
-      key: data?.key ?? key,
-      child: data?.child ?? child!,
-      name: data?.name ?? name,
-      maintainState: data?.maintainState ?? maintainState ?? true,
-      arguments: data?.arguments ?? arguments,
-      fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
-      restorationId: data?.restorationId ?? restorationId,
-    );
-  } else {
-    final data = cupertino?.call(context, platform(context));
+    if (customPage != null) {
+      return customPage(
+        context,
+        pageData,
+        customData?.call(context, currentPlatform),
+      );
+    }
 
-    return CupertinoPage(
-      key: data?.key ?? key,
-      child: data?.child ?? child!,
-      name: data?.name ?? name,
-      maintainState: data?.maintainState ?? maintainState ?? true,
-      arguments: data?.arguments ?? arguments,
-      fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
-      restorationId: data?.restorationId ?? restorationId,
-      title: data?.title ?? title,
-    );
+    final platformBuilder = provider?.customWidgetBuilders?[currentPlatform];
+
+    final builder = platformBuilder?.pageBuilder;
+    if (builder != null) {
+      return builder(
+        context,
+        pageData,
+        customData?.call(context, currentPlatform),
+      );
+    }
   }
+
+  if (isMaterialFallback(context)) {
+    return _createMaterialPage(context, material, pageData);
+  } else if (isCupertinoFallback(context)) {
+    return _createCupertinoPage(context, cupertino, pageData, title);
+  }
+
+  throw UnsupportedError(
+      'This platform is not supported: $defaultTargetPlatform');
+}
+
+Page _createMaterialPage(
+  BuildContext context,
+  PlatformBuilder<MaterialPageData>? material,
+  PageData pageData,
+) {
+  final data = material?.call(context, platform(context));
+
+  return MaterialPage(
+    key: data?.key ?? pageData.key,
+    child: data?.child ?? pageData.child!,
+    name: data?.name ?? pageData.name,
+    maintainState: data?.maintainState ?? pageData.maintainState ?? true,
+    arguments: data?.arguments ?? pageData.arguments,
+    fullscreenDialog:
+        data?.fullscreenDialog ?? pageData.fullscreenDialog ?? false,
+    restorationId: data?.restorationId ?? pageData.restorationId,
+  );
+}
+
+Page _createCupertinoPage(
+    BuildContext context,
+    PlatformBuilder<CupertinoPageData>? cupertino,
+    PageData pageData,
+    String? title) {
+  final data = cupertino?.call(context, platform(context));
+
+  return CupertinoPage(
+    key: data?.key ?? pageData.key,
+    child: data?.child ?? pageData.child!,
+    name: data?.name ?? pageData.name,
+    maintainState: data?.maintainState ?? pageData.maintainState ?? true,
+    arguments: data?.arguments ?? pageData.arguments,
+    fullscreenDialog:
+        data?.fullscreenDialog ?? pageData.fullscreenDialog ?? false,
+    restorationId: data?.restorationId ?? pageData.restorationId,
+    title: data?.title ?? title,
+  );
 }
