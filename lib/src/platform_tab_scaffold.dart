@@ -176,6 +176,8 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
 
   final String? restorationId;
 
+  final PlatformBuilder? customData;
+
   PlatformTabScaffold({
     super.key,
     this.widgetKey,
@@ -195,6 +197,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.cupertino,
     this.cupertinoBuilder,
     this.cupertinoTabs,
+    this.customData,
   })  : assert(
           (material != null && materialBuilder == null) || material == null,
         ),
@@ -211,18 +214,26 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
         );
 
   @override
+  Widget? buildPlatformWidget(BuildContext context, CustomWidgetBuilder b) {
+    final controller = tabController?._custom(context);
+
+    return b.tabScaffoldBuilder
+        ?.call(this, customData?.call(context, platform(context)), controller);
+  }
+
+  @override
   Widget createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
     final controller = data?.controller ?? tabController?._material(context);
 
     assert(controller != null, '''MaterialTabController cannot be null. 
-    Either have material: (_, __) => MaterialTabScaffoldData(cntroller: controller) or 
+    Either have material: (_, __) => MaterialTabScaffoldData(controller: controller) or 
     PlatformTabScaffold(tabController: controller) ''');
 
     return AnimatedBuilder(
       animation: controller!,
-      builder: (context, _) => _buildAndroid(
+      builder: (context, _) => _buildMaterial(
         context,
         materialBuilder?.call(context, platform(context), controller.index) ??
             data,
@@ -231,7 +242,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     );
   }
 
-  Widget _buildAndroid(
+  Widget _buildMaterial(
     BuildContext context,
     MaterialTabScaffoldData? data,
     MaterialTabController controller,
@@ -293,7 +304,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     final controller = data?.controller ?? tabController?._cupertino(context);
 
     assert(controller != null, '''CupertinoTabController cannot be null. 
-    Either have material: (_, __) => CupertinoTabScaffoldData(cntroller: controller) or 
+    Either have material: (_, __) => CupertinoTabScaffoldData(controller: controller) or 
     PlatformTabScaffold(tabController: controller) ''');
 
     if (cupertinoBuilder == null) {
@@ -453,6 +464,14 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   }
 }
 
+class CustomTabControllerData {
+  CustomTabControllerData({
+    this.initialIndex,
+  });
+
+  final int? initialIndex;
+}
+
 class MaterialTabControllerData {
   MaterialTabControllerData({
     this.initialIndex,
@@ -486,20 +505,40 @@ class MaterialTabController extends ChangeNotifier {
   }
 }
 
+class CustomTabController extends ChangeNotifier {
+  CustomTabController({int initialIndex = 0})
+      : _index = initialIndex,
+        assert(initialIndex >= 0);
+
+  int get index => _index;
+  int _index;
+  set index(int value) {
+    assert(value >= 0);
+    if (_index == value) {
+      return;
+    }
+    _index = value;
+    notifyListeners();
+  }
+}
+
 // In the same file so that the private android or ios controllers can be accessed
 class PlatformTabController extends ChangeNotifier {
   MaterialTabController? _materialController;
   CupertinoTabController? _cupertinoController;
+  CustomTabController? _customController;
 
-  final MaterialTabControllerData? android;
-  final CupertinoTabControllerData? ios;
+  final MaterialTabControllerData? material;
+  final CupertinoTabControllerData? cupertino;
+  final CustomTabControllerData? custom;
 
   final int _initialIndex;
 
   PlatformTabController({
     int initialIndex = 0,
-    this.android,
-    this.ios,
+    this.material,
+    this.cupertino,
+    this.custom,
   })  : _initialIndex = initialIndex,
         assert(initialIndex >= 0);
 
@@ -513,10 +552,18 @@ class PlatformTabController extends ChangeNotifier {
     return _materialController;
   }
 
+  CustomTabController? _custom(BuildContext context) {
+    _init(context);
+    return _customController;
+  }
+
   int index(BuildContext context) {
     _init(context);
 
-    return _materialController?.index ?? _cupertinoController?.index ?? 0;
+    return _materialController?.index ??
+        _cupertinoController?.index ??
+        _customController?.index ??
+        0;
   }
 
   void setIndex(BuildContext context, int index) {
@@ -526,19 +573,25 @@ class PlatformTabController extends ChangeNotifier {
 
     _materialController?.index = index;
     _cupertinoController?.index = index;
+    _customController?.index = index;
   }
 
   void _init(BuildContext context) {
     if (isMaterial(context)) {
       if (_materialController == null) {
-        int useIndex = android?.initialIndex ?? _initialIndex;
+        int useIndex = material?.initialIndex ?? _initialIndex;
+
         if (_cupertinoController != null) {
           useIndex = _cupertinoController?.index ?? 0;
 
-          _cupertinoController?.removeListener(_listener);
-          _cupertinoController?.dispose();
-          _cupertinoController = null;
+          _disposeCupertinoController();
         }
+        if (_customController != null) {
+          useIndex = _customController?.index ?? 0;
+
+          _disposeCustomController();
+        }
+
         _materialController = MaterialTabController(
           initialIndex: useIndex,
         )..addListener(_listener);
@@ -546,16 +599,40 @@ class PlatformTabController extends ChangeNotifier {
     }
     if (isCupertino(context)) {
       if (_cupertinoController == null) {
-        int useIndex = ios?.initialIndex ?? _initialIndex;
+        int useIndex = cupertino?.initialIndex ?? _initialIndex;
+
         if (_materialController != null) {
           useIndex = _materialController?.index ?? 0;
 
-          _materialController?.removeListener(_listener);
-          _materialController?.dispose();
-          _materialController = null;
+          _disposeMaterialController();
+        }
+        if (_customController != null) {
+          useIndex = _customController?.index ?? 0;
+
+          _disposeCustomController();
         }
 
         _cupertinoController = CupertinoTabController(
+          initialIndex: useIndex,
+        )..addListener(_listener);
+      }
+    }
+    if (isCustom(context)) {
+      if (_customController == null) {
+        int useIndex = custom?.initialIndex ?? _initialIndex;
+
+        if (_materialController != null) {
+          useIndex = _materialController?.index ?? 0;
+
+          _disposeMaterialController();
+        }
+        if (_cupertinoController != null) {
+          useIndex = _cupertinoController?.index ?? 0;
+
+          _disposeCupertinoController();
+        }
+
+        _customController = CustomTabController(
           initialIndex: useIndex,
         )..addListener(_listener);
       }
@@ -568,12 +645,28 @@ class PlatformTabController extends ChangeNotifier {
 
   @override
   void dispose() {
+    _disposeMaterialController();
+    _disposeCupertinoController();
+    _disposeCustomController();
+
+    super.dispose();
+  }
+
+  void _disposeMaterialController() {
     _materialController?.removeListener(_listener);
     _materialController?.dispose();
     _materialController = null;
+  }
+
+  void _disposeCupertinoController() {
     _cupertinoController?.removeListener(_listener);
     _cupertinoController?.dispose();
     _cupertinoController = null;
-    super.dispose();
+  }
+
+  void _disposeCustomController() {
+    _customController?.removeListener(_listener);
+    _customController?.dispose();
+    _customController = null;
   }
 }

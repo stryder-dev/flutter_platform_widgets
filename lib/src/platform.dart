@@ -131,6 +131,12 @@ typedef PlatformTargetBuilder<T> = Widget Function(
   Object? data,
 );
 
+typedef PlatformTargetBuilder2<T0, T1> = Widget Function(
+  T0 widget,
+  Object? data,
+  T1? arg,
+);
+
 class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformAlertDialog>? alertDialogBuilder;
   final PlatformTargetBuilder<PlatformAppBar>? appBarBuilder;
@@ -145,6 +151,8 @@ class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformScaffold>? scaffoldBuilder;
   final PlatformTargetBuilder<PlatformSlider>? sliderBuilder;
   final PlatformTargetBuilder<PlatformSwitch>? switchBuilder;
+  final PlatformTargetBuilder2<PlatformTabScaffold, CustomTabController>?
+      tabScaffoldBuilder;
   final PlatformTargetBuilder<PlatformTextButton>? textButtonBuilder;
   final PlatformTargetBuilder<PlatformTextField>? textFieldBuilder;
   final PlatformTargetBuilder<PlatformTextFormField>? textFormFieldBuilder;
@@ -175,6 +183,7 @@ class CustomWidgetBuilder {
     this.scaffoldBuilder,
     this.sliderBuilder,
     this.switchBuilder,
+    this.tabScaffoldBuilder,
     this.textButtonBuilder,
     this.textFieldBuilder,
     this.textFormFieldBuilder,
