@@ -51,15 +51,11 @@ class MaterialAppBarData extends _BaseData {
     this.actions,
     this.bottom,
     this.bottomOpacity,
-    @Deprecated('This property is no longer used, please use systemOverlayStyle instead. ')
-        this.brightness,
     this.centerTitle,
     this.elevation,
     this.flexibleSpace,
     this.iconTheme,
     this.primary,
-    @Deprecated('This property is no longer used, please use toolbarTextStyle and titleTextStyle instead. ')
-        this.textTheme,
     this.titleSpacing,
     this.toolbarOpacity,
     this.actionsIconTheme,
@@ -68,8 +64,6 @@ class MaterialAppBarData extends _BaseData {
     this.shadowColor,
     this.toolbarHeight,
     this.leadingWidth,
-    @Deprecated('This property is obsolete and is false by default. ')
-        this.backwardsCompatibility,
     this.foregroundColor,
     this.systemOverlayStyle,
     this.titleTextStyle,
@@ -82,13 +76,11 @@ class MaterialAppBarData extends _BaseData {
   final PreferredSizeWidget? bottom;
 
   final double? bottomOpacity;
-  final Brightness? brightness;
   final bool? centerTitle;
   final double? elevation;
   final Widget? flexibleSpace;
   final IconThemeData? iconTheme;
   final bool? primary;
-  final TextTheme? textTheme;
   final double? titleSpacing;
   final double? toolbarOpacity;
   final IconThemeData? actionsIconTheme;
@@ -97,7 +89,6 @@ class MaterialAppBarData extends _BaseData {
   final Color? shadowColor;
   final double? toolbarHeight;
   final double? leadingWidth;
-  final bool? backwardsCompatibility;
   final Color? foregroundColor;
   final SystemUiOverlayStyle? systemOverlayStyle;
   final TextStyle? titleTextStyle;
@@ -177,16 +168,12 @@ class PlatformAppBar
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
       bottomOpacity: data?.bottomOpacity ?? 1.0,
-      // ignore: deprecated_member_use
-      brightness: data?.brightness,
       centerTitle: data?.centerTitle,
       elevation: data?.elevation,
       flexibleSpace: data?.flexibleSpace,
       iconTheme: data?.iconTheme,
       leading: data?.leading ?? leading,
       primary: data?.primary ?? true,
-      // ignore: deprecated_member_use
-      textTheme: data?.textTheme,
       titleSpacing: data?.titleSpacing,
       toolbarOpacity: data?.toolbarOpacity ?? 1.0,
       actionsIconTheme: data?.actionsIconTheme,
@@ -195,14 +182,16 @@ class PlatformAppBar
       shadowColor: data?.shadowColor,
       toolbarHeight: data?.toolbarHeight,
       leadingWidth: data?.leadingWidth,
-      // ignore: deprecated_member_use
-      backwardsCompatibility: data?.backwardsCompatibility,
       foregroundColor: data?.foregroundColor,
       systemOverlayStyle: data?.systemOverlayStyle,
       titleTextStyle: data?.titleTextStyle,
       toolbarTextStyle: data?.toolbarTextStyle,
       scrolledUnderElevation: data?.scrolledUnderElevation,
       surfaceTintColor: data?.surfaceTintColor,
+      // deprecated...
+      // brightness
+      // textTheme
+      // backwardsCompatibility
     );
   }
 
