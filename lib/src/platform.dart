@@ -141,7 +141,6 @@ class CustomWidgetBuilder {
   final PlatformTargetBuilder<PlatformAlertDialog>? alertDialogBuilder;
   final PlatformTargetBuilder<PlatformAppBar>? appBarBuilder;
   final PlatformTargetBuilder<PlatformApp>? appBuilder;
-  final PlatformTargetBuilder<PlatformButton>? buttonBuilder;
   final PlatformTargetBuilder<PlatformCircularProgressIndicator>?
       circularProgressIndicatorBuilder;
   final PlatformTargetBuilder<PlatformDialogAction>? dialogActionBuilder;
@@ -173,8 +172,6 @@ class CustomWidgetBuilder {
     this.alertDialogBuilder,
     this.appBarBuilder,
     this.appBuilder,
-    @Deprecated('Use textButtonBuilder or elevatedButtonBuilder instead. PlaformButton deprecated.')
-        this.buttonBuilder,
     this.circularProgressIndicatorBuilder,
     this.dialogActionBuilder,
     this.elevatedButtonBuilder,
