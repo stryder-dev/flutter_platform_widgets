@@ -10,15 +10,12 @@ import 'package:flutter/material.dart'
         Brightness,
         ButtonStyle,
         ButtonTextTheme,
-        // ignore: deprecated_member_use
-        FlatButton,
         MaterialTapTargetSize,
         TextButton,
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
-import 'platform_provider.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -149,77 +146,40 @@ class PlatformDialogAction
 
   @override
   Widget createMaterialWidget(BuildContext context) {
-    final settings = PlatformProvider.of(context)?.settings;
+    final data = material?.call(context, platform(context));
 
-    if (settings?.legacyMaterialDialogActionButtons ?? false) {
-      final data = materialFlat?.call(context, platform(context));
+    assert(data?.child != null || child != null);
 
-      assert(data?.child != null || child != null);
+    final icon = data?.icon;
 
-      // ignore: deprecated_member_use
-      return FlatButton(
+    if (icon != null) {
+      return TextButton.icon(
         key: data?.widgetKey ?? widgetKey,
-        child: data?.child ?? child!,
-        onPressed: data?.onPressed ?? onPressed,
-        color: data?.color,
-        colorBrightness: data?.colorBrightness,
-        disabledColor: data?.disabledColor,
-        disabledTextColor: data?.disabledTextColor,
-        highlightColor: data?.highlightColor,
-        onHighlightChanged: data?.onHighlightChanged,
-        padding: data?.padding,
-        shape: data?.shape,
-        splashColor: data?.splashColor,
-        textColor: data?.textColor,
-        textTheme: data?.textTheme,
-        clipBehavior: data?.clipBehavior ?? Clip.none,
-        materialTapTargetSize: data?.materialTapTargetSize,
-        focusColor: data?.focusColor,
-        focusNode: data?.focusNode,
-        hoverColor: data?.hoverColor,
-        autofocus: data?.autofocus ?? false,
-        visualDensity: data?.visualDensity,
-        onLongPress: data?.onLongPress,
-        mouseCursor: data?.mouseCursor,
-        height: data?.height,
-        minWidth: data?.minWidth,
-      );
-    } else {
-      final data = material?.call(context, platform(context));
-
-      assert(data?.child != null || child != null);
-
-      final icon = data?.icon;
-
-      if (icon != null) {
-        return TextButton.icon(
-          key: data?.widgetKey ?? widgetKey,
-          label: data?.child ?? child!,
-          icon: icon,
-          onPressed: data?.onPressed ?? onPressed,
-          onLongPress: data?.onLongPress,
-          autofocus: data?.autofocus ?? false,
-          clipBehavior: data?.clipBehavior ?? Clip.none,
-          focusNode: data?.focusNode,
-          style: data?.style,
-          onHover: data?.onHover,
-          onFocusChange: data?.onFocusChange,
-        );
-      }
-
-      return TextButton(
-        key: data?.widgetKey ?? widgetKey,
-        child: data?.child ?? child!,
+        label: data?.child ?? child!,
+        icon: icon,
         onPressed: data?.onPressed ?? onPressed,
         onLongPress: data?.onLongPress,
         autofocus: data?.autofocus ?? false,
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
         style: data?.style,
-        onFocusChange: data?.onFocusChange,
         onHover: data?.onHover,
+        onFocusChange: data?.onFocusChange,
       );
     }
+
+    return TextButton(
+      key: data?.widgetKey ?? widgetKey,
+      child: data?.child ?? child!,
+      onPressed: data?.onPressed ?? onPressed,
+      onLongPress: data?.onLongPress,
+      autofocus: data?.autofocus ?? false,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      focusNode: data?.focusNode,
+      style: data?.style,
+      onFocusChange: data?.onFocusChange,
+      onHover: data?.onHover,
+    );
   }
 
   @override
