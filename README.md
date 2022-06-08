@@ -41,8 +41,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformText](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtext)
 - [PlatformSwitch](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformswitch)
 - [PlatformSlider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformslider)
-- [PlatformTextField](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtextfield)
-- [PlatformButton](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformbutton)
+- [PlatformTextField](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtextfield
 - [PlatformIconButton](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
 - [PlatformApp](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformapp)
 - [PlatformScaffold](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformscaffold)
@@ -139,43 +138,6 @@ return PlatformTextField();
 return PlatformTextField(
   material: (_, __)  => MaterialTextFieldData(...),
   cupertino: (_, __) => CupertinoTextFieldData(...)
-);
-```
-
-## PlatformButton
-
-A button that will render a `RaisedButton` or `FlatButton` for material or a `CupertinoButton` for cupertino.
-
-```dart
-return PlatformButton(
-  onPressed: () => print('send'),
-  child: PlatformText('Send'),
-);
-```
-
-#### Enhance
-
-Extend with `PlatformBuilder` for material or cupertino.
-
-```dart
-return PlatformButton(
-  onPressed: () => print('send'),
-  child: PlatformText('Send'),
-  material: (_, __)  => MaterialRaisedButtonData(...),
-  cupertino: (_, __) => CupertinoButtonData(...)
-);
-```
-
-> Note: For material you can use the `FlatButton` instead. To do this use the `MaterialFlatButtonData` on the `materialFlat` argument.
-
-> Note: For cupertino you can use the `CupertinoButton.filled` instead. To do this use the `CupertinoFilledButtonData` on the `cupertinoFilled` argument.
-
-```dart
-return PlatformButton(
- onPressed: () => print('send'),
- child: PlatformText('Send'),
- materialFlat: (_, __)    => MaterialFlatButtonData(),
- cupertinoFilled: (_, __) => CupertinoFilledButtonData(),
 );
 ```
 
@@ -494,7 +456,7 @@ showDialog(
 
 ## PlatformDialogAction
 
-The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `TextButton` for material or `CupertinoDialogAction` for cupertino. If you want to use `FlatButton` for material which is the default pre v1.9.0 then set `legacyMaterialDialogActionButtons` setting on `PlatformProvider`
+The DialogAction widget is used to describe the set of buttons on the AlertDialog. Uses `TextButton` for material or `CupertinoDialogAction` for cupertino. 
 
 ```dart
 PlatformDialogAction(
@@ -785,6 +747,7 @@ Special thanks for everyone that have contributed to this project...
 | [![](https://avatars1.githubusercontent.com/u/35923031?s=40&v=4)](https://github.com/in74mz)          | [in74mz](https://github.com/in74mz)                           |
 | [![](https://avatars0.githubusercontent.com/u/1169185?s=40&v=4)](https://github.com/DFelten)          | [Daniel Felten](https://github.com/DFelten)                    |
 | [![](https://avatars0.githubusercontent.com/u/1911919?s=40&v=4)](https://github.com/hanskokx)          | [Hans Kokx](https://github.com/hanskokx)                    |
+| [![](https://avatars.githubusercontent.com/u/31817177?v=4)](https://github.com/AkshatBaranwal)          | [AkshatBaranwal](https://github.com/AkshatBaranwal)                    |
 
 # Acknowledgements
 

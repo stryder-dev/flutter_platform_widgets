@@ -1,3 +1,15 @@
+## [2.0.0] - June 08, 2022
+
+#### (Flutter version support: v3.0.0)
+
+- Compatible with Flutter 3.0 and above. 
+- Added new fields to platform widgets. 
+- Removed deprecated `PlatformButton` since the underlying material `FlatButton` and `RaisedButton` are being removed in flutter ^3.1.0
+- Removed required constraint from the `label` field on the `PopupMenuOption` class. (thanks AkshatBaranwal)
+- Removed deprecated `brightness` field from `MaterialAppBarData` as it is deprecated in the framework. Use systemOverlayStyle instead
+- Removed deprecated `textTheme` field from `MaterialAppBarData` as it is deprecated in the framework. Use toolbarTextStyle and titleTextStyle instead
+- Removed deprecated `backwardsCompatibility` field from `MaterialAppBarData` as it is deprecated in the framework. 
+
 ## [1.20.0] - February 12, 2022
 
 #### (Flutter version support: v2.10.0)
@@ -58,13 +70,13 @@
 #### (Flutter version support: v2.2)
 
 - Added extra fields from Flutter 2.2
-- Removed deprecated field maxLengthEnforced from PlatformtextField. use maxLengthEnforcement instead
+- Removed deprecated field maxLengthEnforced from PlatformTextField. use maxLengthEnforcement instead
 
 ## [1.8.0] - May 20, 2021
 
 #### (Flutter version support: v2.2)
 
-- Add `platformPage` to use as part of Navigator's 2.0 implemention
+- Add `platformPage` to use as part of Navigator's 2.0 implementation
 - Add `makeCupertinoDecorationNull` to `PlatformtextField` so cupertino's decoration field can be set to null rather than any default style. the default kDefaultRoundedBorderDecoration is now not private
 - Fix issue where `PlatformTabController` was not notifying when index changed.
 
@@ -141,7 +153,7 @@
 #### (Flutter version support: v1.22.0 - v1.22.4)
 
 - Adds `materialBuilder` and `cupertinoBuilder` as alternatives to `material` and `cupertino` on `PlatformTabScaffold` so that the widgets can change properties on tab index change. see example/lib/tabbed/dynamicTabbedPage.dart.
-- Adds new polatform icons, thumb up and down and fix the star icon (thanks DFelten)
+- Adds new platform icons, thumb up and down and fix the star icon (thanks DFelten)
 
 ## [0.71.0] - November 08, 2020
 
@@ -168,7 +180,7 @@
 #### (Flutter version support: v1.20.0 - v1.20.2)
 
 - Added const to icons for treeshaking (thanks sck-v)
-- Added contributers to ReadMe
+- Added contributors to ReadMe
 
 ## [0.60.1] - August 05, 2020
 
