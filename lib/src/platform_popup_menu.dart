@@ -26,7 +26,7 @@ class PopupMenuOption {
     this.onTap,
     this.cupertino,
     this.material,
-  }) : assert(label != null || material?.child != null && cupertino?.child != null);
+  });
 }
 
 abstract class _BaseData {
