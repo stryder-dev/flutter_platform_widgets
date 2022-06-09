@@ -5,7 +5,7 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoNavigationBar;
-import 'package:flutter/material.dart' show AppBar, Brightness, TextTheme;
+import 'package:flutter/material.dart' show AppBar, Brightness;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
