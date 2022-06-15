@@ -36,6 +36,12 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
 
   A createMaterialWidget(BuildContext context);
 
+  I createCupertinoFallbackWidget(BuildContext context) =>
+      createCupertinoWidget(context);
+
+  A createMaterialFallbackWidget(BuildContext context) =>
+      createMaterialWidget(context);
+
   @protected
   Widget? buildPlatformWidget(
     BuildContext context,
@@ -58,11 +64,11 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
     }
 
     if (isMaterialFallback(context)) {
-      return createMaterialWidget(context);
+      return createMaterialFallbackWidget(context);
     }
 
     if (isCupertinoFallback(context)) {
-      return createCupertinoWidget(context);
+      return createCupertinoFallbackWidget(context);
     }
 
     throw UnsupportedError(

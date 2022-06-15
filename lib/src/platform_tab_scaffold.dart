@@ -222,11 +222,32 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   }
 
   @override
+  Widget createMaterialFallbackWidget(BuildContext context) {
+    final data = material?.call(context, platform(context));
+
+    final controller = data?.controller ??
+        tabController?._material(
+          context,
+          asFallabck: true,
+        );
+
+    return _createMaterialWidget(context, data, controller);
+  }
+
+  @override
   Widget createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
     final controller = data?.controller ?? tabController?._material(context);
 
+    return _createMaterialWidget(context, data, controller);
+  }
+
+  Widget _createMaterialWidget(
+    BuildContext context,
+    MaterialTabScaffoldData? data,
+    MaterialTabController? controller,
+  ) {
     assert(controller != null, '''MaterialTabController cannot be null. 
     Either have material: (_, __) => MaterialTabScaffoldData(controller: controller) or 
     PlatformTabScaffold(tabController: controller) ''');
@@ -298,11 +319,32 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   }
 
   @override
+  Widget createCupertinoFallbackWidget(BuildContext context) {
+    final data = cupertino?.call(context, platform(context));
+
+    final controller = data?.controller ??
+        tabController?._cupertino(
+          context,
+          asFallabck: true,
+        );
+
+    return _createCupertinoWidget(context, data, controller);
+  }
+
+  @override
   Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
     final controller = data?.controller ?? tabController?._cupertino(context);
 
+    return _createCupertinoWidget(context, data, controller);
+  }
+
+  Widget _createCupertinoWidget(
+    BuildContext context,
+    CupertinoTabScaffoldData? data,
+    CupertinoTabController? controller,
+  ) {
     assert(controller != null, '''CupertinoTabController cannot be null. 
     Either have material: (_, __) => CupertinoTabScaffoldData(controller: controller) or 
     PlatformTabScaffold(tabController: controller) ''');
@@ -542,13 +584,19 @@ class PlatformTabController extends ChangeNotifier {
   })  : _initialIndex = initialIndex,
         assert(initialIndex >= 0);
 
-  CupertinoTabController? _cupertino(BuildContext context) {
-    _init(context);
+  CupertinoTabController? _cupertino(
+    BuildContext context, {
+    bool asFallabck = false,
+  }) {
+    _init(context, asFallabck: asFallabck);
     return _cupertinoController;
   }
 
-  MaterialTabController? _material(BuildContext context) {
-    _init(context);
+  MaterialTabController? _material(
+    BuildContext context, {
+    bool asFallabck = false,
+  }) {
+    _init(context, asFallabck: asFallabck);
     return _materialController;
   }
 
@@ -576,8 +624,11 @@ class PlatformTabController extends ChangeNotifier {
     _customController?.index = index;
   }
 
-  void _init(BuildContext context) {
-    if (isMaterial(context)) {
+  void _init(
+    BuildContext context, {
+    bool asFallabck = false,
+  }) {
+    if (asFallabck ? isMaterialFallback(context) : isMaterial(context)) {
       if (_materialController == null) {
         int useIndex = material?.initialIndex ?? _initialIndex;
 
@@ -596,8 +647,9 @@ class PlatformTabController extends ChangeNotifier {
           initialIndex: useIndex,
         )..addListener(_listener);
       }
+      return;
     }
-    if (isCupertino(context)) {
+    if (asFallabck ? isCupertinoFallback(context) : isCupertino(context)) {
       if (_cupertinoController == null) {
         int useIndex = cupertino?.initialIndex ?? _initialIndex;
 
@@ -616,6 +668,7 @@ class PlatformTabController extends ChangeNotifier {
           initialIndex: useIndex,
         )..addListener(_listener);
       }
+      return;
     }
     if (isCustom(context)) {
       if (_customController == null) {
