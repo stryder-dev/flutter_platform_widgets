@@ -32,7 +32,7 @@ extension PlatformIconsExt on BuildContext {
     if (isMaterialFallback(this)) {
       return material;
     }
-    if (isCupertino(this)) {
+    if (isCupertinoFallback(this)) {
       return cupertino;
     }
 
