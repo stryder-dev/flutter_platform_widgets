@@ -41,7 +41,7 @@ Each `PlatformWidget` provides common properties directly as constructor argumen
 - [PlatformText](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtext)
 - [PlatformSwitch](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformswitch)
 - [PlatformSlider](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformslider)
-- [PlatformTextField](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtextfield
+- [PlatformTextField](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformtextfield)
 - [PlatformIconButton](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformiconbutton)
 - [PlatformApp](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformapp)
 - [PlatformScaffold](https://github.com/stryder-dev/flutter_platform_widgets/blob/master/README.md#platformscaffold)
