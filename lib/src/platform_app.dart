@@ -589,8 +589,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         routeInformationProvider:
             dataRouter?.routeInformationProvider ?? routeInformationProvider,
         routeInformationParser:
-            dataRouter?.routeInformationParser ?? routeInformationParser!,
-        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate!,
+            dataRouter?.routeInformationParser ?? routeInformationParser,
+        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate,
         routerConfig: dataRouter?.routerConfig ?? routerConfig,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
