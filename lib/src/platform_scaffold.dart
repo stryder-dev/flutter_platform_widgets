@@ -191,7 +191,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
     final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
 
     Widget result;
-    if (bottomNavBar != null) {
+    if (bottomNavBar != null || data?.bottomTabBar != null) {
       var tabBar =
           data?.bottomTabBar ?? bottomNavBar?.createCupertinoWidget(context);
 
