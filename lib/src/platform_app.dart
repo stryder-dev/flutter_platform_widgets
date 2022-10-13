@@ -107,6 +107,7 @@ abstract class _BaseRouterData {
     this.routeInformationProvider,
     this.routeInformationParser,
     this.routerDelegate,
+    this.routerConfig,
     this.backButtonDispatcher,
     // ignore: unused_element
     this.restorationScopeId,
@@ -143,6 +144,9 @@ abstract class _BaseRouterData {
 
   /// {@macro flutter.widgets.widgetsApp.routerDelegate}
   final RouterDelegate<Object>? routerDelegate;
+
+  /// {@macro flutter.widgets.widgetsApp.routerConfig}
+  final RouterConfig<Object>? routerConfig;
 
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher? backButtonDispatcher;
@@ -292,6 +296,7 @@ class CupertinoAppRouterData extends _BaseRouterData {
     super.routeInformationProvider,
     super.routeInformationParser,
     super.routerDelegate,
+    super.routerConfig,
     super.backButtonDispatcher,
     super.scrollBehavior,
     super.useInheritedMediaQuery,
@@ -342,6 +347,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   /// {@macro flutter.widgets.widgetsApp.routerDelegate}
   final RouterDelegate<Object>? routerDelegate;
 
+  /// {@macro flutter.widgets.widgetsApp.routerConfig}
+  final RouterConfig<Object>? routerConfig;
+
   /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
   final BackButtonDispatcher? backButtonDispatcher;
 
@@ -386,6 +394,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   })  : routeInformationProvider = null,
         routeInformationParser = null,
         routerDelegate = null,
+        routerConfig = null,
         backButtonDispatcher = null,
         materialRouter = null,
         cupertinoRouter = null;
@@ -395,6 +404,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.routeInformationProvider,
     this.routeInformationParser,
     this.routerDelegate,
+    this.routerConfig,
     this.backButtonDispatcher,
     this.widgetKey,
     this.builder,
@@ -426,8 +436,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         onUnknownRoute = null,
         routes = null,
         initialRoute = null,
-        this.material = null,
-        this.cupertino = null,
+        material = null,
+        cupertino = null,
         materialRouter = material,
         cupertinoRouter = cupertino;
 
@@ -436,15 +446,21 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     final dataRouter = materialRouter?.call(context, platform(context));
 
     if (routeInformationParser != null ||
-        dataRouter?.routeInformationParser != null) {
-      assert(dataRouter?.routerDelegate != null || routerDelegate != null);
+        dataRouter?.routeInformationParser != null ||
+        routerConfig != null ||
+        dataRouter?.routerConfig != null) {
+      assert(dataRouter?.routerDelegate != null ||
+          routerDelegate != null ||
+          dataRouter?.routerConfig != null ||
+          routerConfig != null);
 
       return MaterialApp.router(
         routeInformationProvider:
             dataRouter?.routeInformationProvider ?? routeInformationProvider,
         routeInformationParser:
-            dataRouter?.routeInformationParser ?? routeInformationParser!,
-        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate!,
+            dataRouter?.routeInformationParser ?? routeInformationParser,
+        routerDelegate: dataRouter?.routerDelegate ?? routerDelegate,
+        routerConfig: dataRouter?.routerConfig ?? routerConfig,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
         builder: dataRouter?.builder ?? builder,
@@ -561,8 +577,13 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     final dataRouter = cupertinoRouter?.call(context, platform(context));
 
     if (routeInformationParser != null ||
-        dataRouter?.routeInformationParser != null) {
-      assert(dataRouter?.routerDelegate != null || routerDelegate != null);
+        dataRouter?.routeInformationParser != null ||
+        routerConfig != null ||
+        dataRouter?.routerConfig != null) {
+      assert(dataRouter?.routerDelegate != null ||
+          routerDelegate != null ||
+          dataRouter?.routerConfig != null ||
+          routerConfig != null);
 
       return CupertinoApp.router(
         routeInformationProvider:
@@ -570,6 +591,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         routeInformationParser:
             dataRouter?.routeInformationParser ?? routeInformationParser!,
         routerDelegate: dataRouter?.routerDelegate ?? routerDelegate!,
+        routerConfig: dataRouter?.routerConfig ?? routerConfig,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
         theme: dataRouter?.theme,
