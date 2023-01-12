@@ -7,12 +7,16 @@ import 'package:flutter/material.dart'
         PopupMenuItem,
         PopupMenuItemBuilder,
         PopupMenuPosition,
+        PopupMenuDivider,
+        PopupMenuEntry,
         kMinInteractiveDimension;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 import 'platform_widget.dart';
 import 'widget_base.dart';
+
+const double _kMenuDividerHeight = 16.0;
 
 class PopupMenuOption {
   final String? label;
@@ -46,6 +50,8 @@ class MaterialPopupMenuOptionData extends _BaseData {
   final VoidCallback? onTap;
   final EdgeInsets? padding;
   final TextStyle? textStyle;
+  final bool withDivider;
+  final double dividerHeight;
 
   MaterialPopupMenuOptionData({
     super.key,
@@ -56,6 +62,8 @@ class MaterialPopupMenuOptionData extends _BaseData {
     this.onTap,
     this.padding,
     this.textStyle,
+    this.withDivider = false,
+    this.dividerHeight = _kMenuDividerHeight,
   });
 }
 
@@ -234,23 +242,31 @@ class PlatformPopupMenu extends StatelessWidget {
       },
       icon: data?.icon ?? icon,
       itemBuilder: data?.itemBuilder ??
-          (context) => options.map(
-                (option) {
-                  final data =
-                      option.material?.call(context, platform(context));
-                  return PopupMenuItem(
-                    value: option,
-                    child: data?.child ?? Text(option.label ?? ""),
-                    enabled: data?.enabled ?? true,
-                    height: data?.height ?? kMinInteractiveDimension,
-                    key: data?.key,
-                    mouseCursor: data?.mouseCursor,
-                    onTap: data?.onTap,
-                    padding: data?.padding,
-                    textStyle: data?.textStyle,
-                  );
-                },
-              ).toList(),
+          (context) {
+            final items = <PopupMenuEntry<PopupMenuOption>>[];
+            for (final option in options) {
+              final data = option.material?.call(context, platform(context));
+              items.add(PopupMenuItem<PopupMenuOption>(
+                value: option,
+                child: data?.child ?? Text(option.label ?? ""),
+                enabled: data?.enabled ?? true,
+                height: data?.height ?? kMinInteractiveDimension,
+                key: data?.key,
+                mouseCursor: data?.mouseCursor,
+                onTap: data?.onTap,
+                padding: data?.padding,
+                textStyle: data?.textStyle,
+              ));
+              if (data?.withDivider ?? false) {
+                items.add(
+                  PopupMenuDivider(
+                    height: data?.dividerHeight ?? _kMenuDividerHeight,
+                  ),
+                );
+              }
+            }
+            return items;
+          },
       child: data?.child,
       color: data?.color,
       elevation: data?.elevation,

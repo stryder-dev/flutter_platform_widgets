@@ -260,7 +260,12 @@ class PlatformPage extends StatelessWidget {
               ),
               options: [
                 PopupMenuOption(label: 'One'),
-                PopupMenuOption(label: 'Two'),
+                PopupMenuOption(
+                  label: 'Two',
+                  material: (_, __) => MaterialPopupMenuOptionData(
+                    withDivider: true,
+                  ),
+                ),
                 PopupMenuOption(label: 'Three'),
               ],
             ),
