@@ -110,6 +110,7 @@ class PlatformPage extends StatelessWidget {
               child: Text(platform.text),
               onPressed: () => print('${platform.text} PlatformButton'),
               padding: const EdgeInsets.all(8),
+              color: Colors.orange,
             ),
           ),
           PlatformWidgetExample(
