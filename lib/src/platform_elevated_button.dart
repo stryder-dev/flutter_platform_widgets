@@ -122,7 +122,7 @@ class PlatformElevatedButton
         focusNode: data?.focusNode,
         style: data?.style ??
             ElevatedButton.styleFrom(
-              primary: color,
+              backgroundColor: color,
               padding: padding,
               alignment: alignment,
             ),
@@ -141,7 +141,7 @@ class PlatformElevatedButton
       focusNode: data?.focusNode,
       style: data?.style ??
           ElevatedButton.styleFrom(
-            primary: color,
+            backgroundColor: color,
             padding: padding,
             alignment: alignment,
           ),
