@@ -188,7 +188,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
-        color: color ?? data?.color,
+        color: data?.color ?? color,
       );
     }
   }
