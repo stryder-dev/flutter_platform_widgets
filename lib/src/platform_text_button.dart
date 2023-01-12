@@ -121,7 +121,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         focusNode: data?.focusNode,
         style: data?.style ??
             TextButton.styleFrom(
-              primary: color,
+              backgroundColor: color,
               padding: padding,
               alignment: alignment,
             ),
@@ -140,7 +140,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
       focusNode: data?.focusNode,
       style: data?.style ??
           TextButton.styleFrom(
-            primary: color,
+            backgroundColor: color,
             padding: padding,
             alignment: alignment,
           ),
