@@ -13,6 +13,7 @@ import 'extensions.dart';
 import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
+import 'parent_widget_finder.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
 const Color _kDefaultNavBarBorderColor = const Color(0x4C000000);
@@ -225,8 +226,12 @@ class PlatformAppBar
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading: (data?.leading ?? leading)?.withMaterial(useMaterial),
-        trailing: (data?.trailing ?? trailing)?.withMaterial(useMaterial),
+        leading: (data?.leading ?? leading)
+            ?.withMaterial(useMaterial)
+            .withWidgetFinder<CupertinoNavigationBar>(),
+        trailing: (data?.trailing ?? trailing)
+            ?.withMaterial(useMaterial)
+            .withWidgetFinder<CupertinoNavigationBar>(),
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
@@ -243,8 +248,12 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading: (data?.leading ?? leading)?.withMaterial(useMaterial),
-      trailing: (data?.trailing ?? trailing)?.withMaterial(useMaterial),
+      leading: (data?.leading ?? leading)
+          ?.withMaterial(useMaterial)
+          .withWidgetFinder<CupertinoNavigationBar>(),
+      trailing: (data?.trailing ?? trailing)
+          ?.withMaterial(useMaterial)
+          .withWidgetFinder<CupertinoNavigationBar>(),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
       //heroTag: , used above

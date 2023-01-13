@@ -33,7 +33,10 @@ class MyApp extends StatelessWidget {
     return Theme(
       data: materialTheme,
       child: PlatformProvider(
-        settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
+        settings: PlatformSettingsData(
+          iosUsesMaterialWidgets: true,
+          iosUseZeroPaddingForAppbarPlatformIcon: true,
+        ),
         builder: (context) => PlatformApp(
           localizationsDelegates: <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,

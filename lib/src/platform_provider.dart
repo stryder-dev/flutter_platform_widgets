@@ -128,6 +128,11 @@ class PlatformSettingsData {
   /// Note: This may cause widgtes to show a ripple effect where as before 1.6.0 it did not
   final bool iosUsesMaterialWidgets;
 
+  /// Sets any padding of the [PlatformIconButton] to [EdgeInserts.zero] when placed inside
+  /// a [PlatformAppBar]. Only affects the padding for the cupertino style and only if no padding
+  /// is already defined. Will afffect all [PlatformIconButton]s added to the [PlatformAppBar]
+  final bool iosUseZeroPaddingForAppbarPlatformIcon;
+
   /// Adds a [Material] widget to [CupertinoScaffold] and [CupertinoTabScaffold] to
   /// allow for Material widgets to be used. This is required when using a PlatformApp
   /// since some Material widgets will expect a Material parent, otherwise an exception is thrown.
@@ -143,6 +148,7 @@ class PlatformSettingsData {
 
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
+    this.iosUseZeroPaddingForAppbarPlatformIcon = false,
     this.legacyIosUsesMaterialWidgets = false,
     this.platformStyle = const PlatformStyleData(),
   });
