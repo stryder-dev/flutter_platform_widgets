@@ -65,7 +65,7 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
         title: Text('${widget.platform.text} Page Title'),
         trailingActions: <Widget>[
           PlatformIconButton(
-            padding: EdgeInsets.zero,
+            //padding: EdgeInsets.zero, No longer needed due to iosUseZeroPaddingForAppbarPlatformIcon
             icon: Icon(context.platformIcons.share),
             onPressed: () {},
           ),

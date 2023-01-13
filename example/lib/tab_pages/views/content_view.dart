@@ -20,34 +20,45 @@ class _ContentViewState extends State<ContentView> {
   @override
   Widget build(BuildContext context) {
     print('ContentView::build');
-    return Column(
-      children: [
-        PlatformElevatedButton(
-          child: Text('Back'),
-          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
-        ),
-        Text('Viewing Tab ${widget.index}'),
-        PlatformElevatedButton(
-          child: Text('Push to subpage'),
-          onPressed: () => Navigator.push(
-            context,
-            platformPageRoute(
-              context: context,
-              builder: (context) => ((context) {
-                if (widget.index == 0) {
-                  return SubPage('Flag', 1, widget.platform);
-                }
-                return SubPage('Book', 1, widget.platform);
-              }).asPlatform(widget.platform),
+    return Center(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+              child: Text('Back'),
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
           ),
-        ),
-        PlatformElevatedButton(
-          child: Text('Increment'),
-          onPressed: () => setState(() => counter++),
-        ),
-        Text('Counter: $counter'),
-      ],
+          Text('Viewing Tab ${widget.index}'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+              child: Text('Push to subpage'),
+              onPressed: () => Navigator.push(
+                context,
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => ((context) {
+                    if (widget.index == 0) {
+                      return SubPage('Flag', 1, widget.platform);
+                    }
+                    return SubPage('Book', 1, widget.platform);
+                  }).asPlatform(widget.platform),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+              child: Text('Increment'),
+              onPressed: () => setState(() => counter++),
+            ),
+          ),
+          Text('Counter: $counter'),
+        ],
+      ),
     );
   }
 }
