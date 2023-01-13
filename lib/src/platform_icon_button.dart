@@ -4,12 +4,15 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoButton, CupertinoColors;
+import 'package:flutter/cupertino.dart'
+    show CupertinoButton, CupertinoColors, CupertinoNavigationBar;
 import 'package:flutter/material.dart' show IconButton, VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
+import 'platform_provider.dart';
+import 'parent_widget_finder.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
 
@@ -157,11 +160,23 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     // child is required non nullable
     assert(data?.icon != null || cupertinoIcon != null || icon != null);
 
+    // If the IconButton is placed inside the AppBar, we need to have zero padding.
+    final haveZeroPadding = PlatformProvider.of(context)
+            ?.settings
+            .iosUseZeroPaddingForAppbarPlatformIcon ??
+        false;
+    final isPlacedOnPlatformAppBar =
+        ParentWidgetFinder.of<CupertinoNavigationBar>(context) != null;
+    final overriddenPadding =
+        haveZeroPadding && isPlacedOnPlatformAppBar ? EdgeInsets.zero : null;
+
+    final givenPadding = data?.padding ?? overriddenPadding;
+
     return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,
       child: data?.icon ?? cupertinoIcon ?? icon!,
       onPressed: data?.onPressed ?? onPressed ?? null,
-      padding: data?.padding ?? padding,
+      padding: givenPadding,
       color: data?.color ?? color,
       borderRadius: data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
