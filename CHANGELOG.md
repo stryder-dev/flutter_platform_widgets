@@ -1,3 +1,13 @@
+## [2.1.0] - January 13, 2023
+
+#### (Flutter version support: v3.3.0)
+
+- Added routerConfig into `PlatformApp`. (thanks Yoann-TYT)
+- Added config iosUseZeroPaddingForAppbarPlatformIcon setting so it is no longer needed to set EdgeInserts.zero on the PlatformIcon when added to the PlatformAppBar for ios
+- Added PopupMenuDivider as an option for Material popup menus. Simply add `withDivider: true,` to the `MaterialPopupMenuOptionData` and it will add a divider above the menu option specified
+- Material ElevatedButton and TextButton stylilng uses now `background` color instead ofthe deprecated `primary` color property.
+- Updated Readme so that most of the information can be viewed from the wiki. https://github.com/stryder-dev/flutter_platform_widgets/wiki
+
 ## [2.0.0] - June 08, 2022
 
 #### (Flutter version support: v3.0.0)
