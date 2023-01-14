@@ -495,7 +495,6 @@ class PlatformTextField
           true,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
       scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
-      //maxLengthEnforced: deprecated
     );
   }
 
@@ -585,7 +584,6 @@ class PlatformTextField
       textDirection: data?.textDirection,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
       scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
-      //maxLengthEnforced: deprecated
     );
   }
 

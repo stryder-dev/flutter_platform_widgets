@@ -1,3 +1,11 @@
+## [2.2.0] - January 14, 2023
+
+#### (Flutter version support: v3.3.10)
+
+- Added extra properties to the widgets that have been added to flutter
+- Added material and cupertino options to the `showPlatformDialog` function.
+- `materialUseSafeArea` and `materialBarrierColor` are now deprecated on `showPlatformDialog`.
+
 ## [2.1.1] - January 14, 2023
 
 #### (Flutter version support: v3.3.0)

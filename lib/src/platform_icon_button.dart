@@ -6,13 +6,14 @@
 
 import 'package:flutter/cupertino.dart'
     show CupertinoButton, CupertinoColors, CupertinoNavigationBar;
-import 'package:flutter/material.dart' show IconButton, VisualDensity;
+import 'package:flutter/material.dart'
+    show IconButton, VisualDensity, ButtonStyle;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/parent_widget_finder.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
 import 'platform_provider.dart';
-import 'parent_widget_finder.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
 
@@ -76,6 +77,9 @@ class MaterialIconButtonData extends _BaseData {
     this.constraints,
     this.splashRadius,
     this.mouseCursor,
+    this.isSelected,
+    this.selectedIcon,
+    this.style,
   });
 
   final AlignmentGeometry? alignment;
@@ -92,6 +96,9 @@ class MaterialIconButtonData extends _BaseData {
   final BoxConstraints? constraints;
   final double? splashRadius;
   final MouseCursor? mouseCursor;
+  final bool? isSelected;
+  final Widget? selectedIcon;
+  final ButtonStyle? style;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -150,6 +157,9 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       constraints: data?.constraints,
       splashRadius: data?.splashRadius,
       mouseCursor: data?.mouseCursor ?? SystemMouseCursors.click,
+      isSelected: data?.isSelected,
+      selectedIcon: data?.selectedIcon,
+      style: data?.style,
     );
   }
 

@@ -404,7 +404,6 @@ class PlatformTextFormField
           data?.enableIMEPersonalizedLearning ?? true,
       restorationId: data?.restorationId,
       mouseCursor: data?.mouseCursor,
-      //maxLengthEnforced: , deprecated
     );
   }
 

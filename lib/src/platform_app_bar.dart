@@ -71,6 +71,7 @@ class MaterialAppBarData extends _BaseData {
     this.toolbarTextStyle,
     this.scrolledUnderElevation,
     this.surfaceTintColor,
+    this.notificationPredicate,
   });
 
   final List<Widget>? actions;
@@ -96,6 +97,7 @@ class MaterialAppBarData extends _BaseData {
   final TextStyle? toolbarTextStyle;
   final double? scrolledUnderElevation;
   final Color? surfaceTintColor;
+  final ScrollNotificationPredicate? notificationPredicate;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -189,6 +191,8 @@ class PlatformAppBar
       toolbarTextStyle: data?.toolbarTextStyle,
       scrolledUnderElevation: data?.scrolledUnderElevation,
       surfaceTintColor: data?.surfaceTintColor,
+      notificationPredicate:
+          data?.notificationPredicate ?? defaultScrollNotificationPredicate,
       // deprecated...
       // brightness
       // textTheme

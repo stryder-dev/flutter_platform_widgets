@@ -6,7 +6,8 @@
 
 import 'package:flutter/cupertino.dart'
     show CupertinoButton, CupertinoColors, CupertinoTheme;
-import 'package:flutter/material.dart' show TextButton, ButtonStyle;
+import 'package:flutter/material.dart'
+    show TextButton, ButtonStyle, MaterialStatesController;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -27,19 +28,19 @@ abstract class _BaseData {
 }
 
 class MaterialTextButtonData extends _BaseData {
-  MaterialTextButtonData({
-    super.widgetKey,
-    super.child,
-    super.onPressed,
-    this.onLongPress,
-    this.focusNode,
-    this.style,
-    this.autofocus,
-    this.clipBehavior,
-    this.icon,
-    this.onHover,
-    this.onFocusChange,
-  });
+  MaterialTextButtonData(
+      {super.widgetKey,
+      super.child,
+      super.onPressed,
+      this.onLongPress,
+      this.focusNode,
+      this.style,
+      this.autofocus,
+      this.clipBehavior,
+      this.icon,
+      this.onHover,
+      this.onFocusChange,
+      this.statesController});
 
   final VoidCallback? onLongPress;
   final FocusNode? focusNode;
@@ -49,6 +50,7 @@ class MaterialTextButtonData extends _BaseData {
   final Widget? icon;
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
+  final MaterialStatesController? statesController;
 }
 
 class CupertinoTextButtonData extends _BaseData {
@@ -146,6 +148,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
           ),
       onHover: data?.onHover,
       onFocusChange: data?.onFocusChange,
+      statesController: data?.statesController,
     );
   }
 

@@ -16,6 +16,8 @@ export 'src/platform.dart'
         showPlatformModalSheet,
         MaterialModalSheetData,
         CupertinoModalSheetData,
+        MaterialDialogData,
+        CupertinoDialogData,
         PlatformTarget;
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_app.dart';
