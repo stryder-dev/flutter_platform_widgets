@@ -170,7 +170,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     final overriddenPadding =
         haveZeroPadding && isPlacedOnPlatformAppBar ? EdgeInsets.zero : null;
 
-    final givenPadding = data?.padding ?? overriddenPadding;
+    final givenPadding = data?.padding ?? padding ?? overriddenPadding;
 
     return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,
