@@ -1,3 +1,9 @@
+## [2.1.1] - January 14, 2023
+
+#### (Flutter version support: v3.3.0)
+
+- Added missing padding on the `PlatformIconButton`
+
 ## [2.1.0] - January 13, 2023
 
 #### (Flutter version support: v3.3.0)
