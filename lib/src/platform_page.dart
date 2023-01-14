@@ -22,8 +22,6 @@ abstract class _BasePageData {
   final bool? fullscreenDialog;
 
   /// The key associated with this page.
-  ///
-  /// This key will be used for comparing pages in [canUpdate].
   final LocalKey? key;
 
   /// The name of the route (e.g., "/settings").
@@ -44,7 +42,7 @@ abstract class _BasePageData {
 
   /// The arguments passed to this route.
   ///
-  /// May be used when building the route, e.g. in [Navigator.onGenerateRoute].
+  /// May be used when building the route, e.g. in [PlatformApp.onGenerateRoute].
   final Object? arguments;
 
   _BasePageData({

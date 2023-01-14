@@ -127,7 +127,7 @@ class CupertinoNavigationBarData extends _BaseData {
   final EdgeInsetsDirectional? padding;
   final Brightness? brightness;
 
-  /// When enabling [iosUsesMaterialWidgets] on [PlatformProvider] settings it will
+  /// When enabling [PlatformSettingsData.iosUsesMaterialWidgets] on [PlatformProvider] settings it will
   /// add a Material widget as a parent to both the leading and trailing widgets.
   /// Setting [noMaterialParent] to true (default false) will remove the [Material] parent
   final bool noMaterialParent;

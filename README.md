@@ -60,10 +60,17 @@ You can also specify what design language you want for any supported platforms w
 * Windows
 * Linux
 
-# Docs
+# Documentation
 
-View the [package wiki](https://github.com/stryder-dev/flutter_platform_widgets/wiki) for details of how to use and the list of available widgets
+See the API documentation for details on the following topics:
 
+* [Getting started](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Get%20started-topic.html)
+* [How it works](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/How%20it%20works-topic.html)
+* [Platform Provider](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Platform%20Provider-topic.html)
+* [Theming](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Theming-topic.html)
+* [Routing](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Routing-topic.html)
+* [Widget Catalog](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Widget%20catalog-topic.html)
+* [Widget Utils](https://pub.dev/documentation/flutter_platform_widgets/latest/topics/Widget%20utils-topic.html)
 
 # Issues and Feedback
 

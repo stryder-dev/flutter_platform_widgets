@@ -1,0 +1,35 @@
+dartdoc:
+  categories:
+    "Get started":
+      markdown: doc/get-started.md
+      name: Get started
+    "How it works":
+      markdown: doc/how-it-works.md
+      name: How it works
+    "Platform Provider":
+      markdown: doc/platform-provider.md
+      name: Platform provider
+    "Theming":
+      markdown: doc/theming.md
+      name: Theming
+    "Routing":
+      markdown: doc/routing.md
+      name: Routing
+    "Widget catalog":
+      markdown: doc/widget-catalog.md
+      name: Widget catalog
+    "Widget utils":
+      markdown: doc/widget-utils.md
+      name: Widget utils
+  categoryOrder:
+    - "Get started"
+    - "How it works"
+    - "Platform Provider"
+    - "Theming"
+    - "Routing"
+    - "Widget Catalog"
+    - "Widget Utils"
+  showUndocumentedCategories: true
+  ignore:
+    - broken-link
+    - missing-from-search-index

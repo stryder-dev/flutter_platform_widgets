@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+/// A set of widgets that combine material and cupertino versions into
+/// a single easy to use widget.
 library flutter_platform_widgets;
 
 export 'src/platform.dart'
