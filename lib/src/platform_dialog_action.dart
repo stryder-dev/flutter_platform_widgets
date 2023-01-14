@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
         ButtonTextTheme,
         MaterialTapTargetSize,
         TextButton,
+        MaterialStatesController,
         VisualDensity;
 import 'package:flutter/widgets.dart';
 
@@ -47,6 +48,7 @@ class MaterialDialogActionData extends _BaseData {
     this.icon,
     this.onHover,
     this.onFocusChange,
+    this.statesController,
   });
 
   final FocusNode? focusNode;
@@ -55,6 +57,7 @@ class MaterialDialogActionData extends _BaseData {
   final Widget? icon;
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
+  final MaterialStatesController? statesController;
 }
 
 class MaterialDialogFlatActionData extends _BaseData {
@@ -179,6 +182,7 @@ class PlatformDialogAction
       style: data?.style,
       onFocusChange: data?.onFocusChange,
       onHover: data?.onHover,
+      statesController: data?.statesController,
     );
   }
 

@@ -39,6 +39,7 @@ class PlatformText extends StatelessWidget {
     StrutStyle? strutStyle,
     TextWidthBasis? textWidthBasis,
     ui.TextHeightBehavior? textHeightBehavior,
+    Color? selectionColor,
   }) {
     return PlatformText._(
         key,
@@ -57,6 +58,7 @@ class PlatformText extends StatelessWidget {
               strutStyle: strutStyle,
               textWidthBasis: textWidthBasis,
               textHeightBehavior: textHeightBehavior,
+              selectionColor: selectionColor,
             ));
   }
 

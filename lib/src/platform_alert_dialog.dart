@@ -52,6 +52,9 @@ class MaterialAlertDialogData extends _BaseData {
     this.actionsAlignment,
     this.alignment,
     this.actionsOverflowAlignment,
+    this.icon,
+    this.iconColor,
+    this.iconPadding,
   });
 
   final EdgeInsetsGeometry? contentPadding;
@@ -72,6 +75,9 @@ class MaterialAlertDialogData extends _BaseData {
   final MainAxisAlignment? actionsAlignment;
   final AlignmentGeometry? alignment;
   final OverflowBarAlignment? actionsOverflowAlignment;
+  final Widget? icon;
+  final Color? iconColor;
+  final EdgeInsetsGeometry? iconPadding;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -140,6 +146,9 @@ class PlatformAlertDialog
       actionsAlignment: data?.actionsAlignment,
       alignment: data?.alignment,
       actionsOverflowAlignment: data?.actionsOverflowAlignment,
+      icon: data?.icon,
+      iconColor: data?.iconColor,
+      iconPadding: data?.iconPadding,
     );
   }
 

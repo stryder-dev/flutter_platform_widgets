@@ -66,6 +66,7 @@ class MaterialTabScaffoldData extends _BaseData {
     this.restorationId,
     this.onDrawerChanged,
     this.onEndDrawerChanged,
+    this.persistentFooterAlignment,
   });
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
@@ -92,6 +93,7 @@ class MaterialTabScaffoldData extends _BaseData {
   final String? restorationId;
   final DrawerCallback? onDrawerChanged;
   final DrawerCallback? onEndDrawerChanged;
+  final AlignmentDirectional? persistentFooterAlignment;
 }
 
 class CupertinoTabViewData {
@@ -283,6 +285,8 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       onDrawerChanged: data?.onDrawerChanged,
       onEndDrawerChanged: data?.onEndDrawerChanged,
       restorationId: data?.restorationId ?? restorationId,
+      persistentFooterAlignment:
+          data?.persistentFooterAlignment ?? AlignmentDirectional.centerEnd,
     );
   }
 
