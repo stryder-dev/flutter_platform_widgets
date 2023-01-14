@@ -1,3 +1,7 @@
+## [2.2.4] - January 15, 2023
+
+Version update
+
 ## [2.2.0] - January 14, 2023
 
 #### (Flutter version support: v3.3.10)
