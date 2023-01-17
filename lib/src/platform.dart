@@ -187,7 +187,7 @@ Future<T?> showPlatformDialog<T>({
       anchorPoint: material?.anchorPoint ?? anchorPoint,
     );
   } else {
-    assert(cupertino?.builder != null || cupertino != null);
+    assert(cupertino?.builder != null || builder != null);
 
     return showCupertinoDialog<T>(
       context: context,
