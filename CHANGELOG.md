@@ -1,3 +1,7 @@
+## [2.2.5] - January 19, 2023
+
+- Fixed issue with `showPlatformDialog`. (thanks tmaihoff)
+
 ## [2.2.4] - January 15, 2023
 
 Version update
