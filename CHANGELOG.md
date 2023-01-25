@@ -1,3 +1,7 @@
+## [2.2.6] - January 25, 2023
+
+- Fixed issue with `PlatformAlertDialog` where it would not work if the dialog has a material widget. (thanks josxha)
+
 ## [2.2.5] - January 19, 2023
 
 - Fixed issue with `showPlatformDialog`. (thanks tmaihoff)
