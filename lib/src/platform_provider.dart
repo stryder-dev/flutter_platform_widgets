@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A Provider that provides access to the functions of swicthing platforms.
+/// A Provider that provides access to the functions of switching platforms.
 ///
 /// When placed at the root, it will rebuild the application with the new platform
 /// and therefore when [PlatformWidgets] are used within the application
@@ -120,26 +120,27 @@ class PlatformProviderState {
 }
 
 class PlatformSettingsData {
-  /// Adds a [Material] widget to [CupertinoScaffold] and [CupertinoTabScaffold] to
-  /// allow for Material widgets to be used. This is required when using a PlatformApp
-  /// since some Material widgets will expect a Material parent, otherwise an exception is thrown.
+  /// Adds a [Material] widget to [CupertinoScaffold], [CupertinoTabScaffold] and
+  /// [CupertinoAlertDialog] to allow for Material widgets to be used. This is required
+  /// when using a PlatformApp since some Material widgets will expect a Material parent,
+  /// otherwise an exception is thrown.
   /// Note: This may affect fonts and colors and dark mode may not work in all cases.
-  ///
-  /// Note: This may cause widgtes to show a ripple effect where as before 1.6.0 it did not
+  /// Note: This may cause widgets to show a ripple effect where as before 1.6.0 it did not
   final bool iosUsesMaterialWidgets;
 
   /// Sets any padding of the [PlatformIconButton] to [EdgeInserts.zero] when placed inside
   /// a [PlatformAppBar]. Only affects the padding for the cupertino style and only if no padding
-  /// is already defined. Will afffect all [PlatformIconButton]s added to the [PlatformAppBar]
+  /// is already defined. Will affect all [PlatformIconButton]s added to the [PlatformAppBar]
   final bool iosUseZeroPaddingForAppbarPlatformIcon;
 
-  /// Adds a [Material] widget to [CupertinoScaffold] and [CupertinoTabScaffold] to
-  /// allow for Material widgets to be used. This is required when using a PlatformApp
-  /// since some Material widgets will expect a Material parent, otherwise an exception is thrown.
-  ///  Note: This may affect fonts and colors and dark mode may not work in all cases.
+  /// Adds a [Material] widget to [CupertinoScaffold], [CupertinoTabScaffold] and
+  /// [CupertinoAlertDialog] to allow for Material widgets to be used. This is required when using
+  /// a PlatformApp since some Material widgets will expect a Material parent, otherwise an
+  /// exception is thrown.
+  /// Note: This may affect fonts and colors and dark mode may not work in all cases.
   ///
-  /// Note: legacyIosUsesMaterialWidgets places the Material widget above the CupertinoScaffold and
-  /// CupertinoTabScaffold widgets matching the behavour before v1.6.0
+  /// Note: legacyIosUsesMaterialWidgets places the Material widget above the CupertinoScaffold
+  /// and CupertinoTabScaffold widgets matching the behaviour before v1.6.0
   final bool legacyIosUsesMaterialWidgets;
 
   /// The style each platform will use. Either [PlatformStyle.Material] or

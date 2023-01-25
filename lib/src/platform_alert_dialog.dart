@@ -5,11 +5,13 @@
  */
 
 import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
-import 'package:flutter/material.dart' show AlertDialog;
+import 'package:flutter/material.dart' show AlertDialog, Material;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
+import 'platform_provider.dart';
 
 const EdgeInsets _defaultInsetPadding =
     EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
@@ -99,7 +101,7 @@ class CupertinoAlertDialogData extends _BaseData {
 }
 
 class PlatformAlertDialog
-    extends PlatformWidgetBase<CupertinoAlertDialog, AlertDialog> {
+    extends PlatformWidgetBase<Widget, AlertDialog> {
   final Key? widgetKey;
   final List<Widget>? actions;
   final Widget? content;
@@ -153,15 +155,20 @@ class PlatformAlertDialog
   }
 
   @override
-  CupertinoAlertDialog createCupertinoWidget(BuildContext context) {
+  Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
     Curve? curve = data?.insetAnimationCurve;
 
-    return CupertinoAlertDialog(
+    final providerState = PlatformProvider.of(context);
+    final useLegacyMaterial =
+        providerState?.settings.legacyIosUsesMaterialWidgets ?? false;
+    final useMaterial = providerState?.settings.iosUsesMaterialWidgets ?? false;
+
+    final result = CupertinoAlertDialog(
       key: data?.widgetKey ?? widgetKey,
       actions: data?.actions ?? actions ?? const <Widget>[],
-      content: data?.content ?? content,
+      content: (data?.content ?? content)?.withMaterial(useMaterial),
       scrollController: data?.scrollController,
       actionScrollController: data?.actionScrollController,
       title: data?.title ?? title,
@@ -169,5 +176,10 @@ class PlatformAlertDialog
       insetAnimationDuration:
           data?.insetAnimationDuration ?? Duration(milliseconds: 100),
     );
+
+    // Ensure that there is Material widget at the root page level
+    // as there can be Material widgets used on ios
+    return result.withMaterial(useLegacyMaterial &&
+        context.findAncestorWidgetOfExactType<Material>() == null);
   }
 }
