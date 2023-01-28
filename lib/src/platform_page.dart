@@ -47,6 +47,8 @@ abstract class _BasePageData {
   /// May be used when building the route, e.g. in [Navigator.onGenerateRoute].
   final Object? arguments;
 
+  final bool? allowSnapshotting;
+
   _BasePageData({
     this.child,
     this.name,
@@ -55,6 +57,7 @@ abstract class _BasePageData {
     this.key,
     this.restorationId,
     this.arguments,
+    this.allowSnapshotting,
   });
 }
 
@@ -67,6 +70,7 @@ class MaterialPageData extends _BasePageData {
     super.key,
     super.restorationId,
     super.arguments,
+    super.allowSnapshotting,
   });
 }
 
@@ -79,6 +83,7 @@ class CupertinoPageData extends _BasePageData {
     super.key,
     super.restorationId,
     super.arguments,
+    super.allowSnapshotting,
     this.title,
   });
 
@@ -96,6 +101,7 @@ Page platformPage({
   LocalKey? key,
   String? restorationId,
   Object? arguments,
+  bool allowSnapshotting = true,
   PlatformBuilder<MaterialPageData>? material,
   PlatformBuilder<CupertinoPageData>? cupertino,
 }) {
@@ -110,6 +116,7 @@ Page platformPage({
       arguments: data?.arguments ?? arguments,
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
       restorationId: data?.restorationId ?? restorationId,
+      allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -123,6 +130,7 @@ Page platformPage({
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
       restorationId: data?.restorationId ?? restorationId,
       title: data?.title ?? title,
+      allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
     );
   }
 }

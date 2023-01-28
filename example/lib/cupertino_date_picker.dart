@@ -203,7 +203,7 @@ class _CustomCupertinoDatePicker extends StatelessWidget {
               const Spacer(),
               Text(
                 '${contentData.selectedDate.toString()}',
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               const Spacer(),
               PlatformTextButton(

@@ -214,48 +214,50 @@ class MaterialModalSheetData extends _ModalSheetBaseData {
   final Color? backgroundColor;
   final double? elevation;
   final ShapeBorder? shape;
-  final bool isScrollControlled;
-  final bool useRootNavigator;
+  final bool? isScrollControlled;
+  final bool? useRootNavigator;
   final Clip? clipBehavior;
   final Color? barrierColor;
-  final bool enableDrag;
-  final bool isDismissible;
+  final bool? enableDrag;
+  final bool? isDismissible;
   final RouteSettings? routeSettings;
   final AnimationController? transitionAnimationController;
   final BoxConstraints? constraints;
+  final bool? useSafeArea;
 
   MaterialModalSheetData({
     super.anchorPoint,
     this.backgroundColor,
     this.elevation,
     this.shape,
-    this.isScrollControlled = false,
-    this.useRootNavigator = false,
+    this.isScrollControlled,
+    this.useRootNavigator,
     this.clipBehavior,
     this.barrierColor,
-    this.enableDrag = false,
-    this.isDismissible = false,
+    this.enableDrag,
+    this.isDismissible,
     this.routeSettings,
     this.transitionAnimationController,
     this.constraints,
+    this.useSafeArea,
   });
 }
 
 class CupertinoModalSheetData extends _ModalSheetBaseData {
   final ImageFilter? imageFilter;
   final bool? semanticsDismissible;
-  final bool useRootNavigator;
-  final Color barrierColor;
-  final bool barrierDismissible;
+  final bool? useRootNavigator;
+  final Color? barrierColor;
+  final bool? barrierDismissible;
   final RouteSettings? routeSettings;
 
   CupertinoModalSheetData({
     super.anchorPoint,
     this.imageFilter,
     this.semanticsDismissible,
-    this.useRootNavigator = true,
-    this.barrierColor = _kModalBarrierColor,
-    this.barrierDismissible = true,
+    this.useRootNavigator,
+    this.barrierColor,
+    this.barrierDismissible,
     this.routeSettings,
   });
 }
@@ -285,6 +287,7 @@ Future<T?> showPlatformModalSheet<T>({
       transitionAnimationController: material?.transitionAnimationController,
       constraints: material?.constraints,
       anchorPoint: material?.anchorPoint,
+      useSafeArea: material?.useSafeArea ?? false,
     );
   } else {
     return showCupertinoModalPopup<T>(

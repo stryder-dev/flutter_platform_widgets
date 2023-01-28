@@ -1,3 +1,11 @@
+## [3.0.0] - January 28, 2023
+
+#### (Flutter version support: v3.7.0)
+
+- Added extra properties to the widgets that have been added to flutter 3.7
+- `toolbarOptions` on `PlatformTextFormField` and `PlatformTextField` is deprecated by flutter. Switch to contextMenuBuilder. `toolbarOptions` property will be removed from this library in a future release.
+- Min dart version set to v2.19
+
 ## [2.2.6] - January 25, 2023
 
 - Fixed issue with `PlatformAlertDialog` where it would not work if the dialog has a material widget. (thanks josxha)

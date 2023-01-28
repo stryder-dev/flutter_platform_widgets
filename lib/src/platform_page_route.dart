@@ -17,12 +17,14 @@ class _BasePageRouteData {
   final RouteSettings? settings;
   final bool? maintainState;
   final bool? fullscreenDialog;
+  final bool? allowSnapshotting;
 
   _BasePageRouteData({
     this.builder,
     this.settings,
     this.maintainState,
     this.fullscreenDialog,
+    this.allowSnapshotting,
   });
 }
 
@@ -32,6 +34,7 @@ class MaterialPageRouteData extends _BasePageRouteData {
     super.settings,
     super.maintainState,
     super.fullscreenDialog,
+    super.allowSnapshotting,
   });
 }
 
@@ -41,6 +44,7 @@ class CupertinoPageRouteData extends _BasePageRouteData {
     super.settings,
     super.maintainState,
     super.fullscreenDialog,
+    super.allowSnapshotting,
   });
 }
 
@@ -51,6 +55,7 @@ PageRoute<T> platformPageRoute<T>({
   bool? maintainState,
   bool? fullscreenDialog,
   String? iosTitle,
+  bool allowSnapshotting = true,
   PlatformBuilder<MaterialPageRouteData>? material,
   PlatformBuilder<CupertinoPageRouteData>? cupertino,
 }) {
@@ -62,6 +67,7 @@ PageRoute<T> platformPageRoute<T>({
       settings: data?.settings ?? settings,
       maintainState: data?.maintainState ?? maintainState ?? true,
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
+      allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -72,6 +78,7 @@ PageRoute<T> platformPageRoute<T>({
       maintainState: data?.maintainState ?? maintainState ?? true,
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
       title: iosTitle,
+      allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
     );
   }
 }

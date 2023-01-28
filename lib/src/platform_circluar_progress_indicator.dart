@@ -48,7 +48,7 @@ class CupertinoProgressIndicatorData extends _BaseData {
     super.key,
     super.color,
     this.animating,
-    this.radius: _kDefaultIndicatorRadius,
+    this.radius = _kDefaultIndicatorRadius,
   });
 
   final bool? animating;

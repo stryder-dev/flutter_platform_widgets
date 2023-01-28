@@ -10,8 +10,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/src/extensions.dart';
 
 import 'platform.dart';
-import 'widget_base.dart';
 import 'platform_provider.dart';
+import 'widget_base.dart';
 
 const EdgeInsets _defaultInsetPadding =
     EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
@@ -57,6 +57,8 @@ class MaterialAlertDialogData extends _BaseData {
     this.icon,
     this.iconColor,
     this.iconPadding,
+    this.shadowColor,
+    this.surfaceTintColor,
   });
 
   final EdgeInsetsGeometry? contentPadding;
@@ -80,6 +82,8 @@ class MaterialAlertDialogData extends _BaseData {
   final Widget? icon;
   final Color? iconColor;
   final EdgeInsetsGeometry? iconPadding;
+  final Color? shadowColor;
+  final Color? surfaceTintColor;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -100,8 +104,7 @@ class CupertinoAlertDialogData extends _BaseData {
   final Duration? insetAnimationDuration;
 }
 
-class PlatformAlertDialog
-    extends PlatformWidgetBase<Widget, AlertDialog> {
+class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
   final Key? widgetKey;
   final List<Widget>? actions;
   final Widget? content;
@@ -151,6 +154,8 @@ class PlatformAlertDialog
       icon: data?.icon,
       iconColor: data?.iconColor,
       iconPadding: data?.iconPadding,
+      shadowColor: data?.shadowColor,
+      surfaceTintColor: data?.surfaceTintColor,
     );
   }
 
