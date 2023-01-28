@@ -246,7 +246,7 @@ class PlatformPage extends StatelessWidget {
               textAlign: TextAlign.center,
               style: platformThemeData(
                 context,
-                material: (data) => data.textTheme.headline5,
+                material: (data) => data.textTheme.headlineSmall,
                 cupertino: (data) => data.textTheme.navTitleTextStyle,
               ),
             ),

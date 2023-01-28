@@ -131,6 +131,7 @@ class PlatformElevatedButton
             ),
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
+        statesController: data?.statesController,
       );
     }
 

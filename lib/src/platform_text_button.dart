@@ -129,6 +129,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
             ),
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
+        statesController: data?.statesController,
       );
     }
 

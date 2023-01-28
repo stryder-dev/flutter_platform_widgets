@@ -12,6 +12,8 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
+const Duration kThemeAnimationDuration = Duration(milliseconds: 200);
+
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -193,6 +195,8 @@ class MaterialAppData extends _BaseData {
     this.darkTheme,
     this.themeMode,
     this.scaffoldMessengerKey,
+    this.themeAnimationCurve = Curves.linear,
+    this.themeAnimationDuration = kThemeAnimationDuration,
   });
 
   final ThemeData? theme;
@@ -200,6 +204,8 @@ class MaterialAppData extends _BaseData {
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
+  final Curve themeAnimationCurve;
+  final Duration themeAnimationDuration;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
@@ -229,6 +235,8 @@ class MaterialAppRouterData extends _BaseRouterData {
     this.darkTheme,
     this.themeMode,
     this.scaffoldMessengerKey,
+    this.themeAnimationCurve = Curves.linear,
+    this.themeAnimationDuration = kThemeAnimationDuration,
   });
 
   final ThemeData? theme;
@@ -236,6 +244,8 @@ class MaterialAppRouterData extends _BaseRouterData {
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
+  final Curve themeAnimationCurve;
+  final Duration themeAnimationDuration;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -511,6 +521,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         useInheritedMediaQuery: dataRouter?.useInheritedMediaQuery ??
             useInheritedMediaQuery ??
             false,
+        themeAnimationCurve: dataRouter?.themeAnimationCurve ?? Curves.linear,
+        themeAnimationDuration:
+            dataRouter?.themeAnimationDuration ?? kThemeAnimationDuration,
       );
     } else {
       final data = material?.call(context, platform(context));
@@ -568,6 +581,9 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
         useInheritedMediaQuery:
             data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
+        themeAnimationCurve: data?.themeAnimationCurve ?? Curves.linear,
+        themeAnimationDuration:
+            data?.themeAnimationDuration ?? kThemeAnimationDuration,
       );
     }
   }

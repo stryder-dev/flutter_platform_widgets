@@ -30,6 +30,7 @@ abstract class _BaseData {
     this.activeColor,
     this.currentIndex,
     this.itemChanged,
+    this.height,
   });
 
   final Key? widgetKey;
@@ -39,6 +40,7 @@ abstract class _BaseData {
   final Color? activeColor;
   final int? currentIndex;
   final void Function(int)? itemChanged;
+  final double? height;
 }
 
 class CupertinoTabBarData extends _BaseData {
@@ -50,14 +52,13 @@ class CupertinoTabBarData extends _BaseData {
     super.itemChanged,
     super.iconSize,
     super.currentIndex,
+    super.height,
     this.inactiveColor,
     this.border,
-    this.height,
   });
 
   final Color? inactiveColor;
   final Border? border;
-  final double? height;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -70,6 +71,7 @@ class MaterialNavBarData extends _BaseData {
     super.widgetKey,
     super.itemChanged,
     super.currentIndex,
+    super.height,
     this.type,
     this.bottomNavigationBarKey,
     this.shape,
@@ -88,6 +90,9 @@ class MaterialNavBarData extends _BaseData {
     this.mouseCursor,
     this.enableFeedback,
     this.landscapeLayout,
+    this.useLegacyColorScheme = true,
+    this.padding,
+    this.surfaceTintColor,
   }) : super(activeColor: fixedColor);
 
   final double? selectedFontSize;
@@ -109,6 +114,9 @@ class MaterialNavBarData extends _BaseData {
   final MouseCursor? mouseCursor;
   final bool? enableFeedback;
   final BottomNavigationBarLandscapeLayout? landscapeLayout;
+  final bool useLegacyColorScheme;
+  final EdgeInsetsGeometry? padding;
+  final Color? surfaceTintColor;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -118,6 +126,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final List<BottomNavigationBarItem>? items;
   final void Function(int)? itemChanged;
   final int? currentIndex;
+  final double? height;
 
   final PlatformBuilder<MaterialNavBarData>? material;
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
@@ -129,6 +138,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     this.items,
     this.itemChanged,
     this.currentIndex,
+    this.height,
     this.material,
     this.cupertino,
   });
@@ -160,6 +170,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       mouseCursor: data?.mouseCursor,
       enableFeedback: data?.enableFeedback,
       landscapeLayout: data?.landscapeLayout,
+      useLegacyColorScheme: data?.useLegacyColorScheme ?? true,
     );
 
     return BottomAppBar(
@@ -170,6 +181,9 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       shape: data?.shape,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       notchMargin: data?.notchMargin ?? 4.0,
+      height: data?.height ?? height,
+      padding: data?.padding,
+      surfaceTintColor: data?.surfaceTintColor,
     );
   }
 
@@ -194,7 +208,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
               style: BorderStyle.solid,
             ),
           ),
-      height: data?.height ?? _kTabBarHeight,
+      height: data?.height ?? height ?? _kTabBarHeight,
     );
   }
 }

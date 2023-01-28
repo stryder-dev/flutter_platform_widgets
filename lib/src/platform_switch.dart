@@ -53,6 +53,8 @@ class MaterialSwitchData extends _BaseData {
     this.splashRadius,
     this.thumbColor,
     this.trackColor,
+    this.onFocusChange,
+    this.thumbIcon,
   });
 
   final Color? activeTrackColor;
@@ -72,6 +74,8 @@ class MaterialSwitchData extends _BaseData {
   final double? splashRadius;
   final MaterialStateProperty<Color?>? thumbColor;
   final MaterialStateProperty<Color?>? trackColor;
+  final ValueChanged<bool>? onFocusChange;
+  final MaterialStateProperty<Icon?>? thumbIcon;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -140,6 +144,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       splashRadius: data?.splashRadius,
       thumbColor: data?.thumbColor,
       trackColor: data?.trackColor,
+      onFocusChange: data?.onFocusChange,
+      thumbIcon: data?.thumbIcon,
     );
   }
 

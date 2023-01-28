@@ -8,13 +8,18 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:flutter/cupertino.dart'
     show
+        CupertinoAdaptiveTextSelectionToolbar,
         CupertinoColors,
         CupertinoDynamicColor,
         CupertinoTextField,
         OverlayVisibilityMode;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
-    show InputDecoration, TextField, InputCounterWidgetBuilder;
+    show
+        AdaptiveTextSelectionToolbar,
+        InputCounterWidgetBuilder,
+        InputDecoration,
+        TextField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -98,6 +103,10 @@ abstract class _BaseData {
     this.textDirection,
     this.clipBehavior,
     this.scribbleEnabled,
+    this.contextMenuBuilder,
+    this.onTapOutside,
+    this.spellCheckConfiguration,
+    this.magnifierConfiguration,
   });
 
   final Key? widgetKey;
@@ -154,6 +163,10 @@ abstract class _BaseData {
   final ui.BoxWidthStyle? selectionWidthStyle;
   final String? obscuringCharacter;
   final Iterable<String>? autofillHints;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
+  final TapRegionCallback? onTapOutside;
+  final SpellCheckConfiguration? spellCheckConfiguration;
+  final TextMagnifierConfiguration? magnifierConfiguration;
 }
 
 class MaterialTextFieldData extends _BaseData {
@@ -193,7 +206,11 @@ class MaterialTextFieldData extends _BaseData {
     super.readOnly,
     super.showCursor,
     super.textAlignVertical,
-    super.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        super.toolbarOptions,
     super.enableSuggestions,
     super.smartDashesType,
     super.smartQuotesType,
@@ -208,6 +225,10 @@ class MaterialTextFieldData extends _BaseData {
     super.enableIMEPersonalizedLearning,
     super.clipBehavior,
     super.scribbleEnabled,
+    super.contextMenuBuilder,
+    super.onTapOutside,
+    super.spellCheckConfiguration,
+    super.magnifierConfiguration,
     this.decoration,
     this.buildCounter,
     this.mouseCursor,
@@ -256,7 +277,11 @@ class CupertinoTextFieldData extends _BaseData {
     super.readOnly,
     super.showCursor,
     super.textAlignVertical,
-    super.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        super.toolbarOptions,
     super.onTap,
     super.enableSuggestions,
     super.smartDashesType,
@@ -273,6 +298,10 @@ class CupertinoTextFieldData extends _BaseData {
     super.textDirection,
     super.clipBehavior,
     super.scribbleEnabled,
+    super.contextMenuBuilder,
+    super.onTapOutside,
+    super.spellCheckConfiguration,
+    super.magnifierConfiguration,
     this.decoration,
     this.padding,
     this.placeholder,
@@ -357,6 +386,24 @@ class PlatformTextField
   final bool? enableIMEPersonalizedLearning;
   final Clip clipBehavior;
   final bool scribbleEnabled;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
+  final TapRegionCallback? onTapOutside;
+  final SpellCheckConfiguration? spellCheckConfiguration;
+  final TextMagnifierConfiguration? magnifierConfiguration;
+
+  static Widget _defaultMaterialContextMenuBuilder(
+      BuildContext context, EditableTextState editableTextState) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
+
+  static Widget _defaultCupertinoContextMenuBuilder(
+      BuildContext context, EditableTextState editableTextState) {
+    return CupertinoAdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
 
   PlatformTextField({
     super.key,
@@ -394,7 +441,11 @@ class PlatformTextField
     this.readOnly,
     this.showCursor,
     this.textAlignVertical,
-    this.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        this.toolbarOptions,
     this.smartDashesType,
     this.smartQuotesType,
     this.selectionHeightStyle,
@@ -410,6 +461,10 @@ class PlatformTextField
     this.makeCupertinoDecorationNull = false,
     this.clipBehavior = Clip.hardEdge,
     this.scribbleEnabled = true,
+    this.contextMenuBuilder,
+    this.onTapOutside,
+    this.spellCheckConfiguration,
+    this.magnifierConfiguration,
     this.material,
     this.cupertino,
   }) : keyboardType = keyboardType ??
@@ -495,6 +550,14 @@ class PlatformTextField
           true,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
       scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
+      contextMenuBuilder: data?.contextMenuBuilder ??
+          contextMenuBuilder ??
+          _defaultMaterialContextMenuBuilder,
+      onTapOutside: data?.onTapOutside ?? onTapOutside,
+      spellCheckConfiguration:
+          data?.spellCheckConfiguration ?? spellCheckConfiguration,
+      magnifierConfiguration:
+          data?.magnifierConfiguration ?? magnifierConfiguration,
     );
   }
 
@@ -584,6 +647,14 @@ class PlatformTextField
       textDirection: data?.textDirection,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
       scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
+      contextMenuBuilder: data?.contextMenuBuilder ??
+          contextMenuBuilder ??
+          _defaultCupertinoContextMenuBuilder,
+      onTapOutside: data?.onTapOutside ?? onTapOutside,
+      spellCheckConfiguration:
+          data?.spellCheckConfiguration ?? spellCheckConfiguration,
+      magnifierConfiguration:
+          data?.magnifierConfiguration ?? magnifierConfiguration,
     );
   }
 

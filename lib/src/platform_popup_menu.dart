@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart'
     show CupertinoActionSheet, CupertinoActionSheetAction;
 import 'package:flutter/material.dart'
     show
+        MaterialStateProperty,
         PopupMenuButton,
         PopupMenuCanceled,
+        PopupMenuDivider,
+        PopupMenuEntry,
         PopupMenuItem,
         PopupMenuItemBuilder,
         PopupMenuPosition,
-        PopupMenuDivider,
-        PopupMenuEntry,
         kMinInteractiveDimension;
 import 'package:flutter/widgets.dart';
 
@@ -52,6 +53,7 @@ class MaterialPopupMenuOptionData extends _BaseData {
   final TextStyle? textStyle;
   final bool withDivider;
   final double dividerHeight;
+  final MaterialStateProperty<TextStyle?>? labelTextStyle;
 
   MaterialPopupMenuOptionData({
     super.key,
@@ -64,6 +66,7 @@ class MaterialPopupMenuOptionData extends _BaseData {
     this.textStyle,
     this.withDivider = false,
     this.dividerHeight = _kMenuDividerHeight,
+    this.labelTextStyle,
   });
 }
 
@@ -100,6 +103,10 @@ class MaterialPopupMenuData {
   final BoxConstraints? constraints;
   final PopupMenuPosition? position;
   final double? splashRadius;
+  final Clip clipBehavior;
+  final VoidCallback? onOpened;
+  final Color? shadowColor;
+  final Color? surfaceTintColor;
 
   MaterialPopupMenuData({
     this.key,
@@ -120,6 +127,10 @@ class MaterialPopupMenuData {
     this.constraints,
     this.position,
     this.splashRadius,
+    this.clipBehavior = Clip.none,
+    this.onOpened,
+    this.shadowColor,
+    this.surfaceTintColor,
   });
 }
 
@@ -256,6 +267,7 @@ class PlatformPopupMenu extends StatelessWidget {
                 onTap: data?.onTap,
                 padding: data?.padding,
                 textStyle: data?.textStyle,
+                labelTextStyle: data?.labelTextStyle,
               ));
               if (data?.withDivider ?? false) {
                 items.add(
@@ -283,6 +295,10 @@ class PlatformPopupMenu extends StatelessWidget {
       constraints: data?.constraints,
       position: data?.position ?? PopupMenuPosition.over,
       splashRadius: data?.splashRadius,
+      clipBehavior: data?.clipBehavior ?? Clip.none,
+      onOpened: data?.onOpened,
+      shadowColor: data?.shadowColor,
+      surfaceTintColor: data?.surfaceTintColor,
     );
   }
 }

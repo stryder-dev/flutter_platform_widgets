@@ -1,7 +1,14 @@
 import 'package:flutter/cupertino.dart'
-    show CupertinoTextFormFieldRow, CupertinoColors;
+    show
+        CupertinoAdaptiveTextSelectionToolbar,
+        CupertinoColors,
+        CupertinoTextFormFieldRow;
 import 'package:flutter/material.dart'
-    show InputCounterWidgetBuilder, InputDecoration, TextFormField;
+    show
+        AdaptiveTextSelectionToolbar,
+        InputCounterWidgetBuilder,
+        InputDecoration,
+        TextFormField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -55,6 +62,7 @@ abstract class _BaseData {
     this.scrollPhysics,
     this.autofillHints,
     this.autovalidateMode,
+    this.contextMenuBuilder,
   });
 
   final Key? widgetKey;
@@ -102,6 +110,7 @@ abstract class _BaseData {
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
 }
 
 class MaterialTextFormFieldData extends _BaseData {
@@ -113,6 +122,7 @@ class MaterialTextFormFieldData extends _BaseData {
   final bool? enableIMEPersonalizedLearning;
   final String? restorationId;
   final MouseCursor? mouseCursor;
+  final TapRegionCallback? onTapOutside;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -129,7 +139,11 @@ class MaterialTextFormFieldData extends _BaseData {
     super.textAlignVertical,
     super.autofocus,
     super.readOnly,
-    super.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        super.toolbarOptions,
     super.showCursor,
     super.obscuringCharacter,
     super.obscureText,
@@ -160,6 +174,7 @@ class MaterialTextFormFieldData extends _BaseData {
     super.scrollPhysics,
     super.autofillHints,
     super.autovalidateMode,
+    super.contextMenuBuilder,
     this.decoration,
     this.maxLengthEnforcement,
     this.buildCounter,
@@ -167,6 +182,7 @@ class MaterialTextFormFieldData extends _BaseData {
     this.enableIMEPersonalizedLearning,
     this.restorationId,
     this.mouseCursor,
+    this.onTapOutside,
   });
 }
 
@@ -192,7 +208,11 @@ class CupertinoTextFormFieldData extends _BaseData {
     super.textAlignVertical,
     super.autofocus,
     super.readOnly,
-    super.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        super.toolbarOptions,
     super.showCursor,
     super.obscuringCharacter,
     super.obscureText,
@@ -223,6 +243,7 @@ class CupertinoTextFormFieldData extends _BaseData {
     super.scrollPhysics,
     super.autofillHints,
     super.autovalidateMode,
+    super.contextMenuBuilder,
     this.decoration,
     this.prefix,
     this.padding,
@@ -276,11 +297,26 @@ class PlatformTextFormField
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
 
   final String? hintText;
 
   final PlatformBuilder<MaterialTextFormFieldData>? material;
   final PlatformBuilder<CupertinoTextFormFieldData>? cupertino;
+
+  static Widget _defaultMaterialContextMenuBuilder(
+      BuildContext context, EditableTextState editableTextState) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
+
+  static Widget _defaultCupertinoContextMenuBuilder(
+      BuildContext context, EditableTextState editableTextState) {
+    return CupertinoAdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
 
   const PlatformTextFormField({
     super.key,
@@ -297,7 +333,11 @@ class PlatformTextFormField
     this.textAlignVertical,
     this.autofocus,
     this.readOnly,
-    this.toolbarOptions,
+    @Deprecated(
+      'Use `contextMenuBuilder` instead. '
+      'This feature was deprecated after v3.3.0-0.5.pre.',
+    )
+        this.toolbarOptions,
     this.showCursor,
     this.obscuringCharacter,
     this.obscureText,
@@ -327,6 +367,7 @@ class PlatformTextFormField
     this.scrollPhysics,
     this.autofillHints,
     this.autovalidateMode,
+    this.contextMenuBuilder,
     this.hintText,
     this.material,
     this.cupertino,
@@ -404,6 +445,10 @@ class PlatformTextFormField
           data?.enableIMEPersonalizedLearning ?? true,
       restorationId: data?.restorationId,
       mouseCursor: data?.mouseCursor,
+      contextMenuBuilder: data?.contextMenuBuilder ??
+          contextMenuBuilder ??
+          _defaultMaterialContextMenuBuilder,
+      onTapOutside: data?.onTapOutside,
     );
   }
 
@@ -472,6 +517,9 @@ class PlatformTextFormField
             color: CupertinoColors.placeholderText,
           ),
       textDirection: data?.textDirection,
+      contextMenuBuilder: data?.contextMenuBuilder ??
+          contextMenuBuilder ??
+          _defaultCupertinoContextMenuBuilder,
     );
   }
 

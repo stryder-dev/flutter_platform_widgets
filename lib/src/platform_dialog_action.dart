@@ -168,6 +168,7 @@ class PlatformDialogAction
         style: data?.style,
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
+        statesController: data?.statesController,
       );
     }
 
