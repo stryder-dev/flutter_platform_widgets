@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart' show CupertinoListTile;
 import 'package:flutter/material.dart'
     show ListTile, VisualDensity, ListTileStyle;
 import 'package:flutter/widgets.dart';
-
 import 'platform.dart';
 import 'widget_base.dart';
 
@@ -23,13 +22,11 @@ abstract class _BaseData {
   });
 
   final Key? widgetKey;
-
   final Widget? leading;
   final Widget? title;
   final Widget? subtitle;
   final Widget? trailing;
-
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 }
 
 class MaterialListTileData extends _BaseData {
@@ -65,11 +62,7 @@ class MaterialListTileData extends _BaseData {
     this.horizontalTitleGap,
     this.minVerticalPadding,
     this.minLeadingWidth,
-  })  : assert(isThreeLine != null),
-        assert(enabled != null),
-        assert(selected != null),
-        assert(autofocus != null),
-        assert(!isThreeLine || subtitle != null);
+  }) : assert(!isThreeLine || subtitle != null);
 
   final bool isThreeLine;
   final bool? dense;
@@ -124,11 +117,11 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
   final Key? widgetKey;
 
   final Widget? leading;
-  final Widget? title;
+  final Widget title;
   final Widget? subtitle;
   final Widget? trailing;
 
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   final PlatformBuilder<MaterialListTileData>? material;
   final PlatformBuilder<CupertinoListTileData>? cupertino;
@@ -137,7 +130,7 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
     super.key,
     this.widgetKey,
     this.leading,
-    this.title,
+    required this.title,
     this.subtitle,
     this.trailing,
     this.onTap,
@@ -151,11 +144,11 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
 
     return ListTile(
       key: data?.widgetKey ?? widgetKey,
-      leading: data?.leading,
-      title: data?.title,
-      subtitle: data?.subtitle,
-      trailing: data?.trailing,
-      onTap: data?.onTap,
+      leading: data?.leading ?? leading,
+      title: data?.title ?? title,
+      subtitle: data?.subtitle ?? subtitle,
+      trailing: data?.trailing ?? trailing,
+      onTap: data?.onTap ?? onTap,
     );
   }
 
@@ -165,11 +158,11 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
 
     return CupertinoListTile(
       key: data?.widgetKey ?? widgetKey,
-      leading: data?.leading,
-      title: data?.title ?? const SizedBox(),
-      subtitle: data?.subtitle,
-      trailing: data?.trailing,
-      onTap: data?.onTap,
+      leading: data?.leading ?? leading,
+      title: data?.title ?? title,
+      subtitle: data?.subtitle ?? subtitle,
+      trailing: data?.trailing ?? trailing,
+      onTap: data?.onTap ?? onTap,
     );
   }
 }
