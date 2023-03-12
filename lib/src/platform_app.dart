@@ -6,13 +6,17 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoApp, CupertinoThemeData;
 import 'package:flutter/material.dart'
-    show MaterialApp, ScaffoldMessengerState, Theme, ThemeData, ThemeMode;
+    show
+        MaterialApp,
+        ScaffoldMessengerState,
+        Theme,
+        ThemeData,
+        ThemeMode,
+        kThemeAnimationDuration;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
-
-const Duration kThemeAnimationDuration = Duration(milliseconds: 200);
 
 abstract class _BaseData {
   _BaseData({
