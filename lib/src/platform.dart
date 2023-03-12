@@ -294,7 +294,7 @@ Future<T?> showPlatformModalSheet<T>({
       context: context,
       builder: builder,
       filter: cupertino?.imageFilter,
-      semanticsDismissible: cupertino?.semanticsDismissible,
+      semanticsDismissible: cupertino?.semanticsDismissible ?? false,
       useRootNavigator: cupertino?.useRootNavigator ?? true,
       barrierColor: cupertino?.barrierColor ?? _kModalBarrierColor,
       barrierDismissible: cupertino?.barrierDismissible ?? true,
