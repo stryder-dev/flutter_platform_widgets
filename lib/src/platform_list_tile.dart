@@ -11,9 +11,12 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
+const double _kLeadingSize = 28.0;
+const double _kLeadingToTitle = 16.0;
+
 abstract class _BaseData {
   _BaseData({
-    this.widgetKey,
+    this.key,
     this.leading,
     this.title,
     this.subtitle,
@@ -21,7 +24,7 @@ abstract class _BaseData {
     this.onTap,
   });
 
-  final Key? widgetKey;
+  final Key? key;
   final Widget? leading;
   final Widget? title;
   final Widget? subtitle;
@@ -31,13 +34,13 @@ abstract class _BaseData {
 
 class MaterialListTileData extends _BaseData {
   MaterialListTileData({
-    super.widgetKey,
+    super.key,
     super.leading,
     super.title,
     super.subtitle,
     super.trailing,
     super.onTap,
-    this.isThreeLine = false,
+    this.isThreeLine,
     this.dense,
     this.visualDensity,
     this.shape,
@@ -46,25 +49,25 @@ class MaterialListTileData extends _BaseData {
     this.iconColor,
     this.textColor,
     this.contentPadding,
-    this.enabled = true,
+    this.enabled,
     this.onLongPress,
     this.onFocusChange,
     this.mouseCursor,
-    this.selected = false,
+    this.selected,
     this.focusColor,
     this.hoverColor,
     this.splashColor,
     this.focusNode,
-    this.autofocus = false,
+    this.autofocus,
     this.tileColor,
     this.selectedTileColor,
     this.enableFeedback,
     this.horizontalTitleGap,
     this.minVerticalPadding,
     this.minLeadingWidth,
-  }) : assert(!isThreeLine || subtitle != null);
+  });
 
-  final bool isThreeLine;
+  final bool? isThreeLine;
   final bool? dense;
   final VisualDensity? visualDensity;
   final ShapeBorder? shape;
@@ -73,16 +76,16 @@ class MaterialListTileData extends _BaseData {
   final Color? textColor;
   final ListTileStyle? style;
   final EdgeInsetsGeometry? contentPadding;
-  final bool enabled;
+  final bool? enabled;
   final GestureLongPressCallback? onLongPress;
   final ValueChanged<bool>? onFocusChange;
   final MouseCursor? mouseCursor;
-  final bool selected;
+  final bool? selected;
   final Color? focusColor;
   final Color? hoverColor;
   final Color? splashColor;
   final FocusNode? focusNode;
-  final bool autofocus;
+  final bool? autofocus;
   final Color? tileColor;
   final Color? selectedTileColor;
   final bool? enableFeedback;
@@ -93,7 +96,7 @@ class MaterialListTileData extends _BaseData {
 
 class CupertinoListTileData extends _BaseData {
   CupertinoListTileData({
-    super.widgetKey,
+    super.key,
     super.leading,
     super.title,
     super.subtitle,
@@ -104,18 +107,18 @@ class CupertinoListTileData extends _BaseData {
     this.padding,
     this.backgroundColor,
     this.backgroundColorActivated,
+    this.additionalInfo,
   });
 
-  double? leadingToTitle = 16.0;
-  double? leadingSize = 28.0;
+  double? leadingToTitle;
+  double? leadingSize;
   EdgeInsetsGeometry? padding;
   Color? backgroundColor;
   Color? backgroundColorActivated;
+  Widget? additionalInfo;
 }
 
 class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
-  final Key? widgetKey;
-
   final Widget? leading;
   final Widget title;
   final Widget? subtitle;
@@ -127,15 +130,14 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
   final PlatformBuilder<CupertinoListTileData>? cupertino;
 
   PlatformListTile({
-    super.key,
-    this.widgetKey,
-    this.leading,
     required this.title,
+    this.leading,
     this.subtitle,
     this.trailing,
     this.onTap,
     this.material,
     this.cupertino,
+    super.key,
   });
 
   @override
@@ -143,12 +145,37 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
     final data = material?.call(context, platform(context));
 
     return ListTile(
-      key: data?.widgetKey ?? widgetKey,
+      key: data?.key ?? key,
       leading: data?.leading ?? leading,
       title: data?.title ?? title,
       subtitle: data?.subtitle ?? subtitle,
       trailing: data?.trailing ?? trailing,
       onTap: data?.onTap ?? onTap,
+      autofocus: data?.autofocus ?? false,
+      contentPadding: data?.contentPadding,
+      dense: data?.dense,
+      enableFeedback: data?.enableFeedback,
+      enabled: data?.enabled ?? true,
+      focusColor: data?.focusColor,
+      focusNode: data?.focusNode,
+      horizontalTitleGap: data?.horizontalTitleGap,
+      hoverColor: data?.hoverColor,
+      iconColor: data?.iconColor,
+      isThreeLine: data?.isThreeLine ?? false,
+      minLeadingWidth: data?.minLeadingWidth,
+      minVerticalPadding: data?.minVerticalPadding,
+      mouseCursor: data?.mouseCursor,
+      onFocusChange: data?.onFocusChange,
+      onLongPress: data?.onLongPress,
+      selected: data?.selected ?? false,
+      selectedColor: data?.selectedColor,
+      selectedTileColor: data?.selectedTileColor,
+      shape: data?.shape,
+      splashColor: data?.splashColor,
+      style: data?.style,
+      textColor: data?.textColor,
+      tileColor: data?.tileColor,
+      visualDensity: data?.visualDensity,
     );
   }
 
@@ -157,12 +184,18 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
     final data = cupertino?.call(context, platform(context));
 
     return CupertinoListTile(
-      key: data?.widgetKey ?? widgetKey,
+      key: data?.key ?? key,
       leading: data?.leading ?? leading,
       title: data?.title ?? title,
       subtitle: data?.subtitle ?? subtitle,
       trailing: data?.trailing ?? trailing,
       onTap: data?.onTap ?? onTap,
+      additionalInfo: data?.additionalInfo,
+      backgroundColor: data?.backgroundColor,
+      backgroundColorActivated: data?.backgroundColorActivated,
+      leadingSize: data?.leadingSize ?? _kLeadingSize,
+      leadingToTitle: data?.leadingToTitle ?? _kLeadingToTitle,
+      padding: data?.padding,
     );
   }
 }
