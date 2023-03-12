@@ -19,6 +19,7 @@ export 'src/platform.dart'
         MaterialDialogData,
         CupertinoDialogData,
         PlatformTarget;
+export 'src/platform_list_tile.dart';
 export 'src/platform_alert_dialog.dart';
 export 'src/platform_app.dart';
 export 'src/platform_app_bar.dart';

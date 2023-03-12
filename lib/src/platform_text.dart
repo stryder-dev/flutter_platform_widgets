@@ -12,7 +12,7 @@ import 'platform.dart' show isMaterial;
 
 String formatData(BuildContext context, String data) {
   if (isMaterial(context)) {
-    return data.toUpperCase();
+    return data;
   }
   return data;
 }
