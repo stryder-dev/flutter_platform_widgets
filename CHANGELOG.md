@@ -1,3 +1,9 @@
+## [3.1.0] - March 17, 2023
+
+#### (Flutter version support: v3.7.0 - 3.7.7)
+
+- Added PlatformListTile (thanks patricknicolosi)
+
 ## [3.0.0] - January 28, 2023
 
 #### (Flutter version support: v3.7.0)
