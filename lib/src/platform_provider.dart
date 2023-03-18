@@ -147,11 +147,17 @@ class PlatformSettingsData {
   /// [PlatformStyle.Cupertino].
   final PlatformStyleData platformStyle;
 
+  /// Add MediaQuery as a parent to any given title value for a [PlatformAppBar] for the cupertino [CupertinoNavigationBar]
+  /// This is to resolve the somewhat strange behaviour as described in https://github.com/flutter/flutter/issues/42759
+  /// Set to true (wrapped) by default which could be a breaking change. If it is then set this value to false
+  final bool wrapCupertinoAppBarMiddleWithMediaQuery;
+
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.iosUseZeroPaddingForAppbarPlatformIcon = false,
     this.legacyIosUsesMaterialWidgets = false,
     this.platformStyle = const PlatformStyleData(),
+    this.wrapCupertinoAppBarMiddleWithMediaQuery = true,
   });
 }
 
