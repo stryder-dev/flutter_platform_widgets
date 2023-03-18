@@ -1,3 +1,10 @@
+## [3.2.0] - March 19, 2023
+
+#### (Flutter version support: v3.7.0 - 3.7.7)
+
+- Added MediaQuery wrap for CupertinoNavigationBar title as it is mentioned in this flutter issue: https://github.com/flutter/flutter/issues/42759#issuecomment-591087271. Not added for the CupertinoNavigationBarBackButton due to this issue: https://github.com/flutter/flutter/issues/89888
+- Control the MediaQuery wrap via PlatformProvider settings wrapCupertinoAppBarMiddleWithMediaQuery which is set to true by default
+
 ## [3.1.0] - March 17, 2023
 
 #### (Flutter version support: v3.7.0 - 3.7.7)
