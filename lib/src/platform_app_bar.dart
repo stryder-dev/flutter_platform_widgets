@@ -221,7 +221,7 @@ class PlatformAppBar
     if (heroTag != null) {
       return CupertinoNavigationBar(
         key: data?.widgetKey ?? widgetKey,
-        middle: data?.title ?? title,
+        middle: _getMiddleCupertinoWidget(context, data),
         backgroundColor: data?.backgroundColor ?? backgroundColor,
         automaticallyImplyLeading: data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
@@ -230,7 +230,7 @@ class PlatformAppBar
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading: (data?.leading ?? leading)
+        leading: _getLeadingCupertinoWidget(context, data)
             ?.withMaterial(useMaterial)
             .withWidgetFinder<CupertinoNavigationBar>(),
         trailing: (data?.trailing ?? trailing)
@@ -244,7 +244,7 @@ class PlatformAppBar
 
     return CupertinoNavigationBar(
       key: data?.widgetKey ?? widgetKey,
-      middle: data?.title ?? title,
+      middle: _getMiddleCupertinoWidget(context, data),
       backgroundColor: data?.backgroundColor ?? backgroundColor,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
@@ -252,7 +252,7 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading: (data?.leading ?? leading)
+      leading: _getLeadingCupertinoWidget(context, data)
           ?.withMaterial(useMaterial)
           .withWidgetFinder<CupertinoNavigationBar>(),
       trailing: (data?.trailing ?? trailing)
@@ -262,5 +262,68 @@ class PlatformAppBar
       brightness: data?.brightness,
       //heroTag: , used above
     );
+  }
+
+  Widget? _getLeadingCupertinoWidget(
+    BuildContext context,
+    CupertinoNavigationBarData? data,
+  ) {
+    final leadingLocal = data?.leading ?? leading;
+
+    return leadingLocal;
+
+    // Currently there is this issue which prevents this from being done properly
+    // https://github.com/flutter/flutter/issues/89888
+
+    // final ModalRoute<dynamic>? currentRoute = ModalRoute.of(context);
+    // final canPop = currentRoute?.canPop ?? false;
+
+    // if (!canPop) {
+    //   return leadingLocal;
+    // }
+
+    // final useMediaQueryWrapper = PlatformProvider.of(context)
+    //         ?.settings
+    //         .wrapCupertinoAppBarMiddleWithMediaQuery ??
+    //     true;
+
+    // if (!useMediaQueryWrapper) {
+    //   return middleLocal;
+    // }
+
+    // final leadingWithMediaQuery = MediaQuery(
+    //   data: MediaQueryData(
+    //       textScaleFactor: MediaQuery.textScaleFactorOf(context)),
+    //   child: leadingLocal ?? CupertinoNavigationBarBackButton(),
+    // );
+
+    // return leadingWithMediaQuery;
+  }
+
+  Widget? _getMiddleCupertinoWidget(
+    BuildContext context,
+    CupertinoNavigationBarData? data,
+  ) {
+    final middleLocal = data?.title ?? title;
+    if (middleLocal == null) {
+      return null;
+    }
+
+    final useMediaQueryWrapper = PlatformProvider.of(context)
+            ?.settings
+            .wrapCupertinoAppBarMiddleWithMediaQuery ??
+        true;
+
+    if (!useMediaQueryWrapper) {
+      return middleLocal;
+    }
+
+    final middleWithMediaQuery = MediaQuery(
+      data: MediaQueryData(
+          textScaleFactor: MediaQuery.textScaleFactorOf(context)),
+      child: middleLocal,
+    );
+
+    return middleWithMediaQuery;
   }
 }
