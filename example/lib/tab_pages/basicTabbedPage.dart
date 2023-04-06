@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import './views/content_view.dart';
@@ -58,6 +56,16 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Due to https://github.com/flutter/flutter/issues/51899 this needs to be done for cupertino pages in a tab view to have a dark nav bar
+    final cupertinoBackgroundColor = CupertinoDynamicColor.resolve(
+      CupertinoTheme.of(context).barBackgroundColor,
+      context,
+    );
+    final cupertinoForgroundColor = CupertinoDynamicColor.resolve(
+      CupertinoTheme.of(context).textTheme.navTitleTextStyle.color!,
+      context,
+    );
+
     return PlatformTabScaffold(
       iosContentPadding: true,
       tabController: tabController,
@@ -65,13 +73,22 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
         title: Text('${widget.platform.text} Page Title'),
         trailingActions: <Widget>[
           PlatformIconButton(
-            //padding: EdgeInsets.zero, No longer needed due to iosUseZeroPaddingForAppbarPlatformIcon
             icon: Icon(context.platformIcons.share),
             onPressed: () {},
+            cupertino: (context, platform) => CupertinoIconButtonData(
+              icon: Icon(
+                context.platformIcons.share,
+                color: cupertinoForgroundColor,
+              ),
+            ),
           ),
         ],
         cupertino: (_, __) => CupertinoNavigationBarData(
-          title: Text('${titles[index]}'),
+          title: Text(
+            '${titles[index]}',
+            style: TextStyle(color: cupertinoForgroundColor),
+          ),
+          backgroundColor: cupertinoBackgroundColor,
         ),
       ),
       bodyBuilder: (context, index) => IndexedStack(
