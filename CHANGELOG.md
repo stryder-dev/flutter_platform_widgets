@@ -1,3 +1,9 @@
+## [3.2.1] - March 19, 2023
+
+#### (Flutter version support: v3.7.0 - 3.7.7)
+
+- Fixed incorrectly removed code on `PlatformText` from v3.1.0. for material it will uppercase the text while leaving the cupertino version of the text the same. If you want the same casing between both material and cupertino then simply use `Text`
+
 ## [3.2.0] - March 19, 2023
 
 #### (Flutter version support: v3.7.0 - 3.7.7)
