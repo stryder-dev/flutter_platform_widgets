@@ -1,4 +1,4 @@
-## [3.3.0-dev.1]
+## [3.3.0-dev.2]
 
 - Added PlatformTheme which allows to set the cupertino and material dark and light themes in one place. The PlatformApp will automatically get the right Theme or CupertinoTheme based on the ThemeMode.
 - PlatformTheme can be set the ThemeMode, darl, light or system and will rerender the PlatformApp with the correct mode.
