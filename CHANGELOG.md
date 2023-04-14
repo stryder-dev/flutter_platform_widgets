@@ -1,3 +1,9 @@
+## [3.3.0-dev.2]
+
+- Added PlatformTheme which allows to set the cupertino and material dark and light themes in one place. The PlatformApp will automatically get the right Theme or CupertinoTheme based on the ThemeMode.
+- PlatformTheme can be set the ThemeMode, darl, light or system and will rerender the PlatformApp with the correct mode.
+- PlatformTheme provides a callback to when the themeMode changes in order the application to save the state. This library will not store the current state of the themeMode
+
 ## [3.2.1] - March 19, 2023
 
 #### (Flutter version support: v3.7.0 - 3.7.7)

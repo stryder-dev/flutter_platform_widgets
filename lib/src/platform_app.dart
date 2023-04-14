@@ -16,6 +16,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
+import 'platform_theme.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
@@ -459,6 +460,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   createMaterialWidget(BuildContext context) {
     final dataRouter = materialRouter?.call(context, platform(context));
 
+    debugPrint('BUILD Material app');
+
     if (routeInformationParser != null ||
         dataRouter?.routeInformationParser != null ||
         routerConfig != null ||
@@ -481,13 +484,17 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         title: dataRouter?.title ?? title ?? '',
         onGenerateTitle: dataRouter?.onGenerateTitle ?? onGenerateTitle,
         color: dataRouter?.color ?? color,
-        theme: (dataRouter?.theme ?? Theme.of(context))
+        theme: (dataRouter?.theme ??
+                _getMaterialLightThemeData(context) ??
+                Theme.of(context))
             .copyWith(platform: TargetPlatform.android),
-        darkTheme:
-            dataRouter?.darkTheme?.copyWith(platform: TargetPlatform.android),
+        darkTheme: (dataRouter?.darkTheme ?? _getMaterialDarkThemeData(context))
+            ?.copyWith(platform: TargetPlatform.android),
+        themeMode: dataRouter?.themeMode ??
+            _getMaterialThemeMode(context) ??
+            ThemeMode.system,
         highContrastDarkTheme: dataRouter?.highContrastDarkTheme,
         highContrastTheme: dataRouter?.highContrastTheme,
-        themeMode: dataRouter?.themeMode ?? ThemeMode.system,
         locale: dataRouter?.locale ?? locale,
         localizationsDelegates:
             dataRouter?.localizationsDelegates ?? localizationsDelegates,
@@ -569,11 +576,16 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
-        theme: (data?.theme ?? Theme.of(context))
-            .copyWith(platform: TargetPlatform.android),
         debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
-        darkTheme: data?.darkTheme?.copyWith(platform: TargetPlatform.android),
-        themeMode: data?.themeMode ?? ThemeMode.system,
+        theme: (data?.theme ??
+                _getMaterialLightThemeData(context) ??
+                Theme.of(context))
+            .copyWith(platform: TargetPlatform.android),
+        darkTheme: (dataRouter?.darkTheme ?? _getMaterialDarkThemeData(context))
+            ?.copyWith(platform: TargetPlatform.android),
+        themeMode: data?.themeMode ??
+            _getMaterialThemeMode(context) ??
+            ThemeMode.system,
         shortcuts: data?.shortcuts ?? shortcuts,
         actions: data?.actions ?? actions,
         onGenerateInitialRoutes:
@@ -614,7 +626,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         routerConfig: dataRouter?.routerConfig ?? routerConfig,
         backButtonDispatcher:
             dataRouter?.backButtonDispatcher ?? backButtonDispatcher,
-        theme: dataRouter?.theme,
+        theme: dataRouter?.theme ?? _getCupertinoTheme(context),
         builder: dataRouter?.builder ?? builder,
         title: dataRouter?.title ?? title ?? '',
         onGenerateTitle: dataRouter?.onGenerateTitle ?? onGenerateTitle,
@@ -657,6 +669,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
       );
     } else {
       final data = cupertino?.call(context, platform(context));
+
       return CupertinoApp(
         key: data?.widgetKey ?? widgetKey,
         navigatorKey: data?.navigatorKey ?? navigatorKey,
@@ -695,7 +708,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
-        theme: data?.theme,
+        theme: data?.theme ?? _getCupertinoTheme(context),
         shortcuts: data?.shortcuts ?? shortcuts,
         actions: data?.actions ?? actions,
         onGenerateInitialRoutes:
@@ -706,5 +719,32 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
       );
     }
+  }
+
+  ThemeData? _getMaterialLightThemeData(BuildContext context) {
+    return PlatformTheme.of(context)?.materialLightTheme;
+  }
+
+  ThemeData? _getMaterialDarkThemeData(BuildContext context) {
+    return PlatformTheme.of(context)?.materialDarkTheme;
+  }
+
+  ThemeMode? _getMaterialThemeMode(BuildContext context) {
+    return PlatformTheme.of(context)?.themeMode;
+  }
+
+  CupertinoThemeData? _getCupertinoTheme(BuildContext context) {
+    final isDark = PlatformTheme.of(context)?.isDark;
+    final lightTheme = PlatformTheme.of(context)?.cupertinoLightTheme;
+    final darkTheme = PlatformTheme.of(context)?.cupertinoDarkTheme ??
+        PlatformTheme.of(context)?.cupertinoLightTheme;
+    final theme = isDark == null
+        ? null
+        : isDark
+            ? darkTheme
+            : lightTheme;
+
+    debugPrint('isDark $isDark : ${theme?.brightness}');
+    return theme;
   }
 }
