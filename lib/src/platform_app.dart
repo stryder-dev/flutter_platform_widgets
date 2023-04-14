@@ -744,7 +744,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             ? darkTheme
             : lightTheme;
 
-    debugPrint('isDark $isDark : ${theme?.brightness}');
     return theme;
   }
 }

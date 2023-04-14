@@ -40,7 +40,8 @@ class PlatformTheme extends StatefulWidget {
   State<PlatformTheme> createState() => _PlatformThemeState();
 }
 
-class _PlatformThemeState extends State<PlatformTheme> {
+class _PlatformThemeState extends State<PlatformTheme>
+    with WidgetsBindingObserver {
   PlatformThemeState get state => PlatformThemeState._(this);
 
   void _init() {
@@ -56,7 +57,21 @@ class _PlatformThemeState extends State<PlatformTheme> {
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
     _init();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    // Force rebuild which will get the correct system brightness
+    setState(() {});
   }
 
   @override
@@ -90,6 +105,8 @@ class _PlatformThemeState extends State<PlatformTheme> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'PLATFORM THEME BUILD ${SchedulerBinding.instance.window.platformBrightness}');
     if (_matchCupertinoSystemChromeBrightness) {
       if (isCupertino(context)) {
         SystemChrome.setSystemUIOverlayStyle(
