@@ -460,8 +460,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   createMaterialWidget(BuildContext context) {
     final dataRouter = materialRouter?.call(context, platform(context));
 
-    debugPrint('BUILD Material app');
-
     if (routeInformationParser != null ||
         dataRouter?.routeInformationParser != null ||
         routerConfig != null ||
