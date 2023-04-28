@@ -1,3 +1,9 @@
+## [3.3.2]
+
+#### (Flutter version support: v3.7.0 - 3.7.12)
+
+- REmoved debug print statement
+
 ## [3.3.1]
 
 #### (Flutter version support: v3.7.0 - 3.7.7)
