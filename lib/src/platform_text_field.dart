@@ -86,7 +86,6 @@ abstract class _BaseData {
     this.readOnly,
     this.showCursor,
     this.textAlignVertical,
-    this.toolbarOptions,
     this.onTap,
     this.enableSuggestions,
     this.smartDashesType,
@@ -155,7 +154,6 @@ abstract class _BaseData {
   final bool? showCursor;
   final TextAlignVertical? textAlignVertical;
   final GestureTapCallback? onTap;
-  final ToolbarOptions? toolbarOptions;
   final bool? enableSuggestions;
   final SmartDashesType? smartDashesType;
   final SmartQuotesType? smartQuotesType;
@@ -206,11 +204,6 @@ class MaterialTextFieldData extends _BaseData {
     super.readOnly,
     super.showCursor,
     super.textAlignVertical,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        super.toolbarOptions,
     super.enableSuggestions,
     super.smartDashesType,
     super.smartQuotesType,
@@ -277,11 +270,6 @@ class CupertinoTextFieldData extends _BaseData {
     super.readOnly,
     super.showCursor,
     super.textAlignVertical,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        super.toolbarOptions,
     super.onTap,
     super.enableSuggestions,
     super.smartDashesType,
@@ -363,7 +351,6 @@ class PlatformTextField
   final bool? readOnly;
   final bool? showCursor;
   final TextAlignVertical? textAlignVertical;
-  final ToolbarOptions? toolbarOptions;
 
   final Color? cursorColor;
   final Brightness? keyboardAppearance;
@@ -441,11 +428,6 @@ class PlatformTextField
     this.readOnly,
     this.showCursor,
     this.textAlignVertical,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        this.toolbarOptions,
     this.smartDashesType,
     this.smartQuotesType,
     this.selectionHeightStyle,
@@ -527,7 +509,6 @@ class PlatformTextField
       readOnly: data?.readOnly ?? readOnly ?? false,
       showCursor: data?.showCursor ?? showCursor,
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
-      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
@@ -558,6 +539,7 @@ class PlatformTextField
           data?.spellCheckConfiguration ?? spellCheckConfiguration,
       magnifierConfiguration:
           data?.magnifierConfiguration ?? magnifierConfiguration,
+      // toolbarOptions: Deprecated
     );
   }
 
@@ -625,7 +607,6 @@ class PlatformTextField
       readOnly: data?.readOnly ?? readOnly ?? false,
       showCursor: data?.showCursor ?? showCursor,
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
-      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
@@ -655,6 +636,7 @@ class PlatformTextField
           data?.spellCheckConfiguration ?? spellCheckConfiguration,
       magnifierConfiguration:
           data?.magnifierConfiguration ?? magnifierConfiguration,
+      // toolbarOptions: Deprecated
     );
   }
 

@@ -52,7 +52,6 @@ abstract class _BaseData {
     this.highContrastTheme,
     this.restorationScopeId,
     this.scrollBehavior,
-    this.useInheritedMediaQuery,
   });
 
   final Key? widgetKey;
@@ -84,7 +83,6 @@ abstract class _BaseData {
   final ThemeData? highContrastTheme;
   final String? restorationScopeId;
   final ScrollBehavior? scrollBehavior;
-  final bool? useInheritedMediaQuery;
 }
 
 abstract class _BaseRouterData {
@@ -119,7 +117,6 @@ abstract class _BaseRouterData {
     // ignore: unused_element
     this.restorationScopeId,
     this.scrollBehavior,
-    this.useInheritedMediaQuery,
   });
 
   final Key? widgetKey;
@@ -161,8 +158,6 @@ abstract class _BaseRouterData {
   final String? restorationScopeId;
 
   final ScrollBehavior? scrollBehavior;
-
-  final bool? useInheritedMediaQuery;
 }
 
 class MaterialAppData extends _BaseData {
@@ -194,7 +189,6 @@ class MaterialAppData extends _BaseData {
     super.onGenerateInitialRoutes,
     super.restorationScopeId,
     super.scrollBehavior,
-    super.useInheritedMediaQuery,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
@@ -238,7 +232,6 @@ class MaterialAppRouterData extends _BaseRouterData {
     super.actions,
     super.onGenerateInitialRoutes,
     super.scrollBehavior,
-    super.useInheritedMediaQuery,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
@@ -285,7 +278,6 @@ class CupertinoAppData extends _BaseData {
     super.showSemanticsDebugger,
     super.debugShowCheckedModeBanner,
     super.scrollBehavior,
-    super.useInheritedMediaQuery,
     this.theme,
   });
 
@@ -318,7 +310,6 @@ class CupertinoAppRouterData extends _BaseRouterData {
     super.routerConfig,
     super.backButtonDispatcher,
     super.scrollBehavior,
-    super.useInheritedMediaQuery,
     this.theme,
   });
 
@@ -376,8 +367,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
 
   final ScrollBehavior? scrollBehavior;
 
-  final bool? useInheritedMediaQuery;
-
   const PlatformApp({
     super.key,
     this.widgetKey,
@@ -407,7 +396,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.onGenerateInitialRoutes,
     this.restorationScopeId,
     this.scrollBehavior,
-    this.useInheritedMediaQuery,
     this.material,
     this.cupertino,
   })  : routeInformationProvider = null,
@@ -444,7 +432,6 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.actions,
     this.restorationScopeId,
     this.scrollBehavior,
-    this.useInheritedMediaQuery,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
@@ -531,12 +518,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             dataRouter?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: dataRouter?.scaffoldMessengerKey,
         scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
-        useInheritedMediaQuery: dataRouter?.useInheritedMediaQuery ??
-            useInheritedMediaQuery ??
-            false,
         themeAnimationCurve: dataRouter?.themeAnimationCurve ?? Curves.linear,
         themeAnimationDuration:
             dataRouter?.themeAnimationDuration ?? kThemeAnimationDuration,
+        // useInheritedMediaQuery: , Deprecated
       );
     } else {
       final data = material?.call(context, platform(context));
@@ -597,11 +582,10 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
         scaffoldMessengerKey: data?.scaffoldMessengerKey,
         scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
-        useInheritedMediaQuery:
-            data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
         themeAnimationCurve: data?.themeAnimationCurve ?? Curves.linear,
         themeAnimationDuration:
             data?.themeAnimationDuration ?? kThemeAnimationDuration,
+        // useInheritedMediaQuery: , Deprecated
       );
     }
   }
@@ -665,9 +649,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         restorationScopeId:
             dataRouter?.restorationScopeId ?? restorationScopeId,
         scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
-        useInheritedMediaQuery: dataRouter?.useInheritedMediaQuery ??
-            useInheritedMediaQuery ??
-            false,
+        // useInheritedMediaQuery: , Deprecated
       );
     } else {
       final data = cupertino?.call(context, platform(context));
@@ -717,8 +699,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
         scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
-        useInheritedMediaQuery:
-            data?.useInheritedMediaQuery ?? useInheritedMediaQuery ?? false,
+        // useInheritedMediaQuery: , Deprecated
       );
     }
   }
