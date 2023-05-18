@@ -44,29 +44,29 @@ abstract class _BaseData {
 }
 
 class MaterialDatePickerData extends _BaseData {
-  MaterialDatePickerData({
-    super.initialDate,
-    super.firstDate,
-    super.lastDate,
-    this.currentDate,
-    this.initialEntryMode,
-    this.selectableDayPredicate,
-    this.helpText,
-    this.cancelText,
-    this.confirmText,
-    this.locale,
-    this.useRootNavigator,
-    this.routeSettings,
-    this.textDirection,
-    this.builder,
-    this.initialDatePickerMode,
-    this.errorFormatText,
-    this.errorInvalidText,
-    this.fieldHintText,
-    this.fieldLabelText,
-    this.anchorPoint,
-    this.keyboardType,
-  });
+  MaterialDatePickerData(
+      {super.initialDate,
+      super.firstDate,
+      super.lastDate,
+      this.currentDate,
+      this.initialEntryMode,
+      this.selectableDayPredicate,
+      this.helpText,
+      this.cancelText,
+      this.confirmText,
+      this.locale,
+      this.useRootNavigator,
+      this.routeSettings,
+      this.textDirection,
+      this.builder,
+      this.initialDatePickerMode,
+      this.errorFormatText,
+      this.errorInvalidText,
+      this.fieldHintText,
+      this.fieldLabelText,
+      this.anchorPoint,
+      this.keyboardType,
+      this.onDatePickerModeChange});
 
   final DateTime? currentDate;
   final DatePickerEntryMode? initialEntryMode;
@@ -86,6 +86,7 @@ class MaterialDatePickerData extends _BaseData {
   final String? fieldLabelText;
   final Offset? anchorPoint;
   final TextInputType? keyboardType;
+  final ValueChanged<DatePickerEntryMode>? onDatePickerModeChange;
 }
 
 class CupertinoDatePickerData extends _BaseData {
@@ -104,6 +105,7 @@ class CupertinoDatePickerData extends _BaseData {
     this.backgroundColor,
     this.doneLabel,
     this.cancelLabel,
+    this.showDayOfWeek,
   });
 
   final Key? key;
@@ -117,6 +119,7 @@ class CupertinoDatePickerData extends _BaseData {
   final Color? backgroundColor;
   final String? doneLabel;
   final String? cancelLabel;
+  final bool? showDayOfWeek;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -153,6 +156,7 @@ Future<DateTime?> showPlatformDatePicker({
       cancelText: data?.cancelText,
       anchorPoint: data?.anchorPoint,
       keyboardType: data?.keyboardType,
+      onDatePickerModeChange: data?.onDatePickerModeChange,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -249,6 +253,7 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
             minimumYear: data?.minimumYear ?? 1,
             minuteInterval: data?.minuteInterval ?? 1,
             use24hFormat: data?.use24hFormat ?? false,
+            showDayOfWeek: data?.showDayOfWeek ?? false,
           ),
           Row(
             children: [

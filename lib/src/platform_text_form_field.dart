@@ -121,6 +121,8 @@ class MaterialTextFormFieldData extends _BaseData {
   final String? restorationId;
   final MouseCursor? mouseCursor;
   final TapRegionCallback? onTapOutside;
+  final TextMagnifierConfiguration? magnifierConfiguration;
+  final SpellCheckConfiguration? spellCheckConfiguration;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -176,6 +178,8 @@ class MaterialTextFormFieldData extends _BaseData {
     this.restorationId,
     this.mouseCursor,
     this.onTapOutside,
+    this.magnifierConfiguration,
+    this.spellCheckConfiguration,
   });
 }
 
@@ -430,6 +434,8 @@ class PlatformTextFormField
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
       onTapOutside: data?.onTapOutside,
+      magnifierConfiguration: data?.magnifierConfiguration,
+      spellCheckConfiguration: data?.spellCheckConfiguration,
       // toolbarOptions: , Deprecated
     );
   }

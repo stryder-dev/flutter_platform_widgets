@@ -55,6 +55,7 @@ class MaterialSwitchData extends _BaseData {
     this.trackColor,
     this.onFocusChange,
     this.thumbIcon,
+    this.trackOutlineColor,
   });
 
   final Color? activeTrackColor;
@@ -76,6 +77,7 @@ class MaterialSwitchData extends _BaseData {
   final MaterialStateProperty<Color?>? trackColor;
   final ValueChanged<bool>? onFocusChange;
   final MaterialStateProperty<Icon?>? thumbIcon;
+  final MaterialStateProperty<Color?>? trackOutlineColor;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -87,10 +89,14 @@ class CupertinoSwitchData extends _BaseData {
     super.dragStartBehavior,
     this.trackColor,
     this.thumbColor,
+    this.applyTheme,
+    this.focusColor,
   });
 
   final Color? trackColor;
   final Color? thumbColor;
+  final bool? applyTheme;
+  final Color? focusColor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -146,6 +152,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       trackColor: data?.trackColor,
       onFocusChange: data?.onFocusChange,
       thumbIcon: data?.thumbIcon,
+      trackOutlineColor: data?.trackOutlineColor,
     );
   }
 
@@ -163,6 +170,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
           DragStartBehavior.start,
       trackColor: data?.trackColor,
       thumbColor: data?.thumbColor,
+      applyTheme: data?.applyTheme,
+      focusColor: data?.focusColor,
     );
   }
 }

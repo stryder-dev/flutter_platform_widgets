@@ -93,6 +93,7 @@ class MaterialNavBarData extends _BaseData {
     this.useLegacyColorScheme = true,
     this.padding,
     this.surfaceTintColor,
+    this.shadowColor,
   }) : super(activeColor: fixedColor);
 
   final double? selectedFontSize;
@@ -117,6 +118,7 @@ class MaterialNavBarData extends _BaseData {
   final bool useLegacyColorScheme;
   final EdgeInsetsGeometry? padding;
   final Color? surfaceTintColor;
+  final Color? shadowColor;
 }
 
 class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
@@ -184,6 +186,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
       height: data?.height ?? height,
       padding: data?.padding,
       surfaceTintColor: data?.surfaceTintColor,
+      shadowColor: data?.shadowColor,
     );
   }
 

@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoListTile;
 import 'package:flutter/material.dart'
-    show ListTile, VisualDensity, ListTileStyle;
+    show ListTile, ListTileStyle, ListTileTitleAlignment, VisualDensity;
 import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
@@ -65,6 +65,10 @@ class MaterialListTileData extends _BaseData {
     this.horizontalTitleGap,
     this.minVerticalPadding,
     this.minLeadingWidth,
+    this.leadingAndTrailingTextStyle,
+    this.subtitleTextStyle,
+    this.titleAlignment,
+    this.titleTextStyle,
   });
 
   final bool? isThreeLine;
@@ -92,6 +96,10 @@ class MaterialListTileData extends _BaseData {
   final double? horizontalTitleGap;
   final double? minVerticalPadding;
   final double? minLeadingWidth;
+  final TextStyle? leadingAndTrailingTextStyle;
+  final TextStyle? subtitleTextStyle;
+  final ListTileTitleAlignment? titleAlignment;
+  final TextStyle? titleTextStyle;
 }
 
 class CupertinoListTileData extends _BaseData {
@@ -176,6 +184,10 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
       textColor: data?.textColor,
       tileColor: data?.tileColor,
       visualDensity: data?.visualDensity,
+      leadingAndTrailingTextStyle: data?.leadingAndTrailingTextStyle,
+      subtitleTextStyle: data?.subtitleTextStyle,
+      titleAlignment: data?.titleAlignment,
+      titleTextStyle: data?.titleTextStyle,
     );
   }
 
