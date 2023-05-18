@@ -97,7 +97,7 @@ class _PlatformThemeState extends State<PlatformTheme>
 
   bool get isDark {
     final platformBrightness =
-        SchedulerBinding.instance.window.platformBrightness;
+        View.of(context).platformDispatcher.platformBrightness;
     return themeMode == ThemeMode.system
         ? platformBrightness == Brightness.dark
         : themeMode == ThemeMode.dark;
@@ -105,8 +105,6 @@ class _PlatformThemeState extends State<PlatformTheme>
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'PLATFORM THEME BUILD ${SchedulerBinding.instance.window.platformBrightness}');
     if (_matchCupertinoSystemChromeBrightness) {
       if (isCupertino(context)) {
         SystemChrome.setSystemUIOverlayStyle(
