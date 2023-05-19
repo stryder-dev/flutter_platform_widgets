@@ -583,7 +583,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
                 _getMaterialLightThemeData(context) ??
                 Theme.of(context))
             .copyWith(platform: TargetPlatform.android),
-        darkTheme: (dataRouter?.darkTheme ?? _getMaterialDarkThemeData(context))
+        darkTheme: (data?.darkTheme ?? _getMaterialDarkThemeData(context))
             ?.copyWith(platform: TargetPlatform.android),
         themeMode: data?.themeMode ??
             _getMaterialThemeMode(context) ??
