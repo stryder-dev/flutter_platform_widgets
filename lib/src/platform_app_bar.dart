@@ -72,6 +72,8 @@ class MaterialAppBarData extends _BaseData {
     this.scrolledUnderElevation,
     this.surfaceTintColor,
     this.notificationPredicate,
+    this.clipBehavior,
+    this.forceMaterialTransparency,
   });
 
   final List<Widget>? actions;
@@ -98,6 +100,8 @@ class MaterialAppBarData extends _BaseData {
   final double? scrolledUnderElevation;
   final Color? surfaceTintColor;
   final ScrollNotificationPredicate? notificationPredicate;
+  final Clip? clipBehavior;
+  final bool? forceMaterialTransparency;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -193,6 +197,8 @@ class PlatformAppBar
       surfaceTintColor: data?.surfaceTintColor,
       notificationPredicate:
           data?.notificationPredicate ?? defaultScrollNotificationPredicate,
+      clipBehavior: data?.clipBehavior,
+      forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
       // deprecated...
       // brightness
       // textTheme

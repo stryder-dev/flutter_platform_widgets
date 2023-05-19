@@ -31,7 +31,6 @@ abstract class _BaseData {
     this.textAlignVertical,
     this.autofocus,
     this.readOnly,
-    this.toolbarOptions,
     this.showCursor,
     this.obscuringCharacter,
     this.obscureText,
@@ -79,7 +78,6 @@ abstract class _BaseData {
   final TextAlignVertical? textAlignVertical;
   final bool? autofocus;
   final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
   final bool? showCursor;
   final String? obscuringCharacter;
   final bool? obscureText;
@@ -123,6 +121,8 @@ class MaterialTextFormFieldData extends _BaseData {
   final String? restorationId;
   final MouseCursor? mouseCursor;
   final TapRegionCallback? onTapOutside;
+  final TextMagnifierConfiguration? magnifierConfiguration;
+  final SpellCheckConfiguration? spellCheckConfiguration;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -139,11 +139,6 @@ class MaterialTextFormFieldData extends _BaseData {
     super.textAlignVertical,
     super.autofocus,
     super.readOnly,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        super.toolbarOptions,
     super.showCursor,
     super.obscuringCharacter,
     super.obscureText,
@@ -183,6 +178,8 @@ class MaterialTextFormFieldData extends _BaseData {
     this.restorationId,
     this.mouseCursor,
     this.onTapOutside,
+    this.magnifierConfiguration,
+    this.spellCheckConfiguration,
   });
 }
 
@@ -208,11 +205,6 @@ class CupertinoTextFormFieldData extends _BaseData {
     super.textAlignVertical,
     super.autofocus,
     super.readOnly,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        super.toolbarOptions,
     super.showCursor,
     super.obscuringCharacter,
     super.obscureText,
@@ -267,7 +259,6 @@ class PlatformTextFormField
   final TextAlignVertical? textAlignVertical;
   final bool? autofocus;
   final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
   final bool? showCursor;
   final String? obscuringCharacter;
   final bool? obscureText;
@@ -333,11 +324,6 @@ class PlatformTextFormField
     this.textAlignVertical,
     this.autofocus,
     this.readOnly,
-    @Deprecated(
-      'Use `contextMenuBuilder` instead. '
-      'This feature was deprecated after v3.3.0-0.5.pre.',
-    )
-        this.toolbarOptions,
     this.showCursor,
     this.obscuringCharacter,
     this.obscureText,
@@ -403,7 +389,6 @@ class PlatformTextFormField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       autofocus: data?.autofocus ?? autofocus ?? false,
       readOnly: data?.readOnly ?? readOnly ?? false,
-      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       showCursor: data?.showCursor ?? showCursor,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
       obscureText: data?.obscureText ?? obscureText ?? false,
@@ -449,6 +434,9 @@ class PlatformTextFormField
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
       onTapOutside: data?.onTapOutside,
+      magnifierConfiguration: data?.magnifierConfiguration,
+      spellCheckConfiguration: data?.spellCheckConfiguration,
+      // toolbarOptions: , Deprecated
     );
   }
 
@@ -473,7 +461,6 @@ class PlatformTextFormField
       textAlignVertical: data?.textAlignVertical ?? textAlignVertical,
       autofocus: data?.autofocus ?? autofocus ?? false,
       readOnly: data?.readOnly ?? readOnly ?? false,
-      toolbarOptions: data?.toolbarOptions ?? toolbarOptions,
       showCursor: data?.showCursor ?? showCursor,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
       obscureText: data?.obscureText ?? obscureText ?? false,
@@ -520,6 +507,7 @@ class PlatformTextFormField
       contextMenuBuilder: data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultCupertinoContextMenuBuilder,
+      // toolbarOptions: , Deprecated
     );
   }
 

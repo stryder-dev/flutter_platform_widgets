@@ -1,3 +1,11 @@
+## [4.0.0]
+
+#### (Flutter version support: v3.10.0)
+
+- Upgrade to flutter version 3.10.0 and sets the Dart min value to 3.0
+- Adds all the flutter 3.10 additional properties for platform widgets
+- Remove deprecated properties.
+
 ## [3.3.3]
 
 #### (Flutter version support: v3.7.0 - 3.7.12)
@@ -8,7 +16,7 @@
 
 #### (Flutter version support: v3.7.0 - 3.7.12)
 
-- REmoved debug print statement
+- Removed debug print statement
 
 ## [3.3.1]
 

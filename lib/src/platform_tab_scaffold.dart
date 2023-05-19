@@ -67,6 +67,7 @@ class MaterialTabScaffoldData extends _BaseData {
     this.onDrawerChanged,
     this.onEndDrawerChanged,
     this.persistentFooterAlignment,
+    this.height,
   });
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
@@ -94,6 +95,7 @@ class MaterialTabScaffoldData extends _BaseData {
   final DrawerCallback? onDrawerChanged;
   final DrawerCallback? onEndDrawerChanged;
   final AlignmentDirectional? persistentFooterAlignment;
+  final double? height;
 }
 
 class CupertinoTabViewData {
@@ -129,6 +131,7 @@ class CupertinoTabScaffoldData extends _BaseData {
     this.controller,
     this.restorationId,
     this.restorationScopeIdTabView,
+    this.navBarHeight,
   });
 
   final List<BottomNavigationBarItem>? items;
@@ -146,6 +149,7 @@ class CupertinoTabScaffoldData extends _BaseData {
   final bool? useCupertinoTabView;
   final String? restorationId;
   final String? restorationScopeIdTabView;
+  final double? navBarHeight;
 }
 
 class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
@@ -177,6 +181,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       appBarBuilder;
 
   final String? restorationId;
+  final double? navBarHeight;
 
   PlatformTabScaffold({
     super.key,
@@ -191,6 +196,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.iosContentPadding = false,
     this.iosContentBottomPadding = false,
     this.restorationId,
+    this.navBarHeight,
     this.material,
     this.materialBuilder,
     this.materialTabs,
@@ -247,6 +253,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
         controller.index = index;
         itemChanged?.call(index);
       },
+      height: data?.height ?? navBarHeight,
     );
     final tabBar = platformNavBar.createMaterialWidget(context);
 
@@ -329,6 +336,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       currentIndex: controller.index,
       itemChanged: itemChanged,
       cupertino: cupertinoTabs,
+      height: data?.navBarHeight ?? navBarHeight,
       // key: Not used ignore
       // widgetKey: Not used ignore
       // material: Not used ignore
