@@ -5,6 +5,7 @@
 - Upgrade to flutter version 3.10.0 and sets the Dart min value to 3.0
 - Adds all the flutter 3.10 additional properties for platform widgets
 - Remove deprecated properties.
+- PlatformSearchBar added (thanks bookshiyi)
 
 ## [3.3.3]
 

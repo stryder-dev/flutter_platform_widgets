@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart'
         OverlayVisibilityMode,
         CupertinoIcons;
 import 'package:flutter/material.dart'
-    show MaterialStateProperty, SearchBar, SearchBarTheme, Theme;
+    show MaterialStateProperty, SearchBar, Theme;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -82,8 +82,6 @@ class MaterialSearchBarData extends _BaseData {
   final MaterialStateProperty<Color?>? overlayColor;
   final MaterialStateProperty<BorderSide?>? side;
   final MaterialStateProperty<OutlinedBorder?>? shape;
-  // final MaterialStateProperty<TextStyle?>? textStyle;
-  // final MaterialStateProperty<TextStyle?>? hintStyle;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -102,9 +100,6 @@ class CupertinoSearchBarData extends _BaseData {
     super.textStyle,
     //Cupertino
     this.onSubmitted,
-    // this.style,
-    // this.placeholder,
-    // this.placeholderStyle,
     this.decoration,
     this.borderRadius,
     this.keyboardType,
@@ -136,9 +131,6 @@ class CupertinoSearchBarData extends _BaseData {
           'borderRadius)"',
         );
   final ValueChanged<String>? onSubmitted;
-  // final TextStyle? style;
-  // final String? placeholder;
-  // final TextStyle? placeholderStyle;
   final BoxDecoration? decoration;
   final BorderRadius? borderRadius;
   final TextInputType? keyboardType;
