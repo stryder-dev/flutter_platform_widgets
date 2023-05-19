@@ -1,3 +1,9 @@
+## [3.3.3]
+
+#### (Flutter version support: v3.7.0 - 3.7.12)
+
+- Added missing parameters (thanks nikeorever)
+
 ## [3.3.2]
 
 #### (Flutter version support: v3.7.0 - 3.7.12)
