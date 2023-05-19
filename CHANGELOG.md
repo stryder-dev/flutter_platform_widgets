@@ -1,3 +1,9 @@
+## [3.3.4]
+
+#### (Flutter version support: v3.7.0 - 3.7.12)
+
+-- Fix for PlatformApp not using the correct theme data in dark mode
+
 ## [3.3.3]
 
 #### (Flutter version support: v3.7.0 - 3.7.12)
