@@ -75,7 +75,7 @@ MIT
 
 # Contributors
 
-Special thanks for everyone that have contributed to this project...
+Special thanks for everyone that have contributed to this project over the last 5 years...
 
 <a href="https://github.com/stryder-dev/flutter_platform_widgets/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=stryder-dev/flutter_platform_widgets" />
