@@ -45,12 +45,21 @@ class _PlatformThemeState extends State<PlatformTheme>
 
   void _init() {
     _themeMode = widget.themeMode;
-    _materialLightTheme = widget.materialLightTheme;
-    _materialDarkTheme = widget.materialDarkTheme;
+    _materialLightTheme = _useMaterial3Light == null
+        ? widget.materialLightTheme
+        : widget.materialLightTheme?.copyWith(useMaterial3: _useMaterial3Light);
+    _materialDarkTheme = _useMaterial3Dark == null
+        ? widget.materialDarkTheme
+        : widget.materialDarkTheme?.copyWith(useMaterial3: _useMaterial3Dark);
     _cupertinoLightTheme = widget.cupertinoLightTheme;
     _cupertinoDarkTheme = widget.cupertinoDarkTheme;
     _matchCupertinoSystemChromeBrightness =
         widget.matchCupertinoSystemChromeBrightness;
+
+    _useMaterial3Light =
+        _useMaterial3Light ?? widget.materialLightTheme?.useMaterial3;
+    _useMaterial3Dark =
+        _useMaterial3Dark ?? widget.materialDarkTheme?.useMaterial3;
   }
 
   @override
@@ -102,6 +111,48 @@ class _PlatformThemeState extends State<PlatformTheme>
         : themeMode == ThemeMode.dark;
   }
 
+  bool? _useMaterial3Light;
+  bool? _useMaterial3Dark;
+  void changeToMaterial3({bool applyToBothDarkAndLightTheme = false}) =>
+      _setMaterialThemeType(
+          useMaterial3: true,
+          applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
+
+  void changeToMaterial2({bool applyToBothDarkAndLightTheme = false}) =>
+      _setMaterialThemeType(
+          useMaterial3: false,
+          applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
+
+  void resetMaterial({bool applyToBothDarkAndLightTheme = false}) {
+    _setMaterialThemeType(
+        useMaterial3: null,
+        applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
+  }
+
+  void _setMaterialThemeType({
+    required bool? useMaterial3,
+    bool applyToBothDarkAndLightTheme = false,
+  }) {
+    setState(() {
+      if (applyToBothDarkAndLightTheme) {
+        _useMaterial3Dark = _useMaterial3Light = useMaterial3;
+        _materialDarkTheme =
+            _materialDarkTheme?.copyWith(useMaterial3: useMaterial3);
+        _materialLightTheme =
+            _materialLightTheme?.copyWith(useMaterial3: useMaterial3);
+      } else {
+        isDark
+            ? _useMaterial3Dark = useMaterial3
+            : _useMaterial3Light = useMaterial3;
+        isDark
+            ? _materialDarkTheme =
+                _materialDarkTheme?.copyWith(useMaterial3: useMaterial3)
+            : _materialLightTheme =
+                _materialLightTheme?.copyWith(useMaterial3: useMaterial3);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_matchCupertinoSystemChromeBrightness) {
@@ -141,4 +192,17 @@ class PlatformThemeState {
 
   ThemeData? get materialLightTheme => _parent._materialLightTheme;
   ThemeData? get materialDarkTheme => _parent._materialDarkTheme;
+
+  void changeToMaterial3({bool applyToBothDarkAndLightTheme = false}) =>
+      _parent.changeToMaterial3(
+          applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
+
+  void changeToMaterial2({bool applyToBothDarkAndLightTheme = false}) =>
+      _parent.changeToMaterial2(
+          applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
+
+  void resetToMaterialDefaultVersion(
+          {bool applyToBothDarkAndLightTheme = false}) =>
+      _parent.resetMaterial(
+          applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
 }
