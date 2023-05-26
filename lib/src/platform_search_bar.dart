@@ -10,8 +10,7 @@ import 'package:flutter/cupertino.dart'
         CupertinoColors,
         OverlayVisibilityMode,
         CupertinoIcons;
-import 'package:flutter/material.dart'
-    show MaterialStateProperty, SearchBar, Theme;
+import 'package:flutter/material.dart' show MaterialStateProperty, SearchBar;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -19,31 +18,17 @@ import 'widget_base.dart';
 
 abstract class _BaseData {
   _BaseData({
-    //Common
     this.widgetKey,
     this.controller,
     this.focusNode,
     this.onTap,
     this.onChanged,
-    this.backgroundColor,
-    this.padding,
-    //Mixed
-    this.hintText, //Cupertino: placeholder
-    this.hintStyle, //Cupertino: placeholderStyle
-    this.textStyle, //Cupertino: style
   });
-  //Common
   final Key? widgetKey;
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final void Function()? onTap;
   final ValueChanged<String>? onChanged;
-  final Color? backgroundColor;
-  final EdgeInsetsGeometry? padding;
-  //Mixed
-  final String? hintText;
-  final TextStyle? hintStyle;
-  final TextStyle? textStyle;
 }
 
 class MaterialSearchBarData extends _BaseData {
@@ -54,12 +39,6 @@ class MaterialSearchBarData extends _BaseData {
     super.focusNode,
     super.onTap,
     super.onChanged,
-    super.backgroundColor,
-    super.padding,
-    // Mixed
-    super.hintText,
-    super.hintStyle,
-    super.textStyle,
     //Material
     this.leading,
     this.trailing,
@@ -70,6 +49,11 @@ class MaterialSearchBarData extends _BaseData {
     this.overlayColor,
     this.side,
     this.shape,
+    this.padding,
+    this.backgroundColor,
+    this.hintStyle,
+    this.textStyle,
+    this.hintText,
   });
 
   // final String? hintText;
@@ -82,6 +66,11 @@ class MaterialSearchBarData extends _BaseData {
   final MaterialStateProperty<Color?>? overlayColor;
   final MaterialStateProperty<BorderSide?>? side;
   final MaterialStateProperty<OutlinedBorder?>? shape;
+  final MaterialStateProperty<EdgeInsetsGeometry?>? padding;
+  final MaterialStateProperty<Color?>? backgroundColor;
+  final MaterialStateProperty<TextStyle?>? hintStyle;
+  final MaterialStateProperty<TextStyle?>? textStyle;
+  final String? hintText;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -92,12 +81,7 @@ class CupertinoSearchBarData extends _BaseData {
     super.focusNode,
     super.onTap,
     super.onChanged,
-    super.backgroundColor,
-    super.padding,
-    //Mixed
-    super.hintText,
-    super.hintStyle,
-    super.textStyle,
+
     //Cupertino
     this.onSubmitted,
     this.decoration,
@@ -118,6 +102,11 @@ class CupertinoSearchBarData extends _BaseData {
     this.autofocus = false,
     this.autocorrect = true,
     this.enabled,
+    this.padding,
+    this.backgroundColor,
+    this.placeholderStyle,
+    this.style,
+    this.placeholder,
   })  : assert(
           !((decoration != null) && (backgroundColor != null)),
           'Cannot provide both a background color and a decoration\n'
@@ -150,6 +139,11 @@ class CupertinoSearchBarData extends _BaseData {
   final bool autofocus;
   final bool autocorrect;
   final bool? enabled;
+  final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+  final TextStyle? placeholderStyle;
+  final TextStyle? style;
+  final String? placeholder;
 }
 
 class PlatformSearchBar
@@ -162,7 +156,6 @@ class PlatformSearchBar
   final void Function()? onTap;
   final ValueChanged<String>? onChanged;
   final Color? backgroundColor;
-  final EdgeInsetsGeometry? padding;
 
   //Mixed
   final String? hintText;
@@ -182,7 +175,6 @@ class PlatformSearchBar
     this.onTap,
     this.onChanged,
     this.backgroundColor,
-    this.padding,
     //Mixed
     this.hintText,
     this.hintStyle,
@@ -195,6 +187,9 @@ class PlatformSearchBar
   @override
   SearchBar createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
+    final backgroundColor = this.backgroundColor;
+    final hintStyle = this.hintStyle;
+    final textStyle = this.textStyle;
     return SearchBar(
       //Common
       key: data?.widgetKey ?? widgetKey,
@@ -202,25 +197,21 @@ class PlatformSearchBar
       focusNode: data?.focusNode ?? focusNode,
       onTap: data?.onTap ?? onTap,
       onChanged: data?.onChanged ?? onChanged,
-      backgroundColor: (data?.backgroundColor != null)
-          ? MaterialStateProperty.all<Color>(data!.backgroundColor!)
-          : (backgroundColor != null)
-              ? MaterialStateProperty.all<Color>(backgroundColor!)
-              : Theme.of(context).searchBarTheme.backgroundColor,
-      //TODO:The  same padding on material is bigger than cupertino
-      padding: (data?.padding != null)
-          ? MaterialStateProperty.all<EdgeInsetsGeometry>(data!.padding!)
-          : (padding != null)
-              ? MaterialStateProperty.all<EdgeInsetsGeometry>(padding!)
-              : Theme.of(context).searchBarTheme.padding,
-      //Mixed
+
+      backgroundColor: data?.backgroundColor ??
+          (backgroundColor != null
+              ? MaterialStateProperty.all<Color>(backgroundColor)
+              : null),
       hintText: data?.hintText ?? hintText,
-      hintStyle: MaterialStateProperty.all<TextStyle>(
-        data?.hintStyle ?? hintStyle ?? TextStyle(),
-      ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
-        data?.textStyle ?? textStyle ?? TextStyle(),
-      ),
+      hintStyle: data?.hintStyle ??
+          (hintStyle != null
+              ? MaterialStateProperty.all<TextStyle>(hintStyle)
+              : null),
+      textStyle: data?.textStyle ??
+          (textStyle != null
+              ? MaterialStateProperty.all<TextStyle>(textStyle)
+              : null),
+
       //Material only
       leading: data?.leading,
       trailing: data?.trailing,
@@ -231,6 +222,7 @@ class PlatformSearchBar
       overlayColor: data?.overlayColor,
       side: data?.side,
       shape: data?.shape,
+      padding: data?.padding,
     );
   }
 
@@ -245,13 +237,12 @@ class PlatformSearchBar
       onTap: data?.onTap ?? onTap,
       onChanged: data?.onChanged ?? onChanged,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
-      padding: data?.padding ??
-          padding ??
-          const EdgeInsetsDirectional.fromSTEB(5.5, 8, 5.5, 8),
-      //Mixed
-      placeholder: data?.hintText ?? hintText,
-      placeholderStyle: data?.hintStyle ?? hintStyle,
-      style: data?.textStyle ?? textStyle,
+      padding:
+          data?.padding ?? const EdgeInsetsDirectional.fromSTEB(5.5, 8, 5.5, 8),
+      placeholder: data?.placeholder ?? hintText,
+      placeholderStyle: data?.placeholderStyle ?? hintStyle,
+      style: data?.style ?? textStyle,
+
       //Cupertino only
       onSubmitted: data?.onSubmitted,
       decoration: data?.decoration,

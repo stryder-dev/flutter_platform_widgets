@@ -64,16 +64,13 @@ class PlatformPage extends StatelessWidget {
           Divider(thickness: 10),
           // ! PlatformSearchBar
           PlatformWidgetExample(
-            title: 'PlatformSearchBar',
+            title:
+                'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
             builder: (context, platform) => PlatformSearchBar(
               onChanged: (value) =>
                   print('${platform.text} SearchBar changed: $value'),
               onTap: () => print('${platform.text} SearchBar tapped'),
               hintText: '${platform.text} SearchBar',
-              // backgroundColor: Colors.red,
-              // padding: const EdgeInsets.all(10),
-              // hintStyle: TextStyle(color: Colors.green),
-              // textStyle: TextStyle(color: Colors.blue),
             ),
           ),
           // ! PlatformListTile
