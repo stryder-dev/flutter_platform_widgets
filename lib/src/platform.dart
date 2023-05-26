@@ -164,10 +164,6 @@ Future<T?> showPlatformDialog<T>({
   bool? barrierDismissible,
   RouteSettings? routeSettings,
   bool useRootNavigator = true,
-  @Deprecated('Use material.useSafeArea instead')
-      bool materialUseSafeArea = true,
-  @Deprecated('Use material.barrierColor instead')
-      Color? materialBarrierColor = Colors.black54,
   String? barrierLabel,
   Offset? anchorPoint,
 }) {
@@ -181,8 +177,8 @@ Future<T?> showPlatformDialog<T>({
           material?.barrierDismissible ?? barrierDismissible ?? true,
       routeSettings: material?.routeSettings ?? routeSettings,
       useRootNavigator: material?.useRootNavigator ?? useRootNavigator,
-      useSafeArea: material?.useSafeArea ?? materialUseSafeArea,
-      barrierColor: material?.barrierColor ?? materialBarrierColor,
+      useSafeArea: material?.useSafeArea ?? true,
+      barrierColor: material?.barrierColor ?? Colors.black54,
       barrierLabel: material?.barrierLabel ?? barrierLabel,
       anchorPoint: material?.anchorPoint ?? anchorPoint,
     );
