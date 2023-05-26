@@ -33,6 +33,22 @@ class PlatformPage extends StatelessWidget {
                       : p.changeToMaterialPlatform();
                 }),
           ),
+          if (isMaterial(context))
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformElevatedButton(
+                  child: PlatformText(
+                      'Change to Material${Theme.of(context).useMaterial3 ? "" : " 3"}'),
+                  onPressed: () {
+                    final isMaterial3 = Theme.of(context).useMaterial3;
+
+                    isMaterial3
+                        ? PlatformTheme.of(context)?.changeToMaterial2(
+                            applyToBothDarkAndLightTheme: true)
+                        : PlatformTheme.of(context)?.changeToMaterial3(
+                            applyToBothDarkAndLightTheme: true);
+                  }),
+            ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
@@ -415,6 +431,7 @@ Widget _androidPopupContent(BuildContext context, String text) {
   return Container(
     padding: const EdgeInsets.all(16),
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         GestureDetector(
           child: Container(
