@@ -5,7 +5,10 @@
 - Upgrade to flutter version 3.10.0 and sets the Dart min value to 3.0
 - Adds all the flutter 3.10 additional properties for platform widgets
 - Remove deprecated properties.
-- PlatformSearchBar added (thanks bookshiyi)
+- PlatformSearchBar added (thanks bookshiyi) !! Note the material version of the SearchBar is only a material3 widget
+- Added ontp `PlatformTheme` the ability to switch between material2 and material3
+- Fixed PlatformAlertDialog material padding of the action buttons.
+- Fixed the `PlatformApp.router` properties as they were not setting the super props correctly (thanks nikeorever)
 
 ## [3.3.4]
 
