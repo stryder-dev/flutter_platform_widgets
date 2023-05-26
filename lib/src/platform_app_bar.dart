@@ -199,10 +199,6 @@ class PlatformAppBar
           data?.notificationPredicate ?? defaultScrollNotificationPredicate,
       clipBehavior: data?.clipBehavior,
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
-      // deprecated...
-      // brightness
-      // textTheme
-      // backwardsCompatibility
     );
   }
 

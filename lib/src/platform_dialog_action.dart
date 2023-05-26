@@ -134,7 +134,6 @@ class PlatformDialogAction
 
   final PlatformBuilder<MaterialDialogActionData>? material;
 
-  final PlatformBuilder<MaterialDialogFlatActionData>? materialFlat;
   final PlatformBuilder<CupertinoDialogActionData>? cupertino;
 
   PlatformDialogAction({
@@ -143,7 +142,6 @@ class PlatformDialogAction
     this.child,
     this.onPressed,
     this.material,
-    @Deprecated('materialFlat is deprecated. Use material') this.materialFlat,
     this.cupertino,
   });
 
