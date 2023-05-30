@@ -131,8 +131,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
       key: data?.widgetKey ?? widgetKey,
       actions: data?.actions ?? actions,
       content: data?.content ?? content,
-      contentPadding: data?.contentPadding ??
-          const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+      contentPadding: data?.contentPadding,
       semanticLabel: data?.semanticLabel,
       title: data?.title ?? title,
       titlePadding: data?.titlePadding,
@@ -143,7 +142,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
       titleTextStyle: data?.titleTextStyle,
       scrollable: data?.scrollable ?? false,
       actionsOverflowDirection: data?.actionsOverflowDirection,
-      actionsPadding: data?.actionsPadding ?? EdgeInsets.zero,
+      actionsPadding: data?.actionsPadding,
       buttonPadding: data?.buttonPadding,
       actionsOverflowButtonSpacing: data?.actionsOverflowButtonSpacing,
       clipBehavior: data?.clipBehavior ?? Clip.none,
