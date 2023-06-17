@@ -106,6 +106,29 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+           // ! PlatformDropdownButton
+           PlatformWidgetExample(
+             title: 'PlatformDropdownButton',
+             builder: (_, platform) => PlatformDropdownButton(
+               items: [
+                 DropdownMenuItem(
+                   value: 'One',
+                   child: Text('One'),
+                 ),
+                 DropdownMenuItem(
+                   value: 'Two',
+                   child: Text('Two'),
+                 ),
+                 DropdownMenuItem(
+                   value: 'Three',
+                   child: Text('Three'),
+                 ),
+               ],
+               onChanged: (v) => {
+                 print('${platform.text} Dropdown changed: $v'),
+               },
+             ),
+           ),
           // ! PlatformElevatedButton
           PlatformWidgetExample(
             title: 'PlatformElevatedButton',
