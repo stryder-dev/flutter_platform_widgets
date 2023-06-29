@@ -17,7 +17,7 @@ abstract class _BaseData {
     this.widgetKey,
     this.value,
     this.tristate = false,
-    required this.onChanged,
+    this.onChanged,
     this.activeColor,
     this.checkColor,
     this.focusColor,
@@ -25,7 +25,7 @@ abstract class _BaseData {
     this.autofocus = false,
     this.shape,
     this.side,
-  }) : assert(tristate || value != null);
+  });
   final Key? widgetKey;
   final bool? value;
   final bool tristate;
@@ -45,7 +45,7 @@ class MaterialCheckboxData extends _BaseData {
     super.widgetKey,
     super.value,
     super.tristate = false,
-    required super.onChanged,
+    super.onChanged,
     super.activeColor,
     super.checkColor,
     super.focusColor,
@@ -80,7 +80,7 @@ class CupertinoCheckboxData extends _BaseData {
     super.widgetKey,
     super.value,
     super.tristate = false,
-    required super.onChanged,
+    super.onChanged,
     super.activeColor,
     super.checkColor,
     super.focusColor,
@@ -118,9 +118,9 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     //Common
     super.key,
     this.widgetKey,
+    required this.onChanged,
     this.value,
     this.tristate = false,
-    required this.onChanged,
     this.activeColor,
     this.checkColor,
     this.focusColor,
@@ -131,16 +131,19 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     //Platform
     this.material,
     this.cupertino,
-  }) : assert(tristate || value != null);
+  });
 
   @override
   Checkbox createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
+    final value = data?.value ?? this.value;
+    final tristate = data?.tristate ?? this.tristate;
+    assert(tristate || value != null);
     return Checkbox(
       //Common
       key: data?.widgetKey ?? widgetKey,
-      value: data?.value ?? value,
-      tristate: data?.tristate ?? tristate,
+      value: value,
+      tristate: tristate,
       onChanged: data?.onChanged ?? onChanged,
       activeColor: data?.activeColor ?? activeColor,
       checkColor: data?.checkColor ?? checkColor,
@@ -164,11 +167,14 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
   @override
   CupertinoCheckbox createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
+    final value = data?.value ?? this.value;
+    final tristate = data?.tristate ?? this.tristate;
+    assert(tristate || value != null);
     return CupertinoCheckbox(
       //Common
       key: data?.widgetKey ?? widgetKey,
-      value: data?.value ?? value,
-      tristate: data?.tristate ?? tristate,
+      value: value,
+      tristate: tristate,
       onChanged: data?.onChanged ?? onChanged,
       activeColor: data?.activeColor ?? activeColor,
       checkColor: data?.checkColor ?? checkColor,
