@@ -18,23 +18,23 @@ abstract class _BaseData<T> {
     this.value,
     this.groupValue,
     this.onChanged,
-    this.toggleable = false,
+    this.toggleable,
     this.activeColor,
     this.fillColor,
     this.focusColor,
     this.focusNode,
-    this.autofocus = false,
+    this.autofocus,
   });
   final Key? widgetKey;
   final T? value;
   final T? groupValue;
   final ValueChanged<dynamic>? onChanged;
-  final bool toggleable;
+  final bool? toggleable;
   final Color? activeColor;
   final Color? fillColor;
   final Color? focusColor;
   final FocusNode? focusNode;
-  final bool autofocus;
+  final bool? autofocus;
 }
 
 class MaterialRadioData extends _BaseData {
@@ -44,12 +44,12 @@ class MaterialRadioData extends _BaseData {
     super.value,
     super.groupValue,
     super.onChanged,
-    super.toggleable = false,
+    super.toggleable,
     super.activeColor,
     super.fillColor,
     super.focusColor,
     super.focusNode,
-    super.autofocus = false,
+    super.autofocus,
     //Material
     this.mouseCursor,
     this.hoverColor,
@@ -73,12 +73,12 @@ class CupertinoRadioData extends _BaseData {
     super.value,
     super.groupValue,
     super.onChanged,
-    super.toggleable = false,
+    super.toggleable,
     super.activeColor,
     super.fillColor,
     super.focusColor,
     super.focusNode,
-    super.autofocus = false,
+    super.autofocus,
     //Cupertino
     this.inactiveColor,
   });
