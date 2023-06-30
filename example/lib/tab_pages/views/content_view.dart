@@ -19,7 +19,6 @@ class _ContentViewState extends State<ContentView> {
 
   @override
   Widget build(BuildContext context) {
-    print('ContentView::build');
     return Center(
       child: Column(
         children: [
