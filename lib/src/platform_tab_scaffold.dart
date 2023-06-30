@@ -225,12 +225,12 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     final controller = data?.controller ?? tabController?._material(context);
 
     assert(controller != null, '''MaterialTabController cannot be null. 
-    Either have material: (_, __) => MaterialTabScaffoldData(cntroller: controller) or 
+    Either have material: (_, __) => MaterialTabScaffoldData(controller: controller) or 
     PlatformTabScaffold(tabController: controller) ''');
 
     return AnimatedBuilder(
       animation: controller!,
-      builder: (context, _) => _buildAndroid(
+      builder: (context, _) => _buildMaterial(
         context,
         materialBuilder?.call(context, platform(context), controller.index) ??
             data,
@@ -239,7 +239,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     );
   }
 
-  Widget _buildAndroid(
+  Widget _buildMaterial(
     BuildContext context,
     MaterialTabScaffoldData? data,
     MaterialTabController controller,
