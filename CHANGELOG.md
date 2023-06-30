@@ -1,4 +1,4 @@
-## [4.0.0-beta.1]
+## [4.0.0-beta.2]
 
 #### (Flutter version support: v3.10.0)
 
@@ -8,6 +8,7 @@
 - PlatformSearchBar added (thanks bookshiyi) !! Note the material version of the SearchBar is only a material3 widget !!
 - Added to `PlatformTheme` the ability to switch between material2 and material3
 - Fixed the `PlatformApp.router` properties as they were not setting the super props correctly (thanks nikeorever)
+- Added NavigationBar to `PlatformTabScaffold` when the theme is set to material3 `Theme.of(context).useMaterial3`
 
 ## [3.3.5]
 
