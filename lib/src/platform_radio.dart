@@ -20,7 +20,6 @@ abstract class _BaseData<T> {
     this.onChanged,
     this.toggleable,
     this.activeColor,
-    this.fillColor,
     this.focusColor,
     this.focusNode,
     this.autofocus,
@@ -31,7 +30,7 @@ abstract class _BaseData<T> {
   final ValueChanged<dynamic>? onChanged;
   final bool? toggleable;
   final Color? activeColor;
-  final Color? fillColor;
+
   final Color? focusColor;
   final FocusNode? focusNode;
   final bool? autofocus;
@@ -39,17 +38,6 @@ abstract class _BaseData<T> {
 
 class MaterialRadioData extends _BaseData {
   MaterialRadioData({
-    // Common
-    super.widgetKey,
-    super.value,
-    super.groupValue,
-    super.onChanged,
-    super.toggleable,
-    super.activeColor,
-    super.fillColor,
-    super.focusColor,
-    super.focusNode,
-    super.autofocus,
     //Material
     this.mouseCursor,
     this.hoverColor,
@@ -57,6 +45,17 @@ class MaterialRadioData extends _BaseData {
     this.splashRadius,
     this.materialTapTargetSize,
     this.visualDensity,
+    this.fillColor,
+    // Common
+    super.widgetKey,
+    super.value,
+    super.groupValue,
+    super.onChanged,
+    super.toggleable,
+    super.activeColor,
+    super.focusColor,
+    super.focusNode,
+    super.autofocus,
   });
   final MouseCursor? mouseCursor;
   final Color? hoverColor;
@@ -64,10 +63,14 @@ class MaterialRadioData extends _BaseData {
   final double? splashRadius;
   final MaterialTapTargetSize? materialTapTargetSize;
   final VisualDensity? visualDensity;
+  final MaterialStateProperty<Color?>? fillColor;
 }
 
 class CupertinoRadioData extends _BaseData {
   CupertinoRadioData({
+    //Cupertino
+    this.inactiveColor,
+    this.fillColor,
     //Common
     super.widgetKey,
     super.value,
@@ -75,19 +78,16 @@ class CupertinoRadioData extends _BaseData {
     super.onChanged,
     super.toggleable,
     super.activeColor,
-    super.fillColor,
     super.focusColor,
     super.focusNode,
     super.autofocus,
-    //Cupertino
-    this.inactiveColor,
   });
 
   final Color? inactiveColor;
+  final Color? fillColor;
 }
 
 class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
-  //Common
   final Key? widgetKey;
   final T? value;
   final T? groupValue;
@@ -98,12 +98,11 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
   final Color? focusColor;
   final FocusNode? focusNode;
   final bool autofocus;
-  //Platform
+
   final PlatformBuilder<MaterialRadioData>? material;
   final PlatformBuilder<CupertinoRadioData>? cupertino;
 
   PlatformRadio({
-    //Common
     super.key,
     this.widgetKey,
     this.value,
@@ -115,7 +114,6 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
     this.focusColor,
     this.focusNode,
     this.autofocus = false,
-    //Platform
     this.material,
     this.cupertino,
   });
@@ -124,15 +122,6 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
   Radio createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
     return Radio(
-      //Common
-      key: data?.widgetKey ?? widgetKey,
-      value: data?.value ?? value,
-      groupValue: data?.groupValue ?? groupValue,
-      onChanged: data?.onChanged ?? onChanged,
-      toggleable: data?.toggleable ?? toggleable,
-      activeColor: data?.activeColor ?? activeColor,
-      fillColor: MaterialStateProperty.all(data?.fillColor ?? fillColor),
-      focusColor: data?.focusColor ?? focusColor,
       //Material
       mouseCursor: data?.mouseCursor,
       hoverColor: data?.hoverColor,
@@ -140,6 +129,17 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
       splashRadius: data?.splashRadius,
       materialTapTargetSize: data?.materialTapTargetSize,
       visualDensity: data?.visualDensity,
+      //Common
+      key: data?.widgetKey ?? widgetKey,
+      value: data?.value ?? value,
+      groupValue: data?.groupValue ?? groupValue,
+      onChanged: data?.onChanged ?? onChanged,
+      toggleable: data?.toggleable ?? toggleable,
+      activeColor: data?.activeColor ?? activeColor,
+      fillColor: data?.fillColor ?? MaterialStateProperty.all(fillColor),
+      focusColor: data?.focusColor ?? focusColor,
+      autofocus: data?.autofocus ?? autofocus,
+      focusNode: data?.focusNode ?? focusNode,
     );
   }
 
@@ -147,6 +147,8 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
   CupertinoRadio createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
     return CupertinoRadio(
+      //Cupertino
+      inactiveColor: data?.inactiveColor,
       //Common
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
@@ -156,8 +158,8 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
       activeColor: data?.activeColor ?? activeColor,
       fillColor: data?.fillColor ?? fillColor,
       focusColor: data?.focusColor ?? focusColor,
-      //Cupertino
-      inactiveColor: data?.inactiveColor,
+      autofocus: data?.autofocus ?? autofocus,
+      focusNode: data?.focusNode ?? focusNode,
     );
   }
 }
