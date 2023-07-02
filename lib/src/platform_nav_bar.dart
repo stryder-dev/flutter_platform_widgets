@@ -9,8 +9,12 @@ import 'package:flutter/material.dart'
     show
         BottomAppBar,
         BottomNavigationBar,
+        BottomNavigationBarLandscapeLayout,
         BottomNavigationBarType,
-        BottomNavigationBarLandscapeLayout;
+        NavigationBar,
+        NavigationDestination,
+        NavigationDestinationLabelBehavior,
+        Theme;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -59,6 +63,38 @@ class CupertinoTabBarData extends _BaseData {
 
   final Color? inactiveColor;
   final Border? border;
+}
+
+class MaterialNavigationBarData {
+  MaterialNavigationBarData({
+    this.widgetKey,
+    this.items,
+    this.height,
+    this.animationDuration,
+    this.backgroundColor,
+    this.elevation,
+    this.indicatorColor,
+    this.indicatorShape,
+    this.labelBehavior,
+    this.onDestinationSelected,
+    this.selectedIndex,
+    this.shadowColor,
+    this.surfaceTintColor,
+  });
+
+  final Key? widgetKey;
+  final List<NavigationDestination>? items;
+  final double? height;
+  final Duration? animationDuration;
+  final Color? backgroundColor;
+  final double? elevation;
+  final Color? indicatorColor;
+  final ShapeBorder? indicatorShape;
+  final NavigationDestinationLabelBehavior? labelBehavior;
+  final ValueChanged<int>? onDestinationSelected;
+  final int? selectedIndex;
+  final Color? shadowColor;
+  final Color? surfaceTintColor;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -121,7 +157,7 @@ class MaterialNavBarData extends _BaseData {
   final Color? shadowColor;
 }
 
-class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
+class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   final Key? widgetKey;
   final Color? backgroundColor;
 
@@ -131,6 +167,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
   final double? height;
 
   final PlatformBuilder<MaterialNavBarData>? material;
+  final PlatformBuilder<MaterialNavigationBarData>? material3;
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
 
   PlatformNavBar({
@@ -142,11 +179,55 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, BottomAppBar> {
     this.currentIndex,
     this.height,
     this.material,
+    this.material3,
     this.cupertino,
   });
 
   @override
-  BottomAppBar createMaterialWidget(BuildContext context) {
+  Widget createMaterialWidget(BuildContext context) {
+    final useMaterial3 = Theme.of(context).useMaterial3;
+    return useMaterial3
+        ? _createMaterial3Widget(context)
+        : _createMaterial2Widget(context);
+  }
+
+  Widget _createMaterial3Widget(BuildContext context) {
+    final data = material3?.call(context, platform(context));
+    final selectedIndex = data?.selectedIndex ?? currentIndex ?? 0;
+    final destinations = data?.items ??
+        items?.map(
+          (item) {
+            return NavigationDestination(
+              // key: ,
+              icon: item.icon,
+              label: item.label ?? '',
+              selectedIcon: item.activeIcon,
+              tooltip: item.tooltip,
+            );
+          },
+        ).toList() ??
+        [];
+    assert(destinations.length >= 2);
+    assert(0 <= selectedIndex && selectedIndex < destinations.length);
+
+    return NavigationBar(
+      key: data?.widgetKey ?? widgetKey,
+      destinations: destinations,
+      animationDuration: data?.animationDuration,
+      backgroundColor: data?.backgroundColor ?? backgroundColor,
+      elevation: data?.elevation,
+      height: data?.height ?? height,
+      indicatorColor: data?.indicatorColor,
+      indicatorShape: data?.indicatorShape,
+      labelBehavior: data?.labelBehavior,
+      onDestinationSelected: data?.onDestinationSelected ?? itemChanged,
+      selectedIndex: selectedIndex,
+      shadowColor: data?.shadowColor,
+      surfaceTintColor: data?.surfaceTintColor,
+    );
+  }
+
+  Widget _createMaterial2Widget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
     var bar = BottomNavigationBar(

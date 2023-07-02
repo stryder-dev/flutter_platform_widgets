@@ -106,7 +106,6 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
-
           // ! PlatformCheckbox
           PlatformWidgetExample(
             title: 'PlatformCheckbox',
@@ -117,6 +116,36 @@ class PlatformPage extends StatelessWidget {
                 onChanged: (newValue) {
                   setValue(newValue!);
                 },
+          // ! PlatformRadio
+          PlatformWidgetExample(
+            title: 'PlatformRadio',
+            builder: (_, platform) => StateProvider<String>(
+              initialValue: 'One',
+              builder: (_, value, setValue) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PlatformRadio<String>(
+                    value: 'One',
+                    groupValue: value,
+                    onChanged: (dynamic newValue) {
+                      setValue(newValue as String);
+                    },
+                  ),
+                  PlatformRadio<String>(
+                    value: 'Two',
+                    groupValue: value,
+                    onChanged: (dynamic newValue) {
+                      setValue(newValue as String);
+                    },
+                  ),
+                  PlatformRadio<String>(
+                    value: 'Three',
+                    groupValue: value,
+                    onChanged: (dynamic newValue) {
+                      setValue(newValue as String);
+                    },
+                  ),
+                ],
               ),
             ),
           ),

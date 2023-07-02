@@ -13,6 +13,7 @@ class SliverView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return CustomScrollView(
       slivers: [
         PlatformWidget(
@@ -21,7 +22,15 @@ class SliverView extends StatelessWidget {
             forceElevated: true,
             expandedHeight: 150.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(title),
+              title: Text(
+                title,
+                style: TextStyle(
+                  color: theme.useMaterial3
+                      ? theme.textTheme.headlineLarge?.color
+                      : null,
+                  // Or any other headline's color
+                ),
+              ),
             ),
           ),
           cupertino: (context, _) => CupertinoSliverNavigationBar(
