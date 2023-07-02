@@ -9,6 +9,8 @@
 - Added to `PlatformTheme` the ability to switch between material2 and material3
 - Fixed the `PlatformApp.router` properties as they were not setting the super props correctly (thanks nikeorever)
 - Added NavigationBar to `PlatformTabScaffold` when the theme is set to material3 `Theme.of(context).useMaterial3`
+- Added `PlatformRadio` (thanks bookshiyi)
+- Added `PlatformCheckbox` (thanks bookshiyi)
 
 ## [3.3.5]
 
