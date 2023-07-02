@@ -116,6 +116,9 @@ class PlatformPage extends StatelessWidget {
                 onChanged: (newValue) {
                   setValue(newValue!);
                 },
+              ),
+            ),
+          ),
           // ! PlatformRadio
           PlatformWidgetExample(
             title: 'PlatformRadio',

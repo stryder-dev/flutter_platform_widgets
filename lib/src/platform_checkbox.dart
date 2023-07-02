@@ -16,25 +16,25 @@ abstract class _BaseData {
   _BaseData({
     this.widgetKey,
     this.value,
-    this.tristate = false,
+    this.tristate,
     this.onChanged,
     this.activeColor,
     this.checkColor,
     this.focusColor,
     this.focusNode,
-    this.autofocus = false,
+    this.autofocus,
     this.shape,
     this.side,
   });
   final Key? widgetKey;
   final bool? value;
-  final bool tristate;
+  final bool? tristate;
   final ValueChanged<bool?>? onChanged;
   final Color? activeColor;
   final Color? checkColor;
   final Color? focusColor;
   final FocusNode? focusNode;
-  final bool autofocus;
+  final bool? autofocus;
   final OutlinedBorder? shape;
   final BorderSide? side;
 }
@@ -44,13 +44,13 @@ class MaterialCheckboxData extends _BaseData {
     // Common
     super.widgetKey,
     super.value,
-    super.tristate = false,
+    super.tristate,
     super.onChanged,
     super.activeColor,
     super.checkColor,
     super.focusColor,
     super.focusNode,
-    super.autofocus = false,
+    super.autofocus,
     super.shape,
     super.side,
     //Material
@@ -79,13 +79,13 @@ class CupertinoCheckboxData extends _BaseData {
     //Common
     super.widgetKey,
     super.value,
-    super.tristate = false,
+    super.tristate,
     super.onChanged,
     super.activeColor,
     super.checkColor,
     super.focusColor,
     super.focusNode,
-    super.autofocus = false,
+    super.autofocus,
     super.shape,
     super.side,
 
@@ -115,10 +115,10 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
   final PlatformBuilder<CupertinoCheckboxData>? cupertino;
 
   PlatformCheckbox({
+    required this.onChanged,
     //Common
     super.key,
     this.widgetKey,
-    required this.onChanged,
     this.value,
     this.tristate = false,
     this.activeColor,
@@ -140,6 +140,15 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     final tristate = data?.tristate ?? this.tristate;
     assert(tristate || value != null);
     return Checkbox(
+      //Material
+      mouseCursor: data?.mouseCursor,
+      fillColor: data?.fillColor,
+      hoverColor: data?.hoverColor,
+      overlayColor: data?.overlayColor,
+      splashRadius: data?.splashRadius,
+      materialTapTargetSize: data?.materialTapTargetSize,
+      visualDensity: data?.visualDensity,
+      isError: data?.isError ?? false,
       //Common
       key: data?.widgetKey ?? widgetKey,
       value: value,
@@ -152,15 +161,6 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       autofocus: data?.autofocus ?? autofocus,
       shape: data?.shape ?? shape,
       side: data?.side ?? side,
-      //Material
-      mouseCursor: data?.mouseCursor,
-      fillColor: data?.fillColor,
-      hoverColor: data?.hoverColor,
-      overlayColor: data?.overlayColor,
-      splashRadius: data?.splashRadius,
-      materialTapTargetSize: data?.materialTapTargetSize,
-      visualDensity: data?.visualDensity,
-      isError: data?.isError ?? false,
     );
   }
 
@@ -171,6 +171,8 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     final tristate = data?.tristate ?? this.tristate;
     assert(tristate || value != null);
     return CupertinoCheckbox(
+      //Cupertino
+      inactiveColor: data?.inactiveColor,
       //Common
       key: data?.widgetKey ?? widgetKey,
       value: value,
@@ -183,8 +185,6 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       autofocus: data?.autofocus ?? autofocus,
       shape: data?.shape ?? shape,
       side: data?.side ?? side,
-      //Cupertino
-      inactiveColor: data?.inactiveColor,
     );
   }
 }
