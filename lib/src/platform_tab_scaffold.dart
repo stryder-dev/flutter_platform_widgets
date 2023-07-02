@@ -164,6 +164,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final PlatformIndexBuilder<MaterialTabScaffoldData>? materialBuilder;
 
   final PlatformBuilder<MaterialNavBarData>? materialTabs;
+  final PlatformBuilder<MaterialNavigationBarData>? material3Tabs;
 
   final PlatformBuilder<CupertinoTabScaffoldData>? cupertino;
   final PlatformIndexBuilder<CupertinoTabScaffoldData>? cupertinoBuilder;
@@ -200,6 +201,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
     this.material,
     this.materialBuilder,
     this.materialTabs,
+    this.material3Tabs,
     this.cupertino,
     this.cupertinoBuilder,
     this.cupertinoTabs,
@@ -249,6 +251,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       backgroundColor: data?.tabsBackgroundColor ?? tabsBackgroundColor,
       currentIndex: controller.index,
       material: materialTabs,
+      material3: material3Tabs,
       itemChanged: (int index) {
         controller.index = index;
         itemChanged?.call(index);
