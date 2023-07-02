@@ -106,6 +106,16 @@ class PlatformPage extends StatelessWidget {
               ),
             ),
           ),
+          // ! PlatformCheckbox
+          PlatformWidgetExample(
+            title: 'PlatformCheckbox',
+            builder: (_, __) => StateProvider<bool>(
+              initialValue: false,
+              builder: (_, value, setValue) => PlatformCheckbox(
+                value: value,
+                onChanged: (newValue) {
+                  setValue(newValue!);
+                },
           // ! PlatformRadio
           PlatformWidgetExample(
             title: 'PlatformRadio',
