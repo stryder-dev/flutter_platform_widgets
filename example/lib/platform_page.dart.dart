@@ -9,6 +9,7 @@ import 'logo.dart';
 import 'material_ios_page.dart';
 import 'platform_widget_example.dart';
 import 'tab_impl_page.dart';
+import 'sliver_app_bar_page.dart';
 
 class PlatformPage extends StatelessWidget {
   @override
@@ -381,6 +382,19 @@ class PlatformPage extends StatelessWidget {
                 platformPageRoute(
                   context: context,
                   builder: (context) => IconsPage(),
+                ),
+              ),
+            ),
+          ),
+          // ! Platform Sliver AppBar
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlatformElevatedButton(
+              child: Text('Show  Sliver AppBar Page'),
+              onPressed: () => Navigator.of(context).push(
+                platformPageRoute(
+                  context: context,
+                  builder: (context) => PlatformSliverAppBarPage(),
                 ),
               ),
             ),
