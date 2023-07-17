@@ -30,6 +30,7 @@ export 'src/platform_dialog_action.dart';
 export 'src/platform_elevated_button.dart';
 export 'src/platform_icon_button.dart';
 export 'src/platform_icons.dart';
+export 'src/platform_icons_gen.dart';
 export 'src/platform_nav_bar.dart';
 export 'src/platform_page.dart';
 export 'src/platform_page_route.dart';
