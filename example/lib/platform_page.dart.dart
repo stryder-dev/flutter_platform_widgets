@@ -257,12 +257,11 @@ class PlatformPage extends StatelessWidget {
               autovalidateMode: AutovalidateMode.always,
             ),
           ),
-
           // ! PlatformCircularProgressIndicator
-          // _PlatformWidgetExample(
-          //   title: 'PlatformCircularProgressIndicator',
-          //   builder: (_) => PlatformCircularProgressIndicator().center,
-          // ),
+          PlatformWidgetExample(
+            title: 'PlatformCircularProgressIndicator',
+            builder: (_, __) => PlatformCircularProgressIndicator().center,
+          ),
           // ! PlatformWidgetBuilder
           PlatformWidgetExample(
             title: 'PlatformWidgetBuilder',
