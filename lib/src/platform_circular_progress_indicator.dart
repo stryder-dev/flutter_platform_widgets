@@ -23,8 +23,8 @@ abstract class _BaseData {
   final Color? color;
 }
 
-class MaterialProgressIndicatorData extends _BaseData {
-  MaterialProgressIndicatorData({
+class MaterialCircularProgressIndicatorData extends _BaseData {
+  MaterialCircularProgressIndicatorData({
     super.key,
     super.color,
     this.backgroundColor,
@@ -43,8 +43,8 @@ class MaterialProgressIndicatorData extends _BaseData {
   final String? semanticsValue;
 }
 
-class CupertinoProgressIndicatorData extends _BaseData {
-  CupertinoProgressIndicatorData({
+class CupertinoCircularProgressIndicatorData extends _BaseData {
+  CupertinoCircularProgressIndicatorData({
     super.key,
     super.color,
     this.animating,
@@ -59,8 +59,8 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
     CupertinoActivityIndicator, CircularProgressIndicator> {
   final Key? widgetKey;
 
-  final PlatformBuilder<MaterialProgressIndicatorData>? material;
-  final PlatformBuilder<CupertinoProgressIndicatorData>? cupertino;
+  final PlatformBuilder<MaterialCircularProgressIndicatorData>? material;
+  final PlatformBuilder<CupertinoCircularProgressIndicatorData>? cupertino;
 
   PlatformCircularProgressIndicator({
     super.key,
