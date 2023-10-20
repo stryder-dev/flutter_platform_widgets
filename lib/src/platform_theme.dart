@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
-import 'platform.dart';
 import 'platform_provider.dart';
 
 class PlatformTheme extends StatefulWidget {
