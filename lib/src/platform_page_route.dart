@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart'
     show PageRoute, BuildContext, RouteSettings, WidgetBuilder;
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
@@ -59,7 +60,7 @@ PageRoute<T> platformPageRoute<T>({
   PlatformBuilder<MaterialPageRouteData>? material,
   PlatformBuilder<CupertinoPageRouteData>? cupertino,
 }) {
-  if (isMaterial(context)) {
+  if (context.isMaterialDesign) {
     final data = material?.call(context, platform(context));
 
     return MaterialPageRoute<T>(

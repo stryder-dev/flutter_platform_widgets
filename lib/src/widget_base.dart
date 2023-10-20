@@ -6,6 +6,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 import 'platform.dart';
 
@@ -19,9 +20,9 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
 
   @override
   Widget build(BuildContext context) {
-    if (isMaterial(context)) {
+    if (context.isMaterialDesign) {
       return createMaterialWidget(context);
-    } else if (isCupertino(context)) {
+    } else if (context.isCupertinoDesign) {
       return createCupertinoWidget(context);
     }
 

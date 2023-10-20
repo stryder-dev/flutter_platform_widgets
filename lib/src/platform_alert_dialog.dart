@@ -7,7 +7,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 import 'package:flutter/material.dart' show AlertDialog, Material;
 import 'package:flutter/widgets.dart';
-import 'package:flutter_platform_widgets/src/extensions.dart';
+import 'package:flutter_platform_widgets/src/extensions/widget.dart';
 
 import 'platform.dart';
 import 'platform_provider.dart';
@@ -112,8 +112,9 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
 
   final PlatformBuilder<MaterialAlertDialogData>? material;
   final PlatformBuilder<CupertinoAlertDialogData>? cupertino;
+  final bool useOfficalLogic;
 
-  PlatformAlertDialog({
+  const PlatformAlertDialog({
     super.key,
     this.widgetKey,
     this.actions,
@@ -121,6 +122,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
     this.title,
     this.material,
     this.cupertino,
+    this.useOfficalLogic = true,
   });
 
   @override

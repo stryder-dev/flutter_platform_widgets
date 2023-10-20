@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+// Only in this file
 extension WidgetExt on Widget {
   Widget withWidgetFinder<T>() {
     return ParentWidgetFinder<T>(child: this);

@@ -21,7 +21,7 @@ import 'package:flutter/material.dart'
         Scaffold;
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
+import 'extensions/widget.dart';
 import 'platform.dart';
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';

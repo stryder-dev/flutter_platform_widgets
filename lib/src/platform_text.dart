@@ -7,11 +7,10 @@
 import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/widgets.dart';
-
-import 'platform.dart' show isMaterial;
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 String formatData(BuildContext context, String data) {
-  if (isMaterial(context)) {
+  if (context.isMaterialDesign) {
     return data.toUpperCase();
   }
   return data;

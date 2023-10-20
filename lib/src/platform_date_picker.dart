@@ -8,6 +8,7 @@ import 'package:flutter/material.dart'
         DatePickerEntryMode,
         DatePickerMode;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 import 'platform.dart';
 import 'platform_text_button.dart';
@@ -131,7 +132,7 @@ Future<DateTime?> showPlatformDatePicker({
   PlatformBuilder<CupertinoDatePickerData>? cupertino,
   DatePickerContentBuilder? cupertinoContentBuilder,
 }) async {
-  if (isMaterial(context)) {
+  if (context.isMaterialDesign) {
     final data = material?.call(context, platform(context));
     return await showDatePicker(
       context: context,

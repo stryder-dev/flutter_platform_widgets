@@ -9,7 +9,7 @@ import 'package:flutter/material.dart' show AppBar, Brightness;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'extensions.dart';
+import 'extensions/widget.dart';
 import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';

@@ -29,7 +29,7 @@ class PlatformWidgetExample extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: builder(
                 context,
-                isMaterial(context)
+                context.isMaterialDesign
                     ? TargetPlatform.android
                     : TargetPlatform.iOS),
           ),

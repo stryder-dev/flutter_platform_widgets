@@ -7,6 +7,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoPage;
 import 'package:flutter/material.dart' show MaterialPage;
 import 'package:flutter/widgets.dart' show BuildContext, Page, Widget, LocalKey;
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 import 'platform.dart';
 import 'widget_base.dart';
@@ -105,7 +106,7 @@ Page platformPage({
   PlatformBuilder<MaterialPageData>? material,
   PlatformBuilder<CupertinoPageData>? cupertino,
 }) {
-  if (isMaterial(context)) {
+  if (context.isMaterialDesign) {
     final data = material?.call(context, platform(context));
 
     return MaterialPage(
