@@ -11,7 +11,7 @@
 - Added NavigationBar to `PlatformTabScaffold` when the theme is set to material3 `Theme.of(context).useMaterial3`
 - Added `PlatformRadio` (thanks bookshiyi)
 - Added `PlatformCheckbox` (thanks bookshiyi)
-- Code orgnizeations
+- Code organizations
 - Use the `showAdaptiveDialog` by default when calling `showPlatformDialog`
 
 ## [3.3.5]
