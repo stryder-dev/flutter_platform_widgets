@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart' show CupertinoThemeData;
 import 'package:flutter/material.dart' show Theme, ThemeData, ThemeMode;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 import 'platform.dart';
 import 'platform_provider.dart';
@@ -156,7 +157,7 @@ class _PlatformThemeState extends State<PlatformTheme>
   @override
   Widget build(BuildContext context) {
     if (_matchCupertinoSystemChromeBrightness) {
-      if (isCupertino(context)) {
+      if (context.isCupertinoDesign) {
         SystemChrome.setSystemUIOverlayStyle(
           isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         );

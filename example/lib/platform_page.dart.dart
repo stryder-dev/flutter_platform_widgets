@@ -28,12 +28,12 @@ class PlatformPage extends StatelessWidget {
                 onPressed: () {
                   final p = PlatformProvider.of(context)!;
 
-                  isMaterial(context)
+                  context.isMaterialDesign
                       ? p.changeToCupertinoPlatform()
                       : p.changeToMaterialPlatform();
                 }),
           ),
-          if (isMaterial(context))
+          if (context.isMaterialDesign)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
@@ -65,7 +65,7 @@ class PlatformPage extends StatelessWidget {
           // ! PlatformSearchBar
           PlatformWidgetExample(
             title:
-                'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
+                'PlatformSearchBar ${context.isMaterialDesign ? " (Material 3 only)" : ""}',
             builder: (context, platform) => PlatformSearchBar(
               onChanged: (value) =>
                   print('${platform.text} SearchBar changed: $value'),
@@ -386,7 +386,7 @@ class PlatformPage extends StatelessWidget {
             ),
           ),
           // ! Material on iOS
-          if (isCupertino(context))
+          if (context.isCupertinoDesign)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(

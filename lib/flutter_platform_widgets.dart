@@ -49,3 +49,4 @@ export 'src/platform_theme.dart';
 export 'src/platform_widget.dart';
 export 'src/platform_widget_builder.dart';
 export 'src/widget_base.dart';
+export 'src/extensions/build_context.dart';

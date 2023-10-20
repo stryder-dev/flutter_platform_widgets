@@ -15,9 +15,16 @@ import 'package:flutter/cupertino.dart'
         showCupertinoModalPopup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
-    show Theme, ThemeData, Colors, showDialog, showModalBottomSheet;
+    show
+        Colors,
+        Theme,
+        ThemeData,
+        showAdaptiveDialog,
+        showDialog,
+        showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 const Color _kModalBarrierColor = CupertinoDynamicColor.withBrightness(
   color: Color(0x33000000),
@@ -85,7 +92,7 @@ T platformThemeData<T>(
   required T Function(ThemeData theme) material,
   required T Function(CupertinoThemeData theme) cupertino,
 }) {
-  return isMaterial(context)
+  return context.isMaterialDesign
       ? material(Theme.of(context))
       : cupertino(CupertinoTheme.of(context));
 }
@@ -111,6 +118,7 @@ PlatformTarget platform(BuildContext context) {
   }
 }
 
+@immutable
 abstract class _DialogBaseData {
   final WidgetBuilder? builder;
   final bool? barrierDismissible;
@@ -118,22 +126,24 @@ abstract class _DialogBaseData {
   final bool? useRootNavigator;
   final String? barrierLabel;
   final Offset? anchorPoint;
+  final Color barrierColor;
 
-  _DialogBaseData({
+  const _DialogBaseData({
     this.builder,
     this.barrierDismissible,
     this.routeSettings,
     this.useRootNavigator,
     this.barrierLabel,
+    // ignore: unused_element
+    this.barrierColor = Colors.black54,
     this.anchorPoint,
   });
 }
 
 class MaterialDialogData extends _DialogBaseData {
   final bool? useSafeArea;
-  final Color? barrierColor;
 
-  MaterialDialogData({
+  const MaterialDialogData({
     super.builder,
     super.barrierDismissible,
     super.routeSettings,
@@ -141,12 +151,11 @@ class MaterialDialogData extends _DialogBaseData {
     super.barrierLabel,
     super.anchorPoint,
     this.useSafeArea,
-    this.barrierColor,
   });
 }
 
 class CupertinoDialogData extends _DialogBaseData {
-  CupertinoDialogData({
+  const CupertinoDialogData({
     super.builder,
     super.barrierDismissible,
     super.routeSettings,
@@ -156,6 +165,8 @@ class CupertinoDialogData extends _DialogBaseData {
   });
 }
 
+// You can use [AlertDialog.adaptive] widget in the builder if
+// useOfficalLogic is set to true, you also can use PlatformAlertDialog
 Future<T?> showPlatformDialog<T>({
   required BuildContext context,
   MaterialDialogData? material,
@@ -165,26 +176,50 @@ Future<T?> showPlatformDialog<T>({
   RouteSettings? routeSettings,
   bool useRootNavigator = true,
   String? barrierLabel,
+  Color barrierColor = Colors.black54,
   Offset? anchorPoint,
+  bool useOfficalLogic = true,
 }) {
-  if (isMaterial(context)) {
-    assert(material?.builder != null || builder != null);
-
-    return showDialog<T>(
+  if (useOfficalLogic) {
+    assert(material?.builder != null ||
+        cupertino?.builder != null ||
+        builder != null);
+    if (context.isMaterialDesign) {
+      return showAdaptiveDialog(
+        context: context,
+        builder: material?.builder?.call ?? builder!,
+        barrierDismissible: material?.barrierDismissible ?? barrierDismissible,
+        routeSettings: material?.routeSettings ?? routeSettings,
+        useRootNavigator: material?.useRootNavigator ?? useRootNavigator,
+        barrierLabel: material?.barrierLabel ?? barrierLabel,
+        anchorPoint: material?.anchorPoint ?? anchorPoint,
+        barrierColor: material?.barrierColor ?? barrierColor,
+      );
+    }
+    return showAdaptiveDialog<T>(
       context: context,
-      builder: material?.builder ?? builder!,
-      barrierDismissible:
-          material?.barrierDismissible ?? barrierDismissible ?? true,
-      routeSettings: material?.routeSettings ?? routeSettings,
-      useRootNavigator: material?.useRootNavigator ?? useRootNavigator,
-      useSafeArea: material?.useSafeArea ?? true,
-      barrierColor: material?.barrierColor ?? Colors.black54,
-      barrierLabel: material?.barrierLabel ?? barrierLabel,
-      anchorPoint: material?.anchorPoint ?? anchorPoint,
+      builder: cupertino?.builder ?? builder!,
+      barrierDismissible: cupertino?.barrierDismissible ?? barrierDismissible,
+      routeSettings: cupertino?.routeSettings ?? routeSettings,
+      useRootNavigator: cupertino?.useRootNavigator ?? useRootNavigator,
+      barrierLabel: cupertino?.barrierLabel ?? barrierLabel,
+      anchorPoint: cupertino?.anchorPoint ?? anchorPoint,
+      barrierColor: cupertino?.barrierColor ?? barrierColor,
     );
-  } else {
+  }
+
+  if (context.isCupertinoDesign) {
     assert(cupertino?.builder != null || builder != null);
 
+    if (cupertino?.barrierColor != null) {
+      throw ArgumentError.value(
+        cupertino?.barrierColor,
+        'barrierColor',
+        'If useOfficalLogic is false then barrierColor barrierColor is not'
+            ' supported, please pass null to barrierColor or pass true to'
+            ' useOfficalLogic',
+      );
+    }
     return showCupertinoDialog<T>(
       context: context,
       builder: cupertino?.builder ?? builder!,
@@ -196,6 +231,20 @@ Future<T?> showPlatformDialog<T>({
       anchorPoint: cupertino?.anchorPoint ?? anchorPoint,
     );
   }
+  assert(material?.builder != null || builder != null);
+
+  return showDialog<T>(
+    context: context,
+    builder: material?.builder ?? builder!,
+    barrierDismissible:
+        material?.barrierDismissible ?? barrierDismissible ?? true,
+    routeSettings: material?.routeSettings ?? routeSettings,
+    useRootNavigator: material?.useRootNavigator ?? useRootNavigator,
+    useSafeArea: material?.useSafeArea ?? true,
+    barrierColor: material?.barrierColor ?? Colors.black54,
+    barrierLabel: material?.barrierLabel ?? barrierLabel,
+    anchorPoint: material?.anchorPoint ?? anchorPoint,
+  );
 }
 
 abstract class _ModalSheetBaseData {
@@ -266,7 +315,7 @@ Future<T?> showPlatformModalSheet<T>({
   MaterialModalSheetData? material,
   CupertinoModalSheetData? cupertino,
 }) {
-  if (isMaterial(context)) {
+  if (context.isMaterialDesign) {
     return showModalBottomSheet<T>(
       context: context,
       builder: builder,

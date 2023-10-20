@@ -21,8 +21,9 @@ import 'package:flutter/material.dart'
         Material,
         Scaffold;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
-import 'extensions.dart';
+import 'extensions/widget.dart';
 import 'platform.dart';
 import 'platform_app_bar.dart';
 import 'platform_nav_bar.dart';
@@ -541,7 +542,7 @@ class PlatformTabController extends ChangeNotifier {
   }
 
   void _init(BuildContext context) {
-    if (isMaterial(context)) {
+    if (context.isMaterialDesign) {
       if (_materialController == null) {
         int useIndex = android?.initialIndex ?? _initialIndex;
         if (_cupertinoController != null) {
@@ -556,7 +557,7 @@ class PlatformTabController extends ChangeNotifier {
         )..addListener(_listener);
       }
     }
-    if (isCupertino(context)) {
+    if (context.isCupertinoDesign) {
       if (_cupertinoController == null) {
         int useIndex = ios?.initialIndex ?? _initialIndex;
         if (_materialController != null) {
