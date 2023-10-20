@@ -53,7 +53,8 @@ class PlatformPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
                 child: PlatformText(
-                    'Theme mode${_getThemeMode(PlatformTheme.of(context)?.themeMode)}'),
+                  'Theme mode${_getThemeMode(PlatformTheme.of(context)?.themeMode)}',
+                ),
                 onPressed: () {
                   final mode = PlatformTheme.of(context)?.themeMode;
                   final newMode = _cycleThemeMode(mode);

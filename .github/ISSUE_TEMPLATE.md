@@ -1,23 +1,45 @@
----
-name: Issue template
-about: Common things to fill
-title: "[Web] or [Mobile] or [Desktop]"
-labels: ''
-assignees: ''
+# Pull Request
 
----
+## Description
 
-My issue is about [Mobile]
+Provide a brief description of your changes.
 
-I have tried running `example` directory successfully before creating an issue here.
+## Issues
 
-Please note that we are using <b>latest</b> flutter version in stable channel on branch master. If you are using beta or master channel, or you are not using <b>latest</b> flutter version in stable channel, you may experience error.
+<!-- Remove this if your pull request address changes other than existing issues -->
+Closes #IssueNumber
+(Replace "IssueNumber" with the actual issue number you are addressing.)
 
-<!-- Please explain how to encounter the issue in details if possible -->
+## Improvements
+<!-- Please tell us the improvements you made in a list -->
 
-<!-- Don't forgot to mention the platform you are testing in -->
+<!-- Example: -->
+- Improve code readability
+- Improve performance
 
-<!-- Insert your images here if possible -->
-<!-- Images: -->
+## Features
+<!-- Please tell us the features you added in a list if you add any -->
 
-<!-- Add short video that showcase the problem will help -->
+<!-- Example: -->
+- Add a new feature
+- Allow to customize the widgets
+
+<!-- Remove this if your pull request about other changes -->
+
+## Additional notes
+<!-- Optional -->
+
+## Suggestions
+<!-- Optional -->
+
+## Checklist
+
+<!-- Mark all that applies with `[x]` -->
+
+- [ ] I have added/updated relevant documentation <!-- REQUIRED -->
+- [ ] I have tested these changes locally. <!-- REQUIRED -->
+- [ ] I have followed the code style and guidelines. <!-- REQUIRED -->
+- [ ] I have updated `CHANGELOG.md` with my changes in the next section <!-- REQUIRED -->
+- [ ] I have run `dart format .`` on the project <!-- REQUIRED -->
+- [ ] I have run `dart fix --apply` on the project <!-- REQUIRED -->
+- [ ] I have run `flutter test` and `flutter analyze` and it passed successfully <!-- REQUIRED -->
