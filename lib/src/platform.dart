@@ -24,7 +24,6 @@ import 'package:flutter/material.dart'
         showModalBottomSheet;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:flutter_platform_widgets/src/extensions/build_context.dart';
 
 const Color _kModalBarrierColor = CupertinoDynamicColor.withBrightness(
   color: Color(0x33000000),
