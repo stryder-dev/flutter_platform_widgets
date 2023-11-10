@@ -54,6 +54,7 @@ class MaterialSearchBarData extends _BaseData {
     this.hintStyle,
     this.textStyle,
     this.hintText,
+    this.onSubmitted,
   });
 
   // final String? hintText;
@@ -71,6 +72,7 @@ class MaterialSearchBarData extends _BaseData {
   final MaterialStateProperty<TextStyle?>? hintStyle;
   final MaterialStateProperty<TextStyle?>? textStyle;
   final String? hintText;
+  final ValueChanged<String>? onSubmitted;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -223,6 +225,7 @@ class PlatformSearchBar
       side: data?.side,
       shape: data?.shape,
       padding: data?.padding,
+      onSubmitted: data?.onSubmitted,
     );
   }
 

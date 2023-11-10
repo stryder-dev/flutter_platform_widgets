@@ -49,6 +49,7 @@ class MaterialDialogActionData extends _BaseData {
     this.onHover,
     this.onFocusChange,
     this.statesController,
+    this.isSemanticButton,
   });
 
   final FocusNode? focusNode;
@@ -58,6 +59,7 @@ class MaterialDialogActionData extends _BaseData {
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
   final MaterialStatesController? statesController;
+  final bool? isSemanticButton;
 }
 
 class MaterialDialogFlatActionData extends _BaseData {
@@ -182,6 +184,7 @@ class PlatformDialogAction
       onFocusChange: data?.onFocusChange,
       onHover: data?.onHover,
       statesController: data?.statesController,
+      isSemanticButton: data?.isSemanticButton ?? true,
     );
   }
 
