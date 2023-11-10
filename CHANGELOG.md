@@ -1,3 +1,10 @@
+## [5.0.0]
+
+#### (Flutter version support: v3.13.0 - 3.13.9)
+
+- Upgrade to flutter version 3.13.0 and sets the Dart min value to 3.1
+- Adds all the flutter 3.13 additional properties for platform widgets
+
 ## [4.0.0-beta.2]
 
 #### (Flutter version support: v3.10.0)

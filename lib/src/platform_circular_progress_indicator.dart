@@ -33,6 +33,8 @@ class MaterialProgressIndicatorData extends _BaseData {
     this.valueColor,
     this.semanticsLabel,
     this.semanticsValue,
+    this.strokeAlign,
+    this.strokeCap,
   });
 
   final Color? backgroundColor;
@@ -41,6 +43,8 @@ class MaterialProgressIndicatorData extends _BaseData {
   final Animation<Color>? valueColor;
   final String? semanticsLabel;
   final String? semanticsValue;
+  final double? strokeAlign;
+  final StrokeCap? strokeCap;
 }
 
 class CupertinoProgressIndicatorData extends _BaseData {
@@ -82,6 +86,9 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       semanticsLabel: data?.semanticsLabel,
       semanticsValue: data?.semanticsValue,
       color: data?.color,
+      strokeAlign:
+          data?.strokeAlign ?? CircularProgressIndicator.strokeAlignCenter,
+      strokeCap: data?.strokeCap,
     );
   }
 

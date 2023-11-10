@@ -62,6 +62,7 @@ class MaterialCheckboxData extends _BaseData {
     this.materialTapTargetSize,
     this.visualDensity,
     this.isError = false,
+    this.semanticLabel,
   });
 
   final MouseCursor? mouseCursor;
@@ -72,6 +73,7 @@ class MaterialCheckboxData extends _BaseData {
   final MaterialTapTargetSize? materialTapTargetSize;
   final VisualDensity? visualDensity;
   final bool isError;
+  final String? semanticLabel;
 }
 
 class CupertinoCheckboxData extends _BaseData {
@@ -161,6 +163,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       autofocus: data?.autofocus ?? autofocus,
       shape: data?.shape ?? shape,
       side: data?.side ?? side,
+      semanticLabel: data?.semanticLabel,
     );
   }
 

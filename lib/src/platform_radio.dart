@@ -71,6 +71,7 @@ class CupertinoRadioData extends _BaseData {
     //Cupertino
     this.inactiveColor,
     this.fillColor,
+    this.useCheckmarkStyle,
     //Common
     super.widgetKey,
     super.value,
@@ -85,6 +86,7 @@ class CupertinoRadioData extends _BaseData {
 
   final Color? inactiveColor;
   final Color? fillColor;
+  final bool? useCheckmarkStyle;
 }
 
 class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
@@ -160,6 +162,7 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
       focusColor: data?.focusColor ?? focusColor,
       autofocus: data?.autofocus ?? autofocus,
       focusNode: data?.focusNode ?? focusNode,
+      useCheckmarkStyle: data?.useCheckmarkStyle ?? false,
     );
   }
 }
