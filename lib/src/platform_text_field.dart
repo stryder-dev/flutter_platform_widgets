@@ -580,7 +580,7 @@ class PlatformTextField
       cursorRadius:
           data?.cursorRadius ?? cursorRadius ?? const Radius.circular(2.0),
       cursorWidth: data?.cursorWidth ?? cursorWidth ?? 2.0,
-      enabled: data?.enabled ?? enabled,
+      enabled: data?.enabled ?? enabled ?? true,
       focusNode: data?.focusNode ?? focusNode,
       inputFormatters: data?.inputFormatters ?? inputFormatters,
       keyboardAppearance: data?.keyboardAppearance ?? keyboardAppearance,
