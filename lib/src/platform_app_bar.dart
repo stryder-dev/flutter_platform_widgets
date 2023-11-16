@@ -321,8 +321,7 @@ class PlatformAppBar
     }
 
     final middleWithMediaQuery = MediaQuery(
-      data: MediaQueryData(
-          textScaler: TextScaler.linear(MediaQuery.textScaleFactorOf(context))),
+      data: MediaQueryData(textScaler: MediaQuery.textScalerOf(context)),
       child: middleLocal,
     );
 

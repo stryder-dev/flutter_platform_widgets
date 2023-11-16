@@ -45,21 +45,12 @@ class _PlatformThemeState extends State<PlatformTheme>
 
   void _init() {
     _themeMode = widget.themeMode;
-    _materialLightTheme = _useMaterial3Light == null
-        ? widget.materialLightTheme
-        : widget.materialLightTheme?.copyWith();
-    _materialDarkTheme = _useMaterial3Dark == null
-        ? widget.materialDarkTheme
-        : widget.materialDarkTheme?.copyWith();
+    _materialLightTheme = widget.materialLightTheme;
+    _materialDarkTheme = widget.materialDarkTheme;
     _cupertinoLightTheme = widget.cupertinoLightTheme;
     _cupertinoDarkTheme = widget.cupertinoDarkTheme;
     _matchCupertinoSystemChromeBrightness =
         widget.matchCupertinoSystemChromeBrightness;
-
-    _useMaterial3Light =
-        _useMaterial3Light ?? widget.materialLightTheme?.useMaterial3;
-    _useMaterial3Dark =
-        _useMaterial3Dark ?? widget.materialDarkTheme?.useMaterial3;
   }
 
   @override
@@ -111,8 +102,6 @@ class _PlatformThemeState extends State<PlatformTheme>
         : themeMode == ThemeMode.dark;
   }
 
-  bool? _useMaterial3Light;
-  bool? _useMaterial3Dark;
   void changeToMaterial3({bool applyToBothDarkAndLightTheme = false}) =>
       _setMaterialThemeType(
           useMaterial3: true,
@@ -135,16 +124,12 @@ class _PlatformThemeState extends State<PlatformTheme>
   }) {
     setState(() {
       if (applyToBothDarkAndLightTheme) {
-        _useMaterial3Dark = _useMaterial3Light = useMaterial3;
-        _materialDarkTheme = _materialDarkTheme?.copyWith();
-        _materialLightTheme = _materialLightTheme?.copyWith();
+        _materialDarkTheme = _materialDarkTheme;
+        _materialLightTheme = _materialLightTheme;
       } else {
         isDark
-            ? _useMaterial3Dark = useMaterial3
-            : _useMaterial3Light = useMaterial3;
-        isDark
-            ? _materialDarkTheme = _materialDarkTheme?.copyWith()
-            : _materialLightTheme = _materialLightTheme?.copyWith();
+            ? _materialDarkTheme = _materialDarkTheme
+            : _materialLightTheme = _materialLightTheme;
       }
     });
   }
