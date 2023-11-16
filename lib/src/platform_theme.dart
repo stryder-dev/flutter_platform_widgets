@@ -47,10 +47,10 @@ class _PlatformThemeState extends State<PlatformTheme>
     _themeMode = widget.themeMode;
     _materialLightTheme = _useMaterial3Light == null
         ? widget.materialLightTheme
-        : widget.materialLightTheme?.copyWith(useMaterial3: _useMaterial3Light);
+        : widget.materialLightTheme?.copyWith();
     _materialDarkTheme = _useMaterial3Dark == null
         ? widget.materialDarkTheme
-        : widget.materialDarkTheme?.copyWith(useMaterial3: _useMaterial3Dark);
+        : widget.materialDarkTheme?.copyWith();
     _cupertinoLightTheme = widget.cupertinoLightTheme;
     _cupertinoDarkTheme = widget.cupertinoDarkTheme;
     _matchCupertinoSystemChromeBrightness =
@@ -136,19 +136,15 @@ class _PlatformThemeState extends State<PlatformTheme>
     setState(() {
       if (applyToBothDarkAndLightTheme) {
         _useMaterial3Dark = _useMaterial3Light = useMaterial3;
-        _materialDarkTheme =
-            _materialDarkTheme?.copyWith(useMaterial3: useMaterial3);
-        _materialLightTheme =
-            _materialLightTheme?.copyWith(useMaterial3: useMaterial3);
+        _materialDarkTheme = _materialDarkTheme?.copyWith();
+        _materialLightTheme = _materialLightTheme?.copyWith();
       } else {
         isDark
             ? _useMaterial3Dark = useMaterial3
             : _useMaterial3Light = useMaterial3;
         isDark
-            ? _materialDarkTheme =
-                _materialDarkTheme?.copyWith(useMaterial3: useMaterial3)
-            : _materialLightTheme =
-                _materialLightTheme?.copyWith(useMaterial3: useMaterial3);
+            ? _materialDarkTheme = _materialDarkTheme?.copyWith()
+            : _materialLightTheme = _materialLightTheme?.copyWith();
       }
     });
   }

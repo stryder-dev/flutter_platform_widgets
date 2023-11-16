@@ -10,10 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'extensions.dart';
+import 'parent_widget_finder.dart';
 import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
-import 'parent_widget_finder.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
 const Color _kDefaultNavBarBorderColor = const Color(0x4C000000);
@@ -322,7 +322,7 @@ class PlatformAppBar
 
     final middleWithMediaQuery = MediaQuery(
       data: MediaQueryData(
-          textScaleFactor: MediaQuery.textScaleFactorOf(context)),
+          textScaler: TextScaler.linear(MediaQuery.textScaleFactorOf(context))),
       child: middleLocal,
     );
 
