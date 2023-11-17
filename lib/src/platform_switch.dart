@@ -99,12 +99,16 @@ class CupertinoSwitchData extends _BaseData {
     this.thumbColor,
     this.applyTheme,
     this.focusColor,
+    this.offLabelColor,
+    this.onLabelColor,
   });
 
   final Color? trackColor;
   final Color? thumbColor;
   final bool? applyTheme;
   final Color? focusColor;
+  final Color? offLabelColor;
+  final Color? onLabelColor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -190,6 +194,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       autofocus: data?.autofocus ?? autofocus ?? false,
       focusNode: data?.focusNode ?? focusNode,
       onFocusChange: data?.onFocusChange ?? onFocusChange,
+      offLabelColor: data?.offLabelColor,
+      onLabelColor: data?.onLabelColor,
     );
   }
 }

@@ -107,6 +107,7 @@ class MaterialPopupMenuData {
   final VoidCallback? onOpened;
   final Color? shadowColor;
   final Color? surfaceTintColor;
+  final Color? iconColor;
 
   MaterialPopupMenuData({
     this.key,
@@ -131,6 +132,7 @@ class MaterialPopupMenuData {
     this.onOpened,
     this.shadowColor,
     this.surfaceTintColor,
+    this.iconColor,
   });
 }
 
@@ -299,6 +301,7 @@ class PlatformPopupMenu extends StatelessWidget {
       onOpened: data?.onOpened,
       shadowColor: data?.shadowColor,
       surfaceTintColor: data?.surfaceTintColor,
+      iconColor: data?.iconColor,
     );
   }
 }

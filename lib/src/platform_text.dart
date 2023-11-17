@@ -64,6 +64,7 @@ class PlatformText extends StatelessWidget {
               textWidthBasis: textWidthBasis,
               textHeightBehavior: textHeightBehavior,
               selectionColor: selectionColor,
+              //deprecated textScaleFactor: textScaleFactor,
             ));
   }
 
