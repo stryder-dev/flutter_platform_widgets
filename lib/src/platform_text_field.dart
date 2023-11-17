@@ -70,7 +70,7 @@ abstract class _BaseData {
     this.onEditingComplete,
     this.onSubmitted,
     this.inputFormatters,
-    this.enabled,
+    this.enabled = true,
     this.cursorWidth,
     this.cursorRadius,
     this.cursorColor,
@@ -139,7 +139,7 @@ abstract class _BaseData {
   final void Function()? onEditingComplete;
   final void Function(String)? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
-  final bool? enabled;
+  final bool enabled;
   final double? cursorWidth;
   final Radius? cursorRadius;
   final Color? cursorColor;
@@ -348,7 +348,7 @@ class PlatformTextField
   final void Function()? onEditingComplete;
   final void Function(String)? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
-  final bool? enabled;
+  final bool enabled;
   final double? cursorWidth;
   final Radius? cursorRadius;
   final DragStartBehavior? dragStartBehavior;
@@ -425,7 +425,7 @@ class PlatformTextField
     this.onEditingComplete,
     this.onSubmitted,
     this.inputFormatters,
-    this.enabled,
+    this.enabled = true,
     this.cursorWidth,
     this.cursorRadius,
     this.cursorColor,
