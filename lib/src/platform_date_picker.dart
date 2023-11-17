@@ -73,6 +73,9 @@ class MaterialDatePickerData extends _BaseData {
     this.onDatePickerModeChange,
     this.switchToCalendarEntryModeIcon,
     this.switchToInputEntryModeIcon,
+    this.barrierColor,
+    this.barrierDismissible,
+    this.barrierLabel,
   });
 
   final DateTime? currentDate;
@@ -96,6 +99,9 @@ class MaterialDatePickerData extends _BaseData {
   final ValueChanged<DatePickerEntryMode>? onDatePickerModeChange;
   final Icon? switchToCalendarEntryModeIcon;
   final Icon? switchToInputEntryModeIcon;
+  final Color? barrierColor;
+  final bool? barrierDismissible;
+  final String? barrierLabel;
 }
 
 class CupertinoDatePickerData extends _BaseData {
@@ -170,6 +176,9 @@ Future<DateTime?> showPlatformDatePicker({
       onDatePickerModeChange: data?.onDatePickerModeChange,
       switchToCalendarEntryModeIcon: data?.switchToCalendarEntryModeIcon,
       switchToInputEntryModeIcon: data?.switchToInputEntryModeIcon,
+      barrierColor: data?.barrierColor,
+      barrierDismissible: data?.barrierDismissible ?? true,
+      barrierLabel: data?.barrierLabel,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
