@@ -1,3 +1,9 @@
+## [6.0.1]
+
+#### (Flutter version support: v3.16.0)
+
+- Fixed `PlatformTextField` that had a breaking argument due to Flutter 3.16 (thanks kishormainali)
+
 ## [5.0.0]
 
 #### (Flutter version support: v3.13.0 - 3.13.9)
