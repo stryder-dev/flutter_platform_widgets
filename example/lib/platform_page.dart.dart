@@ -24,7 +24,8 @@ class PlatformPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
-                child: PlatformText('Change Platform'),
+                child: PlatformText(
+                    'Change to ${isMaterial(context) ? "Cupertino" : "Material"}'),
                 onPressed: () {
                   final p = PlatformProvider.of(context)!;
 
@@ -250,18 +251,17 @@ class PlatformPage extends StatelessWidget {
           PlatformWidgetExample(
             title: 'PlatformTextFormField',
             builder: (_, platform) => PlatformTextFormField(
-              hintText: 'hint',
+              hintText: platform.text,
               validator: (value) =>
                   (value?.length ?? 0) < 3 ? 'Not enough' : null,
               autovalidateMode: AutovalidateMode.always,
             ),
           ),
-
           // ! PlatformCircularProgressIndicator
-          // _PlatformWidgetExample(
-          //   title: 'PlatformCircularProgressIndicator',
-          //   builder: (_) => PlatformCircularProgressIndicator().center,
-          // ),
+          PlatformWidgetExample(
+            title: 'PlatformCircularProgressIndicator',
+            builder: (_, __) => PlatformCircularProgressIndicator().center,
+          ),
           // ! PlatformWidgetBuilder
           PlatformWidgetExample(
             title: 'PlatformWidgetBuilder',
