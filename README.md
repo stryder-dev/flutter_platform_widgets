@@ -5,7 +5,12 @@
 <!-- omit in toc -->
 # Flutter Platform Widgets
 
-![Pub](https://img.shields.io/pub/v/flutter_platform_widgets) ![GitHub](https://img.shields.io/github/license/stryder-dev/flutter_platform_widgets)
+[![Pub Version](https://img.shields.io/pub/v/flutter_platform_widgets)](https://pub.dev/packages/flutter_platform_widgets)
+[![Pub Popularity](https://img.shields.io/pub/popularity/flutter_platform_widgets)](https://pub.dev/packages/flutter_platform_widgets)
+[![Pub Points](https://img.shields.io/pub/points/flutter_platform_widgets)](https://pub.dev/packages/flutter_platform_widgets)
+[![GitHub Stars](https://img.shields.io/github/stars/stryder-dev/flutter_platform_widgets)](https://github.com/stryder-dev/flutter_platform_widgets/stargazers)
+[![Build Test](https://github.com/stryder-dev/flutter_platform_widgets/actions/workflows/build_test.yaml/badge.svg)](https://github.com/stryder-dev/flutter_platform_widgets/actions/workflows/build_test.yaml?query=branch%3Amain)
+[![GitHub License](https://img.shields.io/github/license/stryder-dev/flutter_platform_widgets)](https://github.com/stryder-dev/flutter_platform_widgets/blob/main/LICENSE)
 
 <!-- omit in toc -->
 ### TL;DR;
