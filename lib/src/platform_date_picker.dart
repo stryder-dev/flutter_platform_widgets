@@ -224,6 +224,7 @@ Widget _renderManagedCupertinoDatePicker({
       return DefaultCupertinoDatePicker(
         contentData: contentData,
         data: data,
+        modalColor: data?.backgroundColor,
         onDateTimeChanged: (newDate) => setState(() => selectedDate = newDate),
       );
     },
