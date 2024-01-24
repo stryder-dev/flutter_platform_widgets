@@ -15,7 +15,7 @@ abstract class _BaseData {
   _BaseData({
     // Common
     this.widgetKey,
-    required this.child,
+    this.child,
     this.controller,
     this.thumbVisibility,
     this.thickness,
@@ -24,7 +24,7 @@ abstract class _BaseData {
     this.scrollbarOrientation,
   });
   final Key? widgetKey;
-  final Widget child;
+  final Widget? child;
   final ScrollController? controller;
   final bool? thumbVisibility;
   final double? thickness;
@@ -37,7 +37,7 @@ class MaterialScrollbarData extends _BaseData {
   MaterialScrollbarData({
     // Common
     super.widgetKey,
-    required super.child,
+    super.child,
     super.controller,
     super.thumbVisibility,
     super.thickness,
@@ -48,8 +48,7 @@ class MaterialScrollbarData extends _BaseData {
     // Material
     this.trackVisibility,
     this.interactive,
-  }) : assert(thumbVisibility == null,
-            'Scrollbar thumb appearance should only be controlled with thumbVisibility, ');
+  });
 
   final bool? trackVisibility;
   final bool? interactive;
@@ -59,7 +58,7 @@ class CupertinoScrollbarData extends _BaseData {
   CupertinoScrollbarData({
     // Common
     super.widgetKey,
-    required super.child,
+    super.child,
     super.controller,
     super.thumbVisibility,
     super.thickness,
@@ -70,10 +69,9 @@ class CupertinoScrollbarData extends _BaseData {
     // Cupertino
     this.thicknessWhileDragging,
     this.radiusWhileDragging,
-  })  : assert(thickness! < double.infinity),
-        assert(thicknessWhileDragging! < double.infinity),
-        assert(thumbVisibility == null,
-            'Scrollbar thumb appearance should only be controlled with thumbVisibility, ');
+  })  : assert(thickness != null && thickness < double.infinity),
+        assert(thicknessWhileDragging != null &&
+            thicknessWhileDragging < double.infinity);
   final double? thicknessWhileDragging;
   final Radius? radiusWhileDragging;
 }
