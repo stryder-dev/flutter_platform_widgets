@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart'
         CupertinoAdaptiveTextSelectionToolbar,
         CupertinoColors,
         CupertinoTextFormFieldRow;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart'
     show
         AdaptiveTextSelectionToolbar,
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart'
         TextFormField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'platform.dart';
 import 'widget_base.dart';
@@ -123,6 +125,16 @@ class MaterialTextFormFieldData extends _BaseData {
   final TapRegionCallback? onTapOutside;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final SpellCheckConfiguration? spellCheckConfiguration;
+  final bool? canRequestFocus;
+  final Clip? clipBehavior;
+  final ContentInsertionConfiguration? contentInsertionConfiguration;
+  final bool? cursorOpacityAnimates;
+  final DragStartBehavior? dragStartBehavior;
+  final AppPrivateCommandCallback? onAppPrivateCommand;
+  final bool? scribbleEnabled;
+  final ui.BoxHeightStyle? selectionHeightStyle;
+  final ui.BoxWidthStyle? selectionWidthStyle;
+  final UndoHistoryController? undoController;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -180,6 +192,16 @@ class MaterialTextFormFieldData extends _BaseData {
     this.onTapOutside,
     this.magnifierConfiguration,
     this.spellCheckConfiguration,
+    this.canRequestFocus,
+    this.clipBehavior,
+    this.contentInsertionConfiguration,
+    this.cursorOpacityAnimates,
+    this.dragStartBehavior,
+    this.onAppPrivateCommand,
+    this.scribbleEnabled,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
+    this.undoController,
   });
 }
 
@@ -436,6 +458,17 @@ class PlatformTextFormField
       onTapOutside: data?.onTapOutside,
       magnifierConfiguration: data?.magnifierConfiguration,
       spellCheckConfiguration: data?.spellCheckConfiguration,
+      canRequestFocus: data?.canRequestFocus ?? true,
+      clipBehavior: data?.clipBehavior ?? Clip.hardEdge,
+      contentInsertionConfiguration: data?.contentInsertionConfiguration,
+      cursorOpacityAnimates: data?.cursorOpacityAnimates,
+      dragStartBehavior: data?.dragStartBehavior ?? DragStartBehavior.start,
+      onAppPrivateCommand: data?.onAppPrivateCommand,
+      scribbleEnabled: data?.scribbleEnabled ?? true,
+      selectionHeightStyle:
+          data?.selectionHeightStyle ?? ui.BoxHeightStyle.tight,
+      selectionWidthStyle: data?.selectionWidthStyle ?? ui.BoxWidthStyle.tight,
+      undoController: data?.undoController,
       // toolbarOptions: , Deprecated
     );
   }

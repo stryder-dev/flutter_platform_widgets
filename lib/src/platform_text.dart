@@ -32,7 +32,12 @@ class PlatformText extends StatelessWidget {
     TextDirection? textDirection,
     bool? softWrap,
     TextOverflow? overflow,
+    @Deprecated(
+      'Use textScaler instead. '
+      'This feature was removed after version 3.16',
+    )
     double? textScaleFactor,
+    TextScaler? textScaler,
     int? maxLines,
     Locale? locale,
     String? semanticsLabel,
@@ -51,7 +56,7 @@ class PlatformText extends StatelessWidget {
               textDirection: textDirection,
               softWrap: softWrap,
               overflow: overflow,
-              textScaleFactor: textScaleFactor,
+              textScaler: textScaler,
               maxLines: maxLines,
               locale: locale,
               semanticsLabel: semanticsLabel,
@@ -59,6 +64,7 @@ class PlatformText extends StatelessWidget {
               textWidthBasis: textWidthBasis,
               textHeightBehavior: textHeightBehavior,
               selectionColor: selectionColor,
+              //deprecated textScaleFactor: textScaleFactor,
             ));
   }
 

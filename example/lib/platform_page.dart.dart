@@ -18,370 +18,360 @@ class PlatformPage extends StatelessWidget {
       appBar: PlatformAppBar(
         title: Text('Flutter Platform Widgets'),
       ),
-      body: ListView(
-        children: [
-          FlutterPlatformWidgetsLogo(size: 60),
-          Divider(thickness: 10),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PlatformElevatedButton(
-                child: PlatformText('Change Platform'),
-                onPressed: () {
-                  final p = PlatformProvider.of(context)!;
+      body: PlatformScrollbar(
+        thumbVisibility: true,
+        child: ListView(
+          children: [
+            FlutterPlatformWidgetsLogo(size: 60),
+            Divider(thickness: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformElevatedButton(
+                  child: PlatformText('Change Platform'),
+                  onPressed: () {
+                    final p = PlatformProvider.of(context)!;
 
-                  isMaterial(context)
-                      ? p.changeToCupertinoPlatform()
-                      : p.changeToMaterialPlatform();
-                }),
-          ),
-          if (isMaterial(context))
+                    isMaterial(context)
+                        ? p.changeToCupertinoPlatform()
+                        : p.changeToMaterialPlatform();
+                  }),
+            ),
+            if (isMaterial(context))
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformElevatedButton(
+                    child: PlatformText(
+                        'Change to Material${Theme.of(context).useMaterial3 ? "" : " 3"}'),
+                    onPressed: () {
+                      final isMaterial3 = Theme.of(context).useMaterial3;
+
+                      isMaterial3
+                          ? PlatformTheme.of(context)?.changeToMaterial2(
+                              applyToBothDarkAndLightTheme: true)
+                          : PlatformTheme.of(context)?.changeToMaterial3(
+                              applyToBothDarkAndLightTheme: true);
+                    }),
+              ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
                   child: PlatformText(
-                      'Change to Material${Theme.of(context).useMaterial3 ? "" : " 3"}'),
+                      'Theme mode${_getThemeMode(PlatformTheme.of(context)?.themeMode)}'),
                   onPressed: () {
-                    final isMaterial3 = Theme.of(context).useMaterial3;
+                    final mode = PlatformTheme.of(context)?.themeMode;
+                    final newMode = _cycleThemeMode(mode);
 
-                    isMaterial3
-                        ? PlatformTheme.of(context)?.changeToMaterial2(
-                            applyToBothDarkAndLightTheme: true)
-                        : PlatformTheme.of(context)?.changeToMaterial3(
-                            applyToBothDarkAndLightTheme: true);
+                    PlatformTheme.of(context)?.themeMode = newMode;
                   }),
             ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PlatformElevatedButton(
-                child: PlatformText(
-                    'Theme mode${_getThemeMode(PlatformTheme.of(context)?.themeMode)}'),
-                onPressed: () {
-                  final mode = PlatformTheme.of(context)?.themeMode;
-                  final newMode = _cycleThemeMode(mode);
+            Divider(thickness: 10),
+            // ! PlatformSearchBar
+            PlatformWidgetExample(
+              title:
+                  'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
+              builder: (context, platform) => PlatformSearchBar(
+                onChanged: (value) =>
+                    print('${platform.text} SearchBar changed: $value'),
+                onTap: () => print('${platform.text} SearchBar tapped'),
+                hintText: '${platform.text} SearchBar',
+              ),
+            ),
+            // ! PlatformListTile
+            PlatformWidgetExample(
+              title: 'PlatformListTile',
+              builder: (_, platform) => PlatformListTile(
+                leading: Icon(context.platformIcons.book),
+                title: PlatformText("title"),
+                subtitle: PlatformText("subtitle"),
+                trailing: Icon(context.platformIcons.rightChevron),
+                onTap: () => print('${platform.text} PlatformListTile'),
+              ),
+            ),
+            // ! PlatformText
+            PlatformWidgetExample(
+              title: 'PlatformText',
+              builder: (_, platform) => PlatformText(
+                '${platform.text} Text',
+                textAlign: TextAlign.center,
+              ),
+            ),
+            // ! PlatformWidget
+            PlatformWidgetExample(
+              title: 'PlatformWidget',
+              builder: (_, platform) => PlatformWidget(
+                material: (_, __) => Text(
+                  'Showing ${platform.text}',
+                  textAlign: TextAlign.center,
+                ),
+                cupertino: (_, __) => Text(
+                  'Showing ${platform.text}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            // ! PlatformCheckbox
+            PlatformWidgetExample(
+              title: 'PlatformCheckbox',
+              builder: (_, __) => StateProvider<bool>(
+                initialValue: false,
+                builder: (_, value, setValue) => PlatformCheckbox(
+                  value: value,
+                  onChanged: (newValue) {
+                    setValue(newValue!);
+                  },
+                ),
+              ),
+            ),
+            // ! PlatformRadio
+            PlatformWidgetExample(
+              title: 'PlatformRadio',
+              builder: (_, platform) => StateProvider<String>(
+                initialValue: 'One',
+                builder: (_, value, setValue) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    PlatformRadio<String>(
+                      value: 'One',
+                      groupValue: value,
+                      onChanged: (dynamic newValue) {
+                        setValue(newValue as String);
+                      },
+                    ),
+                    PlatformRadio<String>(
+                      value: 'Two',
+                      groupValue: value,
+                      onChanged: (dynamic newValue) {
+                        setValue(newValue as String);
+                      },
+                    ),
+                    PlatformRadio<String>(
+                      value: 'Three',
+                      groupValue: value,
+                      onChanged: (dynamic newValue) {
+                        setValue(newValue as String);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // ! PlatformElevatedButton
+            PlatformWidgetExample(
+              title: 'PlatformElevatedButton',
+              builder: (_, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => print('${platform.text} PlatformButton'),
+                padding: const EdgeInsets.all(8),
+                color: Colors.orange,
+              ),
+            ),
+            PlatformWidgetExample(
+              title: 'PlatformElevatedButton Icon',
+              builder: (_, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => print('${platform.text} PlatformButton'),
+                padding: const EdgeInsets.all(8),
+                material: (_, __) => MaterialElevatedButtonData(
+                  icon: Icon(Icons.home),
+                ),
+                cupertino: (_, __) => CupertinoElevatedButtonData(
+                  originalStyle: true,
+                ),
+              ),
+            ),
+            // ! PlatformTextButton
+            PlatformWidgetExample(
+              title: 'PlatformTextButton',
+              builder: (_, platform) => PlatformTextButton(
+                child: Text(platform.text),
+                onPressed: () => print('${platform.text} PlatformButton'),
+                padding: const EdgeInsets.all(8),
+              ),
+            ),
+            PlatformWidgetExample(
+              title: 'PlatformTextButton Icon',
+              builder: (_, platform) => PlatformTextButton(
+                child: Text(platform.text),
+                onPressed: () => print('${platform.text} PlatformButton'),
+                padding: const EdgeInsets.all(8),
+                material: (_, __) => MaterialTextButtonData(
+                  icon: Icon(Icons.home),
+                ),
+                cupertino: (_, __) => CupertinoTextButtonData(
+                  originalStyle: true,
+                ),
+              ),
+            ),
+            // ! PlatformSwitch
+            PlatformWidgetExample(
+              title: 'PlatformSwitch',
+              builder: (_, __) => StateProvider<bool>(
+                initialValue: false,
+                builder: (_, value, setValue) => PlatformSwitch(
+                  onChanged: setValue,
+                  value: value,
+                ).center,
+              ),
+            ),
+            // ! PlatformSlider
+            PlatformWidgetExample(
+              title: 'PlatformSlider',
+              builder: (_, __) => StateProvider<double>(
+                initialValue: 0.5,
+                builder: (_, value, setValue) => PlatformSlider(
+                  onChanged: setValue,
+                  value: value,
+                ),
+              ),
+            ),
+            // ! PlatformIconButton
+            PlatformWidgetExample(
+              title: 'PlatformIconButton',
+              builder: (context, __) => PlatformIconButton(
+                icon: Icon(context.platformIcons.folder),
+                onPressed: () {},
+              ),
+            ),
+            // ! PlatformTextField
+            PlatformWidgetExample(
+              title: 'PlatformTextField',
+              builder: (_, platform) =>
+                  PlatformTextField(hintText: platform.text),
+            ),
+            PlatformWidgetExample(
+              title: 'PlatformTextField multiline',
+              builder: (_, platform) => SizedBox(
+                height: 100,
+                child: PlatformTextField(
+                  hintText: platform.text,
+                  expands: true,
+                  maxLines: null,
+                ),
+              ),
+            ),
+            // ! PlatformTextFormField
+            PlatformWidgetExample(
+              title: 'PlatformTextFormField',
+              builder: (_, platform) => PlatformTextFormField(
+                hintText: 'hint',
+                validator: (value) =>
+                    (value?.length ?? 0) < 3 ? 'Not enough' : null,
+                autovalidateMode: AutovalidateMode.always,
+              ),
+            ),
 
-                  PlatformTheme.of(context)?.themeMode = newMode;
-                }),
-          ),
-          Divider(thickness: 10),
-          // ! PlatformSearchBar
-          PlatformWidgetExample(
-            title:
-                'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
-            builder: (context, platform) => PlatformSearchBar(
-              onChanged: (value) =>
-                  print('${platform.text} SearchBar changed: $value'),
-              onTap: () => print('${platform.text} SearchBar tapped'),
-              hintText: '${platform.text} SearchBar',
+            // ! PlatformCircularProgressIndicator
+            // _PlatformWidgetExample(
+            //   title: 'PlatformCircularProgressIndicator',
+            //   builder: (_) => PlatformCircularProgressIndicator().center,
+            // ),
+            // ! PlatformWidgetBuilder
+            PlatformWidgetExample(
+              title: 'PlatformWidgetBuilder',
+              builder: (_, platform) => PlatformWidgetBuilder(
+                cupertino: (_, child, __) => GestureDetector(
+                  child: child,
+                  onTap: () => print('Cupertino PlatformWidgetBuilder'),
+                ),
+                material: (_, child, __) => InkWell(
+                  child: child,
+                  onTap: () => print('Material PlatformWidgetBuilder'),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: PlatformText('Tap me (${platform.text})').center,
+                ),
+              ),
             ),
-          ),
-          // ! PlatformListTile
-          PlatformWidgetExample(
-            title: 'PlatformListTile',
-            builder: (_, platform) => PlatformListTile(
-              leading: Icon(context.platformIcons.book),
-              title: PlatformText("title"),
-              subtitle: PlatformText("subtitle"),
-              trailing: Icon(context.platformIcons.rightChevron),
-              onTap: () => print('${platform.text} PlatformListTile'),
-            ),
-          ),
-          // ! PlatformText
-          PlatformWidgetExample(
-            title: 'PlatformText',
-            builder: (_, platform) => PlatformText(
-              '${platform.text} Text',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          // ! PlatformWidget
-          PlatformWidgetExample(
-            title: 'PlatformWidget',
-            builder: (_, platform) => PlatformWidget(
-              material: (_, __) => Text(
-                'Showing ${platform.text}',
+            // ! platformThemeData
+            PlatformWidgetExample(
+              title: 'platformThemeData',
+              builder: (context, platform) => Text(
+                platform.text,
                 textAlign: TextAlign.center,
-              ),
-              cupertino: (_, __) => Text(
-                'Showing ${platform.text}',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          // ! PlatformCheckbox
-          PlatformWidgetExample(
-            title: 'PlatformCheckbox',
-            builder: (_, __) => StateProvider<bool>(
-              initialValue: false,
-              builder: (_, value, setValue) => PlatformCheckbox(
-                value: value,
-                onChanged: (newValue) {
-                  setValue(newValue!);
-                },
+                style: platformThemeData(
+                  context,
+                  material: (data) => data.textTheme.headlineSmall,
+                  cupertino: (data) => data.textTheme.navTitleTextStyle,
+                ),
               ),
             ),
-          ),
-          // ! PlatformRadio
-          PlatformWidgetExample(
-            title: 'PlatformRadio',
-            builder: (_, platform) => StateProvider<String>(
-              initialValue: 'One',
-              builder: (_, value, setValue) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  PlatformRadio<String>(
-                    value: 'One',
-                    groupValue: value,
-                    onChanged: (dynamic newValue) {
-                      setValue(newValue as String);
-                    },
+            // ! Popup Menu
+            PlatformWidgetExample(
+              title: 'Popup Menu',
+              builder: (_, platform) => PlatformPopupMenu(
+                icon: Icon(
+                  context.platformIcon(
+                    material: Icons.more_vert_rounded,
+                    cupertino: CupertinoIcons.ellipsis,
                   ),
-                  PlatformRadio<String>(
-                    value: 'Two',
-                    groupValue: value,
-                    onChanged: (dynamic newValue) {
-                      setValue(newValue as String);
-                    },
+                ),
+                options: [
+                  PopupMenuOption(label: 'One'),
+                  PopupMenuOption(
+                    label: 'Two',
+                    material: (_, __) => MaterialPopupMenuOptionData(
+                      withDivider: true,
+                    ),
                   ),
-                  PlatformRadio<String>(
-                    value: 'Three',
-                    groupValue: value,
-                    onChanged: (dynamic newValue) {
-                      setValue(newValue as String);
-                    },
-                  ),
+                  PopupMenuOption(label: 'Three'),
                 ],
               ),
             ),
-          ),
-          // ! PlatformElevatedButton
-          PlatformWidgetExample(
-            title: 'PlatformElevatedButton',
-            builder: (_, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => print('${platform.text} PlatformButton'),
-              padding: const EdgeInsets.all(8),
-              color: Colors.orange,
-            ),
-          ),
-          PlatformWidgetExample(
-            title: 'PlatformElevatedButton Icon',
-            builder: (_, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => print('${platform.text} PlatformButton'),
-              padding: const EdgeInsets.all(8),
-              material: (_, __) => MaterialElevatedButtonData(
-                icon: Icon(Icons.home),
-              ),
-              cupertino: (_, __) => CupertinoElevatedButtonData(
-                originalStyle: true,
+            // ! Date Picker
+            PlatformWidgetExample(
+              title: 'showPlatformDatePicker',
+              builder: (_, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => _showDatePicker(context),
               ),
             ),
-          ),
-          // ! PlatformTextButton
-          PlatformWidgetExample(
-            title: 'PlatformTextButton',
-            builder: (_, platform) => PlatformTextButton(
-              child: Text(platform.text),
-              onPressed: () => print('${platform.text} PlatformButton'),
-              padding: const EdgeInsets.all(8),
-            ),
-          ),
-          PlatformWidgetExample(
-            title: 'PlatformTextButton Icon',
-            builder: (_, platform) => PlatformTextButton(
-              child: Text(platform.text),
-              onPressed: () => print('${platform.text} PlatformButton'),
-              padding: const EdgeInsets.all(8),
-              material: (_, __) => MaterialTextButtonData(
-                icon: Icon(Icons.home),
-              ),
-              cupertino: (_, __) => CupertinoTextButtonData(
-                originalStyle: true,
+            // ! Date Picker with Custom iOS
+            PlatformWidgetExample(
+              title: 'showPlatformDatePicker (Custom Cupertino 1 )',
+              builder: (_, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => showDatePickerWithCustomCupertino(context),
               ),
             ),
-          ),
-          // ! PlatformSwitch
-          PlatformWidgetExample(
-            title: 'PlatformSwitch',
-            builder: (_, __) => StateProvider<bool>(
-              initialValue: false,
-              builder: (_, value, setValue) => PlatformSwitch(
-                onChanged: setValue,
-                value: value,
-              ).center,
-            ),
-          ),
-          // ! PlatformSlider
-          PlatformWidgetExample(
-            title: 'PlatformSlider',
-            builder: (_, __) => StateProvider<double>(
-              initialValue: 0.5,
-              builder: (_, value, setValue) => PlatformSlider(
-                onChanged: setValue,
-                value: value,
+            PlatformWidgetExample(
+              title: 'showPlatformDatePicker (Custom Cupertino 2)',
+              builder: (_, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () =>
+                    showDatePickerWithCustomCupertinoStateful(context),
               ),
             ),
-          ),
-          // ! PlatformIconButton
-          PlatformWidgetExample(
-            title: 'PlatformIconButton',
-            builder: (context, __) => PlatformIconButton(
-              icon: Icon(context.platformIcons.folder),
-              onPressed: () {},
-            ),
-          ),
-          // ! PlatformTextField
-          PlatformWidgetExample(
-            title: 'PlatformTextField',
-            builder: (_, platform) =>
-                PlatformTextField(hintText: platform.text),
-          ),
-          PlatformWidgetExample(
-            title: 'PlatformTextField multiline',
-            builder: (_, platform) => SizedBox(
-              height: 100,
-              child: PlatformTextField(
-                hintText: platform.text,
-                expands: true,
-                maxLines: null,
+            // ! Dialogs
+            PlatformWidgetExample(
+              title: 'showPlatformDialog',
+              builder: (context, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => _showExampleDialog(context, platform.text),
               ),
             ),
-          ),
-          // ! PlatformTextFormField
-          PlatformWidgetExample(
-            title: 'PlatformTextFormField',
-            builder: (_, platform) => PlatformTextFormField(
-              hintText: 'hint',
-              validator: (value) =>
-                  (value?.length ?? 0) < 3 ? 'Not enough' : null,
-              autovalidateMode: AutovalidateMode.always,
-            ),
-          ),
-
-          // ! PlatformCircularProgressIndicator
-          // _PlatformWidgetExample(
-          //   title: 'PlatformCircularProgressIndicator',
-          //   builder: (_) => PlatformCircularProgressIndicator().center,
-          // ),
-          // ! PlatformWidgetBuilder
-          PlatformWidgetExample(
-            title: 'PlatformWidgetBuilder',
-            builder: (_, platform) => PlatformWidgetBuilder(
-              cupertino: (_, child, __) => GestureDetector(
-                child: child,
-                onTap: () => print('Cupertino PlatformWidgetBuilder'),
-              ),
-              material: (_, child, __) => InkWell(
-                child: child,
-                onTap: () => print('Material PlatformWidgetBuilder'),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: PlatformText('Tap me (${platform.text})').center,
+            // ! Bottomsheet
+            PlatformWidgetExample(
+              title: 'showPlatformModalSheet',
+              builder: (context, platform) => PlatformElevatedButton(
+                child: Text(platform.text),
+                onPressed: () => _showPopupSheet(context, platform.text),
               ),
             ),
-          ),
-          // ! platformThemeData
-          PlatformWidgetExample(
-            title: 'platformThemeData',
-            builder: (context, platform) => Text(
-              platform.text,
-              textAlign: TextAlign.center,
-              style: platformThemeData(
-                context,
-                material: (data) => data.textTheme.headlineSmall,
-                cupertino: (data) => data.textTheme.navTitleTextStyle,
-              ),
-            ),
-          ),
-          // ! Popup Menu
-          PlatformWidgetExample(
-            title: 'Popup Menu',
-            builder: (_, platform) => PlatformPopupMenu(
-              icon: Icon(
-                context.platformIcon(
-                  material: Icons.more_vert_rounded,
-                  cupertino: CupertinoIcons.ellipsis,
-                ),
-              ),
-              options: [
-                PopupMenuOption(label: 'One'),
-                PopupMenuOption(
-                  label: 'Two',
-                  material: (_, __) => MaterialPopupMenuOptionData(
-                    withDivider: true,
+            // ! Tab pages
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PlatformElevatedButton(
+                child: Text('Show Tabbed Pages'),
+                onPressed: () => Navigator.of(context).push(
+                  platformPageRoute(
+                    context: context,
+                    builder: (context) => TabImplementationPage(),
                   ),
-                ),
-                PopupMenuOption(label: 'Three'),
-              ],
-            ),
-          ),
-          // ! Date Picker
-          PlatformWidgetExample(
-            title: 'showPlatformDatePicker',
-            builder: (_, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => _showDatePicker(context),
-            ),
-          ),
-          // ! Date Picker with Custom iOS
-          PlatformWidgetExample(
-            title: 'showPlatformDatePicker (Custom Cupertino 1 )',
-            builder: (_, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => showDatePickerWithCustomCupertino(context),
-            ),
-          ),
-          PlatformWidgetExample(
-            title: 'showPlatformDatePicker (Custom Cupertino 2)',
-            builder: (_, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () =>
-                  showDatePickerWithCustomCupertinoStateful(context),
-            ),
-          ),
-          // ! Dialogs
-          PlatformWidgetExample(
-            title: 'showPlatformDialog',
-            builder: (context, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => _showExampleDialog(context, platform.text),
-            ),
-          ),
-          // ! Bottomsheet
-          PlatformWidgetExample(
-            title: 'showPlatformModalSheet',
-            builder: (context, platform) => PlatformElevatedButton(
-              child: Text(platform.text),
-              onPressed: () => _showPopupSheet(context, platform.text),
-            ),
-          ),
-          // ! Tab pages
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PlatformElevatedButton(
-              child: Text('Show Tabbed Pages'),
-              onPressed: () => Navigator.of(context).push(
-                platformPageRoute(
-                  context: context,
-                  builder: (context) => TabImplementationPage(),
-                ),
-              ),
-            ),
-          ),
-          // ! Icons
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PlatformElevatedButton(
-              child: Text('Show Platform Icons'),
-              onPressed: () => Navigator.of(context).push(
-                platformPageRoute(
-                  context: context,
-                  builder: (context) => IconsPage(),
                 ),
               ),
             ),
@@ -401,19 +391,35 @@ class PlatformPage extends StatelessWidget {
           ),
           // ! Material on iOS
           if (isCupertino(context))
+            // ! Icons
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show Material on iOS'),
+                child: Text('Show Platform Icons'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => IosMaterialPage(),
+                    builder: (context) => IconsPage(),
                   ),
                 ),
               ),
             ),
-        ],
+            // ! Material on iOS
+            if (isCupertino(context))
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformElevatedButton(
+                  child: Text('Show Material on iOS'),
+                  onPressed: () => Navigator.of(context).push(
+                    platformPageRoute(
+                      context: context,
+                      builder: (context) => IosMaterialPage(),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -132,6 +132,7 @@ abstract class _DialogBaseData {
 class MaterialDialogData extends _DialogBaseData {
   final bool? useSafeArea;
   final Color? barrierColor;
+  final TraversalEdgeBehavior? traversalEdgeBehavior;
 
   MaterialDialogData({
     super.builder,
@@ -142,6 +143,7 @@ class MaterialDialogData extends _DialogBaseData {
     super.anchorPoint,
     this.useSafeArea,
     this.barrierColor,
+    this.traversalEdgeBehavior,
   });
 }
 
@@ -181,6 +183,7 @@ Future<T?> showPlatformDialog<T>({
       barrierColor: material?.barrierColor ?? Colors.black54,
       barrierLabel: material?.barrierLabel ?? barrierLabel,
       anchorPoint: material?.anchorPoint ?? anchorPoint,
+      traversalEdgeBehavior: material?.traversalEdgeBehavior,
     );
   } else {
     assert(cupertino?.builder != null || builder != null);

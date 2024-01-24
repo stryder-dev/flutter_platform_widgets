@@ -6,7 +6,11 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoColors, CupertinoSlider;
 import 'package:flutter/material.dart'
-    show MaterialStateProperty, SemanticFormatterCallback, Slider;
+    show
+        MaterialStateProperty,
+        SemanticFormatterCallback,
+        Slider,
+        SliderInteraction;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -59,6 +63,7 @@ class MaterialSliderData extends _BaseData {
     this.overlayColor,
     this.secondaryActiveColor,
     this.secondaryTrackValue,
+    this.allowedInteraction,
   });
 
   final Color? inactiveColor;
@@ -70,6 +75,7 @@ class MaterialSliderData extends _BaseData {
   final MaterialStateProperty<Color?>? overlayColor;
   final Color? secondaryActiveColor;
   final double? secondaryTrackValue;
+  final SliderInteraction? allowedInteraction;
 }
 
 class CupertinoSliderData extends _BaseData {
@@ -144,6 +150,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
       overlayColor: data?.overlayColor,
       secondaryActiveColor: data?.secondaryActiveColor,
       secondaryTrackValue: data?.secondaryTrackValue,
+      allowedInteraction: data?.allowedInteraction,
     );
   }
 

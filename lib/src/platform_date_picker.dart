@@ -13,6 +13,10 @@ import 'platform.dart';
 import 'platform_text_button.dart';
 import 'widget_base.dart';
 
+// Values derived from https://developer.apple.com/design/resources/ and on iOS
+// simulators with "Debug View Hierarchy".
+const double _kItemExtent = 32.0;
+
 class DatePickerContentData {
   final DateTime? initialDate;
   final DateTime? firstDate;
@@ -44,29 +48,35 @@ abstract class _BaseData {
 }
 
 class MaterialDatePickerData extends _BaseData {
-  MaterialDatePickerData(
-      {super.initialDate,
-      super.firstDate,
-      super.lastDate,
-      this.currentDate,
-      this.initialEntryMode,
-      this.selectableDayPredicate,
-      this.helpText,
-      this.cancelText,
-      this.confirmText,
-      this.locale,
-      this.useRootNavigator,
-      this.routeSettings,
-      this.textDirection,
-      this.builder,
-      this.initialDatePickerMode,
-      this.errorFormatText,
-      this.errorInvalidText,
-      this.fieldHintText,
-      this.fieldLabelText,
-      this.anchorPoint,
-      this.keyboardType,
-      this.onDatePickerModeChange});
+  MaterialDatePickerData({
+    super.initialDate,
+    super.firstDate,
+    super.lastDate,
+    this.currentDate,
+    this.initialEntryMode,
+    this.selectableDayPredicate,
+    this.helpText,
+    this.cancelText,
+    this.confirmText,
+    this.locale,
+    this.useRootNavigator,
+    this.routeSettings,
+    this.textDirection,
+    this.builder,
+    this.initialDatePickerMode,
+    this.errorFormatText,
+    this.errorInvalidText,
+    this.fieldHintText,
+    this.fieldLabelText,
+    this.anchorPoint,
+    this.keyboardType,
+    this.onDatePickerModeChange,
+    this.switchToCalendarEntryModeIcon,
+    this.switchToInputEntryModeIcon,
+    this.barrierColor,
+    this.barrierDismissible,
+    this.barrierLabel,
+  });
 
   final DateTime? currentDate;
   final DatePickerEntryMode? initialEntryMode;
@@ -87,6 +97,11 @@ class MaterialDatePickerData extends _BaseData {
   final Offset? anchorPoint;
   final TextInputType? keyboardType;
   final ValueChanged<DatePickerEntryMode>? onDatePickerModeChange;
+  final Icon? switchToCalendarEntryModeIcon;
+  final Icon? switchToInputEntryModeIcon;
+  final Color? barrierColor;
+  final bool? barrierDismissible;
+  final String? barrierLabel;
 }
 
 class CupertinoDatePickerData extends _BaseData {
@@ -106,6 +121,7 @@ class CupertinoDatePickerData extends _BaseData {
     this.doneLabel,
     this.cancelLabel,
     this.showDayOfWeek,
+    this.itemExtent,
   });
 
   final Key? key;
@@ -120,6 +136,7 @@ class CupertinoDatePickerData extends _BaseData {
   final String? doneLabel;
   final String? cancelLabel;
   final bool? showDayOfWeek;
+  final double? itemExtent;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -157,6 +174,11 @@ Future<DateTime?> showPlatformDatePicker({
       anchorPoint: data?.anchorPoint,
       keyboardType: data?.keyboardType,
       onDatePickerModeChange: data?.onDatePickerModeChange,
+      switchToCalendarEntryModeIcon: data?.switchToCalendarEntryModeIcon,
+      switchToInputEntryModeIcon: data?.switchToInputEntryModeIcon,
+      barrierColor: data?.barrierColor,
+      barrierDismissible: data?.barrierDismissible ?? true,
+      barrierLabel: data?.barrierLabel,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -202,6 +224,7 @@ Widget _renderManagedCupertinoDatePicker({
       return DefaultCupertinoDatePicker(
         contentData: contentData,
         data: data,
+        modalColor: data?.backgroundColor,
         onDateTimeChanged: (newDate) => setState(() => selectedDate = newDate),
       );
     },
@@ -254,6 +277,7 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
             minuteInterval: data?.minuteInterval ?? 1,
             use24hFormat: data?.use24hFormat ?? false,
             showDayOfWeek: data?.showDayOfWeek ?? false,
+            itemExtent: data?.itemExtent ?? _kItemExtent,
           ),
           Row(
             children: [

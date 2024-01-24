@@ -52,6 +52,7 @@ abstract class _BaseData {
     this.highContrastTheme,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.onNavigationNotification,
   });
 
   final Key? widgetKey;
@@ -83,6 +84,8 @@ abstract class _BaseData {
   final ThemeData? highContrastTheme;
   final String? restorationScopeId;
   final ScrollBehavior? scrollBehavior;
+  final NotificationListenerCallback<NavigationNotification>?
+      onNavigationNotification;
 }
 
 abstract class _BaseRouterData {
@@ -117,6 +120,7 @@ abstract class _BaseRouterData {
     // ignore: unused_element
     this.restorationScopeId,
     this.scrollBehavior,
+    this.onNavigationNotification,
   });
 
   final Key? widgetKey;
@@ -158,6 +162,9 @@ abstract class _BaseRouterData {
   final String? restorationScopeId;
 
   final ScrollBehavior? scrollBehavior;
+
+  final NotificationListenerCallback<NavigationNotification>?
+      onNavigationNotification;
 }
 
 class MaterialAppData extends _BaseData {
@@ -189,13 +196,14 @@ class MaterialAppData extends _BaseData {
     super.onGenerateInitialRoutes,
     super.restorationScopeId,
     super.scrollBehavior,
+    super.onNavigationNotification,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
     this.themeMode,
     this.scaffoldMessengerKey,
-    this.themeAnimationCurve = Curves.linear,
-    this.themeAnimationDuration = kThemeAnimationDuration,
+    this.themeAnimationCurve,
+    this.themeAnimationDuration,
   });
 
   final ThemeData? theme;
@@ -203,8 +211,8 @@ class MaterialAppData extends _BaseData {
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
-  final Curve themeAnimationCurve;
-  final Duration themeAnimationDuration;
+  final Curve? themeAnimationCurve;
+  final Duration? themeAnimationDuration;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
@@ -232,13 +240,14 @@ class MaterialAppRouterData extends _BaseRouterData {
     super.actions,
     super.onGenerateInitialRoutes,
     super.scrollBehavior,
+    super.onNavigationNotification,
     this.theme,
     this.debugShowMaterialGrid,
     this.darkTheme,
     this.themeMode,
     this.scaffoldMessengerKey,
-    this.themeAnimationCurve = Curves.linear,
-    this.themeAnimationDuration = kThemeAnimationDuration,
+    this.themeAnimationCurve,
+    this.themeAnimationDuration,
   });
 
   final ThemeData? theme;
@@ -246,8 +255,8 @@ class MaterialAppRouterData extends _BaseRouterData {
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
-  final Curve themeAnimationCurve;
-  final Duration themeAnimationDuration;
+  final Curve? themeAnimationCurve;
+  final Duration? themeAnimationDuration;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -342,6 +351,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<LogicalKeySet, Intent>? shortcuts;
   final Map<Type, Action<Intent>>? actions;
   final InitialRouteListFactory? onGenerateInitialRoutes;
+  final NotificationListenerCallback<NavigationNotification>?
+      onNavigationNotification;
 
   final PlatformBuilder<MaterialAppData>? material;
   final PlatformBuilder<CupertinoAppData>? cupertino;
@@ -396,6 +407,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.onGenerateInitialRoutes,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.onNavigationNotification,
     this.material,
     this.cupertino,
   })  : routeInformationProvider = null,
@@ -432,6 +444,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.actions,
     this.restorationScopeId,
     this.scrollBehavior,
+    this.onNavigationNotification,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
   })  : navigatorObservers = null,
@@ -521,6 +534,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         themeAnimationCurve: dataRouter?.themeAnimationCurve ?? Curves.linear,
         themeAnimationDuration:
             dataRouter?.themeAnimationDuration ?? kThemeAnimationDuration,
+        onNavigationNotification:
+            dataRouter?.onNavigationNotification ?? onNavigationNotification,
         // useInheritedMediaQuery: , Deprecated
       );
     } else {
@@ -585,6 +600,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         themeAnimationCurve: data?.themeAnimationCurve ?? Curves.linear,
         themeAnimationDuration:
             data?.themeAnimationDuration ?? kThemeAnimationDuration,
+        onNavigationNotification:
+            data?.onNavigationNotification ?? onNavigationNotification,
         // useInheritedMediaQuery: , Deprecated
       );
     }
@@ -649,6 +666,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         restorationScopeId:
             dataRouter?.restorationScopeId ?? restorationScopeId,
         scrollBehavior: dataRouter?.scrollBehavior ?? scrollBehavior,
+        onNavigationNotification:
+            dataRouter?.onNavigationNotification ?? onNavigationNotification,
         // useInheritedMediaQuery: , Deprecated
       );
     } else {
@@ -699,6 +718,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.onGenerateInitialRoutes ?? onGenerateInitialRoutes,
         restorationScopeId: data?.restorationScopeId ?? restorationScopeId,
         scrollBehavior: data?.scrollBehavior ?? scrollBehavior,
+        onNavigationNotification:
+            data?.onNavigationNotification ?? onNavigationNotification,
         // useInheritedMediaQuery: , Deprecated
       );
     }

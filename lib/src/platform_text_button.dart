@@ -28,19 +28,21 @@ abstract class _BaseData {
 }
 
 class MaterialTextButtonData extends _BaseData {
-  MaterialTextButtonData(
-      {super.widgetKey,
-      super.child,
-      super.onPressed,
-      this.onLongPress,
-      this.focusNode,
-      this.style,
-      this.autofocus,
-      this.clipBehavior,
-      this.icon,
-      this.onHover,
-      this.onFocusChange,
-      this.statesController});
+  MaterialTextButtonData({
+    super.widgetKey,
+    super.child,
+    super.onPressed,
+    this.onLongPress,
+    this.focusNode,
+    this.style,
+    this.autofocus,
+    this.clipBehavior,
+    this.icon,
+    this.onHover,
+    this.onFocusChange,
+    this.statesController,
+    this.isSemanticButton,
+  });
 
   final VoidCallback? onLongPress;
   final FocusNode? focusNode;
@@ -51,6 +53,7 @@ class MaterialTextButtonData extends _BaseData {
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
   final MaterialStatesController? statesController;
+  final bool? isSemanticButton;
 }
 
 class CupertinoTextButtonData extends _BaseData {
@@ -150,6 +153,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
       onHover: data?.onHover,
       onFocusChange: data?.onFocusChange,
       statesController: data?.statesController,
+      isSemanticButton: data?.isSemanticButton ?? true,
     );
   }
 

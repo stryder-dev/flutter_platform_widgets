@@ -1,3 +1,23 @@
+## [6.0.2]
+
+#### (Flutter version support: v3.16.0)
+
+- Adds all the flutter 3.16 additional properties for platform widgets
+
+## [6.0.1]
+
+#### (Flutter version support: v3.16.0)
+
+- Upgrade to flutter version 3.16.0 and sets the Dart min value to 3.2
+- Fixed `PlatformTextField` that had a breaking argument due to Flutter 3.16 (thanks kishormainali)
+
+## [5.0.0]
+
+#### (Flutter version support: v3.13.0 - 3.13.9)
+
+- Upgrade to flutter version 3.13.0 and sets the Dart min value to 3.1
+- Adds all the flutter 3.13 additional properties for platform widgets
+
 ## [4.0.0-beta.2]
 
 #### (Flutter version support: v3.10.0)

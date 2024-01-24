@@ -38,6 +38,7 @@ export 'src/platform_provider.dart';
 export 'src/platform_radio.dart';
 export 'src/platform_scaffold.dart';
 export 'src/platform_search_bar.dart';
+export 'src/platform_scrollbar.dart';
 export 'src/platform_slider.dart';
 export 'src/platform_sliver_app_bar.dart';
 export 'src/platform_switch.dart';

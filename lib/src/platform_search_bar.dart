@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart'
         OverlayVisibilityMode,
         CupertinoIcons;
 import 'package:flutter/material.dart' show MaterialStateProperty, SearchBar;
+import 'package:flutter/services.dart' show TextCapitalization;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -54,6 +55,8 @@ class MaterialSearchBarData extends _BaseData {
     this.hintStyle,
     this.textStyle,
     this.hintText,
+    this.onSubmitted,
+    this.textCapitalization,
   });
 
   // final String? hintText;
@@ -71,6 +74,8 @@ class MaterialSearchBarData extends _BaseData {
   final MaterialStateProperty<TextStyle?>? hintStyle;
   final MaterialStateProperty<TextStyle?>? textStyle;
   final String? hintText;
+  final ValueChanged<String>? onSubmitted;
+  final TextCapitalization? textCapitalization;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -223,6 +228,8 @@ class PlatformSearchBar
       side: data?.side,
       shape: data?.shape,
       padding: data?.padding,
+      onSubmitted: data?.onSubmitted,
+      textCapitalization: data?.textCapitalization,
     );
   }
 

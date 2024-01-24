@@ -188,20 +188,24 @@ class PlatformIcons {
       isMaterial(context) ? Icons.cloud : CupertinoIcons.cloud_fill;
 
   /// Icons: Icons.cloud_download_outlined : CupertinoIcons.cloud_download
-  IconData get cloudDownload =>
-      isMaterial(context) ? Icons.cloud_download_outlined : CupertinoIcons.cloud_download;
+  IconData get cloudDownload => isMaterial(context)
+      ? Icons.cloud_download_outlined
+      : CupertinoIcons.cloud_download;
 
   /// Icons: Icons.cloud_download : CupertinoIcons.cloud_download_fill
-  IconData get cloudDownloadSolid =>
-      isMaterial(context) ? Icons.cloud_download : CupertinoIcons.cloud_download_fill;
+  IconData get cloudDownloadSolid => isMaterial(context)
+      ? Icons.cloud_download
+      : CupertinoIcons.cloud_download_fill;
 
   /// Icons: Icons.cloud_upload_outlined : CupertinoIcons.cloud_upload
-  IconData get cloudUpload =>
-      isMaterial(context) ? Icons.cloud_upload_outlined : CupertinoIcons.cloud_upload;
+  IconData get cloudUpload => isMaterial(context)
+      ? Icons.cloud_upload_outlined
+      : CupertinoIcons.cloud_upload;
 
   /// Icons: Icons.cloud_upload : CupertinoIcons.cloud_upload_fill
-  IconData get cloudUploadSolid =>
-      isMaterial(context) ? Icons.cloud_upload : CupertinoIcons.cloud_upload_fill;
+  IconData get cloudUploadSolid => isMaterial(context)
+      ? Icons.cloud_upload
+      : CupertinoIcons.cloud_upload_fill;
 
   /// Icons: Icons.collections : CupertinoIcons.collections
   IconData get collections =>
@@ -737,4 +741,9 @@ class PlatformIcons {
   /// Icons: Icons.wifi_off : CupertinoIcons.wifi_slash
   IconData get wifiOff =>
       isMaterial(context) ? Icons.wifi_off : CupertinoIcons.wifi_slash;
+
+  /// Icons: Icons.exit_to_app : CupertinoIcons.square_arrow_right
+  IconData get exit_to_app => isMaterial(context)
+      ? Icons.exit_to_app
+      : CupertinoIcons.square_arrow_right;
 }
