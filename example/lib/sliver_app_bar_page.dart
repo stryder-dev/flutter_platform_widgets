@@ -25,7 +25,8 @@ class _PlatformSliverAppBarPageState extends State<PlatformSliverAppBarPage> {
                   color: index.isOdd ? Colors.white : Colors.black12,
                   height: 100.0,
                   child: Center(
-                    child: PlatformText('$index', textScaleFactor: 5),
+                    child: PlatformText('$index',
+                        textScaler: TextScaler.linear(5)),
                   ),
                 );
               },
