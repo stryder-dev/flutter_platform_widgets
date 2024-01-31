@@ -375,35 +375,35 @@ class PlatformPage extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          // ! Platform Sliver AppBar
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: PlatformElevatedButton(
-              child: Text('Show  Sliver AppBar Page'),
-              onPressed: () => Navigator.of(context).push(
-                platformPageRoute(
-                  context: context,
-                  builder: (context) => PlatformSliverAppBarPage(),
-                ),
-              ),
-            ),
-          ),
-          // ! Material on iOS
-          if (isCupertino(context))
-            // ! Icons
+
+            // ! Platform Sliver AppBar
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show Platform Icons'),
+                child: Text('Show  Sliver AppBar Page'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => IconsPage(),
+                    builder: (context) => PlatformSliverAppBarPage(),
                   ),
                 ),
               ),
             ),
+            // ! Material on iOS
+            if (isCupertino(context))
+              // ! Icons
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PlatformElevatedButton(
+                  child: Text('Show Platform Icons'),
+                  onPressed: () => Navigator.of(context).push(
+                    platformPageRoute(
+                      context: context,
+                      builder: (context) => IconsPage(),
+                    ),
+                  ),
+                ),
+              ),
             // ! Material on iOS
             if (isCupertino(context))
               Padding(
