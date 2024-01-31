@@ -118,6 +118,10 @@ class _PlatformThemeState extends State<PlatformTheme>
         applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme);
   }
 
+  bool get isMaterial3 =>
+      (isDark ? _materialDarkTheme : _materialLightTheme)?.useMaterial3 ??
+      false;
+
   void _setMaterialThemeType({
     required bool? useMaterial3,
     bool applyToBothDarkAndLightTheme = false,
@@ -167,6 +171,7 @@ class PlatformThemeState {
   set themeMode(ThemeMode? themeMode) => _parent.themeMode = themeMode;
 
   bool get isDark => _parent.isDark;
+  bool get isMaterial3 => _parent.isMaterial3;
 
   CupertinoThemeData? get cupertinoLightTheme => _parent._cupertinoLightTheme;
   CupertinoThemeData? get cupertinoDarkTheme => _parent._cupertinoDarkTheme;
