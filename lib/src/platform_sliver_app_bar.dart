@@ -4,12 +4,10 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart'
-    show CupertinoSliverNavigationBar, Brightness;
-import 'package:flutter/material.dart'
-    show SliverAppBar, kToolbarHeight; //MaterialStateProperty, ;
+import 'package:flutter/cupertino.dart' show CupertinoSliverNavigationBar;
+import 'package:flutter/material.dart' show SliverAppBar, kToolbarHeight;
 import 'package:flutter/widgets.dart';
-import 'package:flutter/foundation.dart' show AsyncCallback;
+import 'package:flutter/foundation.dart' show AsyncCallback, Brightness;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'platform.dart';
 import 'widget_base.dart';
