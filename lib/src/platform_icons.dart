@@ -743,7 +743,7 @@ class PlatformIcons {
       isMaterial(context) ? Icons.wifi_off : CupertinoIcons.wifi_slash;
 
   /// Icons: Icons.exit_to_app : CupertinoIcons.square_arrow_right
-  IconData get exit_to_app => isMaterial(context)
+  IconData get exitToApp => isMaterial(context)
       ? Icons.exit_to_app
       : CupertinoIcons.square_arrow_right;
 }

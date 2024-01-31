@@ -15,85 +15,63 @@ abstract class _BaseData {
   _BaseData({
     // Common
     this.widgetKey,
-    required this.child,
+    this.child,
     this.controller,
     this.thumbVisibility,
     this.thickness,
     this.radius,
     this.notificationPredicate,
     this.scrollbarOrientation,
-    this.isAlwaysShown,
   });
   final Key? widgetKey;
-  final Widget child;
+  final Widget? child;
   final ScrollController? controller;
   final bool? thumbVisibility;
   final double? thickness;
   final Radius? radius;
   final bool Function(ScrollNotification)? notificationPredicate;
   final ScrollbarOrientation? scrollbarOrientation;
-  final bool? isAlwaysShown;
 }
 
 class MaterialScrollbarData extends _BaseData {
   MaterialScrollbarData({
     // Common
     super.widgetKey,
-    required super.child,
+    super.child,
     super.controller,
     super.thumbVisibility,
     super.thickness,
     super.radius,
     super.notificationPredicate,
     super.scrollbarOrientation,
-    super.isAlwaysShown,
 
     // Material
     this.trackVisibility,
     this.interactive,
-    @Deprecated(
-      'Use ScrollbarThemeData.trackVisibility to resolve based on the current state instead. '
-      'This feature was deprecated after v3.4.0-19.0.pre.',
-    )
-    this.showTrackOnHover,
-    @Deprecated(
-      'Use ScrollbarThemeData.thickness to resolve based on the current state instead. '
-      'This feature was deprecated after v2.9.0-1.0.pre.',
-    )
-    this.hoverThickness,
-  }) : assert(
-            thumbVisibility == null || isAlwaysShown == null,
-            'Scrollbar thumb appearance should only be controlled with thumbVisibility, '
-            'isAlwaysShown is deprecated.');
+  });
 
   final bool? trackVisibility;
   final bool? interactive;
-  final bool? showTrackOnHover;
-  final double? hoverThickness;
 }
 
 class CupertinoScrollbarData extends _BaseData {
   CupertinoScrollbarData({
     // Common
     super.widgetKey,
-    required super.child,
+    super.child,
     super.controller,
     super.thumbVisibility,
     super.thickness,
     super.radius,
     super.notificationPredicate,
     super.scrollbarOrientation,
-    super.isAlwaysShown,
 
     // Cupertino
     this.thicknessWhileDragging,
     this.radiusWhileDragging,
-  })  : assert(thickness! < double.infinity),
-        assert(thicknessWhileDragging! < double.infinity),
-        assert(
-            isAlwaysShown == null || thumbVisibility == null,
-            'Scrollbar thumb appearance should only be controlled with thumbVisibility, '
-            'isAlwaysShown is deprecated.');
+  })  : assert(thickness != null && thickness < double.infinity),
+        assert(thicknessWhileDragging != null &&
+            thicknessWhileDragging < double.infinity);
   final double? thicknessWhileDragging;
   final Radius? radiusWhileDragging;
 }
@@ -109,7 +87,6 @@ class PlatformScrollbar
   final Radius? radius;
   final bool Function(ScrollNotification)? notificationPredicate;
   final ScrollbarOrientation? scrollbarOrientation;
-  final bool? isAlwaysShown;
 
   //Platform
   final PlatformBuilder<MaterialScrollbarData>? material;
@@ -126,11 +103,6 @@ class PlatformScrollbar
     this.radius,
     this.notificationPredicate,
     this.scrollbarOrientation,
-    @Deprecated(
-      'Use thumbVisibility instead. '
-      'This feature was deprecated after v2.9.0-1.0.pre.',
-    )
-    this.isAlwaysShown,
     //Platform
     this.material,
     this.cupertino,
@@ -150,13 +122,11 @@ class PlatformScrollbar
       notificationPredicate:
           data?.notificationPredicate ?? notificationPredicate,
       scrollbarOrientation: data?.scrollbarOrientation ?? scrollbarOrientation,
-      isAlwaysShown: data?.isAlwaysShown ?? isAlwaysShown,
 
       //Material only
       trackVisibility: data?.trackVisibility,
       interactive: data?.interactive,
-      showTrackOnHover: data?.showTrackOnHover,
-      hoverThickness: data?.hoverThickness,
+      // showTrackOnHover: deprecated,
     );
   }
 
@@ -175,7 +145,6 @@ class PlatformScrollbar
       notificationPredicate:
           data?.notificationPredicate ?? notificationPredicate,
       scrollbarOrientation: data?.scrollbarOrientation ?? scrollbarOrientation,
-      isAlwaysShown: data?.isAlwaysShown ?? isAlwaysShown,
 
       //Cupertino only
       thicknessWhileDragging: data?.thicknessWhileDragging ??
