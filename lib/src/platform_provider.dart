@@ -152,12 +152,19 @@ class PlatformSettingsData {
   /// Set to true (wrapped) by default which could be a breaking change. If it is then set this value to false
   final bool wrapCupertinoAppBarMiddleWithMediaQuery;
 
+  /// With Material3 spec defining buttons text as being non ALL CAPS (see https://m3.material.io/components/buttons/overview#388f6096-c34d-4a22-8b1f-11ad69963f7c)
+  /// If this is set to true then using [PlatformText] with material3 style will default to sentence case and not ALL CAPS. Material 2 will continue to be ALL CAPS
+  /// If this is set to false then it will default to previous behavour of ALL CAPS.
+  /// Going forward [PlatformText] will likely be removed when the material3 property on ThemeData is removed and all material widgets will assume material3 style.
+  final bool matchMaterialCaseForPlatformText;
+
   PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.iosUseZeroPaddingForAppbarPlatformIcon = false,
     this.legacyIosUsesMaterialWidgets = false,
     this.platformStyle = const PlatformStyleData(),
     this.wrapCupertinoAppBarMiddleWithMediaQuery = true,
+    this.matchMaterialCaseForPlatformText = true,
   });
 }
 

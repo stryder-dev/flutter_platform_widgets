@@ -6,12 +6,27 @@
 
 import 'dart:ui' as ui show TextHeightBehavior;
 
+import 'package:flutter/material.dart' show Theme;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart' show isMaterial;
+import 'platform_provider.dart' show PlatformProvider;
+import 'platform_theme.dart' show PlatformTheme;
 
 String formatData(BuildContext context, String data) {
   if (isMaterial(context)) {
+    final providerState = PlatformProvider.of(context);
+    final matchMaterialCaseForPlatformText =
+        providerState?.settings.matchMaterialCaseForPlatformText ?? true;
+
+    final m3 = PlatformTheme.of(context)?.isMaterial3 ??
+        Theme.of(context).useMaterial3;
+
+    // If it material3 and we want to match the casing as defined for material3 then do not return ALL CAPS
+    if (m3 && matchMaterialCaseForPlatformText) {
+      return data;
+    }
+
     return data.toUpperCase();
   }
   return data;
