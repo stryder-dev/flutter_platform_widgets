@@ -13,3 +13,5 @@ ios/Flutter/flutter_export_environment.sh
 
 pubspec.lock
 example/ios/Flutter/flutter_export_environment.sh
+
+__pycache__
