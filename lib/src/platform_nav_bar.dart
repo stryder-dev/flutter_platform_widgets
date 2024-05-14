@@ -14,6 +14,7 @@ import 'package:flutter/material.dart'
         NavigationBar,
         NavigationDestination,
         NavigationDestinationLabelBehavior,
+        MaterialStateProperty,
         Theme;
 import 'package:flutter/widgets.dart';
 
@@ -80,6 +81,7 @@ class MaterialNavigationBarData {
     this.selectedIndex,
     this.shadowColor,
     this.surfaceTintColor,
+    this.overlayColor,
   });
 
   final Key? widgetKey;
@@ -95,6 +97,7 @@ class MaterialNavigationBarData {
   final int? selectedIndex;
   final Color? shadowColor;
   final Color? surfaceTintColor;
+  final MaterialStateProperty<Color?>? overlayColor;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -224,6 +227,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
       selectedIndex: selectedIndex,
       shadowColor: data?.shadowColor,
       surfaceTintColor: data?.surfaceTintColor,
+      overlayColor: data?.overlayColor,
     );
   }
 

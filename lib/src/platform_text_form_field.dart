@@ -9,6 +9,7 @@ import 'package:flutter/material.dart'
         AdaptiveTextSelectionToolbar,
         InputCounterWidgetBuilder,
         InputDecoration,
+        MaterialStatesController,
         TextFormField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -135,6 +136,9 @@ class MaterialTextFormFieldData extends _BaseData {
   final ui.BoxHeightStyle? selectionHeightStyle;
   final ui.BoxWidthStyle? selectionWidthStyle;
   final UndoHistoryController? undoController;
+  final Color? cursorErrorColor;
+  final bool? onTapAlwaysCalled;
+  final MaterialStatesController? statesController;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -202,6 +206,9 @@ class MaterialTextFormFieldData extends _BaseData {
     this.selectionHeightStyle,
     this.selectionWidthStyle,
     this.undoController,
+    this.cursorErrorColor,
+    this.onTapAlwaysCalled,
+    this.statesController,
   });
 }
 
@@ -469,6 +476,9 @@ class PlatformTextFormField
           data?.selectionHeightStyle ?? ui.BoxHeightStyle.tight,
       selectionWidthStyle: data?.selectionWidthStyle ?? ui.BoxWidthStyle.tight,
       undoController: data?.undoController,
+      cursorErrorColor: data?.cursorErrorColor,
+      onTapAlwaysCalled: data?.onTapAlwaysCalled ?? false,
+      statesController: data?.statesController,
       // toolbarOptions: , Deprecated
     );
   }
