@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart'
         OverlayVisibilityMode,
         CupertinoIcons;
 import 'package:flutter/material.dart' show MaterialStateProperty, SearchBar;
-import 'package:flutter/services.dart' show TextCapitalization;
+import 'package:flutter/services.dart' show TextCapitalization, TextInputAction;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -24,12 +24,16 @@ abstract class _BaseData {
     this.focusNode,
     this.onTap,
     this.onChanged,
+    this.keyboardType,
+    this.autofocus,
   });
   final Key? widgetKey;
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final void Function()? onTap;
   final ValueChanged<String>? onChanged;
+  final TextInputType? keyboardType;
+  final bool? autofocus;
 }
 
 class MaterialSearchBarData extends _BaseData {
@@ -40,6 +44,9 @@ class MaterialSearchBarData extends _BaseData {
     super.focusNode,
     super.onTap,
     super.onChanged,
+    super.autofocus,
+    super.keyboardType,
+
     //Material
     this.leading,
     this.trailing,
@@ -57,6 +64,7 @@ class MaterialSearchBarData extends _BaseData {
     this.hintText,
     this.onSubmitted,
     this.textCapitalization,
+    this.textInputAction,
   });
 
   // final String? hintText;
@@ -76,6 +84,7 @@ class MaterialSearchBarData extends _BaseData {
   final String? hintText;
   final ValueChanged<String>? onSubmitted;
   final TextCapitalization? textCapitalization;
+  final TextInputAction? textInputAction;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -86,12 +95,13 @@ class CupertinoSearchBarData extends _BaseData {
     super.focusNode,
     super.onTap,
     super.onChanged,
+    super.autofocus,
+    super.keyboardType,
 
     //Cupertino
     this.onSubmitted,
     this.decoration,
     this.borderRadius,
-    this.keyboardType,
     this.itemColor = CupertinoColors.secondaryLabel,
     this.itemSize = 20.0,
     this.prefixInsets = const EdgeInsetsDirectional.fromSTEB(6, 0, 0, 3),
@@ -103,9 +113,8 @@ class CupertinoSearchBarData extends _BaseData {
     this.restorationId,
     this.smartQuotesType,
     this.smartDashesType,
-    this.enableIMEPersonalizedLearning = true,
-    this.autofocus = false,
-    this.autocorrect = true,
+    this.enableIMEPersonalizedLearning,
+    this.autocorrect,
     this.enabled,
     this.padding,
     this.backgroundColor,
@@ -127,7 +136,6 @@ class CupertinoSearchBarData extends _BaseData {
   final ValueChanged<String>? onSubmitted;
   final BoxDecoration? decoration;
   final BorderRadius? borderRadius;
-  final TextInputType? keyboardType;
   final Color itemColor;
   final double itemSize;
   final EdgeInsetsGeometry prefixInsets;
@@ -140,9 +148,8 @@ class CupertinoSearchBarData extends _BaseData {
 
   final SmartQuotesType? smartQuotesType;
   final SmartDashesType? smartDashesType;
-  final bool enableIMEPersonalizedLearning;
-  final bool autofocus;
-  final bool autocorrect;
+  final bool? enableIMEPersonalizedLearning;
+  final bool? autocorrect;
   final bool? enabled;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
@@ -161,6 +168,8 @@ class PlatformSearchBar
   final void Function()? onTap;
   final ValueChanged<String>? onChanged;
   final Color? backgroundColor;
+  final TextInputType? keyboardType;
+  final bool? autoFocus;
 
   //Mixed
   final String? hintText;
@@ -180,6 +189,8 @@ class PlatformSearchBar
     this.onTap,
     this.onChanged,
     this.backgroundColor,
+    this.keyboardType,
+    this.autoFocus,
     //Mixed
     this.hintText,
     this.hintStyle,
@@ -216,6 +227,8 @@ class PlatformSearchBar
           (textStyle != null
               ? MaterialStateProperty.all<TextStyle>(textStyle)
               : null),
+      autoFocus: data?.autofocus ?? autoFocus ?? false,
+      keyboardType: data?.keyboardType ?? keyboardType,
 
       //Material only
       leading: data?.leading,
@@ -230,6 +243,8 @@ class PlatformSearchBar
       padding: data?.padding,
       onSubmitted: data?.onSubmitted,
       textCapitalization: data?.textCapitalization,
+
+      textInputAction: data?.textInputAction,
     );
   }
 
@@ -249,12 +264,13 @@ class PlatformSearchBar
       placeholder: data?.placeholder ?? hintText,
       placeholderStyle: data?.placeholderStyle ?? hintStyle,
       style: data?.style ?? textStyle,
+      autofocus: data?.autofocus ?? autoFocus ?? false,
+      keyboardType: data?.keyboardType ?? keyboardType ?? TextInputType.text,
 
       //Cupertino only
       onSubmitted: data?.onSubmitted,
       decoration: data?.decoration,
       borderRadius: data?.borderRadius,
-      keyboardType: data?.keyboardType,
       itemColor: data?.itemColor ?? CupertinoColors.secondaryLabel,
       itemSize: data?.itemSize ?? 20.0,
       prefixInsets: data?.prefixInsets ??
@@ -271,7 +287,6 @@ class PlatformSearchBar
       smartDashesType: data?.smartDashesType,
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
-      autofocus: data?.autofocus ?? false,
       autocorrect: data?.autocorrect ?? true,
       enabled: data?.enabled,
     );

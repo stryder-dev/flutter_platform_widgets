@@ -224,6 +224,8 @@ class PlatformSliverAppBar
       systemOverlayStyle: data?.systemOverlayStyle,
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
       clipBehavior: data?.clipBehavior,
+      scrolledUnderElevation: data?.scrolledUnderElevation,
+      surfaceTintColor: data?.surfaceTintColor,
     );
   }
 

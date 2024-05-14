@@ -108,6 +108,8 @@ class MaterialPopupMenuData {
   final Color? shadowColor;
   final Color? surfaceTintColor;
   final Color? iconColor;
+  final AnimationStyle? popUpAnimationStyle;
+  final bool? useRootNavigator;
 
   MaterialPopupMenuData({
     this.key,
@@ -133,6 +135,8 @@ class MaterialPopupMenuData {
     this.shadowColor,
     this.surfaceTintColor,
     this.iconColor,
+    this.popUpAnimationStyle,
+    this.useRootNavigator,
   });
 }
 
@@ -302,6 +306,8 @@ class PlatformPopupMenu extends StatelessWidget {
       shadowColor: data?.shadowColor,
       surfaceTintColor: data?.surfaceTintColor,
       iconColor: data?.iconColor,
+      popUpAnimationStyle: data?.popUpAnimationStyle,
+      useRootNavigator: data?.useRootNavigator ?? false,
     );
   }
 }

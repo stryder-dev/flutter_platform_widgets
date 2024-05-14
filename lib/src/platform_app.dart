@@ -204,6 +204,7 @@ class MaterialAppData extends _BaseData {
     this.scaffoldMessengerKey,
     this.themeAnimationCurve,
     this.themeAnimationDuration,
+    this.themeAnimationStyle,
   });
 
   final ThemeData? theme;
@@ -213,6 +214,7 @@ class MaterialAppData extends _BaseData {
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
   final Curve? themeAnimationCurve;
   final Duration? themeAnimationDuration;
+  final AnimationStyle? themeAnimationStyle;
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
@@ -248,6 +250,7 @@ class MaterialAppRouterData extends _BaseRouterData {
     this.scaffoldMessengerKey,
     this.themeAnimationCurve,
     this.themeAnimationDuration,
+    this.themeAnimationStyle,
   });
 
   final ThemeData? theme;
@@ -257,6 +260,7 @@ class MaterialAppRouterData extends _BaseRouterData {
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
   final Curve? themeAnimationCurve;
   final Duration? themeAnimationDuration;
+  final AnimationStyle? themeAnimationStyle;
 }
 
 class CupertinoAppData extends _BaseData {
@@ -536,6 +540,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             dataRouter?.themeAnimationDuration ?? kThemeAnimationDuration,
         onNavigationNotification:
             dataRouter?.onNavigationNotification ?? onNavigationNotification,
+        themeAnimationStyle: dataRouter?.themeAnimationStyle,
         // useInheritedMediaQuery: , Deprecated
       );
     } else {
@@ -602,6 +607,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.themeAnimationDuration ?? kThemeAnimationDuration,
         onNavigationNotification:
             data?.onNavigationNotification ?? onNavigationNotification,
+        themeAnimationStyle: data?.themeAnimationStyle,
         // useInheritedMediaQuery: , Deprecated
       );
     }
