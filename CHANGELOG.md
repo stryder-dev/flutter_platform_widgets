@@ -1,3 +1,11 @@
+## [7.0.0]
+
+#### (Flutter version support: v3.19.6)
+
+- Adds all the flutter 3.19 additional properties for platform widgets
+- Updated cupertino_icons to version 1.0.8
+- Added deprecation notice on switching between material 2 and material 3. Calling these has no effect and the method calls will be removed in a furture version
+
 ## [6.1.0]
 
 #### (Flutter version support: v3.16.8)
