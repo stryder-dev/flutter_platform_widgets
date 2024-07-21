@@ -1,3 +1,9 @@
+## [7.0.1]
+
+#### (Flutter version support: v3.19.6)
+
+- Fixed use of wrong data type on PlatformApp setting the darkTheme property (thanks SileyGames)
+
 ## [7.0.0]
 
 #### (Flutter version support: v3.19.6)
