@@ -26,7 +26,9 @@ abstract class _BaseData {
     this.onChanged,
     this.keyboardType,
     this.autofocus,
+    this.enabled,
   });
+
   final Key? widgetKey;
   final FocusNode? focusNode;
   final TextEditingController? controller;
@@ -34,6 +36,7 @@ abstract class _BaseData {
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
   final bool? autofocus;
+  final bool? enabled;
 }
 
 class MaterialSearchBarData extends _BaseData {
@@ -46,6 +49,7 @@ class MaterialSearchBarData extends _BaseData {
     super.onChanged,
     super.autofocus,
     super.keyboardType,
+    super.enabled,
 
     //Material
     this.leading,
@@ -97,6 +101,7 @@ class CupertinoSearchBarData extends _BaseData {
     super.onChanged,
     super.autofocus,
     super.keyboardType,
+    super.enabled,
 
     //Cupertino
     this.onSubmitted,
@@ -115,7 +120,6 @@ class CupertinoSearchBarData extends _BaseData {
     this.smartDashesType,
     this.enableIMEPersonalizedLearning,
     this.autocorrect,
-    this.enabled,
     this.padding,
     this.backgroundColor,
     this.placeholderStyle,
@@ -150,7 +154,6 @@ class CupertinoSearchBarData extends _BaseData {
   final SmartDashesType? smartDashesType;
   final bool? enableIMEPersonalizedLearning;
   final bool? autocorrect;
-  final bool? enabled;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
   final TextStyle? placeholderStyle;
@@ -170,6 +173,7 @@ class PlatformSearchBar
   final Color? backgroundColor;
   final TextInputType? keyboardType;
   final bool? autoFocus;
+  final bool? enabled;
 
   //Mixed
   final String? hintText;
@@ -191,6 +195,7 @@ class PlatformSearchBar
     this.backgroundColor,
     this.keyboardType,
     this.autoFocus,
+    this.enabled,
     //Mixed
     this.hintText,
     this.hintStyle,
@@ -229,6 +234,7 @@ class PlatformSearchBar
               : null),
       autoFocus: data?.autofocus ?? autoFocus ?? false,
       keyboardType: data?.keyboardType ?? keyboardType,
+      enabled: data?.enabled ?? enabled ?? true,
 
       //Material only
       leading: data?.leading,
@@ -266,6 +272,7 @@ class PlatformSearchBar
       style: data?.style ?? textStyle,
       autofocus: data?.autofocus ?? autoFocus ?? false,
       keyboardType: data?.keyboardType ?? keyboardType ?? TextInputType.text,
+      enabled: data?.enabled,
 
       //Cupertino only
       onSubmitted: data?.onSubmitted,
@@ -287,8 +294,7 @@ class PlatformSearchBar
       smartDashesType: data?.smartDashesType,
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
-      autocorrect: data?.autocorrect ?? true,
-      enabled: data?.enabled,
+      autocorrect: data?.autocorrect ?? enabled ?? true,
     );
   }
 }
