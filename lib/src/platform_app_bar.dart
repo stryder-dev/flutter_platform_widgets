@@ -269,6 +269,9 @@ class PlatformAppBar
           .withWidgetFinder<CupertinoNavigationBar>(),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
+      automaticBackgroundVisibility:
+          data?.automaticBackgroundVisibility ?? true,
+      enableBackgroundFilterBlur: data?.enableBackgroundFilterBlur ?? true,
       //heroTag: , used above
     );
   }
