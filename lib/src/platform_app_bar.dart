@@ -119,6 +119,8 @@ class CupertinoNavigationBarData extends _BaseData {
     this.transitionBetweenRoutes,
     this.brightness,
     this.heroTag,
+    this.automaticBackgroundVisibility,
+    this.enableBackgroundFilterBlur,
     this.noMaterialParent = false,
   });
 
@@ -127,6 +129,8 @@ class CupertinoNavigationBarData extends _BaseData {
   final bool? transitionBetweenRoutes;
   final Object? heroTag;
   final bool? automaticallyImplyMiddle;
+  final bool? automaticBackgroundVisibility;
+  final bool? enableBackgroundFilterBlur;
   final String? previousPageTitle;
   final EdgeInsetsDirectional? padding;
   final Brightness? brightness;
@@ -241,6 +245,9 @@ class PlatformAppBar
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
+        automaticBackgroundVisibility:
+            data?.automaticBackgroundVisibility ?? true,
+        enableBackgroundFilterBlur: data?.enableBackgroundFilterBlur ?? true,
       );
     }
 
