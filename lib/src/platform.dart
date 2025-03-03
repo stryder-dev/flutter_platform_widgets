@@ -228,6 +228,7 @@ class MaterialModalSheetData extends _ModalSheetBaseData {
   String? barrierLabel;
   double? scrollControlDisabledMaxHeightRatio;
   bool? showDragHandle;
+  AnimationStyle? sheetAnimationStyle;
 
   MaterialModalSheetData({
     super.anchorPoint,
@@ -247,6 +248,7 @@ class MaterialModalSheetData extends _ModalSheetBaseData {
     this.barrierLabel,
     this.scrollControlDisabledMaxHeightRatio,
     this.showDragHandle,
+    this.sheetAnimationStyle,
   });
 }
 
@@ -300,6 +302,7 @@ Future<T?> showPlatformModalSheet<T>({
           material?.scrollControlDisabledMaxHeightRatio ??
               _defaultScrollControlDisabledMaxHeightRatio,
       showDragHandle: material?.showDragHandle,
+      sheetAnimationStyle: material?.sheetAnimationStyle,
     );
   } else {
     return showCupertinoModalPopup<T>(

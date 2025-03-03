@@ -33,6 +33,7 @@ abstract class _BaseData {
     this.backgroundColor,
     this.leading,
     this.automaticallyImplyLeading,
+    this.bottom,
   });
 
   final Widget? title;
@@ -40,6 +41,7 @@ abstract class _BaseData {
   final Widget? leading;
   final Key? widgetKey;
   final bool? automaticallyImplyLeading;
+  final PreferredSizeWidget? bottom;
 }
 
 class MaterialAppBarData extends _BaseData {
@@ -49,8 +51,8 @@ class MaterialAppBarData extends _BaseData {
     super.leading,
     super.widgetKey,
     super.automaticallyImplyLeading,
+    super.bottom,
     this.actions,
-    this.bottom,
     this.bottomOpacity,
     this.centerTitle,
     this.elevation,
@@ -74,11 +76,10 @@ class MaterialAppBarData extends _BaseData {
     this.notificationPredicate,
     this.clipBehavior,
     this.forceMaterialTransparency,
+    this.actionsPadding,
   });
 
   final List<Widget>? actions;
-  final PreferredSizeWidget? bottom;
-
   final double? bottomOpacity;
   final bool? centerTitle;
   final double? elevation;
@@ -102,6 +103,7 @@ class MaterialAppBarData extends _BaseData {
   final ScrollNotificationPredicate? notificationPredicate;
   final Clip? clipBehavior;
   final bool? forceMaterialTransparency;
+  final EdgeInsetsGeometry? actionsPadding;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -111,6 +113,8 @@ class CupertinoNavigationBarData extends _BaseData {
     super.leading,
     super.widgetKey,
     super.automaticallyImplyLeading,
+    super.bottom,
+    this.automaticBackgroundVisibility,
     this.previousPageTitle,
     this.automaticallyImplyMiddle,
     this.padding,
@@ -120,6 +124,7 @@ class CupertinoNavigationBarData extends _BaseData {
     this.brightness,
     this.heroTag,
     this.noMaterialParent = false,
+    this.enableBackgroundFilterBlur,
   });
 
   final Widget? trailing;
@@ -130,6 +135,8 @@ class CupertinoNavigationBarData extends _BaseData {
   final String? previousPageTitle;
   final EdgeInsetsDirectional? padding;
   final Brightness? brightness;
+  final bool? automaticBackgroundVisibility;
+  final bool? enableBackgroundFilterBlur;
 
   /// When enabling [iosUsesMaterialWidgets] on [PlatformProvider] settings it will
   /// add a Material widget as a parent to both the leading and trailing widgets.
@@ -146,6 +153,7 @@ class PlatformAppBar
   final Widget? leading;
   final List<Widget>? trailingActions;
   final bool? automaticallyImplyLeading;
+  final PreferredSizeWidget? bottom;
 
   final PlatformBuilder<MaterialAppBarData>? material;
   final PlatformBuilder<CupertinoNavigationBarData>? cupertino;
@@ -158,6 +166,7 @@ class PlatformAppBar
     this.leading,
     this.trailingActions,
     this.automaticallyImplyLeading,
+    this.bottom,
     this.material,
     this.cupertino,
   });
@@ -170,7 +179,7 @@ class PlatformAppBar
       key: data?.widgetKey ?? widgetKey,
       title: data?.title ?? title,
       backgroundColor: data?.backgroundColor ?? backgroundColor,
-      bottom: data?.bottom,
+      bottom: data?.bottom ?? bottom,
       actions: data?.actions ?? trailingActions,
       automaticallyImplyLeading:
           data?.automaticallyImplyLeading ?? automaticallyImplyLeading ?? true,
@@ -199,6 +208,7 @@ class PlatformAppBar
           data?.notificationPredicate ?? defaultScrollNotificationPredicate,
       clipBehavior: data?.clipBehavior,
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
+      actionsPadding: data?.actionsPadding,
     );
   }
 
@@ -241,6 +251,10 @@ class PlatformAppBar
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
+        automaticBackgroundVisibility:
+            data?.automaticBackgroundVisibility ?? true,
+        bottom: data?.bottom ?? bottom,
+        enableBackgroundFilterBlur: data?.enableBackgroundFilterBlur ?? true,
       );
     }
 
@@ -262,6 +276,10 @@ class PlatformAppBar
           .withWidgetFinder<CupertinoNavigationBar>(),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
+      automaticBackgroundVisibility:
+          data?.automaticBackgroundVisibility ?? true,
+      bottom: data?.bottom,
+      enableBackgroundFilterBlur: data?.enableBackgroundFilterBlur ?? true,
       //heroTag: , used above
     );
   }

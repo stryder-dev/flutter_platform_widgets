@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart'
-    show CupertinoDatePicker, CupertinoDatePickerMode, DatePickerDateOrder;
+    show
+        CupertinoDatePicker,
+        CupertinoDatePickerMode,
+        DatePickerDateOrder,
+        SelectionOverlayBuilder;
 import 'package:flutter/material.dart'
     show
         Theme,
@@ -122,6 +126,7 @@ class CupertinoDatePickerData extends _BaseData {
     this.cancelLabel,
     this.showDayOfWeek,
     this.itemExtent,
+    this.selectionOverlayBuilder,
   });
 
   final Key? key;
@@ -137,6 +142,7 @@ class CupertinoDatePickerData extends _BaseData {
   final String? cancelLabel;
   final bool? showDayOfWeek;
   final double? itemExtent;
+  final SelectionOverlayBuilder? selectionOverlayBuilder;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -226,6 +232,10 @@ Widget _renderManagedCupertinoDatePicker({
         data: data,
         modalColor: data?.backgroundColor,
         onDateTimeChanged: (newDate) => setState(() => selectedDate = newDate),
+        // cancelLabel: ,
+        // doneLabel: ,
+        // modalHeight: ,
+        // mode: ,
       );
     },
   );
@@ -278,6 +288,7 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
             use24hFormat: data?.use24hFormat ?? false,
             showDayOfWeek: data?.showDayOfWeek ?? false,
             itemExtent: data?.itemExtent ?? _kItemExtent,
+            selectionOverlayBuilder: data?.selectionOverlayBuilder,
           ),
           Row(
             children: [

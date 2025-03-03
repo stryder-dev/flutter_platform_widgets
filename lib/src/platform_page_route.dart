@@ -19,6 +19,7 @@ class _BasePageRouteData {
   final bool? fullscreenDialog;
   final bool? allowSnapshotting;
   final bool? barrierDismissible;
+  final bool? requestFocus;
 
   _BasePageRouteData({
     this.builder,
@@ -27,6 +28,7 @@ class _BasePageRouteData {
     this.fullscreenDialog,
     this.allowSnapshotting,
     this.barrierDismissible,
+    this.requestFocus,
   });
 }
 
@@ -38,6 +40,7 @@ class MaterialPageRouteData extends _BasePageRouteData {
     super.fullscreenDialog,
     super.allowSnapshotting,
     super.barrierDismissible,
+    super.requestFocus,
   });
 }
 
@@ -49,6 +52,7 @@ class CupertinoPageRouteData extends _BasePageRouteData {
     super.fullscreenDialog,
     super.allowSnapshotting,
     super.barrierDismissible,
+    super.requestFocus,
   });
 }
 
@@ -61,6 +65,7 @@ PageRoute<T> platformPageRoute<T>({
   String? iosTitle,
   bool allowSnapshotting = true,
   bool barrierDismissible = false,
+  bool? requestFocus,
   PlatformBuilder<MaterialPageRouteData>? material,
   PlatformBuilder<CupertinoPageRouteData>? cupertino,
 }) {
@@ -74,6 +79,7 @@ PageRoute<T> platformPageRoute<T>({
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
       allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
       barrierDismissible: data?.barrierDismissible ?? barrierDismissible,
+      requestFocus: data?.requestFocus ?? requestFocus,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -86,6 +92,7 @@ PageRoute<T> platformPageRoute<T>({
       title: iosTitle,
       allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
       barrierDismissible: data?.barrierDismissible ?? barrierDismissible,
+      requestFocus: data?.requestFocus ?? requestFocus,
     );
   }
 }

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart'
         AdaptiveTextSelectionToolbar,
         InputCounterWidgetBuilder,
         InputDecoration,
-        MaterialStatesController,
         TextFormField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -65,6 +64,8 @@ abstract class _BaseData {
     this.autofillHints,
     this.autovalidateMode,
     this.contextMenuBuilder,
+    this.restorationId,
+    this.spellCheckConfiguration,
   });
 
   final Key? widgetKey;
@@ -112,6 +113,8 @@ abstract class _BaseData {
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
   final EditableTextContextMenuBuilder? contextMenuBuilder;
+  final String? restorationId;
+  final SpellCheckConfiguration? spellCheckConfiguration;
 }
 
 class MaterialTextFormFieldData extends _BaseData {
@@ -121,24 +124,28 @@ class MaterialTextFormFieldData extends _BaseData {
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollController? scrollController;
   final bool? enableIMEPersonalizedLearning;
-  final String? restorationId;
+
   final MouseCursor? mouseCursor;
   final TapRegionCallback? onTapOutside;
   final TextMagnifierConfiguration? magnifierConfiguration;
-  final SpellCheckConfiguration? spellCheckConfiguration;
+
   final bool? canRequestFocus;
   final Clip? clipBehavior;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final bool? cursorOpacityAnimates;
   final DragStartBehavior? dragStartBehavior;
   final AppPrivateCommandCallback? onAppPrivateCommand;
-  final bool? scribbleEnabled;
   final ui.BoxHeightStyle? selectionHeightStyle;
   final ui.BoxWidthStyle? selectionWidthStyle;
   final UndoHistoryController? undoController;
   final Color? cursorErrorColor;
   final bool? onTapAlwaysCalled;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
+  final String? forceErrorText;
+  final bool? ignorePointers;
+  final Object? groupId;
+  final TapRegionUpCallback? onTapUpOutside;
+  final bool? stylusHandwritingEnabled;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -186,29 +193,33 @@ class MaterialTextFormFieldData extends _BaseData {
     super.autofillHints,
     super.autovalidateMode,
     super.contextMenuBuilder,
+    super.restorationId,
+    super.spellCheckConfiguration,
     this.decoration,
     this.maxLengthEnforcement,
     this.buildCounter,
     this.scrollController,
     this.enableIMEPersonalizedLearning,
-    this.restorationId,
     this.mouseCursor,
     this.onTapOutside,
     this.magnifierConfiguration,
-    this.spellCheckConfiguration,
     this.canRequestFocus,
     this.clipBehavior,
     this.contentInsertionConfiguration,
     this.cursorOpacityAnimates,
     this.dragStartBehavior,
     this.onAppPrivateCommand,
-    this.scribbleEnabled,
     this.selectionHeightStyle,
     this.selectionWidthStyle,
     this.undoController,
     this.cursorErrorColor,
     this.onTapAlwaysCalled,
     this.statesController,
+    this.forceErrorText,
+    this.groupId,
+    this.ignorePointers,
+    this.onTapUpOutside,
+    this.stylusHandwritingEnabled,
   });
 }
 
@@ -265,6 +276,8 @@ class CupertinoTextFormFieldData extends _BaseData {
     super.autofillHints,
     super.autovalidateMode,
     super.contextMenuBuilder,
+    super.restorationId,
+    super.spellCheckConfiguration,
     this.decoration,
     this.prefix,
     this.padding,
@@ -318,6 +331,8 @@ class PlatformTextFormField
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
   final EditableTextContextMenuBuilder? contextMenuBuilder;
+  final String? restorationId;
+  final SpellCheckConfiguration? spellCheckConfiguration;
 
   final String? hintText;
 
@@ -383,6 +398,8 @@ class PlatformTextFormField
     this.autofillHints,
     this.autovalidateMode,
     this.contextMenuBuilder,
+    this.restorationId,
+    this.spellCheckConfiguration,
     this.hintText,
     this.material,
     this.cupertino,
@@ -457,21 +474,21 @@ class PlatformTextFormField
       scrollController: data?.scrollController,
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
-      restorationId: data?.restorationId,
+      restorationId: data?.restorationId ?? restorationId,
       mouseCursor: data?.mouseCursor,
       contextMenuBuilder: data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
       onTapOutside: data?.onTapOutside,
       magnifierConfiguration: data?.magnifierConfiguration,
-      spellCheckConfiguration: data?.spellCheckConfiguration,
+      spellCheckConfiguration:
+          data?.spellCheckConfiguration ?? spellCheckConfiguration,
       canRequestFocus: data?.canRequestFocus ?? true,
       clipBehavior: data?.clipBehavior ?? Clip.hardEdge,
       contentInsertionConfiguration: data?.contentInsertionConfiguration,
       cursorOpacityAnimates: data?.cursorOpacityAnimates,
       dragStartBehavior: data?.dragStartBehavior ?? DragStartBehavior.start,
       onAppPrivateCommand: data?.onAppPrivateCommand,
-      scribbleEnabled: data?.scribbleEnabled ?? true,
       selectionHeightStyle:
           data?.selectionHeightStyle ?? ui.BoxHeightStyle.tight,
       selectionWidthStyle: data?.selectionWidthStyle ?? ui.BoxWidthStyle.tight,
@@ -479,7 +496,14 @@ class PlatformTextFormField
       cursorErrorColor: data?.cursorErrorColor,
       onTapAlwaysCalled: data?.onTapAlwaysCalled ?? false,
       statesController: data?.statesController,
+      forceErrorText: data?.forceErrorText,
+      ignorePointers: data?.ignorePointers,
+      groupId: data?.groupId ?? EditableText,
+      onTapUpOutside: data?.onTapUpOutside,
+      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+          EditableText.defaultStylusHandwritingEnabled,
       // toolbarOptions: , Deprecated
+      // scribbleEnabled: deprecated
     );
   }
 
@@ -550,6 +574,9 @@ class PlatformTextFormField
       contextMenuBuilder: data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultCupertinoContextMenuBuilder,
+      restorationId: data?.restorationId ?? restorationId,
+      spellCheckConfiguration:
+          data?.spellCheckConfiguration ?? spellCheckConfiguration,
       // toolbarOptions: , Deprecated
     );
   }

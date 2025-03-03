@@ -69,6 +69,8 @@ class MaterialListTileData extends _BaseData {
     this.subtitleTextStyle,
     this.titleAlignment,
     this.titleTextStyle,
+    this.internalAddSemanticForOnTap,
+    this.minTileHeight,
   });
 
   final bool? isThreeLine;
@@ -100,6 +102,8 @@ class MaterialListTileData extends _BaseData {
   final TextStyle? subtitleTextStyle;
   final ListTileTitleAlignment? titleAlignment;
   final TextStyle? titleTextStyle;
+  final bool? internalAddSemanticForOnTap;
+  final double? minTileHeight;
 }
 
 class CupertinoListTileData extends _BaseData {
@@ -188,6 +192,8 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
       subtitleTextStyle: data?.subtitleTextStyle,
       titleAlignment: data?.titleAlignment,
       titleTextStyle: data?.titleTextStyle,
+      internalAddSemanticForOnTap: data?.internalAddSemanticForOnTap ?? true,
+      minTileHeight: data?.minTileHeight,
     );
   }
 

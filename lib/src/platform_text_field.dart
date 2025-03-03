@@ -19,7 +19,6 @@ import 'package:flutter/material.dart'
         AdaptiveTextSelectionToolbar,
         InputCounterWidgetBuilder,
         InputDecoration,
-        MaterialStatesController,
         TextField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -102,7 +101,6 @@ abstract class _BaseData {
     this.enableIMEPersonalizedLearning,
     this.textDirection,
     this.clipBehavior,
-    this.scribbleEnabled,
     this.contextMenuBuilder,
     this.onTapOutside,
     this.spellCheckConfiguration,
@@ -110,6 +108,8 @@ abstract class _BaseData {
     this.contentInsertionConfiguration,
     this.cursorOpacityAnimates,
     this.undoController,
+    this.groupId,
+    this.stylusHandwritingEnabled,
   });
 
   final Key? widgetKey;
@@ -118,7 +118,6 @@ abstract class _BaseData {
 
   final bool? enableIMEPersonalizedLearning;
   final Clip? clipBehavior;
-  final bool? scribbleEnabled;
   final double? cursorHeight;
   final String? restorationId;
   final MaxLengthEnforcement? maxLengthEnforcement;
@@ -172,6 +171,8 @@ abstract class _BaseData {
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final bool? cursorOpacityAnimates;
   final UndoHistoryController? undoController;
+  final Object? groupId;
+  final bool? stylusHandwritingEnabled;
 }
 
 class MaterialTextFieldData extends _BaseData {
@@ -224,7 +225,6 @@ class MaterialTextFieldData extends _BaseData {
     super.selectionControls,
     super.enableIMEPersonalizedLearning,
     super.clipBehavior,
-    super.scribbleEnabled,
     super.contextMenuBuilder,
     super.onTapOutside,
     super.spellCheckConfiguration,
@@ -232,6 +232,8 @@ class MaterialTextFieldData extends _BaseData {
     super.contentInsertionConfiguration,
     super.cursorOpacityAnimates,
     super.undoController,
+    super.groupId,
+    super.stylusHandwritingEnabled,
     this.decoration,
     this.buildCounter,
     this.mouseCursor,
@@ -240,6 +242,8 @@ class MaterialTextFieldData extends _BaseData {
     this.cursorErrorColor,
     this.onTapAlwaysCalled,
     this.statesController,
+    this.onTapUpOutside,
+    this.ignorePointers,
   });
 
   final InputDecoration? decoration;
@@ -250,7 +254,9 @@ class MaterialTextFieldData extends _BaseData {
   final bool? canRequestFocus;
   final Color? cursorErrorColor;
   final bool? onTapAlwaysCalled;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
+  final TapRegionUpCallback? onTapUpOutside;
+  final bool? ignorePointers;
 }
 
 class CupertinoTextFieldData extends _BaseData {
@@ -303,11 +309,12 @@ class CupertinoTextFieldData extends _BaseData {
     super.enableIMEPersonalizedLearning,
     super.textDirection,
     super.clipBehavior,
-    super.scribbleEnabled,
     super.contextMenuBuilder,
     super.onTapOutside,
     super.spellCheckConfiguration,
     super.magnifierConfiguration,
+    super.groupId,
+    super.stylusHandwritingEnabled,
     this.decoration,
     this.padding,
     this.placeholder,
@@ -318,6 +325,8 @@ class CupertinoTextFieldData extends _BaseData {
     this.suffixMode,
     this.clearButtonMode,
     this.clearButtonSemanticLabel,
+    this.crossAxisAlignment,
+    this.onTapUpOutside,
   });
 
   final BoxDecoration? decoration;
@@ -330,6 +339,8 @@ class CupertinoTextFieldData extends _BaseData {
   final OverlayVisibilityMode? suffixMode;
   final OverlayVisibilityMode? clearButtonMode;
   final String? clearButtonSemanticLabel;
+  final CrossAxisAlignment? crossAxisAlignment;
+  final TapRegionCallback? onTapUpOutside;
 }
 
 class PlatformTextField
@@ -392,7 +403,6 @@ class PlatformTextField
   final String? hintText;
   final bool? enableIMEPersonalizedLearning;
   final Clip clipBehavior;
-  final bool scribbleEnabled;
   final EditableTextContextMenuBuilder? contextMenuBuilder;
   final TapRegionCallback? onTapOutside;
   final SpellCheckConfiguration? spellCheckConfiguration;
@@ -400,6 +410,8 @@ class PlatformTextField
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final bool? cursorOpacityAnimates;
   final UndoHistoryController? undoController;
+  final Object? groupId;
+  final bool? stylusHandwritingEnabled;
 
   static Widget _defaultMaterialContextMenuBuilder(
       BuildContext context, EditableTextState editableTextState) {
@@ -465,7 +477,6 @@ class PlatformTextField
     this.enableIMEPersonalizedLearning,
     this.makeCupertinoDecorationNull = false,
     this.clipBehavior = Clip.hardEdge,
-    this.scribbleEnabled = true,
     this.contextMenuBuilder,
     this.onTapOutside,
     this.spellCheckConfiguration,
@@ -473,6 +484,8 @@ class PlatformTextField
     this.contentInsertionConfiguration,
     this.cursorOpacityAnimates,
     this.undoController,
+    this.groupId,
+    this.stylusHandwritingEnabled,
     this.material,
     this.cupertino,
   }) : keyboardType = keyboardType ??
@@ -556,7 +569,6 @@ class PlatformTextField
           enableIMEPersonalizedLearning ??
           true,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
-      scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
       contextMenuBuilder: data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
@@ -574,7 +586,14 @@ class PlatformTextField
       cursorErrorColor: data?.cursorErrorColor,
       onTapAlwaysCalled: data?.onTapAlwaysCalled ?? false,
       statesController: data?.statesController,
+      ignorePointers: data?.ignorePointers,
+      groupId: data?.groupId ?? groupId ?? EditableText,
+      onTapUpOutside: data?.onTapUpOutside,
+      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+          stylusHandwritingEnabled ??
+          EditableText.defaultStylusHandwritingEnabled,
       // toolbarOptions: Deprecated
+      // scribbleEnabled: Deprecated
     );
   }
 
@@ -662,7 +681,7 @@ class PlatformTextField
           true,
       textDirection: data?.textDirection,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
-      scribbleEnabled: data?.scribbleEnabled ?? scribbleEnabled,
+
       contextMenuBuilder: data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultCupertinoContextMenuBuilder,
@@ -677,7 +696,14 @@ class PlatformTextField
           data?.cursorOpacityAnimates ?? cursorOpacityAnimates ?? true,
       undoController: data?.undoController ?? undoController,
       clearButtonSemanticLabel: data?.clearButtonSemanticLabel,
+      crossAxisAlignment: data?.crossAxisAlignment ?? CrossAxisAlignment.center,
+      groupId: data?.groupId ?? groupId ?? EditableText,
+      onTapUpOutside: data?.onTapUpOutside,
+      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+          stylusHandwritingEnabled ??
+          EditableText.defaultStylusHandwritingEnabled,
       // toolbarOptions: Deprecated
+      // scribbleEnabled: Deprecated
     );
   }
 
