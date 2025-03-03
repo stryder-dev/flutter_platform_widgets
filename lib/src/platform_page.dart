@@ -6,12 +6,15 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoPage;
 import 'package:flutter/material.dart' show MaterialPage;
-import 'package:flutter/widgets.dart' show BuildContext, Page, Widget, LocalKey;
+import 'package:flutter/widgets.dart'
+    show BuildContext, LocalKey, Page, PopInvokedWithResultCallback, Widget;
 
 import 'platform.dart';
 import 'widget_base.dart';
 
-abstract class _BasePageData {
+void _defaultPopInvokedHandler(bool didPop, Object? result) {}
+
+abstract class _BasePageData<T> {
   /// The content to be shown in the [Route] created by this page.
   final Widget? child;
 
@@ -49,6 +52,10 @@ abstract class _BasePageData {
 
   final bool? allowSnapshotting;
 
+  final bool? canPop;
+
+  final PopInvokedWithResultCallback<T>? onPopInvoked;
+
   _BasePageData({
     this.child,
     this.name,
@@ -58,10 +65,12 @@ abstract class _BasePageData {
     this.restorationId,
     this.arguments,
     this.allowSnapshotting,
+    this.canPop,
+    this.onPopInvoked,
   });
 }
 
-class MaterialPageData extends _BasePageData {
+class MaterialPageData<T> extends _BasePageData<T> {
   MaterialPageData({
     super.child,
     super.name,
@@ -71,10 +80,12 @@ class MaterialPageData extends _BasePageData {
     super.restorationId,
     super.arguments,
     super.allowSnapshotting,
+    super.canPop,
+    super.onPopInvoked,
   });
 }
 
-class CupertinoPageData extends _BasePageData {
+class CupertinoPageData<T> extends _BasePageData<T> {
   CupertinoPageData({
     super.child,
     super.name,
@@ -85,13 +96,15 @@ class CupertinoPageData extends _BasePageData {
     super.arguments,
     super.allowSnapshotting,
     this.title,
+    super.canPop,
+    super.onPopInvoked,
   });
 
   /// {@macro flutter.cupertino.CupertinoRouteTransitionMixin.title}
   final String? title;
 }
 
-Page platformPage({
+Page platformPage<T>({
   required BuildContext context,
   Widget? child,
   String? title,
@@ -102,13 +115,15 @@ Page platformPage({
   String? restorationId,
   Object? arguments,
   bool allowSnapshotting = true,
-  PlatformBuilder<MaterialPageData>? material,
-  PlatformBuilder<CupertinoPageData>? cupertino,
+  bool canPop = true,
+  PopInvokedWithResultCallback<T>? onPopInvoked,
+  PlatformBuilder<MaterialPageData<T>>? material,
+  PlatformBuilder<CupertinoPageData<T>>? cupertino,
 }) {
   if (isMaterial(context)) {
     final data = material?.call(context, platform(context));
 
-    return MaterialPage(
+    return MaterialPage<T>(
       key: data?.key ?? key,
       child: data?.child ?? child!,
       name: data?.name ?? name,
@@ -117,11 +132,14 @@ Page platformPage({
       fullscreenDialog: data?.fullscreenDialog ?? fullscreenDialog ?? false,
       restorationId: data?.restorationId ?? restorationId,
       allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
+      canPop: data?.canPop ?? canPop,
+      onPopInvoked:
+          data?.onPopInvoked ?? onPopInvoked ?? _defaultPopInvokedHandler,
     );
   } else {
     final data = cupertino?.call(context, platform(context));
 
-    return CupertinoPage(
+    return CupertinoPage<T>(
       key: data?.key ?? key,
       child: data?.child ?? child!,
       name: data?.name ?? name,
@@ -131,6 +149,9 @@ Page platformPage({
       restorationId: data?.restorationId ?? restorationId,
       title: data?.title ?? title,
       allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
+      canPop: data?.canPop ?? canPop,
+      onPopInvoked:
+          data?.onPopInvoked ?? onPopInvoked ?? _defaultPopInvokedHandler,
     );
   }
 }

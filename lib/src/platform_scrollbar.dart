@@ -11,6 +11,8 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
+const double _kScrollbarMainAxisMargin = 3.0;
+
 abstract class _BaseData {
   _BaseData({
     // Common
@@ -69,11 +71,13 @@ class CupertinoScrollbarData extends _BaseData {
     // Cupertino
     this.thicknessWhileDragging,
     this.radiusWhileDragging,
+    this.mainAxisMargin,
   })  : assert(thickness != null && thickness < double.infinity),
         assert(thicknessWhileDragging != null &&
             thicknessWhileDragging < double.infinity);
   final double? thicknessWhileDragging;
   final Radius? radiusWhileDragging;
+  final double? mainAxisMargin;
 }
 
 class PlatformScrollbar
@@ -126,7 +130,6 @@ class PlatformScrollbar
       //Material only
       trackVisibility: data?.trackVisibility,
       interactive: data?.interactive,
-      // showTrackOnHover: deprecated,
     );
   }
 
@@ -151,6 +154,7 @@ class PlatformScrollbar
           CupertinoScrollbar.defaultThicknessWhileDragging,
       radiusWhileDragging: data?.radiusWhileDragging ??
           CupertinoScrollbar.defaultRadiusWhileDragging,
+      mainAxisMargin: data?.mainAxisMargin ?? _kScrollbarMainAxisMargin,
     );
   }
 }

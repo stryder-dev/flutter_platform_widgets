@@ -35,6 +35,9 @@ class MaterialProgressIndicatorData extends _BaseData {
     this.semanticsValue,
     this.strokeAlign,
     this.strokeCap,
+    this.constraints,
+    this.padding,
+    this.trackGap,
   });
 
   final Color? backgroundColor;
@@ -45,6 +48,9 @@ class MaterialProgressIndicatorData extends _BaseData {
   final String? semanticsValue;
   final double? strokeAlign;
   final StrokeCap? strokeCap;
+  final BoxConstraints? constraints;
+  final EdgeInsetsGeometry? padding;
+  final double? trackGap;
 }
 
 class CupertinoProgressIndicatorData extends _BaseData {
@@ -89,6 +95,10 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       strokeAlign:
           data?.strokeAlign ?? CircularProgressIndicator.strokeAlignCenter,
       strokeCap: data?.strokeCap,
+      constraints: data?.constraints,
+      padding: data?.padding,
+      trackGap: data?.trackGap,
+      // year2023: , // deprecated
     );
   }
 

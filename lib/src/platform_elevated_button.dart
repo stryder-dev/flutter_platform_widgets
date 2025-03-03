@@ -5,9 +5,9 @@
  */
 
 import 'package:flutter/cupertino.dart'
-    show CupertinoButton, CupertinoColors, CupertinoTheme;
+    show CupertinoButton, CupertinoButtonSize, CupertinoColors, CupertinoTheme;
 import 'package:flutter/material.dart'
-    show ElevatedButton, ButtonStyle, MaterialStatesController;
+    show ButtonStyle, ElevatedButton, IconAlignment;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -20,11 +20,13 @@ abstract class _BaseData {
     this.widgetKey,
     this.child,
     this.onPressed,
+    this.onLongPress,
   });
 
   final Key? widgetKey;
   final Widget? child;
   final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
 }
 
 class MaterialElevatedButtonData extends _BaseData {
@@ -32,7 +34,7 @@ class MaterialElevatedButtonData extends _BaseData {
     super.widgetKey,
     super.child,
     super.onPressed,
-    this.onLongPress,
+    super.onLongPress,
     this.focusNode,
     this.style,
     this.autofocus,
@@ -41,9 +43,9 @@ class MaterialElevatedButtonData extends _BaseData {
     this.onHover,
     this.onFocusChange,
     this.statesController,
+    this.iconAlignment,
   });
 
-  final VoidCallback? onLongPress;
   final FocusNode? focusNode;
   final ButtonStyle? style;
   final bool? autofocus;
@@ -51,7 +53,8 @@ class MaterialElevatedButtonData extends _BaseData {
   final Widget? icon;
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
+  final IconAlignment? iconAlignment;
 }
 
 class CupertinoElevatedButtonData extends _BaseData {
@@ -59,6 +62,7 @@ class CupertinoElevatedButtonData extends _BaseData {
     super.widgetKey,
     super.child,
     super.onPressed,
+    super.onLongPress,
     this.color,
     this.padding,
     this.disabledColor,
@@ -67,6 +71,11 @@ class CupertinoElevatedButtonData extends _BaseData {
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
+    this.autofocus,
+    this.focusColor,
+    this.focusNode,
+    this.onFocusChange,
+    this.sizeStyle,
   });
 
   final Color? color;
@@ -76,6 +85,11 @@ class CupertinoElevatedButtonData extends _BaseData {
   final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
+  final bool? autofocus;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final ValueChanged<bool>? onFocusChange;
+  final CupertinoButtonSize? sizeStyle;
 
   // If true will use the text style rather than the filled style
   final bool originalStyle;
@@ -91,6 +105,7 @@ class PlatformElevatedButton
   final EdgeInsetsGeometry? padding;
   final AlignmentGeometry? alignment;
   final Color? color;
+  final VoidCallback? onLongPress;
 
   final PlatformBuilder<CupertinoElevatedButtonData>? cupertino;
   final PlatformBuilder<MaterialElevatedButtonData>? material;
@@ -103,6 +118,7 @@ class PlatformElevatedButton
     this.padding,
     this.alignment,
     this.color,
+    this.onLongPress,
     this.material,
     this.cupertino,
   });
@@ -119,7 +135,7 @@ class PlatformElevatedButton
         label: data?.child ?? child!,
         icon: icon,
         onPressed: data?.onPressed ?? onPressed,
-        onLongPress: data?.onLongPress,
+        onLongPress: data?.onLongPress ?? onLongPress,
         autofocus: data?.autofocus ?? false,
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
@@ -132,6 +148,7 @@ class PlatformElevatedButton
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
         statesController: data?.statesController,
+        iconAlignment: data?.iconAlignment,
       );
     }
 
@@ -139,7 +156,7 @@ class PlatformElevatedButton
       key: data?.widgetKey ?? widgetKey,
       child: data?.child ?? child!,
       onPressed: data?.onPressed ?? onPressed,
-      onLongPress: data?.onLongPress,
+      onLongPress: data?.onLongPress ?? onLongPress,
       autofocus: data?.autofocus ?? false,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       focusNode: data?.focusNode,
@@ -172,6 +189,12 @@ class PlatformElevatedButton
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
         color: data?.color ?? color,
+        autofocus: data?.autofocus ?? false,
+        focusColor: data?.focusColor,
+        focusNode: data?.focusNode,
+        onFocusChange: data?.onFocusChange,
+        onLongPress: data?.onLongPress ?? onLongPress,
+        sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
       );
     } else {
       final button = CupertinoButton.filled(
@@ -186,6 +209,12 @@ class PlatformElevatedButton
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
+        autofocus: data?.autofocus ?? false,
+        focusColor: data?.focusColor,
+        focusNode: data?.focusNode,
+        onFocusChange: data?.onFocusChange,
+        onLongPress: data?.onLongPress ?? onLongPress,
+        sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
       );
 
       if (color != null) {

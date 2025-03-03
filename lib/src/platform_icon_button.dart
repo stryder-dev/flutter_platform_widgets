@@ -5,7 +5,11 @@
  */
 
 import 'package:flutter/cupertino.dart'
-    show CupertinoButton, CupertinoColors, CupertinoNavigationBar;
+    show
+        CupertinoButton,
+        CupertinoButtonSize,
+        CupertinoColors,
+        CupertinoNavigationBar;
 import 'package:flutter/material.dart'
     show IconButton, VisualDensity, ButtonStyle;
 import 'package:flutter/widgets.dart';
@@ -25,6 +29,7 @@ abstract class _BaseData {
     this.padding,
     this.color,
     this.disabledColor,
+    this.onLongPress,
   });
 
   final Key? widgetKey;
@@ -33,6 +38,7 @@ abstract class _BaseData {
   final EdgeInsets? padding;
   final Color? color;
   final Color? disabledColor;
+  final VoidCallback? onLongPress;
 }
 
 class CupertinoIconButtonData extends _BaseData {
@@ -43,16 +49,27 @@ class CupertinoIconButtonData extends _BaseData {
     super.padding,
     super.color,
     super.disabledColor,
+    super.onLongPress,
     this.borderRadius,
     this.minSize,
     this.pressedOpacity,
     this.alignment,
+    this.autofocus,
+    this.focusColor,
+    this.focusNode,
+    this.onFocusChange,
+    this.sizeStyle,
   });
 
   final BorderRadius? borderRadius;
   final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
+  final bool? autofocus;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final ValueChanged<bool>? onFocusChange;
+  final CupertinoButtonSize? sizeStyle;
 }
 
 class MaterialIconButtonData extends _BaseData {
@@ -63,6 +80,7 @@ class MaterialIconButtonData extends _BaseData {
     super.padding,
     super.color,
     super.disabledColor,
+    super.onLongPress,
     this.alignment,
     this.highlightColor,
     this.iconSize = 24.0,
@@ -80,6 +98,7 @@ class MaterialIconButtonData extends _BaseData {
     this.isSelected,
     this.selectedIcon,
     this.style,
+    this.onHover,
   });
 
   final AlignmentGeometry? alignment;
@@ -99,6 +118,7 @@ class MaterialIconButtonData extends _BaseData {
   final bool? isSelected;
   final Widget? selectedIcon;
   final ButtonStyle? style;
+  final ValueChanged<bool>? onHover;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -111,6 +131,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final Color? color;
   final EdgeInsets? padding;
   final Color? disabledColor;
+  final VoidCallback? onLongPress;
 
   final PlatformBuilder<MaterialIconButtonData>? material;
   final PlatformBuilder<CupertinoIconButtonData>? cupertino;
@@ -125,6 +146,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     this.color,
     this.disabledColor,
     this.padding,
+    this.onLongPress,
     this.material,
     this.cupertino,
   });
@@ -160,6 +182,8 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       isSelected: data?.isSelected,
       selectedIcon: data?.selectedIcon,
       style: data?.style,
+      onHover: data?.onHover,
+      onLongPress: data?.onLongPress ?? onLongPress,
     );
   }
 
@@ -196,6 +220,12 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
           disabledColor ??
           CupertinoColors.quaternarySystemFill,
       alignment: data?.alignment ?? Alignment.center,
+      autofocus: data?.autofocus ?? false,
+      focusColor: data?.focusColor,
+      focusNode: data?.focusNode,
+      onFocusChange: data?.onFocusChange,
+      onLongPress: data?.onLongPress ?? onLongPress,
+      sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
     );
   }
 }

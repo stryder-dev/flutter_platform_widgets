@@ -4,7 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/cupertino.dart' show CupertinoSliverNavigationBar;
+import 'package:flutter/cupertino.dart'
+    show CupertinoSliverNavigationBar, NavigationBarBottomMode;
 import 'package:flutter/material.dart' show SliverAppBar, kToolbarHeight;
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show AsyncCallback, Brightness;
@@ -21,6 +22,7 @@ abstract class _BaseData {
     this.backgroundColor,
     this.stretch,
     this.title,
+    this.bottom,
   });
 
   final Key? widgetKey;
@@ -29,6 +31,7 @@ abstract class _BaseData {
   final Color? backgroundColor;
   final bool? stretch;
   final Widget? title;
+  final PreferredSizeWidget? bottom;
 }
 
 class MaterialSliverAppBarData extends _BaseData {
@@ -40,11 +43,11 @@ class MaterialSliverAppBarData extends _BaseData {
     super.backgroundColor,
     super.stretch,
     super.title,
+    super.bottom,
 
     //Material
     this.actions,
     this.flexibleSpace,
-    this.bottom,
     this.elevation,
     this.scrolledUnderElevation,
     this.shadowColor,
@@ -72,6 +75,7 @@ class MaterialSliverAppBarData extends _BaseData {
     this.systemOverlayStyle,
     this.forceMaterialTransparency = false,
     this.clipBehavior,
+    this.actionsPadding,
   })  : assert(floating || !snap,
             'The "snap" argument only makes sense for floating app bars.'),
         assert(stretchTriggerOffset > 0.0),
@@ -81,7 +85,6 @@ class MaterialSliverAppBarData extends _BaseData {
   // final Widget? title;
   final List<Widget>? actions;
   final Widget? flexibleSpace;
-  final PreferredSizeWidget? bottom;
   final double? elevation;
   final double? scrolledUnderElevation;
   final Color? shadowColor;
@@ -109,6 +112,7 @@ class MaterialSliverAppBarData extends _BaseData {
   final SystemUiOverlayStyle? systemOverlayStyle;
   final bool forceMaterialTransparency;
   final Clip? clipBehavior;
+  final EdgeInsetsGeometry? actionsPadding;
 }
 
 class CupertinoSliverAppBarData extends _BaseData {
@@ -120,6 +124,7 @@ class CupertinoSliverAppBarData extends _BaseData {
     super.backgroundColor,
     super.stretch,
     super.title,
+    super.bottom,
 
     //Cupertino
     // this.largeTitle,
@@ -132,6 +137,9 @@ class CupertinoSliverAppBarData extends _BaseData {
     this.brightness,
     this.padding,
     this.transitionBetweenRoutes = true,
+    this.automaticBackgroundVisibility,
+    this.bottomMode,
+    this.enableBackgroundFilterBlur,
     this.heroTag = _defaultHeroTag,
   }) : assert(
           automaticallyImplyTitle == true || title != null,
@@ -151,6 +159,9 @@ class CupertinoSliverAppBarData extends _BaseData {
   final Border? border;
   final bool transitionBetweenRoutes;
   final Object heroTag;
+  final bool? automaticBackgroundVisibility;
+  final NavigationBarBottomMode? bottomMode;
+  final bool? enableBackgroundFilterBlur;
 }
 
 class PlatformSliverAppBar
@@ -163,6 +174,7 @@ class PlatformSliverAppBar
   final Color? backgroundColor;
   final bool? stretch;
   final Widget? title;
+  final PreferredSizeWidget? bottom;
 
   //Platform
   final PlatformBuilder<MaterialSliverAppBarData>? material;
@@ -177,6 +189,7 @@ class PlatformSliverAppBar
     this.backgroundColor,
     this.stretch,
     this.title,
+    this.bottom,
     //Platform
     this.material,
     this.cupertino,
@@ -198,7 +211,7 @@ class PlatformSliverAppBar
       //Material only
       actions: data?.actions,
       flexibleSpace: data?.flexibleSpace,
-      bottom: data?.bottom,
+      bottom: data?.bottom ?? bottom,
       elevation: data?.elevation,
       shadowColor: data?.shadowColor,
       forceElevated: data?.forceElevated ?? false,
@@ -226,6 +239,7 @@ class PlatformSliverAppBar
       clipBehavior: data?.clipBehavior,
       scrolledUnderElevation: data?.scrolledUnderElevation,
       surfaceTintColor: data?.surfaceTintColor,
+      actionsPadding: data?.actionsPadding,
     );
   }
 
@@ -254,6 +268,11 @@ class PlatformSliverAppBar
       padding: data?.padding,
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       heroTag: data?.heroTag ?? _defaultHeroTag,
+      bottom: data?.bottom ?? bottom,
+      automaticBackgroundVisibility:
+          data?.automaticBackgroundVisibility ?? true,
+      bottomMode: data?.bottomMode,
+      enableBackgroundFilterBlur: data?.enableBackgroundFilterBlur ?? true,
     );
   }
 }

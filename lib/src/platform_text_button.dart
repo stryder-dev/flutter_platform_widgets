@@ -5,9 +5,9 @@
  */
 
 import 'package:flutter/cupertino.dart'
-    show CupertinoButton, CupertinoColors, CupertinoTheme;
+    show CupertinoButton, CupertinoColors, CupertinoTheme, CupertinoButtonSize;
 import 'package:flutter/material.dart'
-    show TextButton, ButtonStyle, MaterialStatesController;
+    show TextButton, ButtonStyle, IconAlignment;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -42,6 +42,7 @@ class MaterialTextButtonData extends _BaseData {
     this.onFocusChange,
     this.statesController,
     this.isSemanticButton,
+    this.iconAlignment,
   });
 
   final VoidCallback? onLongPress;
@@ -52,8 +53,9 @@ class MaterialTextButtonData extends _BaseData {
   final Widget? icon;
   final ValueChanged<bool>? onHover;
   final ValueChanged<bool>? onFocusChange;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
   final bool? isSemanticButton;
+  final IconAlignment? iconAlignment;
 }
 
 class CupertinoTextButtonData extends _BaseData {
@@ -69,6 +71,12 @@ class CupertinoTextButtonData extends _BaseData {
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
+    this.autofocus,
+    this.focusColor,
+    this.focusNode,
+    this.onFocusChange,
+    this.onLongPress,
+    this.sizeStyle,
   });
 
   final Color? color;
@@ -78,6 +86,12 @@ class CupertinoTextButtonData extends _BaseData {
   final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
+  final bool? autofocus;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final ValueChanged<bool>? onFocusChange;
+  final VoidCallback? onLongPress;
+  final CupertinoButtonSize? sizeStyle;
 
   // If true will use the filled style rather than the text style
   final bool originalStyle;
@@ -133,6 +147,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
         statesController: data?.statesController,
+        iconAlignment: data?.iconAlignment,
       );
     }
 
@@ -174,6 +189,12 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         disabledColor:
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
+        autofocus: data?.autofocus ?? false,
+        focusColor: data?.focusColor,
+        focusNode: data?.focusNode,
+        onFocusChange: data?.onFocusChange,
+        onLongPress: data?.onLongPress,
+        sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
       );
       if (color != null) {
         final themeData = CupertinoTheme.of(context);
@@ -197,6 +218,12 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
             data?.disabledColor ?? CupertinoColors.quaternarySystemFill,
         alignment: data?.alignment ?? alignment ?? Alignment.center,
         color: data?.color ?? color,
+        autofocus: data?.autofocus ?? false,
+        focusColor: data?.focusColor,
+        focusNode: data?.focusNode,
+        onFocusChange: data?.onFocusChange,
+        onLongPress: data?.onLongPress,
+        sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
       );
     }
   }

@@ -6,8 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoSwitch;
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart'
-    show MaterialStateProperty, MaterialTapTargetSize, Switch;
+import 'package:flutter/material.dart' show MaterialTapTargetSize, Switch;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -23,6 +22,16 @@ abstract class _BaseData {
     this.focusNode,
     this.autofocus,
     this.onFocusChange,
+    this.thumbIcon,
+    this.trackOutlineColor,
+    this.trackOutlineWidth,
+    this.onActiveThumbImageError,
+    this.onInactiveThumbImageError,
+    this.activeTrackColor,
+    this.inactiveThumbColor,
+    this.inactiveTrackColor,
+    this.activeThumbImage,
+    this.inactiveThumbImage,
   });
 
   final Key? widgetKey;
@@ -33,6 +42,16 @@ abstract class _BaseData {
   final FocusNode? focusNode;
   final bool? autofocus;
   final ValueChanged<bool>? onFocusChange;
+  final WidgetStateProperty<Icon?>? thumbIcon;
+  final WidgetStateProperty<Color?>? trackOutlineColor;
+  final WidgetStateProperty<double?>? trackOutlineWidth;
+  final ImageErrorListener? onActiveThumbImageError;
+  final ImageErrorListener? onInactiveThumbImageError;
+  final Color? activeTrackColor;
+  final Color? inactiveThumbColor;
+  final Color? inactiveTrackColor;
+  final ImageProvider? activeThumbImage;
+  final ImageProvider? inactiveThumbImage;
 }
 
 class MaterialSwitchData extends _BaseData {
@@ -45,44 +64,37 @@ class MaterialSwitchData extends _BaseData {
     super.focusNode,
     super.autofocus,
     super.onFocusChange,
-    this.activeTrackColor,
-    this.inactiveThumbColor,
-    this.inactiveTrackColor,
-    this.activeThumbImage,
-    this.inactiveThumbImage,
+    super.thumbIcon,
+    super.trackOutlineColor,
+    super.trackOutlineWidth,
+    super.onActiveThumbImageError,
+    super.onInactiveThumbImageError,
+    super.activeTrackColor,
+    super.inactiveThumbColor,
+    super.inactiveTrackColor,
+    super.activeThumbImage,
+    super.inactiveThumbImage,
     this.materialTapTargetSize,
     this.focusColor,
     this.hoverColor,
-    this.onActiveThumbImageError,
-    this.onInactiveThumbImageError,
     this.mouseCursor,
     this.overlayColor,
     this.splashRadius,
     this.thumbColor,
     this.trackColor,
-    this.thumbIcon,
-    this.trackOutlineColor,
-    this.trackOutlineWidth,
+    this.padding,
   });
 
-  final Color? activeTrackColor;
-  final Color? inactiveThumbColor;
-  final Color? inactiveTrackColor;
-  final ImageProvider? activeThumbImage;
-  final ImageProvider? inactiveThumbImage;
   final MaterialTapTargetSize? materialTapTargetSize;
   final Color? focusColor;
   final Color? hoverColor;
-  final ImageErrorListener? onActiveThumbImageError;
-  final ImageErrorListener? onInactiveThumbImageError;
   final MouseCursor? mouseCursor;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final double? splashRadius;
-  final MaterialStateProperty<Color?>? thumbColor;
-  final MaterialStateProperty<Color?>? trackColor;
-  final MaterialStateProperty<Icon?>? thumbIcon;
-  final MaterialStateProperty<Color?>? trackOutlineColor;
-  final MaterialStateProperty<double?>? trackOutlineWidth;
+  final WidgetStateProperty<Color?>? thumbColor;
+  final WidgetStateProperty<Color?>? trackColor;
+
+  final EdgeInsetsGeometry? padding;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -90,25 +102,34 @@ class CupertinoSwitchData extends _BaseData {
     super.widgetKey,
     super.value,
     super.onChanged,
-    super.activeColor,
     super.dragStartBehavior,
     super.focusNode,
     super.autofocus,
     super.onFocusChange,
-    this.trackColor,
+    super.thumbIcon,
+    super.trackOutlineColor,
+    super.trackOutlineWidth,
+    super.onActiveThumbImageError,
+    super.onInactiveThumbImageError,
+    super.activeTrackColor,
+    super.inactiveThumbColor,
+    super.inactiveTrackColor,
+    super.activeThumbImage,
+    super.inactiveThumbImage,
     this.thumbColor,
     this.applyTheme,
     this.focusColor,
     this.offLabelColor,
     this.onLabelColor,
+    this.mouseCursor,
   });
 
-  final Color? trackColor;
   final Color? thumbColor;
   final bool? applyTheme;
   final Color? focusColor;
   final Color? offLabelColor;
   final Color? onLabelColor;
+  final WidgetStateProperty<MouseCursor>? mouseCursor;
 }
 
 class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
@@ -121,6 +142,16 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final bool? autofocus;
   final FocusNode? focusNode;
   final ValueChanged<bool>? onFocusChange;
+  final WidgetStateProperty<Icon?>? thumbIcon;
+  final WidgetStateProperty<Color?>? trackOutlineColor;
+  final WidgetStateProperty<double?>? trackOutlineWidth;
+  final ImageErrorListener? onActiveThumbImageError;
+  final ImageErrorListener? onInactiveThumbImageError;
+  final Color? activeTrackColor;
+  final Color? inactiveThumbColor;
+  final Color? inactiveTrackColor;
+  final ImageProvider? activeThumbImage;
+  final ImageProvider? inactiveThumbImage;
 
   final PlatformBuilder<MaterialSwitchData>? material;
   final PlatformBuilder<CupertinoSwitchData>? cupertino;
@@ -135,6 +166,16 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     this.autofocus,
     this.focusNode,
     this.onFocusChange,
+    this.thumbIcon,
+    this.trackOutlineColor,
+    this.trackOutlineWidth,
+    this.onActiveThumbImageError,
+    this.onInactiveThumbImageError,
+    this.activeTrackColor,
+    this.activeThumbImage,
+    this.inactiveThumbColor,
+    this.inactiveThumbImage,
+    this.inactiveTrackColor,
     this.material,
     this.cupertino,
   });
@@ -148,11 +189,11 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
       activeColor: data?.activeColor ?? activeColor,
-      activeThumbImage: data?.activeThumbImage,
-      activeTrackColor: data?.activeTrackColor,
-      inactiveThumbColor: data?.inactiveThumbColor,
-      inactiveThumbImage: data?.inactiveThumbImage,
-      inactiveTrackColor: data?.inactiveTrackColor,
+      activeThumbImage: data?.activeThumbImage ?? activeThumbImage,
+      activeTrackColor: data?.activeTrackColor ?? activeTrackColor,
+      inactiveThumbColor: data?.inactiveThumbColor ?? inactiveThumbColor,
+      inactiveThumbImage: data?.inactiveThumbImage ?? inactiveThumbImage,
+      inactiveTrackColor: data?.inactiveTrackColor ?? inactiveTrackColor,
       materialTapTargetSize: data?.materialTapTargetSize,
       dragStartBehavior: data?.dragStartBehavior ??
           dragStartBehavior ??
@@ -161,17 +202,20 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       focusColor: data?.focusColor,
       focusNode: data?.focusNode ?? focusNode,
       hoverColor: data?.hoverColor,
-      onActiveThumbImageError: data?.onActiveThumbImageError,
-      onInactiveThumbImageError: data?.onInactiveThumbImageError,
+      onActiveThumbImageError:
+          data?.onActiveThumbImageError ?? onActiveThumbImageError,
+      onInactiveThumbImageError:
+          data?.onInactiveThumbImageError ?? onInactiveThumbImageError,
       mouseCursor: data?.mouseCursor,
       overlayColor: data?.overlayColor,
       splashRadius: data?.splashRadius,
       thumbColor: data?.thumbColor,
       trackColor: data?.trackColor,
       onFocusChange: data?.onFocusChange ?? onFocusChange,
-      thumbIcon: data?.thumbIcon,
-      trackOutlineColor: data?.trackOutlineColor,
-      trackOutlineWidth: data?.trackOutlineWidth,
+      thumbIcon: data?.thumbIcon ?? thumbIcon,
+      trackOutlineColor: data?.trackOutlineColor ?? trackOutlineColor,
+      trackOutlineWidth: data?.trackOutlineWidth ?? trackOutlineWidth,
+      padding: data?.padding,
     );
   }
 
@@ -183,11 +227,9 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
-      activeColor: data?.activeColor ?? activeColor,
       dragStartBehavior: data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
-      trackColor: data?.trackColor,
       thumbColor: data?.thumbColor,
       applyTheme: data?.applyTheme,
       focusColor: data?.focusColor,
@@ -196,6 +238,21 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       onFocusChange: data?.onFocusChange ?? onFocusChange,
       offLabelColor: data?.offLabelColor,
       onLabelColor: data?.onLabelColor,
+      activeThumbImage: data?.activeThumbImage ?? activeThumbImage,
+      activeTrackColor: data?.activeTrackColor ?? activeTrackColor,
+      inactiveThumbColor: data?.inactiveThumbColor ?? inactiveThumbColor,
+      inactiveThumbImage: data?.inactiveThumbImage ?? inactiveThumbImage,
+      inactiveTrackColor: data?.inactiveTrackColor ?? inactiveTrackColor,
+      mouseCursor: data?.mouseCursor,
+      onActiveThumbImageError:
+          data?.onActiveThumbImageError ?? onActiveThumbImageError,
+      onInactiveThumbImageError:
+          data?.onInactiveThumbImageError ?? onInactiveThumbImageError,
+      thumbIcon: data?.thumbIcon ?? thumbIcon,
+      trackOutlineColor: data?.trackOutlineColor ?? trackOutlineColor,
+      trackOutlineWidth: data?.trackOutlineWidth ?? trackOutlineWidth,
+      // activeColor: deprecated
+      // trackColor: deprecated
     );
   }
 }

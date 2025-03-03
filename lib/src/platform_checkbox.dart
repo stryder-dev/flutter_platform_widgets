@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoCheckbox;
 import 'package:flutter/material.dart'
-    show Checkbox, MaterialTapTargetSize, MaterialStateProperty, VisualDensity;
+    show Checkbox, MaterialTapTargetSize, VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -25,6 +25,9 @@ abstract class _BaseData {
     this.autofocus,
     this.shape,
     this.side,
+    this.mouseCursor,
+    this.fillColor,
+    this.semanticLabel,
   });
   final Key? widgetKey;
   final bool? value;
@@ -37,6 +40,9 @@ abstract class _BaseData {
   final bool? autofocus;
   final OutlinedBorder? shape;
   final BorderSide? side;
+  final MouseCursor? mouseCursor;
+  final WidgetStateProperty<Color?>? fillColor;
+  final String? semanticLabel;
 }
 
 class MaterialCheckboxData extends _BaseData {
@@ -53,27 +59,25 @@ class MaterialCheckboxData extends _BaseData {
     super.autofocus,
     super.shape,
     super.side,
+    super.mouseCursor,
+    super.fillColor,
+    super.semanticLabel,
     //Material
-    this.mouseCursor,
-    this.fillColor,
+
     this.hoverColor,
     this.overlayColor,
     this.splashRadius,
     this.materialTapTargetSize,
     this.visualDensity,
     this.isError = false,
-    this.semanticLabel,
   });
 
-  final MouseCursor? mouseCursor;
-  final MaterialStateProperty<Color?>? fillColor;
   final Color? hoverColor;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final double? splashRadius;
   final MaterialTapTargetSize? materialTapTargetSize;
   final VisualDensity? visualDensity;
   final bool isError;
-  final String? semanticLabel;
 }
 
 class CupertinoCheckboxData extends _BaseData {
@@ -90,12 +94,10 @@ class CupertinoCheckboxData extends _BaseData {
     super.autofocus,
     super.shape,
     super.side,
-
-    //Cupertino
-    this.inactiveColor,
+    super.mouseCursor,
+    super.fillColor,
+    super.semanticLabel,
   });
-
-  final Color? inactiveColor;
 }
 
 class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
@@ -111,6 +113,9 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
   final bool autofocus;
   final OutlinedBorder? shape;
   final BorderSide? side;
+  final MouseCursor? mouseCursor;
+  final WidgetStateProperty<Color?>? fillColor;
+  final String? semanticLabel;
 
   //Platform
   final PlatformBuilder<MaterialCheckboxData>? material;
@@ -130,6 +135,9 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     this.autofocus = false,
     this.shape,
     this.side,
+    this.mouseCursor,
+    this.fillColor,
+    this.semanticLabel,
     //Platform
     this.material,
     this.cupertino,
@@ -143,8 +151,6 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     assert(tristate || value != null);
     return Checkbox(
       //Material
-      mouseCursor: data?.mouseCursor,
-      fillColor: data?.fillColor,
       hoverColor: data?.hoverColor,
       overlayColor: data?.overlayColor,
       splashRadius: data?.splashRadius,
@@ -163,7 +169,9 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       autofocus: data?.autofocus ?? autofocus,
       shape: data?.shape ?? shape,
       side: data?.side ?? side,
-      semanticLabel: data?.semanticLabel,
+      mouseCursor: data?.mouseCursor ?? mouseCursor,
+      fillColor: data?.fillColor ?? fillColor,
+      semanticLabel: data?.semanticLabel ?? semanticLabel,
     );
   }
 
@@ -175,7 +183,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     assert(tristate || value != null);
     return CupertinoCheckbox(
       //Cupertino
-      inactiveColor: data?.inactiveColor,
+      // inactiveColor: Deprecated
       //Common
       key: data?.widgetKey ?? widgetKey,
       value: value,
@@ -188,6 +196,9 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       autofocus: data?.autofocus ?? autofocus,
       shape: data?.shape ?? shape,
       side: data?.side ?? side,
+      fillColor: data?.fillColor ?? fillColor,
+      mouseCursor: data?.mouseCursor ?? mouseCursor,
+      semanticLabel: data?.semanticLabel ?? semanticLabel,
     );
   }
 }

@@ -6,7 +6,7 @@
 
 import 'package:flutter/cupertino.dart' show CupertinoRadio;
 import 'package:flutter/material.dart'
-    show Radio, MaterialTapTargetSize, MaterialStateProperty, VisualDensity;
+    show Radio, MaterialTapTargetSize, VisualDensity;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -23,6 +23,7 @@ abstract class _BaseData<T> {
     this.focusColor,
     this.focusNode,
     this.autofocus,
+    this.mouseCursor,
   });
   final Key? widgetKey;
   final T? value;
@@ -34,12 +35,12 @@ abstract class _BaseData<T> {
   final Color? focusColor;
   final FocusNode? focusNode;
   final bool? autofocus;
+  final MouseCursor? mouseCursor;
 }
 
 class MaterialRadioData extends _BaseData {
   MaterialRadioData({
     //Material
-    this.mouseCursor,
     this.hoverColor,
     this.overlayColor,
     this.splashRadius,
@@ -56,14 +57,15 @@ class MaterialRadioData extends _BaseData {
     super.focusColor,
     super.focusNode,
     super.autofocus,
+    super.mouseCursor,
   });
-  final MouseCursor? mouseCursor;
+
   final Color? hoverColor;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final double? splashRadius;
   final MaterialTapTargetSize? materialTapTargetSize;
   final VisualDensity? visualDensity;
-  final MaterialStateProperty<Color?>? fillColor;
+  final WidgetStateProperty<Color?>? fillColor;
 }
 
 class CupertinoRadioData extends _BaseData {
@@ -82,6 +84,7 @@ class CupertinoRadioData extends _BaseData {
     super.focusColor,
     super.focusNode,
     super.autofocus,
+    super.mouseCursor,
   });
 
   final Color? inactiveColor;
@@ -100,6 +103,7 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
   final Color? focusColor;
   final FocusNode? focusNode;
   final bool autofocus;
+  final MouseCursor? mouseCursor;
 
   final PlatformBuilder<MaterialRadioData>? material;
   final PlatformBuilder<CupertinoRadioData>? cupertino;
@@ -116,6 +120,7 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
     this.focusColor,
     this.focusNode,
     this.autofocus = false,
+    this.mouseCursor,
     this.material,
     this.cupertino,
   });
@@ -125,20 +130,20 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
     final data = material?.call(context, platform(context));
     return Radio(
       //Material
-      mouseCursor: data?.mouseCursor,
       hoverColor: data?.hoverColor,
       overlayColor: data?.overlayColor,
       splashRadius: data?.splashRadius,
       materialTapTargetSize: data?.materialTapTargetSize,
       visualDensity: data?.visualDensity,
       //Common
+      mouseCursor: data?.mouseCursor ?? mouseCursor,
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
       groupValue: data?.groupValue ?? groupValue,
       onChanged: data?.onChanged ?? onChanged,
       toggleable: data?.toggleable ?? toggleable,
       activeColor: data?.activeColor ?? activeColor,
-      fillColor: data?.fillColor ?? MaterialStateProperty.all(fillColor),
+      fillColor: data?.fillColor ?? WidgetStateProperty.all(fillColor),
       focusColor: data?.focusColor ?? focusColor,
       autofocus: data?.autofocus ?? autofocus,
       focusNode: data?.focusNode ?? focusNode,
@@ -163,6 +168,7 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
       autofocus: data?.autofocus ?? autofocus,
       focusNode: data?.focusNode ?? focusNode,
       useCheckmarkStyle: data?.useCheckmarkStyle ?? false,
+      mouseCursor: data?.mouseCursor ?? mouseCursor,
     );
   }
 }

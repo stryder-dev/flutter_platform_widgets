@@ -10,7 +10,8 @@ import 'package:flutter/cupertino.dart'
         CupertinoColors,
         OverlayVisibilityMode,
         CupertinoIcons;
-import 'package:flutter/material.dart' show MaterialStateProperty, SearchBar;
+import 'package:flutter/material.dart'
+    show AdaptiveTextSelectionToolbar, SearchBar;
 import 'package:flutter/services.dart' show TextCapitalization, TextInputAction;
 import 'package:flutter/widgets.dart';
 
@@ -26,6 +27,7 @@ abstract class _BaseData {
     this.onChanged,
     this.keyboardType,
     this.autofocus,
+    this.enabled,
   });
   final Key? widgetKey;
   final FocusNode? focusNode;
@@ -34,6 +36,7 @@ abstract class _BaseData {
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
   final bool? autofocus;
+  final bool? enabled;
 }
 
 class MaterialSearchBarData extends _BaseData {
@@ -46,6 +49,7 @@ class MaterialSearchBarData extends _BaseData {
     super.onChanged,
     super.autofocus,
     super.keyboardType,
+    super.enabled,
 
     //Material
     this.leading,
@@ -65,26 +69,32 @@ class MaterialSearchBarData extends _BaseData {
     this.onSubmitted,
     this.textCapitalization,
     this.textInputAction,
+    this.contextMenuBuilder,
+    this.onTapOutside,
+    this.scrollPadding,
   });
 
   // final String? hintText;
   final Widget? leading;
   final Iterable<Widget>? trailing;
   final BoxConstraints? constraints;
-  final MaterialStateProperty<double?>? elevation;
-  final MaterialStateProperty<Color?>? shadowColor;
-  final MaterialStateProperty<Color?>? surfaceTintColor;
-  final MaterialStateProperty<Color?>? overlayColor;
-  final MaterialStateProperty<BorderSide?>? side;
-  final MaterialStateProperty<OutlinedBorder?>? shape;
-  final MaterialStateProperty<EdgeInsetsGeometry?>? padding;
-  final MaterialStateProperty<Color?>? backgroundColor;
-  final MaterialStateProperty<TextStyle?>? hintStyle;
-  final MaterialStateProperty<TextStyle?>? textStyle;
+  final WidgetStateProperty<double?>? elevation;
+  final WidgetStateProperty<Color?>? shadowColor;
+  final WidgetStateProperty<Color?>? surfaceTintColor;
+  final WidgetStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<BorderSide?>? side;
+  final WidgetStateProperty<OutlinedBorder?>? shape;
+  final WidgetStateProperty<EdgeInsetsGeometry?>? padding;
+  final WidgetStateProperty<Color?>? backgroundColor;
+  final WidgetStateProperty<TextStyle?>? hintStyle;
+  final WidgetStateProperty<TextStyle?>? textStyle;
   final String? hintText;
   final ValueChanged<String>? onSubmitted;
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
+  final TapRegionCallback? onTapOutside;
+  final EdgeInsets? scrollPadding;
 }
 
 class CupertinoSearchBarData extends _BaseData {
@@ -97,6 +107,7 @@ class CupertinoSearchBarData extends _BaseData {
     super.onChanged,
     super.autofocus,
     super.keyboardType,
+    super.enabled,
 
     //Cupertino
     this.onSubmitted,
@@ -115,12 +126,16 @@ class CupertinoSearchBarData extends _BaseData {
     this.smartDashesType,
     this.enableIMEPersonalizedLearning,
     this.autocorrect,
-    this.enabled,
     this.padding,
     this.backgroundColor,
     this.placeholderStyle,
     this.style,
     this.placeholder,
+    this.cursorColor,
+    this.cursorHeight,
+    this.cursorOpacityAnimates,
+    this.cursorRadius,
+    this.cursorWidth,
   })  : assert(
           !((decoration != null) && (backgroundColor != null)),
           'Cannot provide both a background color and a decoration\n'
@@ -150,12 +165,16 @@ class CupertinoSearchBarData extends _BaseData {
   final SmartDashesType? smartDashesType;
   final bool? enableIMEPersonalizedLearning;
   final bool? autocorrect;
-  final bool? enabled;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
   final TextStyle? placeholderStyle;
   final TextStyle? style;
   final String? placeholder;
+  final Color? cursorColor;
+  final double? cursorHeight;
+  final bool? cursorOpacityAnimates;
+  final Radius? cursorRadius;
+  final double? cursorWidth;
 }
 
 class PlatformSearchBar
@@ -170,6 +189,7 @@ class PlatformSearchBar
   final Color? backgroundColor;
   final TextInputType? keyboardType;
   final bool? autoFocus;
+  final bool? enabled;
 
   //Mixed
   final String? hintText;
@@ -191,6 +211,7 @@ class PlatformSearchBar
     this.backgroundColor,
     this.keyboardType,
     this.autoFocus,
+    this.enabled,
     //Mixed
     this.hintText,
     this.hintStyle,
@@ -199,6 +220,14 @@ class PlatformSearchBar
     this.material,
     this.cupertino,
   });
+
+  static Widget _defaultContextMenuBuilder(
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
+    return AdaptiveTextSelectionToolbar.editableText(
+        editableTextState: editableTextState);
+  }
 
   @override
   SearchBar createMaterialWidget(BuildContext context) {
@@ -216,16 +245,16 @@ class PlatformSearchBar
 
       backgroundColor: data?.backgroundColor ??
           (backgroundColor != null
-              ? MaterialStateProperty.all<Color>(backgroundColor)
+              ? WidgetStateProperty.all<Color>(backgroundColor)
               : null),
       hintText: data?.hintText ?? hintText,
       hintStyle: data?.hintStyle ??
           (hintStyle != null
-              ? MaterialStateProperty.all<TextStyle>(hintStyle)
+              ? WidgetStateProperty.all<TextStyle>(hintStyle)
               : null),
       textStyle: data?.textStyle ??
           (textStyle != null
-              ? MaterialStateProperty.all<TextStyle>(textStyle)
+              ? WidgetStateProperty.all<TextStyle>(textStyle)
               : null),
       autoFocus: data?.autofocus ?? autoFocus ?? false,
       keyboardType: data?.keyboardType ?? keyboardType,
@@ -243,8 +272,12 @@ class PlatformSearchBar
       padding: data?.padding,
       onSubmitted: data?.onSubmitted,
       textCapitalization: data?.textCapitalization,
-
       textInputAction: data?.textInputAction,
+      enabled: data?.enabled ?? enabled ?? true,
+      contextMenuBuilder:
+          data?.contextMenuBuilder ?? _defaultContextMenuBuilder,
+      onTapOutside: data?.onTapOutside,
+      scrollPadding: data?.scrollPadding ?? const EdgeInsets.all(20.0),
     );
   }
 
@@ -288,7 +321,12 @@ class PlatformSearchBar
       enableIMEPersonalizedLearning:
           data?.enableIMEPersonalizedLearning ?? true,
       autocorrect: data?.autocorrect ?? true,
-      enabled: data?.enabled,
+      enabled: data?.enabled ?? enabled,
+      cursorColor: data?.cursorColor,
+      cursorHeight: data?.cursorHeight,
+      cursorOpacityAnimates: data?.cursorOpacityAnimates ?? true,
+      cursorRadius: data?.cursorRadius ?? const Radius.circular(2.0),
+      cursorWidth: data?.cursorWidth ?? 2.0,
     );
   }
 }
