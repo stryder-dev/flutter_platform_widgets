@@ -1,3 +1,10 @@
+## [8.0.0]
+
+#### (Flutter version support: v3.29.0)
+
+- Adds all the flutter 3.29 additional properties for platform widgets
+- Removed deprecated parameters
+
 ## [7.0.1]
 
 #### (Flutter version support: v3.19.6)

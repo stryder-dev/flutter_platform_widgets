@@ -1,12 +1,12 @@
 name: flutter_platform_widgets
 description: Simplifying the use of both Material and Cupertino widgets with a single widget
-version: 7.0.1
+version: 8.0.0
 homepage: https://github.com/stryder-dev/flutter_platform_widgets
 documentation: https://github.com/stryder-dev/flutter_platform_widgets/wiki
 
 environment:
-  sdk: ">=3.2.0-0 <4.0.0"
-  flutter: ">=3.19.0"
+  sdk: ">=3.7.0-0 <4.0.0"
+  flutter: ">=3.29.0"
 
 dependencies:
   flutter:
