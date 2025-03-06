@@ -32,7 +32,7 @@ String formatData(BuildContext context, String data) {
   return data;
 }
 
-typedef Text _TextBuilder(BuildContext context);
+typedef _TextBuilder = Text Function(BuildContext context);
 
 class PlatformText extends StatelessWidget {
   final _TextBuilder _textBuilder;
