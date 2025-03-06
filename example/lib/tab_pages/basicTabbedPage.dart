@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-import './views/content_view.dart';
 import '../extensions.dart';
+import './views/content_view.dart';
 
 class BasicTabbedPage extends StatefulWidget {
   final TargetPlatform platform;

@@ -16,8 +16,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/src/parent_widget_finder.dart';
 
 import 'platform.dart';
-import 'widget_base.dart';
 import 'platform_provider.dart';
+import 'widget_base.dart';
 
 const double _kMinInteractiveDimensionCupertino = 44.0;
 

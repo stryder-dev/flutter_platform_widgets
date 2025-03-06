@@ -8,8 +8,8 @@ import 'icons_page.dart';
 import 'logo.dart';
 import 'material_ios_page.dart';
 import 'platform_widget_example.dart';
-import 'tab_impl_page.dart';
 import 'sliver_app_bar_page.dart';
+import 'tab_impl_page.dart';
 
 class PlatformPage extends StatelessWidget {
   @override
