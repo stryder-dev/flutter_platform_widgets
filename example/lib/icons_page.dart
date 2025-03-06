@@ -4,6 +4,8 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'platform_widget_example.dart';
 
 class IconsPage extends StatelessWidget {
+  const IconsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(

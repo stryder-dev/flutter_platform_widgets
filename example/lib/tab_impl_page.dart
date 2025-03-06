@@ -9,6 +9,8 @@ import 'extensions.dart';
 import 'platform_widget_example.dart';
 
 class TabImplementationPage extends StatelessWidget {
+  const TabImplementationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(

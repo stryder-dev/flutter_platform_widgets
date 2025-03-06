@@ -3,6 +3,8 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 /// Page to show what material widgets look like on cupertino
 class IosMaterialPage extends StatelessWidget {
+  const IosMaterialPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(

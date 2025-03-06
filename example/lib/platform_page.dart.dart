@@ -12,6 +12,8 @@ import 'sliver_app_bar_page.dart';
 import 'tab_impl_page.dart';
 
 class PlatformPage extends StatelessWidget {
+  const PlatformPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
