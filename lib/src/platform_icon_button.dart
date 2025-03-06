@@ -161,7 +161,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     return IconButton(
       key: data?.widgetKey ?? widgetKey,
       icon: data?.icon ?? materialIcon ?? icon!,
-      onPressed: data?.onPressed ?? onPressed ?? null,
+      onPressed: data?.onPressed ?? onPressed,
       padding: data?.padding ?? padding ?? const EdgeInsets.all(8.0),
       color: data?.color ?? color,
       alignment: data?.alignment ?? Alignment.center,
@@ -209,7 +209,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     return CupertinoButton(
       key: data?.widgetKey ?? widgetKey,
       child: data?.icon ?? cupertinoIcon ?? icon!,
-      onPressed: data?.onPressed ?? onPressed ?? null,
+      onPressed: data?.onPressed ?? onPressed,
       padding: givenPadding,
       color: data?.color ?? color,
       borderRadius: data?.borderRadius ??
