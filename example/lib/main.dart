@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
           this.themeMode = themeMode; /* you can save to storage */
         },
         builder: (context) => PlatformApp(
-          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,
             DefaultWidgetsLocalizations.delegate,
             DefaultCupertinoLocalizations.delegate,

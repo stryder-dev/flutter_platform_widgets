@@ -16,7 +16,7 @@ class IconsPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: const <Widget>[
                 Expanded(
                   child: Text(
                     'Material',
