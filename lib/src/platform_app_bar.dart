@@ -216,7 +216,7 @@ class PlatformAppBar
   CupertinoNavigationBar createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    var trailing = trailingActions?.isEmpty ?? true
+    final trailing = trailingActions?.isEmpty ?? true
         ? null
         : Row(
             mainAxisSize: MainAxisSize.min,

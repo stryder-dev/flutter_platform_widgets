@@ -162,7 +162,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
   Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    Curve? curve = data?.insetAnimationCurve;
+    final Curve? curve = data?.insetAnimationCurve;
 
     final providerState = PlatformProvider.of(context);
     final useLegacyMaterial =

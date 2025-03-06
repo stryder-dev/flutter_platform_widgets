@@ -34,7 +34,7 @@ class PlatformProvider extends StatefulWidget {
   final PlatformSettingsData? settings;
 
   static PlatformProviderState? of(BuildContext context) {
-    _PlatformProviderState? state =
+    final _PlatformProviderState? state =
         context.findAncestorStateOfType<_PlatformProviderState>();
 
     return state?.state;
