@@ -15,15 +15,15 @@ class PlatformPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
+      appBar: const PlatformAppBar(
         title: Text('Flutter Platform Widgets'),
       ),
       body: PlatformScrollbar(
         thumbVisibility: true,
         child: ListView(
           children: [
-            FlutterPlatformWidgetsLogo(size: 60),
-            Divider(thickness: 10),
+            const FlutterPlatformWidgetsLogo(size: 60),
+            const Divider(thickness: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
@@ -49,7 +49,7 @@ class PlatformPage extends StatelessWidget {
                     PlatformTheme.of(context)?.themeMode = newMode;
                   }),
             ),
-            Divider(thickness: 10),
+            const Divider(thickness: 10),
             // ! PlatformSearchBar
             PlatformWidgetExample(
               title:
@@ -157,7 +157,7 @@ class PlatformPage extends StatelessWidget {
                 onPressed: () => print('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialElevatedButtonData(
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                 ),
                 cupertino: (_, __) => CupertinoElevatedButtonData(
                   originalStyle: true,
@@ -180,7 +180,7 @@ class PlatformPage extends StatelessWidget {
                 onPressed: () => print('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialTextButtonData(
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                 ),
                 cupertino: (_, __) => CupertinoTextButtonData(
                   originalStyle: true,
@@ -351,11 +351,11 @@ class PlatformPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show Tabbed Pages'),
+                child: const Text('Show Tabbed Pages'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => TabImplementationPage(),
+                    builder: (context) => const TabImplementationPage(),
                   ),
                 ),
               ),
@@ -365,11 +365,11 @@ class PlatformPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show  Sliver AppBar Page'),
+                child: const Text('Show  Sliver AppBar Page'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => PlatformSliverAppBarPage(),
+                    builder: (context) => const PlatformSliverAppBarPage(),
                   ),
                 ),
               ),
@@ -380,11 +380,11 @@ class PlatformPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PlatformElevatedButton(
-                  child: Text('Show Platform Icons'),
+                  child: const Text('Show Platform Icons'),
                   onPressed: () => Navigator.of(context).push(
                     platformPageRoute(
                       context: context,
-                      builder: (context) => IconsPage(),
+                      builder: (context) => const IconsPage(),
                     ),
                   ),
                 ),
@@ -394,11 +394,11 @@ class PlatformPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PlatformElevatedButton(
-                  child: Text('Show Material on iOS'),
+                  child: const Text('Show Material on iOS'),
                   onPressed: () => Navigator.of(context).push(
                     platformPageRoute(
                       context: context,
-                      builder: (context) => IosMaterialPage(),
+                      builder: (context) => const IosMaterialPage(),
                     ),
                   ),
                 ),
@@ -447,7 +447,7 @@ _showExampleDialog(BuildContext context, String text) {
   showPlatformDialog(
     context: context,
     builder: (_) => PlatformAlertDialog(
-      title: Text('Alert'),
+      title: const Text('Alert'),
       content: Text('$text content'),
       actions: <Widget>[
         PlatformDialogAction(

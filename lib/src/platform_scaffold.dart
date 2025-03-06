@@ -210,7 +210,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
           var currentChild = cupertinoTabChildBuilder?.call(context, index) ??
               data?.body ??
               body ??
-              SizedBox.shrink();
+              const SizedBox.shrink();
           return CupertinoPageScaffold(
             // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
@@ -228,7 +228,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         restorationId: data?.restorationIdTab,
       );
     } else {
-      final child = data?.body ?? body ?? SizedBox.shrink();
+      final child = data?.body ?? body ?? const SizedBox.shrink();
 
       result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,

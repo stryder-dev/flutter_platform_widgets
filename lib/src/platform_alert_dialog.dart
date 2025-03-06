@@ -178,7 +178,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
       title: data?.title ?? title,
       insetAnimationCurve: curve ?? Curves.decelerate,
       insetAnimationDuration:
-          data?.insetAnimationDuration ?? Duration(milliseconds: 100),
+          data?.insetAnimationDuration ?? const Duration(milliseconds: 100),
     );
 
     // Ensure that there is Material widget at the root page level

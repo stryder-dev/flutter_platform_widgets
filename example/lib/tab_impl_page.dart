@@ -12,7 +12,7 @@ class TabImplementationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
+      appBar: const PlatformAppBar(
         title: Text('Platform Tab Scaffold'),
       ),
       body: ListView(

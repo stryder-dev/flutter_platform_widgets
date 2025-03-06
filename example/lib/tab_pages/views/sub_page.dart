@@ -20,7 +20,7 @@ class SubPage extends StatelessWidget {
         children: [
           Text('Sub Page $tab with $level'),
           PlatformElevatedButton(
-            child: Text('Push to subpage'),
+            child: const Text('Push to subpage'),
             onPressed: () => Navigator.push(
               context,
               platformPageRoute(

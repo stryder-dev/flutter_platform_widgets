@@ -8,15 +8,15 @@ class IconsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       iosContentPadding: true,
-      appBar: PlatformAppBar(title: Text('Platform Icons')),
+      appBar: const PlatformAppBar(title: Text('Platform Icons')),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: Text(
                     'Material',
@@ -32,7 +32,7 @@ class IconsPage extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
           Expanded(

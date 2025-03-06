@@ -5,7 +5,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'platform_page.dart.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -59,8 +59,8 @@ class _MyAppState extends State<MyApp> {
         onThemeModeChanged: (themeMode) {
           this.themeMode = themeMode; /* you can save to storage */
         },
-        builder: (context) => PlatformApp(
-          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        builder: (context) => const PlatformApp(
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
             DefaultMaterialLocalizations.delegate,
             DefaultWidgetsLocalizations.delegate,
             DefaultCupertinoLocalizations.delegate,

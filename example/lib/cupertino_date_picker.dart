@@ -65,7 +65,7 @@ _showResultDialog(BuildContext context, String text) {
   showPlatformDialog(
     context: context,
     builder: (_) => PlatformAlertDialog(
-      title: Text('Alert'),
+      title: const Text('Alert'),
       content: Text('$text content'),
       actions: <Widget>[
         PlatformDialogAction(

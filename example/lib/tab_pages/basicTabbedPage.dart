@@ -44,12 +44,12 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
       ContentView(
         0,
         widget.platform,
-        key: ValueKey('key0'),
+        key: const ValueKey('key0'),
       ),
       ContentView(
         1,
         widget.platform,
-        key: ValueKey('key1'),
+        key: const ValueKey('key1'),
       )
     ];
   }

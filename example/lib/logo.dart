@@ -36,7 +36,7 @@ class FlutterPlatformWidgetsLogo extends StatelessWidget {
         ),
       ),
       CupertinoButton.filled(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
