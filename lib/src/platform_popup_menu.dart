@@ -243,7 +243,7 @@ class PlatformPopupMenu extends StatelessWidget {
                 key: data?.key,
                 isDefaultAction: data?.isDefaultAction ?? false,
                 isDestructiveAction: data?.isDestructiveAction ?? false,
-                child: data?.child ?? Text(option.label ?? ""),
+                child: data?.child ?? Text(option.label ?? ''),
                 onPressed: data?.onPressed ??
                     () {
                       Navigator.pop(context);
@@ -281,7 +281,7 @@ class PlatformPopupMenu extends StatelessWidget {
               final data = option.material?.call(context, platform(context));
               items.add(PopupMenuItem<PopupMenuOption>(
                 value: option,
-                child: data?.child ?? Text(option.label ?? ""),
+                child: data?.child ?? Text(option.label ?? ''),
                 enabled: data?.enabled ?? true,
                 height: data?.height ?? kMinInteractiveDimension,
                 key: data?.key,

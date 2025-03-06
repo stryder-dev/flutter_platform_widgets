@@ -68,8 +68,8 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformListTile',
               builder: (_, platform) => PlatformListTile(
                 leading: Icon(context.platformIcons.book),
-                title: PlatformText("title"),
-                subtitle: PlatformText("subtitle"),
+                title: PlatformText('title'),
+                subtitle: PlatformText('subtitle'),
                 trailing: Icon(context.platformIcons.rightChevron),
                 onTap: () => print('${platform.text} PlatformListTile'),
               ),
