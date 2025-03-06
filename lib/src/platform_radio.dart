@@ -108,7 +108,7 @@ class PlatformRadio<T> extends PlatformWidgetBase<CupertinoRadio, Radio> {
   final PlatformBuilder<MaterialRadioData>? material;
   final PlatformBuilder<CupertinoRadioData>? cupertino;
 
-  PlatformRadio({
+  const PlatformRadio({
     super.key,
     this.widgetKey,
     this.value,

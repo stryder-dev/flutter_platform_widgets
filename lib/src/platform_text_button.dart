@@ -110,7 +110,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
   final PlatformBuilder<CupertinoTextButtonData>? cupertino;
   final PlatformBuilder<MaterialTextButtonData>? material;
 
-  PlatformTextButton({
+  const PlatformTextButton({
     super.key,
     this.widgetKey,
     this.onPressed,

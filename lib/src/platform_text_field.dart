@@ -427,7 +427,7 @@ class PlatformTextField
     );
   }
 
-  PlatformTextField({
+  const PlatformTextField({
     super.key,
     this.widgetKey,
     this.controller,

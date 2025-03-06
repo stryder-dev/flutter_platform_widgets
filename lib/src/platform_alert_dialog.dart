@@ -113,7 +113,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
   final PlatformBuilder<MaterialAlertDialogData>? material;
   final PlatformBuilder<CupertinoAlertDialogData>? cupertino;
 
-  PlatformAlertDialog({
+  const PlatformAlertDialog({
     super.key,
     this.widgetKey,
     this.actions,

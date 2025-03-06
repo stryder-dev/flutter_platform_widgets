@@ -121,7 +121,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
   final PlatformBuilder<MaterialCheckboxData>? material;
   final PlatformBuilder<CupertinoCheckboxData>? cupertino;
 
-  PlatformCheckbox({
+  const PlatformCheckbox({
     required this.onChanged,
     //Common
     super.key,

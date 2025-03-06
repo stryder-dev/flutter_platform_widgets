@@ -138,7 +138,7 @@ class PlatformDialogAction
 
   final PlatformBuilder<CupertinoDialogActionData>? cupertino;
 
-  PlatformDialogAction({
+  const PlatformDialogAction({
     super.key,
     this.widgetKey,
     this.child,

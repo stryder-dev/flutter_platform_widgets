@@ -72,7 +72,7 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
   final PlatformBuilder<MaterialProgressIndicatorData>? material;
   final PlatformBuilder<CupertinoProgressIndicatorData>? cupertino;
 
-  PlatformCircularProgressIndicator({
+  const PlatformCircularProgressIndicator({
     super.key,
     this.widgetKey,
     this.material,

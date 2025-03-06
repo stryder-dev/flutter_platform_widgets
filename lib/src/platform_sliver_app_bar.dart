@@ -181,7 +181,7 @@ class PlatformSliverAppBar
   final PlatformBuilder<MaterialSliverAppBarData>? material;
   final PlatformBuilder<CupertinoSliverAppBarData>? cupertino;
 
-  PlatformSliverAppBar({
+  const PlatformSliverAppBar({
     //Common
     super.key,
     this.widgetKey,

@@ -274,7 +274,7 @@ class IconsPage extends StatelessWidget {
 }
 
 class _IconCompared extends StatelessWidget {
-  _IconCompared(this.title, this.icon);
+  const _IconCompared(this.title, this.icon);
 
   final String title;
   final IconData Function(BuildContext context) icon;

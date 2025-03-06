@@ -136,7 +136,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
   final PlatformBuilder<MaterialIconButtonData>? material;
   final PlatformBuilder<CupertinoIconButtonData>? cupertino;
 
-  PlatformIconButton({
+  const PlatformIconButton({
     super.key,
     this.widgetKey,
     this.icon,

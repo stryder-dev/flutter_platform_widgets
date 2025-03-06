@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SliverView extends StatelessWidget {
-  SliverView({
+  const SliverView({
     required this.title,
     required this.children,
   });

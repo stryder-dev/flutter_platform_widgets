@@ -131,7 +131,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
 
-  PlatformScaffold({
+  const PlatformScaffold({
     super.key,
     this.widgetKey,
     this.body,

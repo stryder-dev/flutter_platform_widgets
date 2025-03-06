@@ -141,7 +141,7 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
   final PlatformBuilder<MaterialListTileData>? material;
   final PlatformBuilder<CupertinoListTileData>? cupertino;
 
-  PlatformListTile({
+  const PlatformListTile({
     required this.title,
     this.leading,
     this.subtitle,

@@ -158,7 +158,7 @@ class PlatformAppBar
   final PlatformBuilder<MaterialAppBarData>? material;
   final PlatformBuilder<CupertinoNavigationBarData>? cupertino;
 
-  PlatformAppBar({
+  const PlatformAppBar({
     super.key,
     this.widgetKey,
     this.title,

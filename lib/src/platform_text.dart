@@ -37,7 +37,7 @@ typedef Text _TextBuilder(BuildContext context);
 class PlatformText extends StatelessWidget {
   final _TextBuilder _textBuilder;
 
-  PlatformText._(Key? key, this._textBuilder) : super(key: key);
+  const PlatformText._(Key? key, this._textBuilder) : super(key: key);
 
   factory PlatformText(
     String data, {

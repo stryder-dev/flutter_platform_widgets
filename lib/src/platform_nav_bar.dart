@@ -176,7 +176,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   final PlatformBuilder<MaterialNavigationBarData>? material3;
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
 
-  PlatformNavBar({
+  const PlatformNavBar({
     super.key,
     this.widgetKey,
     this.backgroundColor,

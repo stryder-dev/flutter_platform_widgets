@@ -19,7 +19,7 @@ class PlatformWidgetBuilder extends StatelessWidget {
   final Widget? Function(BuildContext, Widget?, PlatformTarget)? cupertino;
   final Widget? Function(BuildContext, Widget?, PlatformTarget)? material;
 
-  PlatformWidgetBuilder({
+  const PlatformWidgetBuilder({
     super.key,
     this.cupertino,
     this.material,

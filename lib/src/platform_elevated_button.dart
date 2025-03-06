@@ -110,7 +110,7 @@ class PlatformElevatedButton
   final PlatformBuilder<CupertinoElevatedButtonData>? cupertino;
   final PlatformBuilder<MaterialElevatedButtonData>? material;
 
-  PlatformElevatedButton({
+  const PlatformElevatedButton({
     super.key,
     this.widgetKey,
     this.onPressed,

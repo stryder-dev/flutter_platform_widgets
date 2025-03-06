@@ -13,7 +13,7 @@ class PlatformWidget extends PlatformWidgetBase<Widget, Widget> {
   final PlatformBuilder<Widget?>? material;
   final PlatformBuilder<Widget?>? cupertino;
 
-  PlatformWidget({
+  const PlatformWidget({
     super.key,
     this.cupertino,
     this.material,

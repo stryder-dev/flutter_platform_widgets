@@ -8,7 +8,7 @@ class ContentView extends StatefulWidget {
   final int index;
   final TargetPlatform platform;
 
-  ContentView(this.index, this.platform, {Key? key}) : super(key: key);
+  const ContentView(this.index, this.platform, {Key? key}) : super(key: key);
 
   @override
   _ContentViewState createState() => _ContentViewState();

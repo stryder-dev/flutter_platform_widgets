@@ -4,7 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../extensions.dart';
 
 class SubPage extends StatelessWidget {
-  SubPage(this.tab, this.level, this.platform);
+  const SubPage(this.tab, this.level, this.platform);
   final String tab;
   final int level;
   final TargetPlatform platform;
