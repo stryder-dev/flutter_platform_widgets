@@ -431,7 +431,7 @@ ThemeMode _cycleThemeMode(ThemeMode? mode) {
   }
 }
 
-_showDatePicker(BuildContext context) async {
+Future<void> _showDatePicker(BuildContext context) async {
   final now = DateUtils.dateOnly(DateTime.now());
   final date = await showPlatformDatePicker(
     context: context,
@@ -445,7 +445,7 @@ _showDatePicker(BuildContext context) async {
   }
 }
 
-_showExampleDialog(BuildContext context, String text) {
+void _showExampleDialog(BuildContext context, String text) {
   showPlatformDialog(
     context: context,
     builder: (_) => PlatformAlertDialog(
@@ -467,7 +467,7 @@ _showExampleDialog(BuildContext context, String text) {
   );
 }
 
-_showPopupSheet(BuildContext context, String text) {
+void _showPopupSheet(BuildContext context, String text) {
   showPlatformModalSheet(
     context: context,
     builder: (_) => PlatformWidget(

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-showDatePickerWithCustomCupertinoStateful(BuildContext context) async {
+Future<void> showDatePickerWithCustomCupertinoStateful(BuildContext context) async {
   final now = DateUtils.dateOnly(DateTime.now());
   final firstDate = now.subtract(const Duration(days: 100));
   final lastDate = now.add(const Duration(days: 100));
@@ -23,7 +23,7 @@ showDatePickerWithCustomCupertinoStateful(BuildContext context) async {
   }
 }
 
-showDatePickerWithCustomCupertino(BuildContext context) async {
+Future<void> showDatePickerWithCustomCupertino(BuildContext context) async {
   final now = DateUtils.dateOnly(DateTime.now());
   final firstDate = now.subtract(const Duration(days: 100));
   final lastDate = now.add(const Duration(days: 100));
@@ -61,7 +61,7 @@ showDatePickerWithCustomCupertino(BuildContext context) async {
   }
 }
 
-_showResultDialog(BuildContext context, String text) {
+void _showResultDialog(BuildContext context, String text) {
   showPlatformDialog(
     context: context,
     builder: (_) => PlatformAlertDialog(

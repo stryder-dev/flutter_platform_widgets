@@ -468,7 +468,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         cupertinoRouter = cupertino;
 
   @override
-  createMaterialWidget(BuildContext context) {
+  MaterialApp createMaterialWidget(BuildContext context) {
     final dataRouter = materialRouter?.call(context, platform(context));
 
     if (routeInformationParser != null ||
@@ -617,7 +617,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   }
 
   @override
-  createCupertinoWidget(BuildContext context) {
+  CupertinoApp createCupertinoWidget(BuildContext context) {
     final dataRouter = cupertinoRouter?.call(context, platform(context));
 
     if (routeInformationParser != null ||

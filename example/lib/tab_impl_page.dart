@@ -69,7 +69,7 @@ class TabImplementationPage extends StatelessWidget {
   }
 }
 
-_openPage(
+void _openPage(
   BuildContext context,
   WidgetBuilder pageToDisplayBuilder,
   TargetPlatform platform,
