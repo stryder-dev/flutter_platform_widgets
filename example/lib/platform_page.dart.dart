@@ -58,8 +58,8 @@ class PlatformPage extends StatelessWidget {
                   'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
               builder: (context, platform) => PlatformSearchBar(
                 onChanged: (value) =>
-                    print('${platform.text} SearchBar changed: $value'),
-                onTap: () => print('${platform.text} SearchBar tapped'),
+                    debugPrint('${platform.text} SearchBar changed: $value'),
+                onTap: () => debugPrint('${platform.text} SearchBar tapped'),
                 hintText: '${platform.text} SearchBar',
               ),
             ),
@@ -71,7 +71,7 @@ class PlatformPage extends StatelessWidget {
                 title: PlatformText('title'),
                 subtitle: PlatformText('subtitle'),
                 trailing: Icon(context.platformIcons.rightChevron),
-                onTap: () => print('${platform.text} PlatformListTile'),
+                onTap: () => debugPrint('${platform.text} PlatformListTile'),
               ),
             ),
             // ! PlatformText
@@ -147,7 +147,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformElevatedButton',
               builder: (_, platform) => PlatformElevatedButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 color: Colors.orange,
               ),
@@ -156,7 +156,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformElevatedButton Icon',
               builder: (_, platform) => PlatformElevatedButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialElevatedButtonData(
                   icon: const Icon(Icons.home),
@@ -171,7 +171,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformTextButton',
               builder: (_, platform) => PlatformTextButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
               ),
             ),
@@ -179,7 +179,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformTextButton Icon',
               builder: (_, platform) => PlatformTextButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialTextButtonData(
                   icon: const Icon(Icons.home),
@@ -258,11 +258,11 @@ class PlatformPage extends StatelessWidget {
               builder: (_, platform) => PlatformWidgetBuilder(
                 cupertino: (_, child, __) => GestureDetector(
                   child: child,
-                  onTap: () => print('Cupertino PlatformWidgetBuilder'),
+                  onTap: () => debugPrint('Cupertino PlatformWidgetBuilder'),
                 ),
                 material: (_, child, __) => InkWell(
                   child: child,
-                  onTap: () => print('Material PlatformWidgetBuilder'),
+                  onTap: () => debugPrint('Material PlatformWidgetBuilder'),
                 ),
                 child: Container(
                   padding: const EdgeInsets.all(12),

@@ -43,7 +43,7 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
   }
 
   void _listener() {
-    print('Current index: ${tabController.index(context)}');
+    debugPrint('Current index: ${tabController.index(context)}');
   }
 
   @override
