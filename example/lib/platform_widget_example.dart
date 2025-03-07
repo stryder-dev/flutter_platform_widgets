@@ -33,7 +33,7 @@ class PlatformWidgetExample extends StatelessWidget {
                     ? TargetPlatform.android
                     : TargetPlatform.iOS),
           ),
-        Divider(
+        const Divider(
           height: 16,
           thickness: 2,
         ),
@@ -51,8 +51,8 @@ class PlatformWidgetExample extends StatelessWidget {
                 child: builder(context, TargetPlatform.android),
               ),
             )).asMaterial(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: VerticalDivider(
             width: 1,
             thickness: 1,

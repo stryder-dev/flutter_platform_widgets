@@ -15,7 +15,7 @@ class _PlatformSliverAppBarPageState extends State<PlatformSliverAppBarPage> {
     return PlatformScaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          PlatformSliverAppBar(
+          const PlatformSliverAppBar(
             title: Text('Sliver App Bar'),
           ),
           SliverList(
@@ -26,7 +26,7 @@ class _PlatformSliverAppBarPageState extends State<PlatformSliverAppBarPage> {
                   height: 100.0,
                   child: Center(
                     child: PlatformText('$index',
-                        textScaler: TextScaler.linear(5)),
+                        textScaler: const TextScaler.linear(5)),
                   ),
                 );
               },

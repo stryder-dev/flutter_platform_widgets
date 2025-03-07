@@ -4,16 +4,18 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'platform_widget_example.dart';
 
 class IconsPage extends StatelessWidget {
+  const IconsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
       iosContentPadding: true,
-      appBar: PlatformAppBar(title: Text('Platform Icons')),
+      appBar: const PlatformAppBar(title: Text('Platform Icons')),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -32,7 +34,7 @@ class IconsPage extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
           Expanded(
@@ -274,7 +276,7 @@ class IconsPage extends StatelessWidget {
 }
 
 class _IconCompared extends StatelessWidget {
-  _IconCompared(this.title, this.icon);
+  const _IconCompared(this.title, this.icon);
 
   final String title;
   final IconData Function(BuildContext context) icon;

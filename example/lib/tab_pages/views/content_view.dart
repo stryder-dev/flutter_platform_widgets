@@ -8,7 +8,7 @@ class ContentView extends StatefulWidget {
   final int index;
   final TargetPlatform platform;
 
-  ContentView(this.index, this.platform, {Key? key}) : super(key: key);
+  const ContentView(this.index, this.platform, {Key? key}) : super(key: key);
 
   @override
   _ContentViewState createState() => _ContentViewState();
@@ -25,7 +25,7 @@ class _ContentViewState extends State<ContentView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
-              child: Text('Back'),
+              child: const Text('Back'),
               onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
           ),
@@ -33,7 +33,7 @@ class _ContentViewState extends State<ContentView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
-              child: Text('Push to subpage'),
+              child: const Text('Push to subpage'),
               onPressed: () => Navigator.push(
                 context,
                 platformPageRoute(
@@ -51,7 +51,7 @@ class _ContentViewState extends State<ContentView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlatformElevatedButton(
-              child: Text('Increment'),
+              child: const Text('Increment'),
               onPressed: () => setState(() => counter++),
             ),
           ),

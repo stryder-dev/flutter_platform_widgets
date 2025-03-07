@@ -107,7 +107,7 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
   final PlatformBuilder<MaterialSliderData>? material;
   final PlatformBuilder<CupertinoSliderData>? cupertino;
 
-  PlatformSlider({
+  const PlatformSlider({
     super.key,
     this.widgetKey,
     required this.value,

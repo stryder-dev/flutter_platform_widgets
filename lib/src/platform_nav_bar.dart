@@ -176,7 +176,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   final PlatformBuilder<MaterialNavigationBarData>? material3;
   final PlatformBuilder<CupertinoTabBarData>? cupertino;
 
-  PlatformNavBar({
+  const PlatformNavBar({
     super.key,
     this.widgetKey,
     this.backgroundColor,
@@ -240,7 +240,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   Widget _createMaterial2Widget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
-    var bar = BottomNavigationBar(
+    final bar = BottomNavigationBar(
       items: data?.items ?? items ?? const <BottomNavigationBarItem>[],
       currentIndex: data?.currentIndex ?? currentIndex ?? 0,
       onTap: data?.itemChanged ?? itemChanged,

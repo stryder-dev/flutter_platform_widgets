@@ -200,7 +200,7 @@ class PlatformSearchBar
   final PlatformBuilder<MaterialSearchBarData>? material;
   final PlatformBuilder<CupertinoSearchBarData>? cupertino;
 
-  PlatformSearchBar({
+  const PlatformSearchBar({
     //Common
     super.key,
     this.widgetKey,

@@ -6,10 +6,11 @@
 
 import 'package:flutter/cupertino.dart'
     show CupertinoSliverNavigationBar, NavigationBarBottomMode;
-import 'package:flutter/material.dart' show SliverAppBar, kToolbarHeight;
-import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show AsyncCallback, Brightness;
+import 'package:flutter/material.dart' show SliverAppBar, kToolbarHeight;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
+import 'package:flutter/widgets.dart';
+
 import 'platform.dart';
 import 'widget_base.dart';
 
@@ -180,7 +181,7 @@ class PlatformSliverAppBar
   final PlatformBuilder<MaterialSliverAppBarData>? material;
   final PlatformBuilder<CupertinoSliverAppBarData>? cupertino;
 
-  PlatformSliverAppBar({
+  const PlatformSliverAppBar({
     //Common
     super.key,
     this.widgetKey,

@@ -9,8 +9,8 @@ import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
 
-typedef T PlatformBuilder<T>(BuildContext context, PlatformTarget platform);
-typedef T PlatformIndexBuilder<T>(
+typedef PlatformBuilder<T> = T Function(BuildContext context, PlatformTarget platform);
+typedef PlatformIndexBuilder<T> = T Function(
     BuildContext context, PlatformTarget platform, int index);
 
 abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
@@ -25,7 +25,7 @@ abstract class PlatformWidgetBase<I extends Widget, A extends Widget>
       return createCupertinoWidget(context);
     }
 
-    return throw new UnsupportedError(
+    return throw UnsupportedError(
         'This platform is not supported: $defaultTargetPlatform');
   }
 

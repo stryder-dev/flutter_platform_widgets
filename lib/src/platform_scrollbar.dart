@@ -96,7 +96,7 @@ class PlatformScrollbar
   final PlatformBuilder<MaterialScrollbarData>? material;
   final PlatformBuilder<CupertinoScrollbarData>? cupertino;
 
-  PlatformScrollbar({
+  const PlatformScrollbar({
     //Common
     super.key,
     this.widgetKey,

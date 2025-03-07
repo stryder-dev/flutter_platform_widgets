@@ -110,7 +110,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
   final PlatformBuilder<CupertinoTextButtonData>? cupertino;
   final PlatformBuilder<MaterialTextButtonData>? material;
 
-  PlatformTextButton({
+  const PlatformTextButton({
     super.key,
     this.widgetKey,
     this.onPressed,
@@ -182,7 +182,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
         borderRadius: data?.borderRadius ??
-            const BorderRadius.all(const Radius.circular(8.0)),
+            const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -210,7 +210,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
         borderRadius: data?.borderRadius ??
-            const BorderRadius.all(const Radius.circular(8.0)),
+            const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,

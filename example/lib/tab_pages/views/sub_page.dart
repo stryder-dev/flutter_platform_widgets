@@ -4,7 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../extensions.dart';
 
 class SubPage extends StatelessWidget {
-  SubPage(this.tab, this.level, this.platform);
+  const SubPage(this.tab, this.level, this.platform, {super.key});
   final String tab;
   final int level;
   final TargetPlatform platform;
@@ -20,7 +20,7 @@ class SubPage extends StatelessWidget {
         children: [
           Text('Sub Page $tab with $level'),
           PlatformElevatedButton(
-            child: Text('Push to subpage'),
+            child: const Text('Push to subpage'),
             onPressed: () => Navigator.push(
               context,
               platformPageRoute(

@@ -32,12 +32,12 @@ String formatData(BuildContext context, String data) {
   return data;
 }
 
-typedef Text _TextBuilder(BuildContext context);
+typedef _TextBuilder = Text Function(BuildContext context);
 
 class PlatformText extends StatelessWidget {
   final _TextBuilder _textBuilder;
 
-  PlatformText._(Key? key, this._textBuilder) : super(key: key);
+  const PlatformText._(Key? key, this._textBuilder) : super(key: key);
 
   factory PlatformText(
     String data, {

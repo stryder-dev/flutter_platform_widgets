@@ -29,7 +29,7 @@ class PlatformTheme extends StatefulWidget {
   });
 
   static PlatformThemeState? of(BuildContext context) {
-    _PlatformThemeState? state =
+    final _PlatformThemeState? state =
         context.findAncestorStateOfType<_PlatformThemeState>();
 
     return state?.state;

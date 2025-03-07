@@ -16,10 +16,10 @@ import 'platform_provider.dart';
 import 'widget_base.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
-const Color _kDefaultNavBarBorderColor = const Color(0x4C000000);
+const Color _kDefaultNavBarBorderColor = Color(0x4C000000);
 
-const Border _kDefaultNavBarBorder = const Border(
-  bottom: const BorderSide(
+const Border _kDefaultNavBarBorder = Border(
+  bottom: BorderSide(
     color: _kDefaultNavBarBorderColor,
     width: 0.0, // One physical pixel.
     style: BorderStyle.solid,
@@ -158,7 +158,7 @@ class PlatformAppBar
   final PlatformBuilder<MaterialAppBarData>? material;
   final PlatformBuilder<CupertinoNavigationBarData>? cupertino;
 
-  PlatformAppBar({
+  const PlatformAppBar({
     super.key,
     this.widgetKey,
     this.title,
@@ -216,7 +216,7 @@ class PlatformAppBar
   CupertinoNavigationBar createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    var trailing = trailingActions?.isEmpty ?? true
+    final trailing = trailingActions?.isEmpty ?? true
         ? null
         : Row(
             mainAxisSize: MainAxisSize.min,

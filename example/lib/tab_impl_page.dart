@@ -9,10 +9,12 @@ import 'extensions.dart';
 import 'platform_widget_example.dart';
 
 class TabImplementationPage extends StatelessWidget {
+  const TabImplementationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
+      appBar: const PlatformAppBar(
         title: Text('Platform Tab Scaffold'),
       ),
       body: ListView(
@@ -67,7 +69,7 @@ class TabImplementationPage extends StatelessWidget {
   }
 }
 
-_openPage(
+void _openPage(
   BuildContext context,
   WidgetBuilder pageToDisplayBuilder,
   TargetPlatform platform,

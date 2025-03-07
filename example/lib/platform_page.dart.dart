@@ -8,22 +8,24 @@ import 'icons_page.dart';
 import 'logo.dart';
 import 'material_ios_page.dart';
 import 'platform_widget_example.dart';
-import 'tab_impl_page.dart';
 import 'sliver_app_bar_page.dart';
+import 'tab_impl_page.dart';
 
 class PlatformPage extends StatelessWidget {
+  const PlatformPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
+      appBar: const PlatformAppBar(
         title: Text('Flutter Platform Widgets'),
       ),
       body: PlatformScrollbar(
         thumbVisibility: true,
         child: ListView(
           children: [
-            FlutterPlatformWidgetsLogo(size: 60),
-            Divider(thickness: 10),
+            const FlutterPlatformWidgetsLogo(size: 60),
+            const Divider(thickness: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
@@ -49,15 +51,15 @@ class PlatformPage extends StatelessWidget {
                     PlatformTheme.of(context)?.themeMode = newMode;
                   }),
             ),
-            Divider(thickness: 10),
+            const Divider(thickness: 10),
             // ! PlatformSearchBar
             PlatformWidgetExample(
               title:
                   'PlatformSearchBar ${isMaterial(context) ? " (Material 3 only)" : ""}',
               builder: (context, platform) => PlatformSearchBar(
                 onChanged: (value) =>
-                    print('${platform.text} SearchBar changed: $value'),
-                onTap: () => print('${platform.text} SearchBar tapped'),
+                    debugPrint('${platform.text} SearchBar changed: $value'),
+                onTap: () => debugPrint('${platform.text} SearchBar tapped'),
                 hintText: '${platform.text} SearchBar',
               ),
             ),
@@ -66,10 +68,10 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformListTile',
               builder: (_, platform) => PlatformListTile(
                 leading: Icon(context.platformIcons.book),
-                title: PlatformText("title"),
-                subtitle: PlatformText("subtitle"),
+                title: PlatformText('title'),
+                subtitle: PlatformText('subtitle'),
                 trailing: Icon(context.platformIcons.rightChevron),
-                onTap: () => print('${platform.text} PlatformListTile'),
+                onTap: () => debugPrint('${platform.text} PlatformListTile'),
               ),
             ),
             // ! PlatformText
@@ -145,7 +147,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformElevatedButton',
               builder: (_, platform) => PlatformElevatedButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 color: Colors.orange,
               ),
@@ -154,10 +156,10 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformElevatedButton Icon',
               builder: (_, platform) => PlatformElevatedButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialElevatedButtonData(
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                 ),
                 cupertino: (_, __) => CupertinoElevatedButtonData(
                   originalStyle: true,
@@ -169,7 +171,7 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformTextButton',
               builder: (_, platform) => PlatformTextButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
               ),
             ),
@@ -177,10 +179,10 @@ class PlatformPage extends StatelessWidget {
               title: 'PlatformTextButton Icon',
               builder: (_, platform) => PlatformTextButton(
                 child: Text(platform.text),
-                onPressed: () => print('${platform.text} PlatformButton'),
+                onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
                 material: (_, __) => MaterialTextButtonData(
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                 ),
                 cupertino: (_, __) => CupertinoTextButtonData(
                   originalStyle: true,
@@ -256,11 +258,11 @@ class PlatformPage extends StatelessWidget {
               builder: (_, platform) => PlatformWidgetBuilder(
                 cupertino: (_, child, __) => GestureDetector(
                   child: child,
-                  onTap: () => print('Cupertino PlatformWidgetBuilder'),
+                  onTap: () => debugPrint('Cupertino PlatformWidgetBuilder'),
                 ),
                 material: (_, child, __) => InkWell(
                   child: child,
-                  onTap: () => print('Material PlatformWidgetBuilder'),
+                  onTap: () => debugPrint('Material PlatformWidgetBuilder'),
                 ),
                 child: Container(
                   padding: const EdgeInsets.all(12),
@@ -351,11 +353,11 @@ class PlatformPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show Tabbed Pages'),
+                child: const Text('Show Tabbed Pages'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => TabImplementationPage(),
+                    builder: (context) => const TabImplementationPage(),
                   ),
                 ),
               ),
@@ -365,11 +367,11 @@ class PlatformPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlatformElevatedButton(
-                child: Text('Show  Sliver AppBar Page'),
+                child: const Text('Show  Sliver AppBar Page'),
                 onPressed: () => Navigator.of(context).push(
                   platformPageRoute(
                     context: context,
-                    builder: (context) => PlatformSliverAppBarPage(),
+                    builder: (context) => const PlatformSliverAppBarPage(),
                   ),
                 ),
               ),
@@ -380,11 +382,11 @@ class PlatformPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PlatformElevatedButton(
-                  child: Text('Show Platform Icons'),
+                  child: const Text('Show Platform Icons'),
                   onPressed: () => Navigator.of(context).push(
                     platformPageRoute(
                       context: context,
-                      builder: (context) => IconsPage(),
+                      builder: (context) => const IconsPage(),
                     ),
                   ),
                 ),
@@ -394,11 +396,11 @@ class PlatformPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: PlatformElevatedButton(
-                  child: Text('Show Material on iOS'),
+                  child: const Text('Show Material on iOS'),
                   onPressed: () => Navigator.of(context).push(
                     platformPageRoute(
                       context: context,
-                      builder: (context) => IosMaterialPage(),
+                      builder: (context) => const IosMaterialPage(),
                     ),
                   ),
                 ),
@@ -429,7 +431,7 @@ ThemeMode _cycleThemeMode(ThemeMode? mode) {
   }
 }
 
-_showDatePicker(BuildContext context) async {
+Future<void> _showDatePicker(BuildContext context) async {
   final now = DateUtils.dateOnly(DateTime.now());
   final date = await showPlatformDatePicker(
     context: context,
@@ -443,11 +445,11 @@ _showDatePicker(BuildContext context) async {
   }
 }
 
-_showExampleDialog(BuildContext context, String text) {
+void _showExampleDialog(BuildContext context, String text) {
   showPlatformDialog(
     context: context,
     builder: (_) => PlatformAlertDialog(
-      title: Text('Alert'),
+      title: const Text('Alert'),
       content: Text('$text content'),
       actions: <Widget>[
         PlatformDialogAction(
@@ -465,7 +467,7 @@ _showExampleDialog(BuildContext context, String text) {
   );
 }
 
-_showPopupSheet(BuildContext context, String text) {
+void _showPopupSheet(BuildContext context, String text) {
   showPlatformModalSheet(
     context: context,
     builder: (_) => PlatformWidget(

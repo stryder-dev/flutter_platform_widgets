@@ -113,7 +113,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
   final PlatformBuilder<MaterialAlertDialogData>? material;
   final PlatformBuilder<CupertinoAlertDialogData>? cupertino;
 
-  PlatformAlertDialog({
+  const PlatformAlertDialog({
     super.key,
     this.widgetKey,
     this.actions,
@@ -162,7 +162,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
   Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    Curve? curve = data?.insetAnimationCurve;
+    final Curve? curve = data?.insetAnimationCurve;
 
     final providerState = PlatformProvider.of(context);
     final useLegacyMaterial =
@@ -178,7 +178,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
       title: data?.title ?? title,
       insetAnimationCurve: curve ?? Curves.decelerate,
       insetAnimationDuration:
-          data?.insetAnimationDuration ?? Duration(milliseconds: 100),
+          data?.insetAnimationDuration ?? const Duration(milliseconds: 100),
     );
 
     // Ensure that there is Material widget at the root page level

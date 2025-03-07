@@ -1,3 +1,5 @@
+import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
+
 import 'package:flutter/cupertino.dart'
     show
         CupertinoAdaptiveTextSelectionToolbar,
@@ -12,7 +14,6 @@ import 'package:flutter/material.dart'
         TextFormField;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'platform.dart';
 import 'widget_base.dart';

@@ -156,7 +156,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final PlatformBuilder<MaterialSwitchData>? material;
   final PlatformBuilder<CupertinoSwitchData>? cupertino;
 
-  PlatformSwitch({
+  const PlatformSwitch({
     super.key,
     this.widgetKey,
     required this.value,

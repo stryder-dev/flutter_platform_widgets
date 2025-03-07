@@ -131,7 +131,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   final bool iosContentPadding;
   final bool iosContentBottomPadding;
 
-  PlatformScaffold({
+  const PlatformScaffold({
     super.key,
     this.widgetKey,
     this.body,
@@ -186,7 +186,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
   Widget createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    var navigationBar =
+    final navigationBar =
         data?.navigationBar ?? appBar?.createCupertinoWidget(context);
 
     final providerState = PlatformProvider.of(context);
@@ -196,7 +196,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
     Widget result;
     if (bottomNavBar != null) {
-      var tabBar =
+      final tabBar =
           data?.bottomTabBar ?? bottomNavBar?.createCupertinoWidget(context);
 
       //https://docs.flutter.io/flutter/cupertino/CupertinoTabScaffold-class.html
@@ -207,10 +207,10 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         tabBar: tabBar!,
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
-          var currentChild = cupertinoTabChildBuilder?.call(context, index) ??
+          final currentChild = cupertinoTabChildBuilder?.call(context, index) ??
               data?.body ??
               body ??
-              SizedBox.shrink();
+              const SizedBox.shrink();
           return CupertinoPageScaffold(
             // key
             backgroundColor: data?.backgroundColor ?? backgroundColor,
@@ -228,7 +228,7 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         restorationId: data?.restorationIdTab,
       );
     } else {
-      final child = data?.body ?? body ?? SizedBox.shrink();
+      final child = data?.body ?? body ?? const SizedBox.shrink();
 
       result = CupertinoPageScaffold(
         key: data?.widgetKey ?? widgetKey,

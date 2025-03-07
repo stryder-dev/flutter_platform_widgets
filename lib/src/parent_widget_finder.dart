@@ -8,7 +8,7 @@ extension WidgetExt on Widget {
 
 /// Simple inherited widget that matches the class of a given type
 class ParentWidgetFinder<T> extends InheritedWidget {
-  ParentWidgetFinder({
+  const ParentWidgetFinder({
     required super.child,
     super.key,
   });

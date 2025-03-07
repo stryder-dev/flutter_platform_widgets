@@ -184,7 +184,7 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
   final String? restorationId;
   final double? navBarHeight;
 
-  PlatformTabScaffold({
+  const PlatformTabScaffold({
     super.key,
     this.widgetKey,
     this.items,
