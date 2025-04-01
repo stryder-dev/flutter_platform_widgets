@@ -158,10 +158,10 @@ class PlatformPage extends StatelessWidget {
                 child: Text(platform.text),
                 onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
-                material: (_, __) => MaterialElevatedButtonData(
-                  icon: const Icon(Icons.home),
+                material: (_, __) => const MaterialElevatedButtonData(
+                  icon: Icon(Icons.home),
                 ),
-                cupertino: (_, __) => CupertinoElevatedButtonData(
+                cupertino: (_, __) => const CupertinoElevatedButtonData(
                   originalStyle: true,
                 ),
               ),
@@ -181,10 +181,10 @@ class PlatformPage extends StatelessWidget {
                 child: Text(platform.text),
                 onPressed: () => debugPrint('${platform.text} PlatformButton'),
                 padding: const EdgeInsets.all(8),
-                material: (_, __) => MaterialTextButtonData(
-                  icon: const Icon(Icons.home),
+                material: (_, __) => const MaterialTextButtonData(
+                  icon: Icon(Icons.home),
                 ),
-                cupertino: (_, __) => CupertinoTextButtonData(
+                cupertino: (_, __) => const CupertinoTextButtonData(
                   originalStyle: true,
                 ),
               ),
@@ -298,14 +298,14 @@ class PlatformPage extends StatelessWidget {
                   ),
                 ),
                 options: [
-                  PopupMenuOption(label: 'One'),
+                  const PopupMenuOption(label: 'One'),
                   PopupMenuOption(
                     label: 'Two',
-                    material: (_, __) => MaterialPopupMenuOptionData(
+                    material: (_, __) => const MaterialPopupMenuOptionData(
                       withDivider: true,
                     ),
                   ),
-                  PopupMenuOption(label: 'Three'),
+                  const PopupMenuOption(label: 'Three'),
                 ],
               ),
             ),
@@ -453,8 +453,8 @@ void _showExampleDialog(BuildContext context, String text) {
       content: Text('$text content'),
       actions: <Widget>[
         PlatformDialogAction(
-          material: (_, __) => MaterialDialogActionData(),
-          cupertino: (_, __) => CupertinoDialogActionData(),
+          material: (_, __) => const MaterialDialogActionData(),
+          cupertino: (_, __) => const CupertinoDialogActionData(),
           child: PlatformText('Cancel'),
           onPressed: () => Navigator.pop(context),
         ),

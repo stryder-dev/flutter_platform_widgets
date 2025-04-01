@@ -69,8 +69,8 @@ void _showResultDialog(BuildContext context, String text) {
       content: Text('$text content'),
       actions: <Widget>[
         PlatformDialogAction(
-          material: (_, __) => MaterialDialogActionData(),
-          cupertino: (_, __) => CupertinoDialogActionData(),
+          material: (_, __) => const MaterialDialogActionData(),
+          cupertino: (_, __) => const CupertinoDialogActionData(),
           child: PlatformText('Cancel'),
           onPressed: () => Navigator.pop(context),
         ),

@@ -67,7 +67,7 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       ),
       bodyBuilder: (context, index) => ContentView(index, widget.platform),
       items: items(context),
-      cupertino: (_, __) => CupertinoTabScaffoldData(
+      cupertino: (_, __) => const CupertinoTabScaffoldData(
         //   Having this property as false (default true) forces it not to use CupertinoTabView which will show
         //   the back button, but does required transitionBetweenRoutes set to false (see above)
         useCupertinoTabView: false,

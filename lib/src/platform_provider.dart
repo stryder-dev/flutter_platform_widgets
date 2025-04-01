@@ -102,7 +102,7 @@ class PlatformProviderState {
   TargetPlatform? get platform => _parent.platform;
 
   PlatformSettingsData get settings =>
-      _parent.settings ?? PlatformSettingsData();
+      _parent.settings ?? const PlatformSettingsData();
 
   void changeToMaterialPlatform() {
     _parent.changeToMaterialPlatform();
