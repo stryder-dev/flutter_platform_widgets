@@ -13,14 +13,10 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
+const _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  _BaseData({
-    this.widgetKey,
-    this.child,
-    this.onPressed,
-  });
+  const _BaseData({this.widgetKey, this.child, this.onPressed});
 
   final Key? widgetKey;
   final Widget? child;
@@ -28,7 +24,7 @@ abstract class _BaseData {
 }
 
 class MaterialTextButtonData extends _BaseData {
-  MaterialTextButtonData({
+  const MaterialTextButtonData({
     super.widgetKey,
     super.child,
     super.onPressed,
@@ -59,7 +55,7 @@ class MaterialTextButtonData extends _BaseData {
 }
 
 class CupertinoTextButtonData extends _BaseData {
-  CupertinoTextButtonData({
+  const CupertinoTextButtonData({
     super.widgetKey,
     super.child,
     super.onPressed,
@@ -138,7 +134,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         autofocus: data?.autofocus ?? false,
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
-        style: data?.style ??
+        style:
+            data?.style ??
             TextButton.styleFrom(
               backgroundColor: color,
               padding: padding,
@@ -159,7 +156,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
       autofocus: data?.autofocus ?? false,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       focusNode: data?.focusNode,
-      style: data?.style ??
+      style:
+          data?.style ??
           TextButton.styleFrom(
             backgroundColor: color,
             padding: padding,
@@ -181,8 +179,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -209,8 +207,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,

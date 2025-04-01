@@ -13,7 +13,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData<T> {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.value,
     this.groupValue,
@@ -25,6 +25,7 @@ abstract class _BaseData<T> {
     this.autofocus,
     this.mouseCursor,
   });
+
   final Key? widgetKey;
   final T? value;
   final T? groupValue;
@@ -39,7 +40,7 @@ abstract class _BaseData<T> {
 }
 
 class MaterialRadioData extends _BaseData {
-  MaterialRadioData({
+  const MaterialRadioData({
     //Material
     this.hoverColor,
     this.overlayColor,
@@ -69,7 +70,7 @@ class MaterialRadioData extends _BaseData {
 }
 
 class CupertinoRadioData extends _BaseData {
-  CupertinoRadioData({
+  const CupertinoRadioData({
     //Cupertino
     this.inactiveColor,
     this.fillColor,

@@ -89,9 +89,7 @@ class _PlatformProviderState extends State<PlatformProvider> {
 
     return Theme(
       data: Theme.of(context).copyWith(platform: platform),
-      child: Builder(
-        builder: (context) => widget.builder(context),
-      ),
+      child: Builder(builder: (context) => widget.builder(context)),
     );
   }
 }
@@ -158,7 +156,7 @@ class PlatformSettingsData {
   /// Going forward [PlatformText] will likely be removed when the material3 property on ThemeData is removed and all material widgets will assume material3 style.
   final bool matchMaterialCaseForPlatformText;
 
-  PlatformSettingsData({
+  const PlatformSettingsData({
     this.iosUsesMaterialWidgets = false,
     this.iosUseZeroPaddingForAppbarPlatformIcon = false,
     this.legacyIosUsesMaterialWidgets = false,
@@ -168,10 +166,7 @@ class PlatformSettingsData {
   });
 }
 
-enum PlatformStyle {
-  Material,
-  Cupertino,
-}
+enum PlatformStyle { Material, Cupertino }
 
 class PlatformStyleData {
   final PlatformStyle android;

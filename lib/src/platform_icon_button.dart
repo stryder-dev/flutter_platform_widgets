@@ -19,10 +19,10 @@ import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
+const _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.icon,
     this.onPressed,
@@ -42,7 +42,7 @@ abstract class _BaseData {
 }
 
 class CupertinoIconButtonData extends _BaseData {
-  CupertinoIconButtonData({
+  const CupertinoIconButtonData({
     super.widgetKey,
     super.icon,
     super.onPressed,
@@ -73,7 +73,7 @@ class CupertinoIconButtonData extends _BaseData {
 }
 
 class MaterialIconButtonData extends _BaseData {
-  MaterialIconButtonData({
+  const MaterialIconButtonData({
     super.widgetKey,
     super.icon,
     super.onPressed,
@@ -195,9 +195,10 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     assert(data?.icon != null || cupertinoIcon != null || icon != null);
 
     // If the IconButton is placed inside the AppBar, we need to have zero padding.
-    final haveZeroPadding = PlatformProvider.of(context)
-            ?.settings
-            .iosUseZeroPaddingForAppbarPlatformIcon ??
+    final haveZeroPadding =
+        PlatformProvider.of(
+          context,
+        )?.settings.iosUseZeroPaddingForAppbarPlatformIcon ??
         false;
     final isPlacedOnPlatformAppBar =
         ParentWidgetFinder.of<CupertinoNavigationBar>(context) != null;
@@ -212,11 +213,12 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       onPressed: data?.onPressed ?? onPressed,
       padding: givenPadding,
       color: data?.color ?? color,
-      borderRadius: data?.borderRadius ??
-          const BorderRadius.all(Radius.circular(8.0)),
+      borderRadius:
+          data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
       minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
       pressedOpacity: data?.pressedOpacity ?? 0.4,
-      disabledColor: data?.disabledColor ??
+      disabledColor:
+          data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,
       alignment: data?.alignment ?? Alignment.center,

@@ -15,7 +15,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     //Common
     this.widgetKey,
     this.leading,
@@ -36,7 +36,7 @@ abstract class _BaseData {
 }
 
 class MaterialSliverAppBarData extends _BaseData {
-  MaterialSliverAppBarData({
+  const MaterialSliverAppBarData({
     // Common
     super.widgetKey,
     super.leading,
@@ -77,11 +77,15 @@ class MaterialSliverAppBarData extends _BaseData {
     this.forceMaterialTransparency = false,
     this.clipBehavior,
     this.actionsPadding,
-  })  : assert(floating || !snap,
-            'The "snap" argument only makes sense for floating app bars.'),
-        assert(stretchTriggerOffset > 0.0),
-        assert(collapsedHeight == null || collapsedHeight >= toolbarHeight,
-            'The "collapsedHeight" argument has to be larger than or equal to [toolbarHeight].');
+  }) : assert(
+         floating || !snap,
+         'The "snap" argument only makes sense for floating app bars.',
+       ),
+       assert(stretchTriggerOffset > 0.0),
+       assert(
+         collapsedHeight == null || collapsedHeight >= toolbarHeight,
+         'The "collapsedHeight" argument has to be larger than or equal to [toolbarHeight].',
+       );
 
   // final Widget? title;
   final List<Widget>? actions;
@@ -117,7 +121,7 @@ class MaterialSliverAppBarData extends _BaseData {
 }
 
 class CupertinoSliverAppBarData extends _BaseData {
-  CupertinoSliverAppBarData({
+  const CupertinoSliverAppBarData({
     //Common
     super.widgetKey,
     super.leading,
@@ -143,11 +147,11 @@ class CupertinoSliverAppBarData extends _BaseData {
     this.enableBackgroundFilterBlur,
     this.heroTag = _defaultHeroTag,
   }) : assert(
-          automaticallyImplyTitle == true || title != null,
-          'No title has been provided but automaticallyImplyTitle is also '
-          'false. Either provide a title or set automaticallyImplyTitle to '
-          'true.',
-        );
+         automaticallyImplyTitle == true || title != null,
+         'No title has been provided but automaticallyImplyTitle is also '
+         'false. Either provide a title or set automaticallyImplyTitle to '
+         'true.',
+       );
 
   // final Widget? largeTitle;
   final bool automaticallyImplyTitle;

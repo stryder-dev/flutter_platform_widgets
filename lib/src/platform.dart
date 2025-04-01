@@ -45,7 +45,6 @@ enum PlatformTarget {
 
   /// Windows: <https://www.windows.com>
   windows,
-
   web,
 }
 
@@ -121,7 +120,7 @@ abstract class _DialogBaseData {
   final String? barrierLabel;
   final Offset? anchorPoint;
 
-  _DialogBaseData({
+  const _DialogBaseData({
     this.builder,
     this.barrierDismissible,
     this.routeSettings,
@@ -136,7 +135,7 @@ class MaterialDialogData extends _DialogBaseData {
   final Color? barrierColor;
   final TraversalEdgeBehavior? traversalEdgeBehavior;
 
-  MaterialDialogData({
+  const MaterialDialogData({
     super.builder,
     super.barrierDismissible,
     super.routeSettings,
@@ -150,7 +149,7 @@ class MaterialDialogData extends _DialogBaseData {
 }
 
 class CupertinoDialogData extends _DialogBaseData {
-  CupertinoDialogData({
+  const CupertinoDialogData({
     super.builder,
     super.barrierDismissible,
     super.routeSettings,
@@ -204,9 +203,7 @@ Future<T?> showPlatformDialog<T>({
 }
 
 abstract class _ModalSheetBaseData {
-  _ModalSheetBaseData({
-    this.anchorPoint,
-  });
+  const _ModalSheetBaseData({this.anchorPoint});
 
   final Offset? anchorPoint;
 }
@@ -225,12 +222,12 @@ class MaterialModalSheetData extends _ModalSheetBaseData {
   final AnimationController? transitionAnimationController;
   final BoxConstraints? constraints;
   final bool? useSafeArea;
-  String? barrierLabel;
-  double? scrollControlDisabledMaxHeightRatio;
-  bool? showDragHandle;
-  AnimationStyle? sheetAnimationStyle;
+  final String? barrierLabel;
+  final double? scrollControlDisabledMaxHeightRatio;
+  final bool? showDragHandle;
+  final AnimationStyle? sheetAnimationStyle;
 
-  MaterialModalSheetData({
+  const MaterialModalSheetData({
     super.anchorPoint,
     this.backgroundColor,
     this.elevation,
@@ -260,7 +257,7 @@ class CupertinoModalSheetData extends _ModalSheetBaseData {
   final bool? barrierDismissible;
   final RouteSettings? routeSettings;
 
-  CupertinoModalSheetData({
+  const CupertinoModalSheetData({
     super.anchorPoint,
     this.imageFilter,
     this.semanticsDismissible,
@@ -300,7 +297,7 @@ Future<T?> showPlatformModalSheet<T>({
       barrierLabel: material?.barrierLabel,
       scrollControlDisabledMaxHeightRatio:
           material?.scrollControlDisabledMaxHeightRatio ??
-              _defaultScrollControlDisabledMaxHeightRatio,
+          _defaultScrollControlDisabledMaxHeightRatio,
       showDragHandle: material?.showDragHandle,
       sheetAnimationStyle: material?.sheetAnimationStyle,
     );

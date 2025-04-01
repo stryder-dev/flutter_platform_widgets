@@ -21,12 +21,12 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 // Standard iOS 10 tab bar height.
-const double _kTabBarHeight = 50.0;
-const Color _kDefaultTabBarBorderColor = Color(0x4C000000);
+const _kTabBarHeight = 50.0;
+const _kDefaultTabBarBorderColor = Color(0x4C000000);
 const Color _kDefaultTabBarInactiveColor = CupertinoColors.inactiveGray;
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.items,
     this.backgroundColor,
@@ -48,7 +48,7 @@ abstract class _BaseData {
 }
 
 class CupertinoTabBarData extends _BaseData {
-  CupertinoTabBarData({
+  const CupertinoTabBarData({
     super.backgroundColor,
     super.items,
     super.activeColor,
@@ -66,7 +66,7 @@ class CupertinoTabBarData extends _BaseData {
 }
 
 class MaterialNavigationBarData {
-  MaterialNavigationBarData({
+  const MaterialNavigationBarData({
     this.widgetKey,
     this.items,
     this.height,
@@ -104,7 +104,7 @@ class MaterialNavigationBarData {
 }
 
 class MaterialNavBarData extends _BaseData {
-  MaterialNavBarData({
+  const MaterialNavBarData({
     super.items,
     super.backgroundColor,
     super.iconSize,
@@ -200,19 +200,17 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   Widget _createMaterial3Widget(BuildContext context) {
     final data = material3?.call(context, platform(context));
     final selectedIndex = data?.selectedIndex ?? currentIndex ?? 0;
-    final destinations = data?.items ??
-        items?.map(
-          (item) {
-            return NavigationDestination(
-              // key: ,
-              icon: item.icon,
-              label: item.label ?? '',
-              selectedIcon: item.activeIcon,
-              tooltip: item.tooltip,
-              enabled: true,
-            );
-          },
-        ).toList() ??
+    final destinations =
+        data?.items ??
+        items?.map((item) {
+          return NavigationDestination(
+            // key: ,
+            icon: item.icon,
+            label: item.label ?? '',
+            selectedIcon: item.activeIcon,
+            tooltip: item.tooltip,
+          );
+        }).toList() ??
         [];
     assert(destinations.length >= 2);
     assert(0 <= selectedIndex && selectedIndex < destinations.length);
@@ -294,12 +292,12 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
       inactiveColor: data?.inactiveColor ?? _kDefaultTabBarInactiveColor,
       key: data?.widgetKey ?? widgetKey,
       onTap: data?.itemChanged ?? itemChanged,
-      border: data?.border ??
+      border:
+          data?.border ??
           const Border(
             top: BorderSide(
               color: _kDefaultTabBarBorderColor,
-              width: 0.0, // One physical pixel.
-              style: BorderStyle.solid,
+              width: 0, // One physical pixel.
             ),
           ),
       height: data?.height ?? height ?? _kTabBarHeight,

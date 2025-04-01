@@ -19,7 +19,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.controller,
     this.focusNode,
@@ -29,6 +29,7 @@ abstract class _BaseData {
     this.autofocus,
     this.enabled,
   });
+
   final Key? widgetKey;
   final FocusNode? focusNode;
   final TextEditingController? controller;
@@ -40,7 +41,7 @@ abstract class _BaseData {
 }
 
 class MaterialSearchBarData extends _BaseData {
-  MaterialSearchBarData({
+  const MaterialSearchBarData({
     // Common
     super.widgetKey,
     super.controller,
@@ -98,7 +99,7 @@ class MaterialSearchBarData extends _BaseData {
 }
 
 class CupertinoSearchBarData extends _BaseData {
-  CupertinoSearchBarData({
+  const CupertinoSearchBarData({
     //Common
     super.widgetKey,
     super.controller,
@@ -136,18 +137,18 @@ class CupertinoSearchBarData extends _BaseData {
     this.cursorOpacityAnimates,
     this.cursorRadius,
     this.cursorWidth,
-  })  : assert(
-          !((decoration != null) && (backgroundColor != null)),
-          'Cannot provide both a background color and a decoration\n'
-          'To provide both, use "decoration: BoxDecoration(color: '
-          'backgroundColor)"',
-        ),
-        assert(
-          !((decoration != null) && (borderRadius != null)),
-          'Cannot provide both a border radius and a decoration\n'
-          'To provide both, use "decoration: BoxDecoration(borderRadius: '
-          'borderRadius)"',
-        );
+  }) : assert(
+         !((decoration != null) && (backgroundColor != null)),
+         'Cannot provide both a background color and a decoration\n'
+         'To provide both, use "decoration: BoxDecoration(color: '
+         'backgroundColor)"',
+       ),
+       assert(
+         !((decoration != null) && (borderRadius != null)),
+         'Cannot provide both a border radius and a decoration\n'
+         'To provide both, use "decoration: BoxDecoration(borderRadius: '
+         'borderRadius)"',
+       );
   final ValueChanged<String>? onSubmitted;
   final BoxDecoration? decoration;
   final BorderRadius? borderRadius;
@@ -226,7 +227,8 @@ class PlatformSearchBar
     EditableTextState editableTextState,
   ) {
     return AdaptiveTextSelectionToolbar.editableText(
-        editableTextState: editableTextState);
+      editableTextState: editableTextState,
+    );
   }
 
   @override
@@ -243,16 +245,19 @@ class PlatformSearchBar
       onTap: data?.onTap ?? onTap,
       onChanged: data?.onChanged ?? onChanged,
 
-      backgroundColor: data?.backgroundColor ??
+      backgroundColor:
+          data?.backgroundColor ??
           (backgroundColor != null
               ? WidgetStateProperty.all<Color>(backgroundColor)
               : null),
       hintText: data?.hintText ?? hintText,
-      hintStyle: data?.hintStyle ??
+      hintStyle:
+          data?.hintStyle ??
           (hintStyle != null
               ? WidgetStateProperty.all<TextStyle>(hintStyle)
               : null),
-      textStyle: data?.textStyle ??
+      textStyle:
+          data?.textStyle ??
           (textStyle != null
               ? WidgetStateProperty.all<TextStyle>(textStyle)
               : null),
@@ -306,10 +311,12 @@ class PlatformSearchBar
       borderRadius: data?.borderRadius,
       itemColor: data?.itemColor ?? CupertinoColors.secondaryLabel,
       itemSize: data?.itemSize ?? 20.0,
-      prefixInsets: data?.prefixInsets ??
+      prefixInsets:
+          data?.prefixInsets ??
           const EdgeInsetsDirectional.fromSTEB(6, 0, 0, 3),
       prefixIcon: data?.prefixIcon ?? const Icon(CupertinoIcons.search),
-      suffixInsets: data?.suffixInsets ??
+      suffixInsets:
+          data?.suffixInsets ??
           const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 2),
       suffixIcon:
           data?.suffixIcon ?? const Icon(CupertinoIcons.xmark_circle_fill),

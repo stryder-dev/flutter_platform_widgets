@@ -13,7 +13,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.value,
     this.onChanged,
@@ -55,7 +55,7 @@ abstract class _BaseData {
 }
 
 class MaterialSwitchData extends _BaseData {
-  MaterialSwitchData({
+  const MaterialSwitchData({
     super.widgetKey,
     super.value,
     super.onChanged,
@@ -98,7 +98,7 @@ class MaterialSwitchData extends _BaseData {
 }
 
 class CupertinoSwitchData extends _BaseData {
-  CupertinoSwitchData({
+  const CupertinoSwitchData({
     super.widgetKey,
     super.value,
     super.onChanged,
@@ -195,7 +195,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       inactiveThumbImage: data?.inactiveThumbImage ?? inactiveThumbImage,
       inactiveTrackColor: data?.inactiveTrackColor ?? inactiveTrackColor,
       materialTapTargetSize: data?.materialTapTargetSize,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       autofocus: data?.autofocus ?? autofocus ?? false,
@@ -227,7 +228,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       thumbColor: data?.thumbColor,

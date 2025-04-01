@@ -11,10 +11,10 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kScrollbarMainAxisMargin = 3.0;
+const _kScrollbarMainAxisMargin = 3.0;
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     // Common
     this.widgetKey,
     this.child,
@@ -25,6 +25,7 @@ abstract class _BaseData {
     this.notificationPredicate,
     this.scrollbarOrientation,
   });
+
   final Key? widgetKey;
   final Widget? child;
   final ScrollController? controller;
@@ -36,7 +37,7 @@ abstract class _BaseData {
 }
 
 class MaterialScrollbarData extends _BaseData {
-  MaterialScrollbarData({
+  const MaterialScrollbarData({
     // Common
     super.widgetKey,
     super.child,
@@ -57,7 +58,7 @@ class MaterialScrollbarData extends _BaseData {
 }
 
 class CupertinoScrollbarData extends _BaseData {
-  CupertinoScrollbarData({
+  const CupertinoScrollbarData({
     // Common
     super.widgetKey,
     super.child,
@@ -72,9 +73,11 @@ class CupertinoScrollbarData extends _BaseData {
     this.thicknessWhileDragging,
     this.radiusWhileDragging,
     this.mainAxisMargin,
-  })  : assert(thickness != null && thickness < double.infinity),
-        assert(thicknessWhileDragging != null &&
-            thicknessWhileDragging < double.infinity);
+  }) : assert(thickness != null && thickness < double.infinity),
+       assert(
+         thicknessWhileDragging != null &&
+             thicknessWhileDragging < double.infinity,
+       );
   final double? thicknessWhileDragging;
   final Radius? radiusWhileDragging;
   final double? mainAxisMargin;
@@ -150,9 +153,11 @@ class PlatformScrollbar
       scrollbarOrientation: data?.scrollbarOrientation ?? scrollbarOrientation,
 
       //Cupertino only
-      thicknessWhileDragging: data?.thicknessWhileDragging ??
+      thicknessWhileDragging:
+          data?.thicknessWhileDragging ??
           CupertinoScrollbar.defaultThicknessWhileDragging,
-      radiusWhileDragging: data?.radiusWhileDragging ??
+      radiusWhileDragging:
+          data?.radiusWhileDragging ??
           CupertinoScrollbar.defaultRadiusWhileDragging,
       mainAxisMargin: data?.mainAxisMargin ?? _kScrollbarMainAxisMargin,
     );

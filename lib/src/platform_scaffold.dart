@@ -29,11 +29,7 @@ import 'platform_provider.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
-    this.widgetKey,
-    this.backgroundColor,
-    this.body,
-  });
+  const _BaseData({this.widgetKey, this.backgroundColor, this.body});
 
   final Color? backgroundColor;
   final Widget? body;
@@ -41,7 +37,7 @@ abstract class _BaseData {
 }
 
 class MaterialScaffoldData extends _BaseData {
-  MaterialScaffoldData({
+  const MaterialScaffoldData({
     super.backgroundColor,
     super.body,
     super.widgetKey,
@@ -94,7 +90,7 @@ class MaterialScaffoldData extends _BaseData {
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
-  CupertinoPageScaffoldData({
+  const CupertinoPageScaffoldData({
     super.backgroundColor,
     super.body,
     super.widgetKey,
@@ -207,7 +203,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         tabBar: tabBar!,
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
-          final currentChild = cupertinoTabChildBuilder?.call(context, index) ??
+          final currentChild =
+              cupertinoTabChildBuilder?.call(context, index) ??
               data?.body ??
               body ??
               const SizedBox.shrink();
@@ -246,12 +243,18 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
     // Ensure that there is Material widget at the root page level
     // as there can be Material widgets used on ios
-    return result.withMaterial(useLegacyMaterial &&
-        context.findAncestorWidgetOfExactType<Material>() == null);
+    return result.withMaterial(
+      useLegacyMaterial &&
+          context.findAncestorWidgetOfExactType<Material>() == null,
+    );
   }
 
-  Widget iosContentPad(BuildContext context, Widget child,
-      ObstructingPreferredSizeWidget? navigationBar, CupertinoTabBar? tabBar) {
+  Widget iosContentPad(
+    BuildContext context,
+    Widget child,
+    ObstructingPreferredSizeWidget? navigationBar,
+    CupertinoTabBar? tabBar,
+  ) {
     final MediaQueryData existingMediaQuery = MediaQuery.of(context);
 
     if (!iosContentPadding && !iosContentBottomPadding) {

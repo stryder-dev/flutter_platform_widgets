@@ -13,7 +13,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.value,
     this.tristate,
@@ -29,6 +29,7 @@ abstract class _BaseData {
     this.fillColor,
     this.semanticLabel,
   });
+
   final Key? widgetKey;
   final bool? value;
   final bool? tristate;
@@ -46,7 +47,7 @@ abstract class _BaseData {
 }
 
 class MaterialCheckboxData extends _BaseData {
-  MaterialCheckboxData({
+  const MaterialCheckboxData({
     // Common
     super.widgetKey,
     super.value,
@@ -62,8 +63,8 @@ class MaterialCheckboxData extends _BaseData {
     super.mouseCursor,
     super.fillColor,
     super.semanticLabel,
-    //Material
 
+    //Material
     this.hoverColor,
     this.overlayColor,
     this.splashRadius,
@@ -81,7 +82,7 @@ class MaterialCheckboxData extends _BaseData {
 }
 
 class CupertinoCheckboxData extends _BaseData {
-  CupertinoCheckboxData({
+  const CupertinoCheckboxData({
     //Common
     super.widgetKey,
     super.value,

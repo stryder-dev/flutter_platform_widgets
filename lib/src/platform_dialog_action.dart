@@ -20,7 +20,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.child,
     this.onPressed,
@@ -36,7 +36,7 @@ abstract class _BaseData {
 }
 
 class MaterialDialogActionData extends _BaseData {
-  MaterialDialogActionData({
+  const MaterialDialogActionData({
     super.widgetKey,
     super.child,
     super.onPressed,
@@ -63,7 +63,7 @@ class MaterialDialogActionData extends _BaseData {
 }
 
 class MaterialDialogFlatActionData extends _BaseData {
-  MaterialDialogFlatActionData({
+  const MaterialDialogFlatActionData({
     super.child,
     super.onPressed,
     super.widgetKey,
@@ -114,7 +114,7 @@ class MaterialDialogFlatActionData extends _BaseData {
 }
 
 class CupertinoDialogActionData extends _BaseData {
-  CupertinoDialogActionData({
+  const CupertinoDialogActionData({
     super.child,
     super.onPressed,
     super.widgetKey,
