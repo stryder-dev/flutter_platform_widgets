@@ -1,7 +1,3 @@
-## FVM
-.fvm/**
-.fvmrc
-
 .DS_Store
 .dart_tool/
 .idea
