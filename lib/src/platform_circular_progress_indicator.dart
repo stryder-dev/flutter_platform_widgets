@@ -11,20 +11,17 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kDefaultIndicatorRadius = 10.0;
+const _kDefaultIndicatorRadius = 10.0;
 
 abstract class _BaseData {
-  _BaseData({
-    this.key,
-    this.color,
-  });
+  const _BaseData({this.key, this.color});
 
   final Key? key;
   final Color? color;
 }
 
 class MaterialProgressIndicatorData extends _BaseData {
-  MaterialProgressIndicatorData({
+  const MaterialProgressIndicatorData({
     super.key,
     super.color,
     this.backgroundColor,
@@ -54,7 +51,7 @@ class MaterialProgressIndicatorData extends _BaseData {
 }
 
 class CupertinoProgressIndicatorData extends _BaseData {
-  CupertinoProgressIndicatorData({
+  const CupertinoProgressIndicatorData({
     super.key,
     super.color,
     this.animating,
@@ -65,8 +62,12 @@ class CupertinoProgressIndicatorData extends _BaseData {
   final double? radius;
 }
 
-class PlatformCircularProgressIndicator extends PlatformWidgetBase<
-    CupertinoActivityIndicator, CircularProgressIndicator> {
+class PlatformCircularProgressIndicator
+    extends
+        PlatformWidgetBase<
+          CupertinoActivityIndicator,
+          CircularProgressIndicator
+        > {
   final Key? widgetKey;
 
   final PlatformBuilder<MaterialProgressIndicatorData>? material;

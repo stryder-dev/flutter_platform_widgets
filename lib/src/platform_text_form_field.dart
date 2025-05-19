@@ -19,7 +19,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.controller,
     this.initialValue,
@@ -148,7 +148,7 @@ class MaterialTextFormFieldData extends _BaseData {
   final TapRegionUpCallback? onTapUpOutside;
   final bool? stylusHandwritingEnabled;
 
-  MaterialTextFormFieldData({
+  const MaterialTextFormFieldData({
     super.widgetKey,
     super.controller,
     super.initialValue,
@@ -231,7 +231,7 @@ class CupertinoTextFormFieldData extends _BaseData {
   final String? placeholder;
   final TextStyle? placeholderStyle;
 
-  CupertinoTextFormFieldData({
+  const CupertinoTextFormFieldData({
     super.widgetKey,
     super.controller,
     super.initialValue,
@@ -341,14 +341,18 @@ class PlatformTextFormField
   final PlatformBuilder<CupertinoTextFormFieldData>? cupertino;
 
   static Widget _defaultMaterialContextMenuBuilder(
-      BuildContext context, EditableTextState editableTextState) {
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
     return AdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );
   }
 
   static Widget _defaultCupertinoContextMenuBuilder(
-      BuildContext context, EditableTextState editableTextState) {
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
     return CupertinoAdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );
@@ -404,20 +408,22 @@ class PlatformTextFormField
     this.hintText,
     this.material,
     this.cupertino,
-  }) : keyboardType = keyboardType ??
-            (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
+  }) : keyboardType =
+           keyboardType ??
+           (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
 
   @override
   TextFormField createMaterialWidget(BuildContext context) {
     final data = material?.call(context, platform(context));
 
     final hintText = this.hintText;
-    final decoration = hintText == null
-        ? (data?.decoration ?? const InputDecoration())
-        : _inputDecorationWithHint(
-            hintText,
-            data?.decoration ?? const InputDecoration(),
-          );
+    final decoration =
+        hintText == null
+            ? (data?.decoration ?? const InputDecoration())
+            : _inputDecorationWithHint(
+              hintText,
+              data?.decoration ?? const InputDecoration(),
+            );
 
     return TextFormField(
       key: data?.widgetKey ?? widgetKey,
@@ -426,7 +432,8 @@ class PlatformTextFormField
       focusNode: data?.focusNode ?? focusNode,
       decoration: decoration,
       keyboardType: data?.keyboardType ?? keyboardType,
-      textCapitalization: data?.textCapitalization ??
+      textCapitalization:
+          data?.textCapitalization ??
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
@@ -461,7 +468,8 @@ class PlatformTextFormField
       keyboardAppearance: data?.keyboardAppearance ?? keyboardAppearance,
       scrollPadding:
           data?.scrollPadding ?? scrollPadding ?? const EdgeInsets.all(20),
-      enableInteractiveSelection: data?.enableInteractiveSelection ??
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ??
           enableInteractiveSelection ??
           true,
       selectionControls: data?.selectionControls ?? selectionControls,
@@ -477,7 +485,8 @@ class PlatformTextFormField
           data?.enableIMEPersonalizedLearning ?? true,
       restorationId: data?.restorationId ?? restorationId,
       mouseCursor: data?.mouseCursor,
-      contextMenuBuilder: data?.contextMenuBuilder ??
+      contextMenuBuilder:
+          data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
       onTapOutside: data?.onTapOutside,
@@ -501,7 +510,8 @@ class PlatformTextFormField
       ignorePointers: data?.ignorePointers,
       groupId: data?.groupId ?? EditableText,
       onTapUpOutside: data?.onTapUpOutside,
-      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+      stylusHandwritingEnabled:
+          data?.stylusHandwritingEnabled ??
           EditableText.defaultStylusHandwritingEnabled,
       // toolbarOptions: , Deprecated
       // scribbleEnabled: deprecated
@@ -519,7 +529,8 @@ class PlatformTextFormField
       focusNode: data?.focusNode ?? focusNode,
       decoration: data?.decoration,
       keyboardType: data?.keyboardType ?? keyboardType,
-      textCapitalization: data?.textCapitalization ??
+      textCapitalization:
+          data?.textCapitalization ??
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
@@ -554,25 +565,29 @@ class PlatformTextFormField
       keyboardAppearance: data?.keyboardAppearance ?? keyboardAppearance,
       scrollPadding:
           data?.scrollPadding ?? scrollPadding ?? const EdgeInsets.all(20),
-      enableInteractiveSelection: data?.enableInteractiveSelection ??
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ??
           enableInteractiveSelection ??
           true,
       selectionControls: data?.selectionControls ?? selectionControls,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       autofillHints: data?.autofillHints ?? autofillHints,
-      autovalidateMode: data?.autovalidateMode ??
+      autovalidateMode:
+          data?.autovalidateMode ??
           autovalidateMode ??
           AutovalidateMode.disabled,
       prefix: data?.prefix,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
       placeholder: data?.placeholder ?? hintText,
-      placeholderStyle: data?.placeholderStyle ??
+      placeholderStyle:
+          data?.placeholderStyle ??
           const TextStyle(
             fontWeight: FontWeight.w400,
             color: CupertinoColors.placeholderText,
           ),
       textDirection: data?.textDirection,
-      contextMenuBuilder: data?.contextMenuBuilder ??
+      contextMenuBuilder:
+          data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultCupertinoContextMenuBuilder,
       restorationId: data?.restorationId ?? restorationId,

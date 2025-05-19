@@ -19,7 +19,8 @@ String formatData(BuildContext context, String data) {
     final matchMaterialCaseForPlatformText =
         providerState?.settings.matchMaterialCaseForPlatformText ?? true;
 
-    final m3 = PlatformTheme.of(context)?.isMaterial3 ??
+    final m3 =
+        PlatformTheme.of(context)?.isMaterial3 ??
         Theme.of(context).useMaterial3;
 
     // If it material3 and we want to match the casing as defined for material3 then do not return ALL CAPS
@@ -32,10 +33,8 @@ String formatData(BuildContext context, String data) {
   return data;
 }
 
-typedef _TextBuilder = Text Function(BuildContext context);
-
 class PlatformText extends StatelessWidget {
-  final _TextBuilder _textBuilder;
+  final Text Function(BuildContext) _textBuilder;
 
   const PlatformText._(Key? key, this._textBuilder) : super(key: key);
 
@@ -62,25 +61,26 @@ class PlatformText extends StatelessWidget {
     Color? selectionColor,
   }) {
     return PlatformText._(
-        key,
-        (BuildContext context) => Text(
-              formatData(context, data),
-              key: key,
-              style: style,
-              textAlign: textAlign,
-              textDirection: textDirection,
-              softWrap: softWrap,
-              overflow: overflow,
-              textScaler: textScaler,
-              maxLines: maxLines,
-              locale: locale,
-              semanticsLabel: semanticsLabel,
-              strutStyle: strutStyle,
-              textWidthBasis: textWidthBasis,
-              textHeightBehavior: textHeightBehavior,
-              selectionColor: selectionColor,
-              //deprecated textScaleFactor: textScaleFactor,
-            ));
+      key,
+      (BuildContext context) => Text(
+        formatData(context, data),
+        key: key,
+        style: style,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        locale: locale,
+        semanticsLabel: semanticsLabel,
+        strutStyle: strutStyle,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        selectionColor: selectionColor,
+        //deprecated textScaleFactor: textScaleFactor,
+      ),
+    );
   }
 
   @override

@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         MaterialBasedCupertinoThemeData(materialTheme: materialLightTheme);
 
     return PlatformProvider(
-      settings: PlatformSettingsData(
+      settings: const PlatformSettingsData(
         iosUsesMaterialWidgets: true,
         iosUseZeroPaddingForAppbarPlatformIcon: true,
       ),

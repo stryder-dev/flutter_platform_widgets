@@ -17,7 +17,7 @@ import 'platform.dart';
 import 'platform_widget.dart';
 import 'widget_base.dart';
 
-const double _kMenuDividerHeight = 16.0;
+const _kMenuDividerHeight = 16.0;
 
 class PopupMenuOption {
   final String? label;
@@ -26,7 +26,7 @@ class PopupMenuOption {
   final PlatformBuilder<CupertinoPopupMenuOptionData>? cupertino;
   final PlatformBuilder<MaterialPopupMenuOptionData>? material;
 
-  PopupMenuOption({
+  const PopupMenuOption({
     this.label,
     this.onTap,
     this.cupertino,
@@ -38,10 +38,7 @@ abstract class _BaseData {
   final Key? key;
   final Widget? child;
 
-  _BaseData({
-    this.key,
-    this.child,
-  });
+  const _BaseData({this.key, this.child});
 }
 
 class MaterialPopupMenuOptionData extends _BaseData {
@@ -55,7 +52,7 @@ class MaterialPopupMenuOptionData extends _BaseData {
   final double dividerHeight;
   final WidgetStateProperty<TextStyle?>? labelTextStyle;
 
-  MaterialPopupMenuOptionData({
+  const MaterialPopupMenuOptionData({
     super.key,
     super.child,
     this.enabled,
@@ -76,7 +73,7 @@ class CupertinoPopupMenuOptionData extends _BaseData {
   final bool? isDestructiveAction;
   final MouseCursor? mouseCursor;
 
-  CupertinoPopupMenuOptionData({
+  const CupertinoPopupMenuOptionData({
     super.key,
     super.child,
     this.onPressed,
@@ -118,7 +115,7 @@ class MaterialPopupMenuData {
   final bool? requestFocus;
   final RouteSettings? routeSettings;
 
-  MaterialPopupMenuData({
+  const MaterialPopupMenuData({
     this.key,
     this.icon,
     this.itemBuilder,
@@ -161,7 +158,7 @@ class CupertinoPopupMenuData {
   final List<Widget>? actions;
   final CupertinoPopupMenuCancelButtonData? cancelButtonData;
 
-  CupertinoPopupMenuData({
+  const CupertinoPopupMenuData({
     this.key,
     this.title,
     this.message,
@@ -235,34 +232,35 @@ class PlatformPopupMenu extends StatelessWidget {
       message: data?.message,
       actionScrollController: data?.actionScrollController,
       messageScrollController: data?.messageScrollController,
-      actions: data?.actions ??
-          options.map(
-            (option) {
-              final data = option.cupertino?.call(context, platform(context));
-              return CupertinoActionSheetAction(
-                key: data?.key,
-                isDefaultAction: data?.isDefaultAction ?? false,
-                isDestructiveAction: data?.isDestructiveAction ?? false,
-                child: data?.child ?? Text(option.label ?? ''),
-                onPressed: data?.onPressed ??
-                    () {
-                      Navigator.pop(context);
-                      option.onTap?.call(option);
-                    },
-                mouseCursor: data?.mouseCursor,
-              );
-            },
-          ).toList(),
-      cancelButton: cancelData == null
-          ? null
-          : CupertinoActionSheetAction(
-              key: cancelData.key,
-              child: cancelData.child,
-              isDefaultAction: cancelData.isDefaultAction ?? false,
-              isDestructiveAction: cancelData.isDestructiveAction ?? false,
-              onPressed: cancelData.onPressed ?? () => Navigator.pop(context),
-              mouseCursor: cancelData.mouseCursor,
-            ),
+      actions:
+          data?.actions ??
+          options.map((option) {
+            final data = option.cupertino?.call(context, platform(context));
+            return CupertinoActionSheetAction(
+              key: data?.key,
+              isDefaultAction: data?.isDefaultAction ?? false,
+              isDestructiveAction: data?.isDestructiveAction ?? false,
+              child: data?.child ?? Text(option.label ?? ''),
+              onPressed:
+                  data?.onPressed ??
+                  () {
+                    Navigator.pop(context);
+                    option.onTap?.call(option);
+                  },
+              mouseCursor: data?.mouseCursor,
+            );
+          }).toList(),
+      cancelButton:
+          cancelData == null
+              ? null
+              : CupertinoActionSheetAction(
+                key: cancelData.key,
+                child: cancelData.child,
+                isDefaultAction: cancelData.isDefaultAction ?? false,
+                isDestructiveAction: cancelData.isDestructiveAction ?? false,
+                onPressed: cancelData.onPressed ?? () => Navigator.pop(context),
+                mouseCursor: cancelData.mouseCursor,
+              ),
     );
   }
 
@@ -274,23 +272,26 @@ class PlatformPopupMenu extends StatelessWidget {
         option.onTap?.call(option);
       },
       icon: data?.icon ?? icon,
-      itemBuilder: data?.itemBuilder ??
+      itemBuilder:
+          data?.itemBuilder ??
           (context) {
             final items = <PopupMenuEntry<PopupMenuOption>>[];
             for (final option in options) {
               final data = option.material?.call(context, platform(context));
-              items.add(PopupMenuItem<PopupMenuOption>(
-                value: option,
-                child: data?.child ?? Text(option.label ?? ''),
-                enabled: data?.enabled ?? true,
-                height: data?.height ?? kMinInteractiveDimension,
-                key: data?.key,
-                mouseCursor: data?.mouseCursor,
-                onTap: data?.onTap,
-                padding: data?.padding,
-                textStyle: data?.textStyle,
-                labelTextStyle: data?.labelTextStyle,
-              ));
+              items.add(
+                PopupMenuItem<PopupMenuOption>(
+                  value: option,
+                  child: data?.child ?? Text(option.label ?? ''),
+                  enabled: data?.enabled ?? true,
+                  height: data?.height ?? kMinInteractiveDimension,
+                  key: data?.key,
+                  mouseCursor: data?.mouseCursor,
+                  onTap: data?.onTap,
+                  padding: data?.padding,
+                  textStyle: data?.textStyle,
+                  labelTextStyle: data?.labelTextStyle,
+                ),
+              );
               if (data?.withDivider ?? false) {
                 items.add(
                   PopupMenuDivider(

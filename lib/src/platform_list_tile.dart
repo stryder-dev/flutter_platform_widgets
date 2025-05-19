@@ -11,11 +11,11 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kLeadingSize = 28.0;
-const double _kLeadingToTitle = 16.0;
+const _kLeadingSize = 28.0;
+const _kLeadingToTitle = 16.0;
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.key,
     this.leading,
     this.title,
@@ -33,7 +33,7 @@ abstract class _BaseData {
 }
 
 class MaterialListTileData extends _BaseData {
-  MaterialListTileData({
+  const MaterialListTileData({
     super.key,
     super.leading,
     super.title,
@@ -107,7 +107,7 @@ class MaterialListTileData extends _BaseData {
 }
 
 class CupertinoListTileData extends _BaseData {
-  CupertinoListTileData({
+  const CupertinoListTileData({
     super.key,
     super.leading,
     super.title,
@@ -122,12 +122,12 @@ class CupertinoListTileData extends _BaseData {
     this.additionalInfo,
   });
 
-  double? leadingToTitle;
-  double? leadingSize;
-  EdgeInsetsGeometry? padding;
-  Color? backgroundColor;
-  Color? backgroundColorActivated;
-  Widget? additionalInfo;
+  final double? leadingToTitle;
+  final double? leadingSize;
+  final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+  final Color? backgroundColorActivated;
+  final Widget? additionalInfo;
 }
 
 class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {

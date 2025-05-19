@@ -20,7 +20,7 @@ import 'platform_theme.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.navigatorKey,
     this.home,
@@ -85,11 +85,11 @@ abstract class _BaseData {
   final String? restorationScopeId;
   final ScrollBehavior? scrollBehavior;
   final NotificationListenerCallback<NavigationNotification>?
-      onNavigationNotification;
+  onNavigationNotification;
 }
 
 abstract class _BaseRouterData {
-  _BaseRouterData({
+  const _BaseRouterData({
     this.widgetKey,
     this.builder,
     this.title,
@@ -161,11 +161,11 @@ abstract class _BaseRouterData {
   final ScrollBehavior? scrollBehavior;
 
   final NotificationListenerCallback<NavigationNotification>?
-      onNavigationNotification;
+  onNavigationNotification;
 }
 
 class MaterialAppData extends _BaseData {
-  MaterialAppData({
+  const MaterialAppData({
     super.widgetKey,
     super.navigatorKey,
     super.home,
@@ -217,7 +217,7 @@ class MaterialAppData extends _BaseData {
 }
 
 class MaterialAppRouterData extends _BaseRouterData {
-  MaterialAppRouterData({
+  const MaterialAppRouterData({
     super.widgetKey,
     super.builder,
     super.title,
@@ -267,7 +267,7 @@ class MaterialAppRouterData extends _BaseRouterData {
 }
 
 class CupertinoAppData extends _BaseData {
-  CupertinoAppData({
+  const CupertinoAppData({
     super.widgetKey,
     super.navigatorKey,
     super.home,
@@ -301,7 +301,7 @@ class CupertinoAppData extends _BaseData {
 }
 
 class CupertinoAppRouterData extends _BaseRouterData {
-  CupertinoAppRouterData({
+  const CupertinoAppRouterData({
     super.widgetKey,
     super.builder,
     super.title,
@@ -359,7 +359,7 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   final Map<Type, Action<Intent>>? actions;
   final InitialRouteListFactory? onGenerateInitialRoutes;
   final NotificationListenerCallback<NavigationNotification>?
-      onNavigationNotification;
+  onNavigationNotification;
 
   final PlatformBuilder<MaterialAppData>? material;
   final PlatformBuilder<CupertinoAppData>? cupertino;
@@ -417,13 +417,13 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.onNavigationNotification,
     this.material,
     this.cupertino,
-  })  : routeInformationProvider = null,
-        routeInformationParser = null,
-        routerDelegate = null,
-        routerConfig = null,
-        backButtonDispatcher = null,
-        materialRouter = null,
-        cupertinoRouter = null;
+  }) : routeInformationProvider = null,
+       routeInformationParser = null,
+       routerDelegate = null,
+       routerConfig = null,
+       backButtonDispatcher = null,
+       materialRouter = null,
+       cupertinoRouter = null;
 
   const PlatformApp.router({
     super.key,
@@ -454,18 +454,18 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
     this.onNavigationNotification,
     PlatformBuilder<MaterialAppRouterData>? material,
     PlatformBuilder<CupertinoAppRouterData>? cupertino,
-  })  : navigatorObservers = null,
-        navigatorKey = null,
-        onGenerateRoute = null,
-        home = null,
-        onGenerateInitialRoutes = null,
-        onUnknownRoute = null,
-        routes = null,
-        initialRoute = null,
-        material = null,
-        cupertino = null,
-        materialRouter = material,
-        cupertinoRouter = cupertino;
+  }) : navigatorObservers = null,
+       navigatorKey = null,
+       onGenerateRoute = null,
+       home = null,
+       onGenerateInitialRoutes = null,
+       onUnknownRoute = null,
+       routes = null,
+       initialRoute = null,
+       material = null,
+       cupertino = null,
+       materialRouter = material,
+       cupertinoRouter = cupertino;
 
   @override
   MaterialApp createMaterialWidget(BuildContext context) {
@@ -475,10 +475,12 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         dataRouter?.routeInformationParser != null ||
         routerConfig != null ||
         dataRouter?.routerConfig != null) {
-      assert(dataRouter?.routerDelegate != null ||
-          routerDelegate != null ||
-          dataRouter?.routerConfig != null ||
-          routerConfig != null);
+      assert(
+        dataRouter?.routerDelegate != null ||
+            routerDelegate != null ||
+            dataRouter?.routerConfig != null ||
+            routerConfig != null,
+      );
 
       return MaterialApp.router(
         routeInformationProvider:
@@ -499,7 +501,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             .copyWith(platform: TargetPlatform.android),
         darkTheme: (dataRouter?.darkTheme ?? _getMaterialDarkThemeData(context))
             ?.copyWith(platform: TargetPlatform.android),
-        themeMode: dataRouter?.themeMode ??
+        themeMode:
+            dataRouter?.themeMode ??
             _getMaterialThemeMode(context) ??
             ThemeMode.system,
         highContrastDarkTheme: dataRouter?.highContrastDarkTheme,
@@ -509,26 +512,30 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             dataRouter?.localizationsDelegates ?? localizationsDelegates,
         localeListResolutionCallback:
             dataRouter?.localeListResolutionCallback ??
-                localeListResolutionCallback,
+            localeListResolutionCallback,
         localeResolutionCallback:
             dataRouter?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: dataRouter?.supportedLocales ??
+        supportedLocales:
+            dataRouter?.supportedLocales ??
             supportedLocales ??
             const <Locale>[Locale('en', 'US')],
         debugShowMaterialGrid: dataRouter?.debugShowMaterialGrid ?? false,
-        showPerformanceOverlay: dataRouter?.showPerformanceOverlay ??
+        showPerformanceOverlay:
+            dataRouter?.showPerformanceOverlay ??
             showPerformanceOverlay ??
             false,
         checkerboardRasterCacheImages:
             dataRouter?.checkerboardRasterCacheImages ??
-                checkerboardRasterCacheImages ??
-                false,
-        checkerboardOffscreenLayers: dataRouter?.checkerboardOffscreenLayers ??
+            checkerboardRasterCacheImages ??
+            false,
+        checkerboardOffscreenLayers:
+            dataRouter?.checkerboardOffscreenLayers ??
             checkerboardOffscreenLayers ??
             false,
         showSemanticsDebugger:
             dataRouter?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
-        debugShowCheckedModeBanner: dataRouter?.debugShowCheckedModeBanner ??
+        debugShowCheckedModeBanner:
+            dataRouter?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
         shortcuts: dataRouter?.shortcuts ?? shortcuts,
@@ -556,7 +563,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         initialRoute: data?.initialRoute ?? initialRoute,
         onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
         onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-        navigatorObservers: data?.navigatorObservers ??
+        navigatorObservers:
+            data?.navigatorObservers ??
             navigatorObservers ??
             const <NavigatorObserver>[],
         builder: data?.builder ?? builder,
@@ -570,20 +578,24 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.localeListResolutionCallback ?? localeListResolutionCallback,
         localeResolutionCallback:
             data?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: data?.supportedLocales ??
+        supportedLocales:
+            data?.supportedLocales ??
             supportedLocales ??
             const <Locale>[Locale('en', 'US')],
         showPerformanceOverlay:
             data?.showPerformanceOverlay ?? showPerformanceOverlay ?? false,
-        checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
+        checkerboardRasterCacheImages:
+            data?.checkerboardRasterCacheImages ??
             checkerboardRasterCacheImages ??
             false,
-        checkerboardOffscreenLayers: data?.checkerboardOffscreenLayers ??
+        checkerboardOffscreenLayers:
+            data?.checkerboardOffscreenLayers ??
             checkerboardOffscreenLayers ??
             false,
         showSemanticsDebugger:
             data?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
-        debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
+        debugShowCheckedModeBanner:
+            data?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
         debugShowMaterialGrid: data?.debugShowMaterialGrid ?? false,
@@ -593,7 +605,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             .copyWith(platform: TargetPlatform.android),
         darkTheme: (data?.darkTheme ?? _getMaterialDarkThemeData(context))
             ?.copyWith(platform: TargetPlatform.android),
-        themeMode: data?.themeMode ??
+        themeMode:
+            data?.themeMode ??
             _getMaterialThemeMode(context) ??
             ThemeMode.system,
         shortcuts: data?.shortcuts ?? shortcuts,
@@ -624,10 +637,12 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         dataRouter?.routeInformationParser != null ||
         routerConfig != null ||
         dataRouter?.routerConfig != null) {
-      assert(dataRouter?.routerDelegate != null ||
-          routerDelegate != null ||
-          dataRouter?.routerConfig != null ||
-          routerConfig != null);
+      assert(
+        dataRouter?.routerDelegate != null ||
+            routerDelegate != null ||
+            dataRouter?.routerConfig != null ||
+            routerConfig != null,
+      );
 
       return CupertinoApp.router(
         routeInformationProvider:
@@ -648,25 +663,29 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             dataRouter?.localizationsDelegates ?? localizationsDelegates,
         localeListResolutionCallback:
             dataRouter?.localeListResolutionCallback ??
-                localeListResolutionCallback,
+            localeListResolutionCallback,
         localeResolutionCallback:
             dataRouter?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: dataRouter?.supportedLocales ??
+        supportedLocales:
+            dataRouter?.supportedLocales ??
             supportedLocales ??
             const <Locale>[Locale('en', 'US')],
-        showPerformanceOverlay: dataRouter?.showPerformanceOverlay ??
+        showPerformanceOverlay:
+            dataRouter?.showPerformanceOverlay ??
             showPerformanceOverlay ??
             false,
         checkerboardRasterCacheImages:
             dataRouter?.checkerboardRasterCacheImages ??
-                checkerboardRasterCacheImages ??
-                false,
-        checkerboardOffscreenLayers: dataRouter?.checkerboardOffscreenLayers ??
+            checkerboardRasterCacheImages ??
+            false,
+        checkerboardOffscreenLayers:
+            dataRouter?.checkerboardOffscreenLayers ??
             checkerboardOffscreenLayers ??
             false,
         showSemanticsDebugger:
             dataRouter?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
-        debugShowCheckedModeBanner: dataRouter?.debugShowCheckedModeBanner ??
+        debugShowCheckedModeBanner:
+            dataRouter?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
         shortcuts: dataRouter?.shortcuts ?? shortcuts,
@@ -690,7 +709,8 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
         initialRoute: data?.initialRoute ?? initialRoute,
         onGenerateRoute: data?.onGenerateRoute ?? onGenerateRoute,
         onUnknownRoute: data?.onUnknownRoute ?? onUnknownRoute,
-        navigatorObservers: data?.navigatorObservers ??
+        navigatorObservers:
+            data?.navigatorObservers ??
             navigatorObservers ??
             const <NavigatorObserver>[],
         builder: data?.builder ?? builder,
@@ -704,20 +724,24 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
             data?.localeListResolutionCallback ?? localeListResolutionCallback,
         localeResolutionCallback:
             data?.localeResolutionCallback ?? localeResolutionCallback,
-        supportedLocales: data?.supportedLocales ??
+        supportedLocales:
+            data?.supportedLocales ??
             supportedLocales ??
             const <Locale>[Locale('en', 'US')],
         showPerformanceOverlay:
             data?.showPerformanceOverlay ?? showPerformanceOverlay ?? false,
-        checkerboardRasterCacheImages: data?.checkerboardRasterCacheImages ??
+        checkerboardRasterCacheImages:
+            data?.checkerboardRasterCacheImages ??
             checkerboardRasterCacheImages ??
             false,
-        checkerboardOffscreenLayers: data?.checkerboardOffscreenLayers ??
+        checkerboardOffscreenLayers:
+            data?.checkerboardOffscreenLayers ??
             checkerboardOffscreenLayers ??
             false,
         showSemanticsDebugger:
             data?.showSemanticsDebugger ?? showSemanticsDebugger ?? false,
-        debugShowCheckedModeBanner: data?.debugShowCheckedModeBanner ??
+        debugShowCheckedModeBanner:
+            data?.debugShowCheckedModeBanner ??
             debugShowCheckedModeBanner ??
             true,
         theme: data?.theme ?? _getCupertinoTheme(context),
@@ -749,11 +773,13 @@ class PlatformApp extends PlatformWidgetBase<CupertinoApp, MaterialApp> {
   CupertinoThemeData? _getCupertinoTheme(BuildContext context) {
     final isDark = PlatformTheme.of(context)?.isDark;
     final lightTheme = PlatformTheme.of(context)?.cupertinoLightTheme;
-    final darkTheme = PlatformTheme.of(context)?.cupertinoDarkTheme ??
+    final darkTheme =
+        PlatformTheme.of(context)?.cupertinoDarkTheme ??
         PlatformTheme.of(context)?.cupertinoLightTheme;
-    final theme = isDark == null
-        ? null
-        : isDark
+    final theme =
+        isDark == null
+            ? null
+            : isDark
             ? darkTheme
             : lightTheme;
 

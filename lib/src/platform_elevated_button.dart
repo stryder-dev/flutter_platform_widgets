@@ -13,10 +13,10 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
+const _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.child,
     this.onPressed,
@@ -30,7 +30,7 @@ abstract class _BaseData {
 }
 
 class MaterialElevatedButtonData extends _BaseData {
-  MaterialElevatedButtonData({
+  const MaterialElevatedButtonData({
     super.widgetKey,
     super.child,
     super.onPressed,
@@ -58,7 +58,7 @@ class MaterialElevatedButtonData extends _BaseData {
 }
 
 class CupertinoElevatedButtonData extends _BaseData {
-  CupertinoElevatedButtonData({
+  const CupertinoElevatedButtonData({
     super.widgetKey,
     super.child,
     super.onPressed,
@@ -139,7 +139,8 @@ class PlatformElevatedButton
         autofocus: data?.autofocus ?? false,
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
-        style: data?.style ??
+        style:
+            data?.style ??
             ElevatedButton.styleFrom(
               backgroundColor: color,
               padding: padding,
@@ -160,7 +161,8 @@ class PlatformElevatedButton
       autofocus: data?.autofocus ?? false,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       focusNode: data?.focusNode,
-      style: data?.style ??
+      style:
+          data?.style ??
           ElevatedButton.styleFrom(
             backgroundColor: color,
             padding: padding,
@@ -180,8 +182,8 @@ class PlatformElevatedButton
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -201,8 +203,8 @@ class PlatformElevatedButton
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,

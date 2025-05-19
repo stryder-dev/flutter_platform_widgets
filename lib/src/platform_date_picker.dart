@@ -19,7 +19,7 @@ import 'widget_base.dart';
 
 // Values derived from https://developer.apple.com/design/resources/ and on iOS
 // simulators with "Debug View Hierarchy".
-const double _kItemExtent = 32.0;
+const _kItemExtent = 32.0;
 
 class DatePickerContentData {
   final DateTime? initialDate;
@@ -27,7 +27,7 @@ class DatePickerContentData {
   final DateTime? lastDate;
   final DateTime selectedDate;
 
-  DatePickerContentData({
+  const DatePickerContentData({
     this.initialDate,
     this.firstDate,
     this.lastDate,
@@ -35,24 +35,22 @@ class DatePickerContentData {
   });
 }
 
-typedef DatePickerContentBuilder = Widget Function(
-  DatePickerContentData data,
-  CupertinoDatePickerData? cupertinoData,
-);
+typedef DatePickerContentBuilder =
+    Widget Function(
+      DatePickerContentData data,
+      CupertinoDatePickerData? cupertinoData,
+    );
 
 abstract class _BaseData {
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
-  _BaseData({
-    this.initialDate,
-    this.firstDate,
-    this.lastDate,
-  });
+
+  const _BaseData({this.initialDate, this.firstDate, this.lastDate});
 }
 
 class MaterialDatePickerData extends _BaseData {
-  MaterialDatePickerData({
+  const MaterialDatePickerData({
     super.initialDate,
     super.firstDate,
     super.lastDate,
@@ -109,7 +107,7 @@ class MaterialDatePickerData extends _BaseData {
 }
 
 class CupertinoDatePickerData extends _BaseData {
-  CupertinoDatePickerData({
+  const CupertinoDatePickerData({
     super.initialDate,
     super.firstDate,
     super.lastDate,
@@ -197,10 +195,7 @@ Future<DateTime?> showPlatformDatePicker({
     );
     return await _showDateModalBottomSheet<DateTime?>(
       context,
-      cupertinoContentBuilder?.call(
-            contentData,
-            data,
-          ) ??
+      cupertinoContentBuilder?.call(contentData, data) ??
           _renderManagedCupertinoDatePicker(
             data: data,
             initialDate: initialDate,

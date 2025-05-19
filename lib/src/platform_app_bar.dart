@@ -16,13 +16,12 @@ import 'platform_provider.dart';
 import 'widget_base.dart';
 
 //the default has alpha which will cause the content to slide under the header for ios
-const Color _kDefaultNavBarBorderColor = Color(0x4C000000);
+const _kDefaultNavBarBorderColor = Color(0x4C000000);
 
-const Border _kDefaultNavBarBorder = Border(
+const _kDefaultNavBarBorder = Border(
   bottom: BorderSide(
     color: _kDefaultNavBarBorderColor,
-    width: 0.0, // One physical pixel.
-    style: BorderStyle.solid,
+    width: 0, // One physical pixel.
   ),
 );
 
@@ -216,17 +215,19 @@ class PlatformAppBar
   CupertinoNavigationBar createCupertinoWidget(BuildContext context) {
     final data = cupertino?.call(context, platform(context));
 
-    final trailing = trailingActions?.isEmpty ?? true
-        ? null
-        : Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: trailingActions!,
-          );
+    final trailing =
+        trailingActions?.isEmpty ?? true
+            ? null
+            : Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: trailingActions!,
+            );
 
     final providerState = PlatformProvider.of(context);
     final noMaterialParent = data?.noMaterialParent ?? false;
-    final useMaterial = (!noMaterialParent) &&
+    final useMaterial =
+        (!noMaterialParent) &&
         (providerState?.settings.iosUsesMaterialWidgets ?? false);
 
     final heroTag = data?.heroTag;
@@ -235,19 +236,22 @@ class PlatformAppBar
         key: data?.widgetKey ?? widgetKey,
         middle: _getMiddleCupertinoWidget(context, data),
         backgroundColor: data?.backgroundColor ?? backgroundColor,
-        automaticallyImplyLeading: data?.automaticallyImplyLeading ??
+        automaticallyImplyLeading:
+            data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
             true,
         automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading: _getLeadingCupertinoWidget(context, data)
-            ?.withMaterial(useMaterial)
-            .withWidgetFinder<CupertinoNavigationBar>(),
-        trailing: (data?.trailing ?? trailing)
-            ?.withMaterial(useMaterial)
-            .withWidgetFinder<CupertinoNavigationBar>(),
+        leading:
+            _getLeadingCupertinoWidget(context, data)
+                ?.withMaterial(useMaterial)
+                .withWidgetFinder<CupertinoNavigationBar>(),
+        trailing:
+            (data?.trailing ?? trailing)
+                ?.withMaterial(useMaterial)
+                .withWidgetFinder<CupertinoNavigationBar>(),
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
@@ -268,12 +272,14 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading: _getLeadingCupertinoWidget(context, data)
-          ?.withMaterial(useMaterial)
-          .withWidgetFinder<CupertinoNavigationBar>(),
-      trailing: (data?.trailing ?? trailing)
-          ?.withMaterial(useMaterial)
-          .withWidgetFinder<CupertinoNavigationBar>(),
+      leading:
+          _getLeadingCupertinoWidget(context, data)
+              ?.withMaterial(useMaterial)
+              .withWidgetFinder<CupertinoNavigationBar>(),
+      trailing:
+          (data?.trailing ?? trailing)
+              ?.withMaterial(useMaterial)
+              .withWidgetFinder<CupertinoNavigationBar>(),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
       automaticBackgroundVisibility:
@@ -329,9 +335,10 @@ class PlatformAppBar
       return null;
     }
 
-    final useMediaQueryWrapper = PlatformProvider.of(context)
-            ?.settings
-            .wrapCupertinoAppBarMiddleWithMediaQuery ??
+    final useMediaQueryWrapper =
+        PlatformProvider.of(
+          context,
+        )?.settings.wrapCupertinoAppBarMiddleWithMediaQuery ??
         true;
 
     if (!useMediaQueryWrapper) {

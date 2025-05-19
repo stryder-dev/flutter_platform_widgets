@@ -56,7 +56,7 @@ abstract class _BasePageData<T> {
 
   final PopInvokedWithResultCallback<T>? onPopInvoked;
 
-  _BasePageData({
+  const _BasePageData({
     this.child,
     this.name,
     this.maintainState,
@@ -71,7 +71,7 @@ abstract class _BasePageData<T> {
 }
 
 class MaterialPageData<T> extends _BasePageData<T> {
-  MaterialPageData({
+  const MaterialPageData({
     super.child,
     super.name,
     super.maintainState,
@@ -86,7 +86,7 @@ class MaterialPageData<T> extends _BasePageData<T> {
 }
 
 class CupertinoPageData<T> extends _BasePageData<T> {
-  CupertinoPageData({
+  const CupertinoPageData({
     super.child,
     super.name,
     super.maintainState,

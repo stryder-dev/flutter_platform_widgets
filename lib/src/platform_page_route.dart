@@ -21,7 +21,7 @@ class _BasePageRouteData {
   final bool? barrierDismissible;
   final bool? requestFocus;
 
-  _BasePageRouteData({
+  const _BasePageRouteData({
     this.builder,
     this.settings,
     this.maintainState,
@@ -33,7 +33,7 @@ class _BasePageRouteData {
 }
 
 class MaterialPageRouteData extends _BasePageRouteData {
-  MaterialPageRouteData({
+  const MaterialPageRouteData({
     super.builder,
     super.settings,
     super.maintainState,
@@ -45,7 +45,7 @@ class MaterialPageRouteData extends _BasePageRouteData {
 }
 
 class CupertinoPageRouteData extends _BasePageRouteData {
-  CupertinoPageRouteData({
+  const CupertinoPageRouteData({
     super.builder,
     super.settings,
     super.maintainState,

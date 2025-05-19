@@ -13,7 +13,7 @@ import 'platform.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
+  const _BaseData({
     this.widgetKey,
     this.value,
     this.onChanged,
@@ -39,7 +39,7 @@ abstract class _BaseData {
 }
 
 class MaterialSliderData extends _BaseData {
-  MaterialSliderData({
+  const MaterialSliderData({
     super.widgetKey,
     super.value,
     super.onChanged,
@@ -77,7 +77,7 @@ class MaterialSliderData extends _BaseData {
 }
 
 class CupertinoSliderData extends _BaseData {
-  CupertinoSliderData({
+  const CupertinoSliderData({
     super.widgetKey,
     super.value,
     super.onChanged,
@@ -121,8 +121,8 @@ class PlatformSlider extends PlatformWidgetBase<CupertinoSlider, Slider> {
     this.thumbColor,
     this.material,
     this.cupertino,
-  })  : assert(divisions == null || divisions > 0),
-        assert(value >= min && value <= max);
+  }) : assert(divisions == null || divisions > 0),
+       assert(value >= min && value <= max);
 
   @override
   Slider createMaterialWidget(BuildContext context) {
