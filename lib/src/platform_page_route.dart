@@ -7,7 +7,12 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageRoute;
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart'
-    show PageRoute, BuildContext, RouteSettings, WidgetBuilder;
+    show
+        PageRoute,
+        BuildContext,
+        RouteSettings,
+        WidgetBuilder,
+        TraversalEdgeBehavior;
 
 import 'platform.dart';
 import 'widget_base.dart';
@@ -41,7 +46,12 @@ class MaterialPageRouteData extends _BasePageRouteData {
     super.allowSnapshotting,
     super.barrierDismissible,
     super.requestFocus,
+    this.directionalTraversalEdgeBehavior,
+    this.traversalEdgeBehavior,
   });
+
+  final TraversalEdgeBehavior? directionalTraversalEdgeBehavior;
+  final TraversalEdgeBehavior? traversalEdgeBehavior;
 }
 
 class CupertinoPageRouteData extends _BasePageRouteData {
@@ -80,6 +90,8 @@ PageRoute<T> platformPageRoute<T>({
       allowSnapshotting: data?.allowSnapshotting ?? allowSnapshotting,
       barrierDismissible: data?.barrierDismissible ?? barrierDismissible,
       requestFocus: data?.requestFocus ?? requestFocus,
+      directionalTraversalEdgeBehavior: data?.directionalTraversalEdgeBehavior,
+      traversalEdgeBehavior: data?.traversalEdgeBehavior,
     );
   } else {
     final data = cupertino?.call(context, platform(context));

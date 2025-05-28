@@ -62,8 +62,8 @@ class MaterialCheckboxData extends _BaseData {
     super.mouseCursor,
     super.fillColor,
     super.semanticLabel,
-    //Material
 
+    //Material
     this.hoverColor,
     this.overlayColor,
     this.splashRadius,
@@ -182,9 +182,6 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     final tristate = data?.tristate ?? this.tristate;
     assert(tristate || value != null);
     return CupertinoCheckbox(
-      //Cupertino
-      // inactiveColor: Deprecated
-      //Common
       key: data?.widgetKey ?? widgetKey,
       value: value,
       tristate: tristate,
@@ -199,6 +196,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       fillColor: data?.fillColor ?? fillColor,
       mouseCursor: data?.mouseCursor ?? mouseCursor,
       semanticLabel: data?.semanticLabel ?? semanticLabel,
+      // inactiveColor: , Deprecated
     );
   }
 }

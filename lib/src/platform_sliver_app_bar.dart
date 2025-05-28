@@ -77,11 +77,16 @@ class MaterialSliverAppBarData extends _BaseData {
     this.forceMaterialTransparency = false,
     this.clipBehavior,
     this.actionsPadding,
-  })  : assert(floating || !snap,
-            'The "snap" argument only makes sense for floating app bars.'),
-        assert(stretchTriggerOffset > 0.0),
-        assert(collapsedHeight == null || collapsedHeight >= toolbarHeight,
-            'The "collapsedHeight" argument has to be larger than or equal to [toolbarHeight].');
+    this.useDefaultSemanticsOrder,
+  }) : assert(
+         floating || !snap,
+         'The "snap" argument only makes sense for floating app bars.',
+       ),
+       assert(stretchTriggerOffset > 0.0),
+       assert(
+         collapsedHeight == null || collapsedHeight >= toolbarHeight,
+         'The "collapsedHeight" argument has to be larger than or equal to [toolbarHeight].',
+       );
 
   // final Widget? title;
   final List<Widget>? actions;
@@ -114,6 +119,7 @@ class MaterialSliverAppBarData extends _BaseData {
   final bool forceMaterialTransparency;
   final Clip? clipBehavior;
   final EdgeInsetsGeometry? actionsPadding;
+  final bool? useDefaultSemanticsOrder;
 }
 
 class CupertinoSliverAppBarData extends _BaseData {
@@ -143,11 +149,11 @@ class CupertinoSliverAppBarData extends _BaseData {
     this.enableBackgroundFilterBlur,
     this.heroTag = _defaultHeroTag,
   }) : assert(
-          automaticallyImplyTitle == true || title != null,
-          'No title has been provided but automaticallyImplyTitle is also '
-          'false. Either provide a title or set automaticallyImplyTitle to '
-          'true.',
-        );
+         automaticallyImplyTitle == true || title != null,
+         'No title has been provided but automaticallyImplyTitle is also '
+         'false. Either provide a title or set automaticallyImplyTitle to '
+         'true.',
+       );
 
   // final Widget? largeTitle;
   final bool automaticallyImplyTitle;
@@ -241,6 +247,7 @@ class PlatformSliverAppBar
       scrolledUnderElevation: data?.scrolledUnderElevation,
       surfaceTintColor: data?.surfaceTintColor,
       actionsPadding: data?.actionsPadding,
+      useDefaultSemanticsOrder: data?.useDefaultSemanticsOrder ?? true,
     );
   }
 

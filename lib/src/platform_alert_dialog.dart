@@ -13,16 +13,13 @@ import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
-const EdgeInsets _defaultInsetPadding =
-    EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0);
+const EdgeInsets _defaultInsetPadding = EdgeInsets.symmetric(
+  horizontal: 40.0,
+  vertical: 24.0,
+);
 
 abstract class _BaseData {
-  _BaseData({
-    this.widgetKey,
-    this.actions,
-    this.content,
-    this.title,
-  });
+  _BaseData({this.widgetKey, this.actions, this.content, this.title});
 
   final Key? widgetKey;
   final List<Widget>? actions;
@@ -183,7 +180,9 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
 
     // Ensure that there is Material widget at the root page level
     // as there can be Material widgets used on ios
-    return result.withMaterial(useLegacyMaterial &&
-        context.findAncestorWidgetOfExactType<Material>() == null);
+    return result.withMaterial(
+      useLegacyMaterial &&
+          context.findAncestorWidgetOfExactType<Material>() == null,
+    );
   }
 }

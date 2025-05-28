@@ -10,7 +10,9 @@ import 'package:flutter/material.dart'
         showDatePicker,
         SelectableDayPredicate,
         DatePickerEntryMode,
-        DatePickerMode;
+        DatePickerMode,
+        CalendarDelegate,
+        GregorianCalendarDelegate;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -35,20 +37,17 @@ class DatePickerContentData {
   });
 }
 
-typedef DatePickerContentBuilder = Widget Function(
-  DatePickerContentData data,
-  CupertinoDatePickerData? cupertinoData,
-);
+typedef DatePickerContentBuilder =
+    Widget Function(
+      DatePickerContentData data,
+      CupertinoDatePickerData? cupertinoData,
+    );
 
 abstract class _BaseData {
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
-  _BaseData({
-    this.initialDate,
-    this.firstDate,
-    this.lastDate,
-  });
+  _BaseData({this.initialDate, this.firstDate, this.lastDate});
 }
 
 class MaterialDatePickerData extends _BaseData {
@@ -80,6 +79,7 @@ class MaterialDatePickerData extends _BaseData {
     this.barrierColor,
     this.barrierDismissible,
     this.barrierLabel,
+    this.calendarDelegate,
   });
 
   final DateTime? currentDate;
@@ -106,6 +106,7 @@ class MaterialDatePickerData extends _BaseData {
   final Color? barrierColor;
   final bool? barrierDismissible;
   final String? barrierLabel;
+  final CalendarDelegate<DateTime>? calendarDelegate;
 }
 
 class CupertinoDatePickerData extends _BaseData {
@@ -127,6 +128,7 @@ class CupertinoDatePickerData extends _BaseData {
     this.showDayOfWeek,
     this.itemExtent,
     this.selectionOverlayBuilder,
+    this.showTimeSeparator,
   });
 
   final Key? key;
@@ -143,6 +145,7 @@ class CupertinoDatePickerData extends _BaseData {
   final bool? showDayOfWeek;
   final double? itemExtent;
   final SelectionOverlayBuilder? selectionOverlayBuilder;
+  final bool? showTimeSeparator;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -185,6 +188,8 @@ Future<DateTime?> showPlatformDatePicker({
       barrierColor: data?.barrierColor,
       barrierDismissible: data?.barrierDismissible ?? true,
       barrierLabel: data?.barrierLabel,
+      calendarDelegate:
+          data?.calendarDelegate ?? const GregorianCalendarDelegate(),
     );
   } else {
     final data = cupertino?.call(context, platform(context));
@@ -197,10 +202,7 @@ Future<DateTime?> showPlatformDatePicker({
     );
     return await _showDateModalBottomSheet<DateTime?>(
       context,
-      cupertinoContentBuilder?.call(
-            contentData,
-            data,
-          ) ??
+      cupertinoContentBuilder?.call(contentData, data) ??
           _renderManagedCupertinoDatePicker(
             data: data,
             initialDate: initialDate,
@@ -289,6 +291,7 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
             showDayOfWeek: data?.showDayOfWeek ?? false,
             itemExtent: data?.itemExtent ?? _kItemExtent,
             selectionOverlayBuilder: data?.selectionOverlayBuilder,
+            showTimeSeparator: data?.showTimeSeparator ?? false,
           ),
           Row(
             children: [

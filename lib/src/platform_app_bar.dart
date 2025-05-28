@@ -77,6 +77,7 @@ class MaterialAppBarData extends _BaseData {
     this.clipBehavior,
     this.forceMaterialTransparency,
     this.actionsPadding,
+    this.useDefaultSemanticsOrder,
   });
 
   final List<Widget>? actions;
@@ -104,6 +105,7 @@ class MaterialAppBarData extends _BaseData {
   final Clip? clipBehavior;
   final bool? forceMaterialTransparency;
   final EdgeInsetsGeometry? actionsPadding;
+  final bool? useDefaultSemanticsOrder;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -209,6 +211,7 @@ class PlatformAppBar
       clipBehavior: data?.clipBehavior,
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
       actionsPadding: data?.actionsPadding,
+      useDefaultSemanticsOrder: data?.useDefaultSemanticsOrder ?? true,
     );
   }
 
@@ -226,7 +229,8 @@ class PlatformAppBar
 
     final providerState = PlatformProvider.of(context);
     final noMaterialParent = data?.noMaterialParent ?? false;
-    final useMaterial = (!noMaterialParent) &&
+    final useMaterial =
+        (!noMaterialParent) &&
         (providerState?.settings.iosUsesMaterialWidgets ?? false);
 
     final heroTag = data?.heroTag;
@@ -235,16 +239,18 @@ class PlatformAppBar
         key: data?.widgetKey ?? widgetKey,
         middle: _getMiddleCupertinoWidget(context, data),
         backgroundColor: data?.backgroundColor ?? backgroundColor,
-        automaticallyImplyLeading: data?.automaticallyImplyLeading ??
+        automaticallyImplyLeading:
+            data?.automaticallyImplyLeading ??
             automaticallyImplyLeading ??
             true,
         automaticallyImplyMiddle: data?.automaticallyImplyMiddle ?? true,
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading: _getLeadingCupertinoWidget(context, data)
-            ?.withMaterial(useMaterial)
-            .withWidgetFinder<CupertinoNavigationBar>(),
+        leading: _getLeadingCupertinoWidget(
+          context,
+          data,
+        )?.withMaterial(useMaterial).withWidgetFinder<CupertinoNavigationBar>(),
         trailing: (data?.trailing ?? trailing)
             ?.withMaterial(useMaterial)
             .withWidgetFinder<CupertinoNavigationBar>(),
@@ -268,9 +274,10 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading: _getLeadingCupertinoWidget(context, data)
-          ?.withMaterial(useMaterial)
-          .withWidgetFinder<CupertinoNavigationBar>(),
+      leading: _getLeadingCupertinoWidget(
+        context,
+        data,
+      )?.withMaterial(useMaterial).withWidgetFinder<CupertinoNavigationBar>(),
       trailing: (data?.trailing ?? trailing)
           ?.withMaterial(useMaterial)
           .withWidgetFinder<CupertinoNavigationBar>(),
@@ -329,9 +336,10 @@ class PlatformAppBar
       return null;
     }
 
-    final useMediaQueryWrapper = PlatformProvider.of(context)
-            ?.settings
-            .wrapCupertinoAppBarMiddleWithMediaQuery ??
+    final useMediaQueryWrapper =
+        PlatformProvider.of(
+          context,
+        )?.settings.wrapCupertinoAppBarMiddleWithMediaQuery ??
         true;
 
     if (!useMediaQueryWrapper) {
