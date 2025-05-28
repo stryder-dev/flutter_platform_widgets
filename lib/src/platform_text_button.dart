@@ -16,11 +16,7 @@ import 'widget_base.dart';
 const double _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  _BaseData({
-    this.widgetKey,
-    this.child,
-    this.onPressed,
-  });
+  _BaseData({this.widgetKey, this.child, this.onPressed});
 
   final Key? widgetKey;
   final Widget? child;
@@ -67,6 +63,10 @@ class CupertinoTextButtonData extends _BaseData {
     this.padding,
     this.disabledColor,
     this.borderRadius,
+    @Deprecated(
+      'Use minimumSize instead. '
+      'This feature was deprecated after v3.28.0-3.0.pre.',
+    )
     this.minSize,
     this.pressedOpacity,
     this.alignment,
@@ -77,6 +77,8 @@ class CupertinoTextButtonData extends _BaseData {
     this.onFocusChange,
     this.onLongPress,
     this.sizeStyle,
+    this.minimumSize,
+    this.mouseCursor,
   });
 
   final Color? color;
@@ -92,6 +94,8 @@ class CupertinoTextButtonData extends _BaseData {
   final ValueChanged<bool>? onFocusChange;
   final VoidCallback? onLongPress;
   final CupertinoButtonSize? sizeStyle;
+  final Size? minimumSize;
+  final MouseCursor? mouseCursor;
 
   // If true will use the filled style rather than the text style
   final bool originalStyle;
@@ -138,7 +142,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         autofocus: data?.autofocus ?? false,
         clipBehavior: data?.clipBehavior ?? Clip.none,
         focusNode: data?.focusNode,
-        style: data?.style ??
+        style:
+            data?.style ??
             TextButton.styleFrom(
               backgroundColor: color,
               padding: padding,
@@ -159,7 +164,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
       autofocus: data?.autofocus ?? false,
       clipBehavior: data?.clipBehavior ?? Clip.none,
       focusNode: data?.focusNode,
-      style: data?.style ??
+      style:
+          data?.style ??
           TextButton.styleFrom(
             backgroundColor: color,
             padding: padding,
@@ -181,8 +187,9 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ??
+            const BorderRadius.all(const Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -195,6 +202,9 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         onFocusChange: data?.onFocusChange,
         onLongPress: data?.onLongPress,
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
+        color: data?.color ?? color,
+        minimumSize: data?.minimumSize,
+        mouseCursor: data?.mouseCursor,
       );
       if (color != null) {
         final themeData = CupertinoTheme.of(context);
@@ -209,8 +219,9 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         key: data?.widgetKey ?? widgetKey,
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
-        borderRadius: data?.borderRadius ??
-            const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius:
+            data?.borderRadius ??
+            const BorderRadius.all(const Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -224,6 +235,8 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         onFocusChange: data?.onFocusChange,
         onLongPress: data?.onLongPress,
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
+        minimumSize: data?.minimumSize,
+        mouseCursor: data?.mouseCursor,
       );
     }
   }

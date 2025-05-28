@@ -51,6 +51,10 @@ class CupertinoIconButtonData extends _BaseData {
     super.disabledColor,
     super.onLongPress,
     this.borderRadius,
+    @Deprecated(
+      'Use minimumSize instead. '
+      'This feature was deprecated after v3.28.0-3.0.pre.',
+    )
     this.minSize,
     this.pressedOpacity,
     this.alignment,
@@ -59,6 +63,8 @@ class CupertinoIconButtonData extends _BaseData {
     this.focusNode,
     this.onFocusChange,
     this.sizeStyle,
+    this.minimumSize,
+    this.mouseCursor,
   });
 
   final BorderRadius? borderRadius;
@@ -70,6 +76,8 @@ class CupertinoIconButtonData extends _BaseData {
   final FocusNode? focusNode;
   final ValueChanged<bool>? onFocusChange;
   final CupertinoButtonSize? sizeStyle;
+  final Size? minimumSize;
+  final MouseCursor? mouseCursor;
 }
 
 class MaterialIconButtonData extends _BaseData {
@@ -195,14 +203,16 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
     assert(data?.icon != null || cupertinoIcon != null || icon != null);
 
     // If the IconButton is placed inside the AppBar, we need to have zero padding.
-    final haveZeroPadding = PlatformProvider.of(context)
-            ?.settings
-            .iosUseZeroPaddingForAppbarPlatformIcon ??
+    final haveZeroPadding =
+        PlatformProvider.of(
+          context,
+        )?.settings.iosUseZeroPaddingForAppbarPlatformIcon ??
         false;
     final isPlacedOnPlatformAppBar =
         ParentWidgetFinder.of<CupertinoNavigationBar>(context) != null;
-    final overriddenPadding =
-        haveZeroPadding && isPlacedOnPlatformAppBar ? EdgeInsets.zero : null;
+    final overriddenPadding = haveZeroPadding && isPlacedOnPlatformAppBar
+        ? EdgeInsets.zero
+        : null;
 
     final givenPadding = data?.padding ?? padding ?? overriddenPadding;
 
@@ -212,11 +222,13 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       onPressed: data?.onPressed ?? onPressed,
       padding: givenPadding,
       color: data?.color ?? color,
-      borderRadius: data?.borderRadius ??
-          const BorderRadius.all(Radius.circular(8.0)),
+      borderRadius:
+          data?.borderRadius ??
+          const BorderRadius.all(const Radius.circular(8.0)),
       minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
       pressedOpacity: data?.pressedOpacity ?? 0.4,
-      disabledColor: data?.disabledColor ??
+      disabledColor:
+          data?.disabledColor ??
           disabledColor ??
           CupertinoColors.quaternarySystemFill,
       alignment: data?.alignment ?? Alignment.center,
@@ -226,6 +238,8 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       onFocusChange: data?.onFocusChange,
       onLongPress: data?.onLongPress ?? onLongPress,
       sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
+      minimumSize: data?.minimumSize,
+      mouseCursor: data?.mouseCursor,
     );
   }
 }

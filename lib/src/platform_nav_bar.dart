@@ -83,6 +83,7 @@ class MaterialNavigationBarData {
     this.overlayColor,
     this.labelPadding,
     this.labelTextStyle,
+    this.maintainBottomViewPadding,
   });
 
   final Key? widgetKey;
@@ -101,6 +102,7 @@ class MaterialNavigationBarData {
   final WidgetStateProperty<Color?>? overlayColor;
   final EdgeInsetsGeometry? labelPadding;
   final WidgetStateProperty<TextStyle?>? labelTextStyle;
+  final bool? maintainBottomViewPadding;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -200,19 +202,18 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
   Widget _createMaterial3Widget(BuildContext context) {
     final data = material3?.call(context, platform(context));
     final selectedIndex = data?.selectedIndex ?? currentIndex ?? 0;
-    final destinations = data?.items ??
-        items?.map(
-          (item) {
-            return NavigationDestination(
-              // key: ,
-              icon: item.icon,
-              label: item.label ?? '',
-              selectedIcon: item.activeIcon,
-              tooltip: item.tooltip,
-              enabled: true,
-            );
-          },
-        ).toList() ??
+    final destinations =
+        data?.items ??
+        items?.map((item) {
+          return NavigationDestination(
+            // key: ,
+            icon: item.icon,
+            label: item.label ?? '',
+            selectedIcon: item.activeIcon,
+            tooltip: item.tooltip,
+            enabled: true,
+          );
+        }).toList() ??
         [];
     assert(destinations.length >= 2);
     assert(0 <= selectedIndex && selectedIndex < destinations.length);
@@ -234,6 +235,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
       overlayColor: data?.overlayColor,
       labelPadding: data?.labelPadding,
       labelTextStyle: data?.labelTextStyle,
+      maintainBottomViewPadding: data?.maintainBottomViewPadding ?? false,
     );
   }
 
@@ -294,7 +296,8 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
       inactiveColor: data?.inactiveColor ?? _kDefaultTabBarInactiveColor,
       key: data?.widgetKey ?? widgetKey,
       onTap: data?.itemChanged ?? itemChanged,
-      border: data?.border ??
+      border:
+          data?.border ??
           const Border(
             top: BorderSide(
               color: _kDefaultTabBarBorderColor,
