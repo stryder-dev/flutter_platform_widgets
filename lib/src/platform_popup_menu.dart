@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart'
-    show CupertinoActionSheet, CupertinoActionSheetAction;
+    show CupertinoActionSheet, CupertinoActionSheetAction, CupertinoButton;
 import 'package:flutter/material.dart'
     show
         ButtonStyle,
@@ -177,7 +177,7 @@ class CupertinoPopupMenuCancelButtonData {
   final bool? isDestructiveAction;
   final MouseCursor? mouseCursor;
 
-  CupertinoPopupMenuCancelButtonData({
+  const CupertinoPopupMenuCancelButtonData({
     this.child = const Text('Cancel'),
     this.key,
     this.onPressed,
@@ -211,13 +211,12 @@ class PlatformPopupMenu extends StatelessWidget {
   }
 
   Widget _cupertinoPopupBottomSheet(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showPlatformModalSheet(
-          context: context,
-          builder: (context) => _cupertinoSheetContent(context),
-        );
-      },
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () => showPlatformModalSheet(
+        context: context,
+        builder: (context) => _cupertinoSheetContent(context),
+      ),
       child: icon,
     );
   }
