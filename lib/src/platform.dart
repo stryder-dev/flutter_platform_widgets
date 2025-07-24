@@ -119,6 +119,7 @@ abstract class _DialogBaseData {
   final bool? useRootNavigator;
   final String? barrierLabel;
   final Offset? anchorPoint;
+  final bool? requestFocus;
 
   const _DialogBaseData({
     this.builder,
@@ -127,6 +128,7 @@ abstract class _DialogBaseData {
     this.useRootNavigator,
     this.barrierLabel,
     this.anchorPoint,
+    this.requestFocus,
   });
 }
 
@@ -134,6 +136,7 @@ class MaterialDialogData extends _DialogBaseData {
   final bool? useSafeArea;
   final Color? barrierColor;
   final TraversalEdgeBehavior? traversalEdgeBehavior;
+  final AnimationStyle? animationStyle;
 
   const MaterialDialogData({
     super.builder,
@@ -142,9 +145,11 @@ class MaterialDialogData extends _DialogBaseData {
     super.useRootNavigator,
     super.barrierLabel,
     super.anchorPoint,
+    super.requestFocus,
     this.useSafeArea,
     this.barrierColor,
     this.traversalEdgeBehavior,
+    this.animationStyle,
   });
 }
 
@@ -156,6 +161,7 @@ class CupertinoDialogData extends _DialogBaseData {
     super.useRootNavigator,
     super.barrierLabel,
     super.anchorPoint,
+    super.requestFocus,
   });
 }
 
@@ -169,6 +175,7 @@ Future<T?> showPlatformDialog<T>({
   bool useRootNavigator = true,
   String? barrierLabel,
   Offset? anchorPoint,
+  bool? requestFocus,
 }) {
   if (isMaterial(context)) {
     assert(material?.builder != null || builder != null);
@@ -185,6 +192,8 @@ Future<T?> showPlatformDialog<T>({
       barrierLabel: material?.barrierLabel ?? barrierLabel,
       anchorPoint: material?.anchorPoint ?? anchorPoint,
       traversalEdgeBehavior: material?.traversalEdgeBehavior,
+      animationStyle: material?.animationStyle,
+      requestFocus: material?.requestFocus ?? requestFocus,
     );
   } else {
     assert(cupertino?.builder != null || builder != null);
@@ -198,14 +207,16 @@ Future<T?> showPlatformDialog<T>({
           cupertino?.barrierDismissible ?? barrierDismissible ?? false,
       barrierLabel: cupertino?.barrierLabel ?? barrierLabel,
       anchorPoint: cupertino?.anchorPoint ?? anchorPoint,
+      requestFocus: material?.requestFocus ?? requestFocus,
     );
   }
 }
 
 abstract class _ModalSheetBaseData {
-  const _ModalSheetBaseData({this.anchorPoint});
+  const _ModalSheetBaseData({this.anchorPoint, this.requestFocus});
 
   final Offset? anchorPoint;
+  final bool? requestFocus;
 }
 
 class MaterialModalSheetData extends _ModalSheetBaseData {
@@ -229,6 +240,7 @@ class MaterialModalSheetData extends _ModalSheetBaseData {
 
   const MaterialModalSheetData({
     super.anchorPoint,
+    super.requestFocus,
     this.backgroundColor,
     this.elevation,
     this.shape,
@@ -259,6 +271,7 @@ class CupertinoModalSheetData extends _ModalSheetBaseData {
 
   const CupertinoModalSheetData({
     super.anchorPoint,
+    super.requestFocus,
     this.imageFilter,
     this.semanticsDismissible,
     this.useRootNavigator,
@@ -275,6 +288,8 @@ Future<T?> showPlatformModalSheet<T>({
   required WidgetBuilder builder,
   MaterialModalSheetData? material,
   CupertinoModalSheetData? cupertino,
+  Offset? anchorPoint,
+  bool? requestFocus,
 }) {
   if (isMaterial(context)) {
     return showModalBottomSheet<T>(
@@ -292,7 +307,7 @@ Future<T?> showPlatformModalSheet<T>({
       routeSettings: material?.routeSettings,
       transitionAnimationController: material?.transitionAnimationController,
       constraints: material?.constraints,
-      anchorPoint: material?.anchorPoint,
+      anchorPoint: material?.anchorPoint ?? anchorPoint,
       useSafeArea: material?.useSafeArea ?? false,
       barrierLabel: material?.barrierLabel,
       scrollControlDisabledMaxHeightRatio:
@@ -300,6 +315,7 @@ Future<T?> showPlatformModalSheet<T>({
           _defaultScrollControlDisabledMaxHeightRatio,
       showDragHandle: material?.showDragHandle,
       sheetAnimationStyle: material?.sheetAnimationStyle,
+      requestFocus: material?.requestFocus ?? requestFocus,
     );
   } else {
     return showCupertinoModalPopup<T>(
@@ -311,7 +327,8 @@ Future<T?> showPlatformModalSheet<T>({
       barrierColor: cupertino?.barrierColor ?? _kModalBarrierColor,
       barrierDismissible: cupertino?.barrierDismissible ?? true,
       routeSettings: cupertino?.routeSettings,
-      anchorPoint: cupertino?.anchorPoint,
+      anchorPoint: cupertino?.anchorPoint ?? anchorPoint,
+      requestFocus: cupertino?.requestFocus ?? requestFocus,
     );
   }
 }

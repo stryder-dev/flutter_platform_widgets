@@ -147,6 +147,7 @@ class MaterialTextFormFieldData extends _BaseData {
   final Object? groupId;
   final TapRegionUpCallback? onTapUpOutside;
   final bool? stylusHandwritingEnabled;
+  final FormFieldErrorBuilder? errorBuilder;
 
   const MaterialTextFormFieldData({
     super.widgetKey,
@@ -221,6 +222,7 @@ class MaterialTextFormFieldData extends _BaseData {
     this.ignorePointers,
     this.onTapUpOutside,
     this.stylusHandwritingEnabled,
+    this.errorBuilder,
   });
 }
 
@@ -513,6 +515,7 @@ class PlatformTextFormField
       stylusHandwritingEnabled:
           data?.stylusHandwritingEnabled ??
           EditableText.defaultStylusHandwritingEnabled,
+      errorBuilder: data?.errorBuilder,
       // toolbarOptions: , Deprecated
       // scribbleEnabled: deprecated
     );

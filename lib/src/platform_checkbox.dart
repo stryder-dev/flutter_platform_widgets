@@ -183,9 +183,6 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
     final tristate = data?.tristate ?? this.tristate;
     assert(tristate || value != null);
     return CupertinoCheckbox(
-      //Cupertino
-      // inactiveColor: Deprecated
-      //Common
       key: data?.widgetKey ?? widgetKey,
       value: value,
       tristate: tristate,
@@ -200,6 +197,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       fillColor: data?.fillColor ?? fillColor,
       mouseCursor: data?.mouseCursor ?? mouseCursor,
       semanticLabel: data?.semanticLabel ?? semanticLabel,
+      // inactiveColor: , Deprecated
     );
   }
 }

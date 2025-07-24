@@ -83,6 +83,7 @@ class MaterialNavigationBarData {
     this.overlayColor,
     this.labelPadding,
     this.labelTextStyle,
+    this.maintainBottomViewPadding,
   });
 
   final Key? widgetKey;
@@ -101,6 +102,7 @@ class MaterialNavigationBarData {
   final WidgetStateProperty<Color?>? overlayColor;
   final EdgeInsetsGeometry? labelPadding;
   final WidgetStateProperty<TextStyle?>? labelTextStyle;
+  final bool? maintainBottomViewPadding;
 }
 
 class MaterialNavBarData extends _BaseData {
@@ -209,6 +211,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
             label: item.label ?? '',
             selectedIcon: item.activeIcon,
             tooltip: item.tooltip,
+            enabled: true,
           );
         }).toList() ??
         [];
@@ -232,6 +235,7 @@ class PlatformNavBar extends PlatformWidgetBase<CupertinoTabBar, Widget> {
       overlayColor: data?.overlayColor,
       labelPadding: data?.labelPadding,
       labelTextStyle: data?.labelTextStyle,
+      maintainBottomViewPadding: data?.maintainBottomViewPadding ?? false,
     );
   }
 

@@ -16,12 +16,7 @@ import 'widget_base.dart';
 const _kMinInteractiveDimensionCupertino = 44.0;
 
 abstract class _BaseData {
-  const _BaseData({
-    this.widgetKey,
-    this.child,
-    this.onPressed,
-    this.onLongPress,
-  });
+  const _BaseData({this.widgetKey, this.child, this.onPressed, this.onLongPress});
 
   final Key? widgetKey;
   final Widget? child;
@@ -67,6 +62,10 @@ class CupertinoElevatedButtonData extends _BaseData {
     this.padding,
     this.disabledColor,
     this.borderRadius,
+    @Deprecated(
+      'Use minimumSize instead. '
+      'This feature was deprecated after v3.28.0-3.0.pre.',
+    )
     this.minSize,
     this.pressedOpacity,
     this.alignment,
@@ -76,6 +75,8 @@ class CupertinoElevatedButtonData extends _BaseData {
     this.focusNode,
     this.onFocusChange,
     this.sizeStyle,
+    this.minimumSize,
+    this.mouseCursor,
   });
 
   final Color? color;
@@ -90,6 +91,8 @@ class CupertinoElevatedButtonData extends _BaseData {
   final FocusNode? focusNode;
   final ValueChanged<bool>? onFocusChange;
   final CupertinoButtonSize? sizeStyle;
+  final Size? minimumSize;
+  final MouseCursor? mouseCursor;
 
   // If true will use the text style rather than the filled style
   final bool originalStyle;
@@ -183,7 +186,8 @@ class PlatformElevatedButton
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
         borderRadius:
-            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
+            data?.borderRadius ??
+            const BorderRadius.all(const Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -197,6 +201,8 @@ class PlatformElevatedButton
         onFocusChange: data?.onFocusChange,
         onLongPress: data?.onLongPress ?? onLongPress,
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
+        minimumSize: data?.minimumSize,
+        mouseCursor: data?.mouseCursor,
       );
     } else {
       final button = CupertinoButton.filled(
@@ -204,7 +210,8 @@ class PlatformElevatedButton
         child: data?.child ?? child!,
         onPressed: data?.onPressed ?? onPressed,
         borderRadius:
-            data?.borderRadius ?? const BorderRadius.all(Radius.circular(8.0)),
+            data?.borderRadius ??
+            const BorderRadius.all(const Radius.circular(8.0)),
         minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
@@ -217,6 +224,9 @@ class PlatformElevatedButton
         onFocusChange: data?.onFocusChange,
         onLongPress: data?.onLongPress ?? onLongPress,
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
+        color: data?.color ?? color,
+        minimumSize: data?.minimumSize,
+        mouseCursor: data?.mouseCursor,
       );
 
       if (color != null) {

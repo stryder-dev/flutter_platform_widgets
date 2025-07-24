@@ -13,7 +13,8 @@ import 'package:flutter/material.dart'
         MaterialTapTargetSize,
         TextButton,
         WidgetStatesController,
-        VisualDensity;
+        VisualDensity,
+        IconAlignment;
 import 'package:flutter/widgets.dart';
 
 import 'platform.dart';
@@ -50,6 +51,7 @@ class MaterialDialogActionData extends _BaseData {
     this.onFocusChange,
     this.statesController,
     this.isSemanticButton,
+    this.iconAlignment,
   });
 
   final FocusNode? focusNode;
@@ -60,6 +62,7 @@ class MaterialDialogActionData extends _BaseData {
   final ValueChanged<bool>? onFocusChange;
   final WidgetStatesController? statesController;
   final bool? isSemanticButton;
+  final IconAlignment? iconAlignment;
 }
 
 class MaterialDialogFlatActionData extends _BaseData {
@@ -169,6 +172,7 @@ class PlatformDialogAction
         onHover: data?.onHover,
         onFocusChange: data?.onFocusChange,
         statesController: data?.statesController,
+        iconAlignment: data?.iconAlignment,
       );
     }
 

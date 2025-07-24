@@ -29,8 +29,8 @@ class PlatformTheme extends StatefulWidget {
   });
 
   static PlatformThemeState? of(BuildContext context) {
-    final _PlatformThemeState? state =
-        context.findAncestorStateOfType<_PlatformThemeState>();
+    _PlatformThemeState? state = context
+        .findAncestorStateOfType<_PlatformThemeState>();
 
     return state?.state;
   }
@@ -97,28 +97,13 @@ class _PlatformThemeState extends State<PlatformTheme>
   });
 
   bool get isDark {
-    final platformBrightness =
-        View.of(context).platformDispatcher.platformBrightness;
+    final platformBrightness = View.of(
+      context,
+    ).platformDispatcher.platformBrightness;
     return themeMode == ThemeMode.system
         ? platformBrightness == Brightness.dark
         : themeMode == ThemeMode.dark;
   }
-
-  @Deprecated(
-    'Switching to and from Material 2 and 3 is deprecated has no effect and wil be removed in the future.',
-  )
-  void changeToMaterial3({bool applyToBothDarkAndLightTheme = false}) =>
-      _setMaterialThemeType(
-        applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme,
-      );
-
-  @Deprecated(
-    'Switching to and from Material 2 and 3 is deprecated has no effect and wil be removed in the future.',
-  )
-  void changeToMaterial2({bool applyToBothDarkAndLightTheme = false}) =>
-      _setMaterialThemeType(
-        applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme,
-      );
 
   void resetMaterial({bool applyToBothDarkAndLightTheme = false}) {
     _setMaterialThemeType(
@@ -186,29 +171,4 @@ class PlatformThemeState {
   ThemeData? get materialLightTheme => _parent._materialLightTheme;
 
   ThemeData? get materialDarkTheme => _parent._materialDarkTheme;
-
-  @Deprecated(
-    'Switching to and from Material 2 and 3 is deprecated has no effect and wil be removed in the future.',
-  )
-  void changeToMaterial3({bool applyToBothDarkAndLightTheme = false}) =>
-      _parent.changeToMaterial3(
-        applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme,
-      );
-
-  @Deprecated(
-    'Switching to and from Material 2 and 3 is deprecated has no effect and wil be removed in the future.',
-  )
-  void changeToMaterial2({bool applyToBothDarkAndLightTheme = false}) =>
-      _parent.changeToMaterial2(
-        applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme,
-      );
-
-  @Deprecated(
-    'Switching to and from Material 2 and 3 is deprecated has no effect and wil be removed in the future.',
-  )
-  void resetToMaterialDefaultVersion({
-    bool applyToBothDarkAndLightTheme = false,
-  }) => _parent.resetMaterial(
-    applyToBothDarkAndLightTheme: applyToBothDarkAndLightTheme,
-  );
 }

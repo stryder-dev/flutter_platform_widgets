@@ -76,6 +76,7 @@ class MaterialAppBarData extends _BaseData {
     this.clipBehavior,
     this.forceMaterialTransparency,
     this.actionsPadding,
+    this.useDefaultSemanticsOrder,
   });
 
   final List<Widget>? actions;
@@ -103,6 +104,7 @@ class MaterialAppBarData extends _BaseData {
   final Clip? clipBehavior;
   final bool? forceMaterialTransparency;
   final EdgeInsetsGeometry? actionsPadding;
+  final bool? useDefaultSemanticsOrder;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
@@ -208,6 +210,7 @@ class PlatformAppBar
       clipBehavior: data?.clipBehavior,
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
       actionsPadding: data?.actionsPadding,
+      useDefaultSemanticsOrder: data?.useDefaultSemanticsOrder ?? true,
     );
   }
 
@@ -244,14 +247,13 @@ class PlatformAppBar
         previousPageTitle: data?.previousPageTitle,
         padding: data?.padding,
         border: data?.border ?? _kDefaultNavBarBorder,
-        leading:
-            _getLeadingCupertinoWidget(context, data)
-                ?.withMaterial(useMaterial)
-                .withWidgetFinder<CupertinoNavigationBar>(),
-        trailing:
-            (data?.trailing ?? trailing)
-                ?.withMaterial(useMaterial)
-                .withWidgetFinder<CupertinoNavigationBar>(),
+        leading: _getLeadingCupertinoWidget(
+          context,
+          data,
+        )?.withMaterial(useMaterial).withWidgetFinder<CupertinoNavigationBar>(),
+        trailing: (data?.trailing ?? trailing)
+            ?.withMaterial(useMaterial)
+            .withWidgetFinder<CupertinoNavigationBar>(),
         transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
         brightness: data?.brightness,
         heroTag: heroTag,
@@ -272,14 +274,13 @@ class PlatformAppBar
       previousPageTitle: data?.previousPageTitle,
       padding: data?.padding,
       border: data?.border ?? _kDefaultNavBarBorder,
-      leading:
-          _getLeadingCupertinoWidget(context, data)
-              ?.withMaterial(useMaterial)
-              .withWidgetFinder<CupertinoNavigationBar>(),
-      trailing:
-          (data?.trailing ?? trailing)
-              ?.withMaterial(useMaterial)
-              .withWidgetFinder<CupertinoNavigationBar>(),
+      leading: _getLeadingCupertinoWidget(
+        context,
+        data,
+      )?.withMaterial(useMaterial).withWidgetFinder<CupertinoNavigationBar>(),
+      trailing: (data?.trailing ?? trailing)
+          ?.withMaterial(useMaterial)
+          .withWidgetFinder<CupertinoNavigationBar>(),
       transitionBetweenRoutes: data?.transitionBetweenRoutes ?? true,
       brightness: data?.brightness,
       automaticBackgroundVisibility:

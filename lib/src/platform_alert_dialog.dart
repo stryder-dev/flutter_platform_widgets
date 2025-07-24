@@ -13,7 +13,10 @@ import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
-const _defaultInsetPadding = EdgeInsets.symmetric(horizontal: 40, vertical: 24);
+const EdgeInsets _defaultInsetPadding = EdgeInsets.symmetric(
+  horizontal: 40.0,
+  vertical: 24.0,
+);
 
 abstract class _BaseData {
   const _BaseData({this.widgetKey, this.actions, this.content, this.title});

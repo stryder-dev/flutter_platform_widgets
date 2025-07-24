@@ -59,6 +59,7 @@ class PlatformText extends StatelessWidget {
     TextWidthBasis? textWidthBasis,
     ui.TextHeightBehavior? textHeightBehavior,
     Color? selectionColor,
+    String? semanticsIdentifier,
   }) {
     return PlatformText._(
       key,
@@ -78,6 +79,7 @@ class PlatformText extends StatelessWidget {
         textWidthBasis: textWidthBasis,
         textHeightBehavior: textHeightBehavior,
         selectionColor: selectionColor,
+        semanticsIdentifier: semanticsIdentifier,
         //deprecated textScaleFactor: textScaleFactor,
       ),
     );
