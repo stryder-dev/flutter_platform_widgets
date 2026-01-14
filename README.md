@@ -1,3 +1,9 @@
+@@ -1,3 +1,8 @@
+## ⚠️ Package Discontinued
+
+This package is no longer maintained.
+No further bug fixes or compatibility updates will be provided.
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/stryder-dev/flutter_platform_widgets/master/images/logo.png" width="250px" alt="Flutter Platform Widgets" />
 </p>

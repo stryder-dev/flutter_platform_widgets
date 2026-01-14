@@ -1,3 +1,6 @@
+This package is no longer maintained.
+No further bug fixes or compatibility updates will be provided.
+
 ## [9.0.0]
 
 #### (Flutter version support: v3.32.0)
