@@ -225,7 +225,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       borderRadius:
           data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
-      minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
+      minSize: data?.minSize,
       pressedOpacity: data?.pressedOpacity ?? 0.4,
       disabledColor:
           data?.disabledColor ??

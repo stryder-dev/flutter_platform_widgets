@@ -190,7 +190,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
+        minSize: data?.minSize,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
@@ -222,7 +222,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
+        minSize: data?.minSize,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
