@@ -124,11 +124,13 @@ class CupertinoDialogActionData extends _BaseData {
     this.isDefaultAction,
     this.isDestructiveAction,
     this.textStyle,
+    this.mouseCursor,
   });
 
   final bool? isDefaultAction;
   final bool? isDestructiveAction;
   final TextStyle? textStyle;
+  final MouseCursor? mouseCursor;
 }
 
 class PlatformDialogAction
@@ -205,6 +207,7 @@ class PlatformDialogAction
       isDestructiveAction: data?.isDestructiveAction ?? false,
       onPressed: data?.onPressed ?? onPressed,
       textStyle: data?.textStyle,
+      mouseCursor: data?.mouseCursor,
     );
   }
 }

@@ -71,6 +71,7 @@ class MaterialListTileData extends _BaseData {
     this.titleTextStyle,
     this.internalAddSemanticForOnTap,
     this.minTileHeight,
+    this.statesController,
   });
 
   final bool? isThreeLine;
@@ -104,6 +105,7 @@ class MaterialListTileData extends _BaseData {
   final TextStyle? titleTextStyle;
   final bool? internalAddSemanticForOnTap;
   final double? minTileHeight;
+  final WidgetStatesController? statesController;
 }
 
 class CupertinoListTileData extends _BaseData {
@@ -194,6 +196,7 @@ class PlatformListTile extends PlatformWidgetBase<CupertinoListTile, ListTile> {
       titleTextStyle: data?.titleTextStyle,
       internalAddSemanticForOnTap: data?.internalAddSemanticForOnTap ?? true,
       minTileHeight: data?.minTileHeight,
+      statesController: data?.statesController,
     );
   }
 

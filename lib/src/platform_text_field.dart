@@ -110,6 +110,7 @@ abstract class _BaseData {
     this.undoController,
     this.groupId,
     this.stylusHandwritingEnabled,
+    this.selectAllOnFocus,
   });
 
   final Key? widgetKey;
@@ -173,6 +174,8 @@ abstract class _BaseData {
   final UndoHistoryController? undoController;
   final Object? groupId;
   final bool? stylusHandwritingEnabled;
+
+  final bool? selectAllOnFocus;
 }
 
 class MaterialTextFieldData extends _BaseData {
@@ -234,6 +237,7 @@ class MaterialTextFieldData extends _BaseData {
     super.undoController,
     super.groupId,
     super.stylusHandwritingEnabled,
+    super.selectAllOnFocus,
     this.decoration,
     this.buildCounter,
     this.mouseCursor,
@@ -315,6 +319,7 @@ class CupertinoTextFieldData extends _BaseData {
     super.magnifierConfiguration,
     super.groupId,
     super.stylusHandwritingEnabled,
+    super.selectAllOnFocus,
     this.decoration,
     this.padding,
     this.placeholder,
@@ -412,16 +417,21 @@ class PlatformTextField
   final UndoHistoryController? undoController;
   final Object? groupId;
   final bool? stylusHandwritingEnabled;
+  final bool? selectAllOnFocus;
 
   static Widget _defaultMaterialContextMenuBuilder(
-      BuildContext context, EditableTextState editableTextState) {
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
     return AdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );
   }
 
   static Widget _defaultCupertinoContextMenuBuilder(
-      BuildContext context, EditableTextState editableTextState) {
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
     return CupertinoAdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );
@@ -486,10 +496,12 @@ class PlatformTextField
     this.undoController,
     this.groupId,
     this.stylusHandwritingEnabled,
+    this.selectAllOnFocus,
     this.material,
     this.cupertino,
-  }) : keyboardType = keyboardType ??
-            (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
+  }) : keyboardType =
+           keyboardType ??
+           (maxLines == 1 ? TextInputType.text : TextInputType.multiline);
 
   @override
   TextField createMaterialWidget(BuildContext context) {
@@ -526,21 +538,24 @@ class PlatformTextField
           data?.scrollPadding ?? scrollPadding ?? const EdgeInsets.all(20),
       style: data?.style ?? style,
       textAlign: data?.textAlign ?? textAlign ?? TextAlign.start,
-      textCapitalization: data?.textCapitalization ??
+      textCapitalization:
+          data?.textCapitalization ??
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
       decoration: decoration,
       textDirection: data?.textDirection,
       buildCounter: data?.buildCounter,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       expands: data?.expands ?? expands ?? false,
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      enableInteractiveSelection: data?.enableInteractiveSelection ??
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ??
           enableInteractiveSelection ??
           true,
       scrollController: data?.scrollController ?? scrollController,
@@ -551,10 +566,12 @@ class PlatformTextField
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
-      selectionHeightStyle: data?.selectionHeightStyle ??
+      selectionHeightStyle:
+          data?.selectionHeightStyle ??
           selectionHeightStyle ??
           ui.BoxHeightStyle.tight,
-      selectionWidthStyle: data?.selectionWidthStyle ??
+      selectionWidthStyle:
+          data?.selectionWidthStyle ??
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
@@ -565,11 +582,13 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
-      enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
+      enableIMEPersonalizedLearning:
+          data?.enableIMEPersonalizedLearning ??
           enableIMEPersonalizedLearning ??
           true,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
-      contextMenuBuilder: data?.contextMenuBuilder ??
+      contextMenuBuilder:
+          data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultMaterialContextMenuBuilder,
       onTapOutside: data?.onTapOutside ?? onTapOutside,
@@ -589,9 +608,12 @@ class PlatformTextField
       ignorePointers: data?.ignorePointers,
       groupId: data?.groupId ?? groupId ?? EditableText,
       onTapUpOutside: data?.onTapUpOutside,
-      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+      stylusHandwritingEnabled:
+          data?.stylusHandwritingEnabled ??
           stylusHandwritingEnabled ??
           EditableText.defaultStylusHandwritingEnabled,
+      hintLocales: [],
+      selectAllOnFocus: data?.selectAllOnFocus ?? selectAllOnFocus,
       // toolbarOptions: Deprecated
       // scribbleEnabled: Deprecated
     );
@@ -626,18 +648,21 @@ class PlatformTextField
           data?.scrollPadding ?? scrollPadding ?? const EdgeInsets.all(20.0),
       style: data?.style ?? style,
       textAlign: data?.textAlign ?? textAlign ?? TextAlign.start,
-      textCapitalization: data?.textCapitalization ??
+      textCapitalization:
+          data?.textCapitalization ??
           textCapitalization ??
           TextCapitalization.none,
       textInputAction: data?.textInputAction ?? textInputAction,
-      decoration: data?.decoration ??
+      decoration:
+          data?.decoration ??
           (makeCupertinoDecorationNull
               ? null
               : kDefaultRoundedBorderDecoration),
       clearButtonMode: data?.clearButtonMode ?? OverlayVisibilityMode.never,
       padding: data?.padding ?? const EdgeInsets.all(6.0),
       placeholder: data?.placeholder ?? hintText,
-      placeholderStyle: data?.placeholderStyle ??
+      placeholderStyle:
+          data?.placeholderStyle ??
           const TextStyle(
             fontWeight: FontWeight.w400,
             color: CupertinoColors.placeholderText,
@@ -646,14 +671,16 @@ class PlatformTextField
       prefixMode: data?.prefixMode ?? OverlayVisibilityMode.always,
       suffix: data?.suffix,
       suffixMode: data?.suffixMode ?? OverlayVisibilityMode.always,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       expands: data?.expands ?? expands ?? false,
       minLines: data?.minLines ?? minLines,
       scrollPhysics: data?.scrollPhysics ?? scrollPhysics,
       strutStyle: data?.strutStyle ?? strutStyle,
-      enableInteractiveSelection: data?.enableInteractiveSelection ??
+      enableInteractiveSelection:
+          data?.enableInteractiveSelection ??
           enableInteractiveSelection ??
           true,
       scrollController: data?.scrollController ?? scrollController,
@@ -664,10 +691,12 @@ class PlatformTextField
       enableSuggestions: data?.enableSuggestions ?? true,
       smartQuotesType: data?.smartQuotesType ?? smartQuotesType,
       smartDashesType: data?.smartDashesType ?? smartDashesType,
-      selectionHeightStyle: data?.selectionHeightStyle ??
+      selectionHeightStyle:
+          data?.selectionHeightStyle ??
           selectionHeightStyle ??
           ui.BoxHeightStyle.tight,
-      selectionWidthStyle: data?.selectionWidthStyle ??
+      selectionWidthStyle:
+          data?.selectionWidthStyle ??
           selectionWidthStyle ??
           ui.BoxWidthStyle.tight,
       obscuringCharacter: data?.obscuringCharacter ?? obscuringCharacter ?? '•',
@@ -676,13 +705,15 @@ class PlatformTextField
       restorationId: data?.restorationId ?? restorationId,
       maxLengthEnforcement: data?.maxLengthEnforcement ?? maxLengthEnforcement,
       selectionControls: data?.selectionControls ?? selectionControls,
-      enableIMEPersonalizedLearning: data?.enableIMEPersonalizedLearning ??
+      enableIMEPersonalizedLearning:
+          data?.enableIMEPersonalizedLearning ??
           enableIMEPersonalizedLearning ??
           true,
       textDirection: data?.textDirection,
       clipBehavior: data?.clipBehavior ?? clipBehavior,
 
-      contextMenuBuilder: data?.contextMenuBuilder ??
+      contextMenuBuilder:
+          data?.contextMenuBuilder ??
           contextMenuBuilder ??
           _defaultCupertinoContextMenuBuilder,
       onTapOutside: data?.onTapOutside ?? onTapOutside,
@@ -699,9 +730,11 @@ class PlatformTextField
       crossAxisAlignment: data?.crossAxisAlignment ?? CrossAxisAlignment.center,
       groupId: data?.groupId ?? groupId ?? EditableText,
       onTapUpOutside: data?.onTapUpOutside,
-      stylusHandwritingEnabled: data?.stylusHandwritingEnabled ??
+      stylusHandwritingEnabled:
+          data?.stylusHandwritingEnabled ??
           stylusHandwritingEnabled ??
           EditableText.defaultStylusHandwritingEnabled,
+      selectAllOnFocus: data?.selectAllOnFocus ?? selectAllOnFocus,
       // toolbarOptions: Deprecated
       // scribbleEnabled: Deprecated
     );

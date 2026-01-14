@@ -19,8 +19,6 @@ import 'platform.dart';
 import 'platform_provider.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
-
 abstract class _BaseData {
   _BaseData({
     this.widgetKey,
@@ -51,11 +49,6 @@ class CupertinoIconButtonData extends _BaseData {
     super.disabledColor,
     super.onLongPress,
     this.borderRadius,
-    @Deprecated(
-      'Use minimumSize instead. '
-      'This feature was deprecated after v3.28.0-3.0.pre.',
-    )
-    this.minSize,
     this.pressedOpacity,
     this.alignment,
     this.autofocus,
@@ -65,10 +58,10 @@ class CupertinoIconButtonData extends _BaseData {
     this.sizeStyle,
     this.minimumSize,
     this.mouseCursor,
+    this.foregroundColor,
   });
 
   final BorderRadius? borderRadius;
-  final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
   final bool? autofocus;
@@ -78,6 +71,7 @@ class CupertinoIconButtonData extends _BaseData {
   final CupertinoButtonSize? sizeStyle;
   final Size? minimumSize;
   final MouseCursor? mouseCursor;
+  final Color? foregroundColor;
 }
 
 class MaterialIconButtonData extends _BaseData {
@@ -107,6 +101,7 @@ class MaterialIconButtonData extends _BaseData {
     this.selectedIcon,
     this.style,
     this.onHover,
+    this.statesController,
   });
 
   final AlignmentGeometry? alignment;
@@ -127,6 +122,7 @@ class MaterialIconButtonData extends _BaseData {
   final Widget? selectedIcon;
   final ButtonStyle? style;
   final ValueChanged<bool>? onHover;
+  final WidgetStatesController? statesController;
 }
 
 class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
@@ -192,6 +188,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       style: data?.style,
       onHover: data?.onHover,
       onLongPress: data?.onLongPress ?? onLongPress,
+      statesController: data?.statesController,
     );
   }
 
@@ -225,7 +222,6 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       borderRadius:
           data?.borderRadius ??
           const BorderRadius.all(const Radius.circular(8.0)),
-      minSize: data?.minSize,
       pressedOpacity: data?.pressedOpacity ?? 0.4,
       disabledColor:
           data?.disabledColor ??
@@ -240,6 +236,7 @@ class PlatformIconButton extends PlatformWidgetBase<CupertinoButton, Widget> {
       sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
       minimumSize: data?.minimumSize,
       mouseCursor: data?.mouseCursor,
+      foregroundColor: data?.foregroundColor,
     );
   }
 }

@@ -17,7 +17,6 @@ abstract class _BaseData {
     this.widgetKey,
     this.value,
     this.onChanged,
-    this.activeColor,
     this.dragStartBehavior,
     this.focusNode,
     this.autofocus,
@@ -36,7 +35,6 @@ abstract class _BaseData {
 
   final Key? widgetKey;
   final bool? value;
-  final Color? activeColor;
   final void Function(bool)? onChanged;
   final DragStartBehavior? dragStartBehavior;
   final FocusNode? focusNode;
@@ -59,7 +57,6 @@ class MaterialSwitchData extends _BaseData {
     super.widgetKey,
     super.value,
     super.onChanged,
-    super.activeColor,
     super.dragStartBehavior,
     super.focusNode,
     super.autofocus,
@@ -83,6 +80,7 @@ class MaterialSwitchData extends _BaseData {
     this.thumbColor,
     this.trackColor,
     this.padding,
+    this.activeThumbColor,
   });
 
   final MaterialTapTargetSize? materialTapTargetSize;
@@ -95,6 +93,7 @@ class MaterialSwitchData extends _BaseData {
   final WidgetStateProperty<Color?>? trackColor;
 
   final EdgeInsetsGeometry? padding;
+  final Color? activeThumbColor;
 }
 
 class CupertinoSwitchData extends _BaseData {
@@ -136,7 +135,6 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
   final Key? widgetKey;
 
   final bool value;
-  final Color? activeColor;
   final void Function(bool)? onChanged;
   final DragStartBehavior? dragStartBehavior;
   final bool? autofocus;
@@ -162,7 +160,6 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
     required this.value,
     required this.onChanged,
     this.dragStartBehavior,
-    this.activeColor,
     this.autofocus,
     this.focusNode,
     this.onFocusChange,
@@ -188,14 +185,14 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
-      activeColor: data?.activeColor ?? activeColor,
       activeThumbImage: data?.activeThumbImage ?? activeThumbImage,
       activeTrackColor: data?.activeTrackColor ?? activeTrackColor,
       inactiveThumbColor: data?.inactiveThumbColor ?? inactiveThumbColor,
       inactiveThumbImage: data?.inactiveThumbImage ?? inactiveThumbImage,
       inactiveTrackColor: data?.inactiveTrackColor ?? inactiveTrackColor,
       materialTapTargetSize: data?.materialTapTargetSize,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       autofocus: data?.autofocus ?? autofocus ?? false,
@@ -216,6 +213,7 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       trackOutlineColor: data?.trackOutlineColor ?? trackOutlineColor,
       trackOutlineWidth: data?.trackOutlineWidth ?? trackOutlineWidth,
       padding: data?.padding,
+      activeThumbColor: data?.activeThumbColor,
     );
   }
 
@@ -227,7 +225,8 @@ class PlatformSwitch extends PlatformWidgetBase<CupertinoSwitch, Switch> {
       key: data?.widgetKey ?? widgetKey,
       value: data?.value ?? value,
       onChanged: data?.onChanged ?? onChanged,
-      dragStartBehavior: data?.dragStartBehavior ??
+      dragStartBehavior:
+          data?.dragStartBehavior ??
           dragStartBehavior ??
           DragStartBehavior.start,
       thumbColor: data?.thumbColor,

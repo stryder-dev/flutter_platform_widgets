@@ -56,6 +56,7 @@ class MaterialAlertDialogData extends _BaseData {
     this.iconPadding,
     this.shadowColor,
     this.surfaceTintColor,
+    this.constraints,
   });
 
   final EdgeInsetsGeometry? contentPadding;
@@ -81,6 +82,7 @@ class MaterialAlertDialogData extends _BaseData {
   final EdgeInsetsGeometry? iconPadding;
   final Color? shadowColor;
   final Color? surfaceTintColor;
+  final BoxConstraints? constraints;
 }
 
 class CupertinoAlertDialogData extends _BaseData {
@@ -152,6 +154,7 @@ class PlatformAlertDialog extends PlatformWidgetBase<Widget, AlertDialog> {
       iconPadding: data?.iconPadding,
       shadowColor: data?.shadowColor,
       surfaceTintColor: data?.surfaceTintColor,
+      constraints: data?.constraints,
     );
   }
 

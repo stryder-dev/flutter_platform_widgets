@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:math' as math;
+
 import 'package:flutter/cupertino.dart'
     show
         CupertinoPageScaffold,
@@ -18,7 +20,8 @@ import 'package:flutter/material.dart'
         FloatingActionButtonAnimator,
         FloatingActionButtonLocation,
         Material,
-        Scaffold;
+        Scaffold,
+        Colors;
 import 'package:flutter/widgets.dart';
 
 import 'extensions.dart';
@@ -29,11 +32,7 @@ import 'platform_provider.dart';
 import 'widget_base.dart';
 
 abstract class _BaseData {
-  _BaseData({
-    this.widgetKey,
-    this.backgroundColor,
-    this.body,
-  });
+  _BaseData({this.widgetKey, this.backgroundColor, this.body});
 
   final Color? backgroundColor;
   final Widget? body;
@@ -67,6 +66,9 @@ class MaterialScaffoldData extends _BaseData {
     this.onDrawerChanged,
     this.onEndDrawerChanged,
     this.persistentFooterAlignment,
+    this.bottomSheetScrimBuilder,
+    this.drawerBarrierDismissible,
+    this.persistentFooterDecoration,
   });
 
   final PreferredSizeWidget? appBar;
@@ -91,6 +93,10 @@ class MaterialScaffoldData extends _BaseData {
   final DrawerCallback? onDrawerChanged;
   final DrawerCallback? onEndDrawerChanged;
   final AlignmentDirectional? persistentFooterAlignment;
+  final Widget? Function(BuildContext, Animation<double>)?
+  bottomSheetScrimBuilder;
+  final bool? drawerBarrierDismissible;
+  final BoxDecoration? persistentFooterDecoration;
 }
 
 class CupertinoPageScaffoldData extends _BaseData {
@@ -179,6 +185,10 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       restorationId: data?.restorationId,
       persistentFooterAlignment:
           data?.persistentFooterAlignment ?? AlignmentDirectional.centerEnd,
+      bottomSheetScrimBuilder:
+          data?.bottomSheetScrimBuilder ?? _defaultBottomSheetScrimBuilder,
+      drawerBarrierDismissible: data?.drawerBarrierDismissible ?? true,
+      persistentFooterDecoration: data?.persistentFooterDecoration,
     );
   }
 
@@ -207,7 +217,8 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
         tabBar: tabBar!,
         controller: data?.controller,
         tabBuilder: (BuildContext context, int index) {
-          final currentChild = cupertinoTabChildBuilder?.call(context, index) ??
+          final currentChild =
+              cupertinoTabChildBuilder?.call(context, index) ??
               data?.body ??
               body ??
               const SizedBox.shrink();
@@ -246,12 +257,18 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
 
     // Ensure that there is Material widget at the root page level
     // as there can be Material widgets used on ios
-    return result.withMaterial(useLegacyMaterial &&
-        context.findAncestorWidgetOfExactType<Material>() == null);
+    return result.withMaterial(
+      useLegacyMaterial &&
+          context.findAncestorWidgetOfExactType<Material>() == null,
+    );
   }
 
-  Widget iosContentPad(BuildContext context, Widget child,
-      ObstructingPreferredSizeWidget? navigationBar, CupertinoTabBar? tabBar) {
+  Widget iosContentPad(
+    BuildContext context,
+    Widget child,
+    ObstructingPreferredSizeWidget? navigationBar,
+    CupertinoTabBar? tabBar,
+  ) {
     final MediaQueryData existingMediaQuery = MediaQuery.of(context);
 
     if (!iosContentPadding && !iosContentBottomPadding) {
@@ -279,4 +296,33 @@ class PlatformScaffold extends PlatformWidgetBase<Widget, Scaffold> {
       child: child,
     );
   }
+
+  static Widget _defaultBottomSheetScrimBuilder(
+    BuildContext context,
+    Animation<double> animation,
+  ) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (BuildContext context, Widget? child) {
+        final double extentRemaining =
+            _kBottomSheetDominatesPercentage * (1.0 - animation.value);
+        final double floatingButtonVisibilityValue =
+            extentRemaining * _kBottomSheetDominatesPercentage * 10;
+
+        final double opacity = math.max(
+          _kMinBottomSheetScrimOpacity,
+          _kMaxBottomSheetScrimOpacity - floatingButtonVisibilityValue,
+        );
+
+        return ModalBarrier(
+          dismissible: false,
+          color: Colors.black.withOpacity(opacity),
+        );
+      },
+    );
+  }
 }
+
+const double _kBottomSheetDominatesPercentage = 0.3;
+const double _kMinBottomSheetScrimOpacity = 0.1;
+const double _kMaxBottomSheetScrimOpacity = 0.6;

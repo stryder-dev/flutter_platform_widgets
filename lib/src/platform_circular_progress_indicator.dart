@@ -14,10 +14,7 @@ import 'widget_base.dart';
 const double _kDefaultIndicatorRadius = 10.0;
 
 abstract class _BaseData {
-  _BaseData({
-    this.key,
-    this.color,
-  });
+  _BaseData({this.key, this.color});
 
   final Key? key;
   final Color? color;
@@ -38,6 +35,7 @@ class MaterialProgressIndicatorData extends _BaseData {
     this.constraints,
     this.padding,
     this.trackGap,
+    this.controller,
   });
 
   final Color? backgroundColor;
@@ -51,6 +49,7 @@ class MaterialProgressIndicatorData extends _BaseData {
   final BoxConstraints? constraints;
   final EdgeInsetsGeometry? padding;
   final double? trackGap;
+  final AnimationController? controller;
 }
 
 class CupertinoProgressIndicatorData extends _BaseData {
@@ -65,8 +64,12 @@ class CupertinoProgressIndicatorData extends _BaseData {
   final double? radius;
 }
 
-class PlatformCircularProgressIndicator extends PlatformWidgetBase<
-    CupertinoActivityIndicator, CircularProgressIndicator> {
+class PlatformCircularProgressIndicator
+    extends
+        PlatformWidgetBase<
+          CupertinoActivityIndicator,
+          CircularProgressIndicator
+        > {
   final Key? widgetKey;
 
   final PlatformBuilder<MaterialProgressIndicatorData>? material;
@@ -98,6 +101,7 @@ class PlatformCircularProgressIndicator extends PlatformWidgetBase<
       constraints: data?.constraints,
       padding: data?.padding,
       trackGap: data?.trackGap,
+      controller: data?.controller,
       // year2023: , // deprecated
     );
   }

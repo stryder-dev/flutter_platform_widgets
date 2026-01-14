@@ -148,6 +148,7 @@ class MaterialTextFormFieldData extends _BaseData {
   final TapRegionUpCallback? onTapUpOutside;
   final bool? stylusHandwritingEnabled;
   final FormFieldErrorBuilder? errorBuilder;
+  final bool? selectAllOnFocus;
 
   MaterialTextFormFieldData({
     super.widgetKey,
@@ -223,6 +224,7 @@ class MaterialTextFormFieldData extends _BaseData {
     this.onTapUpOutside,
     this.stylusHandwritingEnabled,
     this.errorBuilder,
+    this.selectAllOnFocus,
   });
 }
 
@@ -232,6 +234,8 @@ class CupertinoTextFormFieldData extends _BaseData {
   final BoxDecoration? decoration;
   final String? placeholder;
   final TextStyle? placeholderStyle;
+  final ui.BoxHeightStyle? selectionHeightStyle;
+  final ui.BoxWidthStyle? selectionWidthStyle;
 
   CupertinoTextFormFieldData({
     super.widgetKey,
@@ -286,6 +290,8 @@ class CupertinoTextFormFieldData extends _BaseData {
     this.padding,
     this.placeholder,
     this.placeholderStyle,
+    this.selectionHeightStyle,
+    this.selectionWidthStyle,
   });
 }
 
@@ -515,6 +521,8 @@ class PlatformTextFormField
           data?.stylusHandwritingEnabled ??
           EditableText.defaultStylusHandwritingEnabled,
       errorBuilder: data?.errorBuilder,
+      hintLocales: [],
+      selectAllOnFocus: data?.selectAllOnFocus,
       // toolbarOptions: , Deprecated
       // scribbleEnabled: deprecated
     );
@@ -595,6 +603,8 @@ class PlatformTextFormField
       restorationId: data?.restorationId ?? restorationId,
       spellCheckConfiguration:
           data?.spellCheckConfiguration ?? spellCheckConfiguration,
+      selectionHeightStyle: data?.selectionHeightStyle,
+      selectionWidthStyle: data?.selectionWidthStyle,
       // toolbarOptions: , Deprecated
     );
   }

@@ -129,6 +129,8 @@ class CupertinoDatePickerData extends _BaseData {
     this.itemExtent,
     this.selectionOverlayBuilder,
     this.showTimeSeparator,
+    this.changeReportingBehavior,
+    this.selectableDayPredicate,
   });
 
   final Key? key;
@@ -146,6 +148,9 @@ class CupertinoDatePickerData extends _BaseData {
   final double? itemExtent;
   final SelectionOverlayBuilder? selectionOverlayBuilder;
   final bool? showTimeSeparator;
+
+  final ChangeReportingBehavior? changeReportingBehavior;
+  final SelectableDayPredicate? selectableDayPredicate;
 }
 
 Future<DateTime?> showPlatformDatePicker({
@@ -292,6 +297,10 @@ class DefaultCupertinoDatePicker extends StatelessWidget {
             itemExtent: data?.itemExtent ?? _kItemExtent,
             selectionOverlayBuilder: data?.selectionOverlayBuilder,
             showTimeSeparator: data?.showTimeSeparator ?? false,
+            changeReportingBehavior:
+                data?.changeReportingBehavior ??
+                ChangeReportingBehavior.onScrollUpdate,
+            selectableDayPredicate: data?.selectableDayPredicate,
           ),
           Row(
             children: [

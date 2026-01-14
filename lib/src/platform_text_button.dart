@@ -13,8 +13,6 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
-
 abstract class _BaseData {
   _BaseData({this.widgetKey, this.child, this.onPressed});
 
@@ -63,11 +61,6 @@ class CupertinoTextButtonData extends _BaseData {
     this.padding,
     this.disabledColor,
     this.borderRadius,
-    @Deprecated(
-      'Use minimumSize instead. '
-      'This feature was deprecated after v3.28.0-3.0.pre.',
-    )
-    this.minSize,
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
@@ -79,13 +72,13 @@ class CupertinoTextButtonData extends _BaseData {
     this.sizeStyle,
     this.minimumSize,
     this.mouseCursor,
+    this.foregroundColor,
   });
 
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final Color? disabledColor;
   final BorderRadius? borderRadius;
-  final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
   final bool? autofocus;
@@ -96,6 +89,7 @@ class CupertinoTextButtonData extends _BaseData {
   final CupertinoButtonSize? sizeStyle;
   final Size? minimumSize;
   final MouseCursor? mouseCursor;
+  final Color? foregroundColor;
 
   // If true will use the filled style rather than the text style
   final bool originalStyle;
@@ -190,7 +184,6 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
@@ -205,6 +198,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         color: data?.color ?? color,
         minimumSize: data?.minimumSize,
         mouseCursor: data?.mouseCursor,
+        foregroundColor: data?.foregroundColor,
       );
       if (color != null) {
         final themeData = CupertinoTheme.of(context);
@@ -222,7 +216,6 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
@@ -237,6 +230,7 @@ class PlatformTextButton extends PlatformWidgetBase<Widget, TextButton> {
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
         minimumSize: data?.minimumSize,
         mouseCursor: data?.mouseCursor,
+        foregroundColor: data?.foregroundColor,
       );
     }
   }

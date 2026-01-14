@@ -84,7 +84,7 @@ class _BasicTabbedPageState extends State<BasicTabbedPage> {
           ),
         ],
         cupertino: (_, __) => CupertinoNavigationBarData(
-          title: Text(
+          middle: Text(
             '${titles[index]}',
             style: TextStyle(color: cupertinoForgroundColor),
           ),
