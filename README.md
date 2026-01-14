@@ -1,3 +1,10 @@
+## ⚠️ Package Discontinued
+
+Due to Flutter's decision to split out Material and Cupertino widgets into their own packages, this project is now no longer supported. 
+
+No further bug fixes or compatibility updates will be provided.
+
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/stryder-dev/flutter_platform_widgets/master/images/logo.png" width="250px" alt="Flutter Platform Widgets" />
 </p>
