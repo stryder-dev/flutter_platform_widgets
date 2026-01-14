@@ -60,7 +60,7 @@ class _OriginalTabbedPageState extends State<OriginalTabbedPage> {
       appBarBuilder: (_, index) => PlatformAppBar(
         title: Text('${widget.platform.text} Page Title'),
         cupertino: (_, __) => CupertinoNavigationBarData(
-          title: Text('Title: ${titles[index]}'),
+          middle: Text('Title: ${titles[index]}'),
           //   only required if useCupertinoTabView = false,
           transitionBetweenRoutes: false,
         ),

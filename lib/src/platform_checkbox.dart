@@ -28,6 +28,7 @@ abstract class _BaseData {
     this.mouseCursor,
     this.fillColor,
     this.semanticLabel,
+    this.tapTargetSize,
   });
   final Key? widgetKey;
   final bool? value;
@@ -43,6 +44,7 @@ abstract class _BaseData {
   final MouseCursor? mouseCursor;
   final WidgetStateProperty<Color?>? fillColor;
   final String? semanticLabel;
+  final Size? tapTargetSize;
 }
 
 class MaterialCheckboxData extends _BaseData {
@@ -62,6 +64,7 @@ class MaterialCheckboxData extends _BaseData {
     super.mouseCursor,
     super.fillColor,
     super.semanticLabel,
+    super.tapTargetSize,
 
     //Material
     this.hoverColor,
@@ -97,6 +100,7 @@ class CupertinoCheckboxData extends _BaseData {
     super.mouseCursor,
     super.fillColor,
     super.semanticLabel,
+    super.tapTargetSize,
   });
 }
 
@@ -196,6 +200,7 @@ class PlatformCheckbox extends PlatformWidgetBase<CupertinoCheckbox, Checkbox> {
       fillColor: data?.fillColor ?? fillColor,
       mouseCursor: data?.mouseCursor ?? mouseCursor,
       semanticLabel: data?.semanticLabel ?? semanticLabel,
+      tapTargetSize: data?.tapTargetSize,
       // inactiveColor: , Deprecated
     );
   }

@@ -78,6 +78,7 @@ class MaterialSliverAppBarData extends _BaseData {
     this.clipBehavior,
     this.actionsPadding,
     this.useDefaultSemanticsOrder,
+    this.automaticallyImplyActions,
   }) : assert(
          floating || !snap,
          'The "snap" argument only makes sense for floating app bars.',
@@ -120,6 +121,7 @@ class MaterialSliverAppBarData extends _BaseData {
   final Clip? clipBehavior;
   final EdgeInsetsGeometry? actionsPadding;
   final bool? useDefaultSemanticsOrder;
+  final bool? automaticallyImplyActions;
 }
 
 class CupertinoSliverAppBarData extends _BaseData {
@@ -248,6 +250,7 @@ class PlatformSliverAppBar
       surfaceTintColor: data?.surfaceTintColor,
       actionsPadding: data?.actionsPadding,
       useDefaultSemanticsOrder: data?.useDefaultSemanticsOrder ?? true,
+      automaticallyImplyActions: data?.automaticallyImplyActions ?? true,
     );
   }
 

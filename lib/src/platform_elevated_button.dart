@@ -13,15 +13,20 @@ import 'package:flutter/widgets.dart';
 import 'platform.dart';
 import 'widget_base.dart';
 
-const double _kMinInteractiveDimensionCupertino = 44.0;
-
 abstract class _BaseData {
-  _BaseData({this.widgetKey, this.child, this.onPressed, this.onLongPress});
+  _BaseData({
+    this.widgetKey,
+    this.child,
+    this.onPressed,
+    this.onLongPress,
+    this.foregroundColor,
+  });
 
   final Key? widgetKey;
   final Widget? child;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
+  final Color? foregroundColor;
 }
 
 class MaterialElevatedButtonData extends _BaseData {
@@ -30,6 +35,7 @@ class MaterialElevatedButtonData extends _BaseData {
     super.child,
     super.onPressed,
     super.onLongPress,
+    super.foregroundColor,
     this.focusNode,
     this.style,
     this.autofocus,
@@ -58,15 +64,11 @@ class CupertinoElevatedButtonData extends _BaseData {
     super.child,
     super.onPressed,
     super.onLongPress,
+    super.foregroundColor,
     this.color,
     this.padding,
     this.disabledColor,
     this.borderRadius,
-    @Deprecated(
-      'Use minimumSize instead. '
-      'This feature was deprecated after v3.28.0-3.0.pre.',
-    )
-    this.minSize,
     this.pressedOpacity,
     this.alignment,
     this.originalStyle = false,
@@ -83,7 +85,6 @@ class CupertinoElevatedButtonData extends _BaseData {
   final EdgeInsetsGeometry? padding;
   final Color? disabledColor;
   final BorderRadius? borderRadius;
-  final double? minSize;
   final double? pressedOpacity;
   final AlignmentGeometry? alignment;
   final bool? autofocus;
@@ -188,7 +189,6 @@ class PlatformElevatedButton
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize ?? _kMinInteractiveDimensionCupertino,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
@@ -203,6 +203,7 @@ class PlatformElevatedButton
         sizeStyle: data?.sizeStyle ?? CupertinoButtonSize.large,
         minimumSize: data?.minimumSize,
         mouseCursor: data?.mouseCursor,
+        foregroundColor: data?.foregroundColor,
       );
     } else {
       final button = CupertinoButton.filled(
@@ -212,7 +213,6 @@ class PlatformElevatedButton
         borderRadius:
             data?.borderRadius ??
             const BorderRadius.all(const Radius.circular(8.0)),
-        minSize: data?.minSize,
         padding: data?.padding ?? padding,
         pressedOpacity: data?.pressedOpacity ?? 0.4,
         disabledColor:
@@ -227,6 +227,7 @@ class PlatformElevatedButton
         color: data?.color ?? color,
         minimumSize: data?.minimumSize,
         mouseCursor: data?.mouseCursor,
+        foregroundColor: data?.foregroundColor,
       );
 
       if (color != null) {

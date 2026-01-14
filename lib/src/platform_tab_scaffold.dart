@@ -4,6 +4,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'dart:math' as math;
+
 import 'package:flutter/cupertino.dart'
     show
         CupertinoPageScaffold,
@@ -19,7 +21,8 @@ import 'package:flutter/material.dart'
         FloatingActionButtonAnimator,
         FloatingActionButtonLocation,
         Material,
-        Scaffold;
+        Scaffold,
+        Colors;
 import 'package:flutter/widgets.dart';
 
 import 'extensions.dart';
@@ -65,6 +68,9 @@ class MaterialTabScaffoldData extends _BaseData {
     this.onEndDrawerChanged,
     this.persistentFooterAlignment,
     this.height,
+    this.bottomSheetScrimBuilder,
+    this.drawerBarrierDismissible,
+    this.persistentFooterDecoration,
   });
 
   final Widget Function(BuildContext context, int index)? bodyBuilder;
@@ -93,6 +99,10 @@ class MaterialTabScaffoldData extends _BaseData {
   final DrawerCallback? onEndDrawerChanged;
   final AlignmentDirectional? persistentFooterAlignment;
   final double? height;
+  final Widget? Function(BuildContext, Animation<double>)?
+  bottomSheetScrimBuilder;
+  final bool? drawerBarrierDismissible;
+  final BoxDecoration? persistentFooterDecoration;
 }
 
 class CupertinoTabViewData {
@@ -299,6 +309,10 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       restorationId: data?.restorationId ?? restorationId,
       persistentFooterAlignment:
           data?.persistentFooterAlignment ?? AlignmentDirectional.centerEnd,
+      bottomSheetScrimBuilder:
+          data?.bottomSheetScrimBuilder ?? _defaultBottomSheetScrimBuilder,
+      drawerBarrierDismissible: data?.drawerBarrierDismissible ?? true,
+      persistentFooterDecoration: data?.persistentFooterDecoration,
     );
   }
 
@@ -473,7 +487,36 @@ class PlatformTabScaffold extends PlatformWidgetBase<Widget, Widget> {
       child: child,
     );
   }
+
+  static Widget _defaultBottomSheetScrimBuilder(
+    BuildContext context,
+    Animation<double> animation,
+  ) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (BuildContext context, Widget? child) {
+        final double extentRemaining =
+            _kBottomSheetDominatesPercentage * (1.0 - animation.value);
+        final double floatingButtonVisibilityValue =
+            extentRemaining * _kBottomSheetDominatesPercentage * 10;
+
+        final double opacity = math.max(
+          _kMinBottomSheetScrimOpacity,
+          _kMaxBottomSheetScrimOpacity - floatingButtonVisibilityValue,
+        );
+
+        return ModalBarrier(
+          dismissible: false,
+          color: Colors.black.withOpacity(opacity),
+        );
+      },
+    );
+  }
 }
+
+const double _kBottomSheetDominatesPercentage = 0.3;
+const double _kMinBottomSheetScrimOpacity = 0.1;
+const double _kMaxBottomSheetScrimOpacity = 0.6;
 
 class MaterialTabControllerData {
   MaterialTabControllerData({this.initialIndex});

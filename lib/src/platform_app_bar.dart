@@ -78,6 +78,8 @@ class MaterialAppBarData extends _BaseData {
     this.forceMaterialTransparency,
     this.actionsPadding,
     this.useDefaultSemanticsOrder,
+    this.animateColor,
+    this.automaticallyImplyActions,
   });
 
   final List<Widget>? actions;
@@ -106,11 +108,12 @@ class MaterialAppBarData extends _BaseData {
   final bool? forceMaterialTransparency;
   final EdgeInsetsGeometry? actionsPadding;
   final bool? useDefaultSemanticsOrder;
+  final bool? animateColor;
+  final bool? automaticallyImplyActions;
 }
 
 class CupertinoNavigationBarData extends _BaseData {
   CupertinoNavigationBarData({
-    super.title,
     super.backgroundColor,
     super.leading,
     super.widgetKey,
@@ -127,7 +130,8 @@ class CupertinoNavigationBarData extends _BaseData {
     this.heroTag,
     this.noMaterialParent = false,
     this.enableBackgroundFilterBlur,
-  });
+    Widget? middle,
+  }) : super(title: middle);
 
   final Widget? trailing;
   final Border? border;
@@ -212,6 +216,8 @@ class PlatformAppBar
       forceMaterialTransparency: data?.forceMaterialTransparency ?? false,
       actionsPadding: data?.actionsPadding,
       useDefaultSemanticsOrder: data?.useDefaultSemanticsOrder ?? true,
+      animateColor: data?.animateColor ?? false,
+      automaticallyImplyActions: data?.automaticallyImplyActions ?? true,
     );
   }
 

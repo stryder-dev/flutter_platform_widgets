@@ -75,7 +75,7 @@ class _DynamicTabbedPageState extends State<DynamicTabbedPage> {
           ),
         ],
         cupertino: (_, __) => CupertinoNavigationBarData(
-          title: Text('${titles[index]}'),
+          middle: Text('${titles[index]}'),
         ),
       ),
       bodyBuilder: (context, index) => ContentView(index, widget.platform),

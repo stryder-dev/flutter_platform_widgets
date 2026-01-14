@@ -1,3 +1,12 @@
+## [10.0.0]
+
+#### (Flutter version support: v3.38.6)
+
+- Adds all the flutter 3.38.6 additional properties for platform widgets
+- Removed deprecated parameters
+- (Breaking Change) `PlatformRadio` now has `value` prop as non nullable. Use `RadioGroup` parent to group value and changes
+- (Breaking Change) `CupertinoNavigationBarData`'s `title` property renamed to `middle`
+
 ## [9.0.0]
 
 #### (Flutter version support: v3.32.0)
